@@ -16,10 +16,15 @@ public class FabricSeasonsHelper {
   private FabricSeasonsHelper(){
   }
 
-  public static Item CALENDAR = FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
+  public static Item CALENDAR() {
+    if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()){
+      return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
+    }
+    else return null;
+  }
 
   public static boolean isSeasonTiedWithSystemTime() {
-    if(Common.fabricSeasonsLoaded() && Common.extrasLoaded()){
+    if(Common.fabricSeasonsLoaded()) {
       return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
     }
     else return false;

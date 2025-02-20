@@ -148,7 +148,7 @@ public class CommonSeasonHelper {
     Item calendar = null;
 
     if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()) {
-      calendar = FabricSeasonsHelper.CALENDAR;
+      calendar = FabricSeasonsHelper.CALENDAR();
     }
 
     if (Common.sereneSeasonsLoaded()) {
