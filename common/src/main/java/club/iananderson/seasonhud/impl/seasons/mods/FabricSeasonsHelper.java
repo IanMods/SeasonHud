@@ -11,7 +11,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class FabricSeasonsHelper {
-  public static Item CALENDAR = Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
+  public static Item CALENDAR(){
+    if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()){
+      return Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
+    }
+    else return null;
+  }
 
   public static boolean isSeasonTiedWithSystemTime() {
     if(Common.fabricSeasonsLoaded()) {
