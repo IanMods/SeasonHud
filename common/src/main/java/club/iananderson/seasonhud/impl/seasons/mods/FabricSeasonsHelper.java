@@ -12,7 +12,7 @@ import net.minecraft.world.item.Item;
 
 public class FabricSeasonsHelper {
   public static Item CALENDAR(){
-    if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()){
+    if (Common.fabricSeasonsLoaded()){
       return Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
     }
     else return null;
