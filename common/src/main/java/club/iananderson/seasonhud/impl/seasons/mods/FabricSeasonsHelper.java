@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.platform.Services;
 import io.github.lucaargolo.seasons.FabricSeasons;
@@ -10,8 +11,18 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class FabricSeasonsHelper {
-  public static Item CALENDAR = FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
-  public static boolean isSeasonTiedWithSystemTime = FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
+  public static Item CALENDAR () {
+    if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()){
+      return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;}
+    else return null;
+  }
+
+  public static boolean isSeasonTiedWithSystemTime() {
+    if(Common.fabricSeasonsLoaded()) {
+      return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
+    }
+    else return false;
+  }
 
   private FabricSeasonsHelper() {
   }
@@ -44,7 +55,7 @@ public class FabricSeasonsHelper {
     long worldTime = Math.toIntExact(player.level.getDayTime());
 
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
-    if (FabricSeasonsHelper.isSeasonTiedWithSystemTime) {
+    if (FabricSeasonsHelper.isSeasonTiedWithSystemTime()) {
       return LocalDateTime.now().getDayOfMonth();
     }
     else {
