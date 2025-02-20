@@ -35,7 +35,7 @@ public class CommonSeasonHelper {
    */
   public static boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
-      return FabricSeasonsHelper.isSeasonTiedWithSystemTime;
+      return FabricSeasonsHelper.isSeasonTiedWithSystemTime();
     }
     else {
       return false;
@@ -147,7 +147,7 @@ public class CommonSeasonHelper {
     Item calendar = null;
 
     if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()) {
-      calendar = FabricSeasonsHelper.CALENDAR;
+      calendar = FabricSeasonsHelper.CALENDAR();
     }
 
     if (Common.sereneSeasonsLoaded()) {
