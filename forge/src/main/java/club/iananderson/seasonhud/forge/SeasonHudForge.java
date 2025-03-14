@@ -29,7 +29,7 @@ public class SeasonHudForge {
   public static class ClientModEvents {
     @SubscribeEvent
     public static void onInitialize(FMLCommonSetupEvent event) {
-      if (Common.curiosLoaded() && Common.sereneSeasonsLoaded()) {
+      if (Common.curiosLoaded() && Common.calendarLoaded()) {
         Common.LOG.info("Talking to Curios");
         new CuriosCompat().setup(event);
       }
