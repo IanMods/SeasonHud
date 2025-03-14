@@ -229,7 +229,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       });
       widgets.add(dayLengthBox);
     }
-    if (Common.extrasLoaded()) {
+    if (Common.calendarLoaded()) {
       row = 5;
       needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,

@@ -12,7 +12,7 @@ import net.minecraft.world.item.Item;
 
 public class FabricSeasonsHelper {
   public static Item CALENDAR () {
-    if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()){
+    if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()){
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;}
     else return null;
   }
