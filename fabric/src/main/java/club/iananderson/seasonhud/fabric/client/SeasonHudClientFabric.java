@@ -25,7 +25,7 @@ public class SeasonHudClientFabric implements ClientModInitializer {
       EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
     }
 
-    if (Common.accessoriesLoaded() && Common.extrasLoaded() && !Common.curiosLoaded()) {
+    if (Common.accessoriesLoaded() && Common.calendarLoaded() && !Common.curiosLoaded()) {
       Common.LOG.info("Talking to Accessories Client");
       AccessoriesCompat.clientInit();
     }

@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.TerrafirmaCraftHelper;
@@ -147,7 +146,7 @@ public class CommonSeasonHelper {
   public static Item calendar() {
     Item calendar = null;
 
-    if (Common.fabricSeasonsLoaded() && Common.extrasLoaded()) {
+    if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()) {
       calendar = FabricSeasonsHelper.CALENDAR();
     }
 
