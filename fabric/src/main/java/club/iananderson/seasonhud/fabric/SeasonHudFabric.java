@@ -18,7 +18,7 @@ public class SeasonHudFabric implements ModInitializer {
 
     if (Common.accessoriesLoaded() && !(Common.trinketsLoaded() || Common.curiosLoaded())) {
       Common.LOG.info("Talking to Accessories");
-      if(Common.extrasLoaded()){
+      if(Common.calendarLoaded()){
         AccessoriesCompat.init();
       }
     }

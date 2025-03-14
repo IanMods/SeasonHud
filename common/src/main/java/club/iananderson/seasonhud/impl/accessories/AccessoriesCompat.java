@@ -8,13 +8,13 @@ public class AccessoriesCompat {
   }
 
 //  public static void clientInit() {
-//    if (Common.accessoriesLoaded()) {
+//    if (Common.accessoriesLoaded() && Common.calendarLoaded()) {
 //      AccessoriesCalendar.clientInit();
 //    }
 //  }
 
   public static void init() {
-    if (Common.accessoriesLoaded()) {
+    if (Common.accessoriesLoaded() && Common.calendarLoaded()) {
       AccessoriesCalendar.init();
     }
   }

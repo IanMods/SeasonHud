@@ -26,11 +26,12 @@ public class Common {
   private static String platformName;
   private static boolean sereneSeasonsLoaded;
   private static boolean fabricSeasonsLoaded;
+  private static boolean fabricSeasonsExtrasLoaded;
   private static boolean terrafirmacraftLoaded;
+  private static boolean calendarLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
-  private static boolean extrasLoaded;
 
   private Common() {
   }
@@ -40,7 +41,8 @@ public class Common {
     sereneSeasonsLoaded = Services.PLATFORM.isModLoaded("sereneseasons");
     fabricSeasonsLoaded = Services.PLATFORM.isModLoaded("seasons");
     terrafirmacraftLoaded = Services.PLATFORM.isModLoaded("tfc");
-    extrasLoaded = (Services.PLATFORM.isModLoaded("seasonsextras") || sereneSeasonsLoaded) && !terrafirmacraftLoaded;
+    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded("seasonsextras");
+    calendarLoaded = (fabricSeasonsExtrasLoaded || sereneSeasonsLoaded);
     curiosLoaded = Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
@@ -58,12 +60,16 @@ public class Common {
     return Common.fabricSeasonsLoaded;
   }
 
-  public static boolean extrasLoaded() {
-    return Common.extrasLoaded;
+  public static boolean fabricSeasonsExtrasLoaded() {
+    return Common.fabricSeasonsExtrasLoaded;
   }
 
   public static boolean terrafirmacraftLoaded() {
     return Common.terrafirmacraftLoaded;
+  }
+
+  public static boolean calendarLoaded() {
+    return Common.calendarLoaded;
   }
 
   public static boolean curiosLoaded() {

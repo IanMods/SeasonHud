@@ -237,7 +237,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       dayLengthBox.setHint(Component.literal("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
       widgets.add(dayLengthBox);
     }
-    if (Common.extrasLoaded()) {
+    if (Common.calendarLoaded()) {
       row = 5;
       needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.main.needCalendar.tooltip")))
