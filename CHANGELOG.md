@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Disabled Accessories/Curios detection if running TerraFirmaCraft, since it is not needed.
+- Disabled Accessories/Curios detection if running TerraFirmaCraft, since it is not needed.**
 
 ## [1.12.3] - 2025-03-08
 
@@ -46,12 +46,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Some internal changes to make it easier to add support for other mods. 
-  - Let me know if I broke anything!
+- Some internal changes to make it easier to add support for other mods.
+    - Let me know if I broke anything!
 - Made SereneSeasons an optional dependency on (Neo)Forge, to allow TerraFirmaCraft to run by itself.
-  - The game should load fine even if no season mod is used now, the season tracker will just be sad.
+    - The game should load fine even if no season mod is used now, the season tracker will just be sad.
 - Changed date calculation from int to long to prevent a crash if too many days are added by commands.
-  
+
 ## [1.11.7] - 2024-12-29
 
 ### Fixed
