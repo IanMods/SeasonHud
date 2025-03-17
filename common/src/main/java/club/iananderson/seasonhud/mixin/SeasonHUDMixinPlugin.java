@@ -12,9 +12,11 @@ import org.spongepowered.asm.service.MixinService;
 public class SeasonHUDMixinPlugin implements IMixinConfigPlugin {
 
   private static final boolean HAS_XAERO;
+  private static final boolean HAS_MAP_ATLASES;
 
   static {
     HAS_XAERO = hasClass("xaero.common.HudMod");
+    HAS_MAP_ATLASES = hasClass("pepjebs.mapatlases.MapAtlasesMod");
   }
 
   private String prefix = null;
@@ -47,6 +49,9 @@ public class SeasonHUDMixinPlugin implements IMixinConfigPlugin {
     Preconditions.checkState(mixinClassName.startsWith(prefix), "Unexpected prefix on " + mixinClassName);
     if (mixinClassName.startsWith("club.iananderson.seasonhud.mixin.xaero")) {
       return HAS_XAERO;
+    }
+    else if (mixinClassName.startsWith("club.iananderson.seasonhud.mixin.mapatlases")) {
+      return HAS_MAP_ATLASES;
     }
     else {
       return true;

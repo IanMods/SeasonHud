@@ -7,6 +7,7 @@
   "mixins": [
   ],
   "client": [
+    "mapatlases.MapAtlasHudMixin",
     "xaero.XaeroBuiltInInfoDisplays"
   ],
   "injectors": {
