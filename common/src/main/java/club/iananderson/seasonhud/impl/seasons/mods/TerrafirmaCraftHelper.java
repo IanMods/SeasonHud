@@ -12,10 +12,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class TerrafirmaCraftHelper {
+  public static Item CALENDAR = null;
+
   private TerrafirmaCraftHelper() {
   }
-
-  public static Item CALENDAR = null;
 
   //DECEMBER(-0.866F, Season.WINTER) -> Early Winter
   //JANUARY(-1.0F, Season.WINTER) -> Mid Winter
@@ -28,51 +28,6 @@ public class TerrafirmaCraftHelper {
   //JUNE(0.866F, Season.SUMMER) -> Early Summer
   //JULY(1.0F, Season.SUMMER) -> Mid Summer
   //AUGUST(0.866F, Season.SUMMER) -> Late Summer
-
-  //SEPTEMBER(0.5F, Season.FALL) -> Early Fall
-  //OCTOBER(0.0F, Season.FALL) -> Mid Fall
-  //NOVEMBER(-0.5F, Season.FALL) -> Late Fall
-  private enum SubSeason {
-    EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
-
-    MID("MID_", Month.JANUARY, Month.APRIL, Month.JULY, Month.OCTOBER),
-
-    LATE("LATE_", Month.FEBRUARY, Month.MAY, Month.AUGUST, Month.NOVEMBER);
-
-    private final String prefix;
-    private final Month winter;
-    private final Month spring;
-    private final Month summer;
-    private final Month autumn;
-
-    SubSeason(String prefix, Month winter, Month spring, Month summer, Month autumn) {
-      this.prefix = prefix;
-      this.winter = winter;
-      this.spring = spring;
-      this.summer = summer;
-      this.autumn = autumn;
-    }
-
-    public String getPrefix() {
-      return this.prefix;
-    }
-
-    public Month getWinter() {
-      return this.winter;
-    }
-
-    public Month getSpring() {
-      return this.spring;
-    }
-
-    public Month getSummer() {
-      return this.summer;
-    }
-
-    public Month getAutumn() {
-      return this.autumn;
-    }
-  }
 
   private static List<Month> getSeasonMonths(Season season) {
     List<Month> SEASON = new ArrayList<>();
@@ -154,7 +109,9 @@ public class TerrafirmaCraftHelper {
       return "AUTUMN";
     }
 
-    else return Calendars.CLIENT.getCalendarMonthOfYear().getSeason().getSerializedName();
+    else {
+      return Calendars.CLIENT.getCalendarMonthOfYear().getSeason().getSerializedName();
+    }
   }
 
   public static int getDate(Player player) {
@@ -171,7 +128,7 @@ public class TerrafirmaCraftHelper {
     }
 
     else {
-      return dayOfMonth + (subSeasonPos*daysInMonth);
+      return dayOfMonth + (subSeasonPos * daysInMonth);
     }
   }
 
@@ -184,6 +141,51 @@ public class TerrafirmaCraftHelper {
 
     else {
       return daysInMonth * 3;
+    }
+  }
+
+  //SEPTEMBER(0.5F, Season.FALL) -> Early Fall
+  //OCTOBER(0.0F, Season.FALL) -> Mid Fall
+  //NOVEMBER(-0.5F, Season.FALL) -> Late Fall
+  private enum SubSeason {
+    EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
+
+    MID("MID_", Month.JANUARY, Month.APRIL, Month.JULY, Month.OCTOBER),
+
+    LATE("LATE_", Month.FEBRUARY, Month.MAY, Month.AUGUST, Month.NOVEMBER);
+
+    private final String prefix;
+    private final Month winter;
+    private final Month spring;
+    private final Month summer;
+    private final Month autumn;
+
+    SubSeason(String prefix, Month winter, Month spring, Month summer, Month autumn) {
+      this.prefix = prefix;
+      this.winter = winter;
+      this.spring = spring;
+      this.summer = summer;
+      this.autumn = autumn;
+    }
+
+    public String getPrefix() {
+      return this.prefix;
+    }
+
+    public Month getWinter() {
+      return this.winter;
+    }
+
+    public Month getSpring() {
+      return this.spring;
+    }
+
+    public Month getSummer() {
+      return this.summer;
+    }
+
+    public Month getAutumn() {
+      return this.autumn;
     }
   }
 }
