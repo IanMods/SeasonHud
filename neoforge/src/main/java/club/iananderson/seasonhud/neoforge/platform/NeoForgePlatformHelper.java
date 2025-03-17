@@ -24,8 +24,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     if (mod.isPresent()) {
       return mod.get().getModInfo().getVersion().toString();
-    }
-    else {
+    } else {
       return "Not Loaded";
     }
   }
