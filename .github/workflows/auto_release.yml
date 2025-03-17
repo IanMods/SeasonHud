@@ -2,13 +2,10 @@ name: Releases
 
 on: 
   push:
-    branches:
-      - active/multi/1.20.1
     tags:
     - '*'
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     permissions:
