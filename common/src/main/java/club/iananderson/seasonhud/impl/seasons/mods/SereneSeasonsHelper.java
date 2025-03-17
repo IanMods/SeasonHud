@@ -10,10 +10,10 @@ import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.init.ModConfig;
 
 public class SereneSeasonsHelper {
-  private SereneSeasonsHelper(){
-  }
-
   public static Item CALENDAR = SSItems.CALENDAR;
+
+  private SereneSeasonsHelper() {
+  }
 
   public static boolean isTropicalSeason(Player player) {
     boolean showTropicalSeasons = Config.getShowTropicalSeason();

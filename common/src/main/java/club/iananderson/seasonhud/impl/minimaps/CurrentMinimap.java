@@ -76,9 +76,8 @@ public class CurrentMinimap {
         MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
         return !properties.enabled.get() || (!properties.isActive() && UIManager.INSTANCE.getMiniMap()
-                                                                                         .isDrawingInPreviewMode())
-            || mc.player.isScoping() || !(mc.screen == null || mc.screen instanceof ChatScreen
-            || mc.screen instanceof MinimapOptions);
+            .isDrawingInPreviewMode()) || mc.player.isScoping() || !(mc.screen == null
+            || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
       }
       case FTB_CHUNKS -> {
         return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.getDebugOverlay().showDebugScreen();

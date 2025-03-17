@@ -4,7 +4,6 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
 import club.iananderson.seasonhud.neoforge.impl.curios.CuriosCompat;
 import club.iananderson.seasonhud.platform.Services;
@@ -32,7 +31,8 @@ public class SeasonHudNeoForge {
     if (Common.curiosLoaded() && !Common.accessoriesLoaded()) {
       Common.LOG.info("Talking to Curios");
       CuriosCompat.init();
-    } else if (Common.accessoriesLoaded()) {
+    }
+    else if (Common.accessoriesLoaded()) {
       Common.LOG.info("Talking to Accessories {}", Services.PLATFORM.getModVersion("accessories"));
       AccessoriesCompat.init();
     }
