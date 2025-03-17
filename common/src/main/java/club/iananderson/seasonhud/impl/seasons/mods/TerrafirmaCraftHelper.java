@@ -147,6 +147,7 @@ public class TerrafirmaCraftHelper {
   //SEPTEMBER(0.5F, Season.FALL) -> Early Fall
   //OCTOBER(0.0F, Season.FALL) -> Mid Fall
   //NOVEMBER(-0.5F, Season.FALL) -> Late Fall
+
   private enum SubSeason {
     EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
 

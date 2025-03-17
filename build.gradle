@@ -130,7 +130,7 @@ subprojects {
     }
 }
 
-task latestChangelog{
+task latestChangelog {
     group = "changelog"
 
     File fullChangelog = file("CHANGELOG.md")
