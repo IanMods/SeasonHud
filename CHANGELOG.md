@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Disabled Accessories/Curios detection if running TerraFirmaCraft, since it is not needed.**
+- Disabled Accessories/Curios detection if running TerraFirmaCraft, since it is not needed.
 
 ## [1.12.3] - 2025-03-08
 
