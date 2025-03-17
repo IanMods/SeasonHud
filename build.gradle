@@ -127,9 +127,27 @@ subprojects {
     }
 }
 
+task latestChangelog {
+    group = "changelog"
+
+    File fullChangelog = file("CHANGELOG.md")
+    String fullChangelogText = fullChangelog.getText()
+
+    int firstHeading = fullChangelogText.indexOf("## [")
+    int nextHeading = fullChangelogText.indexOf("## [", firstHeading + 1)
+
+    String latestChangelogText = fullChangelogText.substring(firstHeading, nextHeading)
+
+    outputs.file file("LATEST_CHANGELOG.md")
+    doLast {
+        def initFile = file("LATEST_CHANGELOG.md")
+        initFile.text = latestChangelogText
+    }
+}
 
 task publishAll {
     group = "upload"
+    dependsOn("latestChangelog")
     dependsOn("fabric:publishFabric")
     dependsOn("forge:publishForge")
 }

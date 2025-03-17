@@ -12,22 +12,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class TerrafirmaCraftHelper {
-  public static Item CALENDAR = null;
-
   private TerrafirmaCraftHelper() {
   }
 
-  //DECEMBER(-0.866F, Season.WINTER) -> Early Winter
-  //JANUARY(-1.0F, Season.WINTER) -> Mid Winter
-  //FEBRUARY(-0.866F, Season.WINTER) -> Late Winter
-
-  //MARCH(-0.5F, Season.SPRING) -> Early Spring
-  //APRIL(0.0F, Season.SPRING) -> Mid Spring
-  //MAY(0.5F, Season.SPRING) -> Late Spring
-
-  //JUNE(0.866F, Season.SUMMER) -> Early Summer
-  //JULY(1.0F, Season.SUMMER) -> Mid Summer
-  //AUGUST(0.866F, Season.SUMMER) -> Late Summer
+  public static Item CALENDAR = null;
 
   private static List<Month> getSeasonMonths(Season season) {
     List<Month> SEASON = new ArrayList<>();
@@ -151,9 +139,22 @@ public class TerrafirmaCraftHelper {
     }
   }
 
+  //DECEMBER(-0.866F, Season.WINTER) -> Early Winter
+  //JANUARY(-1.0F, Season.WINTER) -> Mid Winter
+  //FEBRUARY(-0.866F, Season.WINTER) -> Late Winter
+
+  //MARCH(-0.5F, Season.SPRING) -> Early Spring
+  //APRIL(0.0F, Season.SPRING) -> Mid Spring
+  //MAY(0.5F, Season.SPRING) -> Late Spring
+
+  //JUNE(0.866F, Season.SUMMER) -> Early Summer
+  //JULY(1.0F, Season.SUMMER) -> Mid Summer
+  //AUGUST(0.866F, Season.SUMMER) -> Late Summer
+
   //SEPTEMBER(0.5F, Season.FALL) -> Early Fall
   //OCTOBER(0.0F, Season.FALL) -> Mid Fall
   //NOVEMBER(-0.5F, Season.FALL) -> Late Fall
+
   private enum SubSeason {
     EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
 
