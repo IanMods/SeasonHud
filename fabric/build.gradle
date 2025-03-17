@@ -78,6 +78,17 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
+    //Map Atlases
+    modCompileOnly("maven.modrinth:map-atlases:fabric_1.21-${project.map_atlases_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("maven.modrinth:moonlight:fabric_1.21-${project.moonlight_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.4-fabric") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+
     //Trinkets + Accessories
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -136,7 +147,9 @@ dependencies {
             modLocalRuntime("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
             break
         case "atlas":
-            break
+            modLocalRuntime("maven.modrinth:map-atlases:fabric_1.21-${project.map_atlases_version}")
+            modLocalRuntime("maven.modrinth:moonlight:fabric_1.21-${project.moonlight_version}")
+            modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.4-fabric")
         case "none":
             break
         default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
