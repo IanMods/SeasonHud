@@ -11,20 +11,24 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class FabricSeasonsHelper {
+  private FabricSeasonsHelper() {
+  }
+
   public static Item CALENDAR () {
     if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()){
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;}
-    else return null;
+    else {
+      return null;
+    }
   }
 
   public static boolean isSeasonTiedWithSystemTime() {
-    if(Common.fabricSeasonsLoaded()) {
+    if (Common.fabricSeasonsLoaded()) {
       return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
     }
-    else return false;
-  }
-
-  private FabricSeasonsHelper() {
+    else {
+      return false;
+    }
   }
 
   public static String getCurrentSubSeason(Player player) {

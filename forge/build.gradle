@@ -127,13 +127,7 @@ remapJar {
     input.set shadowJar.archiveFile
 }
 
-String changelogText = projectDir.toPath().getParent().resolve("CHANGELOG.md").getText('UTF-8')
-
 modrinth {
-    int firstHeading = changelogText.indexOf("## [")
-    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
-    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
-
     debugMode = false
     token = System.getenv("MODRINTH_TOKEN")
     projectId = modrinth_forge_id
@@ -146,7 +140,7 @@ modrinth {
     gameVersions = mcVersions
     loaders = ["forge"]
 
-    changelog = recentChangelogText
+    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
 
     dependencies {
         optional.project "serene-seasons"
@@ -162,17 +156,13 @@ modrinth {
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     group = "curseforge"
 
-    int firstHeading = changelogText.indexOf("## [")
-    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
-    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
-
     debugMode = false
     disableVersionDetection()
     apiToken = System.getenv("CURSEFORGE_TOKEN")
 
     def mainFile = upload(curseforge_forge_id, remapJar)
     mainFile.changelogType = "markdown"
-    mainFile.changelog = recentChangelogText
+    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
     mainFile.releaseType = "release"
 
     List<String> mcVersions = curseforge_gameVersions.split(",")

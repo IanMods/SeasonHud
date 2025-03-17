@@ -15,5 +15,4 @@ public class SeasonHudFabric implements ModInitializer {
   public void onInitialize() {
     Common.init();
   }
-
 }

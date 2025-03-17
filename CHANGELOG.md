@@ -4,11 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.12.5] - 2025-03-17
+
+### Added
+
+- Added support for MapAtlases 1.21 (Fabric/NeoForge)
+
+### Changed
+
+- Updated to latest versions of all minimap mods
+
 ## [1.12.4] - 2025-03-14
 
 ### Fixed
 
-- Disabled Accessories/Curios detection if running TerraFirmaCraft, since it is not needed.
+- Disabled Accessories/Curios detection if running TerraFirmaCraft, since it is not needed.**
 
 ## [1.12.3] - 2025-03-08
 
