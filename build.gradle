@@ -133,24 +133,31 @@ subprojects {
 task latestChangelog {
     group = "changelog"
 
-    File fullChangelog = file("CHANGELOG.md")
-    String fullChangelogText = fullChangelog.getText()
+    String fullChangelogText = file("CHANGELOG.md").getText()
 
     int firstHeading = fullChangelogText.indexOf("## [")
     int nextHeading = fullChangelogText.indexOf("## [", firstHeading + 1)
 
     String latestChangelogText = fullChangelogText.substring(firstHeading, nextHeading)
 
+    outputs.upToDateWhen {
+        if(file("LATEST_CHANGELOG.md").exists()) {
+            return latestChangelogText == file("LATEST_CHANGELOG.md").getText()
+        }
+        else return false
+    }
+
     outputs.file file("LATEST_CHANGELOG.md")
     doLast {
-        def initFile = file("LATEST_CHANGELOG.md")
-        initFile.text = latestChangelogText
+        def latestChangelog = file("LATEST_CHANGELOG.md")
+        latestChangelog.text = latestChangelogText
+        printf(latestChangelog.text)
     }
 }
 
 task publishAll {
     group = "upload"
-    dependsOn("latestChangelog")
+
     dependsOn("fabric:publishFabric")
     dependsOn("forge:publishForge")
     dependsOn("neoforge:publishNeoForge")
