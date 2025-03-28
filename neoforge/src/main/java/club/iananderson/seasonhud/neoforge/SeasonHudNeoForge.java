@@ -33,7 +33,6 @@ public class SeasonHudNeoForge {
       Common.LOG.info("Talking to Curios");
       CuriosCompat.init();
     } else if (Common.accessoriesLoaded()) {
-      Common.LOG.info("Talking to Accessories {}", Services.PLATFORM.getModVersion("accessories"));
       AccessoriesCompat.init();
     }
   }

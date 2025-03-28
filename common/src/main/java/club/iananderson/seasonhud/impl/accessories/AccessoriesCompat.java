@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.impl.accessories;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.accessories.item.AccessoriesCalendar;
+import club.iananderson.seasonhud.platform.Services;
 
 public class AccessoriesCompat {
   public AccessoriesCompat() {
@@ -16,7 +17,7 @@ public class AccessoriesCompat {
 
   public static void init() {
     if (Common.accessoriesLoaded() && Common.calendarLoaded()) {
-      Common.LOG.info("Talking to Accessories");
+      Common.LOG.info("Talking to Accessories {}", Services.PLATFORM.getModVersion("accessories"));
       AccessoriesCalendar.init();
     }
   }
