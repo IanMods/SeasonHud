@@ -1,10 +1,6 @@
-## [1.12.5] - 2025-03-17
-
-### Added
-
-- Added support for MapAtlases 1.21 (Fabric/NeoForge)
+## [1.12.6] - 2025-03-28
 
 ### Changed
 
-- Updated to latest versions of all minimap mods
+- Cleaned up some Accessories compat code
 
