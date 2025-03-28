@@ -6,7 +6,6 @@ public class SeasonHudForgeClient {
 //  @SubscribeEvent
 //  public static void onInitializeClient(FMLClientSetupEvent event) {
 //    if (Common.accessoriesLoaded() && !Common.curiosLoaded()) {
-//      Common.LOG.info("Talking to Accessories Client");
 //      AccessoriesCompat.clientInit();
 //    }
 //  }

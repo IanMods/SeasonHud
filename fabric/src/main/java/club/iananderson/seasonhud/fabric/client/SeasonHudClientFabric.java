@@ -25,7 +25,6 @@ public class SeasonHudClientFabric implements ClientModInitializer {
     }
 
 //    if (Common.accessoriesLoaded() && Common.calendarLoaded() && !Common.curiosLoaded()) {
-//      Common.LOG.info("Talking to Accessories Client");
 //      AccessoriesCompat.clientInit();
 //    }
   }
