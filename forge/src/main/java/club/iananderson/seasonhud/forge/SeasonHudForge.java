@@ -35,7 +35,6 @@ public class SeasonHudForge {
       CuriosCompat.init();
     }
     else if (Common.accessoriesLoaded()) {
-      Common.LOG.info("Talking to Accessories");
       AccessoriesCompat.init();
     }
   }
