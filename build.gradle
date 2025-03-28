@@ -161,4 +161,5 @@ task publishAll {
     dependsOn("fabric:publishFabric")
     dependsOn("forge:publishForge")
     dependsOn("neoforge:publishNeoForge")
+    dependsOn("latestChangelog")
 }
