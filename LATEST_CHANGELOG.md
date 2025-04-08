@@ -1,6 +1,6 @@
-## [1.12.6] - 2025-03-28
+## [1.12.7] - 2025-04-07
 
-### Changed
+### Fixed
 
-- Cleaned up some Accessories compat code
+- Fixed crash if the world date is a very large number
 
