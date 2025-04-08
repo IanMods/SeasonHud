@@ -155,7 +155,7 @@ task latestChangelog {
 task publishAll {
     group = "upload"
 
+    dependsOn("latestChangelog")
     dependsOn("fabric:publishFabric")
     dependsOn("forge:publishForge")
-    dependsOn("latestChangelog")
 }
