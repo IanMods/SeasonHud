@@ -57,7 +57,7 @@ public class FabricSeasonsHelper {
   public static long getDate(Player player) {
     long dayLength = Config.getDayLength();
     long seasonLength = FabricSeasons.CONFIG.getSeasonLength();
-    long worldTime = Math.toIntExact(player.level.getDayTime());
+    long worldTime = player.level.getDayTime();
 
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
     if (FabricSeasonsHelper.isSeasonTiedWithSystemTime()) {

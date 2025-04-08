@@ -10,6 +10,5 @@ pluginManagement {
 
 rootProject.name = 'seasonhud-1.16.5'
 
-include 'common'
-include 'fabric'
-include 'forge'
+include("common")
+include(enabled_platforms.split(','))
