@@ -1,10 +1,6 @@
-## [1.12.5] - 2025-03-17
+## [1.12.7] - 2025-04-07
 
-### Added
+### Fixed
 
-- Added support for MapAtlases 1.21 (Fabric/NeoForge)
-
-### Changed
-
-- Updated to latest versions of all minimap mods
+- Fixed crash if the world date is a very large number 
 
