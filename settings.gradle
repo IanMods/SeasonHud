@@ -17,6 +17,4 @@ plugins {
 rootProject.name = 'seasonhud-1.21.x'
 
 include("common")
-include("fabric")
-include("forge")
-include("neoforge")
+include(enabled_platforms.split(','))
