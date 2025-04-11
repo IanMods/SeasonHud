@@ -32,4 +32,5 @@ dependencies {
     //modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
     modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
+    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 }

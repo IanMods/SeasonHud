@@ -31,7 +31,7 @@ public enum ShowDay {
   public static List<ShowDay> getValues() {
     List<ShowDay> values = new ArrayList<>(Arrays.asList(ShowDay.values()));
 
-    if (!CommonSeasonHelper.isSeasonTiedWithSystemTime()) {
+    if (!CommonSeasonHelper.commonSeasons.isSeasonTiedWithSystemTime()) {
       values.remove(SHOW_WITH_MONTH.getId());
     }
 

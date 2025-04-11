@@ -9,29 +9,42 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import sereneseasons.config.SeasonsConfig;
 
-public class SereneSeasonsHelper {
-  public static Item CALENDAR = Registry.ITEM.get(new ResourceLocation("sereneseasons", "calendar"));
-
-  private SereneSeasonsHelper() {
+public class SereneSeasonsHelper implements IModHelper {
+  public SereneSeasonsHelper() {
   }
 
-  public static boolean isTropicalSeason(Player player) {
+  @Override
+  public Item CALENDAR() {
+    return Registry.ITEM.get(new ResourceLocation("sereneseasons", "calendar"));
+  }
+
+  @Override
+  public boolean isTropicalSeason(Player player) {
     return false;
   }
 
-  public static String getCurrentSubSeason(Player player) {
+  @Override
+  public boolean isSeasonTiedWithSystemTime() {
+    return false;
+  }
+
+  @Override
+  public String getCurrentSubSeason(Player player) {
     return Services.PLATFORM.getCurrentSubSeason(player); //1.16.5 Forge weirdness
   }
 
-  public static String getCurrentSeason(Player player) {
+  @Override
+  public String getCurrentSeason(Player player) {
     return Services.PLATFORM.getCurrentSeason(player); //1.16.5 Forge weirdness
   }
 
-  public static long getDate(Player player) {
+  @Override
+  public long getDate(Player player) {
     return Services.PLATFORM.getSeasonDate(player); //1.16.5 Forge weirdness
   }
 
-  public static int seasonDuration(Player player) {
+  @Override
+  public int seasonDuration(Player player) {
     int duration = SeasonsConfig.subSeasonDuration.get() * 3;
 
     if (isTropicalSeason(player)) {
