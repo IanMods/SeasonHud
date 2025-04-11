@@ -52,7 +52,7 @@ public class CurrentSeason {
 
     if(Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && Config.getShowSubSeason()){
       season = currentSubSeason;
-      return Component.translatable("info.eclipticseasons.environment.solar_term." + season);
+      return new TranslatableComponent("info.eclipticseasons.environment.solar_term." + season);
     }
 
     return new TranslatableComponent("desc.seasonhud.season." + season);
