@@ -166,7 +166,6 @@ modrinth {
     dependencies {
         optional.project "serene-seasons"
         optional.project "terrafirmacraft"
-        optional.project "ecliptic-seasons"
         optional.project "curios"
         optional.project "journeymap"
         optional.project "xaeros-minimap"
@@ -194,6 +193,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
 
     mainFile.addOptional("serene-seasons")
     mainFile.addOptional("terrafirmacraft")
+    mainFile.addOptional("ecliptic-seasons")
     mainFile.addOptional("curios")
     mainFile.addOptional("ftb-chunks-forge")
     mainFile.addOptional("journeymap")
