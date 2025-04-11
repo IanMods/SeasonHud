@@ -19,7 +19,7 @@ public class CuriosCalendar implements ICurioItem {
 
   public static ICapabilityProvider initCapabilities() {
     ICurio curio = new ICurio() {
-      final ItemStack stack = SereneSeasonsHelper.CALENDAR.getDefaultInstance();
+      final ItemStack stack = CommonSeasonHelper.commonSeasons.CALENDAR();
 
       @Override
       public ItemStack getStack() {

@@ -11,21 +11,30 @@ import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.config.ServerConfig;
 
-public class SereneSeasonsHelper {
-  public static Item CALENDAR = Registry.ITEM.get(new ResourceLocation("sereneseasons", "calendar"));
-
-  private SereneSeasonsHelper() {
+public class SereneSeasonsHelper implements IModHelper {
+  public SereneSeasonsHelper() {
   }
 
-  public static boolean isTropicalSeason(Player player) {
+  @Override
+  public Item CALENDAR() {
+    return Registry.ITEM.get(new ResourceLocation("sereneseasons", "calendar"));
+  }
+
+  @Override
+  public boolean isTropicalSeason(Player player) {
     boolean showTropicalSeasons = Config.getShowTropicalSeason();
-    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(
-        player.level.getBiome(player.getOnPos()));
+    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level.getBiome(player.getOnPos()));
 
     return showTropicalSeasons && isInTropicalSeason;
   }
 
-  public static String getCurrentSubSeason(Player player) {
+  @Override
+  public boolean isSeasonTiedWithSystemTime() {
+    return false;
+  }
+
+  @Override
+  public String getCurrentSubSeason(Player player) {
     ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level);
 
     if (isTropicalSeason(player)) {
@@ -36,7 +45,8 @@ public class SereneSeasonsHelper {
     }
   }
 
-  public static String getCurrentSeason(Player player) {
+  @Override
+  public String getCurrentSeason(Player player) {
     ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level);
     if (isTropicalSeason(player)) {
       // Removes the "Early", "Mid", "Late" from the tropical season.
@@ -49,7 +59,8 @@ public class SereneSeasonsHelper {
     }
   }
 
-  public static long getDate(Player player) {
+  @Override
+  public long getDate(Player player) {
     ISeasonState currentSeasonState = SeasonHelper.getSeasonState(player.level);
     long seasonDay = currentSeasonState.getDay(); //Current day out of the year (Default 24 days * 4 = 96 days)
     long subSeasonDuration = ServerConfig.subSeasonDuration.get(); //In case the default duration is changed
@@ -74,7 +85,8 @@ public class SereneSeasonsHelper {
     }
   }
 
-  public static int seasonDuration(Player player) {
+  @Override
+  public int seasonDuration(Player player) {
     int duration = ServerConfig.subSeasonDuration.get() * 3;
 
     if (isTropicalSeason(player)) {

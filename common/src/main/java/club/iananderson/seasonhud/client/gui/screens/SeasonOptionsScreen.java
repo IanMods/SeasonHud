@@ -190,7 +190,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     widgets.addAll(Arrays.asList(hudLocationButton, xSlider, ySlider, showDayButton, seasonColorButton));
 
-    if (Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded()) {
+    if (Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded()) {
       row = 2;
       showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,

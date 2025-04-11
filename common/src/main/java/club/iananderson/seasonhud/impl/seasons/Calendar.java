@@ -54,7 +54,7 @@ public class Calendar {
 
   private static boolean calendarFound() {
     Minecraft mc = Minecraft.getInstance();
-    Item calendar = CommonSeasonHelper.calendar();
+    Item calendar = CommonSeasonHelper.commonSeasons.CALENDAR();
 
     if (!Common.calendarLoaded()) {
       return true;
