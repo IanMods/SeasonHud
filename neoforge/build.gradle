@@ -41,6 +41,9 @@ dependencies {
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
 
+    //Ecliptic Seasons
+    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21.4"
 
@@ -110,7 +113,10 @@ dependencies {
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
             modImplementation "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
             break
-        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene or terra")
+        case "ecliptic":
+            modImplementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+            break
+        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
     }
 }
 
@@ -139,7 +145,8 @@ modrinth {
     changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
 
     dependencies {
-        required.project "serene-seasons"
+        optional.project "serene-seasons"
+        optional.project "terrafirmacraft"
         optional.project "curios"
         optional.project "accessories"
         optional.project "xaeros-minimap"
@@ -164,9 +171,11 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addGameVersion("NeoForge")
     mainFile.addJavaVersion("Java 21")
 
-    mainFile.addRequirement("serene-seasons")
-    mainFile.addOptional("accessories")
+    mainFile.addOptional("serene-seasons")
+    mainFile.addOptional("terrafirmacraft")
+    mainFile.addOptional("ecliptic-seasons")
     mainFile.addOptional("curios")
+    mainFile.addOptional("accessories")
     mainFile.addOptional("xaeros-minimap")
     mainFile.addOptional("xaeros-minimap-fair-play-edition")
     mainFile.addOptional("ftb-chunks-forge")
