@@ -196,7 +196,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     widgets.addAll(Arrays.asList(hudLocationButton, xSlider, ySlider, showDayButton, seasonColorButton));
 
-    if (Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded()) {
+    if (Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded()) {
       row = 2;
       showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
           .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.season.showSubSeason.tooltip")))

@@ -11,16 +11,16 @@ public class AccessoriesCalendar implements Accessory {
   }
 
 //  public static void clientInit() {
-//    AccessoriesRendererRegistry.registerRenderer(CommonSeasonHelper.calendar(), Renderer::new);
+//    AccessoriesRendererRegistry.registerRenderer(CommonSeasonHelper.commonSeasons.CALENDAR(), Renderer::new);
 //  }
 
   public static void init() {
     if (Services.PLATFORM.getModVersion("accessories").startsWith("1.1.0") || Services.PLATFORM.getModVersion(
         "accessories").startsWith("1.0.0")) {
-      AccessoriesAPI.registerAccessory(CommonSeasonHelper.calendar(), new AccessoriesCalendar());
+      AccessoriesAPI.registerAccessory(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
     }
     else {
-      AccessoryRegistry.register(CommonSeasonHelper.calendar(), new AccessoriesCalendar());
+      AccessoryRegistry.register(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
     }
   }
 

@@ -1,6 +1,6 @@
-## [1.12.7] - 2025-04-07
+## [1.13.0] - 2025-04-11
 
-### Fixed
+### Added
 
-- Fixed crash if the world date is a very large number
+- Added support for Ecliptic Seasons
 
