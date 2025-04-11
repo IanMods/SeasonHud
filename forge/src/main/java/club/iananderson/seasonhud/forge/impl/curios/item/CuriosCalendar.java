@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.forge.impl.curios.item;
 
+import club.iananderson.seasonhud.impl.seasons.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.platform.Services;
 import javax.annotation.Nonnull;
@@ -19,7 +20,7 @@ public class CuriosCalendar implements ICurioItem {
 
   public static ICapabilityProvider initCapabilities() {
     ICurio curio = new ICurio() {
-      final ItemStack stack = CommonSeasonHelper.commonSeasons.CALENDAR();
+      final ItemStack stack = CommonSeasonHelper.commonSeasons.CALENDAR().getDefaultInstance();
 
       @Override
       public ItemStack getStack() {
