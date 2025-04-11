@@ -18,11 +18,11 @@ public class AccessoriesCalendar implements Accessory {
   }
 
   public static void clientInit() {
-    AccessoriesRendererRegistry.registerRenderer(CommonSeasonHelper.calendar(), Renderer::new);
+    AccessoriesRendererRegistry.registerRenderer(CommonSeasonHelper.commonSeasons.CALENDAR(), Renderer::new);
   }
 
   public static void init() {
-    AccessoriesAPI.registerAccessory(CommonSeasonHelper.calendar(), new AccessoriesCalendar());
+    AccessoriesAPI.registerAccessory(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
   }
 
   public static class Renderer implements SimpleAccessoryRenderer {

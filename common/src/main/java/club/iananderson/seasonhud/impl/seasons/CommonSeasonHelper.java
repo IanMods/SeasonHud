@@ -2,86 +2,74 @@ package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
+import club.iananderson.seasonhud.impl.seasons.mods.IModHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.TerrafirmaCraftHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class CommonSeasonHelper {
+public class CommonSeasonHelper implements IModHelper {
+  //Todo -- Move all to switch statement?
+
   private CommonSeasonHelper() {
   }
 
-  //Todo -- Move all to switch statement?
+  public static CommonSeasonHelper commonSeasons = new CommonSeasonHelper();
+  public static FabricSeasonsHelper fabricSeasons = new FabricSeasonsHelper();
+  public static SereneSeasonsHelper sereneSeasons = new SereneSeasonsHelper();
+  public static TerrafirmaCraftHelper terrafirmaCraft = new TerrafirmaCraftHelper();
 
-  /**
-   * Checks if the tropical season should be displayed (SereneSeasons only). Always false for FabricSeasons.
-   *
-   * @return If the tropical season should be displayed for the platform.
-   */
-  public static boolean isTropicalSeason(Player player) {
+
+  public boolean isTropicalSeason(Player player) {
     if (Common.sereneSeasonsLoaded()) {
-      return SereneSeasonsHelper.isTropicalSeason(player);
+      return sereneSeasons.isTropicalSeason(player);
     }
     else {
       return false;
     }
   }
 
-  /**
-   * Checks if "isSeasonTiedWithSystemTime" config option is enabled (FabricSeasons only). Always false for
-   * SereneSeasons.
-   *
-   * @return If "isSeasonTiedWithSystemTime" config option is enabled for the platform.
-   */
-  public static boolean isSeasonTiedWithSystemTime() {
+
+  public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
-      return FabricSeasonsHelper.isSeasonTiedWithSystemTime();
+      return fabricSeasons.isSeasonTiedWithSystemTime();
     }
     else {
       return false;
     }
   }
 
-  /**
-   * Gets the name of the current sub-season for the platform (if applicable).
-   *
-   * @return The name of the current season for the platform.
-   */
-  public static String getCurrentSubSeason(Player player) {
+
+  public String getCurrentSubSeason(Player player) {
     String subSeason = "MID_NULL"; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
-      subSeason = FabricSeasonsHelper.getCurrentSubSeason(player);
+      subSeason = fabricSeasons.getCurrentSubSeason(player);
     }
 
     if (Common.sereneSeasonsLoaded()) {
-      subSeason = SereneSeasonsHelper.getCurrentSubSeason(player);
+      subSeason = sereneSeasons.getCurrentSubSeason(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      subSeason = TerrafirmaCraftHelper.getCurrentSubSeason(player);
+      subSeason = terrafirmaCraft.getCurrentSubSeason(player);
     }
     return subSeason;
   }
 
-  /**
-   * Gets the name of the current season for the platform.
-   *
-   * @return The name of the current season for the platform.
-   */
-  public static String getCurrentSeason(Player player) {
+  public String getCurrentSeason(Player player) {
     String season = "NULL"; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
-      season = FabricSeasonsHelper.getCurrentSeason(player);
+      season = fabricSeasons.getCurrentSeason(player);
     }
 
     if (Common.sereneSeasonsLoaded()) {
-      season = SereneSeasonsHelper.getCurrentSeason(player);
+      season = sereneSeasons.getCurrentSeason(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      season = TerrafirmaCraftHelper.getCurrentSeason(player);
+      season = terrafirmaCraft.getCurrentSeason(player);
     }
     return season;
   }
@@ -91,8 +79,8 @@ public class CommonSeasonHelper {
    *
    * @return The current season's file name for the platform.
    */
-  public static String getSeasonFileName(Player player) {
-    return CommonSeasonHelper.getCurrentSeason(player).toLowerCase();
+  public String getSeasonFileName(Player player) {
+    return commonSeasons.getCurrentSeason(player).toLowerCase();
   }
 
   /**
@@ -100,62 +88,55 @@ public class CommonSeasonHelper {
    *
    * @return The current day of the season/sub-season.
    */
-  public static long getDate(Player player) {
+  public long getDate(Player player) {
     long date = 0; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
-      date = FabricSeasonsHelper.getDate(player);
+      date = fabricSeasons.getDate(player);
     }
 
     if (Common.sereneSeasonsLoaded()) {
-      date = SereneSeasonsHelper.getDate(player);
+      date = sereneSeasons.getDate(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      date = TerrafirmaCraftHelper.getDate(player);
+      date = terrafirmaCraft.getDate(player);
     }
     return date;
   }
 
-  /**
-   * Checks the duration of the current season/sub-season.
-   *
-   * @return The duration of the current season/sub-season.
-   */
-  public static int seasonDuration(Player player) {
+  public int seasonDuration(Player player) {
     int duration = 0; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
-      duration = FabricSeasonsHelper.seasonDuration(player);
+      duration = fabricSeasons.seasonDuration(player);
     }
 
     if (Common.sereneSeasonsLoaded()) {
-      duration = SereneSeasonsHelper.seasonDuration(player);
+      duration = sereneSeasons.seasonDuration(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      duration = TerrafirmaCraftHelper.seasonDuration(player);
+      duration = terrafirmaCraft.seasonDuration(player);
     }
 
     return duration;
   }
 
-  /**
-   * @return The calendar item for the loaded season mod.
-   */
-  public static Item calendar() {
+
+  public Item CALENDAR() {
     Item calendar = null;
 
     if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()) {
-      calendar = FabricSeasonsHelper.CALENDAR();
+      calendar = fabricSeasons.CALENDAR();
     }
 
     if (Common.sereneSeasonsLoaded()) {
-      calendar = SereneSeasonsHelper.CALENDAR;
+      calendar = sereneSeasons.CALENDAR();
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      calendar = TerrafirmaCraftHelper.CALENDAR;
+      calendar = terrafirmaCraft.CALENDAR();
     }
 
     return calendar;

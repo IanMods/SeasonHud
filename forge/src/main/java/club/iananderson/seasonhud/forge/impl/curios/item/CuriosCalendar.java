@@ -9,6 +9,6 @@ public class CuriosCalendar implements ICurioItem {
   }
 
   public static void init() {
-    CuriosApi.registerCurio(CommonSeasonHelper.calendar(), new CuriosCalendar());
+    CuriosApi.registerCurio(CommonSeasonHelper.commonSeasons.CALENDAR(), new CuriosCalendar());
   }
 }

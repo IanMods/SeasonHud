@@ -11,11 +11,13 @@ import net.dries007.tfc.util.calendar.Season;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class TerrafirmaCraftHelper {
-  private TerrafirmaCraftHelper() {
+public class TerrafirmaCraftHelper implements IModHelper {
+  public TerrafirmaCraftHelper() {
   }
 
-  public static Item CALENDAR = null;
+  public Item CALENDAR() {
+    return null;
+  }
 
   private static List<Month> getSeasonMonths(Season season) {
     List<Month> SEASON = new ArrayList<>();
@@ -76,7 +78,17 @@ public class TerrafirmaCraftHelper {
     return SEASON.get(currentMonth);
   }
 
-  public static String getCurrentSubSeason(Player player) {
+  @Override
+  public boolean isTropicalSeason(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean isSeasonTiedWithSystemTime() {
+    return false;
+  }
+
+  public String getCurrentSubSeason(Player player) {
     Month month = Calendars.CLIENT.getCalendarMonthOfYear();
     Season season = month.getSeason();
     String prefix = getSeasonPrefix(month);
@@ -89,7 +101,7 @@ public class TerrafirmaCraftHelper {
     }
   }
 
-  public static String getCurrentSeason(Player player) {
+  public String getCurrentSeason(Player player) {
     Month month = Calendars.CLIENT.getCalendarMonthOfYear();
     Season season = month.getSeason();
 
@@ -102,7 +114,7 @@ public class TerrafirmaCraftHelper {
     }
   }
 
-  public static int getDate(Player player) {
+  public long getDate(Player player) {
     Month currentMonth = Calendars.CLIENT.getCalendarMonthOfYear();
     Season currentSeason = currentMonth.getSeason();
     List<Month> currentSeasonMonths = getSeasonMonths(currentSeason);
@@ -116,11 +128,11 @@ public class TerrafirmaCraftHelper {
     }
 
     else {
-      return dayOfMonth + (subSeasonPos * daysInMonth);
+      return dayOfMonth + ((long) subSeasonPos * daysInMonth);
     }
   }
 
-  public static int seasonDuration(Player player) {
+  public int seasonDuration(Player player) {
     int daysInMonth = Calendars.CLIENT.getCalendarDaysInMonth();
 
     if (Config.getShowSubSeason() && Calendar.validDetailedMode()) {
@@ -132,22 +144,17 @@ public class TerrafirmaCraftHelper {
     }
   }
 
-  //DECEMBER(-0.866F, Season.WINTER) -> Early Winter
-  //JANUARY(-1.0F, Season.WINTER) -> Mid Winter
-  //FEBRUARY(-0.866F, Season.WINTER) -> Late Winter
-
-  //MARCH(-0.5F, Season.SPRING) -> Early Spring
-  //APRIL(0.0F, Season.SPRING) -> Mid Spring
-  //MAY(0.5F, Season.SPRING) -> Late Spring
-
-  //JUNE(0.866F, Season.SUMMER) -> Early Summer
-  //JULY(1.0F, Season.SUMMER) -> Mid Summer
-  //AUGUST(0.866F, Season.SUMMER) -> Late Summer
-
-  //SEPTEMBER(0.5F, Season.FALL) -> Early Fall
-  //OCTOBER(0.0F, Season.FALL) -> Mid Fall
-  //NOVEMBER(-0.5F, Season.FALL) -> Late Fall
-
+  /**
+   * <h1>TerrafirmaCraft Seasons</h1>
+   * <pre>
+   | Season | Early     | Mid     | Late     |
+   |--------|-----------|---------|----------|
+   | Winter | DECEMBER  | JANUARY | FEBRUARY |
+   | Spring | MARCH     | APRIL   | MAY      |
+   | Summer | JUNE      | JULY    | AUGUST   |
+   | Autumn | SEPTEMBER | OCTOBER | NOVEMBER |
+   * </pre>
+   **/
   private enum SubSeason {
     EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
 
