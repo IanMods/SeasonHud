@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.13.0] - 2025-04-11
+
+### Added support for Ecliptic Seasons
+
+- Fixed crash if the world date is a very large number
+
 ## [1.12.7] - 2025-04-07
 
 ### Fixed

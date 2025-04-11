@@ -48,6 +48,9 @@ dependencies {
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-forge"
     modCompileOnly "maven.modrinth:barrels-2012:${project.barrels_version}"
 
+    //Ecliptic Seasons
+    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
 
@@ -147,7 +150,10 @@ dependencies {
             modImplementation "maven.modrinth:curios:${project.curios_version}"
             modImplementation "maven.modrinth:barrels-2012:${project.barrels_version}"
             break
-        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene or terra")
+        case "ecliptic":
+            modImplementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+            break
+        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
     }
 }
 
