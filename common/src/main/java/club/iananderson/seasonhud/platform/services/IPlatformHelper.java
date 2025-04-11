@@ -31,9 +31,15 @@ public interface IPlatformHelper {
 
   boolean curiosFound(Player player, Item item);
 
-  String getCurrentSeason(Player player);
+  String getCurrentSereneSeason(Player player);
 
-  String getCurrentSubSeason(Player player);
+  String getCurrentSereneSubSeason(Player player);
 
-  long getSeasonDate(Player player);
+  long getSereneSeasonDate(Player player);
+
+  String getCurrentEclipticSeason(Player player);
+
+  String getCurrentEclipticSubSeason(Player player);
+
+  long getEclipticSeasonDate(Player player);
 }

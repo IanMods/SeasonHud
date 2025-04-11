@@ -30,17 +30,17 @@ public class SereneSeasonsHelper implements IModHelper {
 
   @Override
   public String getCurrentSubSeason(Player player) {
-    return Services.PLATFORM.getCurrentSubSeason(player); //1.16.5 Forge weirdness
+    return Services.PLATFORM.getCurrentSereneSubSeason(player); //1.16.5 Forge weirdness
   }
 
   @Override
   public String getCurrentSeason(Player player) {
-    return Services.PLATFORM.getCurrentSeason(player); //1.16.5 Forge weirdness
+    return Services.PLATFORM.getCurrentSereneSeason(player); //1.16.5 Forge weirdness
   }
 
   @Override
   public long getDate(Player player) {
-    return Services.PLATFORM.getSeasonDate(player); //1.16.5 Forge weirdness
+    return Services.PLATFORM.getSereneSeasonDate(player); //1.16.5 Forge weirdness
   }
 
   @Override

@@ -20,12 +20,6 @@ public class CuriosCalendar implements ICurioItem {
   public static ICapabilityProvider initCapabilities() {
     ICurio curio = new ICurio() {
       final ItemStack stack = CommonSeasonHelper.commonSeasons.CALENDAR().getDefaultInstance();
-
-      @Override
-      public ItemStack getStack() {
-        return stack;
-      }
-
     };
     return new ICapabilityProvider() {
       private final LazyOptional<ICurio> curioOpt = LazyOptional.of(() -> curio);

@@ -2,9 +2,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
-import com.teamtea.eclipticseasons.api.constant.solar.Season;
-import com.teamtea.eclipticseasons.api.constant.solar.SolarTerm;
-import com.teamtea.eclipticseasons.api.util.EclipticUtil;
+import club.iananderson.seasonhud.platform.Services;
 import com.teamtea.eclipticseasons.config.CommonConfig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -27,29 +25,17 @@ public class EclipticSeasonsHelper implements IModHelper {
 
   @Override
   public String getCurrentSubSeason(Player player) {
-    SolarTerm currentSolarTerm = EclipticUtil.INSTANCE.getSolarTerm(player.level);
-    return currentSolarTerm.getName();
+    return Services.PLATFORM.getCurrentEclipticSubSeason(player); //1.16.5 Forge weirdness
   }
 
   @Override
   public String getCurrentSeason(Player player) {
-    Season currentSeason = EclipticUtil.INSTANCE.getSolarTerm(player.level).getSeason();
-    return currentSeason.toString();
+    return Services.PLATFORM.getCurrentEclipticSeason(player); //1.16.5 Forge weirdness
   }
 
   @Override
   public long getDate(Player player) {
-    long seasonDay = EclipticUtil.getNowSolarDay(player.level); //Day out of the year (42 days * 4 = 168 days)
-    long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level); //Day out of the sub season (7 days)
-    long subSeasonDuration = CommonConfig.Season.lastingDaysOfEachTerm.get(); //In case the default duration is changed
-    long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; //Default 7 days in each sub-season (1 week)
-    long seasonDate =  (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
-
-    if (Config.getShowSubSeason()) {
-      return subSeasonDate;
-    }
-
-    else return seasonDate;
+    return Services.PLATFORM.getEclipticSeasonDate(player); //1.16.5 Forge weirdness
   }
 
   @Override

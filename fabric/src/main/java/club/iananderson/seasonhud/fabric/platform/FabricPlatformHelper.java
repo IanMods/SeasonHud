@@ -42,17 +42,32 @@ public class FabricPlatformHelper implements IPlatformHelper {
   }
 
   @Override
-  public String getCurrentSeason(Player player) {
+  public String getCurrentSereneSeason(Player player) {
     return "";
   }
 
   @Override
-  public String getCurrentSubSeason(Player player) {
+  public String getCurrentSereneSubSeason(Player player) {
     return "";
   }
 
   @Override
-  public long getSeasonDate(Player player) {
+  public long getSereneSeasonDate(Player player) {
+    return 0;
+  }
+
+  @Override
+  public String getCurrentEclipticSeason(Player player) {
+    return "";
+  }
+
+  @Override
+  public String getCurrentEclipticSubSeason(Player player) {
+    return "";
+  }
+
+  @Override
+  public long getEclipticSeasonDate(Player player) {
     return 0;
   }
 }
