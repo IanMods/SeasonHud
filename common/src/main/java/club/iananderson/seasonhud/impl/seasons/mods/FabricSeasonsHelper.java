@@ -10,11 +10,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper {
-  private FabricSeasonsHelper() {
+public class FabricSeasonsHelper implements IModHelper {
+  public FabricSeasonsHelper() {
   }
 
-  public static Item CALENDAR(){
+  @Override
+  public Item CALENDAR(){
     if (Common.fabricSeasonsLoaded()){
       return Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
     }
@@ -23,7 +24,13 @@ public class FabricSeasonsHelper {
     }
   }
 
-  public static boolean isSeasonTiedWithSystemTime() {
+  @Override
+  public boolean isTropicalSeason(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
       return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
     }
@@ -32,7 +39,8 @@ public class FabricSeasonsHelper {
     }
   }
 
-  public static String getCurrentSubSeason(Player player) {
+  @Override
+  public String getCurrentSubSeason(Player player) {
     Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level);
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
@@ -43,7 +51,8 @@ public class FabricSeasonsHelper {
     }
   }
 
-  public static String getCurrentSeason(Player player) {
+  @Override
+  public String getCurrentSeason(Player player) {
     Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level);
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
@@ -54,13 +63,14 @@ public class FabricSeasonsHelper {
     }
   }
 
-  public static long getDate(Player player) {
+  @Override
+  public long getDate(Player player) {
     long dayLength = Config.getDayLength();
     long seasonLength = FabricSeasons.CONFIG.getSeasonLength();
     long worldTime = player.level.getDayTime();
 
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
-    if (FabricSeasonsHelper.isSeasonTiedWithSystemTime()) {
+    if (isSeasonTiedWithSystemTime()) {
       return LocalDateTime.now().getDayOfMonth();
     }
     else {
@@ -68,7 +78,8 @@ public class FabricSeasonsHelper {
     }
   }
 
-  public static int seasonDuration(Player player) {
+  @Override
+  public int seasonDuration(Player player) {
     int dayLength = Config.getDayLength();
 
     return FabricSeasons.CONFIG.getSeasonLength() / dayLength;

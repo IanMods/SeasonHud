@@ -9,6 +9,7 @@ This is a client-side addon that displays the current season on the HUD. Current
 - Serene Seasons (Forge/Neoforge/Fabric)
 - Fabric Seasons (Fabric)
 - TerraFirmaCraft (Forge 1.18.2/1.20.1)
+- Ecliptic Seasons (Forge/Neoforge)
 
 Also includes optional support for the following minimap mods:
 

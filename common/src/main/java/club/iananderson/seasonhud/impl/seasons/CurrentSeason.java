@@ -23,11 +23,11 @@ public class CurrentSeason {
   public CurrentSeason(Minecraft mc) {
     Player player = mc.player;
     this.seasonFormat = Style.EMPTY;
-    this.currentSeason = CommonSeasonHelper.getCurrentSeason(player);
-    this.currentSubSeason = CommonSeasonHelper.getCurrentSubSeason(player);
-    this.seasonFileName = CommonSeasonHelper.getSeasonFileName(player);
-    this.seasonDate = CommonSeasonHelper.getDate(player);
-    this.seasonDuration = CommonSeasonHelper.seasonDuration(player);
+    this.currentSeason = CommonSeasonHelper.commonSeasons.getCurrentSeason(player);
+    this.currentSubSeason = CommonSeasonHelper.commonSeasons.getCurrentSubSeason(player);
+    this.seasonFileName = CommonSeasonHelper.commonSeasons.getSeasonFileName(player);
+    this.seasonDate = CommonSeasonHelper.commonSeasons.getDate(player);
+    this.seasonDuration = CommonSeasonHelper.commonSeasons.seasonDuration(player);
   }
 
   public static CurrentSeason getInstance(Minecraft mc) {
@@ -44,13 +44,15 @@ public class CurrentSeason {
   }
 
   public Component getSeasonKey() {
-    String season;
+    String season = Config.getShowSubSeason() ? getSubSeasonLowerCase() : getSeasonLowerCase();
 
     if (!Calendar.validDetailedMode() || Common.fabricSeasonsLoaded()) {
       season = getSeasonLowerCase();
     }
-    else {
-      season = Config.getShowSubSeason() ? getSubSeasonLowerCase() : getSeasonLowerCase();
+
+    if(Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && Config.getShowSubSeason()){
+      season = currentSubSeason;
+      return Component.translatable("info.eclipticseasons.environment.solar_term." + season);
     }
 
     return new TranslatableComponent("desc.seasonhud.season." + season);
@@ -93,7 +95,7 @@ public class CurrentSeason {
         break;
 
       case SHOW_WITH_MONTH:
-        if (CommonSeasonHelper.isSeasonTiedWithSystemTime()) {
+        if (CommonSeasonHelper.commonSeasons.isSeasonTiedWithSystemTime()) {
           int systemMonth = LocalDateTime.now().getMonth().getValue();
           String systemMonthString = String.valueOf(systemMonth);
 
