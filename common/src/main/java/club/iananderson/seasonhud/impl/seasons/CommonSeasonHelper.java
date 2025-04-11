@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.impl.seasons.mods.EclipticSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.IModHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
@@ -18,8 +19,9 @@ public class CommonSeasonHelper implements IModHelper {
   public static FabricSeasonsHelper fabricSeasons = new FabricSeasonsHelper();
   public static SereneSeasonsHelper sereneSeasons = new SereneSeasonsHelper();
   public static TerrafirmaCraftHelper terrafirmaCraft = new TerrafirmaCraftHelper();
+  public static EclipticSeasonsHelper eclipticSeasons = new EclipticSeasonsHelper();
 
-
+  @Override
   public boolean isTropicalSeason(Player player) {
     if (Common.sereneSeasonsLoaded()) {
       return sereneSeasons.isTropicalSeason(player);
@@ -29,7 +31,7 @@ public class CommonSeasonHelper implements IModHelper {
     }
   }
 
-
+  @Override
   public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
       return fabricSeasons.isSeasonTiedWithSystemTime();
@@ -39,7 +41,7 @@ public class CommonSeasonHelper implements IModHelper {
     }
   }
 
-
+  @Override
   public String getCurrentSubSeason(Player player) {
     String subSeason = "MID_NULL"; // Just in case
 
@@ -47,16 +49,21 @@ public class CommonSeasonHelper implements IModHelper {
       subSeason = fabricSeasons.getCurrentSubSeason(player);
     }
 
-    if (Common.sereneSeasonsLoaded()) {
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
       subSeason = sereneSeasons.getCurrentSubSeason(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
       subSeason = terrafirmaCraft.getCurrentSubSeason(player);
     }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      subSeason = eclipticSeasons.getCurrentSubSeason(player);
+    }
     return subSeason;
   }
 
+  @Override
   public String getCurrentSeason(Player player) {
     String season = "NULL"; // Just in case
 
@@ -64,30 +71,22 @@ public class CommonSeasonHelper implements IModHelper {
       season = fabricSeasons.getCurrentSeason(player);
     }
 
-    if (Common.sereneSeasonsLoaded()) {
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
       season = sereneSeasons.getCurrentSeason(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
       season = terrafirmaCraft.getCurrentSeason(player);
     }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      season = eclipticSeasons.getCurrentSeason(player);
+    }
+
     return season;
   }
 
-  /**
-   * Gets the current season's file name for the platform.
-   *
-   * @return The current season's file name for the platform.
-   */
-  public String getSeasonFileName(Player player) {
-    return commonSeasons.getCurrentSeason(player).toLowerCase();
-  }
-
-  /**
-   * Gets the current day of the season/sub-season.
-   *
-   * @return The current day of the season/sub-season.
-   */
+  @Override
   public long getDate(Player player) {
     long date = 0; // Just in case
 
@@ -95,16 +94,22 @@ public class CommonSeasonHelper implements IModHelper {
       date = fabricSeasons.getDate(player);
     }
 
-    if (Common.sereneSeasonsLoaded()) {
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
       date = sereneSeasons.getDate(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
       date = terrafirmaCraft.getDate(player);
     }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      date = eclipticSeasons.getDate(player);
+    }
+
     return date;
   }
 
+  @Override
   public int seasonDuration(Player player) {
     int duration = 0; // Just in case
 
@@ -112,7 +117,7 @@ public class CommonSeasonHelper implements IModHelper {
       duration = fabricSeasons.seasonDuration(player);
     }
 
-    if (Common.sereneSeasonsLoaded()) {
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
       duration = sereneSeasons.seasonDuration(player);
     }
 
@@ -120,10 +125,14 @@ public class CommonSeasonHelper implements IModHelper {
       duration = terrafirmaCraft.seasonDuration(player);
     }
 
+    if (Common.eclipticSeasonsLoaded()) {
+      duration = eclipticSeasons.seasonDuration(player);
+    }
+
     return duration;
   }
 
-
+  @Override
   public Item CALENDAR() {
     Item calendar = null;
 
@@ -139,6 +148,19 @@ public class CommonSeasonHelper implements IModHelper {
       calendar = terrafirmaCraft.CALENDAR();
     }
 
+    if (Common.eclipticSeasonsLoaded()) {
+      calendar = eclipticSeasons.CALENDAR();
+    }
+
     return calendar;
+  }
+
+  /**
+   * Gets the current season's file name for the platform.
+   *
+   * @return The current season's file name for the platform.
+   */
+  public String getSeasonFileName(Player player) {
+    return commonSeasons.getCurrentSeason(player).toLowerCase();
   }
 }

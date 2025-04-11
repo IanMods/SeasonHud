@@ -9,10 +9,11 @@ import java.time.LocalDateTime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements IModHelper{
+public class FabricSeasonsHelper implements IModHelper {
   public FabricSeasonsHelper() {
   }
 
+  @Override
   public Item CALENDAR() {
     if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()) {
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
@@ -27,6 +28,7 @@ public class FabricSeasonsHelper implements IModHelper{
     return false;
   }
 
+  @Override
   public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
       return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
@@ -36,6 +38,7 @@ public class FabricSeasonsHelper implements IModHelper{
     }
   }
 
+  @Override
   public String getCurrentSubSeason(Player player) {
     Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
 
@@ -47,6 +50,7 @@ public class FabricSeasonsHelper implements IModHelper{
     }
   }
 
+  @Override
   public String getCurrentSeason(Player player) {
     Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
 
@@ -58,6 +62,7 @@ public class FabricSeasonsHelper implements IModHelper{
     }
   }
 
+  @Override
   public long getDate(Player player) {
     long dayLength = Config.getDayLength();
     long seasonLength = FabricSeasons.CONFIG.getSpringLength();
@@ -68,10 +73,11 @@ public class FabricSeasonsHelper implements IModHelper{
       return LocalDateTime.now().getDayOfMonth();
     }
     else {
-      return ((seasonLength - timeToNextSeason)/dayLength) + 1;
+      return ((seasonLength - timeToNextSeason) / dayLength) + 1;
     }
   }
 
+  @Override
   public int seasonDuration(Player player) {
     int dayLength = Config.getDayLength();
 

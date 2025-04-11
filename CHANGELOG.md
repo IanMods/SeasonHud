@@ -6,9 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [1.13.0] - 2025-04-11
 
-### Added support for Ecliptic Seasons
+### Added
 
-- Fixed crash if the world date is a very large number
+- Added support for Ecliptic Seasons
 
 ## [1.12.7] - 2025-04-07
 

@@ -18,6 +18,7 @@ public class SereneSeasonsHelper implements IModHelper {
     return SSItems.CALENDAR;
   }
 
+  @Override
   public boolean isTropicalSeason(Player player) {
     boolean showTropicalSeasons = Config.getShowTropicalSeason();
     boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level().getBiome(player.getOnPos()));
@@ -30,6 +31,7 @@ public class SereneSeasonsHelper implements IModHelper {
     return false;
   }
 
+  @Override
   public String getCurrentSubSeason(Player player) {
     ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level());
 
@@ -41,6 +43,7 @@ public class SereneSeasonsHelper implements IModHelper {
     }
   }
 
+  @Override
   public String getCurrentSeason(Player player) {
     ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level());
     if (isTropicalSeason(player)) {
@@ -54,6 +57,7 @@ public class SereneSeasonsHelper implements IModHelper {
     }
   }
 
+  @Override
   public long getDate(Player player) {
     ISeasonState currentSeasonState = SeasonHelper.getSeasonState(player.level());
     long seasonDay = currentSeasonState.getDay(); //Current day out of the year (Default 24 days * 4 = 96 days)
@@ -79,6 +83,7 @@ public class SereneSeasonsHelper implements IModHelper {
     }
   }
 
+  @Override
   public int seasonDuration(Player player) {
     int duration = ModConfig.seasons.subSeasonDuration * 3;
 

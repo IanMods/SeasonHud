@@ -42,13 +42,15 @@ public class CurrentSeason {
   }
 
   public Component getSeasonKey() {
-    String season;
+    String season = Config.getShowSubSeason() ? getSubSeasonLowerCase() : getSeasonLowerCase();
 
     if (!Calendar.validDetailedMode() || Common.fabricSeasonsLoaded()) {
       season = getSeasonLowerCase();
     }
-    else {
-      season = Config.getShowSubSeason() ? getSubSeasonLowerCase() : getSeasonLowerCase();
+
+    if(Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && Config.getShowSubSeason()){
+      season = currentSubSeason;
+      return Component.translatable("info.eclipticseasons.environment.solar_term." + season);
     }
 
     return Component.translatable("desc.seasonhud.season." + season);

@@ -184,6 +184,7 @@ modrinth {
     dependencies {
         optional.project "serene-seasons"
         optional.project "terrafirmacraft"
+        optional.project "ecliptic-seasons"
         optional.project "curios"
         optional.project "accessories"
         optional.project "journeymap"

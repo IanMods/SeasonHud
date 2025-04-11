@@ -28,6 +28,7 @@ public class Common {
   private static boolean fabricSeasonsLoaded;
   private static boolean fabricSeasonsExtrasLoaded;
   private static boolean terrafirmacraftLoaded;
+  private static boolean eclipticSeasonsLoaded;
   private static boolean calendarLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
@@ -40,8 +41,9 @@ public class Common {
     platformName = Services.PLATFORM.getPlatformName();
     sereneSeasonsLoaded = Services.PLATFORM.isModLoaded("sereneseasons");
     fabricSeasonsLoaded = Services.PLATFORM.isModLoaded("seasons");
-    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded("tfc");
     fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded("seasonsextras");
+    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded("tfc");
+    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded("eclipticseasons");
     calendarLoaded = (fabricSeasonsExtrasLoaded || sereneSeasonsLoaded);
     curiosLoaded = Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
@@ -66,6 +68,10 @@ public class Common {
 
   public static boolean terrafirmacraftLoaded() {
     return Common.terrafirmacraftLoaded;
+  }
+
+  public static boolean eclipticSeasonsLoaded() {
+    return Common.eclipticSeasonsLoaded;
   }
 
   public static boolean calendarLoaded() {
