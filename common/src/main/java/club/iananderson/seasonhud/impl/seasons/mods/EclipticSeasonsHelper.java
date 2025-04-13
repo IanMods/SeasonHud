@@ -1,13 +1,18 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
-import com.teamtea.eclipticseasons.api.constant.solar.Season;
-import com.teamtea.eclipticseasons.api.constant.solar.SolarTerm;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
+import com.teamtea.eclipticseasons.config.CommonConfig.Season;
+import java.util.List;
+import java.util.Objects;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 
 public class EclipticSeasonsHelper implements IModHelper {
   @Override
@@ -27,14 +32,28 @@ public class EclipticSeasonsHelper implements IModHelper {
 
   @Override
   public String getCurrentSubSeason(Player player) {
-    SolarTerm currentSolarTerm = EclipticUtil.INSTANCE.getSolarTerm(player.level);
-    return currentSolarTerm.getName();
+    String currentSolarTerm = "MID_NULL"; // Just in case
+    ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+    List<? extends String> validDimensions = Season.validDimensions.get();
+
+    if (Common.isDimensionValid(validDimensions, currentDim)) {
+      currentSolarTerm = EclipticUtil.INSTANCE.getSolarTerm(player.level).getName();
+
+    }
+    return currentSolarTerm;
   }
 
   @Override
   public String getCurrentSeason(Player player) {
-    Season currentSeason = EclipticUtil.INSTANCE.getSolarTerm(player.level).getSeason();
-    return currentSeason.toString();
+    String currentSeason = "NULL";
+    ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+    List<? extends String> validDimensions = Season.validDimensions.get();
+
+    if (Common.isDimensionValid(validDimensions, currentDim)) {
+      currentSeason = EclipticUtil.INSTANCE.getSolarTerm(player.level).getSeason().toString();
+    }
+
+    return currentSeason;
   }
 
   @Override
@@ -43,13 +62,15 @@ public class EclipticSeasonsHelper implements IModHelper {
     long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level); //Day out of the sub season (7 days)
     long subSeasonDuration = CommonConfig.Season.lastingDaysOfEachTerm.get(); //In case the default duration is changed
     long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; //Default 7 days in each sub-season (1 week)
-    long seasonDate =  (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
+    long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
 
     if (Config.getShowSubSeason()) {
       return subSeasonDate;
     }
 
-    else return seasonDate;
+    else {
+      return seasonDate;
+    }
   }
 
   @Override

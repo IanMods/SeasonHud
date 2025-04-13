@@ -138,10 +138,9 @@ task latestChangelog {
     String latestChangelogText = fullChangelogText.substring(firstHeading, nextHeading)
 
     outputs.upToDateWhen {
-        if(file("LATEST_CHANGELOG.md").exists()) {
+        if (file("LATEST_CHANGELOG.md").exists()) {
             return latestChangelogText == file("LATEST_CHANGELOG.md").getText()
-        }
-        else return false
+        } else return false
     }
 
     outputs.file file("LATEST_CHANGELOG.md")

@@ -12,14 +12,14 @@ import net.minecraft.world.item.Item;
 public class CommonSeasonHelper implements IModHelper {
   //Todo -- Move all to switch statement?
 
-  private CommonSeasonHelper() {
-  }
-
   public static CommonSeasonHelper commonSeasons = new CommonSeasonHelper();
   public static FabricSeasonsHelper fabricSeasons = new FabricSeasonsHelper();
   public static SereneSeasonsHelper sereneSeasons = new SereneSeasonsHelper();
   public static TerrafirmaCraftHelper terrafirmaCraft = new TerrafirmaCraftHelper();
   public static EclipticSeasonsHelper eclipticSeasons = new EclipticSeasonsHelper();
+
+  private CommonSeasonHelper() {
+  }
 
   @Override
   public boolean isTropicalSeason(Player player) {
