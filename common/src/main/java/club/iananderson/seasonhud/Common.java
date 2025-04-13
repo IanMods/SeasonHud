@@ -104,16 +104,6 @@ public class Common {
         CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden())));
   }
 
-  public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
-    for (String validDimension : validDimensions) {
-      if (dimension.location().toString().equals(validDimension)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
   /**
    * Checks if the current dimension is whitelisted in the season mod's config.
    *

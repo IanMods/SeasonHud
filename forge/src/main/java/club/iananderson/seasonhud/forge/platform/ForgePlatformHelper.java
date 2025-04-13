@@ -108,12 +108,14 @@ public class ForgePlatformHelper implements IPlatformHelper {
     long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level); //Day out of the sub season (7 days)
     long subSeasonDuration = CommonConfig.Season.lastingDaysOfEachTerm.get(); //In case the default duration is changed
     long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; //Default 7 days in each sub-season (1 week)
-    long seasonDate =  (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
+    long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
 
     if (Config.getShowSubSeason()) {
       return subSeasonDate;
     }
 
-    else return seasonDate;
+    else {
+      return seasonDate;
+    }
   }
 }
