@@ -48,9 +48,16 @@ public class CurrentSeason {
       season = getSeasonLowerCase();
     }
 
-    if(Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && Config.getShowSubSeason()){
+    if (Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && Config.getShowSubSeason()) {
       season = currentSubSeason;
-      return Component.translatable("info.eclipticseasons.environment.solar_term." + season);
+
+      if (currentSubSeason.equals("MID_NULL")) {
+        return Component.translatable("desc.seasonhud.season." + getSubSeasonLowerCase());
+      }
+
+      else {
+        return Component.translatable("info.eclipticseasons.environment.solar_term." + season);
+      }
     }
 
     return Component.translatable("desc.seasonhud.season." + season);
