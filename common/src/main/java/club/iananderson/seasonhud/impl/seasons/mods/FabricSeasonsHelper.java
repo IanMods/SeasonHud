@@ -16,7 +16,7 @@ public class FabricSeasonsHelper implements IModHelper {
 
   @Override
   public Item CALENDAR(){
-    if (Common.fabricSeasonsLoaded()){
+    if (Common.fabricSeasonsLoaded()) {
       return Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
     }
     else {

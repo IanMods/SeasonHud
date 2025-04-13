@@ -15,59 +15,6 @@ public class TerrafirmaCraftHelper implements IModHelper {
   public TerrafirmaCraftHelper() {
   }
 
-  /**
-   * <h1>TerrafirmaCraft Seasons</h1>
-   * <pre>
-   * | Season | Early     | Mid     | Late     |
-   * |--------|-----------|---------|----------|
-   * | Winter | DECEMBER  | JANUARY | FEBRUARY |
-   * | Spring | MARCH     | APRIL   | MAY      |
-   * | Summer | JUNE      | JULY    | AUGUST   |
-   * | Autumn | SEPTEMBER | OCTOBER | NOVEMBER |
-   * </pre>
-   **/
-  private enum SubSeason {
-    EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
-
-    MID("MID_", Month.JANUARY, Month.APRIL, Month.JULY, Month.OCTOBER),
-
-    LATE("LATE_", Month.FEBRUARY, Month.MAY, Month.AUGUST, Month.NOVEMBER);
-
-    private final String prefix;
-    private final Month winter;
-    private final Month spring;
-    private final Month summer;
-    private final Month autumn;
-
-    SubSeason(String prefix, Month winter, Month spring, Month summer, Month autumn) {
-      this.prefix = prefix;
-      this.winter = winter;
-      this.spring = spring;
-      this.summer = summer;
-      this.autumn = autumn;
-    }
-
-    public String getPrefix() {
-      return this.prefix;
-    }
-
-    public Month getWinter() {
-      return this.winter;
-    }
-
-    public Month getSpring() {
-      return this.spring;
-    }
-
-    public Month getSummer() {
-      return this.summer;
-    }
-
-    public Month getAutumn() {
-      return this.autumn;
-    }
-  }
-
   private List<Month> getSeasonMonths(Season season) {
     List<Month> SEASON = new ArrayList<>();
 
@@ -206,6 +153,59 @@ public class TerrafirmaCraftHelper implements IModHelper {
 
     else {
       return daysInMonth * 3;
+    }
+  }
+
+  /**
+   * <h1>TerrafirmaCraft Seasons</h1>
+   * <pre>
+   * | Season | Early     | Mid     | Late     |
+   * |--------|-----------|---------|----------|
+   * | Winter | DECEMBER  | JANUARY | FEBRUARY |
+   * | Spring | MARCH     | APRIL   | MAY      |
+   * | Summer | JUNE      | JULY    | AUGUST   |
+   * | Autumn | SEPTEMBER | OCTOBER | NOVEMBER |
+   * </pre>
+   **/
+  private enum SubSeason {
+    EARLY("EARLY_", Month.DECEMBER, Month.MARCH, Month.JUNE, Month.SEPTEMBER),
+
+    MID("MID_", Month.JANUARY, Month.APRIL, Month.JULY, Month.OCTOBER),
+
+    LATE("LATE_", Month.FEBRUARY, Month.MAY, Month.AUGUST, Month.NOVEMBER);
+
+    private final String prefix;
+    private final Month winter;
+    private final Month spring;
+    private final Month summer;
+    private final Month autumn;
+
+    SubSeason(String prefix, Month winter, Month spring, Month summer, Month autumn) {
+      this.prefix = prefix;
+      this.winter = winter;
+      this.spring = spring;
+      this.summer = summer;
+      this.autumn = autumn;
+    }
+
+    public String getPrefix() {
+      return this.prefix;
+    }
+
+    public Month getWinter() {
+      return this.winter;
+    }
+
+    public Month getSpring() {
+      return this.spring;
+    }
+
+    public Month getSummer() {
+      return this.summer;
+    }
+
+    public Month getAutumn() {
+      return this.autumn;
     }
   }
 }
