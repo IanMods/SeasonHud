@@ -107,6 +107,16 @@ public class Common {
         CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden())));
   }
 
+  public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
+    for (String validDimension : validDimensions) {
+      if (dimension.location().toString().equals(validDimension)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   /**
    * Checks if the current dimension is whitelisted in the season mod's config.
    *
@@ -114,11 +124,17 @@ public class Common {
    */
   public static boolean hideHudInCurrentDimension() {
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+
     if (Common.fabricSeasonsLoaded()) {
       return !FabricSeasons.CONFIG.isValidInDimension(currentDim);
     }
     if (Common.sereneSeasonsLoaded()) {
       return !ServerConfig.isDimensionWhitelisted(currentDim);
+    }
+    if (Common.eclipticSeasonsLoaded()) {
+      List<? extends String> validDimensions = List.of(Level.OVERWORLD.location().toString());
+
+      return !isDimensionValid(validDimensions, currentDim);
     }
     else {
       return false;

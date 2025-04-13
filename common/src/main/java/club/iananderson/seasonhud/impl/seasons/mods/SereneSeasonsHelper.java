@@ -22,7 +22,8 @@ public class SereneSeasonsHelper implements IModHelper {
   @Override
   public boolean isTropicalSeason(Player player) {
     boolean showTropicalSeasons = Config.getShowTropicalSeason();
-    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level.getBiome(player.getOnPos()));
+    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(
+        player.level.getBiome(player.getOnPos()));
 
     return showTropicalSeasons && isInTropicalSeason;
   }

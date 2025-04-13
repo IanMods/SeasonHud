@@ -1,6 +1,6 @@
-## [1.13.0] - 2025-04-11
+## [1.13.1] - 2025-04-13
 
-### Added
+### Fixed
 
-- Added support for Ecliptic Seasons
+- Fixed crash with Ecliptic Seasons when entering a dimension without seasons
 
