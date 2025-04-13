@@ -34,10 +34,12 @@ public class CurrentSeason {
 
   public String getSubSeasonLowerCase() {
     String lowerSubSeason = currentSubSeason.toLowerCase();
-    if(Common.fabricSeasonsLoaded()){
+    if (Common.fabricSeasonsLoaded()) {
       return currentSeason.toLowerCase();
     }
-    else return currentSeason.toLowerCase() + "." + lowerSubSeason.substring(0, lowerSubSeason.indexOf("_"));
+    else {
+      return currentSeason.toLowerCase() + "." + lowerSubSeason.substring(0, lowerSubSeason.indexOf("_"));
+    }
   }
 
   public String getSeasonLowerCase() {
