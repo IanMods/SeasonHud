@@ -1,10 +1,8 @@
 package club.iananderson.seasonhud.impl.accessories.item;
 
 import club.iananderson.seasonhud.impl.seasons.CommonSeasonHelper;
-import club.iananderson.seasonhud.platform.Services;
 import io.wispforest.accessories.api.AccessoriesAPI;
 import io.wispforest.accessories.api.Accessory;
-import io.wispforest.accessories.api.AccessoryRegistry;
 
 public class AccessoriesCalendar implements Accessory {
   public AccessoriesCalendar() {
@@ -15,13 +13,7 @@ public class AccessoriesCalendar implements Accessory {
 //  }
 
   public static void init() {
-    if (Services.PLATFORM.getModVersion("accessories").startsWith("1.1.0") || Services.PLATFORM.getModVersion(
-        "accessories").startsWith("1.0.0")) {
-      AccessoriesAPI.registerAccessory(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
-    }
-    else {
-      AccessoryRegistry.register(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
-    }
+    AccessoriesAPI.registerAccessory(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
   }
 
 //  public static class Renderer implements SimpleAccessoryRenderer {

@@ -57,7 +57,7 @@ dependencies {
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     //Xaero's Minimap
-    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21.4"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21"
 
     //JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
@@ -73,7 +73,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21.4"
+            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21"
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true

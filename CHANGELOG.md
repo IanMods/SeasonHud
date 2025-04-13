@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.13.2] - 2025-04-13
+
+### Fixed
+
+- Fixed crash with Fabric Seasons on servers
+
 ## [1.13.1] - 2025-04-13
 
 ### Fixed
