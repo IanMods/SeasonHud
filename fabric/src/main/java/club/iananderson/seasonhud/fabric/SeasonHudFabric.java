@@ -17,7 +17,7 @@ public class SeasonHudFabric implements ModInitializer {
     Common.init();
 
     if (Common.accessoriesLoaded() && !Common.trinketsLoaded()) {
-        AccessoriesCompat.init();
+      AccessoriesCompat.init();
     }
   }
 }

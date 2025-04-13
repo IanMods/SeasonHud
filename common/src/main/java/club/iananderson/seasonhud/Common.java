@@ -3,6 +3,7 @@ package club.iananderson.seasonhud;
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
+import com.teamtea.eclipticseasons.config.CommonConfig.Season;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import java.util.List;
 import java.util.Objects;
@@ -106,6 +107,16 @@ public class Common {
         CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden())));
   }
 
+  public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
+    for (String validDimension : validDimensions) {
+      if (dimension.location().toString().equals(validDimension)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   /**
    * Checks if the current dimension is whitelisted in the season mod's config.
    *
@@ -113,11 +124,17 @@ public class Common {
    */
   public static boolean hideHudInCurrentDimension() {
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+
     if (Common.fabricSeasonsLoaded()) {
       return !FabricSeasons.CONFIG.isValidInDimension(currentDim);
     }
     if (Common.sereneSeasonsLoaded()) {
       return !ModConfig.seasons.isDimensionWhitelisted(currentDim);
+    }
+    if (Common.eclipticSeasonsLoaded()) {
+      List<? extends String> validDimensions = Season.validDimensions.get();
+
+      return !isDimensionValid(validDimensions, currentDim);
     }
     else {
       return false;
