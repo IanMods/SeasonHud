@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Fixed crash with Fabric Seasons on servers
+- Fixed crash with Fabric Seasons.
 
 ## [1.13.1] - 2025-04-13
 
