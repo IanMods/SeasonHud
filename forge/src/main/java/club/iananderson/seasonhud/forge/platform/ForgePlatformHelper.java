@@ -1,13 +1,10 @@
 package club.iananderson.seasonhud.forge.platform;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.platform.services.IPlatformHelper;
 import java.util.Optional;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
-import sereneseasons.api.SSItems;
 
 public class ForgePlatformHelper implements IPlatformHelper {
 

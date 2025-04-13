@@ -5,7 +5,6 @@ import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
-import com.teamtea.eclipticseasons.config.CommonConfig.Season;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
@@ -34,7 +33,7 @@ public class EclipticSeasonsHelper implements IModHelper {
   public String getCurrentSubSeason(Player player) {
     String currentSolarTerm = "MID_NULL"; // Just in case
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
-    List<? extends String> validDimensions = Season.validDimensions.get();
+    List<? extends String> validDimensions = List.of(Level.OVERWORLD.location().toString());
 
     if (Common.isDimensionValid(validDimensions, currentDim)) {
       currentSolarTerm = EclipticUtil.INSTANCE.getSolarTerm(player.level).getName();
@@ -47,7 +46,7 @@ public class EclipticSeasonsHelper implements IModHelper {
   public String getCurrentSeason(Player player) {
     String currentSeason = "NULL";
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
-    List<? extends String> validDimensions = Season.validDimensions.get();
+    List<? extends String> validDimensions = List.of(Level.OVERWORLD.location().toString());
 
     if (Common.isDimensionValid(validDimensions, currentDim)) {
       currentSeason = EclipticUtil.INSTANCE.getSolarTerm(player.level).getSeason().toString();

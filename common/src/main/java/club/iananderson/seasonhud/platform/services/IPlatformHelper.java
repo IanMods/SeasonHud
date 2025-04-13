@@ -1,7 +1,5 @@
 package club.iananderson.seasonhud.platform.services;
 
-import net.minecraft.world.item.Item;
-
 public interface IPlatformHelper {
 
   /**

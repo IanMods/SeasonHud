@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.Config;
-import club.iananderson.seasonhud.platform.Services;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
@@ -15,9 +14,10 @@ public class FabricSeasonsHelper implements IModHelper {
   }
 
   @Override
-  public Item CALENDAR () {
-    if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()){
-      return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;}
+  public Item CALENDAR() {
+    if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()) {
+      return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
+    }
     else {
       return null;
     }

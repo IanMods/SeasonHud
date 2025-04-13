@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
-import club.iananderson.seasonhud.platform.Services;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;

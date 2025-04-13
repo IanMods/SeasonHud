@@ -3,7 +3,6 @@ package club.iananderson.seasonhud;
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
-import com.teamtea.eclipticseasons.config.CommonConfig.Season;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import java.util.List;
 import java.util.Objects;
@@ -133,7 +132,7 @@ public class Common {
       return !ServerConfig.isDimensionWhitelisted(currentDim);
     }
     if (Common.eclipticSeasonsLoaded()) {
-      List<? extends String> validDimensions = Season.validDimensions.get();
+      List<? extends String> validDimensions = List.of(Level.OVERWORLD.location().toString());
 
       return !isDimensionValid(validDimensions, currentDim);
     }

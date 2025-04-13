@@ -1,8 +1,6 @@
 package club.iananderson.seasonhud.forge.impl.curios.item;
 
 import club.iananderson.seasonhud.impl.seasons.CommonSeasonHelper;
-import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
-import club.iananderson.seasonhud.platform.Services;
 import javax.annotation.Nonnull;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;

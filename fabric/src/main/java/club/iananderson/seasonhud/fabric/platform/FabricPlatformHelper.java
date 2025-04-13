@@ -1,12 +1,9 @@
 package club.iananderson.seasonhud.fabric.platform;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.platform.services.IPlatformHelper;
-import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Optional;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.world.item.Item;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 
