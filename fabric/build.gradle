@@ -54,13 +54,13 @@ dependencies {
     compileOnly("net.jodah:typetools:0.6.3")
 
     //Xaero's Minimap
-    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21.4") {
+    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21.5") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     //JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
-    modCompileOnly("maven.modrinth:journeymap:1.21.4-${project.journeymap_version}+fabric") {
+    modCompileOnly("maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -85,7 +85,7 @@ dependencies {
     modCompileOnly("maven.modrinth:moonlight:fabric_1.21-${project.moonlight_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.4-fabric") {
+    modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.5-fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -133,11 +133,11 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21.4")
+            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21.5")
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:1.21.4-${project.journeymap_version}+fabric")
+            modImplementation("maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+fabric")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
         case "ftb":
@@ -149,7 +149,7 @@ dependencies {
         case "atlas":
             modLocalRuntime("maven.modrinth:map-atlases:fabric_1.21-${project.map_atlases_version}")
             modLocalRuntime("maven.modrinth:moonlight:fabric_1.21-${project.moonlight_version}")
-            modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.4-fabric")
+            modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.5-fabric")
         case "none":
             break
         default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +

@@ -57,11 +57,11 @@ dependencies {
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     //Xaero's Minimap
-    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21.4"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21.5"
 
     //JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
-    modCompileOnly "maven.modrinth:journeymap:1.21.4-${project.journeymap_version}+forge"
+    modCompileOnly "maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+forge"
 
     //Forge Config API Port
     modImplementation "maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge"
@@ -73,11 +73,11 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21.4"
+            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.21.5"
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:1.21.4-${project.journeymap_version}+forge")
+            modImplementation("maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+forge")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-forge")
             break
         case "ftb":
