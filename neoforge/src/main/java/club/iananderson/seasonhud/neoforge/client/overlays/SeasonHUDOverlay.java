@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.client.overlays.SeasonHUDOverlayCommon;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
+import org.jetbrains.annotations.NotNull;
 
 public class SeasonHUDOverlay implements LayeredDraw.Layer {
   public static SeasonHUDOverlay HUD_INSTANCE;
@@ -12,7 +13,7 @@ public class SeasonHUDOverlay implements LayeredDraw.Layer {
     HUD_INSTANCE = new SeasonHUDOverlay();
   }
 
-  public void render(GuiGraphics seasonStack, DeltaTracker deltaTracker) {
+  public void render(@NotNull GuiGraphics seasonStack, @NotNull DeltaTracker deltaTracker) {
     SeasonHUDOverlayCommon.render(seasonStack);
   }
 }
