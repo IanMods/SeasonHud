@@ -1,29 +1,32 @@
 package club.iananderson.seasonhud.impl.minimaps;
 
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import xaero.common.minimap.info.InfoDisplay;
-import xaero.common.minimap.info.codec.InfoDisplayCommonStateCodecs;
-import xaero.common.minimap.info.widget.InfoDisplayCommonWidgetFactories;
+import xaero.hud.minimap.info.InfoDisplay;
+import xaero.hud.minimap.info.InfoDisplay.Builder;
+import xaero.hud.minimap.info.codec.InfoDisplayCommonStateCodecs;
+import xaero.hud.minimap.info.widget.InfoDisplayCommonWidgetFactories;
 
 public class XaeroInfoDisplays {
-  public static final InfoDisplay<Boolean> SEASON;
-  private static final List<InfoDisplay<?>> ALL = new ArrayList<>();
+  public static final Builder<Boolean> SEASON_INFO_BUILDER;
+  public static InfoDisplay<Boolean> SEASON;
 
   static {
     Minecraft mc = Minecraft.getInstance();
 
-    SEASON = new InfoDisplay<>("season", Component.translatable("xaerominimap.seasonhud.infodisplay.season"), true,
-                               InfoDisplayCommonStateCodecs.BOOLEAN, InfoDisplayCommonWidgetFactories.OFF_ON,
-                               (displayInfo, compiler, session, processor, x, y, w, h, scale, size, playerBlockX, playerBlockY, playerBlockZ, playerPos) -> {
-                                 if (displayInfo.getState() && CurrentMinimap.xaeroLoaded()
-                                     && CurrentMinimap.shouldDrawMinimapHud(Minimap.XAERO)) {
-                                   compiler.addLine(CurrentSeason.getInstance(mc).getSeasonHudText());
-                                 }
-                               }, ALL);
+    Builder<Boolean> builder = Builder.begin();
+
+    SEASON_INFO_BUILDER = builder.setId("season")
+        .setName(Component.translatable("xaerominimap.seasonhud.infodisplay.season"))
+        .setDefaultState(true)
+        .setCodec(InfoDisplayCommonStateCodecs.BOOLEAN)
+        .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)
+        .setCompiler((displayInfo, compiler, session, availableWidth, playerPos) -> {
+          if ((Boolean) displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
+              CurrentMinimap.Minimap.XAERO)) {
+            compiler.addLine(CurrentSeason.getInstance(mc).getSeasonHudText());
+          }
+        });
   }
 }
