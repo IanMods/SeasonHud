@@ -39,7 +39,7 @@ side = "CLIENT"
 [[dependencies.${ mod_id }]]
 modId = "xaerominimap"
 type = "optional"
-versionRange = "[23.9.4,)"
+versionRange = "[25.2.0,)"
 ordering = "AFTER"
 side = "CLIENT"
 
