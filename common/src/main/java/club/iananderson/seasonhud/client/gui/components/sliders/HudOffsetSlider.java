@@ -12,12 +12,14 @@ import org.jetbrains.annotations.Nullable;
 public class HudOffsetSlider extends BasicSlider {
   protected final Component prefix;
   private final double defaultValue;
+  private final boolean showDecimal;
 
   protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
-      double maxValue, double defaultValue) {
+      double maxValue, double defaultValue, boolean showDecimal) {
     super(x, y, width, height, true, initial, minValue, maxValue);
     this.prefix = prefix;
     this.defaultValue = snapToNearest(defaultValue);
+    this.showDecimal = showDecimal;
     this.value = snapToNearest(initial);
     this.updateMessage();
   }
@@ -41,6 +43,14 @@ public class HudOffsetSlider extends BasicSlider {
 
   public void onRightClick() {
     this.setValue(defaultValue);
+  }
+
+  @Override
+  public String getValueString() {
+    if(showDecimal){
+      return String.valueOf(this.getValueDouble());
+    }
+    else return String.valueOf(this.getValueInt());
   }
 
   @Override
@@ -74,6 +84,7 @@ public class HudOffsetSlider extends BasicSlider {
     protected double initial;
     protected double defaultValue;
     protected Tooltip tooltip;
+    protected boolean showDecimal;
 
     public Builder(Component prefix) {
       this.prefix = prefix;
@@ -123,8 +134,13 @@ public class HudOffsetSlider extends BasicSlider {
     /**
      * @param defaultValue The value that the slider will return to if right-clicked.
      */
-    public Builder withDefaultValue(int defaultValue) {
+    public Builder withDefaultValue(double defaultValue) {
       this.defaultValue = defaultValue;
+      return this;
+    }
+
+    public Builder withShowDecimal(boolean showDecimal) {
+      this.showDecimal = showDecimal;
       return this;
     }
 
@@ -136,7 +152,7 @@ public class HudOffsetSlider extends BasicSlider {
 
     public HudOffsetSlider build() {
       HudOffsetSlider slider = new HudOffsetSlider(this.x, this.y, this.width, this.height, this.prefix, this.initial,
-                                                   this.minValue, this.maxValue, this.defaultValue);
+                                                   this.minValue, this.maxValue, this.defaultValue, this.showDecimal);
       slider.setTooltip(this.tooltip);
       return slider;
     }

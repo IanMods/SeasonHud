@@ -103,6 +103,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "The horizontal offset of the Hud when no minimap is installed\n(in pixels)",
   "menu.seasonhud.season.yOffset.slider": "Y Offset: ",
   "menu.seasonhud.season.yOffset.tooltip": "The vertical offset of the Hud when no minimap is installed\n(in pixels)",
+  "menu.seasonhud.season.scale.slider": "Scale: ",
+  "menu.seasonhud.season.scale.tooltip": "The scale of season text when no minimap is installed",
   "trinkets.slot.calendar.calendarslot": "Calendario",
   "xaerominimap.seasonhud.infodisplay.season": "Estación"
 }

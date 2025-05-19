@@ -63,6 +63,10 @@ public class BasicSlider extends AbstractSliderButton {
     this.updateMessage();
   }
 
+  public double getValueDouble() {
+    return Math.round(this.getValue()*10.0)/10.0;
+  }
+
   public long getValueLong() {
     return Math.round(this.getValue());
   }

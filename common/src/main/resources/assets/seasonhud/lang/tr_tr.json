@@ -103,6 +103,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "Minimap yüklü olmadığında mevsim metninin yatay ofseti\n(piksel cinsinden)",
   "menu.seasonhud.season.yOffset.slider": "Y-Ofseti: ",
   "menu.seasonhud.season.yOffset.tooltip": "Minimap yüklü olmadığında mevsim metninin dikey ofseti\n(piksel cinsinden)",
+  "menu.seasonhud.season.scale.slider": "Scale: ",
+  "menu.seasonhud.season.scale.tooltip": "The scale of season text when no minimap is installed",
   "trinkets.slot.calendar.calendarslot": "Takvim",
   "xaerominimap.seasonhud.infodisplay.season": "Mevsim"
 }

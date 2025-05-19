@@ -21,6 +21,7 @@ public class SeasonHUDOverlayCommon {
     int y = 0;
     int xOffset = Config.getHudX();
     int yOffset = Config.getHudY();
+    double scale = Config.getHudScale();
     int DEFAULT_X_OFFSET = Config.DEFAULT_X_OFFSET;
     int DEFAULT_Y_OFFSET = Config.DEFAULT_Y_OFFSET;
     int stringWidth = mc.font.width(seasonCombined);
@@ -56,7 +57,7 @@ public class SeasonHUDOverlayCommon {
 
       //Text
       graphics.pose().pushPose();
-      graphics.pose().scale(1F, 1F, 1F);
+      graphics.pose().scale((float) scale, (float) scale, 1F);
       graphics.drawString(mc.font, seasonCombined, x, y, 0xffffff);
       graphics.pose().popPose();
     }

@@ -103,6 +103,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "未安装小地图时 HUD 的水平偏移量\n(单位：像素)",
   "menu.seasonhud.season.yOffset.slider": "Y 偏移: ",
   "menu.seasonhud.season.yOffset.tooltip": "未安装小地图时 HUD 的垂直偏移量\n(单位：像素)",
+  "menu.seasonhud.season.scale.slider": "Scale: ",
+  "menu.seasonhud.season.scale.tooltip": "The scale of season text when no minimap is installed",
   "trinkets.slot.calendar.calendarslot": "日历",
   "xaerominimap.seasonhud.infodisplay.season": "季节"
 }
