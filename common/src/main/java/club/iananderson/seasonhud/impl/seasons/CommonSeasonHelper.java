@@ -136,7 +136,7 @@ public class CommonSeasonHelper implements IModHelper {
   public Item CALENDAR() {
     Item calendar = null;
 
-    if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()) {
+    if (Common.fabricSeasonsLoaded() && Common.hasCalendarLoaded()) {
       calendar = fabricSeasons.CALENDAR();
     }
 

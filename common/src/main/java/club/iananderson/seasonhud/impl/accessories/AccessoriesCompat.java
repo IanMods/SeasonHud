@@ -8,14 +8,14 @@ public class AccessoriesCompat {
   }
 
   public static void clientInit() {
-    if (Common.accessoriesLoaded() && Common.calendarLoaded()) {
+    if (Common.accessoriesLoaded() && Common.hasCalendarLoaded()) {
       Common.LOG.info("Talking to Accessories Client");
       AccessoriesCalendar.clientInit();
     }
   }
 
   public static void init() {
-    if (Common.accessoriesLoaded() && Common.calendarLoaded()) {
+    if (Common.accessoriesLoaded() && Common.hasCalendarLoaded()) {
       Common.LOG.info("Talking to Accessories");
       AccessoriesCalendar.init();
     }
