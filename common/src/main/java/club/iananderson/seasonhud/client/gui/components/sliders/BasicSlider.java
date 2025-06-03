@@ -17,6 +17,7 @@ public class BasicSlider extends AbstractSliderButton {
   protected boolean canChangeValue;
   protected double minValue;
   protected double maxValue;
+  protected double defaultValue;
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial) {
     super(x, y, width, height, Component.empty(), 0.0);
@@ -24,12 +25,29 @@ public class BasicSlider extends AbstractSliderButton {
     this.value = snapToNearest(initial);
   }
 
-  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
-      double maxValue) {
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial,
+      double minValue, double maxValue, double defaultValue) {
     this(x, y, width, height, drawString, initial);
     this.minValue = minValue;
     this.maxValue = maxValue;
+    this.defaultValue = snapToNearest(defaultValue);
     this.value = snapToNearest(initial);
+  }
+
+  public void onRightClick() {
+    this.setValue(defaultValue);
+  }
+
+  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+    if (this.active && this.visible && mouseButton == 1) {
+      boolean rightClicked = this.clicked(mouseX, mouseY);
+      if (rightClicked) {
+        this.playDownSound(Minecraft.getInstance().getSoundManager());
+        this.onRightClick();
+      }
+    }
+
+    return super.mouseClicked(mouseX, mouseY, mouseButton);
   }
 
   public int getTextureY() {
@@ -64,7 +82,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public double getValueDouble() {
-    return Math.round(this.getValue()*10.0)/10.0;
+    return Math.round(this.getValue() * 10.0) / 10.0;
   }
 
   public long getValueLong() {

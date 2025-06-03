@@ -6,6 +6,7 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.components.buttons.CheckButton;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
+import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private CycleButton<Location> hudLocationButton;
   private HudOffsetSlider xSlider;
   private HudOffsetSlider ySlider;
-  private HudOffsetSlider scaleSlider;
+  private HudScaleSlider hudScaleSlider;
   private EditBox dayLengthBox;
   private CycleButton<ShowDay> showDayButton;
   private CycleButton<Boolean> showSubSeasonButton;
@@ -69,7 +70,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void saveConfig() {
     Config.setHudX(xSlider.getValueInt());
     Config.setHudY(ySlider.getValueInt());
-    Config.setHudScale(scaleSlider.getValueDouble());
+    Config.setHudScale(hudScaleSlider.getValueDouble());
     Config.setNeedCalendar(needCalendar);
     if (Common.fabricSeasonsLoaded()) {
       Config.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
@@ -98,7 +99,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     xSlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
     ySlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
-    scaleSlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
 
     if (Common.fabricSeasonsLoaded()) {
       graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
@@ -108,43 +108,44 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
 
-    int componentWidth = this.font.width(seasonCombined);
-    int componentHeight = this.font.lineHeight;
-    int DEFAULT_X_OFFSET = Config.DEFAULT_X_OFFSET;
-    int DEFAULT_Y_OFFSET = Config.DEFAULT_Y_OFFSET;
+    double textScale = hudScaleSlider.getValueDouble();
+    int componentWidth = (int) (this.font.width(seasonCombined) * textScale);
+    int componentHeight = (int) (this.font.lineHeight * textScale);
+    int DEFAULT_X_OFFSET = (int) (Config.DEFAULT_X_OFFSET * textScale);
+    int DEFAULT_Y_OFFSET = (int) (Config.DEFAULT_Y_OFFSET * textScale);
     int x = 0;
     int y = 0;
 
     switch (Config.getHudLocation()) {
       case TOP_LEFT:
-        x = xSlider.getValueInt();
-        y = ySlider.getValueInt();
+        x = (int) (xSlider.getValueInt() / textScale);
+        y = (int) (ySlider.getValueInt() / textScale);
         break;
 
       case TOP_CENTER:
-        x = (width / 2) - (componentWidth / 2);
+        x = (int) ((((double) width / 2) - ((double) componentWidth / 2)) / textScale);
         y = DEFAULT_Y_OFFSET;
         break;
 
       case TOP_RIGHT:
-        x = width - componentWidth - 2;
+        x = (int) ((width - componentWidth - 2) / textScale);
         y = DEFAULT_Y_OFFSET;
         break;
 
       case BOTTOM_LEFT:
         x = DEFAULT_X_OFFSET;
-        y = height - componentHeight - DEFAULT_Y_OFFSET;
+        y = (int) ((height - componentHeight - DEFAULT_Y_OFFSET) / textScale);
         break;
 
       case BOTTOM_RIGHT:
-        x = width - componentWidth - DEFAULT_X_OFFSET;
-        y = height - componentHeight - DEFAULT_Y_OFFSET;
+        x = (int) ((width - componentWidth - DEFAULT_X_OFFSET) / textScale);
+        y = (int) ((height - componentHeight - DEFAULT_Y_OFFSET) / textScale);
         break;
     }
 
     graphics.pose().pushPose();
     graphics.pose().translate(0, 0, 50);
-    graphics.pose().scale((float) scaleSlider.getValueDouble(), (float) scaleSlider.getValueDouble(), 1.0F);
+    graphics.pose().scale((float) textScale, (float) textScale, 1.0F);
     graphics.drawString(font, seasonCombined, x, y, 0xffffff);
     graphics.pose().popPose();
 
@@ -169,7 +170,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                 Component.translatable("menu.seasonhud.season.hudLocation.button"),
                 (b, val) -> Config.setHudLocation(val));
 
-    scaleSlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.scale.slider"))
+    hudScaleSlider = HudScaleSlider.builder(Component.translatable("menu.seasonhud.season.scale.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.scale.tooltip")))
         .withValueRange(Config.HUD_SCALE_MIN, Config.HUD_SCALE_MAX)
         .withInitialValue(scaleSliderDouble)
@@ -182,20 +183,18 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     row = 1;
     xSlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.xOffset.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.xOffset.tooltip")))
-        .withValueRange(0, this.width - (componentWidth))
+        .withValueRange(0, this.width - componentWidth)
         .withInitialValue(xSliderInt)
         .withDefaultValue(Config.DEFAULT_X_OFFSET)
-        .withShowDecimal(false)
         .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
                     BUTTON_HEIGHT)
         .build();
 
     ySlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.yOffset.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.yOffset.tooltip")))
-        .withValueRange(0, this.height - componentWidth)
+        .withValueRange(0, this.height - componentHeight)
         .withInitialValue(ySliderInt)
         .withDefaultValue(Config.DEFAULT_Y_OFFSET)
-        .withShowDecimal(false)
         .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
                     BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
         .build();
@@ -214,7 +213,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                 Component.translatable("menu.seasonhud.color.enableSeasonNameColor.button"),
                 (b, val) -> Config.setEnableSeasonNameColor(val));
 
-    widgets.addAll(Arrays.asList(hudLocationButton, scaleSlider, xSlider, ySlider, showDayButton, seasonColorButton));
+    widgets.addAll(Arrays.asList(hudLocationButton, hudScaleSlider, xSlider, ySlider, showDayButton, seasonColorButton));
 
     if (Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded()) {
       row = 3;

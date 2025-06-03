@@ -22,7 +22,8 @@ public class RgbSlider extends BasicSlider {
   protected ChatFormatting textColor;
 
   public RgbSlider(int x, int y, ColorEditBox seasonBox) {
-    super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true, Integer.parseInt(seasonBox.getValue()));
+    super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true,
+          Integer.parseInt(seasonBox.getValue()));
     this.minValue = 0;
     this.maxValue = 16777215;
     this.seasonBox = seasonBox;
