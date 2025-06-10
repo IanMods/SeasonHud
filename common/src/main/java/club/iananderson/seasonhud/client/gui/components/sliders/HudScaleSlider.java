@@ -12,12 +12,12 @@ public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
   private final boolean showDecimal;
 
-  protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
+  protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double currentValue, double minValue,
       double maxValue, double defaultValue, boolean showDecimal) {
-    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue);
+    super(x, y, width, height, true, currentValue, minValue, maxValue, defaultValue);
     this.prefix = prefix;
     this.showDecimal = showDecimal;
-    this.value = snapToNearest(initial);
+    this.value = snapToNearest(currentValue);
     this.updateMessage();
   }
 
@@ -47,7 +47,9 @@ public class HudScaleSlider extends BasicSlider {
 
   @Override
   public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    this.active = true;
+    if (Config.getEnableMinimapIntegration()) {
+      this.active = false;
+    }
 
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }

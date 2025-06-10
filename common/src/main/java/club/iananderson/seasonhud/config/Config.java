@@ -6,7 +6,6 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import java.util.Arrays;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 
 public class Config {
   public static final ForgeConfigSpec GENERAL_SPEC;
@@ -19,7 +18,7 @@ public class Config {
   public static final int DEFAULT_X_OFFSET = 2;
   public static final int DEFAULT_Y_OFFSET = 2;
   public static final double DEFAULT_SCALE = 1.0;
-  public static final double HUD_SCALE_MIN = 0.1;
+  public static final double HUD_SCALE_MIN = 0.5;
   public static final double HUD_SCALE_MAX = 10;
   private static ForgeConfigSpec.BooleanValue enableMod;
   private static ForgeConfigSpec.ConfigValue<Location> hudLocation;
@@ -283,11 +282,11 @@ public class Config {
     Config.needCalendar.set(enable);
   }
 
-  public static boolean getCalanderDetailMode() {
+  public static boolean getCalendarDetailMode() {
     return calanderDetailMode.get();
   }
 
-  public static void setCalanderDetailMode(boolean enable) {
+  public static void setCalendarDetailMode(boolean enable) {
     Config.calanderDetailMode.set(enable);
   }
 

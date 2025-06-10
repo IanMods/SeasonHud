@@ -31,10 +31,10 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private boolean showSubSeason;
   private boolean showTropicalSeason;
   private boolean needCalendar;
-  private boolean enableCalanderDetail;
+  private boolean enableCalendarDetail;
+  private boolean enableMinimapIntegration;
   private int dayLength;
   private int newDayLength;
-  private double fontScale;
   private CycleButton<Location> hudLocationButton;
   private HudOffsetSlider xSlider;
   private HudOffsetSlider ySlider;
@@ -64,7 +64,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     showSubSeason = Config.getShowSubSeason();
     showTropicalSeason = Config.getShowTropicalSeason();
     needCalendar = Config.getNeedCalendar();
-    enableCalanderDetail = Config.getCalanderDetailMode();
+    enableCalendarDetail = Config.getCalendarDetailMode();
+    enableMinimapIntegration = Config.getEnableMinimapIntegration();
     dayLength = Config.getDayLength();
   }
 
@@ -91,16 +92,25 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     Config.setEnableSeasonNameColor(seasonColor);
     Config.setShowSubSeason(showSubSeason);
     Config.setShowTropicalSeason(showTropicalSeason);
-    Config.setCalanderDetailMode(enableCalanderDetail);
+    Config.setCalendarDetailMode(enableCalendarDetail);
     Config.setDayLength(dayLength);
     super.onClose();
   }
 
   @Override
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    xSlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
-    ySlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
-    fontScale = hudScaleSlider.getValueDouble();
+    xSlider.active = (hudLocationButton.getValue() == Location.TOP_LEFT) && !enableMinimapIntegration;
+    ySlider.active = (hudLocationButton.getValue() == Location.TOP_LEFT) && !enableMinimapIntegration;
+    hudScaleSlider.active = !enableMinimapIntegration;
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
+    double textScale = hudScaleSlider.getValueDouble();
+
+    if (!(hudScaleSlider.isHovered()) && (scaleSliderDouble != textScale)){
+      scaleSliderDouble = textScale;
+      xSliderInt = xSlider.getValueInt();
+      ySliderInt = ySlider.getValueInt();
+      this.rebuildWidgets();
+    }
 
     if (Common.fabricSeasonsLoaded()) {
       graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
@@ -108,9 +118,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                                       + BUTTON_PADDING), 16777215);
     }
 
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
 
-    double textScale = hudScaleSlider.getValueDouble();
     int componentWidth = (int) (this.font.width(seasonCombined) * textScale);
     int componentHeight = (int) (this.font.lineHeight * textScale);
     int DEFAULT_X_OFFSET = (int) (Config.DEFAULT_X_OFFSET * textScale);
@@ -157,13 +165,13 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private int maxWidth(MutableComponent seasonText) {
     int textWidth = this.font.width(seasonText);
 
-    return (int) (textWidth * fontScale);
+    return (int) (this.width - (textWidth * scaleSliderDouble));
   }
 
   private int maxHeight() {
     int textHeight = this.font.lineHeight;
 
-    return (int) (textHeight * fontScale);
+    return (int) (this.height - (textHeight * scaleSliderDouble));
   }
 
   @Override
@@ -171,7 +179,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     super.init();
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
-    fontScale = scaleSliderDouble;
 
     row = 0;
     hudLocationButton = CycleButton.builder(Location::getLocationName)
@@ -194,18 +201,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     row = 1;
     xSlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.xOffset.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.xOffset.tooltip")))
-        .withValueRange(0, this.maxWidth(seasonCombined))
-        .withInitialValue(xSliderInt)
-        .withDefaultValue(Config.DEFAULT_X_OFFSET)
+        .withValues(0, this.maxWidth(seasonCombined), xSliderInt, Config.DEFAULT_X_OFFSET)
         .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
                     BUTTON_HEIGHT)
         .build();
 
     ySlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.yOffset.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.yOffset.tooltip")))
-        .withValueRange(0, this.maxHeight())
-        .withInitialValue(ySliderInt)
-        .withDefaultValue(Config.DEFAULT_Y_OFFSET)
+        .withValues(0, this.maxHeight(), ySliderInt, Config.DEFAULT_Y_OFFSET)
         .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
                     BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
         .build();
@@ -276,11 +279,11 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
                   Component.translatable("menu.seasonhud.main.needCalendar.button"), (b, val) -> needCalendar = val);
 
-      calanderDetailModeButton = CycleButton.onOffBuilder(Config.getCalanderDetailMode())
+      calanderDetailModeButton = CycleButton.onOffBuilder(Config.getCalendarDetailMode())
           .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.main.calendarDetail.tooltip")))
           .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
                   Component.translatable("menu.seasonhud.main.calendarDetail.button"), (b, val) -> {
-                Config.setCalanderDetailMode(val);
+                Config.setCalendarDetailMode(val);
                 rebuildWidgets();
               });
 

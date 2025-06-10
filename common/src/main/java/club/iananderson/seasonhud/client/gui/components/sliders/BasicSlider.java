@@ -81,6 +81,10 @@ public class BasicSlider extends AbstractSliderButton {
     this.updateMessage();
   }
 
+  public void updateValue(double newValue){
+    this.setValue(newValue);
+  }
+
   public double getValueDouble() {
     return Math.round(this.getValue() * 10.0) / 10.0;
   }
