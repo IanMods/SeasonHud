@@ -34,6 +34,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private boolean enableCalanderDetail;
   private int dayLength;
   private int newDayLength;
+  private double fontScale;
   private CycleButton<Location> hudLocationButton;
   private HudOffsetSlider xSlider;
   private HudOffsetSlider ySlider;
@@ -99,6 +100,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     xSlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
     ySlider.active = hudLocationButton.getValue() == Location.TOP_LEFT;
+    fontScale = hudScaleSlider.getValueDouble();
 
     if (Common.fabricSeasonsLoaded()) {
       graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
@@ -152,13 +154,24 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     super.render(graphics, mouseX, mouseY, partialTicks);
   }
 
+  private int maxWidth(MutableComponent seasonText) {
+    int textWidth = this.font.width(seasonText);
+
+    return (int) (textWidth * fontScale);
+  }
+
+  private int maxHeight() {
+    int textHeight = this.font.lineHeight;
+
+    return (int) (textHeight * fontScale);
+  }
+
   @Override
   public void init() {
     super.init();
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
-    double componentWidth = this.font.width(seasonCombined);
-    double componentHeight = this.font.lineHeight;
+    fontScale = scaleSliderDouble;
 
     row = 0;
     hudLocationButton = CycleButton.builder(Location::getLocationName)
@@ -174,16 +187,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.scale.tooltip")))
         .withValueRange(Config.HUD_SCALE_MIN, Config.HUD_SCALE_MAX)
         .withInitialValue(scaleSliderDouble)
-        .withDefaultValue(Config.DEFAULT_SCALE)
-        .withShowDecimal(true)
-        .withBounds(rightButtonX, (buttonStartY + (row * yOffset)),
-                    BUTTON_WIDTH, BUTTON_HEIGHT)
+        .withDefaultValue(Config.DEFAULT_SCALE).withShowDecimal(true)
+        .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
         .build();
 
     row = 1;
     xSlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.xOffset.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.xOffset.tooltip")))
-        .withValueRange(0, this.width - componentWidth)
+        .withValueRange(0, this.maxWidth(seasonCombined))
         .withInitialValue(xSliderInt)
         .withDefaultValue(Config.DEFAULT_X_OFFSET)
         .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
@@ -192,7 +203,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     ySlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.yOffset.slider"))
         .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.yOffset.tooltip")))
-        .withValueRange(0, this.height - componentHeight)
+        .withValueRange(0, this.maxHeight())
         .withInitialValue(ySliderInt)
         .withDefaultValue(Config.DEFAULT_Y_OFFSET)
         .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
@@ -213,7 +224,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                 Component.translatable("menu.seasonhud.color.enableSeasonNameColor.button"),
                 (b, val) -> Config.setEnableSeasonNameColor(val));
 
-    widgets.addAll(Arrays.asList(hudLocationButton, hudScaleSlider, xSlider, ySlider, showDayButton, seasonColorButton));
+    widgets.addAll(
+        Arrays.asList(hudLocationButton, hudScaleSlider, xSlider, ySlider, showDayButton, seasonColorButton));
 
     if (Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded()) {
       row = 3;
