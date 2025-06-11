@@ -12,13 +12,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class HudOffsetSlider extends BasicSlider {
   protected Component prefix;
-  protected int initial;
 
-  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int initial, int minValue,
+  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int currentValue, int minValue,
       int maxValue, int defaultValue) {
-    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue);
+    super(x, y, width, height, true, currentValue, minValue, maxValue, defaultValue);
     this.prefix = prefix;
-    this.value = snapToNearest(initial);
+    this.value = snapToNearest(currentValue);
     this.updateMessage();
   }
 
@@ -38,14 +37,16 @@ public class HudOffsetSlider extends BasicSlider {
 
   @Override
   public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    if (Config.getHudLocation() != Location.TOP_LEFT) {
-      this.active = false;
+    boolean topLeft = Config.getHudLocation() == Location.TOP_LEFT;
+    boolean minimapIntegration = Config.getEnableMinimapIntegration();
+
+    this.active = topLeft && !minimapIntegration;
+    this.visible = topLeft && !minimapIntegration;
+
+    if (!topLeft) {
       this.setTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.offsetError.tooltip")));
     }
 
-    if (Config.getEnableMinimapIntegration()) {
-      this.active = false;
-    }
 
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }

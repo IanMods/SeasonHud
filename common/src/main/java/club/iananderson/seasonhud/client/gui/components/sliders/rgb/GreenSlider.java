@@ -12,6 +12,7 @@ public class GreenSlider extends RgbSlider {
     this.g = Rgb.rgbColor(Integer.parseInt(seasonBox.getValue())).getGreen();
     this.value = snapToNearest(this.g);
     this.textColor = ChatFormatting.GREEN;
+    this.defaultValue = snapToNearest(Rgb.rgbColor(seasonBox.getSeason().getDefaultColor()).getGreen());
     this.updateMessage();
   }
 

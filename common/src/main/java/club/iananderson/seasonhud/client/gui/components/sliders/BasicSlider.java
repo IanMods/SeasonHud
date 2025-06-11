@@ -1,10 +1,11 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.util.DrawUtil;
+import com.mojang.blaze3d.platform.InputConstants;
+import java.text.DecimalFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
-import net.minecraft.client.gui.navigation.CommonInputs;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -13,25 +14,58 @@ import org.jetbrains.annotations.NotNull;
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
   protected static final ResourceLocation SLIDER_LOCATION = new ResourceLocation("textures/gui/slider.png");
-  protected final boolean drawString;
+  protected boolean drawString;
   protected boolean canChangeValue;
   protected double minValue;
   protected double maxValue;
   protected double defaultValue;
+  protected double stepSize;
+  private DecimalFormat format;
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial) {
-    super(x, y, width, height, Component.empty(), 0.0);
+    super(x, y, width, height, Component.empty(), 0D);
     this.drawString = drawString;
     this.value = snapToNearest(initial);
   }
 
-  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial,
-      double minValue, double maxValue, double defaultValue) {
-    this(x, y, width, height, drawString, initial);
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double currentValue, double minValue,
+      double maxValue, double defaultValue, double stepSize, int precision) {
+    this(x, y, width, height, drawString, currentValue);
     this.minValue = minValue;
     this.maxValue = maxValue;
-    this.defaultValue = snapToNearest(defaultValue);
-    this.value = snapToNearest(initial);
+    this.defaultValue = defaultValue;
+    this.value = this.snapToNearest((currentValue - minValue) / (maxValue - minValue));
+    this.stepSize = Math.abs(stepSize);
+    this.drawString = drawString;
+
+    if (stepSize == 0D) {
+      precision = Math.min(precision, 4);
+
+      StringBuilder builder = new StringBuilder("0");
+
+      if (precision > 0) {
+        builder.append('.');
+      }
+
+      while (precision-- > 0) {
+        builder.append('0');
+      }
+
+      this.format = new DecimalFormat(builder.toString());
+    }
+    else if (Mth.equal(this.stepSize, Math.floor(this.stepSize))) {
+      this.format = new DecimalFormat("0");
+    }
+    else {
+      this.format = new DecimalFormat(Double.toString(this.stepSize).replaceAll("\\d", "0"));
+    }
+
+    this.updateMessage();
+  }
+
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double currentValue, double minValue,
+      double maxValue, double defaultValue) {
+    this(x, y, width, height, drawString, currentValue, minValue, maxValue, defaultValue, 1D, 0);
   }
 
   public void onRightClick() {
@@ -39,7 +73,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == 1) {
+    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
       boolean rightClicked = this.clicked(mouseX, mouseY);
       if (rightClicked) {
         this.playDownSound(Minecraft.getInstance().getSoundManager());
@@ -65,24 +99,26 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   protected double snapToNearest(double value) {
-    return (Mth.clamp((float) value, this.minValue, this.maxValue) - this.minValue) / (this.maxValue - this.minValue);
+    if (stepSize <= 0D) {
+      return Mth.clamp(value, 0D, 1D);
+    }
+
+    value = Mth.lerp(Mth.clamp(value, 0D, 1D), this.minValue, this.maxValue);
+
+    value = (stepSize * Math.round(value / stepSize));
+
+    if (this.minValue > this.maxValue) {
+      value = Mth.clamp(value, this.maxValue, this.minValue);
+    }
+    else {
+      value = Mth.clamp(value, this.minValue, this.maxValue);
+    }
+
+    return Mth.map(value, this.minValue, this.maxValue, 0D, 1D);
   }
 
   public double getValue() {
-    return this.value * (this.maxValue - this.minValue) + this.minValue;
-  }
-
-  protected void setValue(double newValue) {
-    double oldValue = this.value;
-    this.value = Mth.clamp(newValue, 0.0, 1.0);
-    if (oldValue != this.value) {
-      this.applyValue();
-    }
-    this.updateMessage();
-  }
-
-  public void updateValue(double newValue){
-    this.setValue(newValue);
+    return this.value * (maxValue - minValue) + minValue;
   }
 
   public double getValueDouble() {
@@ -98,7 +134,22 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public String getValueString() {
-    return String.valueOf(this.getValueInt());
+    return this.format.format(this.getValue());
+  }
+
+  public void setValue(double value) {
+    this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    this.updateMessage();
+  }
+
+  private void setSliderValue(double value) {
+    double oldValue = this.value;
+    this.value = this.snapToNearest(value);
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
+
+    this.updateMessage();
   }
 
   @Override
@@ -107,22 +158,21 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-    if (CommonInputs.selected(keyCode)) {
-      this.canChangeValue = !this.canChangeValue;
-      return true;
-    }
-    else {
-      if (this.canChangeValue) {
-        boolean bl = keyCode == 263;
-        if (bl || keyCode == 262) {
-          float f = bl ? -1.0F : 1.0F;
-          this.setValue(this.value + (f / (this.width - 8)));
-          return true;
-        }
+    boolean bl = keyCode == InputConstants.KEY_LEFT;
+    if (bl || keyCode == InputConstants.KEY_RIGHT) {
+      if (this.minValue > this.maxValue) {
+        bl = !bl;
       }
-
-      return false;
+      float f = bl ? -1F : 1F;
+      if (stepSize <= 0D) {
+        this.setSliderValue(this.value + (f / (this.width - 8)));
+      }
+      else {
+        this.setValue(this.getValue() + f * this.stepSize);
+      }
     }
+
+    return false;
   }
 
   @Override

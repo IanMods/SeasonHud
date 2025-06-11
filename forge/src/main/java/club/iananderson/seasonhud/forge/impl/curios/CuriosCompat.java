@@ -8,7 +8,7 @@ public class CuriosCompat {
   }
 
   public static void init() {
-    if (Common.curiosLoaded() && Common.calendarLoaded()) {
+    if (Common.curiosLoaded() && Common.hasCalendarLoaded()) {
       CuriosCalendar.init();
     }
   }

@@ -10,29 +10,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
-  private final boolean showDecimal;
 
   protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double currentValue, double minValue,
-      double maxValue, double defaultValue, boolean showDecimal) {
-    super(x, y, width, height, true, currentValue, minValue, maxValue, defaultValue);
+      double maxValue, double defaultValue, double stepSize, int precision) {
+    super(x, y, width, height, true, currentValue, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
-    this.showDecimal = showDecimal;
-    this.value = snapToNearest(currentValue);
     this.updateMessage();
   }
 
   public static HudScaleSlider.Builder builder(Component prefix) {
     return new HudScaleSlider.Builder(prefix);
-  }
-
-  @Override
-  public String getValueString() {
-    if (showDecimal) {
-      return String.valueOf(this.getValueDouble());
-    }
-    else {
-      return String.valueOf(this.getValueInt());
-    }
   }
 
   @Override
@@ -65,7 +52,8 @@ public class HudScaleSlider extends BasicSlider {
     protected double initial;
     protected double defaultValue;
     protected Tooltip tooltip;
-    protected boolean showDecimal;
+    protected double stepSize;
+    protected int precision;
 
     public Builder(Component prefix) {
       this.prefix = prefix;
@@ -120,8 +108,13 @@ public class HudScaleSlider extends BasicSlider {
       return this;
     }
 
-    public HudScaleSlider.Builder withShowDecimal(boolean showDecimal) {
-      this.showDecimal = showDecimal;
+    public HudScaleSlider.Builder withStepSize(double stepSize) {
+      this.stepSize = stepSize;
+      return this;
+    }
+
+    public HudScaleSlider.Builder withPrecision(int precision) {
+      this.precision = precision;
       return this;
     }
 
@@ -133,7 +126,8 @@ public class HudScaleSlider extends BasicSlider {
 
     public HudScaleSlider build() {
       HudScaleSlider slider = new HudScaleSlider(this.x, this.y, this.width, this.height, this.prefix, this.initial,
-                                                 this.minValue, this.maxValue, this.defaultValue, this.showDecimal);
+                                                 this.minValue, this.maxValue, this.defaultValue, this.stepSize,
+                                                 this.precision);
       slider.setTooltip(this.tooltip);
       return slider;
     }

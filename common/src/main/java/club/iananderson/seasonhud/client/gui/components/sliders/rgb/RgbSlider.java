@@ -8,6 +8,7 @@ import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 public class RgbSlider extends BasicSlider {
@@ -22,8 +23,7 @@ public class RgbSlider extends BasicSlider {
   protected ChatFormatting textColor;
 
   public RgbSlider(int x, int y, ColorEditBox seasonBox) {
-    super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true,
-          Integer.parseInt(seasonBox.getValue()));
+    super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true, Integer.parseInt(seasonBox.getValue()));
     this.minValue = 0;
     this.maxValue = 16777215;
     this.seasonBox = seasonBox;
@@ -45,10 +45,30 @@ public class RgbSlider extends BasicSlider {
   }
 
   @Override
+  public void onRightClick() {
+    this.setValue(defaultValue);
+  }
+
+  @Override
   protected void onDrag(double d, double e, double f, double g) {
     if (enableColor) {
       super.onDrag(d, e, f, g);
     }
+  }
+
+  @Override
+  public String getValueString() {
+    return String.valueOf(this.getValueInt());
+  }
+
+  @Override
+  public void setValue(double newValue) {
+    double oldValue = this.value;
+    this.value = Mth.clamp(newValue, 0.0, 1.0);
+    if (oldValue != this.value) {
+      this.applyValue();
+    }
+    this.updateMessage();
   }
 
   @Override
@@ -59,6 +79,11 @@ public class RgbSlider extends BasicSlider {
     }
 
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
+  }
+
+  @Override
+  protected double snapToNearest(double value) {
+    return (Mth.clamp((float) value, this.minValue, this.maxValue) - this.minValue) / (this.maxValue - this.minValue);
   }
 
   @Override

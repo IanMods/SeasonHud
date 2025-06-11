@@ -63,7 +63,7 @@ public class Calendar {
     Minecraft mc = Minecraft.getInstance();
     Item calendar = CommonSeasonHelper.commonSeasons.CALENDAR();
 
-    if (!Common.calendarLoaded()) {
+    if (!Common.hasCalendarLoaded()) {
       return true;
     }
 
