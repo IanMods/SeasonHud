@@ -7,7 +7,6 @@ import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.Config;
-import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
@@ -74,17 +73,15 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     Config.setShowDay(showDay);
     Config.setEnableSeasonNameColor(seasonColor);
 
-
-    if(Common.hasSubSeasons()){
+    if (Common.hasSubSeasons()) {
       Config.setShowSubSeason(showSubSeason);
       Config.setShowTropicalSeason(showTropicalSeason);
     }
 
-    if(Common.hasCalendarLoaded()){
+    if (Common.hasCalendarLoaded()) {
       Config.setNeedCalendar(needCalendar);
       Config.setCalendarDetailMode(enableCalendarDetail);
     }
-
 
     if (Common.fabricSeasonsLoaded()) {
       Config.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
@@ -294,8 +291,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.main.needCalendar.tooltip")))
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Component.translatable("menu.seasonhud.main.needCalendar.button"), (b, val) -> this.needCalendar =
-                  val);
+                  Component.translatable("menu.seasonhud.main.needCalendar.button"),
+                  (b, val) -> this.needCalendar = val);
 
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.main.calendarDetail.tooltip")))

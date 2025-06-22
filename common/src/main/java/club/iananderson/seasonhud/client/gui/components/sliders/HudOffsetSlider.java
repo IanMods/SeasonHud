@@ -1,7 +1,5 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
-import club.iananderson.seasonhud.client.gui.Location;
-import club.iananderson.seasonhud.config.Config;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;

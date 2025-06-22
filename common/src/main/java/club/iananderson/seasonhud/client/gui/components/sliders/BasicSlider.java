@@ -73,7 +73,8 @@ public class BasicSlider extends AbstractSliderButton {
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
       double maxValue, double defaultValue, double stepSize, int precision) {
-    this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, stepSize, precision, ChatFormatting.WHITE);
+    this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, stepSize, precision,
+         ChatFormatting.WHITE);
   }
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
@@ -174,8 +175,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   @Override
-  public void onClick(double mouseX, double mouseY)
-  {
+  public void onClick(double mouseX, double mouseY) {
     this.setValueFromMouse(mouseX);
   }
 

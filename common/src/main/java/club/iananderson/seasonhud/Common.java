@@ -110,8 +110,8 @@ public class Common {
   }
 
   public static boolean drawDefaultHudMenu() {
-    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration() ||
-        Config.getShowDefaultWhenMinimapHidden()));
+    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
+        || Config.getShowDefaultWhenMinimapHidden()));
   }
 
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {

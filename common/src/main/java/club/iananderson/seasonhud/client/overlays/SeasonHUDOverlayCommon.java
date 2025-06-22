@@ -24,8 +24,8 @@ public class SeasonHUDOverlayCommon {
     double scale = Config.getHudScale();
     int DEFAULT_X_OFFSET = Config.DEFAULT_X_OFFSET;
     int DEFAULT_Y_OFFSET = Config.DEFAULT_Y_OFFSET;
-    int stringWidth = (int) (mc.font.width(seasonCombined)*scale);
-    int stringHeight = (int) (mc.font.lineHeight*scale);
+    int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
+    int stringHeight = (int) (mc.font.lineHeight * scale);
 
     if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()) {
       switch (Config.getHudLocation()) {

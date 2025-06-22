@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.client.gui.screens;
 
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
-import club.iananderson.seasonhud.config.Config;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +31,7 @@ public class SeasonHudScreen extends Screen {
   public int buttonStartY = MENU_PADDING;
   public int yOffset = BUTTON_HEIGHT + BUTTON_PADDING;
   protected boolean hasPendingChanges;
-  protected List<ConfigValue<?>> configOptions  = new ArrayList<>();
+  protected List<ConfigValue<?>> configOptions = new ArrayList<>();
 
   public SeasonHudScreen(Screen parentScreen, Component title) {
     super(title);
@@ -61,8 +60,7 @@ public class SeasonHudScreen extends Screen {
   }
 
   private void undoChanges() {
-    this.getAllSettings()
-        .forEach(ConfigValue::clearCache);
+    this.getAllSettings().forEach(ConfigValue::clearCache);
   }
 
   public void saveConfig() {
@@ -77,8 +75,6 @@ public class SeasonHudScreen extends Screen {
   public void onDone() {
     Minecraft.getInstance().setScreen(this.parentScreen);
   }
-
-
 
   private void clearFocus() {
     ComponentPath componentPath = this.getCurrentFocusPath();
