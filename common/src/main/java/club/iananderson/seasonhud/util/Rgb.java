@@ -41,6 +41,18 @@ public class Rgb {
     return new Color(rgb);
   }
 
+  public static int rColor(int rgb) {
+    return new Color(rgb).getRed();
+  }
+
+  public static int gColor(int rgb) {
+    return new Color(rgb).getGreen();
+  }
+
+  public static int bColor(int rgb) {
+    return new Color(rgb).getBlue();
+  }
+
   public static void setRgb(Seasons season, int rgb) {
     season.getRgbMap().put("r", rgbColor(rgb).getRed());
     season.getRgbMap().put("g", rgbColor(rgb).getGreen());

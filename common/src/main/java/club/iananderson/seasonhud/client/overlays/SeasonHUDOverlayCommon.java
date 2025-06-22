@@ -30,28 +30,33 @@ public class SeasonHUDOverlayCommon {
     if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()) {
       switch (Config.getHudLocation()) {
         case TOP_LEFT:
-          x = (int) (xOffset/scale);
-          y = (int) (yOffset/scale);
+          x = DEFAULT_X_OFFSET;
+          y = DEFAULT_Y_OFFSET;
           break;
 
         case TOP_CENTER:
-          x = (screenWidth / 2) - (stringWidth / 2);
+          x = (int) ((((double) screenWidth / 2) - ((double) stringWidth / 2)) / scale);
           y = DEFAULT_Y_OFFSET;
           break;
 
         case TOP_RIGHT:
-          x = screenWidth - stringWidth - DEFAULT_X_OFFSET;
+          x = (int) ((screenWidth - stringWidth - DEFAULT_X_OFFSET) / scale);
           y = DEFAULT_Y_OFFSET;
           break;
 
         case BOTTOM_LEFT:
           x = DEFAULT_X_OFFSET;
-          y = screenHeight - stringHeight - DEFAULT_Y_OFFSET;
+          y = (int) (((screenHeight - stringHeight - DEFAULT_Y_OFFSET)) / scale);
           break;
 
         case BOTTOM_RIGHT:
-          x = screenWidth - stringWidth - DEFAULT_X_OFFSET;
-          y = screenHeight - stringHeight - DEFAULT_Y_OFFSET;
+          x = (int) (((screenWidth - stringWidth - DEFAULT_X_OFFSET)) / scale);
+          y = (int) (((screenHeight - stringHeight - DEFAULT_Y_OFFSET)) / scale);
+          break;
+
+        case CUSTOM:
+          x = (int) xOffset;
+          y = (int) yOffset;
           break;
       }
 

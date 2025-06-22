@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
@@ -31,7 +32,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private boolean showTropicalSeason;
   private boolean needCalendar;
   private boolean enableCalendarDetail;
-  private boolean enableMinimapIntegration;
+  private boolean drawDefaultHud;
   private int dayLength;
   private int newDayLength;
   private CycleButton<Location> hudLocationButton;
@@ -42,7 +43,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
   public SeasonOptionsScreen(Screen parentScreen) {
     super(parentScreen, SCREEN_TITLE);
-    loadConfig();
   }
 
   public static SeasonOptionsScreen getInstance(Screen parentScreen) {
@@ -50,7 +50,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   }
 
   public void loadConfig() {
-    enableMinimapIntegration = Config.getEnableMinimapIntegration();
+    drawDefaultHud = Common.drawDefaultHudMenu();
     hudLocation = Config.getHudLocation();
     xSliderInt = Config.getHudX();
     ySliderInt = Config.getHudY();
@@ -65,8 +65,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   }
 
   public void saveConfig() {
-    if (!enableMinimapIntegration) {
-      Config.setHudLocation(hudLocation);
+    if (drawDefaultHud) {
+      Config.setHudLocation(hudLocationButton.getValue());
       Config.setHudX(xSlider.getValueInt());
       Config.setHudY(ySlider.getValueInt());
       Config.setHudScale(hudScaleSlider.getValueDouble());
@@ -106,23 +106,18 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
-    if (!enableMinimapIntegration) {
-
+    if (drawDefaultHud) {
       MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
+      boolean custom = hudLocationButton.getValue() == Location.CUSTOM;
       seasonScale = hudScaleSlider.getValueDouble();
 
-      xSlider.active = (hudLocation == Location.TOP_LEFT) && !enableMinimapIntegration;
-      xSlider.visible = (hudLocation == Location.TOP_LEFT) && !enableMinimapIntegration;
-      ySlider.active = (hudLocation == Location.TOP_LEFT) && !enableMinimapIntegration;
-      ySlider.visible = (hudLocation == Location.TOP_LEFT) && !enableMinimapIntegration;
-      hudScaleSlider.active = !enableMinimapIntegration;
+      xSlider.active = custom;
+      xSlider.visible = custom;
 
-//      if (!(hudScaleSlider.isHovered()) && (seasonScale != textScale)) {
-//        scaleSliderDouble = textScale;
-//        xSliderInt = xSlider.getValueInt();
-//        ySliderInt = ySlider.getValueInt();
-//        this.rebuildUI();
-//      }
+      ySlider.active = custom;
+      ySlider.visible = custom;
+
+      hudScaleSlider.active = drawDefaultHud;
 
       if (Common.fabricSeasonsLoaded()) {
         graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
@@ -132,35 +127,40 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
       int componentHeight = (int) (this.font.lineHeight * seasonScale);
-      int DEFAULT_X_OFFSET = (int) (Config.DEFAULT_X_OFFSET * seasonScale);
-      int DEFAULT_Y_OFFSET = (int) (Config.DEFAULT_Y_OFFSET * seasonScale);
+      int DEFAULT_X_OFFSET_SCALED = (int) (Config.DEFAULT_X_OFFSET);
+      int DEFAULT_Y_OFFSET_SCALED = (int) (Config.DEFAULT_Y_OFFSET);
       int x = 0;
       int y = 0;
 
       switch (hudLocation) {
         case TOP_LEFT:
-          x = (int) (xSlider.getValueInt() / seasonScale);
-          y = (int) (ySlider.getValueInt() / seasonScale);
+          x = DEFAULT_X_OFFSET_SCALED;
+          y = DEFAULT_Y_OFFSET_SCALED;
           break;
 
         case TOP_CENTER:
           x = (int) ((((double) width / 2) - ((double) componentWidth / 2)) / seasonScale);
-          y = DEFAULT_Y_OFFSET;
+          y = DEFAULT_Y_OFFSET_SCALED;
           break;
 
         case TOP_RIGHT:
-          x = (int) ((width - componentWidth - 2) / seasonScale);
-          y = DEFAULT_Y_OFFSET;
+          x = (int) ((width - componentWidth - DEFAULT_X_OFFSET_SCALED) / seasonScale);
+          y = DEFAULT_Y_OFFSET_SCALED;
           break;
 
         case BOTTOM_LEFT:
-          x = DEFAULT_X_OFFSET;
-          y = (int) ((height - componentHeight - DEFAULT_Y_OFFSET) / seasonScale);
+          x = DEFAULT_X_OFFSET_SCALED;
+          y = (int) (((height - componentHeight - DEFAULT_Y_OFFSET_SCALED)) / seasonScale);
           break;
 
         case BOTTOM_RIGHT:
-          x = (int) ((width - componentWidth - DEFAULT_X_OFFSET) / seasonScale);
-          y = (int) ((height - componentHeight - DEFAULT_Y_OFFSET) / seasonScale);
+          x = (int) (((width - componentWidth - DEFAULT_X_OFFSET_SCALED)) / seasonScale);
+          y = (int) (((height - componentHeight - DEFAULT_Y_OFFSET_SCALED)) / seasonScale);
+          break;
+
+        case CUSTOM:
+          x = (int) ((xSlider.getValueInt()));
+          y = (int) ((ySlider.getValueInt()));
           break;
       }
 
@@ -175,29 +175,29 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private int maxWidth(MutableComponent seasonText) {
     int textWidth = this.font.width(seasonText);
 
-    return (int) (this.width - (textWidth * seasonScale));
+    return (int) ((this.width - (textWidth * seasonScale)) / seasonScale);
   }
 
   private int maxHeight() {
     int textHeight = this.font.lineHeight;
 
-    return (int) (this.height - (textHeight * seasonScale));
+    return (int) ((this.height - (textHeight * seasonScale)) / seasonScale);
   }
 
   @Override
   public void init() {
+    loadConfig();
     super.init();
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
 
     row = -1;
 
-    if (!enableMinimapIntegration) {
+    if (drawDefaultHud) {
       row += 1; // Row 1
       hudLocationButton = CycleButton.builder(Location::getLocationName)
           .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.season.hudLocation.tooltip")))
-          .withValues(Location.TOP_LEFT, Location.TOP_CENTER, Location.TOP_RIGHT, Location.BOTTOM_LEFT,
-                      Location.BOTTOM_RIGHT)
+          .withValues(Location.values())
           .withInitialValue(hudLocation)
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
                   Component.translatable("menu.seasonhud.season.hudLocation.button"),
@@ -207,7 +207,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.scale.tooltip")))
           .withValueRange(Config.HUD_SCALE_MIN, Config.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
-          .withDefaultValue(Config.DEFAULT_SCALE).withStepSize(0.1).withPrecision(1)
+          .withDefaultValue(Config.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
           .build();
 

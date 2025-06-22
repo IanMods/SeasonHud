@@ -3,26 +3,13 @@ package club.iananderson.seasonhud.client.gui.components.sliders.rgb;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.Mth;
 
 public class BlueSlider extends RgbSlider {
-  public BlueSlider(int x, int y, ColorEditBox seasonBox) {
-    super(x, y, seasonBox);
-    this.maxValue = 255;
-    this.b = Rgb.rgbColor(Integer.parseInt(seasonBox.getValue())).getBlue();
-    this.value = snapToNearest(this.b);
-    this.textColor = ChatFormatting.BLUE;
-    this.defaultValue = snapToNearest(Rgb.rgbColor(seasonBox.getSeason().getDefaultColor()).getBlue());
-    this.updateMessage();
-  }
-
-  public void setSliderValue(int newValue) {
-    int oldValue = (int) this.value;
-    this.value = snapToNearest(Rgb.rgbColor(newValue).getBlue());
-    if (!Mth.equal(oldValue, this.value)) {
-      this.b = Rgb.rgbColor(newValue).getBlue();
-    }
-
+  public BlueSlider(int x, int y, int initial, ColorEditBox seasonBox) {
+    super(x, y, initial, seasonBox, ChatFormatting.BLUE);
+    this.seasonBox = seasonBox;
+    this.b = Rgb.bColor(Integer.parseInt(seasonBox.getValue()));
+    this.defaultValue = Rgb.bColor(seasonBox.getSeason().getDefaultColor());
     this.updateMessage();
   }
 
@@ -30,9 +17,9 @@ public class BlueSlider extends RgbSlider {
   public void applyValue() {
     this.r = Rgb.getRed(season);
     this.g = Rgb.getGreen(season);
-    this.rgb = Rgb.rgbInt(this.r, this.g, getValueInt());
+    this.rgb = Rgb.rgbInt(this.r, this.g, this.getValueInt());
 
     Rgb.setRgb(season, this.rgb);
-    seasonBox.setValue(String.valueOf(this.rgb));
+    this.seasonBox.setValue(String.valueOf(this.rgb));
   }
 }

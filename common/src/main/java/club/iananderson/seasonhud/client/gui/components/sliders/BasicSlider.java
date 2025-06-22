@@ -3,6 +3,7 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.util.DrawUtil;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
@@ -20,22 +21,24 @@ public class BasicSlider extends AbstractSliderButton {
   protected double maxValue;
   protected double defaultValue;
   protected double stepSize;
+  protected ChatFormatting textColor;
   private DecimalFormat format;
 
-  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial) {
+  private BasicSlider(int x, int y, int width, int height, boolean drawString, double initial) {
     super(x, y, width, height, Component.empty(), 0D);
     this.drawString = drawString;
     this.value = snapToNearest(initial);
   }
 
-  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double currentValue, double minValue,
-      double maxValue, double defaultValue, double stepSize, int precision) {
-    this(x, y, width, height, drawString, currentValue);
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
+      double maxValue, double defaultValue, double stepSize, int precision, ChatFormatting textColor) {
+    this(x, y, width, height, drawString, initial);
     this.minValue = minValue;
     this.maxValue = maxValue;
     this.defaultValue = defaultValue;
-    this.value = this.snapToNearest((currentValue - minValue) / (maxValue - minValue));
+    this.value = this.snapToNearest((initial - minValue) / (maxValue - minValue));
     this.stepSize = Math.abs(stepSize);
+    this.textColor = textColor;
     this.drawString = drawString;
 
     if (stepSize == 0D) {
@@ -63,9 +66,19 @@ public class BasicSlider extends AbstractSliderButton {
     this.updateMessage();
   }
 
-  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double currentValue, double minValue,
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
+      double maxValue, double defaultValue, ChatFormatting textColor) {
+    this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, 1D, 0, textColor);
+  }
+
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
+      double maxValue, double defaultValue, double stepSize, int precision) {
+    this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, stepSize, precision, ChatFormatting.WHITE);
+  }
+
+  protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
       double maxValue, double defaultValue) {
-    this(x, y, width, height, drawString, currentValue, minValue, maxValue, defaultValue, 1D, 0);
+    this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, 1D, 0, ChatFormatting.WHITE);
   }
 
   public void onRightClick() {
@@ -118,7 +131,12 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public double getValue() {
-    return this.value * (maxValue - minValue) + minValue;
+    return this.value * (this.maxValue - this.minValue) + this.minValue;
+  }
+
+  public void setValue(double value) {
+    this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    this.updateMessage();
   }
 
   public double getValueDouble() {
@@ -137,12 +155,7 @@ public class BasicSlider extends AbstractSliderButton {
     return this.format.format(this.getValue());
   }
 
-  public void setValue(double value) {
-    this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
-    this.updateMessage();
-  }
-
-  private void setSliderValue(double value) {
+  public void setSliderValue(double value) {
     double oldValue = this.value;
     this.value = this.snapToNearest(value);
     if (!Mth.equal(oldValue, this.value)) {
@@ -154,6 +167,22 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   protected void applyValue() {
+  }
+
+  private void setValueFromMouse(double mouseX) {
+    this.setSliderValue((mouseX - (this.getX() + 4)) / (this.width - 8));
+  }
+
+  @Override
+  public void onClick(double mouseX, double mouseY)
+  {
+    this.setValueFromMouse(mouseX);
+  }
+
+  @Override
+  protected void onDrag(double mouseX, double mouseY, double dragX, double dragY) {
+    super.onDrag(mouseX, mouseY, dragX, dragY);
+    this.setValueFromMouse(mouseX);
   }
 
   @Override

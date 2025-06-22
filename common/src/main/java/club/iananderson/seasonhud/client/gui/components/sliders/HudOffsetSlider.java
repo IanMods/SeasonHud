@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.client.gui.Location;
 import club.iananderson.seasonhud.config.Config;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -13,11 +12,10 @@ import org.jetbrains.annotations.Nullable;
 public class HudOffsetSlider extends BasicSlider {
   protected Component prefix;
 
-  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int currentValue, int minValue,
+  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int initial, int minValue,
       int maxValue, int defaultValue) {
-    super(x, y, width, height, true, currentValue, minValue, maxValue, defaultValue);
+    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue);
     this.prefix = prefix;
-    this.value = snapToNearest(currentValue);
     this.updateMessage();
   }
 
@@ -37,17 +35,6 @@ public class HudOffsetSlider extends BasicSlider {
 
   @Override
   public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    boolean topLeft = Config.getHudLocation() == Location.TOP_LEFT;
-    boolean minimapIntegration = Config.getEnableMinimapIntegration();
-
-    this.active = topLeft && !minimapIntegration;
-    this.visible = topLeft && !minimapIntegration;
-
-    if (!topLeft) {
-      this.setTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.offsetError.tooltip")));
-    }
-
-
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 
@@ -116,7 +103,7 @@ public class HudOffsetSlider extends BasicSlider {
       return this;
     }
 
-    public HudOffsetSlider.Builder withValues(int minValue, int maxValue, int initial, int defaultValue){
+    public HudOffsetSlider.Builder withValues(int minValue, int maxValue, int initial, int defaultValue) {
       this.minValue = minValue;
       this.maxValue = maxValue;
       this.defaultValue = defaultValue;

@@ -11,9 +11,9 @@ import org.jetbrains.annotations.Nullable;
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
 
-  protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double currentValue, double minValue,
+  protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
       double maxValue, double defaultValue, double stepSize, int precision) {
-    super(x, y, width, height, true, currentValue, minValue, maxValue, defaultValue, stepSize, precision);
+    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
     this.updateMessage();
   }
@@ -34,10 +34,6 @@ public class HudScaleSlider extends BasicSlider {
 
   @Override
   public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    if (Config.getEnableMinimapIntegration()) {
-      this.active = false;
-    }
-
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 

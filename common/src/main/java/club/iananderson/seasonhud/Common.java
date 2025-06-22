@@ -109,6 +109,11 @@ public class Common {
         CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden())));
   }
 
+  public static boolean drawDefaultHudMenu() {
+    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration() ||
+        Config.getShowDefaultWhenMinimapHidden()));
+  }
+
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
     for (String validDimension : validDimensions) {
       if (dimension.location().toString().equals(validDimension)) {
