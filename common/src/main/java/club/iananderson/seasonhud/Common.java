@@ -27,7 +27,6 @@ public class Common {
   private static boolean fabricSeasonsExtrasLoaded;
   private static boolean terrafirmacraftLoaded;
   private static boolean eclipticSeasonsLoaded;
-  private static boolean calendarLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
@@ -42,7 +41,6 @@ public class Common {
     fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded("seasonsextras");
     terrafirmacraftLoaded = Services.PLATFORM.isModLoaded("tfc");
     eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded("eclipticseasons");
-    calendarLoaded = (fabricSeasonsExtrasLoaded || sereneSeasonsLoaded);
     curiosLoaded = Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
@@ -72,10 +70,6 @@ public class Common {
     return Common.eclipticSeasonsLoaded;
   }
 
-  public static boolean calendarLoaded() {
-    return Common.calendarLoaded;
-  }
-
   public static boolean curiosLoaded() {
     return Common.curiosLoaded;
   }
@@ -86,6 +80,14 @@ public class Common {
 
   public static boolean accessoriesLoaded() {
     return Common.accessoriesLoaded;
+  }
+
+  public static boolean hasCalendarLoaded() {
+    return Common.fabricSeasonsExtrasLoaded() || Common.sereneSeasonsLoaded();
+  }
+
+  public static boolean hasSubSeasons() {
+    return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 
   public static boolean vanillaShouldDrawHud() {

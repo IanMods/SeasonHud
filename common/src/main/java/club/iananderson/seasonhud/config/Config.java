@@ -24,10 +24,14 @@ public class Config {
   public static final int DEFAULT_WET_COLOR = 2068975;
   public static final int DEFAULT_X_OFFSET = 2;
   public static final int DEFAULT_Y_OFFSET = 2;
+  public static final double DEFAULT_SCALE = 1.0;
+  public static final double HUD_SCALE_MIN = 0.5;
+  public static final double HUD_SCALE_MAX = 10;
   private static ForgeConfigSpec.BooleanValue enableMod;
   private static ForgeConfigSpec.ConfigValue<Location> hudLocation;
   private static ForgeConfigSpec.ConfigValue<Integer> hudX;
   private static ForgeConfigSpec.ConfigValue<Integer> hudY;
+  private static ForgeConfigSpec.ConfigValue<Double> hudScale;
   private static ForgeConfigSpec.BooleanValue enableSeasonNameColor;
   private static ForgeConfigSpec.ConfigValue<Integer> springColor;
   private static ForgeConfigSpec.ConfigValue<Integer> summerColor;
@@ -64,12 +68,16 @@ public class Config {
         .defineEnum("hud_location", Location.TOP_LEFT);
 
     hudX = builder.comment(
-        "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "Default is " + DEFAULT_X_OFFSET
-            + ".").define("hud_x_position", DEFAULT_X_OFFSET);
+        "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+            + " 'CUSTOM'\n" + "Default is " + DEFAULT_X_OFFSET + ".").define("hud_x_position", DEFAULT_X_OFFSET);
 
     hudY = builder.comment(
-        "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "Default is " + DEFAULT_Y_OFFSET
-            + ".").define("hud_y_position", DEFAULT_Y_OFFSET);
+        "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+            + " 'CUSTOM'\n" + "Default is " + DEFAULT_Y_OFFSET + ".").define("hud_y_position", DEFAULT_Y_OFFSET);
+
+    hudScale = builder.comment(
+            "The scale of the HUD when no minimap is installed.\n" + "Default is " + DEFAULT_SCALE + ".")
+        .defineInRange("hud_scale", DEFAULT_SCALE, HUD_SCALE_MIN, HUD_SCALE_MAX);
 
     builder.push("Colors");
     enableSeasonNameColor = builder.comment("Display the season name in a color?\n" + "(true/false)")
@@ -202,6 +210,19 @@ public class Config {
     Config.hudY.set(y);
   }
 
+  public static double getHudScale() {
+    if (Minecraft.getInstance().player == null) {
+      return DEFAULT_SCALE;
+    }
+    else {
+      return hudScale.get();
+    }
+  }
+
+  public static void setHudScale(double scale) {
+    Config.hudScale.set(scale);
+  }
+
   //Colors
   public static boolean getEnableSeasonNameColor() {
     return enableSeasonNameColor.get();
@@ -268,11 +289,11 @@ public class Config {
     Config.needCalendar.set(enable);
   }
 
-  public static boolean getCalanderDetailMode() {
+  public static boolean getCalendarDetailMode() {
     return calanderDetailMode.get();
   }
 
-  public static void setCalanderDetailMode(boolean enable) {
+  public static void setCalendarDetailMode(boolean enable) {
     Config.calanderDetailMode.set(enable);
   }
 

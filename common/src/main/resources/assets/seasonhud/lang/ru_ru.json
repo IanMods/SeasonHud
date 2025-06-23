@@ -11,6 +11,7 @@
   "desc.seasonhud.keybind.options": "Настройки сезонного интерфейса",
   "desc.seasonhud.location.bottomLeft": "Снизу слева",
   "desc.seasonhud.location.bottomRight": "Снизу справа",
+  "desc.seasonhud.location.custom": "Custom",
   "desc.seasonhud.location.topCenter": "Сверху по центру",
   "desc.seasonhud.location.topLeft": "Сверху слева",
   "desc.seasonhud.location.topRight": "Сверху справа",
@@ -91,7 +92,6 @@
   "menu.seasonhud.main.title": "Настройки сезонного интерфейса",
   "menu.seasonhud.season.hudLocation.button": "Расположение интерфейса",
   "menu.seasonhud.season.hudLocation.tooltip": "Где отображать интерфейс, если миникарта не установлена",
-  "menu.seasonhud.season.offsetError.tooltip": "Ползунки смещения доступны только в том случае, если не установлен мод на миникарту, а интерфейс установлен 'Сверху слева'",
   "menu.seasonhud.season.showDay.button": "Показать значение дня",
   "menu.seasonhud.season.showDay.tooltip": "Отображение дня текущего сезона/подсезона на интерфейсе",
   "menu.seasonhud.season.showSubSeason.button": "Показывать подсезон",
@@ -103,6 +103,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "Горизонтальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
   "menu.seasonhud.season.yOffset.slider": "Смещение по Y: ",
   "menu.seasonhud.season.yOffset.tooltip": "Вертикальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
+  "menu.seasonhud.season.scale.slider": "Scale: ",
+  "menu.seasonhud.season.scale.tooltip": "The scale of season text when no minimap is installed",
   "trinkets.slot.calendar.calendarslot": "Календарь",
   "xaerominimap.seasonhud.infodisplay.season": "Сезон"
 }

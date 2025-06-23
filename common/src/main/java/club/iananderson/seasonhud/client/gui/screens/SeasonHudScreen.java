@@ -6,12 +6,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import org.jetbrains.annotations.NotNull;
 
 public class SeasonHudScreen extends Screen {
@@ -29,6 +31,8 @@ public class SeasonHudScreen extends Screen {
   public int row;
   public int buttonStartY = MENU_PADDING;
   public int yOffset = BUTTON_HEIGHT + BUTTON_PADDING;
+  protected boolean hasPendingChanges;
+  protected List<ConfigValue<?>> configOptions = new ArrayList<>();
 
   public SeasonHudScreen(Screen parentScreen, Component title) {
     super(title);
@@ -47,8 +51,21 @@ public class SeasonHudScreen extends Screen {
     return true;
   }
 
-  public void onDone() {
-    Minecraft.getInstance().setScreen(this.parentScreen);
+  @Override
+  public boolean shouldCloseOnEsc() {
+    return !this.hasPendingChanges;
+  }
+
+  private Stream<ConfigValue<?>> getAllSettings() {
+    return this.configOptions.stream();
+  }
+
+  private void undoChanges() {
+    this.getAllSettings().forEach(ConfigValue::clearCache);
+  }
+
+  public void saveConfig() {
+
   }
 
   @Override
@@ -65,6 +82,10 @@ public class SeasonHudScreen extends Screen {
     this.clearWidgets();
     this.setFocused((GuiEventListener) null);
     this.init();
+    }
+
+  public void rebuildUI() {
+    this.rebuildWidgets();
   }
 
   @Override
@@ -78,20 +99,20 @@ public class SeasonHudScreen extends Screen {
 
   @Override
   public void init() {
-    this.widgets.clear();
     super.init();
+    this.widgets.clear();
     leftButtonX = (this.width / 2) - (BUTTON_WIDTH + BUTTON_PADDING);
     rightButtonX = (this.width / 2) + BUTTON_PADDING;
-
-    doneButton = MenuButton.builder(MenuButtons.DONE, press -> this.onDone())
-        .withPos(rightButtonX, (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
-        .build();
 
     cancelButton = MenuButton.builder(MenuButtons.CANCEL, press -> this.onClose())
         .withPos((this.width / 2) - (MenuButton.DEFAULT_WIDTH + BUTTON_PADDING),
                  (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
         .build();
 
-    this.widgets.addAll(Arrays.asList(doneButton, cancelButton));
+    doneButton = MenuButton.builder(MenuButtons.DONE, press -> this.onDone())
+        .withPos(rightButtonX, (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
+        .build();
+
+    this.widgets.addAll(Arrays.asList(cancelButton, doneButton));
   }
 }

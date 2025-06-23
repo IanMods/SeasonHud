@@ -108,11 +108,17 @@ public class MainConfigScreen extends SeasonHudScreen {
                 new TranslatableComponent("menu.seasonhud.main.enableMod.button"), (b, val) -> enableMod = val);
 
     int row = 0;
-    seasonButton = MenuButton.builder(MenuButtons.SEASON, b -> SeasonOptionsScreen.getInstance(this).open())
+    seasonButton = MenuButton.builder(MenuButtons.SEASON, b -> {
+          this.saveConfig();
+          SeasonOptionsScreen.getInstance(this).open();
+        })
         .withPos(leftButtonX, (buttonStartY + (row * yOffset))).withWidth(BUTTON_WIDTH)
         .build();
 
-    colorButton = MenuButton.builder(MenuButtons.COLORS, b -> ColorScreen.getInstance(this).open())
+    colorButton = MenuButton.builder(MenuButtons.COLORS, b -> {
+          this.saveConfig();
+          ColorScreen.getInstance(this).open();
+        })
         .withPos(rightButtonX, (buttonStartY + (row * yOffset))).withWidth(BUTTON_WIDTH)
         .build();
 
