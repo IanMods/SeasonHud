@@ -1,7 +1,8 @@
-## [1.13.3] - 2025-05-06
+## [1.13.4] - 2025-06-22
 
-### Changed
+### Added
 
-- Updated to support new XaerosMinimap InfoDisplay changes.
-    - Minimum version is now **25.2.0**
+- Added a scaling option for the default hud
+- Added a "Custom" HUD location
+    - The custom X and Y offsets will now only take effect if using this.
 
