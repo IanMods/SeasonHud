@@ -5,47 +5,27 @@ import club.iananderson.seasonhud.config.Config;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.CycleButton.TooltipSupplier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 public class HudOffsetSlider extends BasicSlider {
   protected final Component prefix;
-  private final double defaultValue;
   private final TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
 
-  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
-      double maxValue, double defaultValue, TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
-    super(x, y, width, height, true, initial, minValue, maxValue);
+  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int initial, int minValue,
+      int maxValue, int defaultValue, TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
+    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue);
     this.prefix = prefix;
-    this.defaultValue = snapToNearest(defaultValue);
-    this.value = snapToNearest(initial);
     this.tooltipSupplier = tooltipSupplier;
     this.updateMessage();
   }
 
   public static Builder builder(Component prefix) {
     return new Builder(prefix);
-  }
-
-  @Override
-  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == 1) {
-      boolean rightClicked = this.clicked(mouseX, mouseY);
-      if (rightClicked) {
-        this.playDownSound(Minecraft.getInstance().getSoundManager());
-        this.onRightClick();
-      }
-    }
-
-    return super.mouseClicked(mouseX, mouseY, mouseButton);
-  }
-
-  public void onRightClick() {
-    this.setValue(defaultValue);
   }
 
   @Override
@@ -60,9 +40,6 @@ public class HudOffsetSlider extends BasicSlider {
 
   @Override
   public void renderBg(@NotNull PoseStack graphics, @NotNull Minecraft mc, int mouseX, int mouseY) {
-    if (Config.getHudLocation() != Location.TOP_LEFT) {
-      this.active = false;
-    }
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 
@@ -72,11 +49,11 @@ public class HudOffsetSlider extends BasicSlider {
     protected int y;
     protected int width = 180;
     protected int height = 20;
-    protected double minValue;
-    protected double maxValue;
-    protected double initial;
-    protected double defaultValue;
-    protected CycleButton.TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
+    protected int minValue;
+    protected int maxValue;
+    protected int initial;
+    protected int defaultValue;
+    protected TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
 
     public Builder(Component prefix) {
       this.prefix = prefix;
@@ -88,7 +65,7 @@ public class HudOffsetSlider extends BasicSlider {
      * @param x The horizontal position of the slider
      * @param y The vertical position of the slider
      */
-    public Builder withPos(int x, int y) {
+    public HudOffsetSlider.Builder withPos(int x, int y) {
       this.x = x;
       this.y = y;
       return this;
@@ -99,12 +76,12 @@ public class HudOffsetSlider extends BasicSlider {
      *
      * @param width The width of the slider
      */
-    public Builder withWidth(int width) {
+    public HudOffsetSlider.Builder withWidth(int width) {
       this.width = width;
       return this;
     }
 
-    public Builder withBounds(int x, int y, int width, int height) {
+    public HudOffsetSlider.Builder withBounds(int x, int y, int width, int height) {
       this.x = x;
       this.y = y;
       this.width = width;
@@ -112,13 +89,13 @@ public class HudOffsetSlider extends BasicSlider {
       return this;
     }
 
-    public Builder withValueRange(double minValue, double maxValue) {
+    public HudOffsetSlider.Builder withValueRange(int minValue, int maxValue) {
       this.minValue = minValue;
       this.maxValue = maxValue;
       return this;
     }
 
-    public Builder withInitialValue(double initial) {
+    public HudOffsetSlider.Builder withInitialValue(int initial) {
       this.initial = initial;
       return this;
     }
@@ -126,12 +103,20 @@ public class HudOffsetSlider extends BasicSlider {
     /**
      * @param defaultValue The value that the slider will return to if right-clicked.
      */
-    public Builder withDefaultValue(int defaultValue) {
+    public HudOffsetSlider.Builder withDefaultValue(int defaultValue) {
       this.defaultValue = defaultValue;
       return this;
     }
 
-    public Builder withTooltip(TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
+    public HudOffsetSlider.Builder withValues(int minValue, int maxValue, int initial, int defaultValue) {
+      this.minValue = minValue;
+      this.maxValue = maxValue;
+      this.defaultValue = defaultValue;
+      this.initial = Mth.clamp(initial, this.minValue, this.maxValue);
+      return this;
+    }
+
+    public HudOffsetSlider.Builder withTooltip(TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
       this.tooltipSupplier = tooltipSupplier;
       return this;
     }

@@ -11,6 +11,7 @@
   "desc.seasonhud.keybind.options": "SeasonHUD 選項",
   "desc.seasonhud.location.bottomLeft": "左下角",
   "desc.seasonhud.location.bottomRight": "右下角",
+  "desc.seasonhud.location.custom": "Custom",
   "desc.seasonhud.location.topCenter": "頂部中央",
   "desc.seasonhud.location.topLeft": "左上角",
   "desc.seasonhud.location.topRight": "右上角",
@@ -91,7 +92,6 @@
   "menu.seasonhud.main.title": "SeasonHUD 選項",
   "menu.seasonhud.season.hudLocation.button": "HUD 位置",
   "menu.seasonhud.season.hudLocation.tooltip": "未安裝小地圖時 HUD 的顯示位置",
-  "menu.seasonhud.season.offsetError.tooltip": "只有在未安裝小地圖模組且 HUD 設定為「左上角」時，才能使用偏移滑桿",
   "menu.seasonhud.season.showDay.button": "顯示日期",
   "menu.seasonhud.season.showDay.tooltip": "顯示目前季節／子季節的日期",
   "menu.seasonhud.season.showSubSeason.button": "顯示子季節",
@@ -103,6 +103,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "未安裝小地圖時 HUD 的水平偏移\n（以像素為單位）",
   "menu.seasonhud.season.yOffset.slider": "Y 偏移：",
   "menu.seasonhud.season.yOffset.tooltip": "未安裝小地圖時 HUD 的垂直偏移\n（以像素為單位）",
+  "menu.seasonhud.season.scale.slider": "Scale: ",
+  "menu.seasonhud.season.scale.tooltip": "The scale of season text when no minimap is installed",
   "trinkets.slot.calendar.calendarslot": "日曆",
   "xaerominimap.seasonhud.infodisplay.season": "季節"
 }
