@@ -3,27 +3,21 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class HudOffsetSlider extends BasicSlider {
-  protected Component prefix;
+public class HudScaleSlider extends BasicSlider {
+  protected final Component prefix;
 
-  protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int initial, int minValue,
-      int maxValue, int defaultValue) {
-    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue);
+  protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
+      double maxValue, double defaultValue, double stepSize, int precision) {
+    super(x, y, width, height, true, initial, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
     this.updateMessage();
   }
 
-  public static Builder builder(Component prefix) {
-    return new Builder(prefix);
-  }
-
-  protected boolean clicked(double d, double e) {
-    return this.active && this.visible && d >= (double) this.getX() && e >= (double) this.getY() && d < (double) (
-        this.getX() + this.width) && e < (double) (this.getY() + this.height);
+  public static HudScaleSlider.Builder builder(Component prefix) {
+    return new HudScaleSlider.Builder(prefix);
   }
 
   @Override
@@ -47,11 +41,13 @@ public class HudOffsetSlider extends BasicSlider {
     protected int y;
     protected int width = 180;
     protected int height = 20;
-    protected int minValue;
-    protected int maxValue;
-    protected int initial;
-    protected int defaultValue;
+    protected double minValue;
+    protected double maxValue;
+    protected double initial;
+    protected double defaultValue;
     protected Tooltip tooltip;
+    protected double stepSize;
+    protected int precision;
 
     public Builder(Component prefix) {
       this.prefix = prefix;
@@ -63,7 +59,7 @@ public class HudOffsetSlider extends BasicSlider {
      * @param x The horizontal position of the slider
      * @param y The vertical position of the slider
      */
-    public HudOffsetSlider.Builder withPos(int x, int y) {
+    public HudScaleSlider.Builder withPos(int x, int y) {
       this.x = x;
       this.y = y;
       return this;
@@ -74,12 +70,12 @@ public class HudOffsetSlider extends BasicSlider {
      *
      * @param width The width of the slider
      */
-    public HudOffsetSlider.Builder withWidth(int width) {
+    public HudScaleSlider.Builder withWidth(int width) {
       this.width = width;
       return this;
     }
 
-    public HudOffsetSlider.Builder withBounds(int x, int y, int width, int height) {
+    public HudScaleSlider.Builder withBounds(int x, int y, int width, int height) {
       this.x = x;
       this.y = y;
       this.width = width;
@@ -87,13 +83,13 @@ public class HudOffsetSlider extends BasicSlider {
       return this;
     }
 
-    public HudOffsetSlider.Builder withValueRange(int minValue, int maxValue) {
+    public HudScaleSlider.Builder withValueRange(double minValue, double maxValue) {
       this.minValue = minValue;
       this.maxValue = maxValue;
       return this;
     }
 
-    public HudOffsetSlider.Builder withInitialValue(int initial) {
+    public HudScaleSlider.Builder withInitialValue(double initial) {
       this.initial = initial;
       return this;
     }
@@ -101,31 +97,33 @@ public class HudOffsetSlider extends BasicSlider {
     /**
      * @param defaultValue The value that the slider will return to if right-clicked.
      */
-    public HudOffsetSlider.Builder withDefaultValue(int defaultValue) {
+    public HudScaleSlider.Builder withDefaultValue(double defaultValue) {
       this.defaultValue = defaultValue;
       return this;
     }
 
-    public HudOffsetSlider.Builder withValues(int minValue, int maxValue, int initial, int defaultValue) {
-      this.minValue = minValue;
-      this.maxValue = maxValue;
-      this.defaultValue = defaultValue;
-      this.initial = Mth.clamp(initial, this.minValue, this.maxValue);
+    public HudScaleSlider.Builder withStepSize(double stepSize) {
+      this.stepSize = stepSize;
       return this;
     }
 
-    public HudOffsetSlider.Builder withTooltip(@Nullable Tooltip tooltip) {
+    public HudScaleSlider.Builder withPrecision(int precision) {
+      this.precision = precision;
+      return this;
+    }
+
+    public HudScaleSlider.Builder withTooltip(@Nullable Tooltip tooltip) {
       this.tooltip = tooltip;
 
       return this;
     }
 
-    public HudOffsetSlider build() {
-      HudOffsetSlider slider = new HudOffsetSlider(this.x, this.y, this.width, this.height, this.prefix, this.initial,
-                                                   this.minValue, this.maxValue, this.defaultValue);
+    public HudScaleSlider build() {
+      HudScaleSlider slider = new HudScaleSlider(this.x, this.y, this.width, this.height, this.prefix, this.initial,
+                                                 this.minValue, this.maxValue, this.defaultValue, this.stepSize,
+                                                 this.precision);
       slider.setTooltip(this.tooltip);
       return slider;
     }
   }
 }
-

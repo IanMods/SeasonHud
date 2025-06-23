@@ -3,5 +3,5 @@
 ### Changed
 
 - Updated to support new XaerosMinimap InfoDisplay changes.
-  - Minimum version is now **25.2.0**
+    - Minimum version is now **25.2.0**
 
