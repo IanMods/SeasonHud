@@ -3,25 +3,13 @@ package club.iananderson.seasonhud.client.gui.components.sliders.rgb;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
-import net.minecraft.util.Mth;
 
 public class GreenSlider extends RgbSlider {
-  public GreenSlider(int x, int y, ColorEditBox seasonBox) {
-    super(x, y, seasonBox);
-    this.maxValue = 255;
-    this.g = Rgb.rgbColor(Integer.parseInt(seasonBox.getValue())).getGreen();
-    this.value = snapToNearest(this.g);
-    this.textColor = ChatFormatting.GREEN;
-    this.updateMessage();
-  }
-
-  public void setSliderValue(int newValue) {
-    int oldValue = (int) this.value;
-    this.value = snapToNearest(Rgb.rgbColor(newValue).getGreen());
-    if (!Mth.equal(oldValue, this.value)) {
-      this.g = Rgb.rgbColor(newValue).getGreen();
-    }
-
+  public GreenSlider(int x, int y, int initial, ColorEditBox seasonBox) {
+    super(x, y, initial, seasonBox, ChatFormatting.GREEN);
+    this.seasonBox = seasonBox;
+    this.g = Rgb.gColor(Integer.parseInt(seasonBox.getValue()));
+    this.defaultValue = Rgb.gColor(seasonBox.getSeason().getDefaultColor());
     this.updateMessage();
   }
 

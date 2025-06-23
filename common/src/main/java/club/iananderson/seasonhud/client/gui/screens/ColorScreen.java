@@ -92,18 +92,22 @@ public class ColorScreen extends SeasonHudScreen {
     DefaultColorButton defaultButton;
 
     colorBox = new ColorEditBox(this.font, x, y, getBoxWidth(), BUTTON_HEIGHT, season);
+    int initialR = Rgb.rColor(colorBox.getColor());
+    int initialG = Rgb.gColor(colorBox.getColor());
+    int initialB = Rgb.bColor(colorBox.getColor());
+
     y += colorBox.getHeight() + BUTTON_PADDING;
 
     x -= 1;
     y += BUTTON_HEIGHT + RgbSlider.SLIDER_PADDING;
 
-    redSlider = new RedSlider(x, y, colorBox);
+    redSlider = new RedSlider(x, y, initialR, colorBox);
     y += redSlider.getHeight() + RgbSlider.SLIDER_PADDING;
 
-    greenSlider = new GreenSlider(x, y, colorBox);
+    greenSlider = new GreenSlider(x, y, initialG, colorBox);
     y += greenSlider.getHeight() + RgbSlider.SLIDER_PADDING;
 
-    blueSlider = new BlueSlider(x, y, colorBox);
+    blueSlider = new BlueSlider(x, y, initialB, colorBox);
     y -= (greenSlider.getHeight() + redSlider.getHeight() + RgbSlider.SLIDER_PADDING + BUTTON_HEIGHT
         + RgbSlider.SLIDER_PADDING);
 
@@ -111,9 +115,13 @@ public class ColorScreen extends SeasonHudScreen {
           int defaultColorInt = season.getDefaultColor();
 
           if (colorBox.getNewColor() != defaultColorInt) {
-            redSlider.setSliderValue(defaultColorInt);
-            greenSlider.setSliderValue(defaultColorInt);
-            blueSlider.setSliderValue(defaultColorInt);
+            int r = Rgb.rColor(defaultColorInt);
+            int g = Rgb.gColor(defaultColorInt);
+            int b = Rgb.bColor(defaultColorInt);
+
+            redSlider.setValue(r);
+            greenSlider.setValue(g);
+            blueSlider.setValue(b);
             colorBox.setValue(String.valueOf(defaultColorInt));
 
             Rgb.setRgb(season, defaultColorInt);

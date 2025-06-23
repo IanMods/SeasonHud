@@ -9,6 +9,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 public class RgbSlider extends BasicSlider {
@@ -20,20 +21,16 @@ public class RgbSlider extends BasicSlider {
   protected int g;
   protected int b;
   protected int rgb;
-  protected ChatFormatting textColor;
 
-  public RgbSlider(int x, int y, ColorEditBox seasonBox) {
-    super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true, Integer.parseInt(seasonBox.getValue()));
-    this.minValue = 0;
-    this.maxValue = 16777215;
+  public RgbSlider(int x, int y, int initial, ColorEditBox seasonBox, ChatFormatting textColor) {
+    super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true, initial, 0, 255,
+          seasonBox.getSeason().getDefaultColor(), textColor);
     this.seasonBox = seasonBox;
     this.season = seasonBox.getSeason();
     this.rgb = Integer.parseInt(seasonBox.getValue());
-    this.r = Rgb.rgbColor(rgb).getRed();
-    this.g = Rgb.rgbColor(rgb).getGreen();
-    this.b = Rgb.rgbColor(rgb).getBlue();
-    this.value = snapToNearest(rgb);
-    this.textColor = ChatFormatting.WHITE;
+    this.r = Rgb.rColor(rgb);
+    this.g = Rgb.gColor(rgb);
+    this.b = Rgb.bColor(rgb);
     this.updateMessage();
   }
 
@@ -45,9 +42,9 @@ public class RgbSlider extends BasicSlider {
   }
 
   @Override
-  protected void onDrag(double d, double e, double f, double g) {
+  protected void onDrag(double mouseX, double mouseY, double dragX, double dragY) {
     if (enableColor) {
-      super.onDrag(d, e, f, g);
+      super.onDrag(mouseX, mouseY, dragX, dragY);
     }
   }
 
@@ -61,19 +58,24 @@ public class RgbSlider extends BasicSlider {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 
+  public void setValue(int newValue) {
+    double oldValue = this.value;
+    this.value = this.snapToNearest((newValue - this.minValue) / (this.maxValue - this.minValue));
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
+
+    this.updateMessage();
+  }
+
   @Override
   protected void updateMessage() {
     Component colorString = Component.literal(this.getValueString());
 
-    if (this.drawString) {
-      this.setMessage(colorString.copy().withStyle(textColor));
+    this.setMessage(colorString.copy().withStyle(this.textColor));
 
-      if (!enableColor) {
-        this.setMessage(colorString.copy().withStyle(ChatFormatting.GRAY));
-      }
-    }
-    else {
-      this.setMessage(Component.empty());
+    if (!enableColor) {
+      this.setMessage(colorString.copy().withStyle(ChatFormatting.GRAY));
     }
   }
 }
