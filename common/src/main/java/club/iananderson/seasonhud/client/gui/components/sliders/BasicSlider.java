@@ -88,7 +88,7 @@ public class BasicSlider extends AbstractSliderButton {
 
   public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
     if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
-      boolean rightClicked = this.clicked(mouseX, mouseY);
+      boolean rightClicked = this.isMouseOver(mouseX, mouseY);
       if (rightClicked) {
         this.playDownSound(Minecraft.getInstance().getSoundManager());
         this.onRightClick();
