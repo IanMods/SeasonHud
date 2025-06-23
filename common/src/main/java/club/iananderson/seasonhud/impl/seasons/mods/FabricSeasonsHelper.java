@@ -15,7 +15,7 @@ public class FabricSeasonsHelper implements IModHelper {
 
   @Override
   public Item CALENDAR() {
-    if (Common.fabricSeasonsLoaded() && Common.calendarLoaded()) {
+    if (Common.fabricSeasonsLoaded() && Common.hasCalendarLoaded()) {
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
     }
     else {

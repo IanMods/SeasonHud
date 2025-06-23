@@ -11,7 +11,9 @@ public enum Location {
 
   BOTTOM_LEFT(3, "bottomLeft"),
 
-  BOTTOM_RIGHT(4, "bottomRight");
+  BOTTOM_RIGHT(4, "bottomRight"),
+
+  CUSTOM(5, "custom");
 
   private final String hudLocationName;
   private final Component locationName;
