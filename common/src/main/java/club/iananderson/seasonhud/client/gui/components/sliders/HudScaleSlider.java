@@ -3,9 +3,10 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.OptionInstance.TooltipSupplier;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.components.CycleButton.TooltipSupplier;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,10 +29,10 @@ public class HudScaleSlider extends BasicSlider {
   @Override
   protected void updateMessage() {
     if (this.drawString) {
-      this.setMessage(Component.literal("").append(this.prefix).append(this.getValueString()));
+      this.setMessage(new TextComponent("").append(this.prefix).append(this.getValueString()));
     }
     else {
-      this.setMessage(Component.empty());
+      this.setMessage(new TextComponent(""));
     }
   }
 

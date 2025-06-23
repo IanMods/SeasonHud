@@ -200,7 +200,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                   new TranslatableComponent("menu.seasonhud.season.hudLocation.button"),
                   (b, val) -> this.hudLocation = val);
 
-      hudScaleSlider = HudScaleSlider.builder(Component.translatable("menu.seasonhud.season.scale.slider"))
+      hudScaleSlider = HudScaleSlider.builder(new TranslatableComponent("menu.seasonhud.season.scale.slider"))
           .withValueRange(Config.HUD_SCALE_MIN, Config.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
           .withDefaultValue(Config.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
