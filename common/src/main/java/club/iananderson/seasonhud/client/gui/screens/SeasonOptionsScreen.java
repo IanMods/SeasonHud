@@ -105,6 +105,12 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
+    if (Common.fabricSeasonsLoaded() && !drawDefaultHud) {
+      GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
+                                      MENU_PADDING + (2 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
+                                          + BUTTON_PADDING), 16777215);
+    }
+
     if (drawDefaultHud) {
       MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
       boolean custom = hudLocationButton.getValue() == Location.CUSTOM;
@@ -120,7 +126,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       if (Common.fabricSeasonsLoaded()) {
         GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
-                                        MENU_PADDING + (3 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
+                                        MENU_PADDING + (4 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
                                             + BUTTON_PADDING), 16777215);
       }
 
@@ -254,7 +260,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
 
     if (Common.fabricSeasonsLoaded()) {
-      row += 1; //Row 4 (enableMinimapIntegration -> Row 2)
+      row += 2; //Row 4 (enableMinimapIntegration -> Row 2)
       dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
                                  BUTTON_HEIGHT, new TextComponent(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);
@@ -290,7 +296,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
                   new TranslatableComponent("menu.seasonhud.main.calendarDetail.button"), (b, val) -> {
                 this.enableCalendarDetail = val;
-                rebuildUI();
+                rebuildWidgets();
               });
 
       widgets.addAll(Arrays.asList(needCalendarButton, calendarDetailModeButton));

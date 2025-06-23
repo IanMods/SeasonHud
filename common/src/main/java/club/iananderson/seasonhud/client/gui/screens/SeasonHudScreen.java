@@ -68,6 +68,10 @@ public class SeasonHudScreen extends Screen {
 
   }
 
+  public void onDone() {
+    Minecraft.getInstance().setScreen(this.parentScreen);
+  }
+
   @Override
   public void onClose() {
     Minecraft.getInstance().setScreen(this.parentScreen);
@@ -83,10 +87,6 @@ public class SeasonHudScreen extends Screen {
     this.setFocused((GuiEventListener) null);
     this.init();
     }
-
-  public void rebuildUI() {
-    this.rebuildWidgets();
-  }
 
   @Override
   public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {

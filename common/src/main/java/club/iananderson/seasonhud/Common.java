@@ -106,6 +106,11 @@ public class Common {
         CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden())));
   }
 
+  public static boolean drawDefaultHudMenu() {
+    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
+        || Config.getShowDefaultWhenMinimapHidden()));
+  }
+
   /**
    * Checks if the current dimension is whitelisted in the season mod's config.
    *

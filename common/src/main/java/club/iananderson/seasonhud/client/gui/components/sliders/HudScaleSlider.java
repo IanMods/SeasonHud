@@ -1,9 +1,11 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
+import club.iananderson.seasonhud.client.gui.components.buttons.CycleButton.TooltipSupplier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
+import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.CycleButton.TooltipSupplier;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -12,10 +14,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
-  private final TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
+  private final Supplier<BasicSlider> tooltipSupplier;
 
   protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
-      double maxValue, double defaultValue, double stepSize, int precision, TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
+      double maxValue, double defaultValue, double stepSize, int precision, Supplier<BasicSlider> tooltipSupplier) {
     super(x, y, width, height, true, initial, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
     this.tooltipSupplier = tooltipSupplier;
@@ -51,7 +53,7 @@ public class HudScaleSlider extends BasicSlider {
     protected double maxValue;
     protected double initial;
     protected double defaultValue;
-    protected TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
+    protected Supplier<BasicSlider> tooltipSupplier;
     protected double stepSize;
     protected int precision;
 
@@ -118,7 +120,7 @@ public class HudScaleSlider extends BasicSlider {
       return this;
     }
 
-    public HudScaleSlider.Builder withTooltip(TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
+    public HudScaleSlider.Builder withTooltip(Supplier<BasicSlider> tooltipSupplier) {
       this.tooltipSupplier = tooltipSupplier;
       return this;
     }

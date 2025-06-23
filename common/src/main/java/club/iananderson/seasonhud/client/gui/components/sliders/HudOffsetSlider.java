@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,7 +43,7 @@ public class HudOffsetSlider extends BasicSlider {
   }
 
   public static class Builder {
-    protected final Component prefix;
+    protected Component prefix;
     protected int x;
     protected int y;
     protected int width = 180;

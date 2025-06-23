@@ -16,6 +16,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -68,7 +69,7 @@ public class BasicSlider extends AbstractSliderButton {
       this.format = new DecimalFormat(Double.toString(this.stepSize).replaceAll("\\d", "0"));
     }
 
-    this.updateMessage();
+    //this.updateMessage();
   }
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
@@ -92,7 +93,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+    if (this.active && this.visible && mouseButton == 1) {
       boolean rightClicked = this.clicked(mouseX, mouseY);
       if (rightClicked) {
         this.playDownSound(Minecraft.getInstance().getSoundManager());
@@ -146,6 +147,10 @@ public class BasicSlider extends AbstractSliderButton {
     return this.active ? 16777215 : 10526880;
   }
 
+  public double map(double d, double e, double f, double g, double h) {
+    return Mth.lerp(Mth.inverseLerp(d, e, f), g, h);
+  }
+
   protected double snapToNearest(double value) {
     if (stepSize <= 0D) {
       return Mth.clamp(value, 0D, 1D);
@@ -162,7 +167,7 @@ public class BasicSlider extends AbstractSliderButton {
       value = Mth.clamp(value, this.minValue, this.maxValue);
     }
 
-    return Mth.map(value, this.minValue, this.maxValue, 0D, 1D);
+    return this.map(value, this.minValue, this.maxValue, 0D, 1D);
   }
 
   public double getValue() {
@@ -221,8 +226,8 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-    boolean bl = keyCode == InputConstants.KEY_LEFT;
-    if (bl || keyCode == InputConstants.KEY_RIGHT) {
+    boolean bl = keyCode == 263;
+    if (bl || keyCode == 262) {
       if (this.minValue > this.maxValue) {
         bl = !bl;
       }
