@@ -1,8 +1,11 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.util.DrawUtil;
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
+import java.text.DecimalFormat;
 import java.util.Objects;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -201,7 +204,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   private void setValueFromMouse(double mouseX) {
-    this.setSliderValue((mouseX - (this.getX() + 4)) / (this.width - 8));
+    this.setSliderValue((mouseX - (this.x + 4)) / (this.width - 8));
   }
 
   @Override

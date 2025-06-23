@@ -1,18 +1,23 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Tooltip;
+import com.mojang.blaze3d.vertex.PoseStack;
+import java.util.List;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
+  private final TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
 
   protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
-      double maxValue, double defaultValue, double stepSize, int precision) {
+      double maxValue, double defaultValue, double stepSize, int precision, TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
     super(x, y, width, height, true, initial, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
+    this.tooltipSupplier = tooltipSupplier;
     this.updateMessage();
   }
 
@@ -31,8 +36,8 @@ public class HudScaleSlider extends BasicSlider {
   }
 
   @Override
-  public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    super.renderWidget(graphics, mouseX, mouseY, partialTick);
+  public void renderBg(@NotNull PoseStack graphics, @NotNull Minecraft mc, int mouseX, int mouseY) {
+    super.renderBg(graphics, mc, mouseX, mouseY);
   }
 
   public static class Builder {
@@ -45,7 +50,7 @@ public class HudScaleSlider extends BasicSlider {
     protected double maxValue;
     protected double initial;
     protected double defaultValue;
-    protected Tooltip tooltip;
+    protected TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
     protected double stepSize;
     protected int precision;
 
@@ -112,17 +117,15 @@ public class HudScaleSlider extends BasicSlider {
       return this;
     }
 
-    public HudScaleSlider.Builder withTooltip(@Nullable Tooltip tooltip) {
-      this.tooltip = tooltip;
-
+    public HudScaleSlider.Builder withTooltip(TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
+      this.tooltipSupplier = tooltipSupplier;
       return this;
     }
 
     public HudScaleSlider build() {
       HudScaleSlider slider = new HudScaleSlider(this.x, this.y, this.width, this.height, this.prefix, this.initial,
                                                  this.minValue, this.maxValue, this.defaultValue, this.stepSize,
-                                                 this.precision);
-      slider.setTooltip(this.tooltip);
+                                                 this.precision, this.tooltipSupplier);
       return slider;
     }
   }

@@ -5,23 +5,22 @@ import club.iananderson.seasonhud.config.Config;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.OptionInstance;
 import net.minecraft.client.OptionInstance.TooltipSupplier;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Tooltip;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 public class HudOffsetSlider extends BasicSlider {
   protected final Component prefix;
-  private final double defaultValue;
   private final TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
 
   protected HudOffsetSlider(int x, int y, int width, int height, Component prefix, int initial, int minValue,
       int maxValue, int defaultValue, TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
     super(x, y, width, height, true, initial, minValue, maxValue, defaultValue);
     this.prefix = prefix;
+    this.tooltipSupplier = tooltipSupplier;
     this.updateMessage();
   }
 
@@ -54,7 +53,7 @@ public class HudOffsetSlider extends BasicSlider {
     protected int maxValue;
     protected int initial;
     protected int defaultValue;
-    protected OptionInstance.TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
+    protected TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
 
     public Builder(Component prefix) {
       this.prefix = prefix;

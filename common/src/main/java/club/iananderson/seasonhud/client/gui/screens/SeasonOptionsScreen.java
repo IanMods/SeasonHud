@@ -160,11 +160,11 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           break;
       }
 
-      graphics.pose().pushPose();
-      graphics.pose().translate(0, 0, 50);
-      graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
+      graphics.pushPose();
+      graphics.translate(0, 0, 50);
+      graphics.scale((float) seasonScale, (float) seasonScale, 1.0F);
       GuiComponent.drawString(graphics, font, seasonCombined, x, y, 0xffffff);
-      graphics.pose().popPose();
+      graphics.popPose();
     }
   }
 
@@ -199,7 +199,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                   (b, val) -> this.hudLocation = val);
 
       hudScaleSlider = HudScaleSlider.builder(Component.translatable("menu.seasonhud.season.scale.slider"))
-          .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.scale.tooltip")))
           .withValueRange(Config.HUD_SCALE_MIN, Config.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
           .withDefaultValue(Config.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
@@ -208,14 +207,12 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       row += 1; // Row 2
       xSlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.xOffset.slider"))
-          .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.xOffset.tooltip")))
           .withValues(0, this.maxWidth(seasonCombined), xSliderInt, Config.DEFAULT_X_OFFSET)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
                       BUTTON_HEIGHT)
           .build();
 
       ySlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.yOffset.slider"))
-          .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.yOffset.tooltip")))
           .withValues(0, this.maxHeight(), ySliderInt, Config.DEFAULT_Y_OFFSET)
           .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
                       BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
