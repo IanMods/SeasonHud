@@ -1,13 +1,10 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.util.DrawUtil;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;

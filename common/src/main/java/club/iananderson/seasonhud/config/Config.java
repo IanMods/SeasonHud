@@ -24,7 +24,7 @@ public class Config {
   private static ModConfigSpec.ConfigValue<Location> hudLocation;
   private static ModConfigSpec.ConfigValue<Integer> hudX;
   private static ModConfigSpec.ConfigValue<Integer> hudY;
-  private static ForgeConfigSpec.ConfigValue<Double> hudScale;
+  private static ModConfigSpec.ConfigValue<Double> hudScale;
   private static ModConfigSpec.BooleanValue enableSeasonNameColor;
   private static ModConfigSpec.ConfigValue<Integer> springColor;
   private static ModConfigSpec.ConfigValue<Integer> summerColor;

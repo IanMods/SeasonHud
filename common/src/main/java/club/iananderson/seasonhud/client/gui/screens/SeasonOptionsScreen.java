@@ -163,9 +163,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       super.render(graphics, mouseX, mouseY, partialTicks);
 
-    graphics.pose().pushPose();
-    graphics.pose().translate(0, 0, 50);
-    graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
+      graphics.pose().pushPose();
+      graphics.pose().translate(0, 0, 50);
+      graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
       graphics.drawString(font, seasonCombined, x, y, 0xffffff);
       graphics.pose().popPose();
     }
