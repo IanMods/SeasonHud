@@ -61,7 +61,7 @@ dependencies {
 
     //JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
-    modCompileOnly "maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+forge"
+    modCompileOnly "maven.modrinth:journeymap:${minecraft_version}-${project.journeymap_version}+forge"
 
     //Forge Config API Port
     modImplementation "maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge"
@@ -77,7 +77,7 @@ dependencies {
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+forge")
+            modImplementation("maven.modrinth:journeymap:${minecraft_version}-${project.journeymap_version}+forge")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-forge")
             break
         case "ftb":

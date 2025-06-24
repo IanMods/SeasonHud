@@ -163,11 +163,11 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       super.render(graphics, mouseX, mouseY, partialTicks);
 
-      graphics.pose().pushPose();
-      graphics.pose().translate(0, 0, 50);
-      graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
-      graphics.drawString(font, seasonCombined, x, y, 0xffffff);
-      graphics.pose().popPose();
+      graphics.pose().pushMatrix();
+      graphics.pose().translate(0, 0);
+      graphics.pose().scale((float) seasonScale, (float) seasonScale);
+      graphics.drawString(font, seasonCombined, x, y, 0xffffffff);
+      graphics.pose().popMatrix();
     }
   }
 
@@ -268,7 +268,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       dayLengthBox.setValue(String.valueOf(dayLength));
       dayLengthBox.setResponder((lengthString) -> {
         if (validate(lengthString)) {
-          dayLengthBox.setTextColor(0xffffff);
+          dayLengthBox.setTextColor(0xffffffff);
           int currentLength = Integer.parseInt(lengthString);
 
           if (currentLength != this.newDayLength) {

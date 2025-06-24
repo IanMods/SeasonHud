@@ -3,10 +3,10 @@ package club.iananderson.seasonhud.neoforge.client.overlays;
 import club.iananderson.seasonhud.client.overlays.SeasonHUDOverlayCommon;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.LayeredDraw;
+import net.neoforged.neoforge.client.gui.GuiLayer;
 import org.jetbrains.annotations.NotNull;
 
-public class SeasonHUDOverlay implements LayeredDraw.Layer {
+public class SeasonHUDOverlay implements GuiLayer {
   public static SeasonHUDOverlay HUD_INSTANCE;
 
   public static void init() {

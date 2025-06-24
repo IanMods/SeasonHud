@@ -157,7 +157,7 @@ public class CurrentSeason {
     }
 
     return Component.translatable("desc.seasonhud.hud.combined",
-                                  seasonIcon.withStyle(Common.SEASON_ICON_STYLE).withColor(0xffffff),
+                                  seasonIcon.withStyle(Common.SEASON_ICON_STYLE).withColor(0xffffffff),
                                   seasonText.withStyle(seasonFormat));
   }
 

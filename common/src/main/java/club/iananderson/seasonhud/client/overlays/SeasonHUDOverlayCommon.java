@@ -61,10 +61,10 @@ public class SeasonHUDOverlayCommon {
       }
 
       //Text
-      graphics.pose().pushPose();
-      graphics.pose().scale((float) scale, (float) scale, 1F);
-      graphics.drawString(mc.font, seasonCombined, x, y, 0xffffff);
-      graphics.pose().popPose();
+      graphics.pose().pushMatrix();
+      graphics.pose().scale((float) scale, (float) scale);
+      graphics.drawString(mc.font, seasonCombined, x, y, 0xffffffff);
+      graphics.pose().popMatrix();
     }
   }
 }

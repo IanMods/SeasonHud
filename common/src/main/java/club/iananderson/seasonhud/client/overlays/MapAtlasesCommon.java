@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.MutableComponent;
+import org.joml.Matrix3x2fStack;
 
 public class MapAtlasesCommon {
   private MapAtlasesCommon() {
@@ -15,22 +16,22 @@ public class MapAtlasesCommon {
   private static void drawSeasonWithLighterShadow(GuiGraphics graphics, Font font, MutableComponent text,
       MutableComponent shadowText) {
     graphics.drawString(font, shadowText, 1, 1, 5855577, false);
-    graphics.drawString(font, text, 0, 0, 0xffffff, false);
+    graphics.drawString(font, text, 0, 0, 0xffffffff, false);
   }
 
   private static void drawScaledComponent(GuiGraphics graphics, Font font, int x, int y, MutableComponent text,
       MutableComponent shadowText, float textScaling, int maxWidth, int targetWidth) {
-    PoseStack pose = graphics.pose();
+    Matrix3x2fStack pose = graphics.pose();
     float textWidth = font.width(text);
     float scale = Math.min(1.0F, maxWidth * textScaling / textWidth);
     scale *= textScaling;
     float centerX = x + targetWidth / 2.0F;
-    pose.pushPose();
-    pose.translate(centerX, (y + 4), 5.0F);
-    pose.scale(scale, scale, 1.0F);
-    pose.translate(-textWidth / 2.0F, -4.0F, 0.0F);
+    pose.pushMatrix();
+    pose.translate(centerX, (y + 4));
+    pose.scale(scale, scale);
+    pose.translate(-textWidth / 2.0F, -4.0F);
     drawSeasonWithLighterShadow(graphics, font, text, shadowText);
-    pose.popPose();
+    pose.popMatrix();
   }
 
   public static void drawMapComponentSeason(GuiGraphics graphics, Font font, int x, int y, int targetWidth,
@@ -44,7 +45,7 @@ public class MapAtlasesCommon {
   public static void drawScaledText(GuiGraphics context, int x, int y, MutableComponent text,
       MutableComponent shadowText, float textScaling, int originOffsetWidth, int originOffsetHeight) {
     Minecraft mc = Minecraft.getInstance();
-    PoseStack poseStack = context.pose();
+    Matrix3x2fStack poseStack = context.pose();
     float textWidth = (float) mc.font.width(text) * textScaling;
     float textX = (float) ((double) x + (double) originOffsetWidth / 2.0 - (double) textWidth / 2.0);
     float textY = (float) (y + originOffsetHeight);
@@ -52,12 +53,12 @@ public class MapAtlasesCommon {
       textX = (float) mc.getWindow().getGuiScaledWidth() - textWidth;
     }
 
-    poseStack.pushPose();
-    poseStack.translate(textX, textY, 5.0F);
-    poseStack.scale(textScaling, textScaling, 1.0F);
+    poseStack.pushMatrix();
+    poseStack.translate(textX, textY);
+    poseStack.scale(textScaling, textScaling);
     context.drawString(mc.font, shadowText, 1, 1, Integer.parseInt("595959", 16), false);
     context.drawString(mc.font, text, 0, 0, Integer.parseInt("E0E0E0", 16), false);
-    poseStack.popPose();
+    poseStack.popMatrix();
   }
 
   public static void drawMapComponentSeasonOld(GuiGraphics poseStack, int x, int y, int originOffsetWidth,
