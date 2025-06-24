@@ -12,7 +12,8 @@ dependencies {
     api group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
     compileOnly "com.github.glitchfiend:GlitchCore-common:${minecraft_version}-${glitchcore_version}"
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
-    modCompileOnly "maven.modrinth:accessories-cc-layer:7.4.0-beta.18"
+    modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
+    //modCompileOnly "maven.modrinth:accessories-cc-layer:7.4.0-beta.18"
     modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
 
     // Minimap Mods

@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 public class Calendar {
   private Calendar() {
@@ -31,8 +32,11 @@ public class Calendar {
     }
 
     if (Common.curiosLoaded() && !Common.accessoriesLoaded()) {
-      List<SlotResult> curiosInventory = CuriosApi.getCuriosHelper().findCurios(player, item);
-      curioEquipped = !curiosInventory.isEmpty();
+      Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player);
+
+      if (curiosInventory.isPresent()) {
+        curioEquipped = curiosInventory.get().isEquipped(item);
+      }
     }
 
     if (Common.trinketsLoaded() && !Common.accessoriesLoaded()) {
