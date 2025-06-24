@@ -10,7 +10,8 @@ dependencies {
 
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
-    modCompileOnly "maven.modrinth:accessories-cc-layer:7.4.0-beta.18"
+    modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
+    //modCompileOnly "maven.modrinth:accessories-cc-layer:7.4.0-beta.18"
     modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
 
     // Minimap Mods
