@@ -43,6 +43,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
+    modRuntimeOnly("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
+
     //Serene Seasons
     modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
     modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"

@@ -59,7 +59,7 @@ dependencies {
 
     //Map Atlases
     modCompileOnly "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
-    modCompileOnly "maven.modrinth:moonlight:neoforge_1.21-${project.moonlight_version}"
+    modCompileOnly "maven.modrinth:moonlight:1.21-${project.moonlight_version}-neoforge"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+${minecraft_version}-neoforge"
 
     //Curios + Accessories
@@ -93,7 +93,7 @@ dependencies {
             break
         case "atlas":
             modLocalRuntime "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
-            modLocalRuntime "maven.modrinth:moonlight:neoforge_1.21-${project.moonlight_version}"
+            modLocalRuntime "maven.modrinth:moonlight:1.21-${project.moonlight_version}-neoforge"
             modLocalRuntime "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+${minecraft_version}-neoforge"
         case "none":
             break

@@ -7,7 +7,7 @@ import club.iananderson.seasonhud.forge.event.ClientEvents.ClientForgeEvents;
 import club.iananderson.seasonhud.forge.event.ClientEvents.ClientModBusEvents;
 import fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.bus.BusGroup;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
   public SeasonHudForge(FMLJavaModLoadingContext context) {
-    BusGroup modEventBus = context.getModBusGroup();
+    var modEventBus = context.getModEventBus();
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
 
