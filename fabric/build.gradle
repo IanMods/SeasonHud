@@ -35,6 +35,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
+    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
+
     //Fabric Seasons
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     //Fabric Seasons Extras
@@ -60,7 +62,7 @@ dependencies {
 
     //Map Atlases
     modCompileOnly("maven.modrinth:map-atlases:fabric_1.21-${project.map_atlases_version}")
-    modCompileOnly("maven.modrinth:moonlight:fabric_1.21-${project.moonlight_version}")
+    modCompileOnly("maven.modrinth:moonlight:1.21-${project.moonlight_version}-fabric")
     modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.1-fabric")
 
     //Trinkets + Accessories
