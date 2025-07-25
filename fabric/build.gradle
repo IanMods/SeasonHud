@@ -52,7 +52,7 @@ dependencies {
 
     //JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
-    modCompileOnly("maven.modrinth:journeymap:${minecraft_version}-${project.journeymap_version}+fabric")
+    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version}+fabric")
 
     //FTB Chunks + Dependencies
     modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}")
@@ -107,7 +107,7 @@ dependencies {
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:${minecraft_version}-${project.journeymap_version}+fabric")
+            modImplementation("maven.modrinth:journeymap:${project.journeymap_version}+fabric")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
         case "ftb":

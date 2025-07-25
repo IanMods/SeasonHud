@@ -49,7 +49,7 @@ dependencies {
 
     //JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
-    modCompileOnly "maven.modrinth:journeymap:${minecraft_version}-${project.journeymap_version}+neoforge"
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version}+neoforge"
 
     //FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
@@ -82,7 +82,7 @@ dependencies {
             break
         case "journey":
             implementation group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:${project.map_atlases_version}-${project.journeymap_version}+neoforge")
+            modImplementation("maven.modrinth:journeymap:${project.journeymap_version}+neoforge")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
         case "ftb":
