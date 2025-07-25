@@ -41,6 +41,7 @@ subprojects {
         maven { url 'https://maven.wispforest.io/releases' } //Accessories
         maven { url 'https://maven.su5ed.dev/releases' } //Accessories
         maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+        maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
         exclusiveContent {
             forRepository {
                 maven { url = "https://cursemaven.com" }
