@@ -49,7 +49,7 @@ dependencies {
 
     //JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
-    modCompileOnly "maven.modrinth:journeymap:1.21.4-${project.journeymap_version}+neoforge"
+    modCompileOnly "maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+neoforge"
 
     //FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
@@ -59,7 +59,7 @@ dependencies {
 
     //Map Atlases
     modCompileOnly "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
-    modCompileOnly "maven.modrinth:moonlight:neoforge_1.21-${project.moonlight_version}"
+    modCompileOnly "maven.modrinth:moonlight:1.21-${project.moonlight_version}-neoforge"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.1-neoforge"
 
     //Curios + Accessories
@@ -82,7 +82,7 @@ dependencies {
             break
         case "journey":
             implementation group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:1.21.4-${project.journeymap_version}+neoforge")
+            modImplementation("maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+neoforge")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
         case "ftb":
@@ -93,7 +93,7 @@ dependencies {
             break
         case "atlas":
             modLocalRuntime "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
-            modLocalRuntime "maven.modrinth:moonlight:neoforge_1.21-${project.moonlight_version}"
+            modLocalRuntime "maven.modrinth:moonlight:1.21-${project.moonlight_version}-neoforge"
             modLocalRuntime "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.1-neoforge"
             break
         case "none":

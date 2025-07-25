@@ -4,7 +4,6 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.Config;
 import fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
