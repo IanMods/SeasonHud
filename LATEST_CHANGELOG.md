@@ -1,6 +1,7 @@
-## [1.13.5] - 2025-06-24
+## [1.13.6] - 2025-07-25
 
-### Fixed
+### Changed
 
-- Fixed crash with Curios.
+- Built against latest version of all Minimap/Season mods
+- Updated to Minecraft 1.21.7
 
