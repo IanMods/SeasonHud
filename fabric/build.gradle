@@ -35,6 +35,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
+    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
+
     //Fabric Seasons
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -82,7 +84,7 @@ dependencies {
     modCompileOnly("curse.maven:map-atlases-436298:${project.map_atlases_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:moonlight:fabric_1.20-${project.moonlight_version}") {
+    modCompileOnly("maven.modrinth:moonlight:1.20-${project.moonlight_version}-fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-fabric") {

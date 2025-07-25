@@ -38,6 +38,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
+    modRuntimeOnly("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
+
     //Serene Seasons
     modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
     modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
@@ -65,7 +67,7 @@ dependencies {
 
     //Map Atlases
     modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
-    modCompileOnly "maven.modrinth:moonlight:forge_1.20-${project.moonlight_version}"
+    modCompileOnly "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge"
 
     //Curios + Accessories
