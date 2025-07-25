@@ -16,7 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
   public SeasonHudForge() {
-    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
 
