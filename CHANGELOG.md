@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.13.7] - 2025-07-30
+
+### Fixed
+
+- Fixed the default hud showing up in dimensions without seasons
+
 ## [1.13.6] - 2025-07-25
 
 ### Changed
