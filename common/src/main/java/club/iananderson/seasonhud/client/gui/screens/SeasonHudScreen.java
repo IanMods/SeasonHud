@@ -86,7 +86,7 @@ public class SeasonHudScreen extends Screen {
     this.clearWidgets();
     this.setFocused((GuiEventListener) null);
     this.init();
-    }
+  }
 
   @Override
   public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {

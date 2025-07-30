@@ -133,6 +133,22 @@ public class BasicSlider extends AbstractSliderButton {
     renderScrollingString(graphics, font, component, (i + k) / 2, i, j, k, l, m);
   }
 
+  public void onRightClick() {
+    this.setValue(defaultValue);
+  }
+
+  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+      boolean rightClicked = this.clicked(mouseX, mouseY);
+      if (rightClicked) {
+        this.playDownSound(Minecraft.getInstance().getSoundManager());
+        this.onRightClick();
+      }
+    }
+
+    return super.mouseClicked(mouseX, mouseY, mouseButton);
+  }
+
   public int getTextureY() {
     int i = this.isFocused() && !this.canChangeValue ? 1 : 0;
     return i * 20;

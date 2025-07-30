@@ -1,7 +1,6 @@
-## [1.13.6] - 2025-07-25
+## [1.13.7] - 2025-07-30
 
-### Changed
+### Fixed
 
-- Built against latest version of all Minimap/Season mods
-- Updated to Minecraft 1.21.7
+- Fixed the default hud showing up in dimensions without seasons
 
