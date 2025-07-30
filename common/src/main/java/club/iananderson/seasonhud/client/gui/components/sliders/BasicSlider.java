@@ -87,22 +87,6 @@ public class BasicSlider extends AbstractSliderButton {
     this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, 1D, 0, ChatFormatting.WHITE);
   }
 
-  public void onRightClick() {
-    this.setValue(defaultValue);
-  }
-
-  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
-      boolean rightClicked = this.clicked(mouseX, mouseY);
-      if (rightClicked) {
-        this.playDownSound(Minecraft.getInstance().getSoundManager());
-        this.onRightClick();
-      }
-    }
-
-    return super.mouseClicked(mouseX, mouseY, mouseButton);
-  }
-
   protected static void renderScrollingString(PoseStack graphics, Font font, Component component, int i, int j, int k,
       int l, int m, int n) {
     int o = font.width(component);
@@ -130,6 +114,22 @@ public class BasicSlider extends AbstractSliderButton {
   protected static void renderScrollingString(PoseStack graphics, Font font, Component component, int i, int j, int k,
       int l, int m) {
     renderScrollingString(graphics, font, component, (i + k) / 2, i, j, k, l, m);
+  }
+
+  public void onRightClick() {
+    this.setValue(defaultValue);
+  }
+
+  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+      boolean rightClicked = this.clicked(mouseX, mouseY);
+      if (rightClicked) {
+        this.playDownSound(Minecraft.getInstance().getSoundManager());
+        this.onRightClick();
+      }
+    }
+
+    return super.mouseClicked(mouseX, mouseY, mouseButton);
   }
 
   public int getTextureY() {

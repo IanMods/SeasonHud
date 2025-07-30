@@ -8,14 +8,14 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
   private final TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier;
 
   protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
-      double maxValue, double defaultValue, double stepSize, int precision, TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
+      double maxValue, double defaultValue, double stepSize, int precision,
+      TooltipSupplier<List<FormattedCharSequence>> tooltipSupplier) {
     super(x, y, width, height, true, initial, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
     this.tooltipSupplier = tooltipSupplier;

@@ -81,7 +81,7 @@ public class SeasonHudScreen extends Screen {
     this.clearWidgets();
     this.setFocused((GuiEventListener) null);
     this.init();
-    }
+  }
 
   public void rebuildUI() {
     this.rebuildWidgets();
