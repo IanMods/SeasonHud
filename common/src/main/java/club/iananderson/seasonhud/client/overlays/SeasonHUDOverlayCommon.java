@@ -27,7 +27,8 @@ public class SeasonHUDOverlayCommon {
     int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
     int stringHeight = (int) (mc.font.lineHeight * scale);
 
-    if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()) {
+    if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()
+        && !Common.hideHudInCurrentDimension()) {
       switch (Config.getHudLocation()) {
         case TOP_LEFT:
           x = DEFAULT_X_OFFSET;
