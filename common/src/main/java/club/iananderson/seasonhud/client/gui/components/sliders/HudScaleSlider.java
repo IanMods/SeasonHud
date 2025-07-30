@@ -1,14 +1,10 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
-import club.iananderson.seasonhud.client.gui.components.buttons.CycleButton.TooltipSupplier;
 import com.mojang.blaze3d.vertex.PoseStack;
-import java.util.List;
 import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.util.FormattedCharSequence;
 import org.jetbrains.annotations.NotNull;
 
 public class HudScaleSlider extends BasicSlider {
@@ -16,8 +12,7 @@ public class HudScaleSlider extends BasicSlider {
   private final Supplier<BasicSlider> tooltipSupplier;
 
   protected HudScaleSlider(int x, int y, int width, int height, Component prefix, double initial, double minValue,
-      double maxValue, double defaultValue, double stepSize, int precision,
-      Supplier<BasicSlider> tooltipSupplier) {
+      double maxValue, double defaultValue, double stepSize, int precision, Supplier<BasicSlider> tooltipSupplier) {
     super(x, y, width, height, true, initial, minValue, maxValue, defaultValue, stepSize, precision);
     this.prefix = prefix;
     this.tooltipSupplier = tooltipSupplier;

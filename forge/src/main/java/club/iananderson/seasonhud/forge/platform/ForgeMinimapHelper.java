@@ -14,6 +14,16 @@ import pepjebs.dicemc.util.MapAtlasesAccessUtils;
 import sereneseasons.config.SeasonsConfig;
 
 public class ForgeMinimapHelper implements IMinimapHelper {
+  public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
+    for (String validDimension : validDimensions) {
+      if (dimension.location().toString().equals(validDimension)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   // Needed for older versions. Makes it easier to port.
   @Override
   public boolean hideMapAtlases() {
@@ -35,16 +45,6 @@ public class ForgeMinimapHelper implements IMinimapHelper {
     else {
       return false;
     }
-  }
-
-  public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
-    for (String validDimension : validDimensions) {
-      if (dimension.location().toString().equals(validDimension)) {
-        return true;
-      }
-    }
-
-    return false;
   }
 
   @Override

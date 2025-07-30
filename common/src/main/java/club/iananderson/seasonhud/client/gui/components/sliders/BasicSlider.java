@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.util.DrawUtil;
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.text.DecimalFormat;
 import java.util.Objects;
@@ -16,7 +15,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -88,22 +86,6 @@ public class BasicSlider extends AbstractSliderButton {
     this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, 1D, 0, ChatFormatting.WHITE);
   }
 
-  public void onRightClick() {
-    this.setValue(defaultValue);
-  }
-
-  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == 1) {
-      boolean rightClicked = this.clicked(mouseX, mouseY);
-      if (rightClicked) {
-        this.playDownSound(Minecraft.getInstance().getSoundManager());
-        this.onRightClick();
-      }
-    }
-
-    return super.mouseClicked(mouseX, mouseY, mouseButton);
-  }
-
   protected static void renderScrollingString(PoseStack graphics, Font font, Component component, int i, int j, int k,
       int l, int m, int n) {
     int o = font.width(component);
@@ -138,7 +120,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+    if (this.active && this.visible && mouseButton == 1) {
       boolean rightClicked = this.clicked(mouseX, mouseY);
       if (rightClicked) {
         this.playDownSound(Minecraft.getInstance().getSoundManager());

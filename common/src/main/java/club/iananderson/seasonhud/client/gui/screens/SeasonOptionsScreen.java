@@ -3,7 +3,6 @@ package club.iananderson.seasonhud.client.gui.screens;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.Location;
 import club.iananderson.seasonhud.client.gui.ShowDay;
-import club.iananderson.seasonhud.client.gui.components.buttons.CheckButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.CycleButton;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
