@@ -4,13 +4,24 @@ import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.platform.Services;
 import com.teamtea.eclipticseasons.config.CommonConfig;
+import java.util.List;
+import java.util.Objects;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class EclipticSeasonsHelper implements IModHelper {
   @Override
   public Item CALENDAR() {
-    return null;
+    if (Common.eclipticSeasonsLoaded()) {
+      return Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
+    }
+    else {
+      return null;
+    }
   }
 
   @Override

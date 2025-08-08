@@ -83,7 +83,7 @@ public class Common {
   }
 
   public static boolean hasCalendarLoaded() {
-    return Common.fabricSeasonsExtrasLoaded() || Common.sereneSeasonsLoaded();
+    return Common.fabricSeasonsExtrasLoaded() || Common.sereneSeasonsLoaded() || Common.eclipticSeasonsLoaded();
   }
 
   public static boolean hasSubSeasons() {
@@ -101,9 +101,14 @@ public class Common {
         && !mc.options.renderDebug && !mc.options.hideGui;
   }
 
+  public static boolean minimapIntegrationHidden() {
+    return Config.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
+        && Config.getShowDefaultWhenMinimapHidden());
+  }
+
   public static boolean drawDefaultHud() {
-    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration() || (
-        CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden())));
+    return Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
+        || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
