@@ -8,6 +8,10 @@
     {
       "id": "sereneseasons:calendar",
       "required": false
+    },
+    {
+      "id": "eclipticseasons:calendar",
+      "required": false
     }
   ]
 }

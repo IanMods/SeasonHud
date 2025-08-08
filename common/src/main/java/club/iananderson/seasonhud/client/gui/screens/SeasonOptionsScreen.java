@@ -100,35 +100,33 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     super.onClose();
   }
 
+  //Todo - Need to fix Tropical Seasons option not updating in config screen
   @Override
   public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
+    int x = 3;
+    int y = 3;
+    seasonScale = 1;
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
+        .getSeasonHudConfigText(showDay, showSubSeason);
+
     if (drawDefaultHud) {
-      MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
-      boolean custom = hudLocationButton.getValue() == Location.CUSTOM;
-      seasonScale = hudScaleSlider.getValueDouble();
-
-      xSlider.active = custom;
-      xSlider.visible = custom;
-
-      ySlider.active = custom;
-      ySlider.visible = custom;
-
-      hudScaleSlider.active = drawDefaultHud;
-
-      if (Common.fabricSeasonsLoaded()) {
-        GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
-                                        MENU_PADDING + (3 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
-                                            + BUTTON_PADDING), 16777215);
-      }
-
-      int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
-      int componentHeight = (int) (this.font.lineHeight * seasonScale);
       int DEFAULT_X_OFFSET_SCALED = (int) (Config.DEFAULT_X_OFFSET);
       int DEFAULT_Y_OFFSET_SCALED = (int) (Config.DEFAULT_Y_OFFSET);
-      int x = 0;
-      int y = 0;
+      seasonScale = hudScaleSlider.getValueDouble();
+      int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
+      int componentHeight = (int) (this.font.lineHeight * seasonScale);
+
+      boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
+
+      hudScaleSlider.visible = drawDefaultHud;
+
+      xSlider.active = customLocation;
+      xSlider.visible = drawDefaultHud;
+
+      ySlider.active = customLocation;
+      ySlider.visible = drawDefaultHud;
 
       switch (hudLocation) {
         case TOP_LEFT:
@@ -161,13 +159,19 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           y = (int) ((ySlider.getValueInt()));
           break;
       }
-
-      graphics.pushPose();
-      graphics.translate(0, 0, 50);
-      graphics.scale((float) seasonScale, (float) seasonScale, 1.0F);
-      GuiComponent.drawString(graphics, font, seasonCombined, x, y, 0xffffff);
-      graphics.popPose();
     }
+
+    if (Common.fabricSeasonsLoaded()) {
+      GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
+                                  MENU_PADDING + (3 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
+                                      + BUTTON_PADDING), 16777215);
+    }
+
+    graphics.pushPose();
+    graphics.translate(0, 0, 50);
+    graphics.scale((float) seasonScale, (float) seasonScale, 1.0F);
+    GuiComponent.drawString(graphics, font, seasonCombined, x, y, 0xffffff);
+      graphics.popPose();
   }
 
   private int maxWidth(MutableComponent seasonText) {
@@ -289,7 +293,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
                   new TranslatableComponent("menu.seasonhud.main.calendarDetail.button"), (b, val) -> {
                 this.enableCalendarDetail = val;
-                rebuildUI();
               });
 
       widgets.addAll(Arrays.asList(needCalendarButton, calendarDetailModeButton));
