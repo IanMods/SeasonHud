@@ -8,6 +8,10 @@
     {
       "id": "seasonsextras:season_calendar",
       "required": false
+    },
+    {
+      "id": "eclipticseasons:calendar",
+      "required": false
     }
   ]
 }
