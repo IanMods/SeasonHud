@@ -93,8 +93,7 @@ public class CurrentSeason {
         break;
 
       case SHOW_WITH_TOTAL_DAYS:
-        text = Component.translatable(ShowDay.SHOW_WITH_TOTAL_DAYS.getKey(), seasonKey, seasonDate,
-                                      seasonDuration);
+        text = Component.translatable(ShowDay.SHOW_WITH_TOTAL_DAYS.getKey(), seasonKey, seasonDate, seasonDuration);
         break;
 
       case SHOW_WITH_MONTH:

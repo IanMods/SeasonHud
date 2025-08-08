@@ -105,11 +105,13 @@ public class Common {
   }
 
   public static boolean minimapIntegrationHidden() {
-    return Config.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden() && Config.getShowDefaultWhenMinimapHidden());
+    return Config.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
+        && Config.getShowDefaultWhenMinimapHidden());
   }
 
   public static boolean drawDefaultHud() {
-    return Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration() || minimapIntegrationHidden());
+    return Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
+        || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
