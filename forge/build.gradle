@@ -66,6 +66,8 @@ dependencies {
     modCompileOnly "maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+forge"
 
     //Forge Config API Port
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-forge:${project.forge_config_api_port_version}"
+    modCompileOnlyApi files("${project.rootDir}/libs/ForgeConfigAPIPort-v21.5.2-1.21.5-Forge-sources.jar")
     modImplementation "maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge"
 
     // Development QOL
