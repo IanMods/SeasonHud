@@ -101,7 +101,7 @@ dependencies {
                 "atlas, or none")
     }
 
-    // Season Mod Dev Tests (Forge)
+    // Season Mod Dev Tests (NeoForge)
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_neoforge.toLowerCase(Locale.ROOT)) {
         case "serene":
@@ -117,6 +117,21 @@ dependencies {
             modImplementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
             break
         default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
+    }
+
+    // Accessory Mod Dev Tests
+    // See root gradle.properties to choose which to use at runtime.
+    switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
+        case "accessories":
+            modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-neoforge")
+            modLocalRuntime "maven.modrinth:owo-lib:${project.owo_version_neoforge}-neoforge"
+            modLocalRuntime("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
+                exclude(group: "net.fabricmc.fabric-api")
+            }
+            break
+        case "none":
+            break
+        default: println("Unknown accessory mod specified: ${project.minimap_mod}. Must be accessories, or none")
     }
 }
 
