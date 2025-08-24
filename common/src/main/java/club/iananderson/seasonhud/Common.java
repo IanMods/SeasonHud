@@ -13,6 +13,7 @@ import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,6 +94,12 @@ public class Common {
     return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 
+  public static boolean clientSideConfig(){
+    Minecraft mc = Minecraft.getInstance();
+
+    return (mc.getCurrentServer() == null);
+  }
+
   public static boolean vanillaShouldDrawHud() {
     Minecraft mc = Minecraft.getInstance();
 
@@ -110,11 +117,23 @@ public class Common {
   }
 
   public static boolean drawDefaultHud() {
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
     return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !SeasonHudClient.getEnableMinimapIntegration()
         || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
     return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !SeasonHudClient.getEnableMinimapIntegration()
         || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
   }
@@ -135,7 +154,13 @@ public class Common {
    * @return True if the current dimension is whitelisted in the season mod's config.
    */
   public static boolean hideHudInCurrentDimension() {
-    ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
+    ResourceKey<Level> currentDim = Objects.requireNonNull(mc.level).dimension();
 
     if (Common.fabricSeasonsLoaded()) {
       return !FabricSeasons.CONFIG.isValidInDimension(currentDim);

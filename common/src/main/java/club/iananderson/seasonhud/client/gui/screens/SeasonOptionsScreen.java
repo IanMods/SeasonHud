@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
@@ -58,9 +59,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     seasonColor = SeasonHudClient.getEnableSeasonNameColor();
     showSubSeason = SeasonHudClient.getShowSubSeason();
     showTropicalSeason = SeasonHudClient.getShowTropicalSeason();
-    needCalendar = SeasonHudClient.getNeedCalendar();
-    enableCalendarDetail = SeasonHudClient.getCalendarDetailMode();
-    dayLength = SeasonHudClient.getDayLength();
+    needCalendar = SeasonHudServer.getNeedCalendar();
+    enableCalendarDetail = SeasonHudServer.getCalendarDetailMode();
+    dayLength = SeasonHudServer.getDayLength();
   }
 
   public void saveConfig() {
@@ -78,14 +79,17 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       SeasonHudClient.setShowTropicalSeason(showTropicalSeason);
     }
 
-    if (Common.hasCalendarLoaded()) {
-      SeasonHudClient.setNeedCalendar(needCalendar);
-      SeasonHudClient.setCalendarDetailMode(enableCalendarDetail);
+    if(Common.clientSideConfig()){
+      if (Common.hasCalendarLoaded()) {
+        SeasonHudServer.setCalendarDetailMode(enableCalendarDetail);
+        SeasonHudServer.setNeedCalendar(needCalendar);
+      }
+
+      if (Common.fabricSeasonsLoaded()) {
+        SeasonHudServer.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
+      }
     }
 
-    if (Common.fabricSeasonsLoaded()) {
-      SeasonHudClient.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
-    }
   }
 
   @Override
@@ -288,23 +292,29 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         }
       });
       dayLengthBox.setHint(Component.literal("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
+      dayLengthBox.setEditable(Common.clientSideConfig());
+
       widgets.add(dayLengthBox);
     }
 
     if (Common.hasCalendarLoaded()) {
       row += 1; //Row 5 ((enableMinimapIntegration -> Row 3)
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
-          .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.main.needCalendar.tooltip")))
+          .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.season.needCalendar.tooltip")))
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Component.translatable("menu.seasonhud.main.needCalendar.button"),
+                  Component.translatable("menu.seasonhud.season.needCalendar.button"),
                   (b, val) -> this.needCalendar = val);
 
+      needCalendarButton.active=Common.clientSideConfig();
+
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
-          .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.main.calendarDetail.tooltip")))
+          .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.season.calendarDetail.tooltip")))
           .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Component.translatable("menu.seasonhud.main.calendarDetail.button"), (b, val) -> {
+                  Component.translatable("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
                 this.enableCalendarDetail = val;
               });
+
+      calendarDetailModeButton.active=Common.clientSideConfig();
 
       widgets.addAll(Arrays.asList(needCalendarButton, calendarDetailModeButton));
     }

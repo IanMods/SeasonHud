@@ -32,12 +32,9 @@ public class SeasonHudClient {
   private static ForgeConfigSpec.ConfigValue<Integer> winterColor;
   private static ForgeConfigSpec.ConfigValue<Integer> dryColor;
   private static ForgeConfigSpec.ConfigValue<Integer> wetColor;
-  private static ForgeConfigSpec.BooleanValue needCalendar;
-  private static ForgeConfigSpec.BooleanValue calanderDetailMode;
   private static ForgeConfigSpec.BooleanValue showTropicalSeason;
   private static ForgeConfigSpec.BooleanValue showSubSeason;
   private static ForgeConfigSpec.ConfigValue<ShowDay> showDay;
-  private static ForgeConfigSpec.ConfigValue<Integer> dayLength;
   private static ForgeConfigSpec.BooleanValue enableMinimapIntegration;
   private static ForgeConfigSpec.BooleanValue showDefaultWhenMinimapHidden;
   private static ForgeConfigSpec.BooleanValue journeyMapAboveMap;
@@ -103,14 +100,6 @@ public class SeasonHudClient {
     builder.pop();
 
     builder.push("Season");
-    needCalendar = builder.comment(
-        "Require the calendar item to be in the players inventory to show the HUD?\n" + "(true/false)\n"
-            + "Default is false.").define("need_calendar", false);
-
-    calanderDetailMode = builder.comment(
-            "Having the calendar item shows the detailed version of the HUD" + "Default is false.")
-        .define("calendar_detail", false);
-
     showTropicalSeason = builder.comment("Show the Tropical seasons (Wet/Dry) in Tropical Biomes.\n"
                                              + "Will not change the season behavior in the biomes.\n" + "(true/false)\n"
                                              + "Default is true.").define("enable_show_tropical_season", true);
@@ -131,10 +120,6 @@ public class SeasonHudClient {
           .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
     }
-
-    dayLength = builder.comment(
-        "Change if you are using a Minecraft day length other than vanilla value and using Fabric Seasons.\n"
-            + "Default Minecraft day is 24000.").defineInRange("day_length", 24000, 0, 2147483647);
     builder.pop();
 
     builder.push("Minimap");
@@ -273,23 +258,6 @@ public class SeasonHudClient {
     SeasonHudClient.wetColor.set(rgbColor);
   }
 
-  //Season
-  public static boolean getNeedCalendar() {
-    return needCalendar.get();
-  }
-
-  public static void setNeedCalendar(boolean enable) {
-    SeasonHudClient.needCalendar.set(enable);
-  }
-
-  public static boolean getCalendarDetailMode() {
-    return calanderDetailMode.get();
-  }
-
-  public static void setCalendarDetailMode(boolean enable) {
-    SeasonHudClient.calanderDetailMode.set(enable);
-  }
-
   public static boolean getShowTropicalSeason() {
     return showTropicalSeason.get();
   }
@@ -312,14 +280,6 @@ public class SeasonHudClient {
 
   public static void setShowDay(ShowDay showDay) {
     SeasonHudClient.showDay.set(showDay);
-  }
-
-  public static int getDayLength() {
-    return dayLength.get();
-  }
-
-  public static void setDayLength(int length) {
-    SeasonHudClient.dayLength.set(length);
   }
 
   public static boolean getShowDefaultWhenMinimapHidden() {

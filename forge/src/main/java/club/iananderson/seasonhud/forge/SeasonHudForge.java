@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.forge.impl.curios.CuriosCompat;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
@@ -22,7 +23,11 @@ public class SeasonHudForge {
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
 
-    ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC, "seasonhud-client.toml");
+    ModLoadingContext.get()
+        .registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC, "seasonhud-client.toml");
+
+    ModLoadingContext.get()
+        .registerConfig(ModConfig.Type.SERVER, SeasonHudServer.GENERAL_SPEC, "seasonhud-server.toml");
 
     modEventBus.addListener(SeasonHudForge::onInitialize);
     modEventBus.addListener(SeasonHudForge::ftbChunkSetup);
