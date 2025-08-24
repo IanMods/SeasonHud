@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudCommon;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
@@ -58,9 +59,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     seasonColor = SeasonHudClient.getEnableSeasonNameColor();
     showSubSeason = SeasonHudClient.getShowSubSeason();
     showTropicalSeason = SeasonHudClient.getShowTropicalSeason();
-    needCalendar = SeasonHudClient.getNeedCalendar();
+    needCalendar = SeasonHudCommon.getNeedCalendar();
     enableCalendarDetail = SeasonHudClient.getCalendarDetailMode();
-    dayLength = SeasonHudClient.getDayLength();
+    dayLength = SeasonHudCommon.getDayLength();
   }
 
   public void saveConfig() {
@@ -79,12 +80,12 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
 
     if (Common.hasCalendarLoaded()) {
-      SeasonHudClient.setNeedCalendar(needCalendar);
+      SeasonHudCommon.setNeedCalendar(needCalendar);
       SeasonHudClient.setCalendarDetailMode(enableCalendarDetail);
     }
 
     if (Common.fabricSeasonsLoaded()) {
-      SeasonHudClient.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
+      SeasonHudCommon.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
     }
   }
 

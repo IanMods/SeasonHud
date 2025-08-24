@@ -11,19 +11,19 @@ import dev.architectury.utils.EnvExecutor;
 import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
 import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.api.ClientModInitializer;
-import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.config.ModConfig.Type;
 
 public class SeasonHudClientFabric implements ClientModInitializer {
 
   @Override
   public void onInitializeClient() {
     if(Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
-      ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
+      ConfigRegistry.INSTANCE.register(Common.MOD_ID, Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
                                        "seasonhud-client.toml");
     }
 
     else{
-      NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
+      NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
                                                "seasonhud-client.toml");
     }
 
