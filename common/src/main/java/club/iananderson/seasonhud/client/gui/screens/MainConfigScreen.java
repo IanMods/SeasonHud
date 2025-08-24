@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.client.gui.screens;
 
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,15 +41,15 @@ public class MainConfigScreen extends SeasonHudScreen {
   }
 
   public void loadConfig() {
-    enableMod = Config.getEnableMod();
-    showMinimapHidden = Config.getShowDefaultWhenMinimapHidden();
-    enableMinimapIntegration = Config.getEnableMinimapIntegration();
+    enableMod = SeasonHudClient.getEnableMod();
+    showMinimapHidden = SeasonHudClient.getShowDefaultWhenMinimapHidden();
+    enableMinimapIntegration = SeasonHudClient.getEnableMinimapIntegration();
   }
 
   public void saveConfig() {
-    Config.setEnableMod(enableMod);
-    Config.setEnableMinimapIntegration(enableMinimapIntegration);
-    Config.setShowDefaultWhenMinimapHidden(showMinimapHidden);
+    SeasonHudClient.setEnableMod(enableMod);
+    SeasonHudClient.setEnableMinimapIntegration(enableMinimapIntegration);
+    SeasonHudClient.setShowDefaultWhenMinimapHidden(showMinimapHidden);
   }
 
   @Override

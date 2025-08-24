@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.ShowDay;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import java.time.LocalDateTime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -53,7 +53,7 @@ public class CurrentSeason {
       season = getSeasonLowerCase();
     }
 
-    if (Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && Config.getShowSubSeason()) {
+    if (Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && SeasonHudClient.getShowSubSeason()) {
       season = currentSubSeason;
 
       if (currentSubSeason.equals("MID_NULL")) {
@@ -135,8 +135,8 @@ public class CurrentSeason {
   public MutableComponent getSeasonHudTextNoFormat() {
     Component seasonIcon = Component.translatable("desc.seasonhud.hud.icon", getSeasonIcon())
         .withStyle(Common.SEASON_ICON_STYLE);
-    ShowDay showDay = Config.getShowDay();
-    boolean showSubSeason = Config.getShowSubSeason();
+    ShowDay showDay = SeasonHudClient.getShowDay();
+    boolean showSubSeason = SeasonHudClient.getShowSubSeason();
 
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
@@ -145,12 +145,12 @@ public class CurrentSeason {
 
   public MutableComponent getSeasonHudText() {
     MutableComponent seasonIcon = Component.translatable("desc.seasonhud.hud.icon", getSeasonIcon());
-    ShowDay showDay = Config.getShowDay();
-    boolean showSubSeason = Config.getShowSubSeason();
+    ShowDay showDay = SeasonHudClient.getShowDay();
+    boolean showSubSeason = SeasonHudClient.getShowSubSeason();
 
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
-    if (Config.getEnableSeasonNameColor()) {
+    if (SeasonHudClient.getEnableSeasonNameColor()) {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 
@@ -163,7 +163,7 @@ public class CurrentSeason {
     MutableComponent seasonIcon = Component.translatable("desc.seasonhud.hud.icon", season.getIconChar());
     MutableComponent seasonText = Component.translatable(ShowDay.NONE.getKey(), season.getSeasonName());
 
-    if (Config.getEnableSeasonNameColor()) {
+    if (SeasonHudClient.getEnableSeasonNameColor()) {
       seasonFormat = Style.EMPTY.withColor(newRgb);
     }
 
@@ -183,7 +183,7 @@ public class CurrentSeason {
     MutableComponent seasonIcon = Component.translatable("desc.seasonhud.hud.icon", getSeasonIcon());
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
-    if (Config.getEnableSeasonNameColor()) {
+    if (SeasonHudClient.getEnableSeasonNameColor()) {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 

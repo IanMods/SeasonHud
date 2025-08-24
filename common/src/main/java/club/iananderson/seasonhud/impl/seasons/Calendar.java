@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import io.wispforest.accessories.api.AccessoriesCapability;
@@ -77,10 +77,10 @@ public class Calendar {
   }
 
   public static boolean validNeedCalendar() {
-    return (Config.getNeedCalendar() && Calendar.calendarFound()) || !Config.getNeedCalendar();
+    return (SeasonHudClient.getNeedCalendar() && Calendar.calendarFound()) || !SeasonHudClient.getNeedCalendar();
   }
 
   public static boolean validDetailedMode() {
-    return (Config.getCalendarDetailMode() && Calendar.calendarFound()) || !Config.getCalendarDetailMode();
+    return (SeasonHudClient.getCalendarDetailMode() && Calendar.calendarFound()) || !SeasonHudClient.getCalendarDetailMode();
   }
 }

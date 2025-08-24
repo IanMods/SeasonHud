@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.fabric.client;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.fabric.event.ClientEvents;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
@@ -18,12 +18,12 @@ public class SeasonHudClientFabric implements ClientModInitializer {
   @Override
   public void onInitializeClient() {
     if(Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
-      ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, Config.GENERAL_SPEC,
+      ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
                                        "seasonhud-client.toml");
     }
 
     else{
-      NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, Config.GENERAL_SPEC,
+      NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
                                                "seasonhud-client.toml");
     }
 

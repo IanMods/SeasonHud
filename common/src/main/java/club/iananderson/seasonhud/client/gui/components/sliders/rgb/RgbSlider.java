@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.client.gui.components.sliders.rgb;
 
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class RgbSlider extends BasicSlider {
   public static final int SLIDER_PADDING = 2;
   protected final Seasons season;
-  private final boolean enableColor = Config.getEnableSeasonNameColor();
+  private final boolean enableColor = SeasonHudClient.getEnableSeasonNameColor();
   protected ColorEditBox seasonBox;
   protected int r;
   protected int g;

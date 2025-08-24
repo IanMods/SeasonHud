@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.Services;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -19,15 +19,15 @@ public class SeasonHudForge {
     if (Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
       fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID,
                                                                                     ModConfig.Type.CLIENT,
-                                                                                    Config.GENERAL_SPEC,
+                                                                                    SeasonHudClient.GENERAL_SPEC,
                                                                                     "seasonhud-client.toml");
     }
 
     else {
       fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID,
-                                               ModConfig.Type.CLIENT,
-                                               Config.GENERAL_SPEC,
-                                               "seasonhud-client.toml");
+                                                                                             ModConfig.Type.CLIENT,
+                                                                                             SeasonHudClient.GENERAL_SPEC,
+                                                                                             "seasonhud-client.toml");
     }
 
 
