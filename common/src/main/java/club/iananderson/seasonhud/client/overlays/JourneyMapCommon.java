@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.client.overlays;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import journeymap.client.JourneymapClient;
 import journeymap.client.io.ThemeLoader;
@@ -65,7 +65,7 @@ public class JourneyMapCommon {
                                                          ThemeLabelSource.values.get(mapProperties.info4Label.get()));
     this.screenWidth = mc.getWindow().getWidth();
     this.screenHeight = mc.getWindow().getHeight();
-    if (Config.getJourneyMapMacOS()) {
+    if (SeasonHudClient.getJourneyMapMacOS()) {
       this.screenWidth /= 2;
       this.screenHeight /= 2;
     }
@@ -83,10 +83,10 @@ public class JourneyMapCommon {
   }
 
   private int labelY() {
-    int startY = (int) (textureY + (Config.getJourneyMapAboveMap() ? 0 : (Config.getJourneyMapMacOS() ? -margin
+    int startY = (int) (textureY + (SeasonHudClient.getJourneyMapAboveMap() ? 0 : (SeasonHudClient.getJourneyMapMacOS() ? -margin
         - labelHeight : minimapHeight + margin)));
 
-    return startY + (Config.getJourneyMapAboveMap() ? -topLabelHeight - margin - labelHeight : bottomLabelHeight);
+    return startY + (SeasonHudClient.getJourneyMapAboveMap() ? -topLabelHeight - margin - labelHeight : bottomLabelHeight);
   }
 
   public float getFontScale() {

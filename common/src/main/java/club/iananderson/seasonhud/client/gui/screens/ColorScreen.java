@@ -7,7 +7,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.rgb.BlueSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.GreenSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.RedSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.RgbSlider;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class ColorScreen extends SeasonHudScreen {
   private static EnumSet<Seasons> seasonListSet() {
     EnumSet<Seasons> set = Seasons.SEASONS_ENUM_LIST.clone();
 
-    if (!Config.getShowTropicalSeason() || Common.fabricSeasonsLoaded()) {
+    if (!SeasonHudClient.getShowTropicalSeason() || Common.fabricSeasonsLoaded()) {
       set.remove(Seasons.DRY);
       set.remove(Seasons.WET);
     }
@@ -50,7 +50,7 @@ public class ColorScreen extends SeasonHudScreen {
   }
 
   public void loadConfig() {
-    seasonColor = Config.getEnableSeasonNameColor();
+    seasonColor = SeasonHudClient.getEnableSeasonNameColor();
   }
 
   @Override
@@ -66,7 +66,7 @@ public class ColorScreen extends SeasonHudScreen {
 
   @Override
   public void onClose() {
-    Config.setEnableSeasonNameColor(seasonColor);
+    SeasonHudClient.setEnableSeasonNameColor(seasonColor);
     super.onClose();
   }
 
@@ -152,11 +152,11 @@ public class ColorScreen extends SeasonHudScreen {
     });
 
     //Buttons
-    CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(Config.getEnableSeasonNameColor())
+    CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(SeasonHudClient.getEnableSeasonNameColor())
         .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.color.enableSeasonNameColor.tooltip")))
         .create(leftButtonX, MENU_PADDING, BUTTON_WIDTH, BUTTON_HEIGHT,
                 Component.translatable("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
-              Config.setEnableSeasonNameColor(val);
+              SeasonHudClient.setEnableSeasonNameColor(val);
               rebuildWidgets();
             });
 

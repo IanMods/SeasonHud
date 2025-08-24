@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.fabric.client;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.fabric.event.ClientEvents;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
@@ -16,7 +16,7 @@ public class SeasonHudClientFabric implements ClientModInitializer {
 
   @Override
   public void onInitializeClient() {
-    ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, Config.GENERAL_SPEC,
+    ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
                                           "seasonhud-client.toml");
     ClientEvents.register();
 

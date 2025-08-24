@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
 import com.teamtea.eclipticseasons.config.CommonConfig.Season;
@@ -105,18 +105,18 @@ public class Common {
   }
 
   public static boolean minimapIntegrationHidden() {
-    return Config.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
-        && Config.getShowDefaultWhenMinimapHidden());
+    return SeasonHudClient.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
+        && SeasonHudClient.getShowDefaultWhenMinimapHidden());
   }
 
   public static boolean drawDefaultHud() {
-    return Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
+    return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !SeasonHudClient.getEnableMinimapIntegration()
         || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
-    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
-        || Config.getShowDefaultWhenMinimapHidden()));
+    return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !SeasonHudClient.getEnableMinimapIntegration()
+        || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
   }
 
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {

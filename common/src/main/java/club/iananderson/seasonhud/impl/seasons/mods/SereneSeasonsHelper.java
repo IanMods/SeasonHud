@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -20,7 +20,7 @@ public class SereneSeasonsHelper implements IModHelper {
 
   @Override
   public boolean isTropicalSeason(Player player) {
-    boolean showTropicalSeasons = Config.getShowTropicalSeason();
+    boolean showTropicalSeasons = SeasonHudClient.getShowTropicalSeason();
     boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(
         player.level().getBiome(player.getOnPos()));
 
@@ -66,7 +66,7 @@ public class SereneSeasonsHelper implements IModHelper {
     long subSeasonDate = (seasonDay % subSeasonDuration) + 1; //Default 8 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; //Default 24 days in a season (8 days * 3)
 
-    if (Config.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason()) {
       if (isTropicalSeason(player)) {
         // Default 16 days in each tropical "sub-season".
         // Starts are "Early Dry" (Summer 1), so need to offset Spring 1 -> Summer 1 (subSeasonDuration * 3)
@@ -91,7 +91,7 @@ public class SereneSeasonsHelper implements IModHelper {
     if (isTropicalSeason(player)) {
       duration *= 2; //Tropical seasons are twice as long (Default 48 days)
     }
-    if (Config.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
       duration /= 3; //3 sub-seasons per season
     }
 

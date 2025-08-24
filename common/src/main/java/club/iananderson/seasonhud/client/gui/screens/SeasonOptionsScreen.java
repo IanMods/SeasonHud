@@ -6,7 +6,7 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
@@ -50,41 +50,41 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
   public void loadConfig() {
     drawDefaultHud = Common.drawDefaultHudMenu();
-    hudLocation = Config.getHudLocation();
-    xSliderInt = Config.getHudX();
-    ySliderInt = Config.getHudY();
-    seasonScale = Config.getHudScale();
-    showDay = Config.getShowDay();
-    seasonColor = Config.getEnableSeasonNameColor();
-    showSubSeason = Config.getShowSubSeason();
-    showTropicalSeason = Config.getShowTropicalSeason();
-    needCalendar = Config.getNeedCalendar();
-    enableCalendarDetail = Config.getCalendarDetailMode();
-    dayLength = Config.getDayLength();
+    hudLocation = SeasonHudClient.getHudLocation();
+    xSliderInt = SeasonHudClient.getHudX();
+    ySliderInt = SeasonHudClient.getHudY();
+    seasonScale = SeasonHudClient.getHudScale();
+    showDay = SeasonHudClient.getShowDay();
+    seasonColor = SeasonHudClient.getEnableSeasonNameColor();
+    showSubSeason = SeasonHudClient.getShowSubSeason();
+    showTropicalSeason = SeasonHudClient.getShowTropicalSeason();
+    needCalendar = SeasonHudClient.getNeedCalendar();
+    enableCalendarDetail = SeasonHudClient.getCalendarDetailMode();
+    dayLength = SeasonHudClient.getDayLength();
   }
 
   public void saveConfig() {
     if (drawDefaultHud) {
-      Config.setHudLocation(hudLocationButton.getValue());
-      Config.setHudX(xSlider.getValueInt());
-      Config.setHudY(ySlider.getValueInt());
-      Config.setHudScale(hudScaleSlider.getValueDouble());
+      SeasonHudClient.setHudLocation(hudLocationButton.getValue());
+      SeasonHudClient.setHudX(xSlider.getValueInt());
+      SeasonHudClient.setHudY(ySlider.getValueInt());
+      SeasonHudClient.setHudScale(hudScaleSlider.getValueDouble());
     }
-    Config.setShowDay(showDay);
-    Config.setEnableSeasonNameColor(seasonColor);
+    SeasonHudClient.setShowDay(showDay);
+    SeasonHudClient.setEnableSeasonNameColor(seasonColor);
 
     if (Common.hasSubSeasons()) {
-      Config.setShowSubSeason(showSubSeason);
-      Config.setShowTropicalSeason(showTropicalSeason);
+      SeasonHudClient.setShowSubSeason(showSubSeason);
+      SeasonHudClient.setShowTropicalSeason(showTropicalSeason);
     }
 
     if (Common.hasCalendarLoaded()) {
-      Config.setNeedCalendar(needCalendar);
-      Config.setCalendarDetailMode(enableCalendarDetail);
+      SeasonHudClient.setNeedCalendar(needCalendar);
+      SeasonHudClient.setCalendarDetailMode(enableCalendarDetail);
     }
 
     if (Common.fabricSeasonsLoaded()) {
-      Config.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
+      SeasonHudClient.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
     }
   }
 
@@ -111,8 +111,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .getSeasonHudConfigText(showDay, showSubSeason);
 
     if (drawDefaultHud) {
-      int DEFAULT_X_OFFSET_SCALED = (int) (Config.DEFAULT_X_OFFSET);
-      int DEFAULT_Y_OFFSET_SCALED = (int) (Config.DEFAULT_Y_OFFSET);
+      int DEFAULT_X_OFFSET_SCALED = SeasonHudClient.DEFAULT_X_OFFSET;
+      int DEFAULT_Y_OFFSET_SCALED = SeasonHudClient.DEFAULT_Y_OFFSET;
       seasonScale = hudScaleSlider.getValueDouble();
       int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
       int componentHeight = (int) (this.font.lineHeight * seasonScale);
@@ -154,8 +154,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           break;
 
         case CUSTOM:
-          x = (int) ((xSlider.getValueInt()));
-          y = (int) ((ySlider.getValueInt()));
+          x = (xSlider.getValueInt());
+          y = (ySlider.getValueInt());
           break;
       }
     }
@@ -207,23 +207,23 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       hudScaleSlider = HudScaleSlider.builder(Component.translatable("menu.seasonhud.season.scale.slider"))
           .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.scale.tooltip")))
-          .withValueRange(Config.HUD_SCALE_MIN, Config.HUD_SCALE_MAX)
+          .withValueRange(SeasonHudClient.HUD_SCALE_MIN, SeasonHudClient.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
-          .withDefaultValue(Config.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
+          .withDefaultValue(SeasonHudClient.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
           .build();
 
       row += 1; // Row 2
       xSlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.xOffset.slider"))
           .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.xOffset.tooltip")))
-          .withValues(0, this.maxWidth(seasonCombined), xSliderInt, Config.DEFAULT_X_OFFSET)
+          .withValues(0, this.maxWidth(seasonCombined), xSliderInt, SeasonHudClient.DEFAULT_X_OFFSET)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
                       BUTTON_HEIGHT)
           .build();
 
       ySlider = HudOffsetSlider.builder(Component.translatable("menu.seasonhud.season.yOffset.slider"))
           .withTooltip(Tooltip.create(Component.translatable("menu.seasonhud.season.yOffset.tooltip")))
-          .withValues(0, this.maxHeight(), ySliderInt, Config.DEFAULT_Y_OFFSET)
+          .withValues(0, this.maxHeight(), ySliderInt, SeasonHudClient.DEFAULT_Y_OFFSET)
           .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
                       BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
           .build();

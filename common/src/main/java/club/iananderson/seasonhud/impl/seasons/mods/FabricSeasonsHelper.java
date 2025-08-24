@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
@@ -64,7 +64,7 @@ public class FabricSeasonsHelper implements IModHelper {
 
   @Override
   public long getDate(Player player) {
-    long dayLength = Config.getDayLength();
+    long dayLength = SeasonHudClient.getDayLength();
     long seasonLength = FabricSeasons.CONFIG.getSpringLength();
     long timeToNextSeason = FabricSeasons.getTimeToNextSeason(player.level());
 
@@ -79,7 +79,7 @@ public class FabricSeasonsHelper implements IModHelper {
 
   @Override
   public int seasonDuration(Player player) {
-    int dayLength = Config.getDayLength();
+    int dayLength = SeasonHudClient.getDayLength();
 
     return FabricSeasons.CONFIG.getSpringLength() / dayLength;
   }

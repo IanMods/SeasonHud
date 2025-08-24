@@ -1,29 +1,29 @@
 package club.iananderson.seasonhud.impl.seasons;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
 import java.util.Map;
 import net.minecraft.network.chat.Component;
 
 public enum Seasons {
-  SPRING(0, Component.translatable("desc.seasonhud.season.spring"), "spring", "\uEA00", Config.DEFAULT_SPRING_COLOR,
-         Config.getSpringColor(), Rgb.seasonMap(Config.getSpringColor())),
+  SPRING(0, Component.translatable("desc.seasonhud.season.spring"), "spring", "\uEA00", SeasonHudClient.DEFAULT_SPRING_COLOR,
+         SeasonHudClient.getSpringColor(), Rgb.seasonMap(SeasonHudClient.getSpringColor())),
 
-  SUMMER(1, Component.translatable("desc.seasonhud.season.summer"), "summer", "\uEA01", Config.DEFAULT_SUMMER_COLOR,
-         Config.getSummerColor(), Rgb.seasonMap(Config.getSummerColor())),
+  SUMMER(1, Component.translatable("desc.seasonhud.season.summer"), "summer", "\uEA01", SeasonHudClient.DEFAULT_SUMMER_COLOR,
+         SeasonHudClient.getSummerColor(), Rgb.seasonMap(SeasonHudClient.getSummerColor())),
 
-  AUTUMN(2, Component.translatable("desc.seasonhud.season.autumn"), "autumn", "\uEA02", Config.DEFAULT_AUTUMN_COLOR,
-         Config.getAutumnColor(), Rgb.seasonMap(Config.getAutumnColor())),
+  AUTUMN(2, Component.translatable("desc.seasonhud.season.autumn"), "autumn", "\uEA02", SeasonHudClient.DEFAULT_AUTUMN_COLOR,
+         SeasonHudClient.getAutumnColor(), Rgb.seasonMap(SeasonHudClient.getAutumnColor())),
 
-  WINTER(3, Component.translatable("desc.seasonhud.season.winter"), "winter", "\uEA03", Config.DEFAULT_WINTER_COLOR,
-         Config.getWinterColor(), Rgb.seasonMap(Config.getWinterColor())),
+  WINTER(3, Component.translatable("desc.seasonhud.season.winter"), "winter", "\uEA03", SeasonHudClient.DEFAULT_WINTER_COLOR,
+         SeasonHudClient.getWinterColor(), Rgb.seasonMap(SeasonHudClient.getWinterColor())),
 
-  DRY(4, Component.translatable("desc.seasonhud.season.dry"), "dry", "\uEA04", Config.DEFAULT_DRY_COLOR,
-      Config.getDryColor(), Rgb.seasonMap(Config.getDryColor())),
+  DRY(4, Component.translatable("desc.seasonhud.season.dry"), "dry", "\uEA04", SeasonHudClient.DEFAULT_DRY_COLOR,
+      SeasonHudClient.getDryColor(), Rgb.seasonMap(SeasonHudClient.getDryColor())),
 
-  WET(5, Component.translatable("desc.seasonhud.season.wet"), "wet", "\uEA05", Config.DEFAULT_WET_COLOR,
-      Config.getWetColor(), Rgb.seasonMap(Config.getWetColor())),
+  WET(5, Component.translatable("desc.seasonhud.season.wet"), "wet", "\uEA05", SeasonHudClient.DEFAULT_WET_COLOR,
+      SeasonHudClient.getWetColor(), Rgb.seasonMap(SeasonHudClient.getWetColor())),
 
   NULL(100, Component.translatable("desc.seasonhud.season.null"), "null", "\uEA99", 16777215, 16777215,
        Rgb.seasonMap(16777215));
@@ -73,12 +73,12 @@ public enum Seasons {
     this.seasonColor = rgbColor;
 
     switch (season) {
-      case SPRING -> Config.setSpringColor(rgbColor);
-      case SUMMER -> Config.setSummerColor(rgbColor);
-      case AUTUMN -> Config.setAutumnColor(rgbColor);
-      case WINTER -> Config.setWinterColor(rgbColor);
-      case DRY -> Config.setDryColor(rgbColor);
-      case WET -> Config.setWetColor(rgbColor);
+      case SPRING -> SeasonHudClient.setSpringColor(rgbColor);
+      case SUMMER -> SeasonHudClient.setSummerColor(rgbColor);
+      case AUTUMN -> SeasonHudClient.setAutumnColor(rgbColor);
+      case WINTER -> SeasonHudClient.setWinterColor(rgbColor);
+      case DRY -> SeasonHudClient.setDryColor(rgbColor);
+      case WET -> SeasonHudClient.setWetColor(rgbColor);
     }
   }
 
