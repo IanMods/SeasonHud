@@ -153,7 +153,7 @@ public class ColorScreen extends SeasonHudScreen {
 
     //Buttons
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(SeasonHudClient.getEnableSeasonNameColor())
-        .withTooltip(t -> Tooltip.create(Component.translatable("menu.seasonhud.color.enableSeasonNameColor.tooltip")))
+        .withTooltip(t -> newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
         .create(leftButtonX, MENU_PADDING, BUTTON_WIDTH, BUTTON_HEIGHT,
                 Component.translatable("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
               SeasonHudClient.setEnableSeasonNameColor(val);
