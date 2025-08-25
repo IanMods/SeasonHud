@@ -40,6 +40,7 @@ public class ColorScreen extends SeasonHudScreen {
 
   private static EnumSet<Seasons> seasonListSet() {
     EnumSet<Seasons> set = Seasons.SEASONS_ENUM_LIST.clone();
+    set.remove(Seasons.NULL);
 
     if (!SeasonHudClient.getShowTropicalSeason() || Common.fabricSeasonsLoaded()) {
       set.remove(Seasons.DRY);
