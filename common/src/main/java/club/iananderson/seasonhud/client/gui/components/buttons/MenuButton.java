@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
+import club.iananderson.seasonhud.Common;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;
@@ -20,9 +21,9 @@ public class MenuButton extends Button {
 
     CANCEL(CommonComponents.GUI_CANCEL),
 
-    COLORS(Component.translatable("menu.seasonhud.main.color.button").append("...")),
+    COLORS(Common.translatedText("menu.seasonhud.main.color.button").append("...")),
 
-    SEASON(Component.translatable("menu.seasonhud.main.season.button").append("..."));
+    SEASON(Common.translatedText("menu.seasonhud.main.season.button").append("..."));
 
     private final Component buttonText;
 

@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.impl.minimaps;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -18,7 +19,7 @@ public class XaeroInfoDisplays {
     Builder<Boolean> builder = Builder.begin();
 
     SEASON_INFO_BUILDER = builder.setId("season")
-        .setName(Component.translatable("xaerominimap.seasonhud.infodisplay.season"))
+        .setName(Common.translatedText("xaerominimap.seasonhud.infodisplay.season"))
         .setDefaultState(true)
         .setCodec(InfoDisplayCommonStateCodecs.BOOLEAN)
         .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)

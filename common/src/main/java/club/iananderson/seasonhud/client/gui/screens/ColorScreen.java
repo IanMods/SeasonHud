@@ -22,7 +22,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 public class ColorScreen extends SeasonHudScreen {
-  private static final Component SCREEN_TITLE = Component.translatable("menu.seasonhud.color.title");
+  private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.color.title");
   private final List<ColorEditBox> seasonBoxes = new ArrayList<>();
   private int x;
   private int y;
@@ -153,9 +153,9 @@ public class ColorScreen extends SeasonHudScreen {
 
     //Buttons
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(SeasonHudClient.getEnableSeasonNameColor())
-        .withTooltip(t -> newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
+        .withTooltip(t -> Common.newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
         .create(leftButtonX, MENU_PADDING, BUTTON_WIDTH, BUTTON_HEIGHT,
-                Component.translatable("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
+                Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
               SeasonHudClient.setEnableSeasonNameColor(val);
               rebuildWidgets();
             });

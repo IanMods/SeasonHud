@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.client.gui.screens;
 
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
+import com.demonwav.mcdev.annotations.Translatable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,6 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import org.jetbrains.annotations.NotNull;
 
@@ -97,10 +97,6 @@ public class SeasonHudScreen extends Screen {
     graphics.drawCenteredString(font, this.getTitle(), this.width / 2, TITLE_PADDING, 16777215);
 
     super.render(graphics, mouseX, mouseY, partialTicks);
-  }
-
-  public Tooltip newTooltip(String key){
-    return Tooltip.create(Component.translatable(key));
   }
 
   @Override

@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.util.DrawUtil;
 import club.iananderson.seasonhud.util.Rgb;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class DefaultColorButton extends Button {
-  private static final Component DEFAULT = Component.translatable("menu.seasonhud.color.default.button");
+  private static final Component DEFAULT = Common.translatedText("menu.seasonhud.color.default.button");
   private final ColorEditBox colorEditBox;
   private final int defaultColor;
 
