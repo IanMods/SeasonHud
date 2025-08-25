@@ -26,4 +26,5 @@ libs
 .gradle
 # other
 run
-runs!/.idea/shelf/
+runs
+!/.idea/shelf/
