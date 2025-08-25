@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.13.9] - 2025-08-25
+
+### Fixed
+
+- Fixed 1.20.1 crash if using an older version of Forge
+- Fixed crash when using the 1.21.5 version on 1.21.2-1.21.4
+
 ## [1.13.8] - 2025-08-07
 
 ### Added
