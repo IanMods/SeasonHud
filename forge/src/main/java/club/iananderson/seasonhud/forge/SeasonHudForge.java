@@ -9,6 +9,7 @@ import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
 import dev.architectury.utils.Env;
 import dev.architectury.utils.EnvExecutor;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -16,12 +17,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
-  public SeasonHudForge(FMLJavaModLoadingContext context) {
-    var modEventBus = context.getModEventBus();
+  public SeasonHudForge() {
+    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
 
-    context.registerConfig(ModConfig.Type.CLIENT, Config.GENERAL_SPEC, "seasonhud-client.toml");
+    ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.GENERAL_SPEC, "seasonhud-client.toml");
 
     modEventBus.addListener(SeasonHudForge::onInitialize);
     modEventBus.addListener(SeasonHudForge::ftbChunkSetup);
