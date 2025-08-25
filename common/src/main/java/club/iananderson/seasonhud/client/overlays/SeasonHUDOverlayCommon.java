@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.client.overlays;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import net.minecraft.client.Minecraft;
@@ -19,17 +19,17 @@ public class SeasonHUDOverlayCommon {
     int screenHeight = mc.getWindow().getGuiScaledHeight();
     int x = 0;
     int y = 0;
-    int xOffset = Config.getHudX();
-    int yOffset = Config.getHudY();
-    double scale = Config.getHudScale();
-    int DEFAULT_X_OFFSET = Config.DEFAULT_X_OFFSET;
-    int DEFAULT_Y_OFFSET = Config.DEFAULT_Y_OFFSET;
+    int xOffset = SeasonHudClient.getHudX();
+    int yOffset = SeasonHudClient.getHudY();
+    double scale = SeasonHudClient.getHudScale();
+    int DEFAULT_X_OFFSET = SeasonHudClient.DEFAULT_X_OFFSET;
+    int DEFAULT_Y_OFFSET = SeasonHudClient.DEFAULT_Y_OFFSET;
     int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
     int stringHeight = (int) (mc.font.lineHeight * scale);
 
     if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()
         && !Common.hideHudInCurrentDimension()) {
-      switch (Config.getHudLocation()) {
+      switch (SeasonHudClient.getHudLocation()) {
         case TOP_LEFT:
           x = DEFAULT_X_OFFSET;
           y = DEFAULT_Y_OFFSET;
@@ -56,8 +56,8 @@ public class SeasonHUDOverlayCommon {
           break;
 
         case CUSTOM:
-          x = (int) xOffset;
-          y = (int) yOffset;
+          x = xOffset;
+          y = yOffset;
           break;
       }
 

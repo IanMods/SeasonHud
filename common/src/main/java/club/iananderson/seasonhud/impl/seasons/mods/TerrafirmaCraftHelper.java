@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -127,7 +127,7 @@ public class TerrafirmaCraftHelper implements IModHelper {
     int dayOfMonth = Calendars.CLIENT.getCalendarDayOfMonth();
     int daysInMonth = Calendars.CLIENT.getCalendarDaysInMonth();
 
-    if (Config.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason()) {
       return dayOfMonth;
     }
 
@@ -140,7 +140,7 @@ public class TerrafirmaCraftHelper implements IModHelper {
   public int seasonDuration(Player player) {
     int daysInMonth = Calendars.CLIENT.getCalendarDaysInMonth();
 
-    if (Config.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
       return daysInMonth;
     }
 
