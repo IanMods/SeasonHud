@@ -8,8 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Added server side config (will be in the "serverconfig" folder of the world)
-- Moved needCalendar and calenderDetailMode to server side config 
+- Added server side config
+    - Will be in the "serverconfig" folder of the world on Forge
+    - Will be in the main "config" folder on Fabric
+- Moved needCalendar and calenderDetailMode to server side config
+  - These will now be synced by the server
 
 ### Fixed
 
