@@ -7,7 +7,7 @@ public class SeasonHudServer {
   public static final ForgeConfigSpec SERVER_SPEC;
   static ForgeConfigSpec.ConfigValue<Boolean> needCalendar;
   static ForgeConfigSpec.ConfigValue<Integer> dayLength;
-  static ForgeConfigSpec.ConfigValue<Boolean> calenderDetailMode;
+  static ForgeConfigSpec.ConfigValue<Boolean> calendarDetailMode;
 
   static {
     ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -24,7 +24,7 @@ public class SeasonHudServer {
         "Require the calendar item to be in the players inventory to show the HUD?\n" + "(true/false)\n"
             + "Default is false.").define("need_calendar", false);
 
-    calenderDetailMode = builder.comment(
+    calendarDetailMode = builder.comment(
             "Having the calendar item shows the detailed version of the HUD" + "Default is false.")
         .define("calendar_detail", false);
 
@@ -53,11 +53,11 @@ public class SeasonHudServer {
   }
 
   public static boolean getCalendarDetailMode() {
-    return getOrDefault(calenderDetailMode);
+    return getOrDefault(calendarDetailMode);
   }
 
   public static void setCalendarDetailMode(boolean enable) {
-    calenderDetailMode.set(enable);
+    calendarDetailMode.set(enable);
   }
 
   public static int getDayLength() {
