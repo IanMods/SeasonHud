@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.mixin.ftbchunks;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
@@ -31,7 +31,7 @@ public class FTBChunksClientMixin {
     MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
     List<Component> res = cir.getReturnValue();
 
-    Config.setEnableMod(MINIMAP_SEASON.get());
+    SeasonHudClient.setEnableMod(MINIMAP_SEASON.get());
 
     if (CurrentMinimap.shouldDrawMinimapHud(Minimap.FTB_CHUNKS)) {
       res.add(seasonCombined);

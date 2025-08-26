@@ -4,12 +4,12 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
 import com.demonwav.mcdev.annotations.Translatable;
-import com.teamtea.eclipticseasons.config.CommonConfig.Season;
 import io.github.lucaargolo.seasons.FabricSeasons;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.network.chat.Component;
@@ -17,6 +17,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -203,7 +204,10 @@ public class Common {
     return Component.translatable(key, args);
   }
 
-  public static Tooltip newTooltip(@Translatable(foldMethod = true) String key) {
-    return Tooltip.create(translatedText(key));
+  public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key) {
+    List<FormattedCharSequence> List = new ArrayList<>();
+    List.add(translatedText(key).getVisualOrderText());
+
+    return List;
   }
 }

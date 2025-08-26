@@ -1,9 +1,11 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
+import java.util.List;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 
 public class MenuButton extends Button {
 
@@ -42,7 +44,7 @@ public class MenuButton extends Button {
     protected int y;
     protected int width = 150;
     protected int height = 20;
-    protected Component tooltip;
+    protected List<FormattedCharSequence> tooltip;
 
     public Builder(MenuButtons buttonType, OnPress onPress) {
       this.buttonType = buttonType;
@@ -78,7 +80,7 @@ public class MenuButton extends Button {
       return this;
     }
 
-    public Builder withTooltip(Component tooltip) {
+    public Builder withTooltip(List<FormattedCharSequence> tooltip) {
       this.tooltip = tooltip;
       return this;
     }

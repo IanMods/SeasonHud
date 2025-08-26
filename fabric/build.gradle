@@ -59,7 +59,7 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     //Fabric Seasons Extras
-    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}") {
+    modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
