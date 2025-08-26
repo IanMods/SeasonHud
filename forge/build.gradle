@@ -8,6 +8,21 @@ loom {
     forge {
         mixinConfig "seasonhud.mixins.json"
     }
+
+    runs {
+        client {
+            client()
+            setConfigName("Forge Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Forge Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
 }
 
 architectury {
@@ -72,9 +87,6 @@ dependencies {
     //Curios + Accessories
     modLocalRuntime "top.theillusivec4.curios:curios-forge:${project.curios_version}"
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
-
-    // Development QOL
-    modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}") { transitive = false }
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.

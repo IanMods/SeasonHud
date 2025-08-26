@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
+import club.iananderson.seasonhud.Common;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -40,11 +41,11 @@ public class CheckButton extends AbstractButton {
     if (this.active) {
       if (this.isFocused()) {
         narrationElementOutput.add(NarratedElementType.USAGE,
-                                   new TranslatableComponent("narration.checkbox.usage.focused"));
+                                   Common.translatedText("narration.checkbox.usage.focused"));
       }
       else {
         narrationElementOutput.add(NarratedElementType.USAGE,
-                                   new TranslatableComponent("narration.checkbox.usage.hovered"));
+                                   Common.translatedText("narration.checkbox.usage.hovered"));
       }
     }
   }

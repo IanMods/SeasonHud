@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.impl.minimaps;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
 import xaero.hud.minimap.info.InfoDisplay;
 import xaero.hud.minimap.info.InfoDisplay.Builder;
 import xaero.hud.minimap.info.codec.InfoDisplayCommonStateCodecs;
@@ -18,13 +18,13 @@ public class XaeroInfoDisplays {
     Builder<Boolean> builder = Builder.begin();
 
     SEASON_INFO_BUILDER = builder.setId("season")
-        .setName(new TranslatableComponent("xaerominimap.seasonhud.infodisplay.season"))
+        .setName(Common.translatedText("xaerominimap.seasonhud.infodisplay.season"))
         .setDefaultState(true)
         .setCodec(InfoDisplayCommonStateCodecs.BOOLEAN)
         .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)
         .setCompiler((displayInfo, compiler, session, availableWidth, playerPos) -> {
           if ((Boolean) displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
-              CurrentMinimap.Minimap.XAERO)) {
+              CurrentMinimap.Minimap.XAERO) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getSeasonHudText());
           }
         });

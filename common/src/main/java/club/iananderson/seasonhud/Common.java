@@ -1,17 +1,23 @@
 package club.iananderson.seasonhud;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
+import com.demonwav.mcdev.annotations.Translatable;
 import io.github.lucaargolo.seasons.FabricSeasons;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,6 +99,12 @@ public class Common {
     return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 
+  public static boolean clientSideConfig() {
+    Minecraft mc = Minecraft.getInstance();
+
+    return (mc.getCurrentServer() == null);
+  }
+
   public static boolean vanillaShouldDrawHud() {
     Minecraft mc = Minecraft.getInstance();
 
@@ -105,18 +117,30 @@ public class Common {
   }
 
   public static boolean minimapIntegrationHidden() {
-    return Config.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
-        && Config.getShowDefaultWhenMinimapHidden());
+    return SeasonHudClient.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
+        && SeasonHudClient.getShowDefaultWhenMinimapHidden());
   }
 
   public static boolean drawDefaultHud() {
-    return Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
-        || minimapIntegrationHidden());
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
+    return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
+        || !SeasonHudClient.getEnableMinimapIntegration() || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
-    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
-        || Config.getShowDefaultWhenMinimapHidden()));
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
+    return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
+        || !SeasonHudClient.getEnableMinimapIntegration() || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
   }
 
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
@@ -135,7 +159,13 @@ public class Common {
    * @return True if the current dimension is whitelisted in the season mod's config.
    */
   public static boolean hideHudInCurrentDimension() {
-    ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
+    ResourceKey<Level> currentDim = Objects.requireNonNull(mc.level).dimension();
 
     if (Common.fabricSeasonsLoaded()) {
       return !FabricSeasons.CONFIG.isValidInDimension(currentDim);
@@ -164,5 +194,20 @@ public class Common {
 
   public static ResourceLocation location(String path) {
     return new ResourceLocation(MOD_ID, path);
+  }
+
+  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key) {
+    return Component.translatable(key);
+  }
+
+  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key, Object... args) {
+    return Component.translatable(key, args);
+  }
+
+  public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key) {
+    List<FormattedCharSequence> List = new ArrayList<>();
+    List.add(translatedText(key).getVisualOrderText());
+
+    return List;
   }
 }
