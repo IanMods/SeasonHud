@@ -9,7 +9,7 @@ loom {
         mixinConfig "seasonhud.mixins.json"
     }
 
-    runs{
+    runs {
         client {
             client()
             setConfigName("Forge Client")

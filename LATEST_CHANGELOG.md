@@ -6,7 +6,7 @@
     - Will be in the "serverconfig" folder of the world on Forge
     - Will be in the main "config" folder on Fabric
 - Moved needCalendar and calenderDetailMode to server side config
-  - These will now be synced by the server
+    - These will now be synced by the server
 
 ### Fixed
 

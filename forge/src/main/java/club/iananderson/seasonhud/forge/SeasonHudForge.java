@@ -23,11 +23,9 @@ public class SeasonHudForge {
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
 
-    ModLoadingContext.get()
-        .registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
+    ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
 
-    ModLoadingContext.get()
-        .registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
+    ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
 
     modEventBus.addListener(SeasonHudForge::onInitialize);
     modEventBus.addListener(SeasonHudForge::ftbChunkSetup);

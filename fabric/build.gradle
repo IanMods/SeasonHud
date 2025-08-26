@@ -5,7 +5,7 @@ plugins {
 }
 
 loom {
-    runs{
+    runs {
         client {
             client()
             setConfigName("Fabric Client")

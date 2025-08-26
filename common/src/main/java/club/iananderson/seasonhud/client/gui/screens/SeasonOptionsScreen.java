@@ -59,14 +59,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     showSubSeason = SeasonHudClient.getShowSubSeason();
     showTropicalSeason = SeasonHudClient.getShowTropicalSeason();
 
-      if (Common.hasCalendarLoaded()) {
-        needCalendar = SeasonHudServer.getNeedCalendar();
-        enableCalendarDetail = SeasonHudServer.getCalendarDetailMode();
-      }
+    if (Common.hasCalendarLoaded()) {
+      needCalendar = SeasonHudServer.getNeedCalendar();
+      enableCalendarDetail = SeasonHudServer.getCalendarDetailMode();
+    }
 
-      if (Common.fabricSeasonsLoaded()) {
-        dayLength = SeasonHudServer.getDayLength();
-      }
+    if (Common.fabricSeasonsLoaded()) {
+      dayLength = SeasonHudServer.getDayLength();
+    }
   }
 
   public void saveConfig() {
@@ -172,12 +172,12 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
       int row = 4;
 
-      if(Common.fabricSeasonsExtrasLoaded()){
-        row+=1;
+      if (Common.fabricSeasonsExtrasLoaded()) {
+        row += 1;
       }
 
-      if(!drawDefaultHud){
-        row-=2;
+      if (!drawDefaultHud) {
+        row -= 2;
       }
 
       graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,

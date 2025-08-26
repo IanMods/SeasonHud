@@ -17,7 +17,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,7 +97,7 @@ public class Common {
     return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 
-  public static boolean clientSideConfig(){
+  public static boolean clientSideConfig() {
     Minecraft mc = Minecraft.getInstance();
 
     return (mc.getCurrentServer() == null);
@@ -127,8 +126,8 @@ public class Common {
       return false;
     }
 
-    return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !SeasonHudClient.getEnableMinimapIntegration()
-        || minimapIntegrationHidden());
+    return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
+        || !SeasonHudClient.getEnableMinimapIntegration() || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
@@ -138,8 +137,8 @@ public class Common {
       return false;
     }
 
-    return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !SeasonHudClient.getEnableMinimapIntegration()
-        || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
+    return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
+        || !SeasonHudClient.getEnableMinimapIntegration() || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
   }
 
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
@@ -195,15 +194,15 @@ public class Common {
     return new ResourceLocation(MOD_ID, path);
   }
 
-  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key){
+  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key) {
     return Component.translatable(key);
   }
 
-  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key, Object... args){
+  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key, Object... args) {
     return Component.translatable(key, args);
   }
 
-  public static Tooltip newTooltip(@Translatable(foldMethod = true) String key){
+  public static Tooltip newTooltip(@Translatable(foldMethod = true) String key) {
     return Tooltip.create(translatedText(key));
   }
 }
