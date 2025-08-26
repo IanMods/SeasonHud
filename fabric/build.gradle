@@ -129,7 +129,10 @@ dependencies {
             break
         case "fabric":
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-            //modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
+            break
+        case "fabric+extra":
+            modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+            modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
         default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene or fabric")
     }

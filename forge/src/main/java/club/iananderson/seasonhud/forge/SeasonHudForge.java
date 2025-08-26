@@ -24,10 +24,10 @@ public class SeasonHudForge {
     Common.init();
 
     ModLoadingContext.get()
-        .registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC, "seasonhud-client.toml");
+        .registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
 
     ModLoadingContext.get()
-        .registerConfig(ModConfig.Type.SERVER, SeasonHudServer.GENERAL_SPEC, "seasonhud-server.toml");
+        .registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
 
     modEventBus.addListener(SeasonHudForge::onInitialize);
     modEventBus.addListener(SeasonHudForge::ftbChunkSetup);

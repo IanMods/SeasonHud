@@ -24,8 +24,7 @@ public class XaeroInfoDisplays {
         .setCodec(InfoDisplayCommonStateCodecs.BOOLEAN)
         .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)
         .setCompiler((displayInfo, compiler, session, availableWidth, playerPos) -> {
-          if ((Boolean) displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
-              CurrentMinimap.Minimap.XAERO)) {
+          if ((Boolean) displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(CurrentMinimap.Minimap.XAERO) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getSeasonHudText());
           }
         });
