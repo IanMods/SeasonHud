@@ -59,8 +59,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     showSubSeason = SeasonHudClient.getShowSubSeason();
     showTropicalSeason = SeasonHudClient.getShowTropicalSeason();
 
-    //Todo doesnt load server config for client on fabric, may need to check forge too
-
       if (Common.hasCalendarLoaded()) {
         needCalendar = SeasonHudServer.getNeedCalendar();
         enableCalendarDetail = SeasonHudServer.getCalendarDetailMode();
