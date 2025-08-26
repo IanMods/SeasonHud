@@ -8,6 +8,21 @@ loom {
     forge {
         mixinConfig "seasonhud.mixins.json"
     }
+
+    runs{
+        client {
+            client()
+            setConfigName("Forge Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Forge Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
 }
 
 architectury {

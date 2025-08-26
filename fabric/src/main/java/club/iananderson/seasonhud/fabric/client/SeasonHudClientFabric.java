@@ -16,8 +16,6 @@ public class SeasonHudClientFabric implements ClientModInitializer {
 
   @Override
   public void onInitializeClient() {
-    ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.GENERAL_SPEC,
-                                          "seasonhud-client.toml");
     ClientEvents.register();
 
     if (CurrentMinimap.ftbChunksLoaded()) {

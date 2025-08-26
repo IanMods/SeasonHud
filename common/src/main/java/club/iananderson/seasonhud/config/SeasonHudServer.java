@@ -1,21 +1,23 @@
 package club.iananderson.seasonhud.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class SeasonHudServer {
-  public static final ForgeConfigSpec GENERAL_SPEC;
-  static ForgeConfigSpec.BooleanValue needCalendar;
+  public static final ForgeConfigSpec SERVER_SPEC;
+  static ForgeConfigSpec.ConfigValue<Boolean> needCalendar;
   static ForgeConfigSpec.ConfigValue<Integer> dayLength;
-  static ForgeConfigSpec.BooleanValue calenderDetailMode;
+  static ForgeConfigSpec.ConfigValue<Boolean> calenderDetailMode;
 
   static {
     ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
     setupConfig(builder);
-    GENERAL_SPEC = builder.build();
+    SERVER_SPEC = builder.build();
   }
 
   private SeasonHudServer() {
   }
+
 
   private static void setupConfig(ForgeConfigSpec.Builder builder) {
     builder.push("Season");
@@ -33,28 +35,38 @@ public class SeasonHudServer {
     builder.pop();
   }
 
+  private static <T> T getOrDefault(ConfigValue<T> config) {
+    if (SERVER_SPEC.isLoaded()) {
+      return config.get();
+    } else {
+      return config.getDefault();
+    }
+  }
+
   //Season
   public static boolean getNeedCalendar() {
-    return needCalendar.get();
+    return getOrDefault(needCalendar);
   }
 
   public static void setNeedCalendar(boolean enable) {
     needCalendar.set(enable);
   }
 
+  public static boolean getCalendarDetailMode() {
+    return getOrDefault(calenderDetailMode);
+  }
+
+  public static void setCalendarDetailMode(boolean enable) {
+    calenderDetailMode.set(enable);
+  }
+
   public static int getDayLength() {
-    return dayLength.get();
+    return getOrDefault(dayLength);
   }
 
   public static void setDayLength(int length) {
     dayLength.set(length);
   }
 
-  public static boolean getCalendarDetailMode() {
-    return calenderDetailMode.get();
-  }
 
-  public static void setCalendarDetailMode(boolean enable) {
-    calenderDetailMode.set(enable);
-  }
 }

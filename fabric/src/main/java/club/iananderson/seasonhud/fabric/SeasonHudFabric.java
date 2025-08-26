@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.fabric;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
@@ -19,7 +20,10 @@ public class SeasonHudFabric implements ModInitializer {
   public void onInitialize() {
     Common.init();
 
-    ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.GENERAL_SPEC,
+    ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
+                                          "seasonhud-client.toml");
+
+    ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
                                           "seasonhud-server.toml");
 
     if (Common.accessoriesLoaded() && !Common.trinketsLoaded()) {
