@@ -20,14 +20,13 @@ public enum Seasons {
   WINTER(3, "desc.seasonhud.season.winter", "winter", "\uEA03", SeasonHudClient.DEFAULT_WINTER_COLOR,
          SeasonHudClient.getWinterColor(), Rgb.seasonMap(SeasonHudClient.getWinterColor())),
 
-  DRY(4, "desc.seasonhud.season.dry", "dry", "\uEA04", SeasonHudClient.DEFAULT_DRY_COLOR,
-      SeasonHudClient.getDryColor(), Rgb.seasonMap(SeasonHudClient.getDryColor())),
+  DRY(4, "desc.seasonhud.season.dry", "dry", "\uEA04", SeasonHudClient.DEFAULT_DRY_COLOR, SeasonHudClient.getDryColor(),
+      Rgb.seasonMap(SeasonHudClient.getDryColor())),
 
-  WET(5, "desc.seasonhud.season.wet", "wet", "\uEA05", SeasonHudClient.DEFAULT_WET_COLOR,
-      SeasonHudClient.getWetColor(), Rgb.seasonMap(SeasonHudClient.getWetColor())),
+  WET(5, "desc.seasonhud.season.wet", "wet", "\uEA05", SeasonHudClient.DEFAULT_WET_COLOR, SeasonHudClient.getWetColor(),
+      Rgb.seasonMap(SeasonHudClient.getWetColor())),
 
-  NULL(100, "desc.seasonhud.season.null", "null", "\uEA99", 16777215, 16777215,
-       Rgb.seasonMap(16777215));
+  NULL(100, "desc.seasonhud.season.null", "null", "\uEA99", 16777215, 16777215, Rgb.seasonMap(16777215));
 
   public static final EnumSet<Seasons> SEASONS_ENUM_LIST = EnumSet.allOf(Seasons.class);
   private final int id;
@@ -36,13 +35,13 @@ public enum Seasons {
   private final String seasonIconChar;
   private final int defaultColor;
   private final Map<String, Integer> rgbMap;
-  private int seasonColor;
   private final Component seasonName;
+  private int seasonColor;
 
   Seasons(int id, String key, String fileName, String iconChar, int defaultColor, int seasonColor,
       Map<String, Integer> rgbMap) {
     this.id = id;
-    this.key=key;
+    this.key = key;
     this.seasonFileName = fileName;
     this.seasonIconChar = iconChar;
     this.defaultColor = defaultColor;
@@ -71,18 +70,6 @@ public enum Seasons {
     return this.seasonColor;
   }
 
-  public int getDefaultColor() {
-    return this.defaultColor;
-  }
-
-  public Map<String, Integer> getRgbMap() {
-    return this.rgbMap;
-  }
-
-  public Component getSeasonName() {
-    return this.seasonName;
-  }
-
   public void setSeasonColor(int rgbColor) {
     Seasons season = this;
     this.seasonColor = rgbColor;
@@ -95,5 +82,17 @@ public enum Seasons {
       case DRY -> SeasonHudClient.setDryColor(rgbColor);
       case WET -> SeasonHudClient.setWetColor(rgbColor);
     }
+  }
+
+  public int getDefaultColor() {
+    return this.defaultColor;
+  }
+
+  public Map<String, Integer> getRgbMap() {
+    return this.rgbMap;
+  }
+
+  public Component getSeasonName() {
+    return this.seasonName;
   }
 }

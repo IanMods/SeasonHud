@@ -79,6 +79,7 @@ public class Calendar {
   }
 
   public static boolean validDetailedMode() {
-    return (SeasonHudServer.getCalendarDetailMode() && Calendar.calendarFound()) || !SeasonHudServer.getCalendarDetailMode();
+    return (SeasonHudServer.getCalendarDetailMode() && Calendar.calendarFound())
+        || !SeasonHudServer.getCalendarDetailMode();
   }
 }

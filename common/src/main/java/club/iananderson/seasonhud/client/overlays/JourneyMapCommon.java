@@ -83,10 +83,13 @@ public class JourneyMapCommon {
   }
 
   private int labelY() {
-    int startY = (int) (textureY + (SeasonHudClient.getJourneyMapAboveMap() ? 0 : (SeasonHudClient.getJourneyMapMacOS() ? -margin
-        - labelHeight : minimapHeight + margin)));
+    int startY = (int) (textureY + (SeasonHudClient.getJourneyMapAboveMap() ? 0
+                                                                            : (SeasonHudClient.getJourneyMapMacOS() ?
+                                                                               -margin - labelHeight : minimapHeight
+                                                                                   + margin)));
 
-    return startY + (SeasonHudClient.getJourneyMapAboveMap() ? -topLabelHeight - margin - labelHeight : bottomLabelHeight);
+    return startY + (SeasonHudClient.getJourneyMapAboveMap() ? -topLabelHeight - margin - labelHeight
+                                                             : bottomLabelHeight);
   }
 
   public float getFontScale() {

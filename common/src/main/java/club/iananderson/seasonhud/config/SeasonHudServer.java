@@ -18,7 +18,6 @@ public class SeasonHudServer {
   private SeasonHudServer() {
   }
 
-
   private static void setupConfig(ForgeConfigSpec.Builder builder) {
     builder.push("Season");
     needCalendar = builder.comment(
@@ -38,7 +37,8 @@ public class SeasonHudServer {
   private static <T> T getOrDefault(ConfigValue<T> config) {
     if (SERVER_SPEC.isLoaded()) {
       return config.get();
-    } else {
+    }
+    else {
       return config.getDefault();
     }
   }
@@ -67,6 +67,5 @@ public class SeasonHudServer {
   public static void setDayLength(int length) {
     dayLength.set(length);
   }
-
 
 }

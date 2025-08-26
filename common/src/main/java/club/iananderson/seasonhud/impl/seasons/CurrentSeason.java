@@ -155,7 +155,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                  seasonText.withStyle(seasonFormat));
+                                 seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getSeasonMenuText(Seasons season, int newRgb, boolean seasonShort) {
@@ -175,7 +175,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                  seasonText.withStyle(seasonFormat));
+                                 seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getSeasonHudConfigText(ShowDay showDay, boolean showSubSeason) {
@@ -187,6 +187,6 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                  seasonText.withStyle(seasonFormat));
+                                 seasonText.withStyle(seasonFormat));
   }
 }
