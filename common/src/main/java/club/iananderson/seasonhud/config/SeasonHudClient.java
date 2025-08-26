@@ -4,11 +4,10 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.Location;
 import club.iananderson.seasonhud.client.gui.ShowDay;
 import java.util.Arrays;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class SeasonHudClient {
-  public static final ForgeConfigSpec GENERAL_SPEC;
+  public static final ForgeConfigSpec CLIENT_SPEC;
   public static final int DEFAULT_SPRING_COLOR = 16753595;
   public static final int DEFAULT_SUMMER_COLOR = 16705834;
   public static final int DEFAULT_AUTUMN_COLOR = 12344871;
@@ -43,7 +42,7 @@ public class SeasonHudClient {
   static {
     ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
     setupConfig(builder);
-    GENERAL_SPEC = builder.build();
+    CLIENT_SPEC = builder.build();
   }
 
   private SeasonHudClient() {
@@ -144,9 +143,18 @@ public class SeasonHudClient {
     builder.pop();
   }
 
+  private static <T> T getOrDefault(ForgeConfigSpec.ConfigValue<T> config) {
+    if (CLIENT_SPEC.isLoaded()) {
+      return config.get();
+    }
+    else {
+      return config.getDefault();
+    }
+  }
+
   //SeasonHUD
   public static boolean getEnableMod() {
-    return SeasonHudClient.enableMod.get();
+    return getOrDefault(enableMod);
   }
 
   public static void setEnableMod(boolean enable) {
@@ -155,7 +163,7 @@ public class SeasonHudClient {
 
   //HUD
   public static Location getHudLocation() {
-    return SeasonHudClient.hudLocation.get();
+    return getOrDefault(hudLocation);
   }
 
   public static void setHudLocation(Location location) {
@@ -163,12 +171,7 @@ public class SeasonHudClient {
   }
 
   public static int getHudX() {
-    if (Minecraft.getInstance().player == null) {
-      return DEFAULT_X_OFFSET;
-    }
-    else {
-      return hudX.get();
-    }
+    return getOrDefault(hudX);
   }
 
   public static void setHudX(int x) {
@@ -176,12 +179,7 @@ public class SeasonHudClient {
   }
 
   public static int getHudY() {
-    if (Minecraft.getInstance().player == null) {
-      return DEFAULT_Y_OFFSET;
-    }
-    else {
-      return hudY.get();
-    }
+    return getOrDefault(hudY);
   }
 
   public static void setHudY(int y) {
@@ -189,12 +187,8 @@ public class SeasonHudClient {
   }
 
   public static double getHudScale() {
-    if (Minecraft.getInstance().player == null) {
-      return DEFAULT_SCALE;
-    }
-    else {
-      return hudScale.get();
-    }
+    return getOrDefault(hudScale);
+
   }
 
   public static void setHudScale(double scale) {
@@ -203,7 +197,7 @@ public class SeasonHudClient {
 
   //Colors
   public static boolean getEnableSeasonNameColor() {
-    return enableSeasonNameColor.get();
+    return getOrDefault(enableSeasonNameColor);
   }
 
   public static void setEnableSeasonNameColor(boolean enable) {
@@ -211,7 +205,7 @@ public class SeasonHudClient {
   }
 
   public static int getSpringColor() {
-    return springColor.get();
+    return getOrDefault(springColor);
   }
 
   public static void setSpringColor(int rgbColor) {
@@ -219,7 +213,7 @@ public class SeasonHudClient {
   }
 
   public static int getSummerColor() {
-    return summerColor.get();
+    return getOrDefault(summerColor);
   }
 
   public static void setSummerColor(int rgbColor) {
@@ -227,7 +221,7 @@ public class SeasonHudClient {
   }
 
   public static int getAutumnColor() {
-    return autumnColor.get();
+    return getOrDefault(autumnColor);
   }
 
   public static void setAutumnColor(int rgbColor) {
@@ -235,7 +229,7 @@ public class SeasonHudClient {
   }
 
   public static int getWinterColor() {
-    return winterColor.get();
+    return getOrDefault(winterColor);
   }
 
   public static void setWinterColor(int rgbColor) {
@@ -243,7 +237,7 @@ public class SeasonHudClient {
   }
 
   public static int getDryColor() {
-    return dryColor.get();
+    return getOrDefault(dryColor);
   }
 
   public static void setDryColor(int rgbColor) {
@@ -251,7 +245,7 @@ public class SeasonHudClient {
   }
 
   public static int getWetColor() {
-    return wetColor.get();
+    return getOrDefault(wetColor);
   }
 
   public static void setWetColor(int rgbColor) {
@@ -259,7 +253,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getShowTropicalSeason() {
-    return showTropicalSeason.get();
+    return getOrDefault(showTropicalSeason);
   }
 
   public static void setShowTropicalSeason(boolean enable) {
@@ -267,7 +261,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getShowSubSeason() {
-    return showSubSeason.get();
+    return getOrDefault(showSubSeason);
   }
 
   public static void setShowSubSeason(boolean enable) {
@@ -275,7 +269,7 @@ public class SeasonHudClient {
   }
 
   public static ShowDay getShowDay() {
-    return showDay.get();
+    return getOrDefault(showDay);
   }
 
   public static void setShowDay(ShowDay showDay) {
@@ -283,7 +277,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getShowDefaultWhenMinimapHidden() {
-    return showDefaultWhenMinimapHidden.get();
+    return getOrDefault(showDefaultWhenMinimapHidden);
   }
 
   public static void setShowDefaultWhenMinimapHidden(boolean enable) {
@@ -292,7 +286,7 @@ public class SeasonHudClient {
 
   //Minimap
   public static boolean getEnableMinimapIntegration() {
-    return SeasonHudClient.enableMinimapIntegration.get();
+    return getOrDefault(enableMinimapIntegration);
   }
 
   public static void setEnableMinimapIntegration(boolean enable) {
@@ -301,7 +295,7 @@ public class SeasonHudClient {
 
   //Journeymap
   public static boolean getJourneyMapAboveMap() {
-    return journeyMapAboveMap.get();
+    return getOrDefault(journeyMapAboveMap);
   }
 
   public static void setJourneyMapAboveMap(boolean enable) {
@@ -309,7 +303,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getJourneyMapMacOS() {
-    return journeyMapMacOS.get();
+    return getOrDefault(journeyMapMacOS);
   }
 
   public static void setJourneyMapMacOS(boolean enable) {

@@ -7,10 +7,10 @@
 /common/run/
 /fabric/.gradle/
 /fabric/build/
-/fabric/run/
+/fabric/run*/
 /forge/.gradle/
 /forge/build/
-/forge/run/
+/forge/run*/
 # idea
 out
 *.ipr

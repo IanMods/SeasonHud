@@ -58,9 +58,17 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     seasonColor = SeasonHudClient.getEnableSeasonNameColor();
     showSubSeason = SeasonHudClient.getShowSubSeason();
     showTropicalSeason = SeasonHudClient.getShowTropicalSeason();
-    needCalendar = SeasonHudServer.getNeedCalendar();
-    enableCalendarDetail = SeasonHudServer.getCalendarDetailMode();
-    dayLength = SeasonHudServer.getDayLength();
+
+    //Todo doesnt load server config for client on fabric, may need to check forge too
+
+      if (Common.hasCalendarLoaded()) {
+        needCalendar = SeasonHudServer.getNeedCalendar();
+        enableCalendarDetail = SeasonHudServer.getCalendarDetailMode();
+      }
+
+      if (Common.fabricSeasonsLoaded()) {
+        dayLength = SeasonHudServer.getDayLength();
+      }
   }
 
   public void saveConfig() {
@@ -163,9 +171,19 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       }
     }
 
-    if (Common.fabricSeasonsLoaded()) {
+    if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
+      int row = 4;
+
+      if(Common.fabricSeasonsExtrasLoaded()){
+        row+=1;
+      }
+
+      if(!drawDefaultHud){
+        row-=2;
+      }
+
       graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
-                                  MENU_PADDING + (3 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
+                                  MENU_PADDING + (row * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
                                       + BUTTON_PADDING), 16777215);
     }
 
@@ -266,35 +284,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       widgets.addAll(Arrays.asList(showSubSeasonButton, showTropicalSeasonButton));
     }
 
-    if (Common.fabricSeasonsLoaded()) {
-      row += 1; //Row 4 (enableMinimapIntegration -> Row 2)
-      dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
-                                 BUTTON_HEIGHT, Component.literal(String.valueOf(dayLength)));
-      dayLengthBox.setMaxLength(10);
-      dayLengthBox.setValue(String.valueOf(dayLength));
-      dayLengthBox.setResponder((lengthString) -> {
-        if (validate(lengthString)) {
-          dayLengthBox.setTextColor(0xffffff);
-          int currentLength = Integer.parseInt(lengthString);
-
-          if (currentLength != this.newDayLength) {
-            this.newDayLength = currentLength;
-            dayLengthBox.setValue(lengthString);
-          }
-
-          doneButton.active = true;
-        }
-        else {
-          dayLengthBox.setTextColor(16733525);
-          doneButton.active = false;
-        }
-      });
-      dayLengthBox.setHint(Component.literal("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
-      dayLengthBox.setEditable(Common.clientSideConfig());
-
-      widgets.add(dayLengthBox);
-    }
-
     if (Common.hasCalendarLoaded()) {
       row += 1; //Row 5 ((enableMinimapIntegration -> Row 3)
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
@@ -321,6 +310,35 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       }
 
       widgets.addAll(Arrays.asList(needCalendarButton, calendarDetailModeButton));
+    }
+
+    if (Common.fabricSeasonsLoaded()) {
+      row += 2; //Row 4 (enableMinimapIntegration -> Row 2)
+      dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
+                                 BUTTON_HEIGHT, Component.literal(String.valueOf(dayLength)));
+      dayLengthBox.setMaxLength(10);
+      dayLengthBox.setValue(String.valueOf(dayLength));
+      dayLengthBox.setResponder((lengthString) -> {
+        if (validate(lengthString)) {
+          dayLengthBox.setTextColor(0xffffff);
+          int currentLength = Integer.parseInt(lengthString);
+
+          if (currentLength != this.newDayLength) {
+            this.newDayLength = currentLength;
+            dayLengthBox.setValue(lengthString);
+          }
+
+          doneButton.active = true;
+        }
+        else {
+          dayLengthBox.setTextColor(16733525);
+          doneButton.active = false;
+        }
+      });
+      dayLengthBox.setHint(Component.literal("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
+      dayLengthBox.visible = Common.clientSideConfig();
+
+      widgets.add(dayLengthBox);
     }
 
     widgets.forEach(this::addRenderableWidget);
