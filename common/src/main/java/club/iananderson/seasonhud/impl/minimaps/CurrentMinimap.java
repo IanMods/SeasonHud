@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.minimaps;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.platform.Services;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
@@ -119,7 +119,7 @@ public class CurrentMinimap {
       return false;
     }
 
-    boolean enabled = Config.getEnableMod() && Config.getEnableMinimapIntegration();
+    boolean enabled = SeasonHudClient.getEnableMod() && SeasonHudClient.getEnableMinimapIntegration();
     boolean hiddenMinimap = Common.hideHudInCurrentDimension() || hiddenMinimap(minimap);
 
     return enabled && Calendar.validNeedCalendar() && !mc.options.hideGui && !hiddenMinimap;

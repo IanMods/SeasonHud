@@ -4,6 +4,23 @@ plugins {
     id 'com.modrinth.minotaur'
 }
 
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
+}
+
 architectury {
     platformSetupLoomIde()
     fabric()
@@ -104,11 +121,6 @@ dependencies {
     modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-
-//    modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
-//        exclude group: 'net.fabricmc', module: 'fabric-loader'
-//    }
-
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
