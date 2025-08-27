@@ -49,6 +49,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 
+    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${devauth_version}")
+
     //Serene Seasons
     modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-neoforge"
     modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-neoforge"

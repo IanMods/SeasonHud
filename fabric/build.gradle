@@ -52,7 +52,7 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
+    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
 
     //Fabric Seasons
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
