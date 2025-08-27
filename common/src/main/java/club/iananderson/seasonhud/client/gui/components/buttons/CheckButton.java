@@ -1,6 +1,5 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
-import club.iananderson.seasonhud.Common;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

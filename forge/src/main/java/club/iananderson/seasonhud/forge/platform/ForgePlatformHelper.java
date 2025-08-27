@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.forge.platform;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.services.IPlatformHelper;
 import com.teamtea.eclipticseasons.api.constant.solar.Season;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
@@ -82,7 +82,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
     long subSeasonDate = (seasonDay % subSeasonDuration) + 1; //Default 8 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; //Default 24 days in a season (8 days * 3)
 
-    if (Config.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason()) {
       return subSeasonDate;
     }
     else {
@@ -110,7 +110,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
     long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; //Default 7 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
 
-    if (Config.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason()) {
       return subSeasonDate;
     }
 

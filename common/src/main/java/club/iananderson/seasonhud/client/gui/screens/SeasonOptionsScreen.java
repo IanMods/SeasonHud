@@ -18,7 +18,6 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
 import org.jetbrains.annotations.NotNull;
 
 public class SeasonOptionsScreen extends SeasonHudScreen {
@@ -226,7 +225,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                   (b, val) -> this.hudLocation = val);
 
       hudScaleSlider = HudScaleSlider.builder(Common.translatedText("menu.seasonhud.season.scale.slider"))
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
           .withValueRange(Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
           .withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
@@ -235,14 +233,12 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       row += 1; // Row 2
       xSlider = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
           .withValues(0, this.maxWidth(seasonCombined), xSliderInt, Client.DEFAULT_X_OFFSET)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
                       BUTTON_HEIGHT)
           .build();
 
       ySlider = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.yOffset.slider"))
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.yOffset.tooltip"))
           .withValues(0, this.maxHeight(), ySliderInt, Client.DEFAULT_Y_OFFSET)
           .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
                       BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
@@ -353,7 +349,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       widgets.add(dayLengthBox);
     }
 
-    widgets.forEach(this::addRenderableWidget);
+    widgets.forEach(this::addButton);
   }
 
   private boolean inBounds(int length) {

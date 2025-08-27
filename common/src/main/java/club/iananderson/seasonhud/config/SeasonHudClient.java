@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
@@ -193,7 +191,6 @@ public class SeasonHudClient {
       return getDefault(config);
     }
   }
-
 
   //SeasonHUD
   public static boolean getEnableMod() {

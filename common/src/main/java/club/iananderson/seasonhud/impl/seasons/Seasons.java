@@ -7,7 +7,6 @@ import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
 import java.util.Map;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public enum Seasons {
   SPRING(0, "desc.seasonhud.season.spring", "spring", "\uEA00", Client.DEFAULT_SPRING_COLOR,

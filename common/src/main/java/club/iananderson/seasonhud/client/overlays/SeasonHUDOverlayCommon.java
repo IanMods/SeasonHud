@@ -20,17 +20,18 @@ public class SeasonHUDOverlayCommon {
         && !Common.hideHudInCurrentDimension()) {
       int screenWidth = mc.getWindow().getGuiScaledWidth();
       int screenHeight = mc.getWindow().getGuiScaledHeight();
-  //    int iconWidth = 9;
+      //    int iconWidth = 9;
 //    int iconSpace = 2;
-    int x = 0;
-    int y = 0;
-    int xOffset = SeasonHudClient.getHudX();
+      int x = 0;
+      int y = 0;
+      int xOffset = SeasonHudClient.getHudX();
       int yOffset = SeasonHudClient.getHudY();
       double scale = SeasonHudClient.getHudScale();
       int DEFAULT_X_OFFSET = Client.DEFAULT_X_OFFSET;
       int DEFAULT_Y_OFFSET = Client.DEFAULT_Y_OFFSET;
-      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
-    int stringHeight = (int) (mc.font.lineHeight * scale);
+      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+      int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
+      int stringHeight = (int) (mc.font.lineHeight * scale);
 //    if (Services.PLATFORM.isModLoaded("modernui")) {
 //      x += iconWidth + iconSpace;
 //      y += 1;

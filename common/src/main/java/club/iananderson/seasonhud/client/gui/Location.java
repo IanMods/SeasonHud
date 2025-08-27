@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.client.gui;
 
 import club.iananderson.seasonhud.Common;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public enum Location {
   TOP_LEFT(0, "desc.seasonhud.location.topLeft"),

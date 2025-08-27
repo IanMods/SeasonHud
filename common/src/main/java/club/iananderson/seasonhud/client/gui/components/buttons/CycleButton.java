@@ -106,12 +106,11 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   }
 
   private Component createLabelForValue(T object) {
-    return (Component) (this.displayOnlyValue ? (Component) this.valueStringifier.apply(object)
-                                              : this.createFullName(object));
+    return this.displayOnlyValue ? this.valueStringifier.apply(object) : this.createFullName(object);
   }
 
   private MutableComponent createFullName(T object) {
-    return optionNameValue(this.name, (Component) this.valueStringifier.apply(object));
+    return optionNameValue(this.name, this.valueStringifier.apply(object));
   }
 
   public T getValue() {
@@ -239,9 +238,9 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
       }
       else {
         T object = this.initialValue != null ? this.initialValue : list.get(this.initialIndex);
-        Component component2 = (Component) this.valueStringifier.apply(object);
+        Component component2 = this.valueStringifier.apply(object);
         Component component3 = this.displayOnlyValue ? component2 : optionNameValue(component, component2);
-        return new CycleButton(i, j, k, l, (Component) component3, component, this.initialIndex, object, this.values,
+        return new CycleButton(i, j, k, l, component3, component, this.initialIndex, object, this.values,
                                this.valueStringifier, onValueChange, this.tooltipSupplier, this.displayOnlyValue);
       }
     }

@@ -100,7 +100,7 @@ public class BasicSlider extends AbstractSliderButton {
       double d = (double) Util.getMillis() / 1000.0;
       double e = Math.max((double) r * 0.5, 3.0);
       double f = Math.sin(1.5707963267948966 * Math.cos(6.283185307179586 * d / e)) / 2.0 + 0.5;
-      double g = Mth.lerp(f, 0.0, (double) r);
+      double g = Mth.lerp(f, 0.0, r);
       DrawUtil.enableScissor(j, k, l, m);
       GuiComponent.drawString(graphics, font, component, j - (int) g, p, n);
       DrawUtil.disableScissor();
