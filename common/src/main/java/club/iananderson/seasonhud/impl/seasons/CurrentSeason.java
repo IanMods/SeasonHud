@@ -82,7 +82,7 @@ public class CurrentSeason {
 
   //Localized name with icon
   public Component getText(ShowDay showDay, boolean showSubSeason) {
-    Component text = new TextComponent("");
+    Component text = Common.literalText("");
     Component seasonKey = getSeasonKey(showSubSeason);
 
     switch (showDay) {

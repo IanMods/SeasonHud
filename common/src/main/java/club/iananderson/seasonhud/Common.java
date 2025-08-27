@@ -196,6 +196,10 @@ public class Common {
     return new ResourceLocation(MOD_ID, path);
   }
 
+  public static MutableComponent literalText(String text) {
+    return Component.literal(text);
+  }
+
   public static MutableComponent translatedText(@Translatable(foldMethod = true) String key) {
     return new TranslatableComponent(key);
   }

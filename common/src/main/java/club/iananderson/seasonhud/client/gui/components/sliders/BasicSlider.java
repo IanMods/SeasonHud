@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.util.DrawUtil;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -241,7 +242,7 @@ public class BasicSlider extends AbstractSliderButton {
   @Override
   protected void updateMessage() {
     if (this.drawString) {
-      this.setMessage(new TextComponent(this.getValueString()));
+      this.setMessage(Common.literalText(this.getValueString()));
     }
     else {
       this.setMessage(new TextComponent(""));

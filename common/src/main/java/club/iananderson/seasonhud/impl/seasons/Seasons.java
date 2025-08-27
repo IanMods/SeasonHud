@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
@@ -9,22 +10,22 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public enum Seasons {
-  SPRING(0, "desc.seasonhud.season.spring", "spring", "\uEA00", SeasonHudClient.DEFAULT_SPRING_COLOR,
+  SPRING(0, "desc.seasonhud.season.spring", "spring", "\uEA00", Client.DEFAULT_SPRING_COLOR,
          SeasonHudClient.getSpringColor(), Rgb.seasonMap(SeasonHudClient.getSpringColor())),
 
-  SUMMER(1, "desc.seasonhud.season.summer", "summer", "\uEA01", SeasonHudClient.DEFAULT_SUMMER_COLOR,
+  SUMMER(1, "desc.seasonhud.season.summer", "summer", "\uEA01", Client.DEFAULT_SUMMER_COLOR,
          SeasonHudClient.getSummerColor(), Rgb.seasonMap(SeasonHudClient.getSummerColor())),
 
-  AUTUMN(2, "desc.seasonhud.season.autumn", "autumn", "\uEA02", SeasonHudClient.DEFAULT_AUTUMN_COLOR,
+  AUTUMN(2, "desc.seasonhud.season.autumn", "autumn", "\uEA02", Client.DEFAULT_AUTUMN_COLOR,
          SeasonHudClient.getAutumnColor(), Rgb.seasonMap(SeasonHudClient.getAutumnColor())),
 
-  WINTER(3, "desc.seasonhud.season.winter", "winter", "\uEA03", SeasonHudClient.DEFAULT_WINTER_COLOR,
+  WINTER(3, "desc.seasonhud.season.winter", "winter", "\uEA03", Client.DEFAULT_WINTER_COLOR,
          SeasonHudClient.getWinterColor(), Rgb.seasonMap(SeasonHudClient.getWinterColor())),
 
-  DRY(4, "desc.seasonhud.season.dry", "dry", "\uEA04", SeasonHudClient.DEFAULT_DRY_COLOR, SeasonHudClient.getDryColor(),
+  DRY(4, "desc.seasonhud.season.dry", "dry", "\uEA04", Client.DEFAULT_DRY_COLOR, SeasonHudClient.getDryColor(),
       Rgb.seasonMap(SeasonHudClient.getDryColor())),
 
-  WET(5, "desc.seasonhud.season.wet", "wet", "\uEA05", SeasonHudClient.DEFAULT_WET_COLOR, SeasonHudClient.getWetColor(),
+  WET(5, "desc.seasonhud.season.wet", "wet", "\uEA05", Client.DEFAULT_WET_COLOR, SeasonHudClient.getWetColor(),
       Rgb.seasonMap(SeasonHudClient.getWetColor())),
 
   NULL(100, "desc.seasonhud.season.null", "null", "\uEA99", 16777215, 16777215, Rgb.seasonMap(16777215));
