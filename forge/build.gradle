@@ -200,8 +200,6 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
 
 tasks.register('publishForge') {
     group = "upload"
-    afterEvaluate {
-        dependsOn(tasks.publishCurseForge)
-        dependsOn(tasks.modrinth)
-    }
+    dependsOn(tasks.publishCurseForge)
+    dependsOn(tasks.modrinth)
 }
