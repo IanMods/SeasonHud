@@ -315,7 +315,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     if (Common.fabricSeasonsLoaded()) {
       row += 2; //Row 4 (enableMinimapIntegration -> Row 2)
       dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
-                                 BUTTON_HEIGHT, Component.literal(String.valueOf(dayLength)));
+                                 BUTTON_HEIGHT, Common.literalText(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);
       dayLengthBox.setValue(String.valueOf(dayLength));
       dayLengthBox.setResponder((lengthString) -> {
@@ -335,7 +335,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           doneButton.active = false;
         }
       });
-      dayLengthBox.setHint(Component.literal("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
+      dayLengthBox.setHint(Common.literalText("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
       dayLengthBox.visible = Common.clientSideConfig();
 
       widgets.add(dayLengthBox);
