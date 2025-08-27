@@ -29,7 +29,7 @@ public class SeasonHudFabric implements ModInitializer {
       ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
                                        "seasonhud-client.toml");
       ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
-                                       "seasonhud-common.toml");
+                                       "seasonhud-server.toml");
     }
 
     else{
