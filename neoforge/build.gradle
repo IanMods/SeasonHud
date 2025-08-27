@@ -146,7 +146,7 @@ shadowJar {
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
 }
 
 modrinth {
@@ -176,7 +176,7 @@ modrinth {
     }
 }
 
-task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     debugMode = false
     disableVersionDetection()
     apiToken = System.getenv("CURSEFORGE_TOKEN")
@@ -203,10 +203,8 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addOptional("map-atlases-forge")
 }
 
-task publishNeoForge {
+tasks.register('publishNeoForge') {
     group = "upload"
-    afterEvaluate {
-        dependsOn(tasks.publishCurseForge)
-        dependsOn(tasks.modrinth)
-    }
+    dependsOn(tasks.publishCurseForge)
+    dependsOn(tasks.modrinth)
 }
