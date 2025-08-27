@@ -1,17 +1,17 @@
 package club.iananderson.seasonhud.config;
 
 import club.iananderson.seasonhud.config.DefaultValues.Server;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 
 public class SeasonHudServer {
-  public static final ForgeConfigSpec SERVER_SPEC;
-  static ForgeConfigSpec.ConfigValue<Boolean> needCalendar;
-  static ForgeConfigSpec.ConfigValue<Integer> dayLength;
-  static ForgeConfigSpec.ConfigValue<Boolean> calendarDetailMode;
+  public static final ModConfigSpec SERVER_SPEC;
+  static ConfigValue<Boolean> needCalendar;
+  static ConfigValue<Integer> dayLength;
+  static ConfigValue<Boolean> calendarDetailMode;
 
   static {
-    ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
     setupConfig(builder);
     SERVER_SPEC = builder.build();
   }
@@ -19,7 +19,7 @@ public class SeasonHudServer {
   private SeasonHudServer() {
   }
 
-  private static void setupConfig(ForgeConfigSpec.Builder builder) {
+  private static void setupConfig(ModConfigSpec.Builder builder) {
     builder.push("Season");
     needCalendar = builder.comment(
         "Require the calendar item to be in the players inventory to show the HUD?\n" + "(true/false)\n" + "Default is "

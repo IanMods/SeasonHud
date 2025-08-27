@@ -94,8 +94,11 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       if (Common.fabricSeasonsLoaded()) {
         SeasonHudServer.setDayLength(Integer.parseInt(dayLengthBox.getValue()));
       }
+
+      SeasonHudServer.SERVER_SPEC.save();
     }
 
+    SeasonHudClient.CLIENT_SPEC.save();
   }
 
   @Override
@@ -186,13 +189,11 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                                       + BUTTON_PADDING), 16777215);
     }
 
-    super.render(graphics, mouseX, mouseY, partialTicks);
-
-      graphics.pose().pushPose();
-      graphics.pose().translate(0, 0, 50);
-      graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
-      graphics.drawString(font, seasonCombined, x, y, 0xffffff);
-      graphics.pose().popPose();
+    graphics.pose().pushPose();
+    graphics.pose().translate(0, 0, 50);
+    graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
+    graphics.drawString(font, seasonCombined, x, y, 0xffffff);
+    graphics.pose().popPose();
 
   }
 

@@ -5,11 +5,11 @@ import club.iananderson.seasonhud.client.gui.Location;
 import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import java.util.Arrays;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 
 public class SeasonHudClient {
-  public static final ForgeConfigSpec CLIENT_SPEC;
+  public static final ModConfigSpec CLIENT_SPEC;
   private static ConfigValue<Boolean> enableMod;
   private static ConfigValue<Location> hudLocation;
   private static ConfigValue<Integer> hudX;
@@ -27,11 +27,9 @@ public class SeasonHudClient {
   private static ConfigValue<ShowDay> showDay;
   private static ConfigValue<Boolean> enableMinimapIntegration;
   private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
-  private static ConfigValue<Boolean> journeyMapAboveMap;
-  private static ConfigValue<Boolean> journeyMapMacOS;
 
   static {
-    ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
     setupConfig(builder);
     CLIENT_SPEC = builder.build();
   }
@@ -39,7 +37,7 @@ public class SeasonHudClient {
   private SeasonHudClient() {
   }
 
-  private static void setupConfig(ForgeConfigSpec.Builder builder) {
+  private static void setupConfig(ModConfigSpec.Builder builder) {
     builder.push("SeasonHUD");
     enableMod = builder.comment(
             "Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
@@ -139,22 +137,11 @@ public class SeasonHudClient {
                 + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN + ".")
         .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
 
-    builder.push("Journeymap");
-    journeyMapAboveMap = builder.comment(
-            "Display the season above the JourneyMap minimap, instead of below.\n" + "(true/false)\n" + "Default is ."
-                + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + ".")
-        .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
-
-    journeyMapMacOS = builder.comment("Toggle for macOS retina display scaling when using JourneyMap.\n"
-                                          + "Enable if the season line is rendering around the halfway point of the screen.\n"
-                                          + "(true/false)\n" + "Default is ." + Client.DEFAULT_JOURNEYMAP_MAC_OS + ".")
-        .define("enable_macOS", Client.DEFAULT_JOURNEYMAP_MAC_OS);
-    builder.pop();
     builder.pop();
     builder.pop();
   }
 
-  private static <T> T getOrDefault(ForgeConfigSpec.ConfigValue<T> config) {
+  private static <T> T getOrDefault(ConfigValue<T> config) {
     if (CLIENT_SPEC.isLoaded()) {
       return config.get();
     }
@@ -302,22 +289,5 @@ public class SeasonHudClient {
 
   public static void setEnableMinimapIntegration(boolean enable) {
     SeasonHudClient.enableMinimapIntegration.set(enable);
-  }
-
-  //Journeymap
-  public static boolean getJourneyMapAboveMap() {
-    return getOrDefault(journeyMapAboveMap);
-  }
-
-  public static void setJourneyMapAboveMap(boolean enable) {
-    SeasonHudClient.journeyMapAboveMap.set(enable);
-  }
-
-  public static boolean getJourneyMapMacOS() {
-    return getOrDefault(journeyMapMacOS);
-  }
-
-  public static void setJourneyMapMacOS(boolean enable) {
-    SeasonHudClient.journeyMapMacOS.set(enable);
   }
 }

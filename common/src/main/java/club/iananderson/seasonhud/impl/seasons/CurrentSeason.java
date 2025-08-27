@@ -155,7 +155,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined",
-                                  seasonIcon.withStyle(Common.SEASON_ICON_STYLE).withColor(0xffffff),
+                                 seasonIcon.withStyle(Common.SEASON_ICON_STYLE).withColor(0xffffff),
                                  seasonText.withStyle(seasonFormat));
   }
 

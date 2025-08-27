@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
 import net.minecraft.ChatFormatting;

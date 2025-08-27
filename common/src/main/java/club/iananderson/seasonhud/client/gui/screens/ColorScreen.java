@@ -16,7 +16,6 @@ import java.util.EnumSet;
 import java.util.List;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.CycleButton;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -61,6 +60,7 @@ public class ColorScreen extends SeasonHudScreen {
       }
     });
 
+    SeasonHudClient.CLIENT_SPEC.save();
     super.onDone();
   }
 

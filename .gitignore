@@ -11,6 +11,9 @@
 /forge/.gradle/
 /forge/build/
 /forge/run*/
+/neoforge/.gradle/
+/neoforge/build/
+/neoforge/run*/
 # idea
 out
 *.ipr

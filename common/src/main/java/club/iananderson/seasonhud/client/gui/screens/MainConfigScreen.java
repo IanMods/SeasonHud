@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,6 +51,7 @@ public class MainConfigScreen extends SeasonHudScreen {
     SeasonHudClient.setEnableMod(enableMod);
     SeasonHudClient.setEnableMinimapIntegration(enableMinimapIntegration);
     SeasonHudClient.setShowDefaultWhenMinimapHidden(showMinimapHidden);
+    SeasonHudClient.CLIENT_SPEC.save();
   }
 
   @Override
@@ -129,9 +131,9 @@ public class MainConfigScreen extends SeasonHudScreen {
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
       row += 2; //6
-      journeyMapButton = Button.builder(Component.translatable("menu.seasonhud.main.journeymap.options.button"),
+      journeyMapButton = Button.builder(Common.translatedText("menu.seasonhud.main.journeymap.options.button"),
                                         (button) -> UIManager.INSTANCE.openAddonOptionsEditor(this, true))
-          .tooltip(Tooltip.create(Component.translatable("menu.seasonhud.main.journeymap.options.tooltip")))
+          .tooltip(Tooltip.create(Common.translatedText("menu.seasonhud.main.journeymap.options.tooltip")))
           .bounds(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
           .build();
 

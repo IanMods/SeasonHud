@@ -1,7 +1,8 @@
 package club.iananderson.seasonhud.neoforge;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
@@ -20,7 +21,8 @@ public class SeasonHudNeoForge {
   public SeasonHudNeoForge(IEventBus modEventBus, ModContainer modContainer) {
     Common.init();
 
-    modContainer.registerConfig(ModConfig.Type.CLIENT, Config.GENERAL_SPEC, "SeasonHUD-client.toml");
+    modContainer.registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
+    modContainer.registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
 
     modEventBus.addListener(SeasonHudNeoForge::onInitialize);
     modEventBus.addListener(SeasonHudNeoForge::ftbChunkSetup);

@@ -20,8 +20,8 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
   private IClientAPI api;
   private ClientProperties clientProperties;
   private Minecraft mc;
-  private String seasonKeyString = "menu.seasonhud.infodisplay.season";
-  private Component seasonKey = Component.translatable("menu.seasonhud.infodisplay.season");
+  private final String seasonKeyString = "xaerominimap.seasonhud.infodisplay.season";
+  private final Component seasonKey = Common.translatedText("xaerominimap.seasonhud.infodisplay.season");
 
   public JourneymapSeasonPlugin() {
   }
