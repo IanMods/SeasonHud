@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.client.overlays;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
@@ -14,21 +15,22 @@ public class SeasonHUDOverlayCommon {
 
   public static void render(GuiGraphics graphics) {
     Minecraft mc = Minecraft.getInstance();
-    MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
-    int screenWidth = mc.getWindow().getGuiScaledWidth();
-    int screenHeight = mc.getWindow().getGuiScaledHeight();
-    int x = 0;
-    int y = 0;
-    int xOffset = SeasonHudClient.getHudX();
-    int yOffset = SeasonHudClient.getHudY();
-    double scale = SeasonHudClient.getHudScale();
-    int DEFAULT_X_OFFSET = SeasonHudClient.DEFAULT_X_OFFSET;
-    int DEFAULT_Y_OFFSET = SeasonHudClient.DEFAULT_Y_OFFSET;
-    int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
-    int stringHeight = (int) (mc.font.lineHeight * scale);
 
     if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()
         && !Common.hideHudInCurrentDimension()) {
+      int screenWidth = mc.getWindow().getGuiScaledWidth();
+      int screenHeight = mc.getWindow().getGuiScaledHeight();
+      int x = 0;
+      int y = 0;
+      int xOffset = SeasonHudClient.getHudX();
+      int yOffset = SeasonHudClient.getHudY();
+      double scale = SeasonHudClient.getHudScale();
+      int DEFAULT_X_OFFSET = Client.DEFAULT_X_OFFSET;
+      int DEFAULT_Y_OFFSET = Client.DEFAULT_Y_OFFSET;
+      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+      int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
+      int stringHeight = (int) (mc.font.lineHeight * scale);
+
       switch (SeasonHudClient.getHudLocation()) {
         case TOP_LEFT:
           x = DEFAULT_X_OFFSET;

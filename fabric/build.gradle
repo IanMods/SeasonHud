@@ -1,7 +1,24 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
+}
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
 }
 
 architectury {
@@ -95,7 +112,10 @@ dependencies {
             break
         case "fabric":
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-            //modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
+            break
+        case "fabric+extra":
+            modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+            modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
         default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene or fabric")
     }
@@ -148,7 +168,7 @@ shadowJar {
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
 }
 
 modrinth {
@@ -179,7 +199,7 @@ modrinth {
     }
 }
 
-task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     group = "curseforge"
 
     debugMode = false
@@ -209,7 +229,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addOptional("map-atlases")
 }
 
-task publishFabric {
+tasks.register('publishFabric') {
     group = "upload"
     afterEvaluate {
         dependsOn(tasks.publishCurseForge)

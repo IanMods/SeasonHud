@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
+import club.iananderson.seasonhud.Common;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -29,7 +30,7 @@ public class HudOffsetSlider extends BasicSlider {
   @Override
   protected void updateMessage() {
     if (this.drawString) {
-      this.setMessage(Component.literal("").append(this.prefix).append(this.getValueString()));
+      this.setMessage(Common.literalText("").append(this.prefix).append(this.getValueString()));
     }
     else {
       this.setMessage(Component.empty());

@@ -2,11 +2,11 @@ package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.config.SeasonHudCommon;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.platform.Services;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig.Type;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -18,23 +18,23 @@ public class SeasonHudForge {
     Common.init();
 
     if (Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
-      fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, Type.CLIENT,
-                                                                                    SeasonHudClient.GENERAL_SPEC,
+      fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT,
+                                                                                    SeasonHudClient.CLIENT_SPEC,
                                                                                     "seasonhud-client.toml");
 
-      fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, Type.COMMON,
-                                                                                    SeasonHudCommon.GENERAL_SPEC,
-                                                                                    "seasonhud-client.toml");
+      fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER,
+                                                                                    SeasonHudServer.SERVER_SPEC,
+                                                                                    "seasonhud-server.toml");
     }
 
     else {
-      fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, Type.CLIENT,
-                                                                                             SeasonHudClient.GENERAL_SPEC,
-                                                                                             "seasonhud-common.toml");
+      fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT,
+                                                                                             SeasonHudClient.CLIENT_SPEC,
+                                                                                             "seasonhud-client.toml");
 
-      fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, Type.COMMON,
-                                                                                             SeasonHudCommon.GENERAL_SPEC,
-                                                                                             "seasonhud-common.toml");
+      fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER,
+                                                                                             SeasonHudServer.SERVER_SPEC,
+                                                                                             "seasonhud-server.toml");
     }
 
     modEventBus.addListener(SeasonHudForge::onInitialize);

@@ -1,7 +1,24 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
+}
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("NeoForge Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("NeoForge Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
 }
 
 architectury {

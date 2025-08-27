@@ -13,7 +13,7 @@
   },
   "license": "${license}",
   "icon": "${mod_id}.png",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "client": [
       "club.iananderson.seasonhud.fabric.client.SeasonHudClientFabric"

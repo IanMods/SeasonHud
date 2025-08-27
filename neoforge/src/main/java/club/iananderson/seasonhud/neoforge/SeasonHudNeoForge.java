@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.neoforge;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.config.SeasonHudCommon;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
@@ -12,7 +12,7 @@ import dev.architectury.utils.EnvExecutor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig.Type;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod(Common.MOD_ID)
@@ -21,8 +21,8 @@ public class SeasonHudNeoForge {
   public SeasonHudNeoForge(IEventBus modEventBus, ModContainer modContainer) {
     Common.init();
 
-    modContainer.registerConfig(Type.CLIENT, SeasonHudClient.GENERAL_SPEC, "seasonhud-client.toml");
-    modContainer.registerConfig(Type.CLIENT, SeasonHudCommon.GENERAL_SPEC, "seasonhud-common.toml");
+    modContainer.registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
+    modContainer.registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
 
     modEventBus.addListener(SeasonHudNeoForge::onInitialize);
     modEventBus.addListener(SeasonHudNeoForge::ftbChunkSetup);

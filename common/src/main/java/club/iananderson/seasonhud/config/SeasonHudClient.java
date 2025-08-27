@@ -3,48 +3,35 @@ package club.iananderson.seasonhud.config;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.Location;
 import club.iananderson.seasonhud.client.gui.ShowDay;
+import club.iananderson.seasonhud.config.DefaultValues.Client;
 import java.util.Arrays;
-import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 
 public class SeasonHudClient {
-  public static final ModConfigSpec GENERAL_SPEC;
-  public static final int DEFAULT_SPRING_COLOR = 16753595;
-  public static final int DEFAULT_SUMMER_COLOR = 16705834;
-  public static final int DEFAULT_AUTUMN_COLOR = 12344871;
-  public static final int DEFAULT_WINTER_COLOR = 14679292;
-  public static final int DEFAULT_DRY_COLOR = 16745216;
-  public static final int DEFAULT_WET_COLOR = 2068975;
-  public static final int DEFAULT_X_OFFSET = 2;
-  public static final int DEFAULT_Y_OFFSET = 2;
-  public static final double DEFAULT_SCALE = 1.0;
-  public static final double HUD_SCALE_MIN = 0.5;
-  public static final double HUD_SCALE_MAX = 10;
-  private static ModConfigSpec.BooleanValue enableMod;
-  private static ModConfigSpec.ConfigValue<Location> hudLocation;
-  private static ModConfigSpec.ConfigValue<Integer> hudX;
-  private static ModConfigSpec.ConfigValue<Integer> hudY;
-  private static ModConfigSpec.ConfigValue<Double> hudScale;
-  private static ModConfigSpec.BooleanValue enableSeasonNameColor;
-  private static ModConfigSpec.ConfigValue<Integer> springColor;
-  private static ModConfigSpec.ConfigValue<Integer> summerColor;
-  private static ModConfigSpec.ConfigValue<Integer> autumnColor;
-  private static ModConfigSpec.ConfigValue<Integer> winterColor;
-  private static ModConfigSpec.ConfigValue<Integer> dryColor;
-  private static ModConfigSpec.ConfigValue<Integer> wetColor;
-  private static ModConfigSpec.BooleanValue calanderDetailMode;
-  private static ModConfigSpec.BooleanValue showTropicalSeason;
-  private static ModConfigSpec.BooleanValue showSubSeason;
-  private static ModConfigSpec.ConfigValue<ShowDay> showDay;
-  private static ModConfigSpec.BooleanValue enableMinimapIntegration;
-  private static ModConfigSpec.BooleanValue showDefaultWhenMinimapHidden;
-  private static ModConfigSpec.BooleanValue journeyMapAboveMap;
-  private static ModConfigSpec.BooleanValue journeyMapMacOS;
+  public static final ModConfigSpec CLIENT_SPEC;
+  private static ConfigValue<Boolean> enableMod;
+  private static ConfigValue<Location> hudLocation;
+  private static ConfigValue<Integer> hudX;
+  private static ConfigValue<Integer> hudY;
+  private static ConfigValue<Double> hudScale;
+  private static ConfigValue<Boolean> enableSeasonNameColor;
+  private static ConfigValue<Integer> springColor;
+  private static ConfigValue<Integer> summerColor;
+  private static ConfigValue<Integer> autumnColor;
+  private static ConfigValue<Integer> winterColor;
+  private static ConfigValue<Integer> dryColor;
+  private static ConfigValue<Integer> wetColor;
+  private static ConfigValue<Boolean> showTropicalSeason;
+  private static ConfigValue<Boolean> showSubSeason;
+  private static ConfigValue<ShowDay> showDay;
+  private static ConfigValue<Boolean> enableMinimapIntegration;
+  private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
 
   static {
     ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
     setupConfig(builder);
-    GENERAL_SPEC = builder.build();
+    CLIENT_SPEC = builder.build();
   }
 
   private SeasonHudClient() {
@@ -52,95 +39,120 @@ public class SeasonHudClient {
 
   private static void setupConfig(ModConfigSpec.Builder builder) {
     builder.push("SeasonHUD");
-    enableMod = builder.comment("Enable the mod?\n" + "(true/false)\n" + "Default is true.").define("enable_mod", true);
+    enableMod = builder.comment(
+            "Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
+        .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
 
     builder.push("HUD");
-    hudLocation = builder.comment("Where to display the Hud when no minimap is installed.\n" + "Default is TOP_LEFT.")
-        .defineEnum("hud_location", Location.TOP_LEFT);
+    hudLocation = builder.comment(
+            "Where to display the Hud when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_LOCATION + ".")
+        .defineEnum("hud_location", Client.DEFAULT_HUD_LOCATION);
 
     hudX = builder.comment(
-        "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
-            + " 'CUSTOM'\n" + "Default is " + DEFAULT_X_OFFSET + ".").define("hud_x_position", DEFAULT_X_OFFSET);
+            "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_X_OFFSET + ".")
+        .define("hud_x_position", Client.DEFAULT_X_OFFSET);
 
     hudY = builder.comment(
-        "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
-            + " 'CUSTOM'\n" + "Default is " + DEFAULT_Y_OFFSET + ".").define("hud_y_position", DEFAULT_Y_OFFSET);
+            "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_Y_OFFSET + ".")
+        .define("hud_y_position", Client.DEFAULT_Y_OFFSET);
 
     hudScale = builder.comment(
-            "The scale of the HUD when no minimap is installed.\n" + "Default is " + DEFAULT_SCALE + ".")
-        .defineInRange("hud_scale", DEFAULT_SCALE, HUD_SCALE_MIN, HUD_SCALE_MAX);
+            "The scale of the HUD when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_SCALE + ".")
+        .defineInRange("hud_scale", Client.DEFAULT_HUD_SCALE, Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX);
 
     builder.push("Colors");
-    enableSeasonNameColor = builder.comment("Display the season name in a color?\n" + "(true/false)")
-        .define("season_name_color", true);
+    enableSeasonNameColor = builder.comment(
+        "Display the season name in a color?\n" + "(true/false)" + "Default is " + Client.DEFAULT_SEASON_NAME_COLOR
+            + ".").define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
 
     springColor = builder.comment(
-        "The RGB color (decimal) for spring.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + DEFAULT_SPRING_COLOR + ".").defineInRange("spring_color", DEFAULT_SPRING_COLOR, 0, 16777215);
+            "The RGB color (decimal) for spring.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_SPRING_COLOR + ".")
+        .defineInRange("spring_color", Client.DEFAULT_SPRING_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     summerColor = builder.comment(
-        "The RGB color (decimal) for summer.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + DEFAULT_SUMMER_COLOR + ".").defineInRange("summer_color", DEFAULT_SUMMER_COLOR, 0, 16777215);
+            "The RGB color (decimal) for summer.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_SUMMER_COLOR + ".")
+        .defineInRange("summer_color", Client.DEFAULT_SUMMER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     autumnColor = builder.comment(
-        "The RGB color (decimal) for autumn.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + DEFAULT_AUTUMN_COLOR + ".").defineInRange("autumn_color", DEFAULT_AUTUMN_COLOR, 0, 16777215);
+            "The RGB color (decimal) for autumn.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_AUTUMN_COLOR + ".")
+        .defineInRange("autumn_color", Client.DEFAULT_AUTUMN_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     winterColor = builder.comment(
-        "The RGB color (decimal) for winter.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + DEFAULT_WINTER_COLOR + ".").defineInRange("winter_color", DEFAULT_WINTER_COLOR, 0, 16777215);
+            "The RGB color (decimal) for winter.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_WINTER_COLOR + ".")
+        .defineInRange("winter_color", Client.DEFAULT_WINTER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     dryColor = builder.comment(
-        " The RGB color (decimal) for dry tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
-            + "Default is " + DEFAULT_DRY_COLOR + ".").defineInRange("dry_color", DEFAULT_DRY_COLOR, 0, 16777215);
+            " The RGB color (decimal) for dry tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
+                + "Default is " + Client.DEFAULT_DRY_COLOR + ".")
+        .defineInRange("dry_color", Client.DEFAULT_DRY_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     wetColor = builder.comment(
-        "The RGB color (decimal) for wet tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
-            + "Default is " + DEFAULT_WET_COLOR + ".").defineInRange("wet_color", DEFAULT_WET_COLOR, 0, 16777215);
+            "The RGB color (decimal) for wet tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
+                + "Default is " + Client.DEFAULT_WET_COLOR + ".")
+        .defineInRange("wet_color", Client.DEFAULT_WET_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
     builder.pop();
     builder.pop();
 
     builder.push("Season");
-    calanderDetailMode = builder.comment(
-            "Having the calendar item shows the detailed version of the HUD" + "Default is false.")
-        .define("calendar_detail", false);
-
     showTropicalSeason = builder.comment("Show the Tropical seasons (Wet/Dry) in Tropical Biomes.\n"
                                              + "Will not change the season behavior in the biomes.\n" + "(true/false)\n"
-                                             + "Default is true.").define("enable_show_tropical_season", true);
+                                             + "Default is " + Client.DEFAULT_SHOW_TROPICAL_SEASON + ".")
+        .define("enable_show_tropical_season", Client.DEFAULT_SHOW_TROPICAL_SEASON);
 
     showSubSeason = builder.comment(
-        "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season?\n" + "(true/false)\n"
-            + " Default is true.").define("enable_show_sub_season", true);
+            "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season?\n" + "(true/false)\n"
+                + " Default is ." + Client.DEFAULT_SHOW_SUB_SEASON + ".")
+        .define("enable_show_sub_season", Client.DEFAULT_SHOW_SUB_SEASON);
 
     if (Common.fabricSeasonsLoaded()) {
-      showDay = builder.comment("Show the current day of the season/sub-season?\n" + "Default is SHOW_DAY.")
+      showDay = builder.comment(
+              "Show the current day of the season/sub-season?\n" + "Default is ." + Client.DEFAULT_SHOW_DAY + ".")
           .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS,
                                     ShowDay.SHOW_WITH_MONTH));
     }
 
     if (!Common.fabricSeasonsLoaded()) {
-      showDay = builder.comment("Show the day of the current Season/Sub-Season?\n" + "Default is SHOW_DAY.")
-          .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
+      showDay = builder.comment(
+              "Show the day of the current Season/Sub-Season?\n" + "Default is ." + Client.DEFAULT_SHOW_DAY + ".")
+          .defineEnum("enable_show_day", Client.DEFAULT_SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
     }
     builder.pop();
 
     builder.push("Minimap");
     enableMinimapIntegration = builder.comment(
-            "Enable integration with minimap mods?\n" + "(true/false)\n" + "Default is true.")
-        .define("enable_minimap_integration", true);
+            "Enable integration with minimap mods?\n" + "(true/false)\n" + "Default is ."
+                + Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION + ".")
+        .define("enable_minimap_integration", Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
+
     showDefaultWhenMinimapHidden = builder.comment(
-            "Show the default SeasonHUD display when the minimap is hidden?\n" + "(true/false)\n" + "Default is false.")
-        .define("enable_show_minimap_hidden", false);
+            "Show the default SeasonHUD display when the minimap is hidden?\n" + "(true/false)\n" + "Default is ."
+                + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN + ".")
+        .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
+
     builder.pop();
     builder.pop();
   }
 
+  private static <T> T getOrDefault(ConfigValue<T> config) {
+    if (CLIENT_SPEC.isLoaded()) {
+      return config.get();
+    }
+    else {
+      return config.getDefault();
+    }
+  }
+
   //SeasonHUD
   public static boolean getEnableMod() {
-    return SeasonHudClient.enableMod.get();
+    return getOrDefault(enableMod);
   }
 
   public static void setEnableMod(boolean enable) {
@@ -149,7 +161,7 @@ public class SeasonHudClient {
 
   //HUD
   public static Location getHudLocation() {
-    return SeasonHudClient.hudLocation.get();
+    return getOrDefault(hudLocation);
   }
 
   public static void setHudLocation(Location location) {
@@ -157,12 +169,7 @@ public class SeasonHudClient {
   }
 
   public static int getHudX() {
-    if (Minecraft.getInstance().player == null) {
-      return DEFAULT_X_OFFSET;
-    }
-    else {
-      return hudX.get();
-    }
+    return getOrDefault(hudX);
   }
 
   public static void setHudX(int x) {
@@ -170,12 +177,7 @@ public class SeasonHudClient {
   }
 
   public static int getHudY() {
-    if (Minecraft.getInstance().player == null) {
-      return DEFAULT_Y_OFFSET;
-    }
-    else {
-      return hudY.get();
-    }
+    return getOrDefault(hudY);
   }
 
   public static void setHudY(int y) {
@@ -183,12 +185,8 @@ public class SeasonHudClient {
   }
 
   public static double getHudScale() {
-    if (Minecraft.getInstance().player == null) {
-      return DEFAULT_SCALE;
-    }
-    else {
-      return hudScale.get();
-    }
+    return getOrDefault(hudScale);
+
   }
 
   public static void setHudScale(double scale) {
@@ -197,7 +195,7 @@ public class SeasonHudClient {
 
   //Colors
   public static boolean getEnableSeasonNameColor() {
-    return enableSeasonNameColor.get();
+    return getOrDefault(enableSeasonNameColor);
   }
 
   public static void setEnableSeasonNameColor(boolean enable) {
@@ -205,7 +203,7 @@ public class SeasonHudClient {
   }
 
   public static int getSpringColor() {
-    return springColor.get();
+    return getOrDefault(springColor);
   }
 
   public static void setSpringColor(int rgbColor) {
@@ -213,7 +211,7 @@ public class SeasonHudClient {
   }
 
   public static int getSummerColor() {
-    return summerColor.get();
+    return getOrDefault(summerColor);
   }
 
   public static void setSummerColor(int rgbColor) {
@@ -221,7 +219,7 @@ public class SeasonHudClient {
   }
 
   public static int getAutumnColor() {
-    return autumnColor.get();
+    return getOrDefault(autumnColor);
   }
 
   public static void setAutumnColor(int rgbColor) {
@@ -229,7 +227,7 @@ public class SeasonHudClient {
   }
 
   public static int getWinterColor() {
-    return winterColor.get();
+    return getOrDefault(winterColor);
   }
 
   public static void setWinterColor(int rgbColor) {
@@ -237,7 +235,7 @@ public class SeasonHudClient {
   }
 
   public static int getDryColor() {
-    return dryColor.get();
+    return getOrDefault(dryColor);
   }
 
   public static void setDryColor(int rgbColor) {
@@ -245,23 +243,15 @@ public class SeasonHudClient {
   }
 
   public static int getWetColor() {
-    return wetColor.get();
+    return getOrDefault(wetColor);
   }
 
   public static void setWetColor(int rgbColor) {
     SeasonHudClient.wetColor.set(rgbColor);
   }
 
-  public static boolean getCalendarDetailMode() {
-    return calanderDetailMode.get();
-  }
-
-  public static void setCalendarDetailMode(boolean enable) {
-    SeasonHudClient.calanderDetailMode.set(enable);
-  }
-
   public static boolean getShowTropicalSeason() {
-    return showTropicalSeason.get();
+    return getOrDefault(showTropicalSeason);
   }
 
   public static void setShowTropicalSeason(boolean enable) {
@@ -269,7 +259,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getShowSubSeason() {
-    return showSubSeason.get();
+    return getOrDefault(showSubSeason);
   }
 
   public static void setShowSubSeason(boolean enable) {
@@ -277,7 +267,7 @@ public class SeasonHudClient {
   }
 
   public static ShowDay getShowDay() {
-    return showDay.get();
+    return getOrDefault(showDay);
   }
 
   public static void setShowDay(ShowDay showDay) {
@@ -285,7 +275,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getShowDefaultWhenMinimapHidden() {
-    return showDefaultWhenMinimapHidden.get();
+    return getOrDefault(showDefaultWhenMinimapHidden);
   }
 
   public static void setShowDefaultWhenMinimapHidden(boolean enable) {
@@ -294,7 +284,7 @@ public class SeasonHudClient {
 
   //Minimap
   public static boolean getEnableMinimapIntegration() {
-    return SeasonHudClient.enableMinimapIntegration.get();
+    return getOrDefault(enableMinimapIntegration);
   }
 
   public static void setEnableMinimapIntegration(boolean enable) {
