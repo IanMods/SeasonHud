@@ -1,16 +1,16 @@
-## [1.13.8] - 2025-08-07
-
-### Added
-
-- Added EclipticSeasons calendar as a valid calendar item
-- Added Accessories/Curio support for EclipticSeasons calendar.
+## [1.13.9] - 2025-08-25
 
 ### Changed
 
-- (1.18.2) Set minimum Serene Season's version to 7.0.0.15
-- Built against Fabric Loader 0.17.1
+- Added server side config
+    - Will be in the "serverconfig" folder of the world on Forge
+    - Will be in the main "config" folder on Fabric
+- Moved needCalendar and calendarDetailMode to server side config
+    - These will now be synced by the server
 
 ### Fixed
 
-- Fixed season text preview in config menu
+- (1.20.1) Fixed crash if using an older version of Forge
+- (1.21.5) Fixed crash when using the 1.21.5 version on 1.21.2-1.21.4
+- Removed the placeholder "Null" season from the color options screen
 

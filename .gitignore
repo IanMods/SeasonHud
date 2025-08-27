@@ -7,10 +7,13 @@
 /common/run/
 /fabric/.gradle/
 /fabric/build/
-/fabric/run/
+/fabric/run*/
 /forge/.gradle/
 /forge/build/
-/forge/run/
+/forge/run*/
+/neoforge/.gradle/
+/neoforge/build/
+/neoforge/run*/
 # idea
 out
 *.ipr
@@ -22,7 +25,9 @@ out
 !/.idea/fileColors.xml
 # gradle
 build
+libs
 .gradle
 # other
 run
 runs
+!/.idea/shelf/
