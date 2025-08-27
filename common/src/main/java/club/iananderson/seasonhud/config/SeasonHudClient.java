@@ -166,7 +166,7 @@ public class SeasonHudClient {
     configOptions.put(hudLocation.getPath(), Client.DEFAULT_HUD_LOCATION);
     configOptions.put(hudX.getPath(), Client.DEFAULT_X_OFFSET);
     configOptions.put(hudY.getPath(), Client.DEFAULT_Y_OFFSET);
-    configOptions.put(hudScale.getPath(), DEFAULT_HUD_SCALE);
+    configOptions.put(hudScale.getPath(), Client.DEFAULT_HUD_SCALE);
     configOptions.put(enableSeasonNameColor.getPath(), Client.DEFAULT_SEASON_NAME_COLOR);
     configOptions.put(springColor.getPath(), Client.DEFAULT_SPRING_COLOR);
     configOptions.put(summerColor.getPath(), Client.DEFAULT_SUMMER_COLOR);

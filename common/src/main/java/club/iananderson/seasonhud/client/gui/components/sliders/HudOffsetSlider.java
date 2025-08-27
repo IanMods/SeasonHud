@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
+import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
 import net.minecraft.client.Minecraft;

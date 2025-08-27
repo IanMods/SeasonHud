@@ -42,7 +42,7 @@ public class SeasonHudServer {
   private static Object getDefault(ConfigValue<?> config) {
     Map<List<String>, Object> configOptions = new HashMap<>();
     configOptions.put(needCalendar.getPath(), Server.DEFAULT_NEED_CALENDAR);
-    configOptions.put(calenderDetailMode.getPath(), Server.DEFAULT_CALENDAR_DETAIL_MODE);
+    configOptions.put(calendarDetailMode.getPath(), Server.DEFAULT_CALENDAR_DETAIL_MODE);
     configOptions.put(dayLength.getPath(), Server.DEFAULT_DAY_LENGTH);
 
     return configOptions.get(config.getPath());
