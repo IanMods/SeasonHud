@@ -1,22 +1,17 @@
 package club.iananderson.seasonhud.fabric.client;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
 import club.iananderson.seasonhud.fabric.event.ClientEvents;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
 import dev.architectury.utils.Env;
 import dev.architectury.utils.EnvExecutor;
-import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.api.ClientModInitializer;
-import net.neoforged.fml.config.ModConfig;
 
 public class SeasonHudClientFabric implements ClientModInitializer {
 
   @Override
   public void onInitializeClient() {
-    ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, Config.GENERAL_SPEC,
-                                     "seasonhud-client.toml");
     ClientEvents.register();
 
     if (CurrentMinimap.ftbChunksLoaded()) {

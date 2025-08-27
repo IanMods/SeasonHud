@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import io.wispforest.accessories.api.AccessoriesCapability;
@@ -55,10 +55,10 @@ public class Calendar {
   }
 
   private static boolean findCalendar(Player player, Item item) {
-    boolean invCalenderFound = player.getInventory().contains(item.getDefaultInstance());
-    boolean curiosCalenderFound = Calendar.findCuriosCalendar(player, item);
+    boolean invCalendarFound = player.getInventory().contains(item.getDefaultInstance());
+    boolean curiosCalendarFound = Calendar.findCuriosCalendar(player, item);
 
-    return invCalenderFound | curiosCalenderFound;
+    return invCalendarFound | curiosCalendarFound;
   }
 
   private static boolean calendarFound() {
@@ -77,10 +77,11 @@ public class Calendar {
   }
 
   public static boolean validNeedCalendar() {
-    return (Config.getNeedCalendar() && Calendar.calendarFound()) || !Config.getNeedCalendar();
+    return (SeasonHudServer.getNeedCalendar() && Calendar.calendarFound()) || !SeasonHudServer.getNeedCalendar();
   }
 
   public static boolean validDetailedMode() {
-    return (Config.getCalendarDetailMode() && Calendar.calendarFound()) || !Config.getCalendarDetailMode();
+    return (SeasonHudServer.getCalendarDetailMode() && Calendar.calendarFound())
+        || !SeasonHudServer.getCalendarDetailMode();
   }
 }
