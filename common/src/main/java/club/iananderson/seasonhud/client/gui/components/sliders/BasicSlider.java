@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
 import net.minecraft.ChatFormatting;
@@ -207,7 +208,7 @@ public class BasicSlider extends AbstractSliderButton {
   @Override
   protected void updateMessage() {
     if (this.drawString) {
-      this.setMessage(Component.literal(this.getValueString()));
+      this.setMessage(Common.literalText(this.getValueString()));
     }
     else {
       this.setMessage(Component.empty());

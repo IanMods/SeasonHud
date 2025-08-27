@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
     id 'net.darkhax.curseforgegradle'
     id "com.modrinth.minotaur"
 }
@@ -8,6 +8,21 @@ loom {
     forge {
         mixinConfig "seasonhud.mixins.json"
         mixinConfig "seasonhud.forge.mixins.json"
+    }
+
+    runs {
+        client {
+            client()
+            setConfigName("Forge Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Forge Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
     }
 }
 
@@ -67,9 +82,6 @@ dependencies {
 
     //Forge Config API Port
     modImplementation "maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge"
-
-    // Development QOL
-//    modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}") { transitive = false }
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -150,7 +162,7 @@ shadowJar {
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
 }
 
 modrinth {
@@ -181,7 +193,7 @@ modrinth {
     }
 }
 
-task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     group = "curseforge"
 
     debugMode = false
@@ -211,7 +223,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addOptional("map-atlases-forge")
 }
 
-task publishForge {
+tasks.register('publishForge') {
     group = "upload"
     afterEvaluate {
         dependsOn(tasks.publishCurseForge)
