@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.config;
 
+import club.iananderson.seasonhud.config.DefaultValues.Server;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
@@ -21,16 +22,17 @@ public class SeasonHudServer {
   private static void setupConfig(ForgeConfigSpec.Builder builder) {
     builder.push("Season");
     needCalendar = builder.comment(
-        "Require the calendar item to be in the players inventory to show the HUD?\n" + "(true/false)\n"
-            + "Default is false.").define("need_calendar", false);
+        "Require the calendar item to be in the players inventory to show the HUD?\n" + "(true/false)\n" + "Default is "
+            + Server.DEFAULT_NEED_CALENDAR + ".").define("need_calendar", Server.DEFAULT_NEED_CALENDAR);
 
     calendarDetailMode = builder.comment(
-            "Having the calendar item shows the detailed version of the HUD" + "Default is false.")
-        .define("calendar_detail", false);
+        "Having the calendar item shows the detailed version of the HUD" + "Default is " + Server.DEFAULT_CALENDAR_DETAIL_MODE
+            + ".").define("calendar_detail", Server.DEFAULT_CALENDAR_DETAIL_MODE);
 
     dayLength = builder.comment(
-        "Change if you are using a Minecraft day length other than vanilla value and using Fabric Seasons.\n"
-            + "Default Minecraft day is 24000.").defineInRange("day_length", 24000, 0, 2147483647);
+            "Change if you are using a Minecraft day length other than vanilla value and using Fabric Seasons.\n"
+                + "Default Minecraft day is " + Server.DEFAULT_DAY_LENGTH + ".")
+        .defineInRange("day_length", Server.DEFAULT_DAY_LENGTH, 0, 2147483647);
     builder.pop();
   }
 
