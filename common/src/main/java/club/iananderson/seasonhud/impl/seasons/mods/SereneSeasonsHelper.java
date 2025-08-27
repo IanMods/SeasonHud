@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.platform.Services;
 import net.minecraft.core.Registry;
@@ -50,7 +50,7 @@ public class SereneSeasonsHelper implements IModHelper {
     if (isTropicalSeason(player)) {
       duration *= 2; //Tropical seasons are twice as long (Default 48 days)
     }
-    if (Config.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
       duration /= 3; //3 sub-seasons per season
     }
 

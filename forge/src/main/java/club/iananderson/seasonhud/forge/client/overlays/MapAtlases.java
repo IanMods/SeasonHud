@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.forge.client.overlays;
 
 import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -56,7 +56,7 @@ public class MapAtlases extends GuiComponent {
         x += mapBgScaledSize / 16 - mapBgScaledSize / 64;
         y += mapBgScaledSize / 16 - mapBgScaledSize / 64;
 
-        if (Config.getEnableMod() && shouldDraw(mc)) {
+        if (SeasonHudClient.getEnableMod() && shouldDraw(mc)) {
           float scale = mapBgScaledSize / 142.0F;
           int textHeightOffset = mapBgScaledSize - 2;
 

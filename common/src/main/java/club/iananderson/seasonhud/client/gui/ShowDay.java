@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.CommonSeasonHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public enum ShowDay {
   ShowDay(int id, String dayType, String key) {
     this.idNum = id;
     this.currentDayDisplay = dayType;
-    this.dayDisplayName = new TranslatableComponent("desc.seasonhud.showday." + dayType);
+    this.dayDisplayName = Common.translatedText("desc.seasonhud.showday" + "." + dayType);
     this.key = key;
   }
 

@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.client.gui.components.boxes;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.ColorScreen;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import club.iananderson.seasonhud.impl.seasons.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
@@ -45,13 +45,13 @@ public class ColorEditBox extends EditBox {
         ColorScreen.doneButton.active = false;
       }
     });
-    this.setEditable(Config.getEnableSeasonNameColor());
+    this.setEditable(SeasonHudClient.getEnableSeasonNameColor());
   }
 
   private static EnumSet<Seasons> seasonListSet() {
     EnumSet<Seasons> set = Seasons.SEASONS_ENUM_LIST.clone();
 
-    if (!Config.getShowTropicalSeason() || Common.fabricSeasonsLoaded()) {
+    if (!SeasonHudClient.getShowTropicalSeason() || Common.fabricSeasonsLoaded()) {
       set.remove(Seasons.DRY);
       set.remove(Seasons.WET);
     }

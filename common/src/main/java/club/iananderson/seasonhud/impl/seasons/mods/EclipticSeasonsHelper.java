@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.platform.Services;
 import com.teamtea.eclipticseasons.config.CommonConfig;
@@ -50,7 +50,7 @@ public class EclipticSeasonsHelper implements IModHelper {
   public int seasonDuration(Player player) {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
-    if (Config.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
       duration /= 6; //6 terms per season
     }
 

@@ -1,7 +1,9 @@
 package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudServer;
+import club.iananderson.seasonhud.forge.client.SeasonHudForgeClient;
 import club.iananderson.seasonhud.forge.impl.curios.CuriosCompat;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,7 +22,9 @@ public class SeasonHudForge {
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
 
-    ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.GENERAL_SPEC, "seasonhud-client.toml");
+    ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
+
+    ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
 
     modEventBus.addListener(ClientModEvents::onInitialize);
   }
@@ -33,11 +37,6 @@ public class SeasonHudForge {
         Common.LOG.info("Talking to Curios");
         new CuriosCompat().setup(event);
       }
-    }
-
-    @SubscribeEvent
-    public static void curioTexture(TextureStitchEvent.Pre evt) {
-      evt.addSprite(Common.slotIcon);
     }
   }
 }

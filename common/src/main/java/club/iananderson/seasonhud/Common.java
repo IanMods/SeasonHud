@@ -1,14 +1,25 @@
 package club.iananderson.seasonhud;
 
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
+import com.demonwav.mcdev.annotations.Translatable;
+import io.github.lucaargolo.seasons.FabricSeasons;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.level.Level;
+import sereneseasons.config.ServerConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -90,6 +101,12 @@ public class Common {
     return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 
+  public static boolean clientSideConfig() {
+    Minecraft mc = Minecraft.getInstance();
+
+    return (mc.getCurrentServer() == null);
+  }
+
   public static boolean vanillaShouldDrawHud() {
     Minecraft mc = Minecraft.getInstance();
 
@@ -102,18 +119,30 @@ public class Common {
   }
 
   public static boolean minimapIntegrationHidden() {
-    return Config.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
-        && Config.getShowDefaultWhenMinimapHidden());
+    return SeasonHudClient.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
+        && SeasonHudClient.getShowDefaultWhenMinimapHidden());
   }
 
   public static boolean drawDefaultHud() {
-    return Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
-        || minimapIntegrationHidden());
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
+    return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
+        || !SeasonHudClient.getEnableMinimapIntegration() || minimapIntegrationHidden());
   }
 
   public static boolean drawDefaultHudMenu() {
-    return (Config.getEnableMod() && (CurrentMinimap.noMinimapLoaded() || !Config.getEnableMinimapIntegration()
-        || Config.getShowDefaultWhenMinimapHidden()));
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.player == null) {
+      return false;
+    }
+
+    return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
+        || !SeasonHudClient.getEnableMinimapIntegration() || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
   }
 
   /**
@@ -136,5 +165,24 @@ public class Common {
 
   public static ResourceLocation location(String path) {
     return new ResourceLocation(MOD_ID, path);
+  }
+
+  public static MutableComponent literalText(String text) {
+    return new TextComponent(text);
+  }
+
+  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key) {
+    return new TranslatableComponent(key);
+  }
+
+  public static MutableComponent translatedText(@Translatable(foldMethod = true) String key, Object... args) {
+    return new TranslatableComponent(key, args);
+  }
+
+  public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key) {
+    List<FormattedCharSequence> List = new ArrayList<>();
+    List.add(translatedText(key).getVisualOrderText());
+
+    return List;
   }
 }

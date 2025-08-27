@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
+import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
@@ -26,7 +27,7 @@ public class HudScaleSlider extends BasicSlider {
   @Override
   protected void updateMessage() {
     if (this.drawString) {
-      this.setMessage(new TextComponent("").append(this.prefix).append(this.getValueString()));
+      this.setMessage(Common.literalText("").append(this.prefix).append(this.getValueString()));
     }
     else {
       this.setMessage(new TextComponent(""));

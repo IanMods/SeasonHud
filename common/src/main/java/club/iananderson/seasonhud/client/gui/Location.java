@@ -1,29 +1,30 @@
 package club.iananderson.seasonhud.client.gui;
 
+import club.iananderson.seasonhud.Common;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public enum Location {
-  TOP_LEFT(0, "topLeft"),
+  TOP_LEFT(0, "desc.seasonhud.location.topLeft"),
 
-  TOP_CENTER(1, "topCenter"),
+  TOP_CENTER(1, "desc.seasonhud.location.topCenter"),
 
-  TOP_RIGHT(2, "topRight"),
+  TOP_RIGHT(2, "desc.seasonhud.location.topRight"),
 
-  BOTTOM_LEFT(3, "bottomLeft"),
+  BOTTOM_LEFT(3, "desc.seasonhud.location.bottomLeft"),
 
-  BOTTOM_RIGHT(4, "bottomRight"),
+  BOTTOM_RIGHT(4, "desc.seasonhud.location.bottomRight"),
 
-  CUSTOM(5, "custom");
+  CUSTOM(5, "desc.seasonhud.location.custom");
 
-  private final String hudLocationName;
+  private final String key;
   private final Component locationName;
   private final int idNum;
 
-  Location(int id, String hudLocation) {
+  Location(int id, String key) {
     this.idNum = id;
-    this.hudLocationName = hudLocation;
-    this.locationName = new TranslatableComponent("desc.seasonhud.location." + hudLocation);
+    this.key = key;
+    this.locationName = Common.translatedText(key);
   }
 
   public int getId() {
@@ -31,7 +32,7 @@ public enum Location {
   }
 
   public String getLocation() {
-    return this.hudLocationName;
+    return this.key;
   }
 
   public Component getLocationName() {

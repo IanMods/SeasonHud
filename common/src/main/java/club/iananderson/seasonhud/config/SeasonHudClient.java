@@ -1,0 +1,355 @@
+package club.iananderson.seasonhud.config;
+
+import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.client.gui.Location;
+import club.iananderson.seasonhud.client.gui.ShowDay;
+import club.iananderson.seasonhud.config.DefaultValues.Client;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.BooleanSupplier;
+import java.util.function.Supplier;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+
+public class SeasonHudClient {
+  //Config Builder
+  public static final ForgeConfigSpec CLIENT_SPEC;
+  private static ConfigValue<Boolean> enableMod;
+  private static ConfigValue<Location> hudLocation;
+  private static ConfigValue<Integer> hudX;
+  private static ConfigValue<Integer> hudY;
+  private static ConfigValue<Double> hudScale;
+  private static ConfigValue<Boolean> enableSeasonNameColor;
+  private static ConfigValue<Integer> springColor;
+  private static ConfigValue<Integer> summerColor;
+  private static ConfigValue<Integer> autumnColor;
+  private static ConfigValue<Integer> winterColor;
+  private static ConfigValue<Integer> dryColor;
+  private static ConfigValue<Integer> wetColor;
+  private static ConfigValue<Boolean> showTropicalSeason;
+  private static ConfigValue<Boolean> showSubSeason;
+  private static ConfigValue<ShowDay> showDay;
+  private static ConfigValue<Boolean> enableMinimapIntegration;
+  private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
+  private static ConfigValue<Boolean> journeyMapAboveMap;
+  private static ConfigValue<Boolean> journeyMapMacOS;
+
+  static {
+    ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    setupConfig(builder);
+    CLIENT_SPEC = builder.build();
+  }
+
+  private SeasonHudClient() {
+  }
+
+  private static void setupConfig(ForgeConfigSpec.Builder builder) {
+    builder.push("SeasonHUD");
+    enableMod = builder.comment(
+            "Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
+        .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
+
+    builder.push("HUD");
+    hudLocation = builder.comment(
+            "Where to display the Hud when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_LOCATION + ".")
+        .defineEnum("hud_location", Client.DEFAULT_HUD_LOCATION);
+
+    hudX = builder.comment(
+            "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_X_OFFSET + ".")
+        .define("hud_x_position", Client.DEFAULT_X_OFFSET);
+
+    hudY = builder.comment(
+            "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_Y_OFFSET + ".")
+        .define("hud_y_position", Client.DEFAULT_Y_OFFSET);
+
+    hudScale = builder.comment(
+            "The scale of the HUD when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_SCALE + ".")
+        .defineInRange("hud_scale", Client.DEFAULT_HUD_SCALE, Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX);
+
+    builder.push("Colors");
+    enableSeasonNameColor = builder.comment(
+        "Display the season name in a color?\n" + "(true/false)" + "Default is " + Client.DEFAULT_SEASON_NAME_COLOR
+            + ".").define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
+
+    springColor = builder.comment(
+            "The RGB color (decimal) for spring.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_SPRING_COLOR + ".")
+        .defineInRange("spring_color", Client.DEFAULT_SPRING_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+
+    summerColor = builder.comment(
+            "The RGB color (decimal) for summer.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_SUMMER_COLOR + ".")
+        .defineInRange("summer_color", Client.DEFAULT_SUMMER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+
+    autumnColor = builder.comment(
+            "The RGB color (decimal) for autumn.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_AUTUMN_COLOR + ".")
+        .defineInRange("autumn_color", Client.DEFAULT_AUTUMN_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+
+    winterColor = builder.comment(
+            "The RGB color (decimal) for winter.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_WINTER_COLOR + ".")
+        .defineInRange("winter_color", Client.DEFAULT_WINTER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+
+    dryColor = builder.comment(
+            " The RGB color (decimal) for dry tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
+                + "Default is " + Client.DEFAULT_DRY_COLOR + ".")
+        .defineInRange("dry_color", Client.DEFAULT_DRY_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+
+    wetColor = builder.comment(
+            "The RGB color (decimal) for wet tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
+                + "Default is " + Client.DEFAULT_WET_COLOR + ".")
+        .defineInRange("wet_color", Client.DEFAULT_WET_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+    builder.pop();
+    builder.pop();
+
+    builder.push("Season");
+    showTropicalSeason = builder.comment("Show the Tropical seasons (Wet/Dry) in Tropical Biomes.\n"
+                                             + "Will not change the season behavior in the biomes.\n" + "(true/false)\n"
+                                             + "Default is " + Client.DEFAULT_SHOW_TROPICAL_SEASON + ".")
+        .define("enable_show_tropical_season", Client.DEFAULT_SHOW_TROPICAL_SEASON);
+
+    showSubSeason = builder.comment(
+            "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season?\n" + "(true/false)\n"
+                + " Default is ." + Client.DEFAULT_SHOW_SUB_SEASON + ".")
+        .define("enable_show_sub_season", Client.DEFAULT_SHOW_SUB_SEASON);
+
+    if (Common.fabricSeasonsLoaded()) {
+      showDay = builder.comment(
+              "Show the current day of the season/sub-season?\n" + "Default is ." + Client.DEFAULT_SHOW_DAY + ".")
+          .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
+                      Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS,
+                                    ShowDay.SHOW_WITH_MONTH));
+    }
+
+    if (!Common.fabricSeasonsLoaded()) {
+      showDay = builder.comment(
+              "Show the day of the current Season/Sub-Season?\n" + "Default is ." + Client.DEFAULT_SHOW_DAY + ".")
+          .defineEnum("enable_show_day", Client.DEFAULT_SHOW_DAY,
+                      Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
+    }
+    builder.pop();
+
+    builder.push("Minimap");
+    enableMinimapIntegration = builder.comment(
+            "Enable integration with minimap mods?\n" + "(true/false)\n" + "Default is ."
+                + Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION + ".")
+        .define("enable_minimap_integration", Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
+
+    showDefaultWhenMinimapHidden = builder.comment(
+            "Show the default SeasonHUD display when the minimap is hidden?\n" + "(true/false)\n" + "Default is ."
+                + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN + ".")
+        .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
+
+    builder.push("Journeymap");
+    journeyMapAboveMap = builder.comment(
+            "Display the season above the JourneyMap minimap, instead of below.\n" + "(true/false)\n" + "Default is ."
+                + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + ".")
+        .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
+
+    journeyMapMacOS = builder.comment("Toggle for macOS retina display scaling when using JourneyMap.\n"
+                                          + "Enable if the season line is rendering around the halfway point of the screen.\n"
+                                          + "(true/false)\n" + "Default is ." + Client.DEFAULT_JOURNEYMAP_MAC_OS + ".")
+        .define("enable_macOS", Client.DEFAULT_JOURNEYMAP_MAC_OS);
+    builder.pop();
+    builder.pop();
+    builder.pop();
+  }
+
+  private static Object getDefault(ConfigValue<?> config) {
+    Map<List<String>, Object> configOptions = new HashMap<>();
+    configOptions.put(enableMod.getPath(), Client.DEFAULT_ENABLE_MOD);
+    configOptions.put(hudLocation.getPath(), Client.DEFAULT_HUD_LOCATION);
+    configOptions.put(hudX.getPath(), Client.DEFAULT_X_OFFSET);
+    configOptions.put(hudY.getPath(), Client.DEFAULT_Y_OFFSET);
+    configOptions.put(hudScale.getPath(), Client.DEFAULT_HUD_SCALE);
+    configOptions.put(enableSeasonNameColor.getPath(), Client.DEFAULT_SEASON_NAME_COLOR);
+    configOptions.put(springColor.getPath(), Client.DEFAULT_SPRING_COLOR);
+    configOptions.put(summerColor.getPath(), Client.DEFAULT_SUMMER_COLOR);
+    configOptions.put(autumnColor.getPath(), Client.DEFAULT_AUTUMN_COLOR);
+    configOptions.put(winterColor.getPath(), Client.DEFAULT_WINTER_COLOR);
+    configOptions.put(dryColor.getPath(), Client.DEFAULT_DRY_COLOR);
+    configOptions.put(wetColor.getPath(), Client.DEFAULT_WET_COLOR);
+    configOptions.put(showTropicalSeason.getPath(), Client.DEFAULT_SHOW_TROPICAL_SEASON);
+    configOptions.put(showSubSeason.getPath(), Client.DEFAULT_SHOW_SUB_SEASON);
+    configOptions.put(showDay.getPath(), Client.DEFAULT_SHOW_DAY);
+    configOptions.put(enableMinimapIntegration.getPath(), Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
+    configOptions.put(showDefaultWhenMinimapHidden.getPath(), Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
+    configOptions.put(journeyMapAboveMap.getPath(), Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
+    configOptions.put(journeyMapMacOS.getPath(), Client.DEFAULT_JOURNEYMAP_MAC_OS);
+
+    return configOptions.get(config.getPath());
+  }
+
+  private static Object getOrDefault(ConfigValue<?> config) {
+    if (CLIENT_SPEC.isLoaded()) {
+      return config.get();
+    }
+    else {
+      return getDefault(config);
+    }
+  }
+
+
+  //SeasonHUD
+  public static boolean getEnableMod() {
+    return (Boolean) getOrDefault(enableMod);
+  }
+
+  public static void setEnableMod(boolean enable) {
+    SeasonHudClient.enableMod.set(enable);
+  }
+
+  //HUD
+  public static Location getHudLocation() {
+    return (Location) getOrDefault(hudLocation);
+  }
+
+  public static void setHudLocation(Location location) {
+    SeasonHudClient.hudLocation.set(location);
+  }
+
+  public static int getHudX() {
+    return (Integer) getOrDefault(hudX);
+  }
+
+  public static void setHudX(int x) {
+    SeasonHudClient.hudX.set(x);
+  }
+
+  public static int getHudY() {
+    return (Integer) getOrDefault(hudY);
+  }
+
+  public static void setHudY(int y) {
+    SeasonHudClient.hudY.set(y);
+  }
+
+  public static double getHudScale() {
+    return (Double) getOrDefault(hudScale);
+
+  }
+
+  public static void setHudScale(double scale) {
+    SeasonHudClient.hudScale.set(scale);
+  }
+
+  //Colors
+  public static boolean getEnableSeasonNameColor() {
+    return (Boolean) getOrDefault(enableSeasonNameColor);
+  }
+
+  public static void setEnableSeasonNameColor(boolean enable) {
+    SeasonHudClient.enableSeasonNameColor.set(enable);
+  }
+
+  public static int getSpringColor() {
+    return (Integer) getOrDefault(springColor);
+  }
+
+  public static void setSpringColor(int rgbColor) {
+    SeasonHudClient.springColor.set(rgbColor);
+  }
+
+  public static int getSummerColor() {
+    return (Integer) getOrDefault(summerColor);
+  }
+
+  public static void setSummerColor(int rgbColor) {
+    SeasonHudClient.summerColor.set(rgbColor);
+  }
+
+  public static int getAutumnColor() {
+    return (Integer) getOrDefault(autumnColor);
+  }
+
+  public static void setAutumnColor(int rgbColor) {
+    SeasonHudClient.autumnColor.set(rgbColor);
+  }
+
+  public static int getWinterColor() {
+    return (Integer) getOrDefault(winterColor);
+  }
+
+  public static void setWinterColor(int rgbColor) {
+    SeasonHudClient.winterColor.set(rgbColor);
+  }
+
+  public static int getDryColor() {
+    return (Integer) getOrDefault(dryColor);
+  }
+
+  public static void setDryColor(int rgbColor) {
+    SeasonHudClient.dryColor.set(rgbColor);
+  }
+
+  public static int getWetColor() {
+    return (Integer) getOrDefault(wetColor);
+  }
+
+  public static void setWetColor(int rgbColor) {
+    SeasonHudClient.wetColor.set(rgbColor);
+  }
+
+  public static boolean getShowTropicalSeason() {
+    return (Boolean) getOrDefault(showTropicalSeason);
+  }
+
+  public static void setShowTropicalSeason(boolean enable) {
+    SeasonHudClient.showTropicalSeason.set(enable);
+  }
+
+  public static boolean getShowSubSeason() {
+    return (Boolean) getOrDefault(showSubSeason);
+  }
+
+  public static void setShowSubSeason(boolean enable) {
+    SeasonHudClient.showSubSeason.set(enable);
+  }
+
+  public static ShowDay getShowDay() {
+    return (ShowDay) getOrDefault(showDay);
+  }
+
+  public static void setShowDay(ShowDay showDay) {
+    SeasonHudClient.showDay.set(showDay);
+  }
+
+  public static boolean getShowDefaultWhenMinimapHidden() {
+    return (Boolean) getOrDefault(showDefaultWhenMinimapHidden);
+  }
+
+  public static void setShowDefaultWhenMinimapHidden(boolean enable) {
+    SeasonHudClient.showDefaultWhenMinimapHidden.set(enable);
+  }
+
+  //Minimap
+  public static boolean getEnableMinimapIntegration() {
+    return (Boolean) getOrDefault(enableMinimapIntegration);
+  }
+
+  public static void setEnableMinimapIntegration(boolean enable) {
+    SeasonHudClient.enableMinimapIntegration.set(enable);
+  }
+
+  //Journeymap
+  public static boolean getJourneyMapAboveMap() {
+    return (Boolean) getOrDefault(journeyMapAboveMap);
+  }
+
+  public static void setJourneyMapAboveMap(boolean enable) {
+    SeasonHudClient.journeyMapAboveMap.set(enable);
+  }
+
+  public static boolean getJourneyMapMacOS() {
+    return (Boolean) getOrDefault(journeyMapMacOS);
+  }
+
+  public static void setJourneyMapMacOS(boolean enable) {
+    SeasonHudClient.journeyMapMacOS.set(enable);
+  }
+}
