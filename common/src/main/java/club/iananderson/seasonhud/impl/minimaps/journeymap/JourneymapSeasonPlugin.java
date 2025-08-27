@@ -17,11 +17,11 @@ import org.jetbrains.annotations.NotNull;
 @JourneyMapPlugin(apiVersion = "2.0.0")
 public class JourneymapSeasonPlugin implements IClientPlugin {
   private static JourneymapSeasonPlugin INSTANCE;
+  private final String seasonKeyString = "xaerominimap.seasonhud.infodisplay.season";
+  private final Component seasonKey = Common.translatedText("xaerominimap.seasonhud.infodisplay.season");
   private IClientAPI api;
   private ClientProperties clientProperties;
   private Minecraft mc;
-  private final String seasonKeyString = "xaerominimap.seasonhud.infodisplay.season";
-  private final Component seasonKey = Common.translatedText("xaerominimap.seasonhud.infodisplay.season");
 
   public JourneymapSeasonPlugin() {
   }

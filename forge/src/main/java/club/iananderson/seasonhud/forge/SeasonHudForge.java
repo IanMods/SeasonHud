@@ -1,4 +1,5 @@
 package club.iananderson.seasonhud.forge;
+
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
@@ -13,18 +14,15 @@ import net.minecraftforge.fml.config.ModConfig;
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
   public SeasonHudForge(FMLJavaModLoadingContext context) {
-    var modEventBus  = context.getModBusGroup();
+    var modEventBus = context.getModBusGroup();
     modEventBus.register(MethodHandles.lookup(), this);
     Common.init();
 
-    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT,
-                                                                                    SeasonHudClient.CLIENT_SPEC,
-                                                                                    "seasonhud-client.toml");
+    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
+                                             "seasonhud-client.toml");
 
-    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER,
-                                                                                    SeasonHudServer.SERVER_SPEC,
-                                                                                    "seasonhud-server.toml");
-
+    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
+                                             "seasonhud-server.toml");
 
     FMLCommonSetupEvent.getBus(modEventBus).addListener(SeasonHudForge::onInitialize);
     FMLCommonSetupEvent.getBus(modEventBus).addListener(SeasonHudForge::ftbChunkSetup);

@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.fabric.client.overlays;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.overlays.SeasonHUDOverlayCommon;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.DeltaTracker;
