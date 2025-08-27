@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.fabric.client.overlays;
 
 import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
-import club.iananderson.seasonhud.config.Config;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
@@ -96,7 +96,7 @@ public class MapAtlases implements HudRenderCallback {
           }
         }
 
-        if (Config.getEnableMod() && shouldDraw(mc)) {
+        if (SeasonHudClient.getEnableMod() && shouldDraw(mc)) {
           float textScaling = MapAtlasesMod.CONFIG.minimapCoordsAndBiomeScale;
           textHeightOffset = mapBgScaledSize + 4;
           if (anchorLocation.contains("Lower")) {

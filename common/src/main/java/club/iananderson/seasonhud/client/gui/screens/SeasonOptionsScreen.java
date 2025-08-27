@@ -11,7 +11,6 @@ import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
@@ -19,7 +18,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import org.jetbrains.annotations.NotNull;
 
 public class SeasonOptionsScreen extends SeasonHudScreen {
@@ -230,7 +228,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
           .withValueRange(SeasonHudClient.HUD_SCALE_MIN, SeasonHudClient.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
-          .withDefaultValue(SeasonHudClient.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
+          .withDefaultValue(SeasonHudClient.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
           .build();
 

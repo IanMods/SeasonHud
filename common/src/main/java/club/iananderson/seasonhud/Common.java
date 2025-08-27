@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
@@ -197,11 +197,11 @@ public class Common {
   }
 
   public static MutableComponent translatedText(@Translatable(foldMethod = true) String key) {
-    return Component.translatable(key);
+    return new TranslatableComponent(key);
   }
 
   public static MutableComponent translatedText(@Translatable(foldMethod = true) String key, Object... args) {
-    return Component.translatable(key, args);
+    return new TranslatableComponent(key, args);
   }
 
   public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key) {
