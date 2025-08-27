@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.client.overlays;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.DefaultValues;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;

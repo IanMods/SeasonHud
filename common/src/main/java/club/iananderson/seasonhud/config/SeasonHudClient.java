@@ -41,7 +41,8 @@ public class SeasonHudClient {
 
   private static void setupConfig(ForgeConfigSpec.Builder builder) {
     builder.push("SeasonHUD");
-    enableMod = builder.comment("Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
+    enableMod = builder.comment(
+            "Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
         .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
 
     builder.push("HUD");
@@ -50,12 +51,14 @@ public class SeasonHudClient {
         .defineEnum("hud_location", Client.DEFAULT_HUD_LOCATION);
 
     hudX = builder.comment(
-        "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
-            + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_X_OFFSET + ".").define("hud_x_position", Client.DEFAULT_X_OFFSET);
+            "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_X_OFFSET + ".")
+        .define("hud_x_position", Client.DEFAULT_X_OFFSET);
 
     hudY = builder.comment(
-        "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
-            + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_Y_OFFSET + ".").define("hud_y_position", Client.DEFAULT_Y_OFFSET);
+            "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
+                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_Y_OFFSET + ".")
+        .define("hud_y_position", Client.DEFAULT_Y_OFFSET);
 
     hudScale = builder.comment(
             "The scale of the HUD when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_SCALE + ".")
@@ -63,24 +66,28 @@ public class SeasonHudClient {
 
     builder.push("Colors");
     enableSeasonNameColor = builder.comment(
-            "Display the season name in a color?\n" + "(true/false)" + "Default is " + Client.DEFAULT_SEASON_NAME_COLOR + ".")
-        .define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
+        "Display the season name in a color?\n" + "(true/false)" + "Default is " + Client.DEFAULT_SEASON_NAME_COLOR
+            + ".").define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
 
     springColor = builder.comment(
-        "The RGB color (decimal) for spring.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + Client.DEFAULT_SPRING_COLOR + ".").defineInRange("spring_color", Client.DEFAULT_SPRING_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+            "The RGB color (decimal) for spring.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_SPRING_COLOR + ".")
+        .defineInRange("spring_color", Client.DEFAULT_SPRING_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     summerColor = builder.comment(
-        "The RGB color (decimal) for summer.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + Client.DEFAULT_SUMMER_COLOR + ".").defineInRange("summer_color", Client.DEFAULT_SUMMER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+            "The RGB color (decimal) for summer.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_SUMMER_COLOR + ".")
+        .defineInRange("summer_color", Client.DEFAULT_SUMMER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     autumnColor = builder.comment(
-        "The RGB color (decimal) for autumn.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + Client.DEFAULT_AUTUMN_COLOR + ".").defineInRange("autumn_color", Client.DEFAULT_AUTUMN_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+            "The RGB color (decimal) for autumn.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_AUTUMN_COLOR + ".")
+        .defineInRange("autumn_color", Client.DEFAULT_AUTUMN_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     winterColor = builder.comment(
-        "The RGB color (decimal) for winter.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-            + Client.DEFAULT_WINTER_COLOR + ".").defineInRange("winter_color", Client.DEFAULT_WINTER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
+            "The RGB color (decimal) for winter.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
+                + Client.DEFAULT_WINTER_COLOR + ".")
+        .defineInRange("winter_color", Client.DEFAULT_WINTER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
     dryColor = builder.comment(
             " The RGB color (decimal) for dry tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
@@ -134,8 +141,9 @@ public class SeasonHudClient {
 
     builder.push("Journeymap");
     journeyMapAboveMap = builder.comment(
-        "Display the season above the JourneyMap minimap, instead of below.\n" + "(true/false)\n" + "Default is ."
-            + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + ".").define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
+            "Display the season above the JourneyMap minimap, instead of below.\n" + "(true/false)\n" + "Default is ."
+                + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + ".")
+        .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
 
     journeyMapMacOS = builder.comment("Toggle for macOS retina display scaling when using JourneyMap.\n"
                                           + "Enable if the season line is rendering around the halfway point of the screen.\n"

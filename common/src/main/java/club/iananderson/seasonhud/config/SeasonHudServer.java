@@ -26,8 +26,8 @@ public class SeasonHudServer {
             + Server.DEFAULT_NEED_CALENDAR + ".").define("need_calendar", Server.DEFAULT_NEED_CALENDAR);
 
     calendarDetailMode = builder.comment(
-        "Having the calendar item shows the detailed version of the HUD" + "Default is " + Server.DEFAULT_CALENDAR_DETAIL_MODE
-            + ".").define("calendar_detail", Server.DEFAULT_CALENDAR_DETAIL_MODE);
+        "Having the calendar item shows the detailed version of the HUD" + "Default is "
+            + Server.DEFAULT_CALENDAR_DETAIL_MODE + ".").define("calendar_detail", Server.DEFAULT_CALENDAR_DETAIL_MODE);
 
     dayLength = builder.comment(
             "Change if you are using a Minecraft day length other than vanilla value and using Fabric Seasons.\n"

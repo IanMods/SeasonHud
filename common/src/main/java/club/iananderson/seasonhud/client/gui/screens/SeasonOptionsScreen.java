@@ -6,7 +6,6 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
-import club.iananderson.seasonhud.config.DefaultValues;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
