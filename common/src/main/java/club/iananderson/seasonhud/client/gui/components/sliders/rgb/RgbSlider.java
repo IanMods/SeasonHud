@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders.rgb;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
@@ -70,7 +71,7 @@ public class RgbSlider extends BasicSlider {
 
   @Override
   protected void updateMessage() {
-    Component colorString = Component.literal(this.getValueString());
+    Component colorString = Common.literalText(this.getValueString());
 
     this.setMessage(colorString.copy().withStyle(this.textColor));
 

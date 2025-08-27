@@ -6,6 +6,7 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
+import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
@@ -121,8 +122,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .getSeasonHudConfigText(showDay, showSubSeason);
 
     if (drawDefaultHud) {
-      int DEFAULT_X_OFFSET_SCALED = SeasonHudClient.DEFAULT_X_OFFSET;
-      int DEFAULT_Y_OFFSET_SCALED = SeasonHudClient.DEFAULT_Y_OFFSET;
+      int DEFAULT_X_OFFSET_SCALED = Client.DEFAULT_X_OFFSET;
+      int DEFAULT_Y_OFFSET_SCALED = Client.DEFAULT_Y_OFFSET;
       seasonScale = hudScaleSlider.getValueDouble();
       int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
       int componentHeight = (int) (this.font.lineHeight * seasonScale);
@@ -226,23 +227,23 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       hudScaleSlider = HudScaleSlider.builder(Common.translatedText("menu.seasonhud.season.scale.slider"))
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
-          .withValueRange(SeasonHudClient.HUD_SCALE_MIN, SeasonHudClient.HUD_SCALE_MAX)
+          .withValueRange(Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
-          .withDefaultValue(SeasonHudClient.DEFAULT_SCALE).withStepSize(0.5).withPrecision(1)
+          .withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
           .build();
 
       row += 1; // Row 2
       xSlider = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
-          .withValues(0, this.maxWidth(seasonCombined), xSliderInt, SeasonHudClient.DEFAULT_X_OFFSET)
+          .withValues(0, this.maxWidth(seasonCombined), xSliderInt, Client.DEFAULT_X_OFFSET)
           .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
                       BUTTON_HEIGHT)
           .build();
 
       ySlider = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.yOffset.slider"))
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.yOffset.tooltip"))
-          .withValues(0, this.maxHeight(), ySliderInt, SeasonHudClient.DEFAULT_Y_OFFSET)
+          .withValues(0, this.maxHeight(), ySliderInt, Client.DEFAULT_Y_OFFSET)
           .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
                       BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
           .build();
@@ -326,7 +327,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     if (Common.fabricSeasonsLoaded()) {
       row += 2; //Row 4 (enableMinimapIntegration -> Row 2)
       dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
-                                 BUTTON_HEIGHT, Component.literal(String.valueOf(dayLength)));
+                                 BUTTON_HEIGHT, Common.literalText(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);
       dayLengthBox.setValue(String.valueOf(dayLength));
       dayLengthBox.setResponder((lengthString) -> {
