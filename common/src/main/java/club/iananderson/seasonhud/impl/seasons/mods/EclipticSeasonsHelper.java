@@ -20,7 +20,7 @@ public class EclipticSeasonsHelper implements IModHelper {
   @Override
   public Item CALENDAR() {
     if (Common.eclipticSeasonsLoaded()) {
-      return BuiltInRegistries.ITEM.getValue(ResourceLocation.fromNamespaceAndPath("seasons", "season_calendar"));
+      return BuiltInRegistries.ITEM.getValue(ResourceLocation.fromNamespaceAndPath("eclipticseasons", "calendar"));
     }
     else {
       return null;
