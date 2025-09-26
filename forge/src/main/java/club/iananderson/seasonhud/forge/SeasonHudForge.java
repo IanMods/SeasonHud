@@ -43,8 +43,7 @@ public class SeasonHudForge {
 
   public static void ftbChunkSetup(FMLCommonSetupEvent event) {
     if (CurrentMinimap.ftbChunksLoaded()) {
-      Common.LOG.info("Loading FTB Chunks Season Component");
-      EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
+      SeasonComponent.ftbChunkSetup();
     }
   }
 }
