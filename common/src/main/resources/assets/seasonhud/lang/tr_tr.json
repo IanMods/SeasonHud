@@ -57,7 +57,6 @@
   "desc.seasonhud.showday.month": "(Ay), #",
   "desc.seasonhud.showday.none": "KAPALI",
   "desc.seasonhud.showday.totalDays": "Gün #/#",
-  "ftbchunks.minimap.season": "Mevsim",
   "menu.seasonhud.color.default.button": "Varsayılan",
   "menu.seasonhud.color.enableSeasonNameColor.button": "Mevsim Adı Rengi",
   "menu.seasonhud.color.enableSeasonNameColor.tooltip": "Mevsim adını renkli olarak görüntüle",
@@ -106,6 +105,7 @@
   "menu.seasonhud.season.xOffset.tooltip": "Minimap yüklü olmadığında mevsim metninin yatay ofseti\n(piksel cinsinden)",
   "menu.seasonhud.season.yOffset.slider": "Y-Ofseti: ",
   "menu.seasonhud.season.yOffset.tooltip": "Minimap yüklü olmadığında mevsim metninin dikey ofseti\n(piksel cinsinden)",
+  "minimap.info.ftbchunks.season.title": "Mevsim",
   "trinkets.slot.calendar.calendarslot": "Takvim",
   "xaerominimap.seasonhud.infodisplay.season": "Mevsim"
 }
