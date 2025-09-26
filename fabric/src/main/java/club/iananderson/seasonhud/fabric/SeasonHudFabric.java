@@ -24,7 +24,7 @@ public class SeasonHudFabric implements ModInitializer {
                                              "seasonhud-client.toml");
 
     NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
-                                          "seasonhud-server.toml");
+                                             "seasonhud-server.toml");
 
     if (Common.accessoriesLoaded() && !Common.trinketsLoaded()) {
       AccessoriesCompat.init();
