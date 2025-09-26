@@ -57,7 +57,6 @@
   "desc.seasonhud.showday.month": "(Month), #",
   "desc.seasonhud.showday.none": "Desligado",
   "desc.seasonhud.showday.totalDays": "Dia #/#",
-  "ftbchunks.minimap.season": "Estação",
   "menu.seasonhud.color.default.button": "Default",
   "menu.seasonhud.color.enableSeasonNameColor.button": "Season Name Color",
   "menu.seasonhud.color.enableSeasonNameColor.tooltip": "Display the season name in a color",
@@ -106,6 +105,7 @@
   "menu.seasonhud.season.xOffset.tooltip": "The horizontal offset of the Hud when no minimap is installed\n(in pixels)",
   "menu.seasonhud.season.yOffset.slider": "Y Offset: ",
   "menu.seasonhud.season.yOffset.tooltip": "The vertical offset of the Hud when no minimap is installed\n(in pixels)",
+  "ftbchunks.minimap.season": "Estação",
   "trinkets.slot.calendar.calendarslot": "Calendário",
   "xaerominimap.seasonhud.infodisplay.season": "Estação"
 }

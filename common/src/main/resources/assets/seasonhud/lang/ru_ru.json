@@ -57,7 +57,6 @@
   "desc.seasonhud.showday.month": "(Месяц), #",
   "desc.seasonhud.showday.none": "Выкл",
   "desc.seasonhud.showday.totalDays": "День #/#",
-  "ftbchunks.minimap.season": "Сезон",
   "menu.seasonhud.color.default.button": "По умолчанию",
   "menu.seasonhud.color.enableSeasonNameColor.button": "Цвет названия сезона",
   "menu.seasonhud.color.enableSeasonNameColor.tooltip": "Отображать названия сезона цветным шрифтом",
@@ -106,6 +105,7 @@
   "menu.seasonhud.season.xOffset.tooltip": "Горизонтальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
   "menu.seasonhud.season.yOffset.slider": "Смещение по Y: ",
   "menu.seasonhud.season.yOffset.tooltip": "Вертикальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
+  "ftbchunks.minimap.season": "Сезон",
   "trinkets.slot.calendar.calendarslot": "Календарь",
   "xaerominimap.seasonhud.infodisplay.season": "Сезон"
 }

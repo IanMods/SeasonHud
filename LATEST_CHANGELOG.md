@@ -1,6 +1,6 @@
-## [1.13.10] - 2025-08-28
+## [1.13.11] - 2025-09-26
 
-### Fixed
+### Changed
 
-- Fixed crash with Ecliptic Seasons and Accessories
+- Cleaned up FTBChunks season minimap component
 
