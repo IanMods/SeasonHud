@@ -75,9 +75,9 @@ dependencies {
     modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
 
     //FTB Chunks + Dependencies
-    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
-    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+    modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
 
     //Map Atlases
@@ -99,10 +99,12 @@ dependencies {
             modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
             break
         case "ftb":
-            modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
-            modLocalRuntime "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-            modLocalRuntime "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
             modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+forge"
+            compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
         case "atlas":
             modLocalRuntime "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
