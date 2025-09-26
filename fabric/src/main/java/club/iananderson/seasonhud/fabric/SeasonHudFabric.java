@@ -25,19 +25,11 @@ public class SeasonHudFabric implements ModInitializer {
   public void onInitialize() {
     Common.init();
 
-    if(Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
-      ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
-                                       "seasonhud-client.toml");
-      ConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
-                                       "seasonhud-server.toml");
-    }
+    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
+                                             "seasonhud-client.toml");
 
-    else{
-      NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
-                                               "seasonhud-client.toml");
-      NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
-                                               "seasonhud-server.toml");
-    }
+    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
+                                             "seasonhud-server.toml");
 
     if (Common.accessoriesLoaded() && !Common.trinketsLoaded()) {
       AccessoriesCompat.init();

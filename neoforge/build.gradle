@@ -71,9 +71,10 @@ dependencies {
     modCompileOnly "maven.modrinth:journeymap:1.21.5-${project.journeymap_version}+neoforge"
 
     //FTB Chunks + Dependencies
-    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
-    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_neoforge_version}"
-    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_neoforge_version}"
+    modCompileOnly "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
+
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
 
     //Map Atlases
@@ -105,9 +106,9 @@ dependencies {
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
         case "ftb":
-            modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
-            modLocalRuntime "curse.maven:ftb-library-forge-404465:${project.ftb_library_neoforge_version}"
-            modLocalRuntime "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_neoforge_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
             modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
             break
         case "atlas":

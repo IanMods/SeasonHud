@@ -49,3 +49,10 @@ type = "optional"
 versionRange = "[1.21-6.0.0-beta.25,)"
 ordering = "AFTER"
 side = "CLIENT"
+
+[[dependencies.${ mod_id }]]
+modId = "ftbchunks"
+type = "optional"
+versionRange = "[2101.1.10,)"
+ordering = "AFTER"
+side = "CLIENT"

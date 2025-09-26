@@ -7,8 +7,6 @@ import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
 import club.iananderson.seasonhud.neoforge.impl.curios.CuriosCompat;
-import dev.architectury.utils.Env;
-import dev.architectury.utils.EnvExecutor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -40,8 +38,7 @@ public class SeasonHudNeoForge {
 
   public static void ftbChunkSetup(FMLCommonSetupEvent event) {
     if (CurrentMinimap.ftbChunksLoaded()) {
-      Common.LOG.info("Loading FTB Chunks Season Component");
-      EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
+      SeasonComponent.ftbChunkSetup();
     }
   }
 }
