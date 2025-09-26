@@ -15,11 +15,16 @@ import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.Nullable;
 
 public class CalendarSlot implements UniqueSlotHandling.RegistrationCallback {
+  public static final CalendarSlot INSTANCE = new CalendarSlot();
+  private static SlotTypeReference calendarSlotGetter;
   private final ResourceLocation slotPredicate = Common.location("calendar_slot_equipment");
 
-  public static final CalendarSlot INSTANCE = new CalendarSlot();
-
   private CalendarSlot() {
+  }
+
+  @Nullable
+  public static SlotTypeReference calendarSlotRef() {
+    return calendarSlotGetter;
   }
 
   public void init() {
@@ -36,17 +41,10 @@ public class CalendarSlot implements UniqueSlotHandling.RegistrationCallback {
     }
   }
 
-  private static SlotTypeReference calendarSlotGetter;
-
   @Override
   public void registerSlots(UniqueSlotBuilderFactory factory) {
     calendarSlotGetter = factory.create(Common.location("calendarslot"), 1).slotPredicates(slotPredicate)
         .validTypes(EntityType.PLAYER)
         .build();
-  }
-
-  @Nullable
-  public static SlotTypeReference calendarSlotRef() {
-    return calendarSlotGetter;
   }
 }
