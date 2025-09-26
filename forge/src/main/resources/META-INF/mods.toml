@@ -57,6 +57,6 @@ side = "CLIENT"
 [[dependencies.${ mod_id }]]
 modId = "ftbchunks"
 mandatory = false
-versionRange = "[2001.3.2,)"
+versionRange = "[2101.1.10,)"
 ordering = "AFTER"
 side = "CLIENT"

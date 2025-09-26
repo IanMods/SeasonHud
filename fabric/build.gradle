@@ -72,9 +72,9 @@ dependencies {
     modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version}+fabric")
 
     //FTB Chunks + Dependencies
-    modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}")
-    modCompileOnly("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}")
-    modCompileOnly("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}")
+    modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
     modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
 
     //Map Atlases
@@ -126,9 +126,9 @@ dependencies {
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
         case "ftb":
-            modLocalRuntime("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}")
-            modLocalRuntime("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}")
-            modLocalRuntime("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}")
+            modLocalRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
             modLocalRuntime("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
             break
         case "atlas":
