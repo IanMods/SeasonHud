@@ -90,7 +90,7 @@ dependencies {
     modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
 
     //Map Atlases
-    modCompileOnly("curse.maven:map-atlases-436298:${project.map_atlases_fabric_version}") {
+    modCompileOnly("maven.modrinth:map-atlases:1.20-${project.map_atlases_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     modCompileOnly("maven.modrinth:moonlight:1.20-${project.moonlight_version}-fabric") {
@@ -162,7 +162,7 @@ dependencies {
             modLocalRuntime("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
             break
         case "atlas":
-            modLocalRuntime("curse.maven:map-atlases-436298:${project.map_atlases_fabric_version}")
+            modLocalRuntime("maven.modrinth:map-atlases:1.20-${project.map_atlases_version}")
             modLocalRuntime("maven.modrinth:moonlight:fabric_1.20-${project.moonlight_version}")
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-fabric")
             modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1")
