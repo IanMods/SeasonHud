@@ -35,6 +35,7 @@ public class ClientEvents {
     //Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
+      event.registerCategory(KeyBindings.SEASONHUD_CATEGORY);
       event.register(KeyBindings.seasonhudOptionsKeyMapping);
     }
   }

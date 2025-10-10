@@ -13,6 +13,7 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
@@ -26,7 +27,7 @@ public class Common {
   public static final String MOD_ID = "seasonhud";
   public static final String MOD_NAME = "SeasonHUD";
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
-  public static final ResourceLocation SEASON_ICONS = location("season_icons");
+  public static final FontDescription SEASON_ICONS = new FontDescription.Resource(location("season_icons"));
   public static final Style SEASON_ICON_STYLE = Style.EMPTY.withFont(SEASON_ICONS);
   private static String platformName;
   private static boolean sereneSeasonsLoaded;

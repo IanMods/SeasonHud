@@ -10,7 +10,6 @@ public class ClientEvents {
   private ClientEvents() {
   }
 
-  //Key Bindings
   private static void registerKeyInputs() {
     ClientTickEvents.END_CLIENT_TICK.register(client -> {
       if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {

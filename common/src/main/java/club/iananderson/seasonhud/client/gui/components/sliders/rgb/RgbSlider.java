@@ -8,6 +8,7 @@ import club.iananderson.seasonhud.impl.seasons.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
@@ -35,16 +36,16 @@ public class RgbSlider extends BasicSlider {
   }
 
   @Override
-  public void onClick(double x, double y) {
+  public void onClick(MouseButtonEvent event, boolean isDoubleClick) {
     if (enableColor) {
-      super.onClick(x, y);
+      super.onClick(event, isDoubleClick);
     }
   }
 
   @Override
-  protected void onDrag(double mouseX, double mouseY, double dragX, double dragY) {
+  protected void onDrag(MouseButtonEvent event, double mouseX, double mouseY) {
     if (enableColor) {
-      super.onDrag(mouseX, mouseY, dragX, dragY);
+      super.onDrag(event, mouseX, mouseY);
     }
   }
 

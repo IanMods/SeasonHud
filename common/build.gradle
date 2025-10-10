@@ -10,7 +10,7 @@ dependencies {
 
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forge_config_api_port_version}"
     api group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
-    compileOnly "com.github.glitchfiend:GlitchCore-common:${minecraft_version}-${glitchcore_version}"
+    compileOnly "com.github.glitchfiend:GlitchCore-common:1.21.9-${glitchcore_version}"
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
     modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
     //modCompileOnly "maven.modrinth:accessories-cc-layer:7.4.0-beta.18"
@@ -18,7 +18,7 @@ dependencies {
 
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${minecraft_version}"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21.9"
     modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"
