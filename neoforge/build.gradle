@@ -52,8 +52,8 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${devauth_version}")
 
     //Serene Seasons
-    modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-neoforge"
-    modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-neoforge"
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${project.minecraft_version}-${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-neoforge:${project.minecraft_version}-${project.glitchcore_version}"
     implementation("net.jodah:typetools:0.6.3")
 
     //Terrafirmacraft
@@ -126,8 +126,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_neoforge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modImplementation "maven.modrinth:serene-seasons:${project.serene_seasons_version}-neoforge"
-            modImplementation "maven.modrinth:glitchcore:${project.glitchcore_version}-neoforge"
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-neoforge:${project.minecraft_version}-${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-neoforge:${project.minecraft_version}-${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
