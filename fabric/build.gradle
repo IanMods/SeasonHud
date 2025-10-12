@@ -55,21 +55,13 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
 
     //Fabric Seasons
-    modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     //Fabric Seasons Extras
-    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     //Serene Seasons
-    modCompileOnly("maven.modrinth:serene-seasons:${project.serene_seasons_version}-fabric") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-    modCompileOnly("maven.modrinth:glitchcore:${project.glitchcore_version}-fabric") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.minecraft_version}-${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.minecraft_version}-${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
 
     //Xaero's Minimap
@@ -124,7 +116,7 @@ dependencies {
     }
     modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-    modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
+    modCompileOnly("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -132,8 +124,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_fabric.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modImplementation("maven.modrinth:serene-seasons:${project.serene_seasons_version}-fabric")
-            modImplementation("maven.modrinth:glitchcore:${project.glitchcore_version}-fabric")
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-fabric:${project.minecraft_version}-${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-fabric:${project.minecraft_version}-${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "fabric":
