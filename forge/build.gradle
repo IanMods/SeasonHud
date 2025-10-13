@@ -120,9 +120,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modImplementation "maven.modrinth:serene-seasons:${project.serene_seasons_version}"
-//            modImplementation "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
-//            implementation("net.jodah:typetools:0.6.3")
+            modLocalRuntime "maven.modrinth:serene-seasons:${project.serene_seasons_version}"
             break
         case "terra":
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
