@@ -1,6 +1,6 @@
-## [1.13.11] - 2025-09-26
+## [1.13.12] - 2025-10-12
 
-### Changed
+### Fixed
 
-- Cleaned up FTBChunks season minimap component
+- Fixed crash with latest TerraFirmaCraft
 
