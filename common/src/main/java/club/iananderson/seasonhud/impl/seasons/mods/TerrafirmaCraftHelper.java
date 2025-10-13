@@ -5,6 +5,7 @@ import club.iananderson.seasonhud.impl.seasons.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import net.dries007.tfc.client.ClientHelpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.dries007.tfc.util.calendar.Season;
@@ -13,6 +14,10 @@ import net.minecraft.world.item.Item;
 
 public class TerrafirmaCraftHelper implements IModHelper {
   public TerrafirmaCraftHelper() {
+  }
+
+  private Month getCurrentMonth() {
+    return Calendars.get().getHemispheralCalendarMonthOfYear(ClientHelpers.inNorthernHemisphere());
   }
 
   private List<Month> getSeasonMonths(Season season) {
@@ -44,8 +49,8 @@ public class TerrafirmaCraftHelper implements IModHelper {
     return SEASON;
   }
 
-  private String getSeasonPrefix(Month currentMonth) {
-    Season season = currentMonth.getSeason();
+  private String getSeasonPrefix() {
+    Season season = getCurrentMonth().getSeason();
     HashMap<Month, String> SEASON = new HashMap<>();
 
     switch (season) {
@@ -71,7 +76,7 @@ public class TerrafirmaCraftHelper implements IModHelper {
       }
     }
 
-    return SEASON.get(currentMonth);
+    return SEASON.get(getCurrentMonth());
   }
 
   @Override
@@ -91,9 +96,8 @@ public class TerrafirmaCraftHelper implements IModHelper {
 
   @Override
   public String getCurrentSubSeason(Player player) {
-    Month month = Calendars.CLIENT.getCalendarMonthOfYear();
-    Season season = month.getSeason();
-    String prefix = getSeasonPrefix(month);
+    Season season = getCurrentMonth().getSeason();
+    String prefix = getSeasonPrefix();
 
     if (season == Season.FALL) {
       return prefix + "AUTUMN";
@@ -105,27 +109,25 @@ public class TerrafirmaCraftHelper implements IModHelper {
 
   @Override
   public String getCurrentSeason(Player player) {
-    Month month = Calendars.CLIENT.getCalendarMonthOfYear();
-    Season season = month.getSeason();
+    Season season = getCurrentMonth().getSeason();
 
     if (season == Season.FALL) {
       return "AUTUMN";
     }
 
     else {
-      return Calendars.CLIENT.getCalendarMonthOfYear().getSeason().getSerializedName();
+      return season.getSerializedName();
     }
   }
 
   @Override
   public long getDate(Player player) {
-    Month currentMonth = Calendars.CLIENT.getCalendarMonthOfYear();
-    Season currentSeason = currentMonth.getSeason();
+    Season currentSeason = getCurrentMonth().getSeason();
     List<Month> currentSeasonMonths = getSeasonMonths(currentSeason);
 
-    int subSeasonPos = currentSeasonMonths.indexOf(currentMonth);
-    int dayOfMonth = Calendars.CLIENT.getCalendarDayOfMonth();
-    int daysInMonth = Calendars.CLIENT.getCalendarDaysInMonth();
+    int subSeasonPos = currentSeasonMonths.indexOf(getCurrentMonth());
+    int dayOfMonth = Calendars.get().getCalendarDayOfMonth();
+    int daysInMonth = Calendars.get().getCalendarDaysInMonth();
 
     if (SeasonHudClient.getShowSubSeason()) {
       return dayOfMonth;
@@ -138,7 +140,7 @@ public class TerrafirmaCraftHelper implements IModHelper {
 
   @Override
   public int seasonDuration(Player player) {
-    int daysInMonth = Calendars.CLIENT.getCalendarDaysInMonth();
+    int daysInMonth = Calendars.get().getCalendarDaysInMonth();
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
       return daysInMonth;
