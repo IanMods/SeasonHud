@@ -69,7 +69,7 @@ dependencies {
 
     //JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
-    modCompileOnly("maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+fabric")
+    modCompileOnly("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}+fabric")
 
     //FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
@@ -127,7 +127,7 @@ dependencies {
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+fabric")
+            modImplementation("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}+fabric")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
         case "ftb":
@@ -145,6 +145,19 @@ dependencies {
             break
         default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
                 "atlas, or none")
+    }
+
+    // Accessory Mod Dev Tests
+    // See root gradle.properties to choose which to use at runtime.
+    switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
+        case "accessories":
+            modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-fabric")
+            modLocalRuntime "maven.modrinth:owo-lib:${project.owo_version}"
+            modLocalRuntime "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
+            break
+        case "none":
+            break
+        default: println("Unknown accessory mod specified: ${project.minimap_mod}. Must be accessories, or none")
     }
 
     // Accessory Mod Dev Tests

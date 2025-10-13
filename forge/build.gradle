@@ -78,7 +78,7 @@ dependencies {
 
     //JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
-    modCompileOnly "maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+forge"
+    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}+forge"
 
     //Forge Config API Port
     modImplementation "maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge"
@@ -91,7 +91,7 @@ dependencies {
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+forge")
+            modImplementation("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}+forge")
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-forge")
             break
         case "ftb":
@@ -128,7 +128,7 @@ dependencies {
             forgeRuntimeLibrary("io.wispforest:endec:0.1.8")
             forgeRuntimeLibrary("io.wispforest.endec:gson:0.1.5")
             forgeRuntimeLibrary("io.wispforest.endec:netty:0.1.4")
-            implementation("io.github.llamalad7:mixinextras-forge:0.3.5")
+            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
         case "none":
             break
@@ -139,8 +139,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-fabric:${project.minecraft_version}-${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-fabric:${project.minecraft_version}-${project.glitchcore_version}"
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
