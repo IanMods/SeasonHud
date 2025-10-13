@@ -59,7 +59,7 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     //Fabric Seasons Extras
-    modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}") {
+    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -110,6 +110,7 @@ dependencies {
     modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+
     modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
