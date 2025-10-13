@@ -60,9 +60,6 @@ dependencies {
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     //Serene Seasons
-    modCompileOnly("maven.modrinth:serene-seasons:${project.serene_seasons_version}-fabric") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
     modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:1.21.9-${serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:1.21.9-${glitchcore_version}"
 

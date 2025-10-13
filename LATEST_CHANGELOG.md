@@ -1,6 +1,6 @@
-## [1.13.10] - 2025-08-28
+## [1.13.12] - 2025-10-12
 
 ### Fixed
 
-- Fixed crash with Ecliptic Seasons and Accessories
+- Fixed crash with latest TerraFirmaCraft
 
