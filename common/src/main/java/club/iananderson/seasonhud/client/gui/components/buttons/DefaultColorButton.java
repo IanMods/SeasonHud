@@ -7,7 +7,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Map;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import org.jetbrains.annotations.NotNull;
 
 public class DefaultColorButton extends Button {
