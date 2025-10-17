@@ -7,8 +7,6 @@ import club.iananderson.seasonhud.forge.impl.curios.CuriosCompat;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
-import dev.architectury.utils.Env;
-import dev.architectury.utils.EnvExecutor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
