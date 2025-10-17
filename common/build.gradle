@@ -27,8 +27,8 @@ dependencies {
 
     //Season Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-neoforge"
-    modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-neoforge"
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.minecraft_version}-${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.minecraft_version}-${project.glitchcore_version}"
     modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
     modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"

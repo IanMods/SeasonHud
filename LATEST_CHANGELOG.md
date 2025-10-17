@@ -1,6 +1,6 @@
-## [1.13.12] - 2025-10-12
+## [1.13.13] - 2025-10-17
 
 ### Fixed
 
-- Fixed crash with latest TerraFirmaCraft
+- Fixed crash on Forge and Fabric
 
