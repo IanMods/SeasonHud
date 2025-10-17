@@ -10,8 +10,7 @@ public class KeyBindings {
   public static final Category SEASONHUD_CATEGORY = new Category(Common.location("main"));
 
   public static KeyMapping seasonhudOptionsKeyMapping = new KeyMapping("desc.seasonhud.keybind.options",
-                                                                       InputConstants.Type.KEYSYM,
-                                                                       GLFW.GLFW_KEY_H,
+                                                                       InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H,
                                                                        SEASONHUD_CATEGORY);
 
   private KeyBindings() {

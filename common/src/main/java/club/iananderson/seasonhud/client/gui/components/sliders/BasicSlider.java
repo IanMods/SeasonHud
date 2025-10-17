@@ -4,7 +4,6 @@ import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.input.KeyEvent;
