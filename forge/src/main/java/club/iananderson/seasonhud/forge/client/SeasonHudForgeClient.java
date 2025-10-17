@@ -10,12 +10,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SeasonHudForgeClient {
-  SeasonHudForgeClient(){
+  SeasonHudForgeClient() {
     var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modEventBus.addListener(SeasonHudForgeClient::curioTexture);
   }
-
 
   @SubscribeEvent
   public static void onInitializeClient(FMLClientSetupEvent event) {
