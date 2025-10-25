@@ -1,6 +1,10 @@
-## [1.13.13] - 2025-10-17
+## [1.13.14] - 2025-10-25
 
 ### Fixed
 
-- Fixed crash on Forge and Fabric
+- Fixed incorrect day count when season lengths are changed in Fabric Seasons.
+
+### Changed
+
+- Updated mod description
 
