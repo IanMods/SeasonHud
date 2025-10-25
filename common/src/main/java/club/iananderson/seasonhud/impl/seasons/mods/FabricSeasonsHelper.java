@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements IModHelper {
+public class FabricSeasonsHelper implements ISeasonModHelper {
   public FabricSeasonsHelper() {
   }
 
@@ -65,7 +65,7 @@ public class FabricSeasonsHelper implements IModHelper {
   @Override
   public long getDate(Player player) {
     long dayLength = SeasonHudServer.getDayLength();
-    long seasonLength = FabricSeasons.CONFIG.getSpringLength();
+    int seasonLength = FabricSeasons.getCurrentSeason(player.level).getSeasonLength();
     long timeToNextSeason = FabricSeasons.getTimeToNextSeason(player.level);
 
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
@@ -80,7 +80,8 @@ public class FabricSeasonsHelper implements IModHelper {
   @Override
   public int seasonDuration(Player player) {
     int dayLength = SeasonHudServer.getDayLength();
+    int seasonLength = FabricSeasons.getCurrentSeason(player.level).getSeasonLength();
 
-    return FabricSeasons.CONFIG.getSpringLength() / dayLength;
+    return seasonLength / dayLength;
   }
 }

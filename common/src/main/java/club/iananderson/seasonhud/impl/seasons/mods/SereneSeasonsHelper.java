@@ -10,7 +10,7 @@ import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.config.ServerConfig;
 
-public class SereneSeasonsHelper implements IModHelper {
+public class SereneSeasonsHelper implements ISeasonModHelper {
   public SereneSeasonsHelper() {
   }
 
