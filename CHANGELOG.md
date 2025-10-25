@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.13.14] - 2025-10-25
+
+### Fixed
+
+- Fixed incorrect day count when season lengths are changed in Fabric Seasons.
+
+### Changed
+
+- Updated mod description
+
 ## [1.13.13] - 2025-10-17
 
 ### Fixed
