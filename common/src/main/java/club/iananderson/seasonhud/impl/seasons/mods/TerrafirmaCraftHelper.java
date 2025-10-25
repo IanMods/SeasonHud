@@ -11,7 +11,7 @@ import net.dries007.tfc.util.calendar.Season;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class TerrafirmaCraftHelper implements IModHelper {
+public class TerrafirmaCraftHelper implements ISeasonModHelper {
   public TerrafirmaCraftHelper() {
   }
 

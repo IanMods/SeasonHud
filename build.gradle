@@ -139,6 +139,8 @@ subprojects {
                 "mod_id"                    : mod_id,
                 "license"                   : license,
                 "description"               : description,
+                "repoURL"                   : repoURL,
+                "issueTrackerURL"           : issueTrackerURL,
                 "credits"                   : credits,
                 "java_version"              : java_version
         ]

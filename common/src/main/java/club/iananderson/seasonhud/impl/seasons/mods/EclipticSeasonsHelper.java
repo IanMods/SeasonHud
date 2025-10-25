@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class EclipticSeasonsHelper implements IModHelper {
+public class EclipticSeasonsHelper implements ISeasonModHelper {
   @Override
   public Item CALENDAR() {
     if (Common.eclipticSeasonsLoaded()) {

@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public interface IModHelper {
+public interface ISeasonModHelper {
 
   /**
    * @return The calendar item for the loaded season mod.

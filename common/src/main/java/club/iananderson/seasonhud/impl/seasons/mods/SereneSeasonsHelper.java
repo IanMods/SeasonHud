@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import sereneseasons.config.SeasonsConfig;
 
-public class SereneSeasonsHelper implements IModHelper {
+public class SereneSeasonsHelper implements ISeasonModHelper {
   public SereneSeasonsHelper() {
   }
 

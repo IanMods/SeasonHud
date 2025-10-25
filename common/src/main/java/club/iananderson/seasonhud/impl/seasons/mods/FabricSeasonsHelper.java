@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements IModHelper {
+public class FabricSeasonsHelper implements ISeasonModHelper {
   public FabricSeasonsHelper() {
   }
 
@@ -81,7 +81,8 @@ public class FabricSeasonsHelper implements IModHelper {
   @Override
   public int seasonDuration(Player player) {
     int dayLength = SeasonHudServer.getDayLength();
+    int seasonLength = FabricSeasons.CONFIG.getSeasonLength();
 
-    return FabricSeasons.CONFIG.getSeasonLength() / dayLength;
+    return seasonLength / dayLength;
   }
 }
