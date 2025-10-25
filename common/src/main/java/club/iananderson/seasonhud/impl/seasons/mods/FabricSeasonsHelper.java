@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements IModHelper {
+public class FabricSeasonsHelper implements ISeasonModHelper {
   public FabricSeasonsHelper() {
   }
 

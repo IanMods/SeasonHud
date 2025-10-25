@@ -3,13 +3,13 @@ package club.iananderson.seasonhud.impl.seasons;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.mods.EclipticSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
-import club.iananderson.seasonhud.impl.seasons.mods.IModHelper;
+import club.iananderson.seasonhud.impl.seasons.mods.ISeasonModHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.TerrafirmaCraftHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class CommonSeasonHelper implements IModHelper {
+public class CommonSeasonHelper implements ISeasonModHelper {
   //Todo -- Move all to switch statement?
 
   public static CommonSeasonHelper commonSeasons = new CommonSeasonHelper();
