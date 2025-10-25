@@ -53,10 +53,10 @@ public class Calendar {
   }
 
   private static boolean findCalendar(Player player, Item item) {
-    boolean invCalenderFound = player.getInventory().contains(item.getDefaultInstance());
-    boolean curiosCalenderFound = Calendar.findCuriosCalendar(player, item);
+    boolean invCalendarFound = player.getInventory().contains(item.getDefaultInstance());
+    boolean curiosCalendarFound = Calendar.findCuriosCalendar(player, item);
 
-    return invCalenderFound | curiosCalenderFound;
+    return invCalendarFound | curiosCalendarFound;
   }
 
   private static boolean calendarFound() {

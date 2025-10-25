@@ -5,8 +5,6 @@ import club.iananderson.seasonhud.fabric.event.ClientEvents;
 import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
-import dev.architectury.utils.Env;
-import dev.architectury.utils.EnvExecutor;
 import net.fabricmc.api.ClientModInitializer;
 
 public class SeasonHudClientFabric implements ClientModInitializer {
@@ -16,8 +14,7 @@ public class SeasonHudClientFabric implements ClientModInitializer {
     ClientEvents.register();
 
     if (CurrentMinimap.ftbChunksLoaded()) {
-      Common.LOG.info("Loading FTB Chunks Season Component");
-      EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
+      SeasonComponent.ftbChunkSetup();
     }
 
     if (Common.accessoriesLoaded() && !Common.trinketsLoaded()) {

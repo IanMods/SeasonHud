@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
     id 'net.darkhax.curseforgegradle'
     id "com.modrinth.minotaur"
 }
@@ -53,11 +53,11 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
-    modRuntimeOnly("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
+    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
 
     //Serene Seasons
-    modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
-    modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
 
     //Terrafirmacraft
@@ -75,13 +75,13 @@ dependencies {
     modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
 
     //FTB Chunks + Dependencies
-    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
-    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+    modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
 
     //Map Atlases
-    modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
+    modCompileOnly "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
     modCompileOnly "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge"
 
@@ -101,13 +101,15 @@ dependencies {
             modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
             break
         case "ftb":
-            modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
-            modLocalRuntime "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-            modLocalRuntime "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
             modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+forge"
+            compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
         case "atlas":
-            modLocalRuntime "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
+            modLocalRuntime "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
             modLocalRuntime "maven.modrinth:moonlight:forge_1.20-${project.moonlight_version}"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
@@ -143,7 +145,7 @@ dependencies {
             forgeRuntimeLibrary("io.wispforest:endec:0.1.8")
             forgeRuntimeLibrary("io.wispforest.endec:gson:0.1.5")
             forgeRuntimeLibrary("io.wispforest.endec:netty:0.1.4")
-            implementation("io.github.llamalad7:mixinextras-forge:0.3.5")
+            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
         case "none":
             break
@@ -154,8 +156,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modImplementation "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
-            modImplementation "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
@@ -177,7 +179,7 @@ shadowJar {
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
 }
 
 modrinth {
@@ -207,7 +209,7 @@ modrinth {
     }
 }
 
-task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     group = "curseforge"
 
     debugMode = false
@@ -237,10 +239,8 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addOptional("map-atlases-forge")
 }
 
-task publishForge {
+tasks.register('publishForge') {
     group = "upload"
-    afterEvaluate {
-        dependsOn(tasks.publishCurseForge)
-        dependsOn(tasks.modrinth)
-    }
+    dependsOn(tasks.publishCurseForge)
+    dependsOn(tasks.modrinth)
 }

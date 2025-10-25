@@ -1,7 +1,7 @@
 plugins {
-    id 'dev.architectury.loom' version '1.10-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+    id 'com.gradleup.shadow' version '8.3.6' apply false
     id 'net.darkhax.curseforgegradle' version '1.1.25'
     id 'com.modrinth.minotaur' version '2.+'
 }
@@ -27,18 +27,38 @@ subprojects {
 
     repositories {
         mavenCentral()
+
         maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
         maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
         maven { url = "https://maven.blamejared.com/" } // JEI
         maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
-        maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
-        maven { url = "https://maven.theillusivec4.top/" } //Curios
+        maven { url = "https://maven.octo-studios.com/releases" } //Curios Cont.
         maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components
         maven { url = "https://jm.gserv.me/repository/maven-public/" } //Journeymap API for Fabric
-        maven { url 'https://maven.wispforest.io/releases' } //Accessories
-        maven { url 'https://maven.su5ed.dev/releases' } //Accessories
+        maven { url = 'https://maven.minecraftforge.net' } //Forge
+        maven { url = "https://maven.wispforest.io/releases" } //Accessories
+        maven { url = "https://maven.su5ed.dev/releases" } //Accessories
         maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
         maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
+        maven {
+            url "https://maven.ftb.dev/releases"
+            content {
+                includeGroup "dev.ftb.mods"
+            }
+        }
+        maven {
+            url "https://maven.ftb.dev/snapshots"
+            content {
+                includeGroup "dev.ftb.mods"
+            }
+        }
+        maven {
+            url = "https://maven.theillusivec4.top/"
+            content {
+                includeGroup "top.theillusivec4.curios"
+            }
+        }
+
         exclusiveContent {
             forRepository {
                 maven { url = "https://cursemaven.com" }
@@ -130,7 +150,7 @@ subprojects {
     }
 }
 
-task latestChangelog {
+tasks.register('latestChangelog') {
     group = "changelog"
 
     String fullChangelogText = file("CHANGELOG.md").getText()
@@ -154,7 +174,7 @@ task latestChangelog {
     }
 }
 
-task publishAll {
+tasks.register('publishAll') {
     group = "upload"
 
     dependsOn("latestChangelog")

@@ -4,14 +4,38 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
-## [1.13.9] - 2025-08-25
+## [1.13.13] - 2025-10-17
+
+### Fixed
+
+- Fixed crash on Forge and Fabric
+
+## [1.13.12] - 2025-10-12
+
+### Fixed
+
+- Fixed crash with latest TerraFirmaCraft
+
+## [1.13.11] - 2025-09-26
+
+### Changed
+
+- Cleaned up FTBChunks season minimap component
+
+## [1.13.10] - 2025-08-28
+
+### Fixed
+
+- Fixed crash with Ecliptic Seasons and Accessories
+
+## [1.13.9] - 2025-08-27
 
 ### Changed
 
 - Added server side config
     - Will be in the "serverconfig" folder of the world on Forge
     - Will be in the main "config" folder on Fabric
-- Moved needCalendar and calenderDetailMode to server side config
+- Moved needCalendar and calendarDetailMode to server side config
     - These will now be synced by the server
 
 ### Fixed
