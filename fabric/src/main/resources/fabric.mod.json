@@ -8,8 +8,9 @@
     "${mod_author}"
   ],
   "contact": {
-    "repo": "https://github.com/IanMods/SeasonHUD",
-    "issues": "https://github.com/IanMods/SeasonHUD/issues"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/seasonhud-fabric",
+    "sources": "${repoURL}",
+    "issues": "${issueTrackerURL}"
   },
   "license": "${license}",
   "icon": "${mod_id}.png",
