@@ -2,12 +2,17 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import sereneseasons.api.SSItems;
 import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.init.ModConfig;
+import sereneseasons.init.ModTags;
 
 public class SereneSeasonsHelper implements ISeasonModHelper {
   public SereneSeasonsHelper() {
@@ -96,5 +101,59 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
     }
 
     return duration;
+  }
+
+  @Override
+  public boolean infertileBiome(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.getOnPos();
+    Holder<Biome> biome = level.getBiome(pos);
+
+    if ((!ModConfig.fertility.seasonalCrops || biome.is(ModTags.Biomes.BLACKLISTED_BIOMES)
+        || !ModConfig.seasons.isDimensionWhitelisted(level.dimension()))) {
+      return false;
+    }
+
+    else {
+      return (biome.is(ModTags.Biomes.INFERTILE_BIOMES));
+    }
+  }
+
+  @Override
+  public boolean alwaysWinterBiome(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.getOnPos();
+    Holder<Biome> biome = level.getBiome(pos);
+
+    if ((!ModConfig.fertility.seasonalCrops || biome.is(ModTags.Biomes.BLACKLISTED_BIOMES)
+        || !ModConfig.seasons.isDimensionWhitelisted(level.dimension()))) {
+      return false;
+    }
+
+    else {
+      return !biome.value().warmEnoughToRain(pos);
+    }
+  }
+
+  @Override
+  public boolean undergroundFertility(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.getOnPos();
+    Holder<Biome> biome = level.getBiome(pos);
+
+    if ((!ModConfig.fertility.seasonalCrops || biome.is(ModTags.Biomes.BLACKLISTED_BIOMES)
+        || !ModConfig.seasons.isDimensionWhitelisted(level.dimension()))) {
+      return true;
+    }
+
+    else {
+      return (pos.getY() < ModConfig.fertility.undergroundFertilityLevel && !level.canSeeSky(pos));
+    }
+  }
+
+  @Override
+  public boolean fertileBiome(Player player) {
+
+    return !infertileBiome(player) && !alwaysWinterBiome(player) && undergroundFertility(player);
   }
 }

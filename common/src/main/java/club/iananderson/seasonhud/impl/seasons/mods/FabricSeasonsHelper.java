@@ -84,4 +84,24 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
 
     return seasonLength / dayLength;
   }
+
+  @Override
+  public boolean infertileBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean alwaysWinterBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean undergroundFertility(Player player) {
+    return true;
+  }
+
+  @Override
+  public boolean fertileBiome(Player player) {
+    return true;
+  }
 }

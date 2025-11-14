@@ -52,4 +52,34 @@ public interface ISeasonModHelper {
    * @return The duration of the current season/sub-season.
    */
   int seasonDuration(Player player);
+
+  /**
+   * Checks if the current biome the player is in is marked as infertile.
+   *
+   * @return If the current biome the player in is marked as infertile.
+   */
+  boolean infertileBiome(Player player);
+
+  /**
+   * Checks if the current biome the player is in is considered always winter.
+   *
+   * @return If the current biome the player in is considered always winter.
+   */
+  boolean alwaysWinterBiome(Player player);
+
+  /**
+   * Checks if the crops are fertile at the players current y position
+   *
+   * @return If the players current y position is considered fertile
+   */
+  boolean undergroundFertility(Player player);
+
+  /**
+   * Checks if the current biome the player is in is marked as fertile. Is mainly used to check for "always winter" and
+   * "infertile" biomes
+   *
+   * @return If the current biome the player in is considered fertile
+   */
+  boolean fertileBiome(Player player);
+
 }

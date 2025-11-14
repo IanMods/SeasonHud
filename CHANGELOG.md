@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.14.0] - 2025-11-14
+
+### Added
+
+- Added and option to display the current fertility level of the biome for Serene Seasons
+
 ## [1.13.14] - 2025-10-25
 
 ### Fixed
 
-- Fixed incorrect day count when season lengths are changed in Fabric Seasons.
+- Fixed incorrect day count when season lengths are changed in Fabric Seasons
 
 ### Changed
 
