@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
+import club.iananderson.seasonhud.impl.seasons.Fertility;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -72,7 +73,7 @@ public interface ISeasonModHelper {
    *
    * @return If the players current y position is considered fertile
    */
-  boolean undergroundFertility(Player player);
+  boolean undergroundFertile(Player player);
 
   /**
    * Checks if the current biome the player is in is marked as fertile. Is mainly used to check for "always winter" and
@@ -80,6 +81,6 @@ public interface ISeasonModHelper {
    *
    * @return If the current biome the player in is considered fertile
    */
-  boolean fertileBiome(Player player);
+  Fertility fertility(Player player);
 
 }

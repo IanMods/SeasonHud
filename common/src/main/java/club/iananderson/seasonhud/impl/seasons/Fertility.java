@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.impl.seasons;
 public enum Fertility {
   FERTILE(0, "desc.seasonhud.fertility.fertile"),
 
-  INFERTILE(1, "desc.seasonhud.fertility.infertile"),
+  INFERTILE_BIOME(1, "desc.seasonhud.fertility.infertile_biome"),
 
   ALWAYS_WINTER(2, "desc.seasonhud.fertility.always_winter"),
 

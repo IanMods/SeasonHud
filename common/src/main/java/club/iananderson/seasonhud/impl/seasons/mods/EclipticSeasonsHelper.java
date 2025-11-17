@@ -3,6 +3,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
+import club.iananderson.seasonhud.impl.seasons.Fertility;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
 import com.teamtea.eclipticseasons.config.CommonConfig.Season;
@@ -102,12 +103,12 @@ public class EclipticSeasonsHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean undergroundFertility(Player player) {
+  public boolean undergroundFertile(Player player) {
     return true;
   }
 
   @Override
-  public boolean fertileBiome(Player player) {
-    return true;
+  public Fertility fertility(Player player) {
+    return Fertility.FERTILE;
   }
 }

@@ -211,21 +211,21 @@ public class CommonSeasonHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean undergroundFertility(Player player) {
+  public boolean undergroundFertile(Player player) {
     if (Common.fabricSeasonsLoaded()) {
-      return fabricSeasons.undergroundFertility(player);
+      return fabricSeasons.undergroundFertile(player);
     }
 
     if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
-      return sereneSeasons.undergroundFertility(player);
+      return sereneSeasons.undergroundFertile(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      return terrafirmaCraft.undergroundFertility(player);
+      return terrafirmaCraft.undergroundFertile(player);
     }
 
     if (Common.eclipticSeasonsLoaded()) {
-      return eclipticSeasons.undergroundFertility(player);
+      return eclipticSeasons.undergroundFertile(player);
     }
 
     else {
@@ -234,25 +234,25 @@ public class CommonSeasonHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean fertileBiome(Player player) {
+  public Fertility fertility(Player player) {
     if (Common.fabricSeasonsLoaded()) {
-      return fabricSeasons.fertileBiome(player);
+      return fabricSeasons.fertility(player);
     }
 
     if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
-      return sereneSeasons.fertileBiome(player);
+      return sereneSeasons.fertility(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      return terrafirmaCraft.fertileBiome(player);
+      return terrafirmaCraft.fertility(player);
     }
 
     if (Common.eclipticSeasonsLoaded()) {
-      return eclipticSeasons.fertileBiome(player);
+      return eclipticSeasons.fertility(player);
     }
 
     else {
-      return true;
+      return Fertility.FERTILE;
     }
   }
 }

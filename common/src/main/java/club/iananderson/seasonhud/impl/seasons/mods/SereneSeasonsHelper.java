@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
+import club.iananderson.seasonhud.impl.seasons.Fertility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
@@ -136,7 +137,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean undergroundFertility(Player player) {
+  public boolean undergroundFertile(Player player) {
     Level level = player.level();
     BlockPos pos = player.getOnPos();
     Holder<Biome> biome = level.getBiome(pos);
@@ -156,8 +157,19 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean fertileBiome(Player player) {
+  public Fertility fertility(Player player) {
+    if (infertileBiome(player)){
+      return Fertility.INFERTILE_BIOME;
+    }
 
-    return !infertileBiome(player) && !alwaysWinterBiome(player) && undergroundFertility(player);
+    if(alwaysWinterBiome(player)){
+      return Fertility.ALWAYS_WINTER;
+    }
+
+    else if (!undergroundFertile(player)){
+      return Fertility.UNDERGROUND;
+    }
+
+    return Fertility.FERTILE;
   }
 }

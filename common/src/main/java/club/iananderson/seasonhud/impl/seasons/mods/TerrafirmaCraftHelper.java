@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
+import club.iananderson.seasonhud.impl.seasons.Fertility;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -160,13 +161,13 @@ public class TerrafirmaCraftHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean undergroundFertility(Player player) {
+  public boolean undergroundFertile(Player player) {
     return true;
   }
 
   @Override
-  public boolean fertileBiome(Player player) {
-    return true;
+  public Fertility fertility(Player player) {
+    return Fertility.FERTILE;
   }
 
   /**

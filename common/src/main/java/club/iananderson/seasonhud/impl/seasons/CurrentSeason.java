@@ -145,6 +145,7 @@ public class CurrentSeason {
 
   public MutableComponent getSeasonHudText() {
     MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getSeasonIcon());
+    Fertility currentFertility = CommonSeasonHelper.commonSeasons.fertility(Minecraft.getInstance().player);
     ShowDay showDay = SeasonHudClient.getShowDay();
     boolean showSubSeason = SeasonHudClient.getShowSubSeason();
 
@@ -154,8 +155,16 @@ public class CurrentSeason {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                 seasonText.withStyle(seasonFormat));
+    MutableComponent finalSeasonText = Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+                                                             seasonText.withStyle(seasonFormat));
+
+    if(currentFertility != Fertility.FERTILE){
+      finalSeasonText.append(" (");
+      finalSeasonText.append(Common.translatedText(currentFertility.getKey()));
+      finalSeasonText.append(")");
+    }
+
+    return finalSeasonText;
   }
 
   public MutableComponent getSeasonMenuText(Seasons season, int newRgb, boolean seasonShort) {

@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudServer;
+import club.iananderson.seasonhud.impl.seasons.Fertility;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
@@ -96,12 +97,12 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
   }
 
   @Override
-  public boolean undergroundFertility(Player player) {
+  public boolean undergroundFertile(Player player) {
     return true;
   }
 
   @Override
-  public boolean fertileBiome(Player player) {
-    return true;
+  public Fertility fertility(Player player) {
+    return Fertility.FERTILE;
   }
 }
