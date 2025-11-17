@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "달력",
   "curios.identifier.calendarslot": "달력",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, %s일",
   "desc.seasonhud.hud.detailed.total": "%s, %s/%s일",

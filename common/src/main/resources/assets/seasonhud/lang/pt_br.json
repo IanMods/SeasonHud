@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "Calendário",
   "curios.identifier.calendarslot": "Calendário",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, Dia %s",
   "desc.seasonhud.hud.detailed.total": "%s, Dia %s/%s",
