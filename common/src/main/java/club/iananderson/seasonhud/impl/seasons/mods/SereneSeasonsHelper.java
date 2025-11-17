@@ -146,8 +146,12 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
       return true;
     }
 
+    if (!level.canSeeSky(pos.above())){
+      return (pos.getY() > ModConfig.fertility.undergroundFertilityLevel);
+    }
+
     else {
-      return (pos.getY() < ModConfig.fertility.undergroundFertilityLevel && !level.canSeeSky(pos));
+      return true;
     }
   }
 
