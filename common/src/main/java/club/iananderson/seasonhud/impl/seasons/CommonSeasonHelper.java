@@ -163,4 +163,96 @@ public class CommonSeasonHelper implements ISeasonModHelper {
   public String getSeasonFileName(Player player) {
     return commonSeasons.getCurrentSeason(player).toLowerCase();
   }
+
+  @Override
+  public boolean infertileBiome(Player player) {
+    if (Common.fabricSeasonsLoaded()) {
+      return fabricSeasons.infertileBiome(player);
+    }
+
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
+      return sereneSeasons.infertileBiome(player);
+    }
+
+    if (Common.terrafirmacraftLoaded()) {
+      return terrafirmaCraft.infertileBiome(player);
+    }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      return eclipticSeasons.infertileBiome(player);
+    }
+
+    else {
+      return false;
+    }
+  }
+
+  @Override
+  public boolean alwaysWinterBiome(Player player) {
+    if (Common.fabricSeasonsLoaded()) {
+      return fabricSeasons.alwaysWinterBiome(player);
+    }
+
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
+      return sereneSeasons.alwaysWinterBiome(player);
+    }
+
+    if (Common.terrafirmacraftLoaded()) {
+      return terrafirmaCraft.alwaysWinterBiome(player);
+    }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      return eclipticSeasons.alwaysWinterBiome(player);
+    }
+
+    else {
+      return false;
+    }
+  }
+
+  @Override
+  public boolean undergroundFertility(Player player) {
+    if (Common.fabricSeasonsLoaded()) {
+      return fabricSeasons.undergroundFertility(player);
+    }
+
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
+      return sereneSeasons.undergroundFertility(player);
+    }
+
+    if (Common.terrafirmacraftLoaded()) {
+      return terrafirmaCraft.undergroundFertility(player);
+    }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      return eclipticSeasons.undergroundFertility(player);
+    }
+
+    else {
+      return true;
+    }
+  }
+
+  @Override
+  public boolean fertileBiome(Player player) {
+    if (Common.fabricSeasonsLoaded()) {
+      return fabricSeasons.fertileBiome(player);
+    }
+
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
+      return sereneSeasons.fertileBiome(player);
+    }
+
+    if (Common.terrafirmacraftLoaded()) {
+      return terrafirmaCraft.fertileBiome(player);
+    }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      return eclipticSeasons.fertileBiome(player);
+    }
+
+    else {
+      return true;
+    }
+  }
 }
