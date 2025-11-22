@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "Calendário",
   "curios.identifier.calendarslot": "Calendário",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, Dia %s",
   "desc.seasonhud.hud.detailed.total": "%s, Dia %s/%s",
@@ -96,6 +100,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "Mostrar o valor do dia",
   "menu.seasonhud.season.showDay.tooltip": "Mostrar o dia da estação/subestação atual no HUD",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Mostrar a subestação",
   "menu.seasonhud.season.showSubSeason.tooltip": "Substituir a estação pela subestação atual",
   "menu.seasonhud.season.showTropicalSeason.button": "Mostrar estações tropicais",
@@ -107,5 +113,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "The vertical offset of the Hud when no minimap is installed\n(in pixels)",
   "minimap.info.ftbchunks.season.title": "Estação",
   "trinkets.slot.calendar.calendarslot": "Calendário",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "Estação"
 }
