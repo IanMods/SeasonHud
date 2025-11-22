@@ -1,10 +1,6 @@
-## [1.13.14] - 2025-10-25
+## [1.13.15] - 2025-11-22
 
-### Fixed
+### Added
 
-- Fixed incorrect day count when season lengths are changed in Fabric Seasons.
-
-### Changed
-
-- Updated mod description
+- Added and option to display the current fertility level of the biome for Serene Seasons
 
