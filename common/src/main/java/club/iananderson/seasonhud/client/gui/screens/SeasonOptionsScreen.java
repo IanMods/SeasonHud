@@ -9,6 +9,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
@@ -30,6 +31,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private boolean seasonColor;
   private boolean showSubSeason;
   private boolean showTropicalSeason;
+  private boolean showFertility;
   private boolean needCalendar;
   private boolean enableCalendarDetail;
   private boolean drawDefaultHud;
@@ -68,6 +70,10 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     if (Common.fabricSeasonsLoaded()) {
       dayLength = SeasonHudServer.getDayLength();
     }
+
+    if (Common.sereneSeasonsLoaded()){
+      showFertility = SeasonHudClient.getShowFertility();
+    }
   }
 
   public void saveConfig() {
@@ -96,6 +102,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       }
     }
 
+    if (Common.sereneSeasonsLoaded()){
+      SeasonHudClient.setShowFertility(showFertility);
+    }
   }
 
   @Override
@@ -117,8 +126,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     int x = 3;
     int y = 3;
     seasonScale = 1;
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
-        .getConfigText(showDay, showSubSeason);
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
     if (drawDefaultHud) {
       int DEFAULT_X_OFFSET_SCALED = Client.DEFAULT_X_OFFSET;
@@ -190,6 +199,10 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     graphics.pose().translate(0, 0, 50);
     graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
     graphics.drawString(font, seasonCombined, x, y, 0xffffff);
+    if(showFertility){
+      y += this.font.lineHeight;
+      graphics.drawString(font, fertility, x, y, 0xffffff);
+    }
     graphics.pose().popPose();
 
   }
@@ -309,6 +322,16 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       }
 
       widgets.addAll(Arrays.asList(needCalendarButton, calendarDetailModeButton));
+    }
+
+    if (Common.sereneSeasonsLoaded()) {
+      row += 1;
+      CycleButton<Boolean> showFertilityButton = CycleButton.onOffBuilder(showFertility)
+          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showFertility.tooltip"))
+          .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
+                  Common.translatedText("menu.seasonhud.season.showFertility.button"),
+                  (b, val) -> this.showFertility = val);
+      widgets.add(showFertilityButton);
     }
 
     if (Common.fabricSeasonsLoaded()) {

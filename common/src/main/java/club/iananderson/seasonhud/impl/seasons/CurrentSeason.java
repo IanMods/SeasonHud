@@ -16,8 +16,8 @@ public class CurrentSeason {
   private final String seasonFileName;
   private final long seasonDate;
   private final int seasonDuration;
-  private Style seasonFormat;
   private final Player player;
+  private Style seasonFormat;
 
   public CurrentSeason(Minecraft mc) {
     this.player = mc.player;
@@ -146,7 +146,6 @@ public class CurrentSeason {
 
   public MutableComponent getHudText() {
     MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon());
-    Fertility currentFertility = CommonSeasonHelper.commonSeasons.fertility(player);
     ShowDay showDay = SeasonHudClient.getShowDay();
     boolean showSubSeason = SeasonHudClient.getShowSubSeason();
 
@@ -156,16 +155,9 @@ public class CurrentSeason {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 
-    MutableComponent finalSeasonText = Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                                             seasonText.withStyle(seasonFormat));
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+                                 seasonText.withStyle(seasonFormat));
 
-    if(currentFertility != Fertility.FERTILE){
-      finalSeasonText.append(" (");
-      finalSeasonText.append(Common.translatedText(currentFertility.getKey()));
-      finalSeasonText.append(")");
-    }
-
-    return finalSeasonText;
   }
 
   public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
@@ -188,11 +180,11 @@ public class CurrentSeason {
                                  seasonText.withStyle(seasonFormat));
   }
 
-  public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason) {
+  public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason, boolean seasonColor) {
     MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon());
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
-    if (SeasonHudClient.getEnableSeasonNameColor()) {
+    if (seasonColor) {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 

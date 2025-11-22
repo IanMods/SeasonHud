@@ -1,5 +1,8 @@
 package club.iananderson.seasonhud.client.overlays;
 
+import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -35,8 +38,17 @@ public class MapAtlasesCommon {
   public static void drawMapComponentSeason(GuiGraphics graphics, Font font, int x, int y, int targetWidth,
       float textScaling, float globalScale) {
     MutableComponent seasonCombined = CurrentSeason.getInstance(Minecraft.getInstance()).getHudText();
-    MutableComponent shadowText = CurrentSeason.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
-    drawScaledComponent(graphics, font, x, y, seasonCombined, shadowText, textScaling / globalScale, targetWidth,
+    MutableComponent seasonShadowText = CurrentSeason.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
+    MutableComponent fertility = CurrentFertility.getInstance(Minecraft.getInstance()).getMinimapText();
+    MutableComponent fertilityShadowText = CurrentFertility.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
+
+    drawScaledComponent(graphics, font, x, y, seasonCombined, seasonShadowText, textScaling / globalScale, targetWidth,
                         (int) (targetWidth / globalScale));
+
+    if(Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()){
+      drawScaledComponent(graphics, font, x, y + font.lineHeight, fertility, fertilityShadowText, textScaling / globalScale,
+                          targetWidth,
+                          (int) (targetWidth / globalScale));
+    }
   }
 }

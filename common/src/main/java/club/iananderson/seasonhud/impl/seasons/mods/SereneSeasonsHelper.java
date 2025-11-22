@@ -147,7 +147,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
       return true;
     }
 
-    if (!level.canSeeSky(pos.above())){
+    if (!level.canSeeSky(pos.above())) {
       return (pos.getY() > ModConfig.fertility.undergroundFertilityLevel);
     }
 
@@ -158,15 +158,15 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
   @Override
   public Fertility fertility(Player player) {
-    if (infertileBiome(player)){
+    if (infertileBiome(player)) {
       return Fertility.INFERTILE_BIOME;
     }
 
-    if(alwaysWinterBiome(player)){
+    if (alwaysWinterBiome(player)) {
       return Fertility.ALWAYS_WINTER;
     }
 
-    else if (!undergroundFertile(player)){
+    else if (!undergroundFertile(player)) {
       return Fertility.UNDERGROUND;
     }
 
