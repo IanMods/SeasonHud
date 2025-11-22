@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.impl.seasons;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Style;
-import sereneseasons.api.season.Season;
 
 public enum Fertility {
   FERTILE(0, "desc.seasonhud.fertility.fertile", Style.EMPTY),

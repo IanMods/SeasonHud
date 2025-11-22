@@ -111,7 +111,7 @@ dependencies {
         case "atlas":
             modLocalRuntime "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
-            modLocalRuntime "maven.modrinth:moonlight:forge_1.20-${project.moonlight_version}"
+            modLocalRuntime "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
