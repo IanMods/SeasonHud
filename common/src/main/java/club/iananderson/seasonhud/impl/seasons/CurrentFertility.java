@@ -13,7 +13,7 @@ public class CurrentFertility {
   public CurrentFertility(Minecraft mc) {
     Player player = mc.player;
     this.currentFertility = CommonSeasonHelper.commonSeasons.fertility(player);
-    this.fertilityFormat = currentFertility.getStyle();
+    this.fertilityFormat = currentFertility.getStyle().withBold(false);
   }
 
   public static CurrentFertility getInstance(Minecraft mc) {
@@ -21,10 +21,11 @@ public class CurrentFertility {
   }
 
   public MutableComponent getHudText() {
-    MutableComponent iconSpace = Common.literalText("   ");
+    MutableComponent iconSpace = Common.literalText("  ").withStyle(Style.EMPTY.withBold(true))
+        .append(Common.literalText(" ").withStyle(fertilityFormat));
     MutableComponent fertilityText = Common.translatedText(currentFertility.getKey());
 
-    return iconSpace.append(fertilityText).withStyle(fertilityFormat);
+    return iconSpace.append(fertilityText.withStyle(fertilityFormat));
   }
 
   public MutableComponent getHudTextNoFormat() {

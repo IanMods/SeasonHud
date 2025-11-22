@@ -323,7 +323,7 @@ public class SeasonHudClient {
   }
 
   public static boolean getShowFertility() {
-    return getOrDefault(showFertility);
+    return (Boolean) getOrDefault(showFertility);
   }
 
   public static void setShowFertility(boolean showFertility) {
