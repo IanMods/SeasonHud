@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "Calendar",
   "curios.identifier.calendarslot": "Calendar",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, Day %s",
   "desc.seasonhud.hud.detailed.total": "%s, Day %s/%s",
@@ -96,6 +100,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "Show Day Value",
   "menu.seasonhud.season.showDay.tooltip": "Show the day of the current season/sub-season",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Show Sub-Season",
   "menu.seasonhud.season.showSubSeason.tooltip": "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season",
   "menu.seasonhud.season.showTropicalSeason.button": "Show Tropical Seasons",
@@ -107,5 +113,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "The vertical offset of the season text when no minimap is installed\n(in pixels)",
   "ftbchunks.minimap.season": "Season",
   "trinkets.slot.calendar.calendarslot": "Calendar",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "Season"
 }

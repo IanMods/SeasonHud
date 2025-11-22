@@ -1,6 +1,8 @@
 package club.iananderson.seasonhud.forge.client.overlays;
 
+import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
 import journeymap.client.JourneymapClient;
@@ -18,6 +20,8 @@ import net.minecraft.network.chat.Component;
 
 public class JourneyMapCommon {
   private final Component seasonCombined;
+  private final Component fertility;
+  private final Font fontRenderer;
   private final boolean fontShadow;
   private final float fontScale;
   private final float labelAlpha;
@@ -38,8 +42,9 @@ public class JourneyMapCommon {
   private double screenHeight;
 
   public JourneyMapCommon(Minecraft mc) {
-    Font fontRenderer = mc.font;
-    this.seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+    this.fontRenderer = mc.font;
+    this.seasonCombined = CurrentSeason.getInstance(mc).getHudText();
+    this.fertility = CurrentFertility.getInstance(mc).getMinimapText();
     JourneymapClient jm = JourneymapClient.getInstance();
     DisplayVars vars = UIManager.INSTANCE.getMiniMap().getDisplayVars();
     MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
@@ -109,6 +114,12 @@ public class JourneyMapCommon {
     buffers.endBatch();
     DrawUtil.drawLabel(graphics, seasonCombined, labelX(), labelY(), DrawUtil.HAlign.Center, DrawUtil.VAlign.Below,
                        labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
+    if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
+      DrawUtil.drawBatchLabel(graphics, fertility, buffers, labelX(),
+                              labelY() + (fontRenderer.lineHeight * fontScale) + margin, DrawUtil.HAlign.Center,
+                              DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale,
+                              fontShadow);
+    }
     buffers.endBatch();
     DrawUtil.sizeDisplay(scaledWidth, scaledHeight);
   }

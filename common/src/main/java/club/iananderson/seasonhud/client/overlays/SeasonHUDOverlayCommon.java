@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -29,7 +30,8 @@ public class SeasonHUDOverlayCommon {
       double scale = SeasonHudClient.getHudScale();
       int DEFAULT_X_OFFSET = Client.DEFAULT_X_OFFSET;
       int DEFAULT_Y_OFFSET = Client.DEFAULT_Y_OFFSET;
-      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
+      MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
       int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
       int stringHeight = (int) (mc.font.lineHeight * scale);
 //    if (Services.PLATFORM.isModLoaded("modernui")) {
@@ -73,10 +75,10 @@ public class SeasonHUDOverlayCommon {
       graphics.pushPose();
       graphics.scale((float) scale, (float) scale, 1F);
       mc.font.drawShadow(graphics, seasonCombined, x, y, 0xffffff);
-//      //Icon
-//      if (Services.PLATFORM.isModLoaded("modernui")) {
-//        CurrentSeason.getInstance(mc).drawIcon(mc, graphics, 1F, x, y);
-//      }
+      if (SeasonHudClient.getShowFertility()) {
+        y += stringHeight;
+        mc.font.drawShadow(graphics, fertility, x, y, 0xffffff);
+      }
       graphics.popPose();
     }
   }

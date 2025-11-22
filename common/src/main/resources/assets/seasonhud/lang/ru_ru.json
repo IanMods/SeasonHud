@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "Календарь",
   "curios.identifier.calendarslot": "Календарь",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, день %s",
   "desc.seasonhud.hud.detailed.total": "%s, день %s/%s",
@@ -96,6 +100,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "Показать значение дня",
   "menu.seasonhud.season.showDay.tooltip": "Отображение дня текущего сезона/подсезона на интерфейсе",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Показывать подсезон",
   "menu.seasonhud.season.showSubSeason.tooltip": "Заменить сезон текущим подсезоном",
   "menu.seasonhud.season.showTropicalSeason.button": "Показывать тропические сезоны",
@@ -107,5 +113,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "Вертикальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
   "ftbchunks.minimap.season": "Сезон",
   "trinkets.slot.calendar.calendarslot": "Календарь",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "Сезон"
 }

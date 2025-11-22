@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "Kalenterin",
   "curios.identifier.calendarslot": "Kalenterin",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, Päivä %s",
   "desc.seasonhud.hud.detailed.total": "%s, Päivä %s/%s",
@@ -96,6 +100,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "Näytä monesko päivä",
   "menu.seasonhud.season.showDay.tooltip": "Näyttää vuodenajan/ala-vuodenajan päivän",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Näytä Ala-Vuodenaika",
   "menu.seasonhud.season.showSubSeason.tooltip": "Näytä ala-vuodenaika (esim. Aikainen Talvi, Keskikesä, Myöhäinen Syksy) perusvuodenajan sijaan",
   "menu.seasonhud.season.showTropicalSeason.button": "Näytä trooppiset vuodenajat",
@@ -107,5 +113,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "HUDin vertikaalinen siirros kun minikarttaa ei ole ladattu\n(pikseleissä)",
   "ftbchunks.minimap.season": "Vuodenaika",
   "trinkets.slot.calendar.calendarslot": "Kalenterin",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "Vuodenaika"
 }
