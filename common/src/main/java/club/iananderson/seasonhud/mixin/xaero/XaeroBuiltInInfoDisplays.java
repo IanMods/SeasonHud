@@ -1,6 +1,5 @@
 package club.iananderson.seasonhud.mixin.xaero;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.minimaps.XaeroInfoDisplays;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +20,7 @@ public class XaeroBuiltInInfoDisplays {
 
   private static void injected(CallbackInfo ci) {
     Objects.requireNonNull(ALL);
-    XaeroInfoDisplays.SEASON = XaeroInfoDisplays.SEASON_INFO_BUILDER.setDestination(ALL::add).build();
+    XaeroInfoDisplays.SEASON = XaeroInfoDisplays.SEASON_INFO_BUILDER.setDestination(ALL::add)
+        .build();
   }
 }

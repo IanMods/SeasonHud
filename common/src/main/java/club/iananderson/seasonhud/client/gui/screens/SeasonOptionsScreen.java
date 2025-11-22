@@ -71,7 +71,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       dayLength = SeasonHudServer.getDayLength();
     }
 
-    if (Common.sereneSeasonsLoaded()){
+    if (Common.sereneSeasonsLoaded()) {
       showFertility = SeasonHudClient.getShowFertility();
     }
   }
@@ -102,7 +102,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       }
     }
 
-    if (Common.sereneSeasonsLoaded()){
+    if (Common.sereneSeasonsLoaded()) {
       SeasonHudClient.setShowFertility(showFertility);
     }
   }
@@ -126,7 +126,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     int x = 3;
     int y = 3;
     seasonScale = 1;
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
+        .getConfigText(showDay, showSubSeason, seasonColor);
     MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
     if (drawDefaultHud) {
@@ -199,7 +200,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     graphics.pose().translate(0, 0, 50);
     graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
     graphics.drawString(font, seasonCombined, x, y, 0xffffff);
-    if(showFertility){
+    if (showFertility) {
       y += this.font.lineHeight;
       graphics.drawString(font, fertility, x, y, 0xffffff);
     }

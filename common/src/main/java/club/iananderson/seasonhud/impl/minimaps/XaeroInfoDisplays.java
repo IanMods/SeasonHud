@@ -30,7 +30,7 @@ public class XaeroInfoDisplays {
               Minimap.XAERO) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getHudText());
 
-            if(Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()){
+            if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
               compiler.addLine(CurrentFertility.getInstance(mc).getMinimapText());
             }
           }

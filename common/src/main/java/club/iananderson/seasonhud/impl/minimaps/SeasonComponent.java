@@ -44,8 +44,8 @@ public class SeasonComponent implements MinimapInfoComponent {
 
     this.drawCenteredText(font, graphics, seasonCombined, 0);
 
-    if(SeasonHudClient.getShowFertility()){
-      this.drawCenteredText(font, graphics,fertility, (int) (lineHeight/scale));
+    if (SeasonHudClient.getShowFertility()) {
+      this.drawCenteredText(font, graphics, fertility, (int) (lineHeight / scale));
     }
   }
 
@@ -53,7 +53,7 @@ public class SeasonComponent implements MinimapInfoComponent {
   public int height(MinimapContext context) {
     int lines = 1;
 
-    if(SeasonHudClient.getShowFertility()){
+    if (SeasonHudClient.getShowFertility()) {
       lines = 2;
     }
 

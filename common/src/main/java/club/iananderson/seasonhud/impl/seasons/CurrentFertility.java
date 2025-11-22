@@ -35,5 +35,4 @@ public class CurrentFertility {
     return Common.translatedText(currentFertility.getKey()).withStyle(fertilityFormat);
   }
 
-
 }

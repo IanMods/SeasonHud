@@ -45,10 +45,9 @@ public class MapAtlasesCommon {
     drawScaledComponent(graphics, font, x, y, seasonCombined, seasonShadowText, textScaling / globalScale, targetWidth,
                         (int) (targetWidth / globalScale));
 
-    if(Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()){
-      drawScaledComponent(graphics, font, x, y + font.lineHeight, fertility, fertilityShadowText, textScaling / globalScale,
-                          targetWidth,
-                          (int) (targetWidth / globalScale));
+    if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
+      drawScaledComponent(graphics, font, x, y + font.lineHeight, fertility, fertilityShadowText,
+                          textScaling / globalScale, targetWidth, (int) (targetWidth / globalScale));
     }
   }
 }

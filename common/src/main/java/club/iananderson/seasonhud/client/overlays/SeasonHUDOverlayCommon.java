@@ -69,7 +69,7 @@ public class SeasonHUDOverlayCommon {
       graphics.pose().pushPose();
       graphics.pose().scale((float) scale, (float) scale, 1F);
       graphics.drawString(mc.font, seasonCombined, x, y, 0xffffff);
-      if(SeasonHudClient.getShowFertility()){
+      if (SeasonHudClient.getShowFertility()) {
         y += stringHeight;
         graphics.drawString(mc.font, fertility, x, y, 0xffffff);
       }
