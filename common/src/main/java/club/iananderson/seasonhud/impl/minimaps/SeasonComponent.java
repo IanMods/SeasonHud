@@ -34,7 +34,7 @@ public class SeasonComponent implements MinimapInfoComponent {
 
   @Override
   public void render(MinimapContext context, GuiGraphics graphics, Font font) {
-    MutableComponent seasonCombined = CurrentSeason.getInstance(context.minecraft()).getSeasonHudText();
+    MutableComponent seasonCombined = CurrentSeason.getInstance(context.minecraft()).getHudText();
 
     this.drawCenteredText(font, graphics, seasonCombined, 0);
   }

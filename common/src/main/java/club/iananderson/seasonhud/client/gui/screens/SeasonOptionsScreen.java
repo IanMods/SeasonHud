@@ -118,7 +118,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     int y = 3;
     seasonScale = 1;
     MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
-        .getSeasonHudConfigText(showDay, showSubSeason);
+        .getConfigText(showDay, showSubSeason);
 
     if (drawDefaultHud) {
       int DEFAULT_X_OFFSET_SCALED = Client.DEFAULT_X_OFFSET;
@@ -211,7 +211,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     loadConfig();
     super.init();
 
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getSeasonHudText();
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getHudText();
 
     row = -1;
 

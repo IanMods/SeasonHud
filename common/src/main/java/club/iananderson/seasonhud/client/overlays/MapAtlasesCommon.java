@@ -34,8 +34,8 @@ public class MapAtlasesCommon {
 
   public static void drawMapComponentSeason(GuiGraphics graphics, Font font, int x, int y, int targetWidth,
       float textScaling, float globalScale) {
-    MutableComponent seasonCombined = CurrentSeason.getInstance(Minecraft.getInstance()).getSeasonHudText();
-    MutableComponent shadowText = CurrentSeason.getInstance(Minecraft.getInstance()).getSeasonHudTextNoFormat();
+    MutableComponent seasonCombined = CurrentSeason.getInstance(Minecraft.getInstance()).getHudText();
+    MutableComponent shadowText = CurrentSeason.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
     drawScaledComponent(graphics, font, x, y, seasonCombined, shadowText, textScaling / globalScale, targetWidth,
                         (int) (targetWidth / globalScale));
   }

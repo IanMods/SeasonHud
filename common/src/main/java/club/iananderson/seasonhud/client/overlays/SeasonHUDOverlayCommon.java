@@ -27,7 +27,7 @@ public class SeasonHUDOverlayCommon {
       double scale = SeasonHudClient.getHudScale();
       int DEFAULT_X_OFFSET = Client.DEFAULT_X_OFFSET;
       int DEFAULT_Y_OFFSET = Client.DEFAULT_Y_OFFSET;
-      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+      MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
       int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
       int stringHeight = (int) (mc.font.lineHeight * scale);
 

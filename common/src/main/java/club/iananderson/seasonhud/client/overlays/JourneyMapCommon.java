@@ -39,7 +39,7 @@ public class JourneyMapCommon {
 
   public JourneyMapCommon(Minecraft mc) {
     Font fontRenderer = mc.font;
-    this.seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+    this.seasonCombined = CurrentSeason.getInstance(mc).getHudText();
     JourneymapClient jm = JourneymapClient.getInstance();
     DisplayVars vars = UIManager.INSTANCE.getMiniMap().getDisplayVars();
     MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
