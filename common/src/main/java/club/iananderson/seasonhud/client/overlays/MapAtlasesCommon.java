@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.client.overlays;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -70,16 +71,18 @@ public class MapAtlasesCommon {
   public static void drawMapComponentSeasonOld(PoseStack graphics, int x, int y, int originOffsetWidth,
       int originOffsetHeight, float textScaling) {
     if (CurrentMinimap.mapAtlasesLoaded()) {
+      Minecraft mc = Minecraft.getInstance();
       MutableComponent seasonCombined = CurrentSeason.getInstance(Minecraft.getInstance()).getHudText();
       MutableComponent seasonShadowText = CurrentSeason.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
       MutableComponent fertility = CurrentFertility.getInstance(Minecraft.getInstance()).getMinimapText();
       MutableComponent fertilityShadowText = CurrentFertility.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
 
-      drawScaledText(graphics, x, y, seasonCombined, seasonShadowText, textScaling, originOffsetWidth, originOffsetHeight);
+      drawScaledText(graphics, x, y, seasonCombined, seasonShadowText, textScaling, originOffsetWidth,
+                     originOffsetHeight);
 
       if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
-        drawScaledText(graphics, font, x, y + font.lineHeight, fertility, fertilityShadowText, textScaling, originOffsetWidth,
-                       originOffsetHeight);
+        drawScaledText(graphics, x, y + mc.font.lineHeight, fertility, fertilityShadowText, textScaling,
+                       originOffsetWidth, originOffsetHeight);
       }
     }
   }

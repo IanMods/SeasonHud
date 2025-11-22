@@ -3,6 +3,7 @@ package club.iananderson.seasonhud.mixin.ftbchunks;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClient;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
@@ -28,13 +29,17 @@ public class FTBChunksClientMixin {
   @Inject(method = "buildMinimapTextData", at = @At("RETURN"), remap = false, cancellable = true)
   private void buildMinimapTextData(Minecraft mc, double playerX, double playerY, double playerZ, MapDimension dim,
       CallbackInfoReturnable<List<Component>> cir) {
-    MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getSeasonHudText();
+    MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
+    MutableComponent fertility = CurrentFertility.getInstance(Minecraft.getInstance()).getMinimapText();
     List<Component> res = cir.getReturnValue();
 
     SeasonHudClient.setEnableMod(MINIMAP_SEASON.get());
 
     if (CurrentMinimap.shouldDrawMinimapHud(Minimap.FTB_CHUNKS)) {
       res.add(seasonCombined);
+      if(SeasonHudClient.getShowFertility()){
+        res.add(fertility);
+      }
     }
 
     cir.setReturnValue(res);
