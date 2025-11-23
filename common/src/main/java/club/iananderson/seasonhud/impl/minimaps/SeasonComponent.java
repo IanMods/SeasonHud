@@ -1,12 +1,15 @@
 package club.iananderson.seasonhud.impl.minimaps;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import dev.ftb.mods.ftbchunks.api.FTBChunksAPI;
 import dev.ftb.mods.ftbchunks.api.client.FTBChunksClientAPI;
 import dev.ftb.mods.ftbchunks.api.client.minimap.MinimapContext;
 import dev.ftb.mods.ftbchunks.api.client.minimap.MinimapInfoComponent;
+import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.MutableComponent;
@@ -34,9 +37,27 @@ public class SeasonComponent implements MinimapInfoComponent {
 
   @Override
   public void render(MinimapContext context, GuiGraphics graphics, Font font) {
-    MutableComponent seasonCombined = CurrentSeason.getInstance(context.minecraft()).getSeasonHudText();
+    MutableComponent seasonCombined = CurrentSeason.getInstance(context.minecraft()).getHudText();
+    MutableComponent fertility = CurrentFertility.getInstance(context.minecraft()).getMinimapText();
+    int lineHeight = computeLineHeight(context.minecraft(), 1) + 1;
+    float scale = FTBChunksClientConfig.MINIMAP_FONT_SCALE.get().floatValue();
 
     this.drawCenteredText(font, graphics, seasonCombined, 0);
+
+    if (SeasonHudClient.getShowFertility()) {
+      this.drawCenteredText(font, graphics, fertility, (int) (lineHeight / scale));
+    }
+  }
+
+  @Override
+  public int height(MinimapContext context) {
+    int lines = 1;
+
+    if (SeasonHudClient.getShowFertility()) {
+      lines = 2;
+    }
+
+    return computeLineHeight(context.minecraft(), lines) + 1;
   }
 
   @Override
