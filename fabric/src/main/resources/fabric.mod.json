@@ -27,13 +27,15 @@
     "seasonhud.mixins.json"
   ],
   "depends": {
-    "fabricloader": "~${fabric_loader_version}",
     "fabric-api": "*",
     "minecraft": "${fabric_version_range}",
     "java": ">=${java_version}",
     "seasons": "*",
     "fabric-key-binding-api-v1": "*",
     "forgeconfigapiport": "*"
+  },
+  "recommends": {
+    "fabricloader": "~${fabric_loader_version}"
   },
   "breaks": {
     "xaerominimap": "<25.2.0"
