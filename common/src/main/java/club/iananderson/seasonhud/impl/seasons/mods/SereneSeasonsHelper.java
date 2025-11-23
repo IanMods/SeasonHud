@@ -132,7 +132,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
     }
 
     else {
-      return !biome.value().warmEnoughToRain(pos);
+      return !biome.value().warmEnoughToRain(pos, level.getSeaLevel());
     }
   }
 
