@@ -1,6 +1,8 @@
 package club.iananderson.seasonhud.impl.minimaps.journeymap;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
 import journeymap.api.v2.client.IClientAPI;
 import journeymap.api.v2.client.IClientPlugin;
@@ -18,7 +20,9 @@ import org.jetbrains.annotations.NotNull;
 public class JourneymapSeasonPlugin implements IClientPlugin {
   private static JourneymapSeasonPlugin INSTANCE;
   private final String seasonKeyString = "xaerominimap.seasonhud.infodisplay.season";
-  private final Component seasonKey = Common.translatedText("xaerominimap.seasonhud.infodisplay.season");
+  private final String fertilityKeyString = "xaerominimap.seasonhud.infodisplay.fertility";
+  private final Component seasonKey = Common.translatedText(seasonKeyString);
+  private final Component fertilityKey = Common.translatedText(fertilityKeyString);
   private IClientAPI api;
   private ClientProperties clientProperties;
   private Minecraft mc;
@@ -53,7 +57,8 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
   }
 
   private void infoSlotRegistryEvent(InfoSlotRegistryEvent event) {
-    event.register(Common.MOD_ID, seasonKey, 1000L, () -> CurrentSeason.getInstance(mc).getSeasonHudText());
+    event.register(Common.MOD_ID, seasonKey, 1000L, () -> CurrentSeason.getInstance(mc).getHudText());
+    event.register(Common.MOD_ID, fertilityKey, 1000L, () -> CurrentFertility.getInstance(mc).getMinimapText());
   }
 
   private void optionsRegistryEvent(OptionsRegistryEvent optionsRegistryEvent) {
@@ -63,6 +68,9 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
   private void infoSlotDisplayEvent(InfoSlotDisplayEvent event) {
     if (clientProperties.addAdditional.get()) {
       event.addLast(seasonKeyString, clientProperties.position.get());
+      if (SeasonHudClient.getShowFertility()) {
+        event.addLast(fertilityKeyString, clientProperties.position.get());
+      }
     }
   }
 }
