@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "달력",
   "curios.identifier.calendarslot": "달력",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, %s일",
   "desc.seasonhud.hud.detailed.total": "%s, %s/%s일",
@@ -96,6 +100,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "일자 표시",
   "menu.seasonhud.season.showDay.tooltip": "현재 계절/세부 계절의 며칠째인지 표시",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "세부 계절 표시",
   "menu.seasonhud.season.showSubSeason.tooltip": "계절을 자세히 표시합니다 (봄 대신 초봄, 겨울 대신 한겨울, …)",
   "menu.seasonhud.season.showTropicalSeason.button": "열대 계절 표시",
@@ -107,5 +113,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "미니맵이 없을 때 HUD가 표시될 가로 방향 위치 (단위: 픽셀)",
   "minimap.info.ftbchunks.season.title": "계절",
   "trinkets.slot.calendar.calendarslot": "달력",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "계절"
 }

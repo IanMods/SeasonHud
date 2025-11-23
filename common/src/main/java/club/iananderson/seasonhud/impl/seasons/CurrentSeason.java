@@ -16,10 +16,11 @@ public class CurrentSeason {
   private final String seasonFileName;
   private final long seasonDate;
   private final int seasonDuration;
+  private final Player player;
   private Style seasonFormat;
 
   public CurrentSeason(Minecraft mc) {
-    Player player = mc.player;
+    this.player = mc.player;
     this.seasonFormat = Style.EMPTY;
     this.currentSeason = CommonSeasonHelper.commonSeasons.getCurrentSeason(player);
     this.currentSubSeason = CommonSeasonHelper.commonSeasons.getCurrentSubSeason(player);
@@ -46,7 +47,7 @@ public class CurrentSeason {
     return currentSeason.toLowerCase();
   }
 
-  public Component getSeasonKey(boolean showSubSeason) {
+  public Component getKey(boolean showSubSeason) {
     String season = showSubSeason ? getSubSeasonLowerCase() : getSeasonLowerCase();
 
     if (!Calendar.validDetailedMode() || Common.fabricSeasonsLoaded()) {
@@ -69,7 +70,7 @@ public class CurrentSeason {
   }
 
   //Get the current season and match it to the icon for the font
-  public String getSeasonIcon() {
+  public String getIcon() {
     for (Seasons season : Seasons.values()) {
       if (season.getFileName().equals(seasonFileName)) {
         return season.getIconChar();
@@ -81,7 +82,7 @@ public class CurrentSeason {
   //Localized name with icon
   public Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text = Common.literalText("");
-    Component seasonKey = getSeasonKey(showSubSeason);
+    Component seasonKey = getKey(showSubSeason);
 
     switch (showDay) {
       case NONE:
@@ -132,8 +133,8 @@ public class CurrentSeason {
     return 16777215;
   }
 
-  public MutableComponent getSeasonHudTextNoFormat() {
-    Component seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getSeasonIcon())
+  public MutableComponent getHudTextNoFormat() {
+    Component seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon())
         .withStyle(Common.SEASON_ICON_STYLE);
     ShowDay showDay = SeasonHudClient.getShowDay();
     boolean showSubSeason = SeasonHudClient.getShowSubSeason();
@@ -143,8 +144,8 @@ public class CurrentSeason {
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon, seasonText);
   }
 
-  public MutableComponent getSeasonHudText() {
-    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getSeasonIcon());
+  public MutableComponent getHudText() {
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon());
     ShowDay showDay = SeasonHudClient.getShowDay();
     boolean showSubSeason = SeasonHudClient.getShowSubSeason();
 
@@ -157,9 +158,10 @@ public class CurrentSeason {
     return Common.translatedText("desc.seasonhud.hud.combined",
                                  seasonIcon.withStyle(Common.SEASON_ICON_STYLE).withColor(0xffffffff),
                                  seasonText.withStyle(seasonFormat));
+
   }
 
-  public MutableComponent getSeasonMenuText(Seasons season, int newRgb, boolean seasonShort) {
+  public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
     MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar());
     MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonName());
 
@@ -179,11 +181,11 @@ public class CurrentSeason {
                                  seasonText.withStyle(seasonFormat));
   }
 
-  public MutableComponent getSeasonHudConfigText(ShowDay showDay, boolean showSubSeason) {
-    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getSeasonIcon());
+  public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason, boolean seasonColor) {
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon());
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
-    if (SeasonHudClient.getEnableSeasonNameColor()) {
+    if (seasonColor) {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 
