@@ -27,12 +27,14 @@
     "seasonhud.mixins.json"
   ],
   "depends": {
-    "fabricloader": "~${fabric_loader_version}",
     "fabric-api": "*",
     "minecraft": "${fabric_version_range}",
     "java": ">=${java_version}",
     "fabric-key-binding-api-v1": "*",
     "forgeconfigapiport": "*"
+  },
+  "recommends": {
+    "fabricloader": "~${fabric_loader_version}"
   },
   "breaks": {
     "seasons": "<2.4.2-BETA",
