@@ -25,6 +25,7 @@ public class SeasonHudClient {
   private static ConfigValue<Boolean> showTropicalSeason;
   private static ConfigValue<Boolean> showSubSeason;
   private static ConfigValue<ShowDay> showDay;
+  private static ConfigValue<Boolean> showFertility;
   private static ConfigValue<Boolean> enableMinimapIntegration;
   private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
 
@@ -107,12 +108,12 @@ public class SeasonHudClient {
 
     showSubSeason = builder.comment(
             "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season?\n" + "(true/false)\n"
-                + " Default is ." + Client.DEFAULT_SHOW_SUB_SEASON + ".")
+                + " Default is " + Client.DEFAULT_SHOW_SUB_SEASON + ".")
         .define("enable_show_sub_season", Client.DEFAULT_SHOW_SUB_SEASON);
 
     if (Common.fabricSeasonsLoaded()) {
       showDay = builder.comment(
-              "Show the current day of the season/sub-season?\n" + "Default is ." + Client.DEFAULT_SHOW_DAY + ".")
+              "Show the current day of the season/sub-season?\n" + "Default is " + Client.DEFAULT_SHOW_DAY + ".")
           .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS,
                                     ShowDay.SHOW_WITH_MONTH));
@@ -120,20 +121,25 @@ public class SeasonHudClient {
 
     if (!Common.fabricSeasonsLoaded()) {
       showDay = builder.comment(
-              "Show the day of the current Season/Sub-Season?\n" + "Default is ." + Client.DEFAULT_SHOW_DAY + ".")
+              "Show the day of the current Season/Sub-Season?\n" + "Default is " + Client.DEFAULT_SHOW_DAY + ".")
           .defineEnum("enable_show_day", Client.DEFAULT_SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
     }
+
+    showFertility = builder.comment(
+            "Show the current fertility of the biome\n" + "Default is " + Client.DEFAULT_SHOW_FERTILITY + ".")
+        .define("enable_show_fertility", Client.DEFAULT_SHOW_FERTILITY);
+
     builder.pop();
 
     builder.push("Minimap");
     enableMinimapIntegration = builder.comment(
-            "Enable integration with minimap mods?\n" + "(true/false)\n" + "Default is ."
+            "Enable integration with minimap mods?\n" + "(true/false)\n" + "Default is "
                 + Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION + ".")
         .define("enable_minimap_integration", Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
 
     showDefaultWhenMinimapHidden = builder.comment(
-            "Show the default SeasonHUD display when the minimap is hidden?\n" + "(true/false)\n" + "Default is ."
+            "Show the default SeasonHUD display when the minimap is hidden?\n" + "(true/false)\n" + "Default is "
                 + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN + ".")
         .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
 
@@ -272,6 +278,14 @@ public class SeasonHudClient {
 
   public static void setShowDay(ShowDay showDay) {
     SeasonHudClient.showDay.set(showDay);
+  }
+
+  public static boolean getShowFertility() {
+    return getOrDefault(showFertility);
+  }
+
+  public static void setShowFertility(boolean showFertility) {
+    SeasonHudClient.showFertility.set(showFertility);
   }
 
   public static boolean getShowDefaultWhenMinimapHidden() {

@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudServer;
+import club.iananderson.seasonhud.impl.seasons.Fertility;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
@@ -83,5 +84,25 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
     int seasonLength = FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
 
     return seasonLength / dayLength;
+  }
+
+  @Override
+  public boolean infertileBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean alwaysWinterBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean undergroundFertile(Player player) {
+    return true;
+  }
+
+  @Override
+  public Fertility fertility(Player player) {
+    return Fertility.FERTILE;
   }
 }

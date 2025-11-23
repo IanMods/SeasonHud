@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "日历",
   "curios.identifier.calendarslot": "日历",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s, 第 %s 天",
   "desc.seasonhud.hud.detailed.total": "%s, 第 %s/%s 天",
@@ -98,6 +102,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "显示日期",
   "menu.seasonhud.season.showDay.tooltip": "显示当前季节/子季节",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "显示子季节",
   "menu.seasonhud.season.showSubSeason.tooltip": "用子季节替换季节",
   "menu.seasonhud.season.showTropicalSeason.button": "显示热带季节",
@@ -109,5 +115,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "未安装小地图时 HUD 的垂直偏移量\n(单位：像素)",
   "minimap.info.ftbchunks.season.title": "季节",
   "trinkets.slot.calendar.calendarslot": "日历",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "季节"
 }

@@ -1,6 +1,10 @@
 {
   "accessories.slot.calendarslot": "日曆",
   "curios.identifier.calendarslot": "日曆",
+  "desc.seasonhud.fertility.always_winter": "Winter Biome",
+  "desc.seasonhud.fertility.fertile": "Fertile",
+  "desc.seasonhud.fertility.infertile_biome": "Infertile Biome",
+  "desc.seasonhud.fertility.underground": "Underground",
   "desc.seasonhud.hud.combined": "%s%s",
   "desc.seasonhud.hud.detailed": "%s，第 %s 天",
   "desc.seasonhud.hud.detailed.total": "%s，第 %s/%s 天",
@@ -98,6 +102,8 @@
   "menu.seasonhud.season.serverSide.tooltip": "This option is controlled by the server",
   "menu.seasonhud.season.showDay.button": "顯示日期",
   "menu.seasonhud.season.showDay.tooltip": "顯示目前季節／子季節的日期",
+  "menu.seasonhud.season.showFertility.button": "Show Fertility",
+  "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "顯示子季節",
   "menu.seasonhud.season.showSubSeason.tooltip": "顯示子季節（例如初冬、中秋、晚春），而不是基本季節",
   "menu.seasonhud.season.showTropicalSeason.button": "顯示熱帶季節",
@@ -109,5 +115,6 @@
   "menu.seasonhud.season.yOffset.tooltip": "未安裝小地圖時 HUD 的垂直偏移\n（以像素為單位）",
   "minimap.info.ftbchunks.season.title": "季節",
   "trinkets.slot.calendar.calendarslot": "日曆",
+  "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "季節"
 }
