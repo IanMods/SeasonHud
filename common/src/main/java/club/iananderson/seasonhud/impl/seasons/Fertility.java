@@ -2,13 +2,15 @@ package club.iananderson.seasonhud.impl.seasons;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 
 public enum Fertility {
   FERTILE(0, "desc.seasonhud.fertility.fertile", Style.EMPTY),
 
   INFERTILE_BIOME(1, "desc.seasonhud.fertility.infertile_biome", Style.EMPTY),
 
-  ALWAYS_WINTER(2, "desc.seasonhud.fertility.always_winter", Style.EMPTY.withColor(Seasons.WINTER.getSeasonColor())),
+  ALWAYS_WINTER(2, "desc.seasonhud.fertility.always_winter",
+                Style.EMPTY.withColor(TextColor.fromRgb(Seasons.WINTER.getSeasonColor()))),
 
   UNDERGROUND(3, "desc.seasonhud.fertility.underground", Style.EMPTY.withColor(ChatFormatting.GRAY));
 

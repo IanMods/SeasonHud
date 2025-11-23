@@ -3,24 +3,19 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.Fertility;
-import java.util.List;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import club.iananderson.seasonhud.platform.Services;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
-import sereneseasons.api.SSItems;
-import sereneseasons.api.season.ISeasonState;
-import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.config.BiomeConfig;
 import sereneseasons.config.FertilityConfig;
-import sereneseasons.config.ServerConfig;
-import sereneseasons.init.ModTags;
 import sereneseasons.config.SeasonsConfig;
+
 
 public class SereneSeasonsHelper implements ISeasonModHelper {
   public SereneSeasonsHelper() {
@@ -33,7 +28,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
   @Override
   public boolean isTropicalSeason(Player player) {
-    return false;
+    return Services.PLATFORM.sereneSeasonTropicalBiome(player);
   }
 
   @Override
@@ -72,44 +67,27 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
   @Override
   public boolean infertileBiome(Player player) {
-    Level level = player.level;
-    BlockPos pos = player.getOnPos();
-    Holder<Biome> biome = level.getBiome(pos);
-
-    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
+    if ((!FertilityConfig.seasonalCrops.get() || !Services.PLATFORM.sereneSeasonBiomeSeasonalEffects(player) || Services.MINIMAP.hideHudInCurrentDimension())) {
       return false;
     }
 
     else {
-      return (BiomeConfig.infertileBiome(biome));
+      return (Services.PLATFORM.sereneSeasonInfertileBiome(player));
     }
   }
 
   @Override
   public boolean alwaysWinterBiome(Player player) {
-    Level level = player.level;
-    BlockPos pos = player.getOnPos();
-    Holder<Biome> biome = level.getBiome(pos);
-
-    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
-      return false;
-    }
-
-    else {
-      return !biome.value().warmEnoughToRain(pos);
-    }
+    return false;
   }
 
   @Override
   public boolean undergroundFertile(Player player) {
     Level level = player.level;
-    BlockPos pos = player.getOnPos();
-    Holder<Biome> biome = level.getBiome(pos);
+    BlockPos pos = player.blockPosition();;
 
-    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
+    if ((!FertilityConfig.seasonalCrops.get() || !Services.PLATFORM.sereneSeasonBiomeSeasonalEffects(player)
+        || Services.MINIMAP.hideHudInCurrentDimension())) {
       return true;
     }
 

@@ -37,6 +37,12 @@ public interface IPlatformHelper {
 
   long getSereneSeasonDate(Player player);
 
+  boolean sereneSeasonTropicalBiome(Player player);
+
+  boolean sereneSeasonInfertileBiome(Player player);
+
+  boolean sereneSeasonBiomeSeasonalEffects(Player player);
+
   String getCurrentEclipticSeason(Player player);
 
   String getCurrentEclipticSubSeason(Player player);

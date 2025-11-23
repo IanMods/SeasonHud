@@ -57,6 +57,21 @@ public class FabricPlatformHelper implements IPlatformHelper {
   }
 
   @Override
+  public boolean sereneSeasonTropicalBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean sereneSeasonInfertileBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean sereneSeasonBiomeSeasonalEffects(Player player) {
+    return true;
+  }
+
+  @Override
   public String getCurrentEclipticSeason(Player player) {
     return "";
   }

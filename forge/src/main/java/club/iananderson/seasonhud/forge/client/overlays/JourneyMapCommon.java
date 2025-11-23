@@ -115,10 +115,9 @@ public class JourneyMapCommon {
     DrawUtil.drawLabel(graphics, seasonCombined, labelX(), labelY(), DrawUtil.HAlign.Center, DrawUtil.VAlign.Below,
                        labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
     if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
-      DrawUtil.drawBatchLabel(graphics, fertility, buffers, labelX(),
-                              labelY() + (fontRenderer.lineHeight * fontScale) + margin, DrawUtil.HAlign.Center,
-                              DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale,
-                              fontShadow);
+      DrawUtil.drawLabel(graphics, fertility, labelX(), labelY() + (fontRenderer.lineHeight * fontScale) + margin,
+                         DrawUtil.HAlign.Center, DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha,
+                         fontScale, fontShadow);
     }
     buffers.endBatch();
     DrawUtil.sizeDisplay(scaledWidth, scaledHeight);

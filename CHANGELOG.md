@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Added and option to display the current fertility level of the biome for Serene Seasons
+- (1.16.5) Added support for Serene Seasons tropical biomes
 
 ## [1.13.14] - 2025-10-25
 

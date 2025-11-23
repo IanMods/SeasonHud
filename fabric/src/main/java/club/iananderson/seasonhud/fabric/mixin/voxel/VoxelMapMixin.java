@@ -73,7 +73,7 @@ public class VoxelMapMixin {
       float scale = unicode ? 1.0F : 0.5F;
       GLShim.glPushMatrix();
       GLShim.glScalef(scale, scale, 1.0F);
-      MutableComponent seasonCombined = CurrentSeason.getInstance(game).getSeasonHudText();
+      MutableComponent seasonCombined = CurrentSeason.getInstance(game).getHudText();
       int m = this.chkLen(seasonCombined) / 2;
       this.write(graphics, seasonCombined, (float) x / scale - (float) m, (float) textStart / scale, 0xffffff);
       GLShim.glPopMatrix();
