@@ -20,7 +20,7 @@
 - repository: https://maven.minecraftforge.net/
   groupId: net.minecraftforge
   artifactId: forge
-  version: "1.20.1-${forge_version}"
+  version: "${mcVersion}-${forge_version}"
   properties:
     forge_version:
       source: wildcard
@@ -58,7 +58,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "1.20.1-${journeymap_version}-fabric"
+  version: "${journeymap_version}-fabric"
   properties:
     journeymap_version:
       source: wildcard
