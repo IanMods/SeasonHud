@@ -4,11 +4,13 @@ on:
   #  - cron: '12 14 * * 5'  # minute and hour are randomized to avoid peak hours
   workflow_dispatch:  # enables manual running of this workflow
     inputs:
-      update_mc_patch:
+      dry_run:
+        description: 'Dry run only'
+        type: 'boolean'
+        default: false
 
 env:
   JAVA_VERSION: 17 # must be the same as the version used in build.gradle
-  INPUT_UPDATE_MC_PATCH: false
 
 jobs:
   update:
@@ -22,6 +24,7 @@ jobs:
         uses: LucunJi/mc-depup@v0.1.2
         with:
           update_mc_patch: false
+          dry_run: ${{ github.event.inputs.dry_run }}
 
       # see: https://github.com/marketplace/actions/create-pull-request
       - name: Pull Request
