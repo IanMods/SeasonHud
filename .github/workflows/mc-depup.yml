@@ -6,6 +6,7 @@ on:
 
 env:
   JAVA_VERSION: 17 # must be the same as the version used in build.gradle
+  INPUT_UPDATE_MC_PATCH: false
 
 jobs:
   update:
