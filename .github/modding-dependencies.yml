@@ -20,11 +20,11 @@
 - repository: https://maven.minecraftforge.net/
   groupId: net.minecraftforge
   artifactId: forge
-  version: "${mcVersion}-${forgeVersion}"
+  version: "${mcVersion}-${forge_version}"
   properties:
     forge_version:
       source: wildcard
-      name: forgeVersion
+      name: forge_version
 
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
@@ -48,18 +48,18 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: xaeros-minimap
-  version: "${xaeroVersion}_Fabric_${mcVersion}"
+  version: "${xaeros_minimap_version}_Fabric_${mcVersion}"
   properties:
     xaeros_minimap_version:
       source: wildcard
-      name: xaeroVersion
+      name: xaeros_minimap_version
 
 # Journeymap
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-${journeymapVersion}-fabric"
+  version: "${mcVersion}-${journeymap_version}-fabric"
   properties:
     journeymap_version:
       source: wildcard
-      name: journeymapVersion
+      name: journeymap_version
