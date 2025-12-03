@@ -62,4 +62,4 @@
   properties:
     journeymap_version:
       source: wildcard
-      name: journeymapVersion-bad
+      name: journeymapVersion
