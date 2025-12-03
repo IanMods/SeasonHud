@@ -29,29 +29,49 @@ subprojects {
         mavenCentral()
 
         maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
-        maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+        // Mod Menu, Trinkets
+        maven {
+            url = "https://maven.terraformersmc.com/releases/"
+            content {
+                includeGroup "com.terraformersmc"
+                includeGroup "dev.emi"
+            }
+        }
         maven { url = "https://maven.blamejared.com/" } // JEI
-        maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+
+        // Parchment mappings
+        maven {
+            url = "https://maven.parchmentmc.org"
+            content {
+                includeGroup "org.parchmentmc.data"
+            }
+        }
         maven { url = "https://maven.octo-studios.com/releases" } //Curios Cont.
         maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components
         maven { url = "https://jm.gserv.me/repository/maven-public/" } //Journeymap API for Fabric
         maven { url = 'https://maven.minecraftforge.net' } //Forge
         maven { url = "https://maven.wispforest.io/releases" } //Accessories
         maven { url = "https://maven.su5ed.dev/releases" } //Accessories
-        maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
-        maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
         maven {
-            url "https://maven.ftb.dev/releases"
+            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+            content {
+                includeGroup "fuzs.forgeconfigapiport"
+            }
+        }
+        maven {
+            url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
+            content {
+                includeGroup "me.djtheredstoner"
+            }
+        }
+
+        maven {
+            url = "https://maven.ftb.dev/releases"
             content {
                 includeGroup "dev.ftb.mods"
             }
         }
-        maven {
-            url "https://maven.ftb.dev/snapshots"
-            content {
-                includeGroup "dev.ftb.mods"
-            }
-        }
+
         maven {
             url = "https://maven.theillusivec4.top/"
             content {

@@ -1,0 +1,53 @@
+# Fabric Loader
+- repository: https://maven.fabricmc.net
+  groupId: net.fabricmc
+  artifactId: fabric-loader
+  version: "*"
+  properties:
+    fabric_loader_version:
+      source: version
+
+# Fabric API
+- repository: https://maven.fabricmc.net
+  groupId: net.fabricmc.fabric-api
+  artifactId: fabric-api
+  version: "*+${mcVersion}"
+  properties:
+    fabric_api_version:
+      source: version
+
+# Forge
+- repository: https://maven.minecraftforge.net/
+  groupId: net.minecraftforge
+  artifactId: forge
+  version: "${mcVersion}-*"
+  properties:
+    forge_version:
+      source: version
+
+# Forge Config API Port
+- repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
+  groupId: fuzs.forgeconfigapiport
+  artifactId: forgeconfigapiport-fabric
+  version: "8.*"
+  properties:
+    forge_config_api_port_version:
+      source: version
+
+# Mod Menu
+- repository: https://maven.terraformersmc.com/releases/
+  groupId: com.terraformersmc
+  artifactId: modmenu
+  version: "7.*"
+  properties:
+    modmenu_version:
+      source: version
+
+# Xaero
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: xaeros-minimap
+  version: "*_Fabric_${mcVersion}"
+  properties:
+    xaeros_minimap_version:
+      source: version
