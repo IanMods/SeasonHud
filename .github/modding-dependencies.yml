@@ -24,7 +24,6 @@
   properties:
     forge_version:
       source: wildcard
-      name: forge_version
 
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
@@ -52,13 +51,12 @@
   properties:
     xaeros_minimap_version:
       source: wildcard
-      name: xaeros_minimap_version
 
 # Journeymap
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*-fabric"
+  version: "${mcVersion}-${journeymap_version}-fabric"
   properties:
     journeymap_version:
       source: wildcard
