@@ -20,10 +20,11 @@
 - repository: https://maven.minecraftforge.net/
   groupId: net.minecraftforge
   artifactId: forge
-  version: "${mcVersion}-*"
+  version: "${mcVersion}-${forgeVersion}"
   properties:
     forge_version:
-      source: version
+      source: wildcard
+      name: forgeVersion
 
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
