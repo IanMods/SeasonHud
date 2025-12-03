@@ -48,7 +48,8 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: xaeros-minimap
-  version: "*_Fabric_${mcVersion}"
+  version: "${xaeroVersion}_Fabric_${mcVersion}"
   properties:
     xaeros_minimap_version:
-      source: version
+      source: wildcard
+      name: xaeroVersion
