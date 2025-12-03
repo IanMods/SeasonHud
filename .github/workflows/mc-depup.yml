@@ -3,6 +3,8 @@ on:
   # schedule:
   #  - cron: '12 14 * * 5'  # minute and hour are randomized to avoid peak hours
   workflow_dispatch:  # enables manual running of this workflow
+    inputs:
+      update_mc_patch:
 
 env:
   JAVA_VERSION: 17 # must be the same as the version used in build.gradle
@@ -18,6 +20,8 @@ jobs:
       - name: Update Dependencies
         id: depup
         uses: LucunJi/mc-depup@v0.1.2
+        with:
+          update_mc_patch: false
 
       # see: https://github.com/marketplace/actions/create-pull-request
       - name: Pull Request
