@@ -58,8 +58,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${journeymap_version}-fabric"
+  version: "${mcVersion}-*-fabric"
   properties:
     journeymap_version:
       source: wildcard
-      name: journeymap_version
