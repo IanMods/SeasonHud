@@ -29,19 +29,19 @@
 - repository: https://maven.minecraftforge.net/
   groupId: com.github.glitchfiend
   artifactId: SereneSeasons-fabric
-  version: "9.*"
+  version: "${mcVersion}-${serene_seasons_version}"
   properties:
     serene_seasons_version:
-      source: version
+      source: wildcard
 
 # GlitchCore
 - repository: https://maven.minecraftforge.net/
   groupId: com.github.glitchfiend
   artifactId: GlitchCore-fabric
-  version: "0.*"
+  version: "${mcVersion}-${glitchcore_version}"
   properties:
     glitchcore_version:
-      source: version
+      source: wildcard
 
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
