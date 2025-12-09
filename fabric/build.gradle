@@ -71,7 +71,7 @@ dependencies {
 
     // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
-    modCompileOnly("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric") {
+    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version}-fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 

@@ -72,7 +72,7 @@ dependencies {
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
 
     // JourneyMap
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version}-forge"
 
     //FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
