@@ -25,6 +25,33 @@
     forge_version:
       source: wildcard
 
+# Serene Seasons
+- repository: https://maven.minecraftforge.net/
+  groupId: com.github.glitchfiend
+  artifactId: SereneSeasons-fabric
+  version: "9.*"
+  properties:
+    serene_seasons_version:
+      source: version
+
+# GlitchCore
+- repository: https://maven.minecraftforge.net/
+  groupId: com.github.glitchfiend
+  artifactId: GlitchCore-fabric
+  version: "0.*"
+  properties:
+    glitchcore_version:
+      source: version
+
+# EclipticSeasons
+- repository: https://cursemaven.com
+  groupId: curse.maven
+  artifactId: ecliptic-seasons-1118306
+  version: "${mcVersion}-${journeymap_version}-fabric"
+  properties:
+    ecliptic_seasons_version:
+      source: wildcard
+
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
   groupId: fuzs.forgeconfigapiport
@@ -60,3 +87,39 @@
   properties:
     journeymap_version:
       source: wildcard
+
+# FTB Chunks
+- repository: https://maven.ftb.dev/releases
+  groupId: dev.ftb.mods
+  artifactId: ftb-chunks-fabric
+  version: "2001.*"
+  properties:
+    ftb_chunks_version:
+      source: version
+
+# FTB Teams
+- repository: https://maven.ftb.dev/releases
+  groupId: dev.ftb.mods
+  artifactId: ftb-teams-fabric
+  version: "2001.*"
+  properties:
+    ftb_teams_version:
+      source: version
+
+# FTB Library
+- repository: https://maven.ftb.dev/releases
+  groupId: dev.ftb.mods
+  artifactId: ftb-library-fabric
+  version: "2001.*"
+  properties:
+    ftb_library_version:
+      source: version
+
+# Architectury
+- repository: https://maven.shedaniel.me
+  groupId: dev.architectury
+  artifactId: architectury-fabric
+  version: "9.*"
+  properties:
+    architectury_version:
+      source: version
