@@ -74,7 +74,7 @@ subprojects {
         maven {
             url = "https://maven.ladysnake.org/releases"
             content {
-                includeGroup "dev.onyxstudios"
+                includeGroup "dev.onyxstudios.cardinal-components-api"
             }
         }
         //Journeymap API
@@ -104,13 +104,14 @@ subprojects {
             url = "https://maven.wispforest.io/releases"
             content {
                 includeGroup "io.wispforest"
+                includeGroup "io.wispforest.endec"
             }
         }
         // Accessories Dependencies
         maven {
             url = "https://maven.su5ed.dev/releases"
             content {
-                includeGroup "dev.su5ed"
+                includeGroup "dev.su5ed.sinytra.fabric-api"
             }
         }
         // Forge Config API Port

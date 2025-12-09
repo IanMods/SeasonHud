@@ -48,16 +48,16 @@ configurations {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    forge "net.minecraftforge:forge:${project.forge_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
 
-    / /Serene Seasons
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
+    // Serene Seasons
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
 
     // Terrafirmacraft
@@ -100,7 +100,7 @@ dependencies {
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version}-forge"
             break
         case "ftb":
             modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -158,8 +158,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":

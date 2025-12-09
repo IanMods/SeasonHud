@@ -20,28 +20,38 @@
 - repository: https://maven.minecraftforge.net/
   groupId: net.minecraftforge
   artifactId: forge
-  version: "${mcVersion}-${forge_version}"
+  version: "${mcVersion}-*"
   properties:
     forge_version:
-      source: wildcard
+      source: version
+
+
+# DevAuth
+- repository: https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1
+  groupId: me.djtheredstoner
+  artifactId: DevAuth-fabric
+  version: "*"
+  properties:
+    devauth_version:
+      source: version
 
 # Serene Seasons
 - repository: https://maven.minecraftforge.net/
   groupId: com.github.glitchfiend
   artifactId: SereneSeasons-fabric
-  version: "${mcVersion}-${serene_seasons_version}"
+  version: "${mcVersion}-*"
   properties:
     serene_seasons_version:
-      source: wildcard
+      source: version
 
 # GlitchCore
 - repository: https://maven.minecraftforge.net/
   groupId: com.github.glitchfiend
   artifactId: GlitchCore-fabric
-  version: "${mcVersion}-${glitchcore_version}"
+  version: "${mcVersion}-*"
   properties:
     glitchcore_version:
-      source: wildcard
+      source: version
 
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
@@ -74,7 +84,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-${journeymap_version}-fabric"
+  version: "1.20.1-${journeymap_version}-fabric"
   properties:
     journeymap_version:
       source: wildcard
