@@ -54,34 +54,34 @@ dependencies {
 
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
 
-    //Fabric Seasons
+    // Fabric Seasons
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-    //Fabric Seasons Extras
+    // Fabric Seasons Extras
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
-    //Serene Seasons
+    // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.minecraft_version}-${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.minecraft_version}-${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.20") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //JourneyMap
+    // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
     modCompileOnly("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //FTB Chunks + Dependencies
+    // FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
     modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
 
-    //Map Atlases
+    // Map Atlases
     modCompileOnly("maven.modrinth:map-atlases:1.20-${project.map_atlases_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -93,10 +93,12 @@ dependencies {
     }
 
 
-    //Trinkets + Accessories
+    // Trinkets
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+
+    // Accessories
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
     modCompileOnly("io.wispforest:accessories-fabric:${project.accessories_version}")
@@ -104,7 +106,7 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //Forge Config API Port
+    // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'

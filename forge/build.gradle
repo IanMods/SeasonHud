@@ -55,23 +55,23 @@ dependencies {
 
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
 
-    //Serene Seasons
+    / /Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
 
-    //Terrafirmacraft
+    // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-forge"
     modCompileOnly "maven.modrinth:barrels-2012:${project.barrels_version}"
 
-    //Ecliptic Seasons
+    // Ecliptic Seasons
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
 
-    //JourneyMap
+    // JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
 
     //FTB Chunks + Dependencies
@@ -80,14 +80,16 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
 
-    //Map Atlases
+    // Map Atlases
     modCompileOnly "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
     modCompileOnly "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge"
 
-    //Curios + Accessories
+    // Curios
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
+
+    // Accessories
     modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
     modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
