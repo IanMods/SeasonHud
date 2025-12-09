@@ -43,15 +43,6 @@
     glitchcore_version:
       source: version
 
-# EclipticSeasons
-- repository: https://cursemaven.com
-  groupId: curse.maven
-  artifactId: ecliptic-seasons-1118306
-  version: "${mcVersion}-${journeymap_version}-fabric"
-  properties:
-    ecliptic_seasons_version:
-      source: wildcard
-
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
   groupId: fuzs.forgeconfigapiport
