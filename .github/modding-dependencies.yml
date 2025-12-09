@@ -87,7 +87,7 @@
   version: "${mcVersion}-${journeymap_version}-fabric"
   properties:
     journeymap_version:
-      source: version
+      source: wildcard
 
 # FTB Chunks
 - repository: https://maven.ftb.dev/releases
