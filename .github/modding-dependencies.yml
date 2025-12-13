@@ -35,24 +35,6 @@
     devauth_version:
       source: version
 
-# Serene Seasons
-- repository: https://maven.minecraftforge.net/
-  groupId: com.github.glitchfiend
-  artifactId: SereneSeasons-fabric
-  version: "${mcVersion}-*"
-  properties:
-    serene_seasons_version:
-      source: version
-
-# GlitchCore
-- repository: https://maven.minecraftforge.net/
-  groupId: com.github.glitchfiend
-  artifactId: GlitchCore-fabric
-  version: "${mcVersion}-*"
-  properties:
-    glitchcore_version:
-      source: version
-
 # Forge Config API Port
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
   groupId: fuzs.forgeconfigapiport
@@ -71,6 +53,42 @@
     modmenu_version:
       source: version
 
+# Serene Seasons
+- repository: https://maven.minecraftforge.net/
+  groupId: com.github.glitchfiend
+  artifactId: SereneSeasons-fabric
+  version: "${mcVersion}-*"
+  properties:
+    serene_seasons_version:
+      source: version
+
+# GlitchCore
+- repository: https://maven.minecraftforge.net/
+  groupId: com.github.glitchfiend
+  artifactId: GlitchCore-fabric
+  version: "${mcVersion}-*"
+  properties:
+    glitchcore_version:
+      source: version
+
+# Terrafirmacraft
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: terrafirmacraft
+  version: "3.*"
+  properties:
+    terrafirmacraft_version:
+      source: version
+
+# Patchouli
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: patchouli
+  version: "${mcVersion}-*"
+  properties:
+    patchouli_version:
+      source: version
+
 # Xaero
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
@@ -80,14 +98,23 @@
     xaeros_minimap_version:
       source: wildcard
 
-# Journeymap
+# Journeymap-Forge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-${journeymap_version}-fabric"
+  version: "${mcVersion}-*-forge"
   properties:
-    journeymap_version:
-      source: wildcard
+    journeymap_version_forge:
+      source: version
+
+# Journeymap-Fabric
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: journeymap
+  version: "${mcVersion}-*-fabric"
+  properties:
+    journeymap_version_fabric:
+      source: version
 
 # FTB Chunks
 - repository: https://maven.ftb.dev/releases
@@ -124,3 +151,39 @@
   properties:
     architectury_version:
       source: version
+
+# Map Atlases
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: map-atlases
+  version: "${mcVersion}-*"
+  properties:
+    map_atlases_version:
+      source: version
+
+# Moonlight
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: moonlight
+  version: "${mcVersion}-*-forge"
+  properties:
+    moonlight_version_forge:
+      source: version
+
+# Moonlight
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: moonlight
+  version: "${mcVersion}-*-fabric"
+  properties:
+    moonlight_version_fabric:
+      source: version
+
+# ImmediatelyFast
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: immediatelyfast
+  version: "${immediatelyfast_version}+1.20.4*"
+  properties:
+    immediatelyfast_version:
+      source: wildcard

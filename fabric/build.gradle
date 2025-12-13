@@ -71,7 +71,7 @@ dependencies {
 
     // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
-    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version}-fabric") {
+    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -82,10 +82,10 @@ dependencies {
     modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
 
     // Map Atlases
-    modCompileOnly("maven.modrinth:map-atlases:1.20-${project.map_atlases_version}") {
+    modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:moonlight:1.20-${project.moonlight_version}-fabric") {
+    modCompileOnly("maven.modrinth:moonlight:${project.moonlight_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-fabric") {
@@ -147,7 +147,7 @@ dependencies {
             modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.20")
             break
         case "journey":
-            modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version}-fabric")
+            modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
             break
         case "ftb":
             modLocalRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
@@ -157,7 +157,7 @@ dependencies {
             break
         case "atlas":
             modLocalRuntime("maven.modrinth:map-atlases:1.20-${project.map_atlases_version}")
-            modLocalRuntime("maven.modrinth:moonlight:1.20-${project.moonlight_version}-fabric")
+            modLocalRuntime("maven.modrinth:moonlight:1.20-${project.moonlight_version_fabric}")
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-fabric")
             modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1")
             modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1")

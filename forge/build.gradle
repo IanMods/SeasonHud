@@ -72,7 +72,7 @@ dependencies {
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
 
     // JourneyMap
-    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version}-forge"
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
 
     //FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -81,8 +81,8 @@ dependencies {
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
 
     // Map Atlases
-    modCompileOnly "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
-    modCompileOnly "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
+    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
+    modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_forge}"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge"
 
     // Curios
@@ -100,7 +100,7 @@ dependencies {
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version}-forge"
+            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"
             break
         case "ftb":
             modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -113,7 +113,7 @@ dependencies {
         case "atlas":
             modLocalRuntime "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
-            modLocalRuntime "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
+            modLocalRuntime "maven.modrinth:moonlight:1.20-${project.moonlight_version_forge}"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
