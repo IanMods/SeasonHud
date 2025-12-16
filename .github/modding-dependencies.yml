@@ -187,3 +187,21 @@
   properties:
     immediatelyfast_version:
       source: wildcard
+
+# Text Animator Forge
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: text-animator
+  version: "2.*+forge"
+  properties:
+    text_animator_version_forge:
+      source: version
+
+# Text Animator Fabric
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: text-animator
+  version: "2.*+fabric"
+  properties:
+    text_animator_version_fabric:
+      source: version
