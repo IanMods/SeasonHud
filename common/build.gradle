@@ -20,13 +20,13 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
-    modCompileOnly "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
 
     //Season Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.minecraft_version}-${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.minecraft_version}-${project.glitchcore_version}"
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
     modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
     modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"

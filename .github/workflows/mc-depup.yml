@@ -7,7 +7,7 @@ on:
       dry_run:
         description: 'Dry run only'
         type: 'boolean'
-        default: false
+        default: true
 
 env:
   JAVA_VERSION: 17 # must be the same as the version used in build.gradle

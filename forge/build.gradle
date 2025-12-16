@@ -48,31 +48,31 @@ configurations {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    forge "net.minecraftforge:forge:${project.forge_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
 
-    //Serene Seasons
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
+    // Serene Seasons
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
 
-    //Terrafirmacraft
+    // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-forge"
     modCompileOnly "maven.modrinth:barrels-2012:${project.barrels_version}"
 
-    //Ecliptic Seasons
+    // Ecliptic Seasons
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
 
-    //JourneyMap
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+    // JourneyMap
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
 
     //FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -80,16 +80,23 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
 
-    //Map Atlases
-    modCompileOnly "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
-    modCompileOnly "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
+    // Map Atlases
+    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
+    modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_forge}"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge"
 
-    //Curios + Accessories
+    // Curios
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
+
+    // Accessories
     modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
     modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+
+    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.2"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.3.2")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -98,7 +105,7 @@ dependencies {
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"
             break
         case "ftb":
             modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -111,7 +118,7 @@ dependencies {
         case "atlas":
             modLocalRuntime "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
-            modLocalRuntime "maven.modrinth:moonlight:1.20-${project.moonlight_version}-forge"
+            modLocalRuntime "maven.modrinth:moonlight:1.20-${project.moonlight_version_forge}"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
@@ -156,8 +163,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.minecraft_version}-${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.minecraft_version}-${project.glitchcore_version}"
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
