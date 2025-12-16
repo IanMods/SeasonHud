@@ -121,6 +121,9 @@ dependencies {
     modCompileOnly("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_fabric}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.

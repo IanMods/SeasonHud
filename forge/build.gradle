@@ -93,6 +93,11 @@ dependencies {
     modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
     modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
+    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.2"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.3.2")
+
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
