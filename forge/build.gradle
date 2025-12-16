@@ -48,31 +48,29 @@ configurations {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    forge "net.minecraftforge:forge:${project.forge_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
 
-    //Serene Seasons
-    modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
-//    modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
-//    compileOnly("net.jodah:typetools:0.6.3")
+    // Serene Seasons
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
 
-    //Terrafirmacraft
+    // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-forge"
     modCompileOnly "maven.modrinth:barrels-2012:${project.barrels_version}"
 
-    //Ecliptic Seasons
+    // Ecliptic Seasons
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.19.1"
 
-    //JourneyMap
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+    // JourneyMap
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
 
     //FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -82,12 +80,17 @@ dependencies {
 
     //Map Atlases
     modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
-    modCompileOnly "maven.modrinth:moonlight:1.19.2-${project.moonlight_version}-forge"
+    modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_forge}"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.19.2-forge"
 
-    //Curios + Accessories
+    // Curios
     modLocalRuntime "top.theillusivec4.curios:curios-forge:${project.curios_version}"
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
+
+    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.2"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.3.2")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -96,7 +99,7 @@ dependencies {
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.19.1"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"
             break
         case "ftb":
             modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -109,7 +112,7 @@ dependencies {
         case "atlas":
             modLocalRuntime "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
             modLocalRuntime "curse.maven:supplementaries-412082:5152602"
-            modLocalRuntime "maven.modrinth:moonlight:1.19.2-${project.moonlight_version}-forge"
+            modLocalRuntime "maven.modrinth:moonlight:1.19.2-${project.moonlight_version_forge}"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.2.1-beta.2"))
             implementation("io.github.llamalad7:mixinextras-forge:0.2.1-beta.2")
             break
@@ -123,7 +126,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
             break
         case "terra":
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"

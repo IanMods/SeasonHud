@@ -1,5 +1,5 @@
 plugins {
-    id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.13-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.gradleup.shadow' version '8.3.6' apply false
     id 'net.darkhax.curseforgegradle' version '1.1.25'
@@ -27,54 +27,116 @@ subprojects {
 
     repositories {
         mavenCentral()
-
-        maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
-        maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
-        maven { url = "https://maven.blamejared.com/" } // JEI
-        maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
-        maven { url = "https://maven.octo-studios.com/releases" } //Curios Cont.
-        maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components
-        maven { url = "https://jm.gserv.me/repository/maven-public/" } //Journeymap API for Fabric
-        maven { url = 'https://maven.minecraftforge.net' } //Forge
-        maven { url = "https://maven.wispforest.io/releases" } //Accessories
-        maven { url = "https://maven.su5ed.dev/releases" } //Accessories
-        maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
-        maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
-        maven {
-            url "https://maven.ftb.dev/releases"
-            content {
-                includeGroup "dev.ftb.mods"
+        // CurseMaven
+        exclusiveContent {
+            forRepository {
+                maven {
+                    url = "https://cursemaven.com"
+                }
+            }
+            filter {
+                includeGroup "curse.maven"
             }
         }
-        maven {
-            url "https://maven.ftb.dev/snapshots"
-            content {
-                includeGroup "dev.ftb.mods"
+        // Modrinth Maven
+        exclusiveContent {
+            forRepository {
+                maven {
+                    url = "https://api.modrinth.com/maven"
+                }
+            }
+            filter {
+                includeGroup "maven.modrinth"
             }
         }
+        // Parchment mappings
+        maven {
+            url = "https://maven.parchmentmc.org"
+            content {
+                includeGroup "org.parchmentmc.data"
+            }
+        }
+        // Cloth Config, REI
+        maven {
+            url = "https://maven.shedaniel.me/"
+            content {
+                includeGroup "me.shedaniel"
+            }
+        }
+        // JEI
+        maven {
+            url = "https://maven.blamejared.com/"
+            content {
+                includeGroup "mezz.jei"
+            }
+        }
+        // Cardinal Components
+        maven {
+            url = "https://maven.ladysnake.org/releases"
+            content {
+                includeGroup "dev.onyxstudios.cardinal-components-api"
+            }
+        }
+        //Journeymap API
+        maven {
+            url = "https://jm.gserv.me/repository/maven-public/"
+            content {
+                includeGroup "info.journeymap"
+            }
+        }
+        // Curios
         maven {
             url = "https://maven.theillusivec4.top/"
             content {
                 includeGroup "top.theillusivec4.curios"
             }
         }
-
-        exclusiveContent {
-            forRepository {
-                maven { url = "https://cursemaven.com" }
-            }
-            filter {
-                includeGroup "curse.maven"
-            }
-        }
-        exclusiveContent {
-            forRepository {
-                maven { url = "https://api.modrinth.com/maven" }
-            }
-            filter {
-                includeGroup "maven.modrinth"
+        // Mod Menu, Trinkets
+        maven {
+            url = "https://maven.terraformersmc.com/releases/"
+            content {
+                includeGroup "com.terraformersmc"
+                includeGroup "dev.emi"
             }
         }
+        // Accessories
+        maven {
+            url = "https://maven.wispforest.io/releases"
+            content {
+                includeGroup "io.wispforest"
+                includeGroup "io.wispforest.endec"
+            }
+        }
+        // Accessories Dependencies
+        maven {
+            url = "https://maven.su5ed.dev/releases"
+            content {
+                includeGroup "dev.su5ed.sinytra.fabric-api"
+            }
+        }
+        // Forge Config API Port
+        maven {
+            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+            content {
+                includeGroup "fuzs.forgeconfigapiport"
+            }
+        }
+        // DevAuth
+        maven {
+            url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
+            content {
+                includeGroup "me.djtheredstoner"
+            }
+        }
+        // FTB
+        maven {
+            url = "https://maven.ftb.dev/releases"
+            content {
+                includeGroup "dev.ftb.mods"
+            }
+        }
+        //Forge
+        maven { url = 'https://maven.minecraftforge.net' }
     }
 
     loom {
@@ -123,27 +185,25 @@ subprojects {
     }
 
     processResources {
-        def expandProps = [
-                "version"                   : mod_version,
-                "group"                     : project.group, //Else we target the task's group.
-                "minecraft_version"         : minecraft_version,
-                "forge_version"             : forge_version,
-                "forge_loader_version_range": forge_loader_version_range,
-                "forge_version_range"       : forge_version_range,
-                "minecraft_version_range"   : minecraft_version_range,
-                "fabric_api_version"        : fabric_api_version,
-                "fabric_loader_version"     : fabric_loader_version,
-                "fabric_version_range"      : fabric_version_range,
-                "mod_name"                  : mod_name,
-                "mod_author"                : mod_author,
-                "mod_id"                    : mod_id,
-                "license"                   : license,
-                "description"               : description,
-                "repoURL"                   : repoURL,
-                "issueTrackerURL"           : issueTrackerURL,
-                "credits"                   : credits,
-                "java_version"              : java_version
-        ]
+        def expandProps = ["version"                   : mod_version,
+                           "group"                     : project.group, //Else we target the task's group.
+                           "minecraft_version"         : minecraft_version,
+                           "forge_version"             : forge_version,
+                           "forge_loader_version_range": forge_loader_version_range,
+                           "forge_version_range"       : forge_version_range,
+                           "minecraft_version_range"   : minecraft_version_range,
+                           "fabric_api_version"        : fabric_api_version,
+                           "fabric_loader_version"     : fabric_loader_version,
+                           "fabric_version_range"      : fabric_version_range,
+                           "mod_name"                  : mod_name,
+                           "mod_author"                : mod_author,
+                           "mod_id"                    : mod_id,
+                           "license"                   : license,
+                           "description"               : description,
+                           "repoURL"                   : repoURL,
+                           "issueTrackerURL"           : issueTrackerURL,
+                           "credits"                   : credits,
+                           "java_version"              : java_version]
 
         filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
             expand project.properties

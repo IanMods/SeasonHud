@@ -25,4 +25,5 @@ build
 .gradle
 # other
 run
-runs
+/dist/
+/update-seasonhud-deps.ps1

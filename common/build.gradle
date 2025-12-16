@@ -23,7 +23,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
     modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
 
     //Season Mods
