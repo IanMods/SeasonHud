@@ -48,7 +48,7 @@ configurations {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    forge "net.minecraftforge:forge:${project.forge_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
@@ -60,19 +60,19 @@ dependencies {
 //    modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
 //    compileOnly("net.jodah:typetools:0.6.3")
 
-    //Terrafirmacraft
+    // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-forge"
     modCompileOnly "maven.modrinth:barrels-2012:${project.barrels_version}"
 
-    //Ecliptic Seasons
+    // Ecliptic Seasons
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.minecraft_version}"
 
-    //JourneyMap
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}"
+    // JourneyMap
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
 
     //FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
@@ -89,6 +89,7 @@ dependencies {
     //Curios + Accessories
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
 
+
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
@@ -96,7 +97,7 @@ dependencies {
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.minecraft_version}"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}"
+            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"
             break
         case "ftb":
             modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
@@ -120,7 +121,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "maven.modrinth:serene-seasons:${project.serene_seasons_version}"
+            modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}"
             break
         case "terra":
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
