@@ -119,6 +119,7 @@ subprojects {
             url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
             content {
                 includeGroup "fuzs.forgeconfigapiport"
+                includeGroup "net.minecraftforge"
             }
         }
         // DevAuth

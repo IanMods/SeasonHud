@@ -35,49 +35,13 @@
     devauth_version:
       source: version
 
-# Forge Config API Port
-- repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
-  groupId: fuzs.forgeconfigapiport
-  artifactId: forgeconfigapiport-fabric
-  version: "8.*"
-  properties:
-    forge_config_api_port_version:
-      source: version
-
 # Mod Menu
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "7.*"
+  version: "4.*"
   properties:
     modmenu_version:
-      source: version
-
-# Serene Seasons
-- repository: https://maven.minecraftforge.net/
-  groupId: com.github.glitchfiend
-  artifactId: SereneSeasons-fabric
-  version: "${mcVersion}-9.1*"
-  properties:
-    serene_seasons_version:
-      source: version
-
-# GlitchCore
-- repository: https://maven.minecraftforge.net/
-  groupId: com.github.glitchfiend
-  artifactId: GlitchCore-fabric
-  version: "${mcVersion}-0.0.1*"
-  properties:
-    glitchcore_version:
-      source: version
-
-# Terrafirmacraft
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: terrafirmacraft
-  version: "3.*"
-  properties:
-    terrafirmacraft_version:
       source: version
 
 # Patchouli
@@ -120,7 +84,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-chunks-fabric
-  version: "2001.*"
+  version: "1902.*"
   properties:
     ftb_chunks_version:
       source: version
@@ -129,7 +93,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-teams-fabric
-  version: "2001.*"
+  version: "1902.*"
   properties:
     ftb_teams_version:
       source: version
@@ -138,7 +102,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-library-fabric
-  version: "2001.*"
+  version: "1902.*"
   properties:
     ftb_library_version:
       source: version
@@ -147,18 +111,9 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "9.*"
+  version: "6.*"
   properties:
     architectury_version:
-      source: version
-
-# Map Atlases
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: map-atlases
-  version: "${mcVersion}-*"
-  properties:
-    map_atlases_version:
       source: version
 
 # Moonlight
@@ -183,7 +138,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: immediatelyfast
-  version: "${immediatelyfast_version}+1.20.4*"
+  version: "${immediatelyfast_version}+1.19.2*"
   properties:
     immediatelyfast_version:
       source: wildcard
@@ -192,7 +147,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: text-animator
-  version: "2.*+forge"
+  version: "1.*"
   properties:
     text_animator_version_forge:
       source: version
@@ -201,7 +156,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: text-animator
-  version: "2.*+fabric"
+  version: "1.*"
   properties:
     text_animator_version_fabric:
       source: version

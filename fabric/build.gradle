@@ -84,7 +84,7 @@ dependencies {
     modCompileOnly("curse.maven:map-atlases-436298:${project.map_atlases_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:moonlight:1.19.2-${project.moonlight_version_fabric}") {
+    modCompileOnly("maven.modrinth:moonlight:${project.moonlight_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.19.2-fabric") {
