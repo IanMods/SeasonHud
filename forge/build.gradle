@@ -74,7 +74,7 @@ dependencies {
     // JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
 
-    //FTB Chunks + Dependencies
+    // FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
     modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
     modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
@@ -121,7 +121,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}"
+            modLocalRuntime "maven.modrinth:serene-seasons:${project.serene_seasons_version}"
             break
         case "terra":
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
