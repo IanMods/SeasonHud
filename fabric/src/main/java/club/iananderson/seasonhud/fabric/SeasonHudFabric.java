@@ -3,6 +3,8 @@ package club.iananderson.seasonhud.fabric;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
+import club.iananderson.seasonhud.fabric.impl.minimaps.XaeroInfoDisplays;
+import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import net.fabricmc.api.ModInitializer;
 import net.minecraftforge.api.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;

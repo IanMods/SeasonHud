@@ -77,7 +77,7 @@ dependencies {
     // FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
     modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+    //modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
 
     //Map Atlases

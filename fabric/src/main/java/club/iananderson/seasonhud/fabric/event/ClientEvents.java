@@ -5,6 +5,7 @@ import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.fabric.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.fabric.client.overlays.MapAtlases;
 import club.iananderson.seasonhud.fabric.client.overlays.SeasonHUDOverlay;
+import club.iananderson.seasonhud.fabric.impl.minimaps.XaeroInfoDisplays;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;

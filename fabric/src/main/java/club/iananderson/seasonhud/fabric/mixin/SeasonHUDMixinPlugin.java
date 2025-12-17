@@ -49,7 +49,7 @@ public class SeasonHUDMixinPlugin implements IMixinConfigPlugin {
   @Override
   public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
     Preconditions.checkState(mixinClassName.startsWith(prefix), "Unexpected prefix on " + mixinClassName);
-    if (mixinClassName.startsWith("club.iananderson.seasonhud.fabric.mixin.xaero")) {
+    if (mixinClassName.startsWith("club.iananderson.seasonhud.mixin.xaero")) {
       return HAS_XAERO;
     }
     else if (mixinClassName.startsWith("club.iananderson.seasonhud.fabric.mixin.ftbchunks")) {

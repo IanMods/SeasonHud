@@ -139,6 +139,14 @@ subprojects {
         }
         //Forge
         maven { url = 'https://maven.minecraftforge.net' }
+
+        //Mekanism backup maven
+        maven {
+            url 'https://modmaven.dev/'
+            content {
+                includeGroup "top.theillusivec4.curios"
+            }
+        }
     }
 
     loom {

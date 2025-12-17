@@ -6,10 +6,7 @@ import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
 import xaero.hud.minimap.info.InfoDisplay;
 import xaero.hud.minimap.info.InfoDisplay.Builder;
 import xaero.hud.minimap.info.codec.InfoDisplayCommonStateCodecs;
@@ -30,7 +27,7 @@ public class XaeroInfoDisplays {
         .setCodec(InfoDisplayCommonStateCodecs.BOOLEAN)
         .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)
         .setCompiler((displayInfo, compiler, session, availableWidth, playerPos) -> {
-          if (displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
+          if ((Boolean) displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
               Minimap.XAERO) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getHudText());
 
