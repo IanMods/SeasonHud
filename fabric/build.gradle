@@ -59,18 +59,18 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.18.2") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //JourneyMap
+    // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
-    modCompileOnly("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric") {
+    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //FTB Chunks + Dependencies
+    // FTB Chunks + Dependencies
     modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -90,10 +90,12 @@ dependencies {
     }
 
 
-    //Trinkets + Accessories
+    // Trinkets
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+
+    // Accessories
     modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.2") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -102,7 +104,7 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //Forge Config API Port
+    // Forge Config API Port
     modImplementation 'com.electronwill.night-config:core:3.6.3'
     modImplementation 'com.electronwill.night-config:toml:3.6.3'
     modImplementation("net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}") {
@@ -117,6 +119,9 @@ dependencies {
 //    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
 //        exclude group: 'net.fabricmc', module: 'fabric-loader'
 //    }
+    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_fabric}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -125,7 +130,7 @@ dependencies {
             modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.18.2")
             break
         case "journey":
-            modLocalRuntime("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric")
+            modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
             break
         case "ftb":
             modLocalRuntime("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}")
