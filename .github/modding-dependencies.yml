@@ -39,7 +39,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "4.*"
+  version: "3.*"
   properties:
     modmenu_version:
       source: version
@@ -80,38 +80,11 @@
     journeymap_version_fabric:
       source: version
 
-# FTB Chunks
-- repository: https://maven.ftb.dev/releases
-  groupId: dev.ftb.mods
-  artifactId: ftb-chunks-fabric
-  version: "1902.*"
-  properties:
-    ftb_chunks_version:
-      source: version
-
-# FTB Teams
-- repository: https://maven.ftb.dev/releases
-  groupId: dev.ftb.mods
-  artifactId: ftb-teams-fabric
-  version: "1902.*"
-  properties:
-    ftb_teams_version:
-      source: version
-
-# FTB Library
-- repository: https://maven.ftb.dev/releases
-  groupId: dev.ftb.mods
-  artifactId: ftb-library-fabric
-  version: "1902.*"
-  properties:
-    ftb_library_version:
-      source: version
-
 # Architectury
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "6.*"
+  version: "4.*"
   properties:
     architectury_version:
       source: version
@@ -132,31 +105,4 @@
   version: "${mcVersion}-*-fabric"
   properties:
     moonlight_version_fabric:
-      source: version
-
-# ImmediatelyFast
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: immediatelyfast
-  version: "${immediatelyfast_version}+1.19.2*"
-  properties:
-    immediatelyfast_version:
-      source: wildcard
-
-# Text Animator Forge
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: text-animator
-  version: "1.*"
-  properties:
-    text_animator_version_forge:
-      source: version
-
-# Text Animator Fabric
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: text-animator
-  version: "1.*"
-  properties:
-    text_animator_version_fabric:
       source: version
