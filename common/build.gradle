@@ -13,7 +13,6 @@ dependencies {
     compileOnly "com.github.glitchfiend:GlitchCore-common:${minecraft_version}-${glitchcore_version}"
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
     modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
-    //modCompileOnly "maven.modrinth:accessories-cc-layer:7.4.0-beta.18"
     modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
 
     // Minimap Mods
@@ -22,8 +21,9 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"
-    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}+neoforge"
-    modCompileOnly "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
+    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
 
     //Season Mods
     // Not used in common unless they are actually  loaded.

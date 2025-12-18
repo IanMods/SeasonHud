@@ -25,6 +25,15 @@
     forge_version:
       source: version
 
+# NeoForge
+- repository: https://maven.neoforged.net/releases/
+  groupId: net.neoforged
+  artifactId: neoforge
+  version: "${mcMinor}.${mcPatch}.*"
+  properties:
+    neoforge_version:
+      source: version
+
 # Parchment
 - repository: https://maven.parchmentmc.org/
   groupId: org.parchmentmc.data
@@ -47,7 +56,7 @@
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
   groupId: fuzs.forgeconfigapiport
   artifactId: forgeconfigapiport-fabric
-  version: "8.*"
+  version: "${mcMinor}.${mcPatch}.*"
   properties:
     forge_config_api_port_version:
       source: version
@@ -56,7 +65,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "7.*"
+  version: "11.*"
   properties:
     modmenu_version:
       source: version
@@ -65,7 +74,7 @@
 - repository: https://maven.minecraftforge.net/
   groupId: com.github.glitchfiend
   artifactId: SereneSeasons-fabric
-  version: "${mcVersion}-9.1*"
+  version: "${mcVersion}-*"
   properties:
     serene_seasons_version:
       source: version
@@ -74,7 +83,7 @@
 - repository: https://maven.minecraftforge.net/
   groupId: com.github.glitchfiend
   artifactId: GlitchCore-fabric
-  version: "${mcVersion}-0.0.1*"
+  version: "${mcVersion}-*"
   properties:
     glitchcore_version:
       source: version
@@ -83,7 +92,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: terrafirmacraft
-  version: "3.*"
+  version: "4.*"
   properties:
     terrafirmacraft_version:
       source: version
@@ -92,7 +101,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: patchouli
-  version: "${mcVersion}-*"
+  version: "${mcVersion}-*-neoforge"
   properties:
     patchouli_version:
       source: version
@@ -106,11 +115,20 @@
     xaeros_minimap_version:
       source: wildcard
 
+# Journeymap-API
+- repository: https://jm.gserv.me/repository/maven-public/
+  groupId: info.journeymap
+  artifactId: journeymap-api-common
+  version: "*-${mcVersion}-*"
+  properties:
+    journeymap_api_version:
+      source: version
+
 # Journeymap-Forge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*-forge"
+  version: "${mcVersion}-*+forge"
   properties:
     journeymap_version_forge:
       source: version
@@ -119,16 +137,34 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*-fabric"
+  version: "${mcVersion}-*+neoforge"
   properties:
     journeymap_version_fabric:
+      source: version
+
+# Journeymap-NeoForge
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: journeymap
+  version: "${mcVersion}-*+neoforge"
+  properties:
+    journeymap_version_neoforge:
+      source: version
+
+# Common-Network
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: common-network
+  version: "${common_network_version}-${mcVersion}"
+  properties:
+    common_network_version:
       source: version
 
 # FTB Chunks
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-chunks-fabric
-  version: "2001.*"
+  version: "${mcMinor}0${mcPatch}.*"
   properties:
     ftb_chunks_version:
       source: version
@@ -137,7 +173,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-teams-fabric
-  version: "2001.*"
+  version: "${mcMinor}0${mcPatch}.*"
   properties:
     ftb_teams_version:
       source: version
@@ -146,7 +182,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-library-fabric
-  version: "2001.*"
+  version: "${mcMinor}0${mcPatch}.*"
   properties:
     ftb_library_version:
       source: version
@@ -155,30 +191,39 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "9.*"
+  version: "13.*"
   properties:
     architectury_version:
       source: version
 
-# Map Atlases
+# Map Atlases Neoforge
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: map-atlases-forge
+  version: "*_${mcVersion}-${map_atlases_version}"
+  properties:
+    map_atlases_version_neoforge:
+      source: version
+
+# Map Atlases Fabric
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: map-atlases
-  version: "${mcVersion}-*"
+  version: "*_${mcVersion}-${map_atlases_version}"
   properties:
-    map_atlases_version:
+    map_atlases_version_fabric:
       source: version
 
-# Moonlight
+# Moonlight NeoForge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: moonlight
-  version: "${mcVersion}-*-forge"
+  version: "${mcVersion}-*-neoforge"
   properties:
-    moonlight_version_forge:
+    moonlight_version_neoforge:
       source: version
 
-# Moonlight
+# Moonlight Fabric
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: moonlight
@@ -191,25 +236,25 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: immediatelyfast
-  version: "${immediatelyfast_version}+1.20.4*"
+  version: "${immediatelyfast_version}+${mcVersion}-*"
   properties:
     immediatelyfast_version:
       source: wildcard
 
-# Text Animator Forge
+# Text Animator NeoForge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: text-animator
-  version: "2.*+forge"
+  version: "3.*+neoforge"
   properties:
-    text_animator_version_forge:
+    text_animator_version_neoforge:
       source: version
 
 # Text Animator Fabric
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: text-animator
-  version: "2.*+fabric"
+  version: "3.*+fabric"
   properties:
     text_animator_version_fabric:
       source: version

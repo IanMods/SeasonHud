@@ -68,7 +68,7 @@ dependencies {
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21")
 
     // JourneyMap
-    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
     modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -80,13 +80,13 @@ dependencies {
     modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
 
     // Map Atlases
-    modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version}") {
+    modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     modCompileOnly("maven.modrinth:moonlight:${project.moonlight_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-fabric") {
+    modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+${project.minecraft_version}-fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -109,9 +109,6 @@ dependencies {
     // Development QOL
     modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-    modCompileOnly("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
     modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -160,19 +157,6 @@ dependencies {
             break
         default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
                 "atlas, or none")
-    }
-
-    // Accessory Mod Dev Tests
-    // See root gradle.properties to choose which to use at runtime.
-    switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
-        case "accessories":
-            modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-fabric")
-            modLocalRuntime "maven.modrinth:owo-lib:${project.owo_version}"
-            modLocalRuntime "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
-            break
-        case "none":
-            break
-        default: println("Unknown accessory mod specified: ${project.minimap_mod}. Must be accessories, or none")
     }
 
     // Accessory Mod Dev Tests
