@@ -62,10 +62,12 @@ dependencies {
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-    compileOnly("net.jodah:typetools:0.6.3")
+    modCompileOnly("net.jodah:typetools:0.6.3")
 
     // Xaero's Minimap
-    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21")
+    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
@@ -77,7 +79,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-    modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
+    modCompileOnly "dev.architectury:architectury-fabric:${project.architectury_version}"
 
     // Map Atlases
     modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}") {
@@ -90,7 +92,6 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-
     // Trinkets
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -100,11 +101,15 @@ dependencies {
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:6.1.0"
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:6.1.0"
     modCompileOnly("io.wispforest:accessories-fabric:${project.accessories_version}")
-    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}")
+    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric")
+    modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Development QOL
     modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
@@ -119,7 +124,6 @@ dependencies {
         case "serene":
             modLocalRuntime "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
             modLocalRuntime "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-            implementation("net.jodah:typetools:0.6.3")
             break
         case "fabric":
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
@@ -146,7 +150,7 @@ dependencies {
             modLocalRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
             modLocalRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
             modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-            modLocalRuntime("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
+            modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
             break
         case "atlas":
             modLocalRuntime("maven.modrinth:map-atlases:fabric_1.21-${project.map_atlases_version}")

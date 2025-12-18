@@ -84,7 +84,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
-    modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+forge"
+    modCompileOnly "dev.architectury:architectury-forge:${project.architectury_version}"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.

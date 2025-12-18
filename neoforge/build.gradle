@@ -54,7 +54,7 @@ dependencies {
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${project.minecraft_version}-${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-neoforge:${project.minecraft_version}-${project.glitchcore_version}"
-    implementation("net.jodah:typetools:0.6.3")
+    modCompileOnly("net.jodah:typetools:0.6.3")
 
     // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
@@ -74,7 +74,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
-    modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
+    modCompileOnly "dev.architectury:architectury-neoforge:${project.architectury_version}"
 
     // Map Atlases
     modCompileOnly "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
@@ -108,7 +108,7 @@ dependencies {
             modLocalRuntime "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
             modLocalRuntime "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
             modLocalRuntime "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
-            modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
+            modImplementation "dev.architectury:architectury-neoforge:${project.architectury_version}"
             break
         case "atlas":
             modLocalRuntime "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
@@ -127,7 +127,7 @@ dependencies {
         case "serene":
             modLocalRuntime "com.github.glitchfiend:SereneSeasons-neoforge:${project.minecraft_version}-${project.serene_seasons_version}"
             modLocalRuntime "com.github.glitchfiend:GlitchCore-neoforge:${project.minecraft_version}-${project.glitchcore_version}"
-            implementation("net.jodah:typetools:0.6.3")
+            modImplementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
