@@ -75,6 +75,7 @@ subprojects {
             url = "https://maven.ladysnake.org/releases"
             content {
                 includeGroup "dev.onyxstudios.cardinal-components-api"
+                includeGroup "org.ladysnake.cardinal-components-api"
             }
         }
         //Journeymap API
