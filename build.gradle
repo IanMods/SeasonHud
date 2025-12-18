@@ -135,11 +135,16 @@ subprojects {
                 includeGroup "dev.ftb.mods"
             }
         }
+        //NeoForge
+        maven { url = 'https://maven.neoforged.net/releases' }
+
         //Forge
         maven { url = 'https://maven.minecraftforge.net' }
 
-        //NeoForge
-        maven { url = 'https://maven.neoforged.net/releases' }
+        //Mekanism backup maven
+        maven {
+            url 'https://modmaven.dev/'
+        }
     }
 
     loom {
