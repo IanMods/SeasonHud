@@ -7,16 +7,20 @@ dependencies {
     // which get remapped to the correct annotations on each platform.
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0")
 
+    // Config Mod
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forge_config_api_port_version}"
-    api group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
-    modCompileOnly "com.github.glitchfiend:GlitchCore-common:${glitchcore_version}"
 
-    // Curios Mods
+    //Season Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
-    modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
-    modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-common:${glitchcore_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
+    modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
+    modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
+    modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
+    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
@@ -29,12 +33,10 @@ dependencies {
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
     modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
 
-    //Season Mods
+    // Curios Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-    modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
-    modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
-    modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
-    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+    modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
+    modApi annotationProcessor("io.wispforest:owo-lib:${project.owo_version}")
+    modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
+    modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
 }

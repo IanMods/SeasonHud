@@ -52,8 +52,6 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
-
     // Fabric Seasons
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     // Fabric Seasons Extras
@@ -112,11 +110,11 @@ dependencies {
     }
 
     // Development QOL
+    modLocalRuntime "me.djtheredstoner:DevAuth-fabric:${project.devauth_version}"
+//    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
     modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_fabric}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+//    modImplementation("maven.modrinth:text-animator:${project.text_animator_version_fabric}")
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
@@ -153,7 +151,7 @@ dependencies {
             modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
             break
         case "atlas":
-            modLocalRuntime("maven.modrinth:map-atlases:fabric_1.21-${project.map_atlases_version}")
+            modLocalRuntime("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}")
             modLocalRuntime("maven.modrinth:moonlight:1.21-${project.moonlight_version_fabric}")
             modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.1-fabric")
             break
@@ -168,7 +166,7 @@ dependencies {
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
             modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-fabric")
-            modLocalRuntime "maven.modrinth:owo-lib:${project.owo_version}"
+            modLocalRuntime "io.wispforest:owo-lib:${project.owo_version}"
             modLocalRuntime "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
             break
         case "none":

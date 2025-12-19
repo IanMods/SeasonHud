@@ -58,8 +58,6 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
-
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
@@ -80,11 +78,20 @@ dependencies {
     compileOnly group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
 
-    //FTB Chunks + Dependencies
-    modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
-    modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
-    modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
-    modCompileOnly "dev.architectury:architectury-forge:${project.architectury_version}"
+    // FTB Chunks + Dependencies
+    //modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+    //modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+    //modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
+    //modCompileOnly "dev.architectury:architectury-forge:${project.architectury_version}"
+
+    // Forge Config API Port
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-forge:${project.forge_config_api_port_version}"
+    modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+
+    // Development QOL
+    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.

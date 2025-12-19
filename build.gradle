@@ -113,6 +113,7 @@ subprojects {
             url = "https://maven.su5ed.dev/releases"
             content {
                 includeGroup "dev.su5ed.sinytra.fabric-api"
+                includeGroup "org.sinytra.forgified-fabric-api"
             }
         }
         // Forge Config API Port
@@ -137,11 +138,13 @@ subprojects {
             }
         }
         //NeoForge
-        maven { url = 'https://maven.neoforged.net/releases' }
-
+        maven {
+            url = 'https://maven.neoforged.net/releases'
+        }
         //Forge
-        maven { url = 'https://maven.minecraftforge.net' }
-
+        maven {
+            url = 'https://maven.minecraftforge.net'
+        }
         //Mekanism backup maven
         maven {
             url 'https://modmaven.dev/'

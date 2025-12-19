@@ -241,6 +241,24 @@
     immediatelyfast_version:
       source: wildcard
 
+# Sodium Neoforge
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: sodium
+  version: "mc${mcVersion}-*-neoforge"
+  properties:
+    sodium_version_neoforge:
+      source: version
+
+# Sodium Fabric
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: sodium
+  version: "mc${mcVersion}-*-fabric"
+  properties:
+    sodium_version_fabric:
+      source: version
+
 # Text Animator NeoForge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
@@ -257,4 +275,31 @@
   version: "3.*+fabric"
   properties:
     text_animator_version_fabric:
+      source: version
+
+# Accessories
+- repository: https://maven.wispforest.io/releases
+  groupId: io.wispforest
+  artifactId: accessories-neoforge
+  version: "*+${mcVersion}"
+  properties:
+    accessories_version:
+      source: version
+
+# owo NeoForge
+- repository: https://maven.wispforest.io/releases
+  groupId: io.wispforest
+  artifactId: owo-lib-neoforge
+  version: "0.12.*+${mcVersion}"
+  properties:
+    owo_version_neoforge:
+      source: version
+
+# owo Fabric
+- repository: https://maven.wispforest.io/releases
+  groupId: io.wispforest
+  artifactId: owo-lib
+  version: "0.12.*+${mcVersion}"
+  properties:
+    owo_version:
       source: version
