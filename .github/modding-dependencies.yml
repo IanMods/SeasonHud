@@ -65,7 +65,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "14.*"
+  version: "15.*"
   properties:
     modmenu_version:
       source: version
