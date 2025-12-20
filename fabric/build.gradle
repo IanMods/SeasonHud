@@ -54,7 +54,6 @@ dependencies {
 
     // Fabric Seasons + Extras
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.18.2") {

@@ -52,15 +52,6 @@
     modmenu_version:
       source: version
 
-# Patchouli
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: patchouli
-  version: "${mcVersion}-*"
-  properties:
-    patchouli_version:
-      source: version
-
 # Xaero
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
