@@ -56,11 +56,6 @@ dependencies {
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
-    // Serene Seasons
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-    compileOnly("net.jodah:typetools:0.6.3")
-
     // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
