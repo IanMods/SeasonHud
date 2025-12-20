@@ -53,12 +53,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
-
     //Serene Seasons
     modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
-//    modCompileOnly "maven.modrinth:glitchcore:${project.glitchcore_version}-forge"
-//    compileOnly("net.jodah:typetools:0.6.3")
 
     // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
@@ -88,6 +84,9 @@ dependencies {
     modLocalRuntime "top.theillusivec4.curios:curios-forge:${project.curios_version}"
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
 
+    // Development QOL
+    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
+    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.

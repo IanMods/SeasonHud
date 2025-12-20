@@ -25,6 +25,14 @@
     forge_version:
       source: version
 
+# Parchment
+- repository: https://maven.parchmentmc.org/
+  groupId: org.parchmentmc.data
+  artifactId: parchment-${mcVersion}
+  version: "*"
+  properties:
+    parchment_version:
+      source: version
 
 # DevAuth
 - repository: https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1
@@ -62,6 +70,15 @@
     xaeros_minimap_version:
       source: wildcard
 
+# Journeymap-API
+- repository: https://jm.gserv.me/repository/maven-public/
+  groupId: info.journeymap
+  artifactId: journeymap-api
+  version: "${mcVersion}-*"
+  properties:
+    journeymap_api_version_fabric:
+      source: version
+
 # Journeymap-Forge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
@@ -89,7 +106,7 @@
     architectury_version:
       source: version
 
-# Moonlight
+# Moonlight Forge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: moonlight
@@ -98,7 +115,7 @@
     moonlight_version_forge:
       source: version
 
-# Moonlight
+# Moonlight Fabric
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: moonlight
