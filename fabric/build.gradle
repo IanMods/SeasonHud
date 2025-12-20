@@ -188,7 +188,7 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
     mainFile.addJavaVersion("Java 17")
 
     mainFile.addRequirement("fabric-seasons")
-    mainFile.addRequirement("forge-config-api-port-fabric")
+    mainFile.addRequirement("forge-config-api-port")
     mainFile.addOptional("fabric-seasons-extras")
     mainFile.addOptional("ftb-chunks-fabric")
     mainFile.addOptional("journeymap")
