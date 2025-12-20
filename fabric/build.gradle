@@ -52,9 +52,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    // Fabric Seasons
+    // Fabric Seasons + Extras
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-    // Fabric Seasons Extras
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     // Serene Seasons
@@ -110,11 +109,10 @@ dependencies {
     }
 
     // Development QOL
-    modLocalRuntime "me.djtheredstoner:DevAuth-fabric:${project.devauth_version}"
+    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
 //    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
-    modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
-
-//    modImplementation("maven.modrinth:text-animator:${project.text_animator_version_fabric}")
+    modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+//    modLocalRuntime "maven.modrinth:text-animator:${project.text_animator_version_fabric}"
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
@@ -165,9 +163,9 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
-            modLocalRuntime("io.wispforest:accessories-fabric:${project.accessories_version}")
+            modLocalRuntime "io.wispforest:accessories-fabric:${project.accessories_version}"
             modLocalRuntime "io.wispforest:owo-lib:${project.owo_version}"
-            modLocalRuntime ("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+            modLocalRuntime("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
                 exclude(group: "net.fabricmc.fabric-api")
             }
             break
@@ -233,6 +231,7 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
 
     mainFile.addOptional("serene-seasons")
     mainFile.addOptional("fabric-seasons")
+    mainFile.addRequirement("forge-config-api-port")
     mainFile.addOptional("fabric-seasons-extras")
     mainFile.addRequirement("forge-config-api-port")
     mainFile.addOptional("trinkets")

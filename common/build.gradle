@@ -33,7 +33,7 @@ dependencies {
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
     modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
 
-    // Curios Mods
+    // Accessory Mods
     // Not used in common unless they are actually  loaded.
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
     modApi annotationProcessor("io.wispforest:owo-lib:${project.owo_version}")
