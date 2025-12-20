@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.13.16] - 2025-12-20
+
+### Changed
+
+- Updated to latest Forge / Fabric versions
+- Updated to latest versions of Terrafirmacraft
+- Updated to latest versions of FTB Chunks / Journeymap / Xaero's Minimap
+
 ## [1.13.15] - 2025-11-22
 
 ### Added
