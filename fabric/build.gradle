@@ -52,16 +52,14 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
+    // Fabric Seasons + Extras
+    modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
-    //Fabric Seasons
-    modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-    //Fabric Seasons Extras
-    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    // Serene Seasons
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
+    compileOnly("net.jodah:typetools:0.6.3")
 
     // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1") {
@@ -91,7 +89,6 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-
     // Trinkets
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -109,16 +106,10 @@ dependencies {
     }
 
     // Development QOL
-    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-
-    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_fabric}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
+    modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
+    modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modLocalRuntime "maven.modrinth:text-animator:${project.text_animator_version_fabric}"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
