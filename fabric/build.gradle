@@ -53,7 +53,7 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     // Fabric Seasons + Extras
-    modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+    modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     // Xaero's Minimap
