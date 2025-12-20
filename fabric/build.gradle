@@ -52,11 +52,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
-
-    // Fabric Seasons
+    // Fabric Seasons + Extras
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-    // Fabric Seasons Extras
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     // Serene Seasons
@@ -92,7 +89,6 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-
     // Trinkets
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -113,17 +109,10 @@ dependencies {
     }
 
     // Development QOL
-    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
-
-    modCompileOnly("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_fabric}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
+    modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
+    modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modLocalRuntime "maven.modrinth:text-animator:${project.text_animator_version_fabric}"
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
@@ -176,9 +165,11 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
-            modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-fabric")
+            modLocalRuntime "io.wispforest:accessories-fabric:${project.accessories_version}"
             modLocalRuntime "maven.modrinth:owo-lib:${project.owo_version}"
-            modLocalRuntime "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
+            modLocalRuntime("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+                exclude(group: "net.fabricmc.fabric-api")
+            }
             break
         case "none":
             break

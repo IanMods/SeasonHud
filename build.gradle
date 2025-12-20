@@ -137,7 +137,9 @@ subprojects {
             }
         }
         //Forge
-        maven { url = 'https://maven.minecraftforge.net' }
+        maven {
+            url = 'https://maven.minecraftforge.net'
+        }
 
         //Mekanism backup maven
         maven {

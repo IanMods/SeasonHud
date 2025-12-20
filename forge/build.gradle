@@ -53,8 +53,6 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
-
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
@@ -93,10 +91,9 @@ dependencies {
     modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
     modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
+    // Development QOL
+    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
     modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
-    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.2"))
-    implementation("io.github.llamalad7:mixinextras-forge:0.3.2")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -132,14 +129,15 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
-            modLocalRuntime("io.wispforest:accessories-neoforge:${project.accessories_version}") {
-                transitive = false
+            implementation("io.github.llamalad7:mixinextras-forge:0.3.5")
+            modLocalRuntime("io.wispforest:accessories-neoforge:${project.accessories_version}")
+            modLocalRuntime("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}") {
+                exclude(group: "fabric-api")
             }
-            modLocalRuntime "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+
             modApi("dev.su5ed.sinytra.fabric-api:fabric-api-base:0.4.31+ef105b4977") {
                 exclude group: "dev.su5ed.sinytra.fabric-api"
             }
-
             modApi("dev.su5ed.sinytra.fabric-api:fabric-data-attachment-api-v1:1.0.0+30ef839e77") {
                 exclude group: "dev.su5ed.sinytra.fabric-api"
             }
@@ -149,10 +147,10 @@ dependencies {
             modApi("dev.su5ed.sinytra.fabric-api:fabric-object-builder-api-v1:11.1.3+2174fc8477") {
                 exclude group: "dev.su5ed.sinytra.fabric-api"
             }
-            forgeRuntimeLibrary("io.wispforest:endec:0.1.8")
-            forgeRuntimeLibrary("io.wispforest.endec:gson:0.1.5")
-            forgeRuntimeLibrary("io.wispforest.endec:netty:0.1.4")
-            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
+
+            forgeRuntimeLibrary("io.wispforest:endec:${project.endec_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:gson:${project.endec_gson_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:netty:${project.endec_netty_version}")
             break
         case "none":
             break

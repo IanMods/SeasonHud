@@ -2,7 +2,7 @@ name: Update Dependencies
 on:
   # schedule:
   #  - cron: '12 14 * * 5'  # minute and hour are randomized to avoid peak hours
-  workflow_dispatch:  # enables manual running of this workflow
+  workflow_dispatch: # enables manual running of this workflow
     inputs:
       dry_run:
         description: 'Dry run only'
