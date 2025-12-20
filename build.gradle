@@ -75,6 +75,7 @@ subprojects {
             url = "https://maven.ladysnake.org/releases"
             content {
                 includeGroup "dev.onyxstudios.cardinal-components-api"
+                includeGroup "org.ladysnake.cardinal-components-api"
                 includeGroup "io.github.onyxstudios.Cardinal-Components-API"
             }
         }
@@ -138,7 +139,14 @@ subprojects {
             }
         }
         //Forge
-        maven { url = 'https://maven.minecraftforge.net' }
+        maven {
+            url = 'https://maven.minecraftforge.net'
+        }
+
+        //Mekanism backup maven
+        maven {
+            url 'https://modmaven.dev/'
+        }
 
         //Mekanism backup maven
         maven {
