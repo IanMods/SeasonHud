@@ -49,50 +49,51 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${devauth_version}")
+    // Serene Seasons
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-neoforge:${project.glitchcore_version}"
+    modCompileOnly("net.jodah:typetools:0.6.3")
 
-    //Serene Seasons
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${project.minecraft_version}-${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-neoforge:${project.minecraft_version}-${project.glitchcore_version}"
-    implementation("net.jodah:typetools:0.6.3")
-
-    //Terrafirmacraft
+    // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
 
-    //Ecliptic Seasons
+    // Ecliptic Seasons
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
-    //Xaero's Minimap
+    // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.minecraft_version}"
 
-    //JourneyMap
+    // JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
-    modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}+neoforge"
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
 
-    //FTB Chunks + Dependencies
+    // FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
+    modCompileOnly "dev.architectury:architectury-neoforge:${project.architectury_version}"
 
-    modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
-
-    //Map Atlases
-    modCompileOnly "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
-    modCompileOnly "maven.modrinth:moonlight:1.21-${project.moonlight_version}-neoforge"
+    // Map Atlases
+    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
+    modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_neoforge}"
     modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+${project.minecraft_version}-neoforge"
 
-    //Curios + Accessories
+    // Curios
+    modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
+    modCompileOnlyApi "top.theillusivec4.curios:curios-neoforge:${project.curios_version}:api"
+
+    // Accessories
     modCompileOnly("io.wispforest:accessories-neoforge:${project.accessories_version}")
     modCompileOnly("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
-
-
     // Development QOL
-//    modLocalRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
+    modLocalRuntime "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
+//    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_neoforge}"
+
+//    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_neoforge}")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -102,18 +103,18 @@ dependencies {
             break
         case "journey":
             implementation group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
-            modImplementation("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}+neoforge")
+            modImplementation "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
             modImplementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
         case "ftb":
             modLocalRuntime "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
             modLocalRuntime "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
             modLocalRuntime "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
-            modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
+            modImplementation "dev.architectury:architectury-neoforge:${project.architectury_version}"
             break
         case "atlas":
-            modLocalRuntime "maven.modrinth:map-atlases-forge:neoforge_1.21-${project.map_atlases_version}"
-            modLocalRuntime "maven.modrinth:moonlight:1.21-${project.moonlight_version}-neoforge"
+            modLocalRuntime "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
+            modLocalRuntime "maven.modrinth:moonlight:${project.moonlight_version_neoforge}"
             modLocalRuntime "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+${minecraft_version}-neoforge"
         case "none":
             break
@@ -125,9 +126,9 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_neoforge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-neoforge:${project.minecraft_version}-${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-neoforge:${project.minecraft_version}-${project.glitchcore_version}"
-            implementation("net.jodah:typetools:0.6.3")
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-neoforge:${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-neoforge:${project.glitchcore_version}"
+            modImplementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
             modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
@@ -143,11 +144,19 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
-            modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-neoforge")
-            modLocalRuntime "maven.modrinth:owo-lib:${project.owo_version_neoforge}-neoforge"
+            modLocalRuntime "io.wispforest:accessories-neoforge:${project.accessories_version}"
+            modLocalRuntime "io.wispforest:owo-lib-neoforge:${project.owo_version_neoforge}"
             modLocalRuntime("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
-                exclude(group: "net.fabricmc.fabric-api")
+                exclude(group: "fabric-api")
             }
+
+            forgeRuntimeLibrary(implementation("blue.endless:jankson:1.2.2"))
+
+            forgeRuntimeLibrary("io.wispforest:endec:${project.endec_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:gson:${project.endec_gson_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:jankson:${project.endec_jankson_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:netty:${project.endec_netty_version}")
+
             break
         case "none":
             break
