@@ -163,7 +163,7 @@ subprojects {
         //mappings loom.officialMojangMappings()
         mappings loom.layered() {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${project.parchment_mc_version}:${project.parchment_version}@zip")
+            parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
         }
 
         implementation 'com.demonwav.mcdev:annotations:2.1.0'

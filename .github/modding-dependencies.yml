@@ -65,7 +65,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "15.*"
+  version: "16.*"
   properties:
     modmenu_version:
       source: version
@@ -164,7 +164,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-chunks-fabric
-  version: "${mcMinor}0${mcPatch}.*"
+  version: "${mcMinor}${mcPatch}.*"
   properties:
     ftb_chunks_version:
       source: version
@@ -173,7 +173,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-teams-fabric
-  version: "${mcMinor}0${mcPatch}.*"
+  version: "${mcMinor}${mcPatch}.*"
   properties:
     ftb_teams_version:
       source: version
@@ -182,7 +182,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-library-fabric
-  version: "${mcMinor}0${mcPatch}.*"
+  version: "${mcMinor}${mcPatch}.*"
   properties:
     ftb_library_version:
       source: version
@@ -191,7 +191,7 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "16.*"
+  version: "18.*"
   properties:
     architectury_version:
       source: version
