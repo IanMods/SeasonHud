@@ -192,7 +192,7 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
     mainFile.addOptional("serene-seasons")
     mainFile.addOptional("terrafirmacraft")
     mainFile.addOptional("ecliptic-seasons")
-    mainFile.addRequirement("forge-config-api-port-fabric")
+    mainFile.addRequirement("forge-config-api-port")
     mainFile.addOptional("curios")
     mainFile.addOptional("accessories")
     mainFile.addOptional("xaeros-minimap")

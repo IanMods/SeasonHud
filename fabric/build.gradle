@@ -165,9 +165,11 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
-            modLocalRuntime("maven.modrinth:accessories:${project.accessories_version}-fabric")
+            modLocalRuntime("io.wispforest:accessories-fabric:${project.accessories_version}")
             modLocalRuntime "io.wispforest:owo-lib:${project.owo_version}"
-            modLocalRuntime "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
+            modLocalRuntime ("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+                exclude(group: "net.fabricmc.fabric-api")
+            }
             break
         case "none":
             break
@@ -232,7 +234,7 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
     mainFile.addOptional("serene-seasons")
     mainFile.addOptional("fabric-seasons")
     mainFile.addOptional("fabric-seasons-extras")
-    mainFile.addRequirement("forge-config-api-port-fabric")
+    mainFile.addRequirement("forge-config-api-port")
     mainFile.addOptional("trinkets")
     mainFile.addOptional("accessories")
     mainFile.addOptional("xaeros-minimap")
