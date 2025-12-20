@@ -1,6 +1,8 @@
-## [1.13.15] - 2025-11-22
+## [1.13.16] - 2025-12-20
 
-### Added
+### Changed
 
-- Added and option to display the current fertility level of the biome for Serene Seasons
+- Updated to latest Forge / Fabric versions
+- Updated to latest versions of Terrafirmacraft
+- Updated to latest versions of FTB Chunks / Journeymap / Xaero's Minimap
 

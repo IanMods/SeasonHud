@@ -31,3 +31,5 @@ libs
 run
 runs
 !/.idea/shelf/
+/dist/
+/update-seasonhud-deps.ps1
