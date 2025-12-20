@@ -74,7 +74,7 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    //Map Atlases
+    // Map Atlases
     modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
