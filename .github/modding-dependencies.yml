@@ -65,7 +65,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "11.*"
+  version: "14.*"
   properties:
     modmenu_version:
       source: version
@@ -137,7 +137,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*+neoforge"
+  version: "${mcVersion}-*+fabric"
   properties:
     journeymap_version_fabric:
       source: version
@@ -191,7 +191,7 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "13.*"
+  version: "16.*"
   properties:
     architectury_version:
       source: version
@@ -290,7 +290,7 @@
 - repository: https://maven.wispforest.io/releases
   groupId: io.wispforest
   artifactId: owo-lib-neoforge
-  version: "0.12.*+${mcVersion}"
+  version: "*+${mcVersion}"
   properties:
     owo_version_neoforge:
       source: version
@@ -299,7 +299,7 @@
 - repository: https://maven.wispforest.io/releases
   groupId: io.wispforest
   artifactId: owo-lib
-  version: "0.12.*+${mcVersion}"
+  version: "*+${mcVersion}"
   properties:
     owo_version:
       source: version
