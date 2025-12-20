@@ -110,7 +110,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: xaeros-minimap
-  version: "${xaeros_minimap_version}_Fabric_${mcVersion}"
+  version: "${xaeros_minimap_version}_NeoForge_${mcVersion}"
   properties:
     xaeros_minimap_version:
       source: wildcard
