@@ -42,6 +42,9 @@
   properties:
     parchment_version:
       source: version
+    parchment_minecraft:
+      source: wildcard
+      name: mcVersion
 
 # DevAuth
 - repository: https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1
@@ -65,7 +68,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "16.*"
+  version: "17.*"
   properties:
     modmenu_version:
       source: version
@@ -191,7 +194,7 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "18.*"
+  version: "19.*"
   properties:
     architectury_version:
       source: version

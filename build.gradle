@@ -27,10 +27,24 @@ subprojects {
 
     repositories {
         mavenCentral()
-        // CurseMaven
+        mavenLocal()
         exclusiveContent {
             forRepository {
                 maven {
+                    name = 'Sponge'
+                    url = 'https://repo.spongepowered.org/repository/maven-public'
+                }
+            }
+            filter {
+                includeGroupAndSubgroups('org.spongepowered')
+                includeGroupAndSubgroups("org.objectweb")
+                includeGroup("org.objectweb.asm")
+            }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = "CurseMaven"
                     url = "https://cursemaven.com"
                 }
             }
@@ -38,10 +52,10 @@ subprojects {
                 includeGroup "curse.maven"
             }
         }
-        // Modrinth Maven
         exclusiveContent {
             forRepository {
                 maven {
+                    name = "Modrinth"
                     url = "https://api.modrinth.com/maven"
                 }
             }
@@ -49,108 +63,134 @@ subprojects {
                 includeGroup "maven.modrinth"
             }
         }
-        // Parchment mappings
-        maven {
-            url = "https://maven.parchmentmc.org"
-            content {
-                includeGroup "org.parchmentmc.data"
+        exclusiveContent {
+            forRepositories(
+                    maven {
+                        name = "ParchmentMC"
+                        url = "https://maven.parchmentmc.org/"
+                    },
+                    maven {
+                        name = "NeoForge"
+                        url = "https://maven.neoforged.net/releases"
+                    }
+            )
+            filter {
+                includeGroup('org.parchmentmc.data')
             }
         }
-        // Cloth Config, REI
         maven {
+            name = "Cloth Config"
             url = "https://maven.shedaniel.me/"
             content {
-                includeGroup "me.shedaniel"
+                includeGroupAndSubgroups "me.shedaniel"
             }
         }
-        // JEI
         maven {
-            url = "https://maven.blamejared.com/"
-            content {
-                includeGroup "mezz.jei"
-            }
-        }
-        // Cardinal Components
-        maven {
+            name = "Cardinal Components"
             url = "https://maven.ladysnake.org/releases"
             content {
                 includeGroup "dev.onyxstudios.cardinal-components-api"
                 includeGroup "org.ladysnake.cardinal-components-api"
             }
         }
-        //Journeymap API
         maven {
+            name = "Journeymap API"
             url = "https://jm.gserv.me/repository/maven-public/"
             content {
                 includeGroup "info.journeymap"
             }
         }
-        // Curios
         maven {
+            name = "Curios"
             url = "https://maven.theillusivec4.top/"
             content {
                 includeGroup "top.theillusivec4.curios"
             }
         }
-        // Mod Menu, Trinkets
         maven {
+            name = "Mod Menu / Trinkets"
             url = "https://maven.terraformersmc.com/releases/"
             content {
                 includeGroup "com.terraformersmc"
                 includeGroup "dev.emi"
             }
         }
-        // Accessories
         maven {
+            name = "Accessories"
             url = "https://maven.wispforest.io/releases"
             content {
                 includeGroup "io.wispforest"
                 includeGroup "io.wispforest.endec"
             }
         }
-        // Accessories Dependencies
         maven {
+            name = "Accessories Dependencies"
             url = "https://maven.su5ed.dev/releases"
             content {
                 includeGroup "dev.su5ed.sinytra.fabric-api"
                 includeGroup "org.sinytra.forgified-fabric-api"
             }
         }
-        // Forge Config API Port
         maven {
+            name = "Forge Config API Port"
             url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
             content {
                 includeGroup "fuzs.forgeconfigapiport"
             }
         }
-        // DevAuth
         maven {
+            name = "DevAuth"
             url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
             content {
                 includeGroup "me.djtheredstoner"
             }
         }
-        // FTB
         maven {
+            name = "Architectury"
+            url = "https://maven.architectury.dev/"
+            content {
+                includeGroup "dev.architectury"
+            }
+        }
+        maven {
+            name = "FTB"
             url = "https://maven.ftb.dev/releases"
             content {
                 includeGroup "dev.ftb.mods"
             }
         }
-        //NeoForge
-        maven {
-            url = 'https://maven.neoforged.net/releases'
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroup('net.fabricmc')
+                includeGroup('net.fabricmc.unpick')
+                includeGroup('net.fabricmc.fabric-api')
+                includeGroup('fabric-loom')
+            }
         }
-        //Forge
         maven {
-            url = 'https://maven.minecraftforge.net'
+            name = "NeoForge"
+            url = "https://maven.neoforged.net/releases"
         }
-        //Mekanism backup maven
         maven {
+            name = "Forge"
+            url = "https://maven.minecraftforge.net"
+        }
+        maven {
+            name = "Curios Backup"
             url 'https://modmaven.dev/'
             content {
                 includeGroup "top.theillusivec4.curios"
             }
+        }
+        maven {
+            name = 'BlameJared'
+            url = 'https://maven.blamejared.com'
         }
     }
 
@@ -163,10 +203,24 @@ subprojects {
         //mappings loom.officialMojangMappings()
         mappings loom.layered() {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+            parchment("org.parchmentmc.data:parchment-${project.parchment_minecraft}:${project.parchment_version}@zip")
         }
-
+        implementation 'org.jetbrains:annotations:24.1.0'
         implementation 'com.demonwav.mcdev:annotations:2.1.0'
+    }
+
+    // Declare capabilities on the outgoing configurations.
+    // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
+    ['apiElements', 'runtimeElements'].each { variant ->
+        configurations."$variant".outgoing {
+            capability("$group:${project.name}:$version")
+            capability("$group:${base.archivesName.get()}:$version")
+            capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
+            capability("$group:$mod_id:$version")
+        }
+        publishing.publications.configureEach {
+            suppressPomMetadataWarningsFor(variant)
+        }
     }
 
     java {
@@ -200,29 +254,41 @@ subprojects {
     }
 
     processResources {
-        def expandProps = ["version"                   : mod_version,
-                           "group"                     : project.group, //Else we target the task's group.
-                           "minecraft_version"         : minecraft_version,
-                           "forge_version"             : forge_version,
-                           "forge_loader_version_range": forge_loader_version_range,
-                           "forge_version_range"       : forge_version_range,
-                           "minecraft_version_range"   : minecraft_version_range,
-                           "fabric_api_version"        : fabric_api_version,
-                           "fabric_loader_version"     : fabric_loader_version,
-                           "fabric_version_range"      : fabric_version_range,
-                           "mod_name"                  : mod_name,
-                           "mod_author"                : mod_author,
-                           "mod_id"                    : mod_id,
-                           "license"                   : license,
-                           "description"               : description,
-                           "repoURL"                   : repoURL,
-                           "issueTrackerURL"           : issueTrackerURL,
-                           "credits"                   : credits,
-                           "java_version"              : java_version]
-
-        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
-            expand project.properties
+        var expandProps = ["version"                      : mod_version,
+                           "group"                        : project.group, //Else we target the task's group.
+                           "minecraft_version"            : minecraft_version,
+                           "minecraft_version_range"      : minecraft_version_range,
+                           "forge_version"                : forge_version,
+                           "forge_loader_version_range"   : forge_loader_version_range,
+                           "forge_version_range"          : forge_version_range,
+                           "fabric_api_version"           : fabric_api_version,
+                           "fabric_loader_version"        : fabric_loader_version,
+                           "fabric_version_range"         : fabric_version_range,
+                           'neoforge_version'             : neoforge_version,
+                           'neoforge_version_range'       : neoforge_version_range,
+                           'neoforge_loader_version_range': neoforge_loader_version_range,
+                           "mod_name"                     : mod_name,
+                           "mod_author"                   : mod_author,
+                           "mod_id"                       : mod_id,
+                           "license"                      : license,
+                           "description"                  : project.description,
+                           "repoURL"                      : repoURL,
+                           "issueTrackerURL"              : issueTrackerURL,
+                           "credits"                      : credits,
+                           "java_version"                 : java_version
+        ]
+        var jsonExpandProps = expandProps.collectEntries {
+            key, value -> [(key): value instanceof String ? value.replace("\n", "\\\\n") : value]
         }
+
+        filesMatching(['META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
+            expand expandProps
+        }
+
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', '*.mixins.json']) {
+            expand jsonExpandProps
+        }
+
         inputs.properties(expandProps)
     }
 }
