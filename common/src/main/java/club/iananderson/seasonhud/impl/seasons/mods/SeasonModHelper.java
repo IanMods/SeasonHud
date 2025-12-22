@@ -4,12 +4,12 @@ import club.iananderson.seasonhud.impl.seasons.Fertility;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public interface ISeasonModHelper {
+public interface SeasonModHelper {
 
   /**
    * @return The calendar item for the loaded season mod.
    */
-  Item CALENDAR();
+  Item calendar();
 
   /**
    * Checks if the tropical season should be displayed (SereneSeasons only). Always false for FabricSeasons.

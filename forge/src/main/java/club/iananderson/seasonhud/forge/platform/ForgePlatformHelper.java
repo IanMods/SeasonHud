@@ -1,12 +1,12 @@
 package club.iananderson.seasonhud.forge.platform;
 
-import club.iananderson.seasonhud.platform.services.IPlatformHelper;
+import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import java.util.Optional;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 
-public class ForgePlatformHelper implements IPlatformHelper {
+public class ForgePlatformHelper implements PlatformHelper {
 
   @Override
   public String getPlatformName() {

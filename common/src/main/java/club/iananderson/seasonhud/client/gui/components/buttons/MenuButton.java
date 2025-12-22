@@ -39,8 +39,8 @@ public class MenuButton extends Button {
   public static class Builder {
     protected final MenuButtons buttonType;
     protected final OnPress onPress;
-    protected int x;
-    protected int y;
+    protected int posX;
+    protected int posY;
     protected int width = 150;
     protected int height = 20;
     protected Tooltip tooltip;
@@ -57,8 +57,8 @@ public class MenuButton extends Button {
      * @param y The vertical position of the button
      */
     public Builder withPos(int x, int y) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       return this;
     }
 
@@ -85,7 +85,7 @@ public class MenuButton extends Button {
     }
 
     public MenuButton build() {
-      MenuButton button = new MenuButton(this.x, this.y, this.width, this.height, this.buttonType, this.onPress);
+      MenuButton button = new MenuButton(this.posX, this.posY, this.width, this.height, this.buttonType, this.onPress);
       button.setTooltip(this.tooltip);
       return button;
     }

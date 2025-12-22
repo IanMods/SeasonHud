@@ -1,11 +1,11 @@
 package club.iananderson.seasonhud.fabric.platform;
 
-import club.iananderson.seasonhud.platform.services.IPlatformHelper;
+import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import java.util.Optional;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 
-public class FabricPlatformHelper implements IPlatformHelper {
+public class FabricPlatformHelper implements PlatformHelper {
 
   @Override
   public String getPlatformName() {

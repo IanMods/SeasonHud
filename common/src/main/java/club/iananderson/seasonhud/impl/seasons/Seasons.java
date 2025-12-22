@@ -8,6 +8,7 @@ import java.util.EnumSet;
 import java.util.Map;
 import net.minecraft.network.chat.Component;
 
+@SuppressWarnings("checkstyle:AvoidEscapedUnicodeCharacters")
 public enum Seasons {
   SPRING(0, "desc.seasonhud.season.spring", "spring", "\uEA00", Client.DEFAULT_SPRING_COLOR,
          SeasonHudClient.getSpringColor(), Rgb.seasonMap(SeasonHudClient.getSpringColor())),

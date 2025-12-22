@@ -12,71 +12,73 @@ import net.dries007.tfc.util.calendar.Season;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class TerrafirmaCraftHelper implements ISeasonModHelper {
+public class TerrafirmaCraftHelper implements SeasonModHelper {
   public TerrafirmaCraftHelper() {
   }
 
   private List<Month> getSeasonMonths(Season season) {
-    List<Month> SEASON = new ArrayList<>();
+    List<Month> seasonMonths = new ArrayList<>();
 
     switch (season) {
       case WINTER -> {
-        SEASON.add(SubSeason.EARLY.getWinter());
-        SEASON.add(SubSeason.MID.getWinter());
-        SEASON.add(SubSeason.LATE.getWinter());
+        seasonMonths.add(SubSeason.EARLY.getWinter());
+        seasonMonths.add(SubSeason.MID.getWinter());
+        seasonMonths.add(SubSeason.LATE.getWinter());
       }
       case SPRING -> {
-        SEASON.add(SubSeason.EARLY.getSpring());
-        SEASON.add(SubSeason.MID.getSpring());
-        SEASON.add(SubSeason.LATE.getSpring());
+        seasonMonths.add(SubSeason.EARLY.getSpring());
+        seasonMonths.add(SubSeason.MID.getSpring());
+        seasonMonths.add(SubSeason.LATE.getSpring());
       }
       case SUMMER -> {
-        SEASON.add(SubSeason.EARLY.getSummer());
-        SEASON.add(SubSeason.MID.getSummer());
-        SEASON.add(SubSeason.LATE.getSummer());
+        seasonMonths.add(SubSeason.EARLY.getSummer());
+        seasonMonths.add(SubSeason.MID.getSummer());
+        seasonMonths.add(SubSeason.LATE.getSummer());
       }
       case FALL -> {
-        SEASON.add(SubSeason.EARLY.getAutumn());
-        SEASON.add(SubSeason.MID.getAutumn());
-        SEASON.add(SubSeason.LATE.getAutumn());
+        seasonMonths.add(SubSeason.EARLY.getAutumn());
+        seasonMonths.add(SubSeason.MID.getAutumn());
+        seasonMonths.add(SubSeason.LATE.getAutumn());
       }
+      default -> throw new IllegalStateException("Unexpected value: " + season);
     }
 
-    return SEASON;
+    return seasonMonths;
   }
 
   private String getSeasonPrefix(Month currentMonth) {
     Season season = currentMonth.getSeason();
-    HashMap<Month, String> SEASON = new HashMap<>();
+    HashMap<Month, String> seasonPrefix = new HashMap<>();
 
     switch (season) {
       case WINTER -> {
-        SEASON.put(SubSeason.EARLY.getWinter(), SubSeason.EARLY.getPrefix());
-        SEASON.put(SubSeason.MID.getWinter(), SubSeason.MID.getPrefix());
-        SEASON.put(SubSeason.LATE.getWinter(), SubSeason.LATE.getPrefix());
+        seasonPrefix.put(SubSeason.EARLY.getWinter(), SubSeason.EARLY.getPrefix());
+        seasonPrefix.put(SubSeason.MID.getWinter(), SubSeason.MID.getPrefix());
+        seasonPrefix.put(SubSeason.LATE.getWinter(), SubSeason.LATE.getPrefix());
       }
       case SPRING -> {
-        SEASON.put(SubSeason.EARLY.getSpring(), SubSeason.EARLY.getPrefix());
-        SEASON.put(SubSeason.MID.getSpring(), SubSeason.MID.getPrefix());
-        SEASON.put(SubSeason.LATE.getSpring(), SubSeason.LATE.getPrefix());
+        seasonPrefix.put(SubSeason.EARLY.getSpring(), SubSeason.EARLY.getPrefix());
+        seasonPrefix.put(SubSeason.MID.getSpring(), SubSeason.MID.getPrefix());
+        seasonPrefix.put(SubSeason.LATE.getSpring(), SubSeason.LATE.getPrefix());
       }
       case SUMMER -> {
-        SEASON.put(SubSeason.EARLY.getSummer(), SubSeason.EARLY.getPrefix());
-        SEASON.put(SubSeason.MID.getSummer(), SubSeason.MID.getPrefix());
-        SEASON.put(SubSeason.LATE.getSummer(), SubSeason.LATE.getPrefix());
+        seasonPrefix.put(SubSeason.EARLY.getSummer(), SubSeason.EARLY.getPrefix());
+        seasonPrefix.put(SubSeason.MID.getSummer(), SubSeason.MID.getPrefix());
+        seasonPrefix.put(SubSeason.LATE.getSummer(), SubSeason.LATE.getPrefix());
       }
       case FALL -> {
-        SEASON.put(SubSeason.EARLY.getAutumn(), SubSeason.EARLY.getPrefix());
-        SEASON.put(SubSeason.MID.getAutumn(), SubSeason.MID.getPrefix());
-        SEASON.put(SubSeason.LATE.getAutumn(), SubSeason.LATE.getPrefix());
+        seasonPrefix.put(SubSeason.EARLY.getAutumn(), SubSeason.EARLY.getPrefix());
+        seasonPrefix.put(SubSeason.MID.getAutumn(), SubSeason.MID.getPrefix());
+        seasonPrefix.put(SubSeason.LATE.getAutumn(), SubSeason.LATE.getPrefix());
       }
+      default -> throw new IllegalStateException("Unexpected value: " + season);
     }
 
-    return SEASON.get(currentMonth);
+    return seasonPrefix.get(currentMonth);
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     return null;
   }
 

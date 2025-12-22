@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import org.spongepowered.asm.service.MixinService;
 
-public class SeasonHUDMixinPlugin implements IMixinConfigPlugin {
+public class SeasonHudMixinPlugin implements IMixinConfigPlugin {
 
   private static final boolean HAS_XAERO;
   private static final boolean HAS_MAP_ATLASES;
@@ -21,7 +21,7 @@ public class SeasonHUDMixinPlugin implements IMixinConfigPlugin {
 
   private String prefix = null;
 
-  public SeasonHUDMixinPlugin() {
+  public SeasonHudMixinPlugin() {
 
   }
 

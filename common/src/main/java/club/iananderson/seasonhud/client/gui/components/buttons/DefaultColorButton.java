@@ -59,7 +59,7 @@ public class DefaultColorButton extends Button {
     return 46 + k * 20;
   }
 
-  public int getFGColor() {
+  public int getFgColor() {
     return this.active ? 16777215 : 10526880;
   }
 
@@ -70,7 +70,7 @@ public class DefaultColorButton extends Button {
                             this.height, 200, 20, 2, 3, 2, 2);
     FormattedText buttonText = this.getMessage();
     graphics.drawCenteredString(mc.font, Language.getInstance().getVisualOrder(buttonText),
-                                this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, getFGColor());
+                                this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, getFgColor());
   }
 
   @Override
@@ -95,8 +95,8 @@ public class DefaultColorButton extends Button {
   public static class Builder {
     protected final OnPress onPress;
     protected final ColorEditBox colorEditBox;
-    protected int x;
-    protected int y;
+    protected int posX;
+    protected int posY;
     protected Tooltip tooltip;
 
     public Builder(ColorEditBox colorEditBox, OnPress onPress) {
@@ -111,8 +111,8 @@ public class DefaultColorButton extends Button {
      * @param y The vertical position of the button
      */
     public Builder withPos(int x, int y) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       return this;
     }
 
@@ -122,7 +122,7 @@ public class DefaultColorButton extends Button {
     }
 
     public DefaultColorButton build() {
-      DefaultColorButton button = new DefaultColorButton(this.x, this.y, this.colorEditBox, this.onPress);
+      DefaultColorButton button = new DefaultColorButton(this.posX, this.posY, this.colorEditBox, this.onPress);
       button.setTooltip(this.tooltip);
       return button;
     }

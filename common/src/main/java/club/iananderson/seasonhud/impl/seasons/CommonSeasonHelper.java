@@ -3,14 +3,14 @@ package club.iananderson.seasonhud.impl.seasons;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.mods.EclipticSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
-import club.iananderson.seasonhud.impl.seasons.mods.ISeasonModHelper;
+import club.iananderson.seasonhud.impl.seasons.mods.SeasonModHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.TerrafirmaCraftHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class CommonSeasonHelper implements ISeasonModHelper {
-  // Todo -- Move all to switch statement?
+public class CommonSeasonHelper implements SeasonModHelper {
+  // TODO: -- Move all to switch statement?
 
   public static CommonSeasonHelper commonSeasons = new CommonSeasonHelper();
   public static FabricSeasonsHelper fabricSeasons = new FabricSeasonsHelper();
@@ -133,23 +133,23 @@ public class CommonSeasonHelper implements ISeasonModHelper {
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     Item calendar = null;
 
     if (Common.fabricSeasonsLoaded() && Common.hasCalendarLoaded()) {
-      calendar = fabricSeasons.CALENDAR();
+      calendar = fabricSeasons.calendar();
     }
 
     if (Common.sereneSeasonsLoaded()) {
-      calendar = sereneSeasons.CALENDAR();
+      calendar = sereneSeasons.calendar();
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      calendar = terrafirmaCraft.CALENDAR();
+      calendar = terrafirmaCraft.calendar();
     }
 
     if (Common.eclipticSeasonsLoaded()) {
-      calendar = eclipticSeasons.CALENDAR();
+      calendar = eclipticSeasons.calendar();
     }
 
     return calendar;

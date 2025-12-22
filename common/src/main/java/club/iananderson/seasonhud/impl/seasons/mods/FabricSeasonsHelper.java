@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements ISeasonModHelper {
+public class FabricSeasonsHelper implements SeasonModHelper {
   public FabricSeasonsHelper() {
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     if (Common.fabricSeasonsLoaded() && Common.hasCalendarLoaded()) {
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
     }

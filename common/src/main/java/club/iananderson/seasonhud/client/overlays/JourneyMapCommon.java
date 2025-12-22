@@ -70,7 +70,7 @@ public class JourneyMapCommon {
                                                          ThemeLabelSource.values.get(mapProperties.info4Label.get()));
     this.screenWidth = mc.getWindow().getWidth();
     this.screenHeight = mc.getWindow().getHeight();
-    if (SeasonHudClient.getJourneyMapMacOS()) {
+    if (SeasonHudClient.getJourneyMapMacOs()) {
       this.screenWidth /= 2;
       this.screenHeight /= 2;
     }
@@ -89,7 +89,7 @@ public class JourneyMapCommon {
 
   private int labelY() {
     int startY = (int) (textureY + (SeasonHudClient.getJourneyMapAboveMap() ? 0
-                                                                            : (SeasonHudClient.getJourneyMapMacOS() ?
+                                                                            : (SeasonHudClient.getJourneyMapMacOs() ?
                                                                                -margin - labelHeight : minimapHeight
                                                                                    + margin)));
 

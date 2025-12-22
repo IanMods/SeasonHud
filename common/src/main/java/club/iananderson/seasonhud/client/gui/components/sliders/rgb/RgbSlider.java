@@ -17,9 +17,9 @@ public class RgbSlider extends BasicSlider {
   protected final Seasons season;
   private final boolean enableColor = SeasonHudClient.getEnableSeasonNameColor();
   protected ColorEditBox seasonBox;
-  protected int r;
-  protected int g;
-  protected int b;
+  protected int red;
+  protected int green;
+  protected int blue;
   protected int rgb;
 
   public RgbSlider(int x, int y, int initial, ColorEditBox seasonBox, ChatFormatting textColor) {
@@ -28,9 +28,9 @@ public class RgbSlider extends BasicSlider {
     this.seasonBox = seasonBox;
     this.season = seasonBox.getSeason();
     this.rgb = Integer.parseInt(seasonBox.getValue());
-    this.r = Rgb.rColor(rgb);
-    this.g = Rgb.gColor(rgb);
-    this.b = Rgb.bColor(rgb);
+    this.red = Rgb.red(rgb);
+    this.green = Rgb.green(rgb);
+    this.blue = Rgb.blue(rgb);
     this.updateMessage();
   }
 

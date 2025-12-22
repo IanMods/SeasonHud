@@ -17,9 +17,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
-public class EclipticSeasonsHelper implements ISeasonModHelper {
+public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     if (Common.eclipticSeasonsLoaded()) {
       return BuiltInRegistries.ITEM.get(new ResourceLocation("eclipticseasons", "calendar"));
     }

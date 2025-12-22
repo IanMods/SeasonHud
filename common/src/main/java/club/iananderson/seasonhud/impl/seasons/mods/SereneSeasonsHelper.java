@@ -15,12 +15,12 @@ import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.init.ModConfig;
 import sereneseasons.init.ModTags;
 
-public class SereneSeasonsHelper implements ISeasonModHelper {
+public class SereneSeasonsHelper implements SeasonModHelper {
   public SereneSeasonsHelper() {
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     return SSItems.CALENDAR;
   }
 

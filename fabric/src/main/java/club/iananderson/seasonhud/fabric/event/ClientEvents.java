@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.fabric.event;
 import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.fabric.client.overlays.JourneyMap;
-import club.iananderson.seasonhud.fabric.client.overlays.SeasonHUDOverlay;
+import club.iananderson.seasonhud.fabric.client.overlays.SeasonHudOverlay;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -27,7 +27,7 @@ public class ClientEvents {
   }
 
   private static void registerHud() {
-    SeasonHUDOverlay.init();
+    SeasonHudOverlay.init();
 
     if (CurrentMinimap.journeyMapLoaded()) {
       JourneyMap.init();

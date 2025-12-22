@@ -18,8 +18,8 @@ import xaero.common.gui.ScreenBase;
 
 public class CurrentMinimap {
   private static boolean minimapLoaded(Minimap minimap) {
-    String modID = minimap.getModID();
-    return Services.PLATFORM.isModLoaded(modID);
+    String modId = minimap.getModId();
+    return Services.PLATFORM.isModLoaded(modId);
   }
 
   public static boolean xaeroLoaded() {
@@ -54,7 +54,7 @@ public class CurrentMinimap {
     return getLoadedMinimaps().isEmpty();
   }
 
-  /* Todo:
+  /* TODO:
    ** Double check all logic
    ** Add option to display current loaded integration
    ** Add a dropdown to override this if more than one are loaded
@@ -136,14 +136,14 @@ public class CurrentMinimap {
 
     MAP_ATLASES("map_atlases");
 
-    private final String modID;
+    private final String modId;
 
-    Minimap(String modID) {
-      this.modID = modID;
+    Minimap(String modId) {
+      this.modId = modId;
     }
 
-    public String getModID() {
-      return this.modID;
+    public String getModId() {
+      return this.modId;
     }
   }
 }

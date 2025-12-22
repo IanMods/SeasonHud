@@ -29,7 +29,7 @@ public class SeasonHudClient {
   private static ConfigValue<Boolean> enableMinimapIntegration;
   private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
   private static ConfigValue<Boolean> journeyMapAboveMap;
-  private static ConfigValue<Boolean> journeyMapMacOS;
+  private static ConfigValue<Boolean> journeyMapMacOs;
 
   static {
     ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -151,7 +151,7 @@ public class SeasonHudClient {
                 + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + ".")
         .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
 
-    journeyMapMacOS = builder.comment("Toggle for macOS retina display scaling when using JourneyMap.\n"
+    journeyMapMacOs = builder.comment("Toggle for macOS retina display scaling when using JourneyMap.\n"
                                           + "Enable if the season line is rendering around the halfway point of the screen.\n"
                                           + "(true/false)\n" + "Default is " + Client.DEFAULT_JOURNEYMAP_MAC_OS + ".")
         .define("enable_macOS", Client.DEFAULT_JOURNEYMAP_MAC_OS);
@@ -327,11 +327,11 @@ public class SeasonHudClient {
     SeasonHudClient.journeyMapAboveMap.set(enable);
   }
 
-  public static boolean getJourneyMapMacOS() {
-    return getOrDefault(journeyMapMacOS);
+  public static boolean getJourneyMapMacOs() {
+    return getOrDefault(journeyMapMacOs);
   }
 
-  public static void setJourneyMapMacOS(boolean enable) {
-    SeasonHudClient.journeyMapMacOS.set(enable);
+  public static void setJourneyMapMacOs(boolean enable) {
+    SeasonHudClient.journeyMapMacOs.set(enable);
   }
 }
