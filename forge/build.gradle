@@ -93,7 +93,7 @@ dependencies {
 
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
-    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
+    // modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.

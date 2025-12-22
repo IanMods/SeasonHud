@@ -20,16 +20,16 @@ public class DrawUtil {
     int fillerHeight = textureHeight - topBorder - bottomBorder;
     int canvasWidth = width - leftBorder - rightBorder;
     int canvasHeight = height - topBorder - bottomBorder;
-    int passesX = canvasWidth / fillerWidth;
-    int remainderWidth = canvasWidth % fillerWidth;
-    int passesY = canvasHeight / fillerHeight;
-    int remainderHeight = canvasHeight % fillerHeight;
     graphics.blit(texture, x, y, u, v, leftBorder, topBorder);
     graphics.blit(texture, x + leftBorder + canvasWidth, y, u + leftBorder + fillerWidth, v, rightBorder, topBorder);
     graphics.blit(texture, x, y + topBorder + canvasHeight, u, v + topBorder + fillerHeight, leftBorder, bottomBorder);
     graphics.blit(texture, x + leftBorder + canvasWidth, y + topBorder + canvasHeight, u + leftBorder + fillerWidth,
         v + topBorder + fillerHeight, rightBorder, bottomBorder);
 
+    int passesX = canvasWidth / fillerWidth;
+    int remainderWidth = canvasWidth % fillerWidth;
+    int passesY = canvasHeight / fillerHeight;
+    int remainderHeight = canvasHeight % fillerHeight;
     int i;
     for (i = 0; i < passesX + (remainderWidth > 0
                                ? 1

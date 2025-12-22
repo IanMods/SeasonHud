@@ -122,89 +122,87 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   @Override
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
-
-    int x = 3;
-    int y = 3;
-    seasonScale = 1;
-    MutableComponent seasonCombined =
-        CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
-    MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+    var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    // Assigned here so it still draws if the
+    int posX = Client.DEFAULT_X_OFFSET;
+    int posY = Client.DEFAULT_Y_OFFSET;
+    double seasonScale = 1.0;
 
     if (drawDefaultHud) {
-      seasonScale = hudScaleSlider.getValueDouble();
-      int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
-      int componentHeight = (int) (this.font.lineHeight * seasonScale);
-
       boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
-
       hudScaleSlider.visible = drawDefaultHud;
-
       sliderX.active = customLocation;
       sliderX.visible = drawDefaultHud;
-
       sliderY.active = customLocation;
       sliderY.visible = drawDefaultHud;
 
+      seasonScale = hudScaleSlider.getValueDouble();
+
+      int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
+      int componentHeight = (int) (this.font.lineHeight * seasonScale);
+
       switch (hudLocation) {
         case TOP_LEFT:
-          x = Client.DEFAULT_X_OFFSET;
-          y = Client.DEFAULT_Y_OFFSET;
+          posX = Client.DEFAULT_X_OFFSET;
+          posY = Client.DEFAULT_Y_OFFSET;
           break;
 
         case TOP_CENTER:
-          x = (int) ((((double) width / 2) - ((double) componentWidth / 2)) / seasonScale);
-          y = Client.DEFAULT_Y_OFFSET;
+          posX = (int) ((((double) width / 2) - ((double) componentWidth / 2)) / seasonScale);
+          posY = Client.DEFAULT_Y_OFFSET;
           break;
 
         case TOP_RIGHT:
-          x = (int) ((width - componentWidth - Client.DEFAULT_X_OFFSET) / seasonScale);
-          y = Client.DEFAULT_Y_OFFSET;
+          posX = (int) ((width - componentWidth - Client.DEFAULT_X_OFFSET) / seasonScale);
+          posY = Client.DEFAULT_Y_OFFSET;
           break;
 
         case BOTTOM_LEFT:
-          x = Client.DEFAULT_X_OFFSET;
-          y = (int) (((height - componentHeight - Client.DEFAULT_Y_OFFSET)) / seasonScale);
+          posX = Client.DEFAULT_X_OFFSET;
+          posY = (int) (((height - componentHeight - Client.DEFAULT_Y_OFFSET)) / seasonScale);
           break;
 
         case BOTTOM_RIGHT:
-          x = (int) (((width - componentWidth - Client.DEFAULT_X_OFFSET)) / seasonScale);
-          y = (int) (((height - componentHeight - Client.DEFAULT_Y_OFFSET)) / seasonScale);
+          posX = (int) (((width - componentWidth - Client.DEFAULT_X_OFFSET)) / seasonScale);
+          posY = (int) (((height - componentHeight - Client.DEFAULT_Y_OFFSET)) / seasonScale);
           break;
 
         case CUSTOM:
-          x = (sliderX.getValueInt());
-          y = (sliderY.getValueInt());
+          posX = (sliderX.getValueInt());
+          posY = (sliderY.getValueInt());
           break;
         default:
           throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
-    }
 
-    if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
-      int row = 4;
+      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
+        int row = 4;
 
-      if (Common.fabricSeasonsExtrasLoaded()) {
-        row += 1;
+        if (Common.fabricSeasonsExtrasLoaded()) {
+          row += 1;
+        }
+
+        if (!drawDefaultHud) {
+          row -= 2;
+        }
+
+        graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
+            MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING), 16777215);
       }
-
-      if (!drawDefaultHud) {
-        row -= 2;
-      }
-
-      graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
-          MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING), 16777215);
     }
 
     graphics.pose().pushPose();
     graphics.pose().translate(0, 0, 50);
     graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
-    graphics.drawString(font, seasonCombined, x, y, 0xffffff);
+    graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
+
     if (showFertility) {
-      y += this.font.lineHeight;
-      graphics.drawString(font, fertility, x, y, 0xffffff);
+      MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+
+      posY += this.font.lineHeight;
+      graphics.drawString(font, fertility, posX, posY, 0xffffff);
     }
     graphics.pose().popPose();
-
   }
 
   private int maxWidth(MutableComponent seasonText) {

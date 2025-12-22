@@ -21,17 +21,16 @@ public class SeasonHudOverlayCommon {
         && !Common.hideHudInCurrentDimension()) {
       int screenWidth = mc.getWindow().getGuiScaledWidth();
       int screenHeight = mc.getWindow().getGuiScaledHeight();
-      int x = 0;
-      int y = 0;
       int offsetX = SeasonHudClient.getHudX();
       int offsetY = SeasonHudClient.getHudY();
       double scale = SeasonHudClient.getHudScale();
       int defaultOffsetX = Client.DEFAULT_X_OFFSET;
       int defaultOffsetY = Client.DEFAULT_Y_OFFSET;
       MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
-      MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
       int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
       int stringHeight = (int) (mc.font.lineHeight * scale);
+      int x;
+      int y;
 
       switch (SeasonHudClient.getHudLocation()) {
         case TOP_LEFT:
@@ -72,6 +71,8 @@ public class SeasonHudOverlayCommon {
       graphics.pose().scale((float) scale, (float) scale, 1F);
       graphics.drawString(mc.font, seasonCombined, x, y, 0xffffff);
       if (SeasonHudClient.getShowFertility()) {
+        MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
+
         y += stringHeight;
         graphics.drawString(mc.font, fertility, x, y, 0xffffff);
       }

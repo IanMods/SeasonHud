@@ -85,33 +85,25 @@ public class ColorScreen extends SeasonHudScreen {
   }
 
   private List<AbstractWidget> seasonWidget(int x, int y, Seasons season) {
-    ColorEditBox colorBox;
-    RedSlider redSlider;
-    GreenSlider greenSlider;
-    BlueSlider blueSlider;
-    DefaultColorButton defaultButton;
-
-    colorBox = new ColorEditBox(this.font, x, y, getBoxWidth(), buttonHeight, season);
-    int initialR = Rgb.red(colorBox.getColor());
-    int initialG = Rgb.green(colorBox.getColor());
-    int initialB = Rgb.blue(colorBox.getColor());
-
+    ColorEditBox colorBox = new ColorEditBox(this.font, x, y, getBoxWidth(), buttonHeight, season);
     y += colorBox.getHeight() + BUTTON_PADDING;
-
     x -= 1;
     y += buttonHeight + RgbSlider.SLIDER_PADDING;
 
-    redSlider = new RedSlider(x, y, initialR, colorBox);
+    int initialR = Rgb.red(colorBox.getColor());
+    RedSlider redSlider = new RedSlider(x, y, initialR, colorBox);
     y += redSlider.getHeight() + RgbSlider.SLIDER_PADDING;
 
-    greenSlider = new GreenSlider(x, y, initialG, colorBox);
+    int initialG = Rgb.green(colorBox.getColor());
+    GreenSlider greenSlider = new GreenSlider(x, y, initialG, colorBox);
     y += greenSlider.getHeight() + RgbSlider.SLIDER_PADDING;
 
-    blueSlider = new BlueSlider(x, y, initialB, colorBox);
+    int initialB = Rgb.blue(colorBox.getColor());
+    BlueSlider blueSlider = new BlueSlider(x, y, initialB, colorBox);
     y -= (greenSlider.getHeight() + redSlider.getHeight() + RgbSlider.SLIDER_PADDING + buttonHeight
         + RgbSlider.SLIDER_PADDING);
 
-    defaultButton = DefaultColorButton.builder(colorBox, press -> {
+    DefaultColorButton defaultButton = DefaultColorButton.builder(colorBox, press -> {
       int defaultColorInt = season.getDefaultColor();
 
       if (colorBox.getNewColor() != defaultColorInt) {

@@ -16,11 +16,10 @@ public class CurrentSeason {
   private final String seasonFileName;
   private final long seasonDate;
   private final int seasonDuration;
-  private final Player player;
   private Style seasonFormat;
 
   public CurrentSeason(Minecraft mc) {
-    this.player = mc.player;
+    Player player = mc.player;
     this.seasonFormat = Style.EMPTY;
     this.currentSeason = CommonSeasonHelper.commonSeasons.getCurrentSeason(player);
     this.currentSubSeason = CommonSeasonHelper.commonSeasons.getCurrentSubSeason(player);
@@ -145,28 +144,26 @@ public class CurrentSeason {
   }
 
   public MutableComponent getHudText() {
-    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon());
     ShowDay showDay = SeasonHudClient.getShowDay();
     boolean showSubSeason = SeasonHudClient.getShowSubSeason();
-
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
     if (SeasonHudClient.getEnableSeasonNameColor()) {
       seasonFormat = Style.EMPTY.withColor(getTextColor());
     }
 
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-        seasonText.withStyle(seasonFormat));
+    MutableComponent seasonIcon =
+        Common.translatedText("desc.seasonhud.hud.icon", getIcon()).withStyle(Common.SEASON_ICON_STYLE);
 
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon, seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
-    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar());
-    MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonName());
-
     if (SeasonHudClient.getEnableSeasonNameColor()) {
       seasonFormat = Style.EMPTY.withColor(newRgb);
     }
+
+    MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonName());
 
     if (season == Seasons.DRY && seasonShort) {
       seasonText = Common.translatedText("menu.seasonhud.color.season.dry.editbox");
@@ -176,8 +173,10 @@ public class CurrentSeason {
       seasonText = Common.translatedText("menu.seasonhud.color.season.wet.editbox");
     }
 
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-        seasonText.withStyle(seasonFormat));
+    MutableComponent seasonIcon =
+        Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar()).withStyle(Common.SEASON_ICON_STYLE);
+
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon, seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason, boolean seasonColor) {

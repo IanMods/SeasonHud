@@ -103,6 +103,7 @@ public class MainConfigScreen extends SeasonHudScreen {
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.enableMod.tooltip"))
         .create(this.width - enableModWidth - TITLE_PADDING / 2, TITLE_PADDING / 2, enableModWidth, buttonHeight,
             Common.translatedText("menu.seasonhud.main.enableMod.button"), (b, val) -> enableMod = val);
+    widgets.add(enableModButton);
 
     int row = 0;
     seasonButton = MenuButton.builder(MenuButtons.SEASON, b -> {
@@ -122,6 +123,7 @@ public class MainConfigScreen extends SeasonHudScreen {
         .withPos(rightButtonX, (buttonStartY + (row * offsetY)))
         .withWidth(buttonWidth)
         .build();
+    widgets.addAll(Arrays.asList(seasonButton, colorButton));
 
     row = 2;
     enableMinimapIntegrationButton = CycleButton.onOffBuilder(enableMinimapIntegration)
@@ -135,8 +137,7 @@ public class MainConfigScreen extends SeasonHudScreen {
         .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
             Common.translatedText("menu.seasonhud.main.showMinimapHidden.button"), (b, val) -> showMinimapHidden = val);
 
-    widgets.addAll(Arrays.asList(seasonButton, colorButton, enableModButton, enableMinimapIntegrationButton,
-        showMinimapHiddenButton));
+    widgets.addAll(Arrays.asList(enableMinimapIntegrationButton, showMinimapHiddenButton));
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
       row += 2;
@@ -151,8 +152,7 @@ public class MainConfigScreen extends SeasonHudScreen {
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
               Common.translatedText("menu.seasonhud.main.journeymap.macOS.button"), (b, val) -> journeyMapMacOs = val);
 
-      widgets.add(journeyMapAboveMapButton);
-      widgets.add(journeyMapMacOsButton);
+      widgets.addAll(Arrays.asList(journeyMapAboveMapButton, journeyMapMacOsButton));
     }
 
     widgets.forEach(this::addRenderableWidget);

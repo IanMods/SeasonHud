@@ -46,13 +46,12 @@ public class JourneyMapCommon {
     this.seasonCombined = CurrentSeason.getInstance(mc).getHudText();
     this.fertility = CurrentFertility.getInstance(mc).getMinimapText();
     JourneymapClient jm = JourneymapClient.getInstance();
-    DisplayVars vars = UIManager.INSTANCE.getMiniMap().getDisplayVars();
-    MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
     LabelSpec currentTheme = ThemeLoader.getCurrentTheme().minimap.square.labelBottom;
     this.fontShadow = currentTheme.shadow;
     this.fontScale = jm.getActiveMiniMapProperties().fontScale.get();
     this.labelAlpha = jm.getActiveMiniMapProperties().infoSlotAlpha.get();
     this.textAlpha = currentTheme.foreground.alpha;
+    DisplayVars vars = UIManager.INSTANCE.getMiniMap().getDisplayVars();
     this.textureX = vars.textureX;
     this.textureY = vars.textureY;
     this.minimapHeight = vars.minimapHeight;
@@ -62,6 +61,7 @@ public class JourneyMapCommon {
     this.labelColor = currentTheme.background.getColor();
     this.textColor = currentTheme.foreground.getColor();
     this.labelHeight = (int) ((DrawUtil.getLabelHeight(fontRenderer, fontShadow) + currentTheme.margin) * fontScale);
+    MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
     this.topLabelHeight = vars.getInfoLabelAreaHeight(fontRenderer, currentTheme,
         ThemeLabelSource.values.get(mapProperties.info1Label.get()),
         ThemeLabelSource.values.get(mapProperties.info2Label.get()));

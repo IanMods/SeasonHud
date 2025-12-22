@@ -3,7 +3,6 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarratedElementType;
@@ -15,6 +14,7 @@ import net.minecraft.util.Mth;
 public class CheckButton extends AbstractButton {
   private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/checkbox.png");
   private static final int TEXT_COLOR = 14737632;
+  private final Minecraft mc;
   private final float scale;
   private final OnPress onPress;
   private boolean selected;
@@ -25,6 +25,7 @@ public class CheckButton extends AbstractButton {
     this.scale = scale;
     this.onPress = onPress;
     this.selected = selected;
+    this.mc = Minecraft.getInstance();
   }
 
   public CheckButton(int x, int y, Component component, float scale, OnPress onPress, boolean selected) {
@@ -54,8 +55,6 @@ public class CheckButton extends AbstractButton {
   }
 
   public void renderWidget(GuiGraphics graphics, int i, int j, float f) {
-    Minecraft mc = Minecraft.getInstance();
-    Font font = mc.font;
     RenderSystem.enableDepthTest();
     graphics.setColor(1.0F, 1.0F, 1.0F, this.alpha);
     RenderSystem.enableBlend();
@@ -70,7 +69,7 @@ public class CheckButton extends AbstractButton {
     graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 
     graphics.pose().translate((this.width / scale) + 4, ((this.height / scale) - 8) / 2, 0);
-    graphics.drawString(font, this.getMessage(), (int) (this.getX() / scale), (int) (this.getY() / scale),
+    graphics.drawString(mc.font, this.getMessage(), (int) (this.getX() / scale), (int) (this.getY() / scale),
         14737632 | Mth.ceil(this.alpha * 255.0F) << 24);
     graphics.pose().popPose();
   }
