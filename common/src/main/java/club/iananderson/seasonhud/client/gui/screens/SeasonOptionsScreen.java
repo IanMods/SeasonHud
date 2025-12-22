@@ -118,7 +118,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     super.onClose();
   }
 
-  //Todo - Need to fix Tropical Seasons option not updating in config screen
+  // Todo - Need to fix Tropical Seasons option not updating in config screen
   @Override
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
@@ -298,7 +298,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
 
     if (Common.hasCalendarLoaded()) {
-      row += 1; //Row 5 ((enableMinimapIntegration -> Row 3)
+      row += 1; // Row 5 ((enableMinimapIntegration -> Row 3)
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.needCalendar.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
@@ -336,7 +336,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
 
     if (Common.fabricSeasonsLoaded()) {
-      row += 2; //Row 4 (enableMinimapIntegration -> Row 2)
+      row += 2; // Row 4 (enableMinimapIntegration -> Row 2)
       dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
                                  BUTTON_HEIGHT, Common.literalText(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);

@@ -60,7 +60,7 @@ public class DrawUtil {
                    borderSize, borderSize);
   }
 
-  //1.18
+  // 1.18
   public static void enableScissor(int i, int j, int k, int l) {
     Window window = Minecraft.getInstance().getWindow();
     int height = window.getHeight();
@@ -72,7 +72,7 @@ public class DrawUtil {
     RenderSystem.enableScissor((int) e, (int) f, Math.max(0, (int) g), Math.max(0, (int) h));
   }
 
-  //1.18
+  // 1.18
   public static void disableScissor() {
     RenderSystem.disableScissor();
   }

@@ -69,7 +69,7 @@ public class CurrentSeason {
     return Common.translatedText("desc.seasonhud.season" + "." + season);
   }
 
-  //Get the current season and match it to the icon for the font
+  // Get the current season and match it to the icon for the font
   public String getIcon() {
     for (Seasons season : Seasons.values()) {
       if (season.getFileName().equals(seasonFileName)) {
@@ -79,7 +79,7 @@ public class CurrentSeason {
     return "Icon Error";
   }
 
-  //Localized name with icon
+  // Localized name with icon
   public Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text = Common.literalText("");
     Component seasonKey = getKey(showSubSeason);
@@ -123,7 +123,7 @@ public class CurrentSeason {
     return text;
   }
 
-  //Get the current season and match it to the icon for the font
+  // Get the current season and match it to the icon for the font
   public int getTextColor() {
     for (Seasons season : Seasons.values()) {
       if (season.getFileName().equals(seasonFileName)) {

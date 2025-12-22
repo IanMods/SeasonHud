@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class CommonSeasonHelper implements ISeasonModHelper {
-  //Todo -- Move all to switch statement?
+  // Todo -- Move all to switch statement?
 
   public static CommonSeasonHelper commonSeasons = new CommonSeasonHelper();
   public static FabricSeasonsHelper fabricSeasons = new FabricSeasonsHelper();

@@ -45,7 +45,7 @@ public class SeasonHudServer {
     }
   }
 
-  //Season
+  // Season
   public static boolean getNeedCalendar() {
     return getOrDefault(needCalendar);
   }

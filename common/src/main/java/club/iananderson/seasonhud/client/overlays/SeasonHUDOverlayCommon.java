@@ -65,7 +65,7 @@ public class SeasonHUDOverlayCommon {
           break;
       }
 
-      //Text
+      // Text
       graphics.pose().pushPose();
       graphics.pose().scale((float) scale, (float) scale, 1F);
       graphics.drawString(mc.font, seasonCombined, x, y, 0xffffff);

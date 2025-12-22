@@ -169,7 +169,7 @@ public class SeasonHudClient {
     }
   }
 
-  //SeasonHUD
+  // SeasonHUD
   public static boolean getEnableMod() {
     return getOrDefault(enableMod);
   }
@@ -178,7 +178,7 @@ public class SeasonHudClient {
     SeasonHudClient.enableMod.set(enable);
   }
 
-  //HUD
+  // HUD
   public static Location getHudLocation() {
     return getOrDefault(hudLocation);
   }
@@ -212,7 +212,7 @@ public class SeasonHudClient {
     SeasonHudClient.hudScale.set(scale);
   }
 
-  //Colors
+  // Colors
   public static boolean getEnableSeasonNameColor() {
     return getOrDefault(enableSeasonNameColor);
   }
@@ -309,7 +309,7 @@ public class SeasonHudClient {
     SeasonHudClient.showDefaultWhenMinimapHidden.set(enable);
   }
 
-  //Minimap
+  // Minimap
   public static boolean getEnableMinimapIntegration() {
     return getOrDefault(enableMinimapIntegration);
   }
@@ -318,7 +318,7 @@ public class SeasonHudClient {
     SeasonHudClient.enableMinimapIntegration.set(enable);
   }
 
-  //Journeymap
+  // Journeymap
   public static boolean getJourneyMapAboveMap() {
     return getOrDefault(journeyMapAboveMap);
   }

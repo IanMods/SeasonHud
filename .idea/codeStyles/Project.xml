@@ -1,5 +1,6 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <option name="AUTODETECT_INDENTS" value="false" />
     <option name="OTHER_INDENT_OPTIONS">
       <value>
         <option name="INDENT_SIZE" value="2" />
@@ -144,6 +145,9 @@
     </codeStyleSettings>
     <codeStyleSettings language="JAVA">
       <option name="RIGHT_MARGIN" value="120" />
+      <option name="LINE_COMMENT_AT_FIRST_COLUMN" value="false" />
+      <option name="LINE_COMMENT_ADD_SPACE" value="true" />
+      <option name="LINE_COMMENT_ADD_SPACE_ON_REFORMAT" value="true" />
       <option name="KEEP_LINE_BREAKS" value="false" />
       <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
       <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
@@ -588,9 +592,7 @@
     <codeStyleSettings language="protobuf">
       <option name="RIGHT_MARGIN" value="80" />
       <indentOptions>
-        <option name="INDENT_SIZE" value="2" />
         <option name="CONTINUATION_INDENT_SIZE" value="2" />
-        <option name="TAB_SIZE" value="2" />
       </indentOptions>
     </codeStyleSettings>
   </code_scheme>
