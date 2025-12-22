@@ -47,7 +47,9 @@ public class CurrentSeason {
   }
 
   public Component getKey(boolean showSubSeason) {
-    String season = showSubSeason ? getSubSeasonLowerCase() : getSeasonLowerCase();
+    String season = showSubSeason
+                    ? getSubSeasonLowerCase()
+                    : getSeasonLowerCase();
 
     if (!Calendar.validDetailedMode() || Common.fabricSeasonsLoaded()) {
       season = getSeasonLowerCase();
@@ -78,7 +80,7 @@ public class CurrentSeason {
 
   // Localized name with icon
   public Component getText(ShowDay showDay, boolean showSubSeason) {
-    Component text = Common.literalText("");
+    Component text;
     Component seasonKey = getKey(showSubSeason);
 
     switch (showDay) {
@@ -114,6 +116,8 @@ public class CurrentSeason {
           text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonKey, seasonDate);
         }
         break;
+      default:
+        throw new IllegalStateException("Unexpected value: " + showDay);
     }
 
     return text;

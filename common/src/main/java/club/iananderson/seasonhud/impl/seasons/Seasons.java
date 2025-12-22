@@ -83,6 +83,7 @@ public enum Seasons {
       case WINTER -> SeasonHudClient.setWinterColor(rgbColor);
       case DRY -> SeasonHudClient.setDryColor(rgbColor);
       case WET -> SeasonHudClient.setWetColor(rgbColor);
+      default -> throw new IllegalStateException("Unexpected value: " + season);
     }
   }
 

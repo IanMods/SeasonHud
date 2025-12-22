@@ -175,6 +175,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           x = (sliderX.getValueInt());
           y = (sliderY.getValueInt());
           break;
+        default:
+          throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
     }
 

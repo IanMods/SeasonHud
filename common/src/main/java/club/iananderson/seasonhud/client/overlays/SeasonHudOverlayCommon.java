@@ -63,6 +63,8 @@ public class SeasonHudOverlayCommon {
           x = offsetX;
           y = offsetY;
           break;
+        default:
+          throw new IllegalStateException("Unexpected value: " + SeasonHudClient.getHudLocation());
       }
 
       // Text
