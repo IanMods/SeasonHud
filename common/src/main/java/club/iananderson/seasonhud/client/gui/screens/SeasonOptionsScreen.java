@@ -118,7 +118,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     super.onClose();
   }
 
-  // Todo - Need to fix Tropical Seasons option not updating in config screen
+  // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
