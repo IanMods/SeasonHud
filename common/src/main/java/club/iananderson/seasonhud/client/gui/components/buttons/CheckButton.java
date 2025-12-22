@@ -61,10 +61,12 @@ public class CheckButton extends AbstractButton {
     RenderSystem.enableBlend();
     graphics.pose().pushPose();
     graphics.pose().scale(scale, scale, 1);
-    graphics.blit(TEXTURE, (int) (this.getX() / scale), (int) (this.getY() / scale), this.isFocused() ? 20.0F : 0.0F,
-        this.selected
-        ? 20.0F
-        : 0.0F, (int) (this.width / scale), (int) (this.height / scale), 64, 64);
+    graphics.blit(TEXTURE, (int) (this.getX() / scale), (int) (this.getY() / scale), this.isFocused()
+                                                                                     ? 20.0F
+                                                                                     : 0.0F, this.selected
+                                                                                             ? 20.0F
+                                                                                             : 0.0F,
+        (int) (this.width / scale), (int) (this.height / scale), 64, 64);
     graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 
     graphics.pose().translate((this.width / scale) + 4, ((this.height / scale) - 8) / 2, 0);

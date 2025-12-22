@@ -31,7 +31,9 @@ public class DrawUtil {
         v + topBorder + fillerHeight, rightBorder, bottomBorder);
 
     int i;
-    for (i = 0; i < passesX + (remainderWidth > 0 ? 1 : 0); ++i) {
+    for (i = 0; i < passesX + (remainderWidth > 0
+                               ? 1
+                               : 0); ++i) {
       graphics.blit(texture, x + leftBorder + i * fillerWidth, y, u + leftBorder, v, i == passesX
                                                                                      ? remainderWidth
                                                                                      : fillerWidth, topBorder);
@@ -40,7 +42,9 @@ public class DrawUtil {
                                         ? remainderWidth
                                         : fillerWidth, bottomBorder);
 
-      for (int j = 0; j < passesY + (remainderHeight > 0 ? 1 : 0); ++j) {
+      for (int j = 0; j < passesY + (remainderHeight > 0
+                                     ? 1
+                                     : 0); ++j) {
         graphics.blit(texture, x + leftBorder + i * fillerWidth, y + topBorder + j * fillerHeight, u + leftBorder,
             v + topBorder, i == passesX
                            ? remainderWidth
@@ -50,7 +54,9 @@ public class DrawUtil {
       }
     }
 
-    for (i = 0; i < passesY + (remainderHeight > 0 ? 1 : 0); ++i) {
+    for (i = 0; i < passesY + (remainderHeight > 0
+                               ? 1
+                               : 0); ++i) {
       graphics.blit(texture, x, y + topBorder + i * fillerHeight, u, v + topBorder, leftBorder, i == passesY
                                                                                                 ? remainderHeight
                                                                                                 : fillerHeight);

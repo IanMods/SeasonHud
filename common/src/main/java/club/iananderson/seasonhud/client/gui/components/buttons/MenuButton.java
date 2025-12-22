@@ -51,7 +51,7 @@ public class MenuButton extends Button {
     }
 
     /**
-     * Uses default width = 150 and height = 20
+     * Uses default width = 150 and height = 20.
      *
      * @param x The horizontal position of the button
      * @param y The vertical position of the button
@@ -63,7 +63,7 @@ public class MenuButton extends Button {
     }
 
     /**
-     * Uses default height = 20
+     * Uses default height = 20.
      *
      * @param width The width of the button
      */

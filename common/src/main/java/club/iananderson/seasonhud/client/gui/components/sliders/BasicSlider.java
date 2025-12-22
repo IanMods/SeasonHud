@@ -98,17 +98,23 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public int getTextureY() {
-    int i = this.isFocused() && !this.canChangeValue ? 1 : 0;
+    int i = this.isFocused() && !this.canChangeValue
+            ? 1
+            : 0;
     return i * 20;
   }
 
   public int getHandleTextureY() {
-    int i = !this.isHovered && !this.canChangeValue ? 2 : 3;
+    int i = !this.isHovered && !this.canChangeValue
+            ? 2
+            : 3;
     return i * 20;
   }
 
   public int getFgColor() {
-    return this.active ? 16777215 : 10526880;
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   protected double snapToNearest(double value) {
@@ -190,7 +196,9 @@ public class BasicSlider extends AbstractSliderButton {
       if (this.minValue > this.maxValue) {
         bl = !bl;
       }
-      float f = bl ? -1F : 1F;
+      float f = bl
+                ? -1F
+                : 1F;
       if (stepSize <= 0D) {
         this.setSliderValue(this.value + (f / (this.width - 8)));
       } else {

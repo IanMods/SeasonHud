@@ -61,6 +61,8 @@ public class CurrentMinimap {
    */
 
   /**
+   * Determines if the minimap is currently hidden.
+   *
    * @param minimap Current loaded minimap mod.
    * @return True if the minimap is not currently displayed
    */
@@ -109,6 +111,8 @@ public class CurrentMinimap {
   }
 
   /**
+   * Determines if the minimap version of the season hud should be used.
+   *
    * @param minimap Current loaded minimap mod.
    * @return True if the minimap version of the HUD should be drawn instead of the default.
    */

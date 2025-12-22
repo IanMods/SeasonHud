@@ -59,7 +59,9 @@ public class DefaultColorButton extends Button {
   }
 
   public int getFgColor() {
-    return this.active ? 16777215 : 10526880;
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   @Override
@@ -104,7 +106,7 @@ public class DefaultColorButton extends Button {
     }
 
     /**
-     * Uses default width = 150 and height = 20
+     * Uses default width = 150 and height = 20.
      *
      * @param x The horizontal position of the button
      * @param y The vertical position of the button

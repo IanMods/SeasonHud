@@ -53,7 +53,7 @@ public class HudOffsetSlider extends BasicSlider {
     }
 
     /**
-     * Uses default width = 180 and height = 20
+     * Uses default width = 180 and height = 20.
      *
      * @param x The horizontal position of the slider
      * @param y The vertical position of the slider
@@ -65,7 +65,7 @@ public class HudOffsetSlider extends BasicSlider {
     }
 
     /**
-     * Uses default height = 20
+     * Uses default height = 20.
      *
      * @param width The width of the slider
      */
@@ -94,6 +94,8 @@ public class HudOffsetSlider extends BasicSlider {
     }
 
     /**
+     * Sets the default value to return to when right-clicked.
+     *
      * @param defaultValue The value that the slider will return to if right-clicked.
      */
     public HudOffsetSlider.Builder withDefaultValue(int defaultValue) {

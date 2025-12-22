@@ -240,7 +240,10 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       hudScaleSlider = HudScaleSlider.builder(Common.translatedText("menu.seasonhud.season.scale.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
           .withValueRange(Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX)
-          .withInitialValue(seasonScale).withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
+          .withInitialValue(seasonScale)
+          .withDefaultValue(Client.DEFAULT_HUD_SCALE)
+          .withStepSize(0.5)
+          .withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
           .build();
 
