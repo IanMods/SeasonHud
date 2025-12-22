@@ -27,8 +27,7 @@ public class FabricMinimapHelper implements MinimapHelper {
       boolean hasAtlas = (mc.player.getMainHandItem().is(atlasItem) || mc.player.getOffhandItem().is(atlasItem));
 
       return !drawMinimapHud || emptyAtlas || (hideInHand && hasAtlas);
-    }
-    else {
+    } else {
       return false;
     }
   }

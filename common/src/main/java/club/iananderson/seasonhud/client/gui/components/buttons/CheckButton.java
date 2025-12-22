@@ -45,11 +45,10 @@ public class CheckButton extends AbstractButton {
     if (this.active) {
       if (this.isFocused()) {
         narrationElementOutput.add(NarratedElementType.USAGE,
-                                   Common.translatedText("narration.checkbox.usage.focused"));
-      }
-      else {
+            Common.translatedText("narration.checkbox.usage.focused"));
+      } else {
         narrationElementOutput.add(NarratedElementType.USAGE,
-                                   Common.translatedText("narration.checkbox.usage.hovered"));
+            Common.translatedText("narration.checkbox.usage.hovered"));
       }
     }
   }
@@ -63,12 +62,14 @@ public class CheckButton extends AbstractButton {
     graphics.pose().pushPose();
     graphics.pose().scale(scale, scale, 1);
     graphics.blit(TEXTURE, (int) (this.getX() / scale), (int) (this.getY() / scale), this.isFocused() ? 20.0F : 0.0F,
-                  this.selected ? 20.0F : 0.0F, (int) (this.width / scale), (int) (this.height / scale), 64, 64);
+        this.selected
+        ? 20.0F
+        : 0.0F, (int) (this.width / scale), (int) (this.height / scale), 64, 64);
     graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 
     graphics.pose().translate((this.width / scale) + 4, ((this.height / scale) - 8) / 2, 0);
     graphics.drawString(font, this.getMessage(), (int) (this.getX() / scale), (int) (this.getY() / scale),
-                        14737632 | Mth.ceil(this.alpha * 255.0F) << 24);
+        14737632 | Mth.ceil(this.alpha * 255.0F) << 24);
     graphics.pose().popPose();
   }
 

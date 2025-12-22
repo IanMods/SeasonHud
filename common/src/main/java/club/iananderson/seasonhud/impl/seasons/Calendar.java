@@ -41,9 +41,7 @@ public class Calendar {
       if (trinketInventory.isPresent()) {
         curioEquipped = trinketInventory.get().isEquipped(item);
       }
-    }
-
-    else if (Common.accessoriesLoaded()) {
+    } else if (Common.accessoriesLoaded()) {
       Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
       if (accessoriesInventory.isPresent()) {
         curioEquipped = !accessoriesInventory.get().getEquipped(item).isEmpty();

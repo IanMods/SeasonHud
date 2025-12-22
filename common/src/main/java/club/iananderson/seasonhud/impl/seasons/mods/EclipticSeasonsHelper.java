@@ -22,8 +22,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   public Item calendar() {
     if (Common.eclipticSeasonsLoaded()) {
       return BuiltInRegistries.ITEM.get(new ResourceLocation("eclipticseasons", "calendar"));
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -74,9 +73,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
 
     if (SeasonHudClient.getShowSubSeason()) {
       return subSeasonDate;
-    }
-
-    else {
+    } else {
       return seasonDate;
     }
   }

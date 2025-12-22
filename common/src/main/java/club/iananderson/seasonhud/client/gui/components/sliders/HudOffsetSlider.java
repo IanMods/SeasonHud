@@ -26,8 +26,7 @@ public class HudOffsetSlider extends BasicSlider {
   protected void updateMessage() {
     if (this.drawString) {
       this.setMessage(Common.literalText("").append(this.prefix).append(this.getValueString()));
-    }
-    else {
+    } else {
       this.setMessage(Component.empty());
     }
   }
@@ -117,8 +116,9 @@ public class HudOffsetSlider extends BasicSlider {
     }
 
     public HudOffsetSlider build() {
-      HudOffsetSlider slider = new HudOffsetSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial,
-                                                   this.minValue, this.maxValue, this.defaultValue);
+      HudOffsetSlider slider =
+          new HudOffsetSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial, this.minValue,
+              this.maxValue, this.defaultValue);
       slider.setTooltip(this.tooltip);
       return slider;
     }

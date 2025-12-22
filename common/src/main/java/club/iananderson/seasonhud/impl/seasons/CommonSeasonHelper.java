@@ -25,8 +25,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
   public boolean isTropicalSeason(Player player) {
     if (Common.sereneSeasonsLoaded()) {
       return sereneSeasons.isTropicalSeason(player);
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -35,8 +34,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
   public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
       return fabricSeasons.isSeasonTiedWithSystemTime();
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -180,9 +178,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.infertileBiome(player);
-    }
-
-    else {
+    } else {
       return false;
     }
   }
@@ -203,9 +199,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.alwaysWinterBiome(player);
-    }
-
-    else {
+    } else {
       return false;
     }
   }
@@ -226,9 +220,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.undergroundFertile(player);
-    }
-
-    else {
+    } else {
       return true;
     }
   }
@@ -249,9 +241,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.fertility(player);
-    }
-
-    else {
+    } else {
       return Fertility.FERTILE;
     }
   }

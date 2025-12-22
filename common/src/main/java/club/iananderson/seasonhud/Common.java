@@ -175,8 +175,7 @@ public class Common {
       List<? extends String> validDimensions = Season.validDimensions.get();
 
       return !isDimensionValid(validDimensions, currentDim);
-    }
-    else {
+    } else {
       return false;
     }
   }

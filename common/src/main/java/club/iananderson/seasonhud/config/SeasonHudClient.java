@@ -42,9 +42,9 @@ public class SeasonHudClient {
 
   private static void setupConfig(ForgeConfigSpec.Builder builder) {
     builder.push("SeasonHUD");
-    enableMod = builder.comment(
-            "Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
-        .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
+    enableMod =
+        builder.comment("Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
+            .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
 
     builder.push("HUD");
     hudLocation = builder.comment(
@@ -104,8 +104,8 @@ public class SeasonHudClient {
 
     builder.push("Season");
     showTropicalSeason = builder.comment("Show the Tropical seasons (Wet/Dry) in Tropical Biomes.\n"
-                                             + "Will not change the season behavior in the biomes.\n" + "(true/false)\n"
-                                             + "Default is " + Client.DEFAULT_SHOW_TROPICAL_SEASON + ".")
+            + "Will not change the season behavior in the biomes.\n" + "(true/false)\n" + "Default is "
+            + Client.DEFAULT_SHOW_TROPICAL_SEASON + ".")
         .define("enable_show_tropical_season", Client.DEFAULT_SHOW_TROPICAL_SEASON);
 
     showSubSeason = builder.comment(
@@ -117,15 +117,14 @@ public class SeasonHudClient {
       showDay = builder.comment(
               "Show the current day of the season/sub-season?\n" + "Default is " + Client.DEFAULT_SHOW_DAY + ".")
           .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
-                      Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS,
-                                    ShowDay.SHOW_WITH_MONTH));
+              Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS, ShowDay.SHOW_WITH_MONTH));
     }
 
     if (!Common.fabricSeasonsLoaded()) {
       showDay = builder.comment(
               "Show the day of the current Season/Sub-Season?\n" + "Default is " + Client.DEFAULT_SHOW_DAY + ".")
           .defineEnum("enable_show_day", Client.DEFAULT_SHOW_DAY,
-                      Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
+              Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
     }
 
     showFertility = builder.comment(
@@ -152,8 +151,8 @@ public class SeasonHudClient {
         .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
 
     journeyMapMacOs = builder.comment("Toggle for macOS retina display scaling when using JourneyMap.\n"
-                                          + "Enable if the season line is rendering around the halfway point of the screen.\n"
-                                          + "(true/false)\n" + "Default is " + Client.DEFAULT_JOURNEYMAP_MAC_OS + ".")
+            + "Enable if the season line is rendering around the halfway point of the screen.\n" + "(true/false)\n"
+            + "Default is " + Client.DEFAULT_JOURNEYMAP_MAC_OS + ".")
         .define("enable_macOS", Client.DEFAULT_JOURNEYMAP_MAC_OS);
     builder.pop();
     builder.pop();
@@ -163,8 +162,7 @@ public class SeasonHudClient {
   private static <T> T getOrDefault(ForgeConfigSpec.ConfigValue<T> config) {
     if (CLIENT_SPEC.isLoaded()) {
       return config.get();
-    }
-    else {
+    } else {
       return config.getDefault();
     }
   }

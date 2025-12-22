@@ -100,8 +100,7 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
 
     if (season == Season.FALL) {
       return prefix + "AUTUMN";
-    }
-    else {
+    } else {
       return prefix + season.getSerializedName();
     }
   }
@@ -113,9 +112,7 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
 
     if (season == Season.FALL) {
       return "AUTUMN";
-    }
-
-    else {
+    } else {
       return Calendars.CLIENT.getCalendarMonthOfYear().getSeason().getSerializedName();
     }
   }
@@ -132,9 +129,7 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
 
     if (SeasonHudClient.getShowSubSeason()) {
       return dayOfMonth;
-    }
-
-    else {
+    } else {
       return dayOfMonth + ((long) subSeasonPos * daysInMonth);
     }
   }
@@ -145,9 +140,7 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
       return daysInMonth;
-    }
-
-    else {
+    } else {
       return daysInMonth * 3;
     }
   }

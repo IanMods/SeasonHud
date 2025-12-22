@@ -23,8 +23,7 @@ public class FabricPlatformHelper implements PlatformHelper {
 
     if (mod.isPresent()) {
       return mod.get().getMetadata().getVersion().toString();
-    }
-    else {
+    } else {
       return "Not Loaded";
     }
   }

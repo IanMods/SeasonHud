@@ -37,8 +37,7 @@ public class CurrentSeason {
     String lowerSubSeason = currentSubSeason.toLowerCase();
     if (Common.fabricSeasonsLoaded()) {
       return currentSeason.toLowerCase();
-    }
-    else {
+    } else {
       return currentSeason.toLowerCase() + "." + lowerSubSeason.substring(0, lowerSubSeason.indexOf("_"));
     }
   }
@@ -59,9 +58,7 @@ public class CurrentSeason {
 
       if (currentSubSeason.equals("MID_NULL")) {
         return Common.translatedText("desc.seasonhud.season" + "." + getSubSeasonLowerCase());
-      }
-
-      else {
+      } else {
         return Common.translatedText("info.eclipticseasons.environment.solar_term" + "." + season);
       }
     }
@@ -113,8 +110,7 @@ public class CurrentSeason {
           if (!Calendar.validDetailedMode()) {
             text = Common.translatedText(ShowDay.NONE.getKey(), seasonKey);
           }
-        }
-        else {
+        } else {
           text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonKey, seasonDate);
         }
         break;
@@ -134,8 +130,8 @@ public class CurrentSeason {
   }
 
   public MutableComponent getHudTextNoFormat() {
-    Component seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon())
-        .withStyle(Common.SEASON_ICON_STYLE);
+    Component seasonIcon =
+        Common.translatedText("desc.seasonhud.hud.icon", getIcon()).withStyle(Common.SEASON_ICON_STYLE);
     ShowDay showDay = SeasonHudClient.getShowDay();
     boolean showSubSeason = SeasonHudClient.getShowSubSeason();
 
@@ -156,7 +152,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                 seasonText.withStyle(seasonFormat));
+        seasonText.withStyle(seasonFormat));
 
   }
 
@@ -177,7 +173,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                 seasonText.withStyle(seasonFormat));
+        seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason, boolean seasonColor) {
@@ -189,6 +185,6 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-                                 seasonText.withStyle(seasonFormat));
+        seasonText.withStyle(seasonFormat));
   }
 }

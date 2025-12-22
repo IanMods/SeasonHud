@@ -126,8 +126,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     int x = 3;
     int y = 3;
     seasonScale = 1;
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
-        .getConfigText(showDay, showSubSeason, seasonColor);
+    MutableComponent seasonCombined =
+        CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
     MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
     if (drawDefaultHud) {
@@ -190,8 +190,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       }
 
       graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
-                                  MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                      + BUTTON_PADDING), 16777215);
+          MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING), 16777215);
     }
 
     graphics.pose().pushPose();
@@ -234,14 +233,12 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withValues(Location.values())
           .withInitialValue(hudLocation)
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.hudLocation.button"),
-                  (b, val) -> this.hudLocation = val);
+              Common.translatedText("menu.seasonhud.season.hudLocation.button"), (b, val) -> this.hudLocation = val);
 
       hudScaleSlider = HudScaleSlider.builder(Common.translatedText("menu.seasonhud.season.scale.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
           .withValueRange(Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX)
-          .withInitialValue(seasonScale)
-          .withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
+          .withInitialValue(seasonScale).withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
           .build();
 
@@ -250,14 +247,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withTooltip(Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
           .withValues(0, this.maxWidth(seasonCombined), posX, Client.DEFAULT_X_OFFSET)
           .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth / 2 - BasicSlider.SLIDER_PADDING,
-                      buttonHeight)
+              buttonHeight)
           .build();
 
       sliderY = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.yOffset.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.yOffset.tooltip"))
           .withValues(0, this.maxHeight(), posY, Client.DEFAULT_Y_OFFSET)
           .withBounds(rightButtonX + buttonWidth / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * offsetY)),
-                      buttonWidth / 2 - BasicSlider.SLIDER_PADDING, buttonHeight)
+              buttonWidth / 2 - BasicSlider.SLIDER_PADDING, buttonHeight)
           .build();
 
       widgets.addAll(Arrays.asList(hudLocationButton, hudScaleSlider, sliderX, sliderY));
@@ -269,13 +266,13 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .withValues(ShowDay.getValues())
         .withInitialValue(showDay)
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
+            Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
 
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(seasonColor)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
         .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"),
-                (b, val) -> this.seasonColor = val);
+            Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"),
+            (b, val) -> this.seasonColor = val);
     widgets.addAll(Arrays.asList(showDayButton, seasonColorButton));
 
     if (Common.hasSubSeasons()) {
@@ -283,14 +280,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
-                  (b, val) -> this.showSubSeason = val);
+              Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
+              (b, val) -> this.showSubSeason = val);
 
       CycleButton<Boolean> showTropicalSeasonButton = CycleButton.onOffBuilder(showTropicalSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showTropicalSeason.tooltip"))
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
-                  (b, val) -> this.showTropicalSeason = val);
+              Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
+              (b, val) -> this.showTropicalSeason = val);
 
       widgets.addAll(Arrays.asList(showSubSeasonButton, showTropicalSeasonButton));
     }
@@ -300,15 +297,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.needCalendar.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.needCalendar.button"),
-                  (b, val) -> this.needCalendar = val);
+              Common.translatedText("menu.seasonhud.season.needCalendar.button"), (b, val) -> this.needCalendar = val);
 
       needCalendarButton.active = Common.clientSideConfig();
 
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.calendarDetail.tooltip"))
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
+              Common.translatedText("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
                 this.enableCalendarDetail = val;
               });
 
@@ -328,15 +324,16 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> showFertilityButton = CycleButton.onOffBuilder(showFertility)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showFertility.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.showFertility.button"),
-                  (b, val) -> this.showFertility = val);
+              Common.translatedText("menu.seasonhud.season.showFertility.button"),
+              (b, val) -> this.showFertility = val);
       widgets.add(showFertilityButton);
     }
 
     if (Common.fabricSeasonsLoaded()) {
       row += 2; // Row 4 (enableMinimapIntegration -> Row 2)
-      dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * offsetY)), buttonWidth - 2,
-                                 buttonHeight, Common.literalText(String.valueOf(dayLength)));
+      dayLengthBox =
+          new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * offsetY)), buttonWidth - 2, buttonHeight,
+              Common.literalText(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);
       dayLengthBox.setValue(String.valueOf(dayLength));
       dayLengthBox.setResponder((lengthString) -> {
@@ -350,8 +347,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           }
 
           doneButton.active = true;
-        }
-        else {
+        } else {
           dayLengthBox.setTextColor(16733525);
           doneButton.active = false;
         }

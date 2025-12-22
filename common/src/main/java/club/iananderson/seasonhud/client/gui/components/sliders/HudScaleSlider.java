@@ -25,8 +25,7 @@ public class HudScaleSlider extends BasicSlider {
   protected void updateMessage() {
     if (this.drawString) {
       this.setMessage(Common.literalText("").append(this.prefix).append(this.getValueString()));
-    }
-    else {
+    } else {
       this.setMessage(Component.empty());
     }
   }
@@ -120,9 +119,9 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     public HudScaleSlider build() {
-      HudScaleSlider slider = new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial,
-                                                 this.minValue, this.maxValue, this.defaultValue, this.stepSize,
-                                                 this.precision);
+      HudScaleSlider slider =
+          new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial, this.minValue,
+              this.maxValue, this.defaultValue, this.stepSize, this.precision);
       slider.setTooltip(this.tooltip);
       return slider;
     }

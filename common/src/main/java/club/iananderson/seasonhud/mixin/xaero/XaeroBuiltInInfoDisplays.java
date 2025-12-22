@@ -20,7 +20,6 @@ public class XaeroBuiltInInfoDisplays {
 
   private static void injected(CallbackInfo ci) {
     Objects.requireNonNull(ALL);
-    XaeroInfoDisplays.SEASON = XaeroInfoDisplays.SEASON_INFO_BUILDER.setDestination(ALL::add)
-        .build();
+    XaeroInfoDisplays.SEASON = XaeroInfoDisplays.SEASON_INFO_BUILDER.setDestination(ALL::add).build();
   }
 }

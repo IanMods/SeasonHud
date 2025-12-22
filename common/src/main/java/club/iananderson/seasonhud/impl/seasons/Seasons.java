@@ -11,16 +11,16 @@ import net.minecraft.network.chat.Component;
 @SuppressWarnings("checkstyle:AvoidEscapedUnicodeCharacters")
 public enum Seasons {
   SPRING(0, "desc.seasonhud.season.spring", "spring", "\uEA00", Client.DEFAULT_SPRING_COLOR,
-         SeasonHudClient.getSpringColor(), Rgb.seasonMap(SeasonHudClient.getSpringColor())),
+      SeasonHudClient.getSpringColor(), Rgb.seasonMap(SeasonHudClient.getSpringColor())),
 
   SUMMER(1, "desc.seasonhud.season.summer", "summer", "\uEA01", Client.DEFAULT_SUMMER_COLOR,
-         SeasonHudClient.getSummerColor(), Rgb.seasonMap(SeasonHudClient.getSummerColor())),
+      SeasonHudClient.getSummerColor(), Rgb.seasonMap(SeasonHudClient.getSummerColor())),
 
   AUTUMN(2, "desc.seasonhud.season.autumn", "autumn", "\uEA02", Client.DEFAULT_AUTUMN_COLOR,
-         SeasonHudClient.getAutumnColor(), Rgb.seasonMap(SeasonHudClient.getAutumnColor())),
+      SeasonHudClient.getAutumnColor(), Rgb.seasonMap(SeasonHudClient.getAutumnColor())),
 
   WINTER(3, "desc.seasonhud.season.winter", "winter", "\uEA03", Client.DEFAULT_WINTER_COLOR,
-         SeasonHudClient.getWinterColor(), Rgb.seasonMap(SeasonHudClient.getWinterColor())),
+      SeasonHudClient.getWinterColor(), Rgb.seasonMap(SeasonHudClient.getWinterColor())),
 
   DRY(4, "desc.seasonhud.season.dry", "dry", "\uEA04", Client.DEFAULT_DRY_COLOR, SeasonHudClient.getDryColor(),
       Rgb.seasonMap(SeasonHudClient.getDryColor())),

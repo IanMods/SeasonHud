@@ -18,8 +18,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   public Item calendar() {
     if (Common.fabricSeasonsLoaded() && Common.hasCalendarLoaded()) {
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -33,8 +32,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
       return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -45,8 +43,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
       return "Autumn";
-    }
-    else {
+    } else {
       return currentSeasonState.toString();
     }
   }
@@ -57,8 +54,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
       return "Autumn";
-    }
-    else {
+    } else {
       return currentSeasonState.toString();
     }
   }
@@ -72,8 +68,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
     if (isSeasonTiedWithSystemTime()) {
       return LocalDateTime.now().getDayOfMonth();
-    }
-    else {
+    } else {
       return ((seasonLength - timeToNextSeason) / dayLength) + 1;
     }
   }

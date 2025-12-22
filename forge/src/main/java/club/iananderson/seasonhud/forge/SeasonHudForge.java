@@ -33,8 +33,7 @@ public class SeasonHudForge {
     if (Common.curiosLoaded()) {
       Common.LOG.info("Talking to Curios");
       CuriosCompat.init();
-    }
-    else if (Common.accessoriesLoaded()) {
+    } else if (Common.accessoriesLoaded()) {
       AccessoriesCompat.init();
     }
   }
