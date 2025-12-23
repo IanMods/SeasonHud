@@ -165,7 +165,8 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
     return Fertility.FERTILE;
   }
 
-  /** Sub-seasons for each month.
+  /**
+   * Sub-seasons for each month.
    * <h1>TerrafirmaCraft Seasons:</h1>
    * <pre>
    * | Season | Early     | Mid     | Late     |
