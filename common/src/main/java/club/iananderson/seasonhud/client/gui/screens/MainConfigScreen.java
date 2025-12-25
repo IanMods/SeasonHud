@@ -106,19 +106,13 @@ public class MainConfigScreen extends SeasonHudScreen {
     widgets.add(enableModButton);
 
     int row = 0;
-    seasonButton = MenuButton.builder(MenuButtons.SEASON, b -> {
-          this.saveConfig();
-          SeasonOptionsScreen.getInstance(this).open();
-        })
+    seasonButton = MenuButton.builder(MenuButtons.SEASON, this, SeasonOptionsScreen.getInstance(this))
         .withTooltip(Common.newTooltip("menu.seasonhud.main.season.tooltip"))
         .withPos(leftButtonX, (buttonStartY + (row * offsetY)))
         .withWidth(buttonWidth)
         .build();
 
-    colorButton = MenuButton.builder(MenuButtons.COLORS, b -> {
-          this.saveConfig();
-          ColorScreen.getInstance(this).open();
-        })
+    colorButton = MenuButton.builder(MenuButtons.COLORS, this, ColorScreen.getInstance(this))
         .withTooltip(Common.newTooltip("menu.seasonhud.main.color.tooltip"))
         .withPos(rightButtonX, (buttonStartY + (row * offsetY)))
         .withWidth(buttonWidth)

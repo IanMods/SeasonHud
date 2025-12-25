@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.client.gui.screens.SeasonHudScreen;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;
@@ -14,6 +15,13 @@ public class MenuButton extends Button {
 
   public static Builder builder(MenuButtons button, OnPress onPress) {
     return new Builder(button, onPress);
+  }
+
+  public static Builder builder(MenuButtons button, SeasonHudScreen currentScreen, SeasonHudScreen newScreen) {
+    return new Builder(button, b -> {
+      currentScreen.saveConfig();
+      newScreen.open();
+    });
   }
 
   public enum MenuButtons {

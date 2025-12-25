@@ -64,7 +64,6 @@ public class SeasonHudScreen extends Screen {
   }
 
   public void saveConfig() {
-
   }
 
   @Override
