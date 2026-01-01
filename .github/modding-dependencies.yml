@@ -55,10 +55,19 @@
 # Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.lib
-  artifactId: xaerolib-common-${mcVersion}
+  artifactId: xaerolib-fabric-${mcVersion}
   version: "${xaero_lib_version}"
   properties:
-    xaero_lib_version:
+    xaero_lib_version_fabric:
+      source: version
+
+# Xaero's Lib
+- repository: https://chocolateminecraft.com/maven
+  groupId: xaero.lib
+  artifactId: xaerolib-forge-${mcVersion}
+  version: "${xaero_lib_version}"
+  properties:
+    xaero_lib_version_forge:
       source: version
 
 # Journeymap-Forge

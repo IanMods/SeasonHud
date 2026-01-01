@@ -36,8 +36,8 @@ public class ClientEvents {
           MapAtlases.HUD_INSTANCE.render(graphics);
         }
 
-        SeasonHUDOverlay.init();
-        SeasonHUDOverlay.HUD_INSTANCE.render(graphics);
+        SeasonHudOverlay.init();
+        SeasonHudOverlay.HUD_INSTANCE.render(graphics);
       }
     }
 
@@ -51,29 +51,6 @@ public class ClientEvents {
 
   @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModBusEvents {
-    // Overlays
-    @SubscribeEvent
-    public static void registerGuiOverlays(FMLClientSetupEvent event) {
-      SeasonHudOverlay.init();
-      OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "seasonhud", SeasonHudOverlay.HUD_INSTANCE);
-    }
-
-    @SubscribeEvent
-    public static void registerJourneyMapOverlay(FMLClientSetupEvent event) {
-      if (CurrentMinimap.journeyMapLoaded()) {
-        JourneyMap.init();
-        OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "journeymap", JourneyMap.HUD_INSTANCE);
-      }
-    }
-
-    @SubscribeEvent
-    public static void registerMapAtlasesOverlay(FMLClientSetupEvent event) {
-      if (CurrentMinimap.mapAtlasesLoaded()) {
-        MapAtlases.init();
-        OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "mapatlases", MapAtlases.HUD_INSTANCE);
-      }
-    }
-
     // Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(FMLClientSetupEvent event) {

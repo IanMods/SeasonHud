@@ -21,10 +21,6 @@ public class DrawUtil {
     int fillerHeight = textureHeight - topBorder - bottomBorder;
     int canvasWidth = width - leftBorder - rightBorder;
     int canvasHeight = height - topBorder - bottomBorder;
-    int xPasses = canvasWidth / fillerWidth;
-    int remainderWidth = canvasWidth % fillerWidth;
-    int yPasses = canvasHeight / fillerHeight;
-    int remainderHeight = canvasHeight % fillerHeight;
     Minecraft.getInstance().getTextureManager().bind(texture);
     guiComponent.blit(graphics, x, y, u, v, leftBorder, topBorder);
     guiComponent.blit(graphics, x + leftBorder + canvasWidth, y, u + leftBorder + fillerWidth, v, rightBorder,

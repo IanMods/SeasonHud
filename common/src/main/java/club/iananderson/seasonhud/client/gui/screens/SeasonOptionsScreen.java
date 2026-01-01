@@ -122,7 +122,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   @Override
   public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
-    var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
     // Assigned here so it still draws if the
     int posX = Client.DEFAULT_X_OFFSET;
     int posY = Client.DEFAULT_Y_OFFSET;

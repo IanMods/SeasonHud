@@ -206,7 +206,7 @@ public class SeasonHudClient {
     configOptions.put(enableMinimapIntegration.getPath(), Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
     configOptions.put(showDefaultWhenMinimapHidden.getPath(), Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
     configOptions.put(journeyMapAboveMap.getPath(), Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
-    configOptions.put(journeyMapMacOS.getPath(), Client.DEFAULT_JOURNEYMAP_MAC_OS);
+    configOptions.put(journeyMapMacOs.getPath(), Client.DEFAULT_JOURNEYMAP_MAC_OS);
 
     return configOptions.get(config.getPath());
   }
