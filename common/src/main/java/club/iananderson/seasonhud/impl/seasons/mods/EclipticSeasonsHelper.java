@@ -16,13 +16,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
-public class EclipticSeasonsHelper implements ISeasonModHelper {
+public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     if (Common.eclipticSeasonsLoaded()) {
       return Registry.ITEM.get(new ResourceLocation("eclipticseasons", "calendar"));
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -65,17 +64,15 @@ public class EclipticSeasonsHelper implements ISeasonModHelper {
 
   @Override
   public long getDate(Player player) {
-    long seasonDay = EclipticUtil.getNowSolarDay(player.level); //Day out of the year (42 days * 4 = 168 days)
-    long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level); //Day out of the sub season (7 days)
-    long subSeasonDuration = CommonConfig.Season.lastingDaysOfEachTerm.get(); //In case the default duration is changed
-    long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; //Default 7 days in each sub-season (1 week)
-    long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; //Default 42 days in a season (7 days * 6)
+    long seasonDay = EclipticUtil.getNowSolarDay(player.level); // Day out of the year (42 days * 4 = 168 days)
+    long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level); // Day out of the sub season (7 days)
+    long subSeasonDuration = CommonConfig.Season.lastingDaysOfEachTerm.get(); // In case the default duration is changed
+    long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; // Default 7 days in each sub-season (1 week)
+    long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; // Default 42 days in a season (7 days * 6)
 
     if (SeasonHudClient.getShowSubSeason()) {
       return subSeasonDate;
-    }
-
-    else {
+    } else {
       return seasonDate;
     }
   }
@@ -85,7 +82,7 @@ public class EclipticSeasonsHelper implements ISeasonModHelper {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
-      duration /= 6; //6 terms per season
+      duration /= 6; // 6 terms per season
     }
 
     return duration;

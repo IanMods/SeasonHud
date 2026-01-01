@@ -21,12 +21,14 @@ import pepjebs.mapatlases.utils.MapDataHolder;
 
 @Mixin(MapAtlasesHUD.class)
 public class MapAtlasHudMixin {
+  @SuppressWarnings({"checkstyle:AbbreviationAsWordInName", "checkstyle:MemberName"})
   @Shadow
   protected final int BG_SIZE = 64;
 
   @Shadow
   private float globalScale;
 
+  @SuppressWarnings("checkstyle:ParameterName")
   @Inject(method = "render", at = @At(value = "INVOKE", target = "Lpepjebs/mapatlases/client/ui/MapAtlasesHUD;"
       + "drawMapComponentBiome(Lcom/mojang/blaze3d/vertex/PoseStack;" + "Lnet/minecraft/client/gui/Font;"
       + "IIIFLnet/minecraft/core/BlockPos;"

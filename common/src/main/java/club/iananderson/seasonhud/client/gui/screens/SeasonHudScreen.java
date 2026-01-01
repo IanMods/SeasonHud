@@ -24,13 +24,13 @@ public class SeasonHudScreen extends Screen {
   public static MenuButton cancelButton;
   public final List<AbstractWidget> widgets = new ArrayList<>();
   public final Screen parentScreen;
-  public int BUTTON_WIDTH = 150;
-  public int BUTTON_HEIGHT = 20;
+  public int buttonWidth = 150;
+  public int buttonHeight = 20;
   public int leftButtonX;
   public int rightButtonX;
   public int row;
   public int buttonStartY = MENU_PADDING;
-  public int yOffset = BUTTON_HEIGHT + BUTTON_PADDING;
+  public int offsetY = buttonHeight + BUTTON_PADDING;
   protected boolean hasPendingChanges;
   protected List<ConfigValue<?>> configOptions = new ArrayList<>();
 
@@ -65,7 +65,6 @@ public class SeasonHudScreen extends Screen {
   }
 
   public void saveConfig() {
-
   }
 
   @Override
@@ -83,6 +82,7 @@ public class SeasonHudScreen extends Screen {
     this.init();
   }
 
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public void rebuildUI() {
     this.rebuildWidgets();
   }
@@ -100,12 +100,12 @@ public class SeasonHudScreen extends Screen {
   public void init() {
     super.init();
     this.widgets.clear();
-    leftButtonX = (this.width / 2) - (BUTTON_WIDTH + BUTTON_PADDING);
+    leftButtonX = (this.width / 2) - (buttonWidth + BUTTON_PADDING);
     rightButtonX = (this.width / 2) + BUTTON_PADDING;
 
     cancelButton = MenuButton.builder(MenuButtons.CANCEL, press -> this.onClose())
         .withPos((this.width / 2) - (MenuButton.DEFAULT_WIDTH + BUTTON_PADDING),
-                 (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
+            (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
         .build();
 
     doneButton = MenuButton.builder(MenuButtons.DONE, press -> this.onDone())
