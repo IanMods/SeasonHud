@@ -31,8 +31,7 @@ public class HudScaleSlider extends BasicSlider {
   protected void updateMessage() {
     if (this.drawString) {
       this.setMessage(Common.literalText("").append(this.prefix).append(this.getValueString()));
-    }
-    else {
+    } else {
       this.setMessage(new TextComponent(""));
     }
   }
@@ -44,8 +43,8 @@ public class HudScaleSlider extends BasicSlider {
 
   public static class Builder {
     protected final Component prefix;
-    protected int x;
-    protected int y;
+    protected int posX;
+    protected int posY;
     protected int width = 180;
     protected int height = 20;
     protected double minValue;
@@ -61,19 +60,19 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     /**
-     * Uses default width = 180 and height = 20
+     * Uses default width = 180 and height = 20.
      *
      * @param x The horizontal position of the slider
      * @param y The vertical position of the slider
      */
     public HudScaleSlider.Builder withPos(int x, int y) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       return this;
     }
 
     /**
-     * Uses default height = 20
+     * Uses default height = 20.
      *
      * @param width The width of the slider
      */
@@ -83,8 +82,8 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     public HudScaleSlider.Builder withBounds(int x, int y, int width, int height) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       this.width = width;
       this.height = height;
       return this;
@@ -102,6 +101,8 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     /**
+     * Sets the default value to return to when right-clicked.
+     *
      * @param defaultValue The value that the slider will return to if right-clicked.
      */
     public HudScaleSlider.Builder withDefaultValue(double defaultValue) {
@@ -125,9 +126,9 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     public HudScaleSlider build() {
-      HudScaleSlider slider = new HudScaleSlider(this.x, this.y, this.width, this.height, this.prefix, this.initial,
-                                                 this.minValue, this.maxValue, this.defaultValue, this.stepSize,
-                                                 this.precision, this.tooltipSupplier);
+      HudScaleSlider slider =
+          new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial, this.minValue,
+              this.maxValue, this.defaultValue, this.stepSize, this.precision, this.tooltipSupplier);
       return slider;
     }
   }

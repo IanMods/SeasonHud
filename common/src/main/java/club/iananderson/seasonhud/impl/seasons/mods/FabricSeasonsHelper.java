@@ -11,16 +11,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements ISeasonModHelper {
+public class FabricSeasonsHelper implements SeasonModHelper {
   public FabricSeasonsHelper() {
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     if (Common.fabricSeasonsLoaded()) {
       return Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar"));
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -34,8 +33,7 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
   public boolean isSeasonTiedWithSystemTime() {
     if (Common.fabricSeasonsLoaded()) {
       return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -46,8 +44,7 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
       return "Autumn";
-    }
-    else {
+    } else {
       return currentSeasonState.toString();
     }
   }
@@ -58,8 +55,7 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
       return "Autumn";
-    }
-    else {
+    } else {
       return currentSeasonState.toString();
     }
   }
@@ -73,8 +69,7 @@ public class FabricSeasonsHelper implements ISeasonModHelper {
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
     if (isSeasonTiedWithSystemTime()) {
       return LocalDateTime.now().getDayOfMonth();
-    }
-    else {
+    } else {
       return ((worldTime - (worldTime / seasonLength * seasonLength)) % seasonLength / dayLength) + 1;
     }
   }

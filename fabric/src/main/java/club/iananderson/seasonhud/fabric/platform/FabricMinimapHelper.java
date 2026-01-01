@@ -1,14 +1,14 @@
 package club.iananderson.seasonhud.fabric.platform;
 
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.platform.services.IMinimapHelper;
+import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import pepjebs.mapatlases.MapAtlasesMod;
 import pepjebs.mapatlases.utils.MapAtlasesAccessUtils;
 
-public class FabricMinimapHelper implements IMinimapHelper {
+public class FabricMinimapHelper implements MinimapHelper {
   // Needed for older versions. Makes it easier to port.
   @Override
   public boolean hideMapAtlases() {
@@ -26,8 +26,7 @@ public class FabricMinimapHelper implements IMinimapHelper {
       boolean hasAtlas = atlas.getCount() > 0;
 
       return !drawMinimapHud || !hasAtlas;
-    }
-    else {
+    } else {
       return false;
     }
   }

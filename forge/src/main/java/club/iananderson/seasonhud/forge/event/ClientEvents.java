@@ -7,7 +7,7 @@ import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.MapAtlases;
-import club.iananderson.seasonhud.forge.client.overlays.SeasonHUDOverlay;
+import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
@@ -33,11 +33,11 @@ public class ClientEvents {
   @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModBusEvents {
 
-    //Overlays
+    // Overlays
     @SubscribeEvent
     public static void registerGuiOverlays(FMLClientSetupEvent event) {
-      SeasonHUDOverlay.init();
-      OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "seasonhud", SeasonHUDOverlay.HUD_INSTANCE);
+      SeasonHudOverlay.init();
+      OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "seasonhud", SeasonHudOverlay.HUD_INSTANCE);
     }
 
     @SubscribeEvent
@@ -56,7 +56,7 @@ public class ClientEvents {
       }
     }
 
-    //Key Bindings
+    // Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(FMLClientSetupEvent event) {
       ClientRegistry.registerKeyBinding(KeyBindings.seasonhudOptionsKeyMapping);

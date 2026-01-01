@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.client.gui.screens.SeasonHudScreen;
 import java.util.List;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.CommonComponents;
@@ -18,6 +19,13 @@ public class MenuButton extends Button {
 
   public static Builder builder(MenuButtons button, OnPress onPress) {
     return new Builder(button, onPress);
+  }
+
+  public static Builder builder(MenuButtons button, SeasonHudScreen currentScreen, SeasonHudScreen newScreen) {
+    return new Builder(button, b -> {
+      currentScreen.saveConfig();
+      newScreen.open();
+    });
   }
 
   public enum MenuButtons {
@@ -43,8 +51,8 @@ public class MenuButton extends Button {
   public static class Builder {
     protected final MenuButtons buttonType;
     protected final OnPress onPress;
-    protected int x;
-    protected int y;
+    protected int posX;
+    protected int posY;
     protected int width = 150;
     protected int height = 20;
     protected List<FormattedCharSequence> tooltip;
@@ -55,19 +63,19 @@ public class MenuButton extends Button {
     }
 
     /**
-     * Uses default width = 150 and height = 20
+     * Uses default width = 150 and height = 20.
      *
      * @param x The horizontal position of the button
      * @param y The vertical position of the button
      */
     public Builder withPos(int x, int y) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       return this;
     }
 
     /**
-     * Uses default height = 20
+     * Uses default height = 20.
      *
      * @param width The width of the button
      */
@@ -89,7 +97,7 @@ public class MenuButton extends Button {
     }
 
     public MenuButton build() {
-      MenuButton button = new MenuButton(this.x, this.y, this.width, this.height, this.buttonType, this.onPress);
+      MenuButton button = new MenuButton(this.posX, this.posY, this.width, this.height, this.buttonType, this.onPress);
       return button;
     }
   }

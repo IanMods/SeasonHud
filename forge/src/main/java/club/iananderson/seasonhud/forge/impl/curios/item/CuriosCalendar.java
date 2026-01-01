@@ -18,7 +18,7 @@ public class CuriosCalendar implements ICurioItem {
 
   public static ICapabilityProvider initCapabilities() {
     ICurio curio = new ICurio() {
-      final ItemStack stack = CommonSeasonHelper.commonSeasons.CALENDAR().getDefaultInstance();
+      final ItemStack stack = CommonSeasonHelper.commonSeasons.calendar().getDefaultInstance();
 
       @Override
       public ItemStack getStack() {

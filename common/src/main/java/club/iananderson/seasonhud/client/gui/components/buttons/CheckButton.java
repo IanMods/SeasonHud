@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -10,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 public class CheckButton extends AbstractButton {
   private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/checkbox.png");
   private static final int TEXT_COLOR = 14737632;
+  private final Minecraft mc;
   private final float scale;
   private final OnPress onPress;
   private boolean selected;
@@ -20,6 +22,7 @@ public class CheckButton extends AbstractButton {
     this.scale = scale;
     this.onPress = onPress;
     this.selected = selected;
+    this.mc = Minecraft.getInstance();
   }
 
   public CheckButton(int x, int y, Component component, float scale, OnPress onPress, boolean selected) {
@@ -40,11 +43,10 @@ public class CheckButton extends AbstractButton {
     if (this.active) {
       if (this.isFocused()) {
         narrationElementOutput.add(NarratedElementType.USAGE,
-                                   Common.translatedText("narration.checkbox.usage.focused"));
-      }
-      else {
+            Common.translatedText("narration.checkbox.usage.focused"));
+      } else {
         narrationElementOutput.add(NarratedElementType.USAGE,
-                                   Common.translatedText("narration.checkbox.usage.hovered"));
+            Common.translatedText("narration.checkbox.usage.hovered"));
       }
     }
   }
