@@ -3,5 +3,5 @@
 ### Changed
 
 - Updated to support Xaero's Minimap 25.3.x
-- General clean-up
+- General cleanup
 
