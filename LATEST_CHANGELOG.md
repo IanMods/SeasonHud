@@ -1,8 +1,7 @@
-## [1.13.16] - 2025-12-20
+## [1.13.17] - 2026-01-01
 
 ### Changed
 
-- Updated to latest Forge / Fabric versions
-- Updated to latest versions of Terrafirmacraft
-- Updated to latest versions of FTB Chunks / Journeymap / Xaero's Minimap
+- Updated to support Xaero's Minimap 25.3.x
+- General clean-up
 

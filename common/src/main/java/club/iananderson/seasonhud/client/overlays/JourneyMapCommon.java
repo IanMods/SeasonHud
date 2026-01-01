@@ -46,13 +46,12 @@ public class JourneyMapCommon {
     this.seasonCombined = CurrentSeason.getInstance(mc).getHudText();
     this.fertility = CurrentFertility.getInstance(mc).getMinimapText();
     JourneymapClient jm = JourneymapClient.getInstance();
-    DisplayVars vars = UIManager.INSTANCE.getMiniMap().getDisplayVars();
-    MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
     LabelSpec currentTheme = ThemeLoader.getCurrentTheme().minimap.square.labelBottom;
     this.fontShadow = currentTheme.shadow;
     this.fontScale = jm.getActiveMiniMapProperties().fontScale.get();
     this.labelAlpha = jm.getActiveMiniMapProperties().infoSlotAlpha.get();
     this.textAlpha = currentTheme.foreground.alpha;
+    DisplayVars vars = UIManager.INSTANCE.getMiniMap().getDisplayVars();
     this.textureX = vars.textureX;
     this.textureY = vars.textureY;
     this.minimapHeight = vars.minimapHeight;
@@ -62,15 +61,16 @@ public class JourneyMapCommon {
     this.labelColor = currentTheme.background.getColor();
     this.textColor = currentTheme.foreground.getColor();
     this.labelHeight = (int) ((DrawUtil.getLabelHeight(fontRenderer, fontShadow) + currentTheme.margin) * fontScale);
+    MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
     this.topLabelHeight = vars.getInfoLabelAreaHeight(fontRenderer, currentTheme,
-                                                      ThemeLabelSource.values.get(mapProperties.info1Label.get()),
-                                                      ThemeLabelSource.values.get(mapProperties.info2Label.get()));
+        ThemeLabelSource.values.get(mapProperties.info1Label.get()),
+        ThemeLabelSource.values.get(mapProperties.info2Label.get()));
     this.bottomLabelHeight = vars.getInfoLabelAreaHeight(fontRenderer, currentTheme,
-                                                         ThemeLabelSource.values.get(mapProperties.info3Label.get()),
-                                                         ThemeLabelSource.values.get(mapProperties.info4Label.get()));
+        ThemeLabelSource.values.get(mapProperties.info3Label.get()),
+        ThemeLabelSource.values.get(mapProperties.info4Label.get()));
     this.screenWidth = mc.getWindow().getWidth();
     this.screenHeight = mc.getWindow().getHeight();
-    if (SeasonHudClient.getJourneyMapMacOS()) {
+    if (SeasonHudClient.getJourneyMapMacOs()) {
       this.screenWidth /= 2;
       this.screenHeight /= 2;
     }
@@ -88,13 +88,15 @@ public class JourneyMapCommon {
   }
 
   private int labelY() {
-    int startY = (int) (textureY + (SeasonHudClient.getJourneyMapAboveMap() ? 0
-                                                                            : (SeasonHudClient.getJourneyMapMacOS() ?
-                                                                               -margin - labelHeight : minimapHeight
-                                                                                   + margin)));
+    int startY = (int) (textureY + (SeasonHudClient.getJourneyMapAboveMap()
+                                    ? 0
+                                    : (SeasonHudClient.getJourneyMapMacOs()
+                                       ? -margin - labelHeight
+                                       : minimapHeight + margin)));
 
-    return startY + (SeasonHudClient.getJourneyMapAboveMap() ? -topLabelHeight - margin - labelHeight
-                                                             : bottomLabelHeight);
+    return startY + (SeasonHudClient.getJourneyMapAboveMap()
+                     ? -topLabelHeight - margin - labelHeight
+                     : bottomLabelHeight);
   }
 
   public float getFontScale() {
@@ -113,12 +115,11 @@ public class JourneyMapCommon {
     MultiBufferSource.BufferSource buffers = graphics.bufferSource();
     buffers.endBatch();
     DrawUtil.drawBatchLabel(graphics.pose(), seasonCombined, buffers, labelX(), labelY(), DrawUtil.HAlign.Center,
-                            DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
+        DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
     if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
       DrawUtil.drawBatchLabel(graphics.pose(), fertility, buffers, labelX(),
-                              labelY() + (fontRenderer.lineHeight * fontScale) + margin, DrawUtil.HAlign.Center,
-                              DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale,
-                              fontShadow);
+          labelY() + (fontRenderer.lineHeight * fontScale) + margin, DrawUtil.HAlign.Center, DrawUtil.VAlign.Below,
+          labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
     }
 
     graphics.bufferSource().endBatch();

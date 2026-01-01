@@ -56,11 +56,9 @@ public class BasicSlider extends AbstractSliderButton {
       }
 
       this.format = new DecimalFormat(builder.toString());
-    }
-    else if (Mth.equal(this.stepSize, Math.floor(this.stepSize))) {
+    } else if (Mth.equal(this.stepSize, Math.floor(this.stepSize))) {
       this.format = new DecimalFormat("0");
-    }
-    else {
+    } else {
       this.format = new DecimalFormat(Double.toString(this.stepSize).replaceAll("\\d", "0"));
     }
 
@@ -75,7 +73,7 @@ public class BasicSlider extends AbstractSliderButton {
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
       double maxValue, double defaultValue, double stepSize, int precision) {
     this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, stepSize, precision,
-         ChatFormatting.WHITE);
+        ChatFormatting.WHITE);
   }
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
@@ -100,17 +98,23 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public int getTextureY() {
-    int i = this.isFocused() && !this.canChangeValue ? 1 : 0;
+    int i = this.isFocused() && !this.canChangeValue
+            ? 1
+            : 0;
     return i * 20;
   }
 
   public int getHandleTextureY() {
-    int i = !this.isHovered && !this.canChangeValue ? 2 : 3;
+    int i = !this.isHovered && !this.canChangeValue
+            ? 2
+            : 3;
     return i * 20;
   }
 
-  public int getFGColor() {
-    return this.active ? 16777215 : 10526880;
+  public int getFgColor() {
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   protected double snapToNearest(double value) {
@@ -124,8 +128,7 @@ public class BasicSlider extends AbstractSliderButton {
 
     if (this.minValue > this.maxValue) {
       value = Mth.clamp(value, this.maxValue, this.minValue);
-    }
-    else {
+    } else {
       value = Mth.clamp(value, this.minValue, this.maxValue);
     }
 
@@ -193,11 +196,12 @@ public class BasicSlider extends AbstractSliderButton {
       if (this.minValue > this.maxValue) {
         bl = !bl;
       }
-      float f = bl ? -1F : 1F;
+      float f = bl
+                ? -1F
+                : 1F;
       if (stepSize <= 0D) {
         this.setSliderValue(this.value + (f / (this.width - 8)));
-      }
-      else {
+      } else {
         this.setValue(this.getValue() + f * this.stepSize);
       }
     }
@@ -209,8 +213,7 @@ public class BasicSlider extends AbstractSliderButton {
   protected void updateMessage() {
     if (this.drawString) {
       this.setMessage(Common.literalText(this.getValueString()));
-    }
-    else {
+    } else {
       this.setMessage(Component.empty());
     }
   }
@@ -219,9 +222,9 @@ public class BasicSlider extends AbstractSliderButton {
   public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
     Minecraft mc = Minecraft.getInstance();
     DrawUtil.blitWithBorder(graphics, SLIDER_LOCATION, this.getX(), this.getY(), 0, this.getTextureY(), this.width,
-                            this.height, 200, 20, 2, 3, 2, 2);
+        this.height, 200, 20, 2, 3, 2, 2);
     DrawUtil.blitWithBorder(graphics, SLIDER_LOCATION, this.getX() + (int) (this.value * (this.width - 8)), this.getY(),
-                            0, this.getHandleTextureY(), 8, this.height, 200, 20, 2, 3, 2, 2);
-    this.renderScrollingString(graphics, mc.font, 2, this.getFGColor() | Mth.ceil(this.alpha * 255.0F) << 24);
+        0, this.getHandleTextureY(), 8, this.height, 200, 20, 2, 3, 2, 2);
+    this.renderScrollingString(graphics, mc.font, 2, this.getFgColor() | Mth.ceil(this.alpha * 255.0F) << 24);
   }
 }

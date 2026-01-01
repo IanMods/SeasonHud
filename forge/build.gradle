@@ -68,6 +68,7 @@ dependencies {
 
     // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
+    modCompileOnly "xaero.lib:xaerolib-forge-1.20:${project.xaero_lib_version}"
 
     // JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
@@ -93,13 +94,14 @@ dependencies {
 
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
-    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
+    // modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
+            modImplementation "xaero.lib:xaerolib-forge-1.20:${project.xaero_lib_version}"
             break
         case "journey":
             modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"

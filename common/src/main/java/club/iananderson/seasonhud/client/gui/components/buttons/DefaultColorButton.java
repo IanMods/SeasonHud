@@ -22,7 +22,7 @@ public class DefaultColorButton extends Button {
 
   private DefaultColorButton(int x, int y, ColorEditBox colorEditBox, OnPress onPress) {
     super(x, y, colorEditBox.getWidth() + 2, colorEditBox.getHeight() - 2, DefaultColorButton.DEFAULT, onPress,
-          DEFAULT_NARRATION);
+        DEFAULT_NARRATION);
     this.colorEditBox = colorEditBox;
     this.defaultColor = colorEditBox.getSeason().getDefaultColor();
   }
@@ -51,26 +51,27 @@ public class DefaultColorButton extends Button {
     int k = 1;
     if (!this.active) {
       k = 0;
-    }
-    else if (this.isHoveredOrFocused()) {
+    } else if (this.isHoveredOrFocused()) {
       k = 2;
     }
 
     return 46 + k * 20;
   }
 
-  public int getFGColor() {
-    return this.active ? 16777215 : 10526880;
+  public int getFgColor() {
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   @Override
   public void renderWidget(@NotNull GuiGraphics graphics, int i, int j, float f) {
     Minecraft mc = Minecraft.getInstance();
     DrawUtil.blitWithBorder(graphics, WIDGETS_LOCATION, this.getX(), this.getY(), 0, getTextureY(), this.width,
-                            this.height, 200, 20, 2, 3, 2, 2);
+        this.height, 200, 20, 2, 3, 2, 2);
     FormattedText buttonText = this.getMessage();
     graphics.drawCenteredString(mc.font, Language.getInstance().getVisualOrder(buttonText),
-                                this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, getFGColor());
+        this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, getFgColor());
   }
 
   @Override
@@ -95,8 +96,8 @@ public class DefaultColorButton extends Button {
   public static class Builder {
     protected final OnPress onPress;
     protected final ColorEditBox colorEditBox;
-    protected int x;
-    protected int y;
+    protected int posX;
+    protected int posY;
     protected Tooltip tooltip;
 
     public Builder(ColorEditBox colorEditBox, OnPress onPress) {
@@ -105,14 +106,14 @@ public class DefaultColorButton extends Button {
     }
 
     /**
-     * Uses default width = 150 and height = 20
+     * Uses default width = 150 and height = 20.
      *
      * @param x The horizontal position of the button
      * @param y The vertical position of the button
      */
     public Builder withPos(int x, int y) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       return this;
     }
 
@@ -122,7 +123,7 @@ public class DefaultColorButton extends Button {
     }
 
     public DefaultColorButton build() {
-      DefaultColorButton button = new DefaultColorButton(this.x, this.y, this.colorEditBox, this.onPress);
+      DefaultColorButton button = new DefaultColorButton(this.posX, this.posY, this.colorEditBox, this.onPress);
       button.setTooltip(this.tooltip);
       return button;
     }

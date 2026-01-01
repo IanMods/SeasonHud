@@ -24,8 +24,8 @@ import org.jetbrains.annotations.NotNull;
 public class SeasonOptionsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.season.title");
   private Location hudLocation;
-  private int xSliderInt;
-  private int ySliderInt;
+  private int posX;
+  private int posY;
   private double seasonScale;
   private ShowDay showDay;
   private boolean seasonColor;
@@ -38,8 +38,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private int dayLength;
   private int newDayLength;
   private CycleButton<Location> hudLocationButton;
-  private HudOffsetSlider xSlider;
-  private HudOffsetSlider ySlider;
+  private HudOffsetSlider sliderX;
+  private HudOffsetSlider sliderY;
   private HudScaleSlider hudScaleSlider;
   private EditBox dayLengthBox;
 
@@ -54,8 +54,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void loadConfig() {
     drawDefaultHud = Common.drawDefaultHudMenu();
     hudLocation = SeasonHudClient.getHudLocation();
-    xSliderInt = SeasonHudClient.getHudX();
-    ySliderInt = SeasonHudClient.getHudY();
+    posX = SeasonHudClient.getHudX();
+    posY = SeasonHudClient.getHudY();
     seasonScale = SeasonHudClient.getHudScale();
     showDay = SeasonHudClient.getShowDay();
     seasonColor = SeasonHudClient.getEnableSeasonNameColor();
@@ -79,8 +79,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void saveConfig() {
     if (drawDefaultHud) {
       SeasonHudClient.setHudLocation(hudLocationButton.getValue());
-      SeasonHudClient.setHudX(xSlider.getValueInt());
-      SeasonHudClient.setHudY(ySlider.getValueInt());
+      SeasonHudClient.setHudX(sliderX.getValueInt());
+      SeasonHudClient.setHudY(sliderY.getValueInt());
       SeasonHudClient.setHudScale(hudScaleSlider.getValueDouble());
     }
     SeasonHudClient.setShowDay(showDay);
@@ -118,94 +118,91 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     super.onClose();
   }
 
-  //Todo - Need to fix Tropical Seasons option not updating in config screen
+  // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
-
-    int x = 3;
-    int y = 3;
-    seasonScale = 1;
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
-        .getConfigText(showDay, showSubSeason, seasonColor);
-    MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+    var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    // Assigned here so it still draws if the
+    int posX = Client.DEFAULT_X_OFFSET;
+    int posY = Client.DEFAULT_Y_OFFSET;
+    double seasonScale = 1.0;
 
     if (drawDefaultHud) {
-      int DEFAULT_X_OFFSET_SCALED = Client.DEFAULT_X_OFFSET;
-      int DEFAULT_Y_OFFSET_SCALED = Client.DEFAULT_Y_OFFSET;
+      boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
+      hudScaleSlider.visible = drawDefaultHud;
+      sliderX.active = customLocation;
+      sliderX.visible = drawDefaultHud;
+      sliderY.active = customLocation;
+      sliderY.visible = drawDefaultHud;
+
       seasonScale = hudScaleSlider.getValueDouble();
+
       int componentWidth = (int) (this.font.width(seasonCombined) * seasonScale);
       int componentHeight = (int) (this.font.lineHeight * seasonScale);
 
-      boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
-
-      hudScaleSlider.visible = drawDefaultHud;
-
-      xSlider.active = customLocation;
-      xSlider.visible = drawDefaultHud;
-
-      ySlider.active = customLocation;
-      ySlider.visible = drawDefaultHud;
-
       switch (hudLocation) {
         case TOP_LEFT:
-          x = DEFAULT_X_OFFSET_SCALED;
-          y = DEFAULT_Y_OFFSET_SCALED;
+          posX = Client.DEFAULT_X_OFFSET;
+          posY = Client.DEFAULT_Y_OFFSET;
           break;
 
         case TOP_CENTER:
-          x = (int) ((((double) width / 2) - ((double) componentWidth / 2)) / seasonScale);
-          y = DEFAULT_Y_OFFSET_SCALED;
+          posX = (int) ((((double) width / 2) - ((double) componentWidth / 2)) / seasonScale);
+          posY = Client.DEFAULT_Y_OFFSET;
           break;
 
         case TOP_RIGHT:
-          x = (int) ((width - componentWidth - DEFAULT_X_OFFSET_SCALED) / seasonScale);
-          y = DEFAULT_Y_OFFSET_SCALED;
+          posX = (int) ((width - componentWidth - Client.DEFAULT_X_OFFSET) / seasonScale);
+          posY = Client.DEFAULT_Y_OFFSET;
           break;
 
         case BOTTOM_LEFT:
-          x = DEFAULT_X_OFFSET_SCALED;
-          y = (int) (((height - componentHeight - DEFAULT_Y_OFFSET_SCALED)) / seasonScale);
+          posX = Client.DEFAULT_X_OFFSET;
+          posY = (int) (((height - componentHeight - Client.DEFAULT_Y_OFFSET)) / seasonScale);
           break;
 
         case BOTTOM_RIGHT:
-          x = (int) (((width - componentWidth - DEFAULT_X_OFFSET_SCALED)) / seasonScale);
-          y = (int) (((height - componentHeight - DEFAULT_Y_OFFSET_SCALED)) / seasonScale);
+          posX = (int) (((width - componentWidth - Client.DEFAULT_X_OFFSET)) / seasonScale);
+          posY = (int) (((height - componentHeight - Client.DEFAULT_Y_OFFSET)) / seasonScale);
           break;
 
         case CUSTOM:
-          x = (xSlider.getValueInt());
-          y = (ySlider.getValueInt());
+          posX = (sliderX.getValueInt());
+          posY = (sliderY.getValueInt());
           break;
-      }
-    }
-
-    if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
-      int row = 4;
-
-      if (Common.fabricSeasonsExtrasLoaded()) {
-        row += 1;
+        default:
+          throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
 
-      if (!drawDefaultHud) {
-        row -= 2;
-      }
+      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
+        int row = 4;
 
-      graphics.drawCenteredString(font, "Day Length", leftButtonX + BUTTON_WIDTH / 2,
-                                  MENU_PADDING + (row * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
-                                      + BUTTON_PADDING), 16777215);
+        if (Common.fabricSeasonsExtrasLoaded()) {
+          row += 1;
+        }
+
+        if (!drawDefaultHud) {
+          row -= 2;
+        }
+
+        graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
+            MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING), 16777215);
+      }
     }
 
     graphics.pose().pushPose();
     graphics.pose().translate(0, 0, 50);
     graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
-    graphics.drawString(font, seasonCombined, x, y, 0xffffff);
+    graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
+
     if (showFertility) {
-      y += this.font.lineHeight;
-      graphics.drawString(font, fertility, x, y, 0xffffff);
+      MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+
+      posY += this.font.lineHeight;
+      graphics.drawString(font, fertility, posX, posY, 0xffffff);
     }
     graphics.pose().popPose();
-
   }
 
   private int maxWidth(MutableComponent seasonText) {
@@ -235,34 +232,35 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.hudLocation.tooltip"))
           .withValues(Location.values())
           .withInitialValue(hudLocation)
-          .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Common.translatedText("menu.seasonhud.season.hudLocation.button"),
-                  (b, val) -> this.hudLocation = val);
+          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+              Common.translatedText("menu.seasonhud.season.hudLocation.button"), (b, val) -> this.hudLocation = val);
 
       hudScaleSlider = HudScaleSlider.builder(Common.translatedText("menu.seasonhud.season.scale.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
           .withValueRange(Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
-          .withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
-          .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
+          .withDefaultValue(Client.DEFAULT_HUD_SCALE)
+          .withStepSize(0.5)
+          .withPrecision(1)
+          .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
           .build();
 
       row += 1; // Row 2
-      xSlider = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
+      sliderX = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
-          .withValues(0, this.maxWidth(seasonCombined), xSliderInt, Client.DEFAULT_X_OFFSET)
-          .withBounds(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING,
-                      BUTTON_HEIGHT)
+          .withValues(0, this.maxWidth(seasonCombined), posX, Client.DEFAULT_X_OFFSET)
+          .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth / 2 - BasicSlider.SLIDER_PADDING,
+              buttonHeight)
           .build();
 
-      ySlider = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.yOffset.slider"))
+      sliderY = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.yOffset.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.yOffset.tooltip"))
-          .withValues(0, this.maxHeight(), ySliderInt, Client.DEFAULT_Y_OFFSET)
-          .withBounds(rightButtonX + BUTTON_WIDTH / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * yOffset)),
-                      BUTTON_WIDTH / 2 - BasicSlider.SLIDER_PADDING, BUTTON_HEIGHT)
+          .withValues(0, this.maxHeight(), posY, Client.DEFAULT_Y_OFFSET)
+          .withBounds(rightButtonX + buttonWidth / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * offsetY)),
+              buttonWidth / 2 - BasicSlider.SLIDER_PADDING, buttonHeight)
           .build();
 
-      widgets.addAll(Arrays.asList(hudLocationButton, hudScaleSlider, xSlider, ySlider));
+      widgets.addAll(Arrays.asList(hudLocationButton, hudScaleSlider, sliderX, sliderY));
     }
 
     row += 1; // Row 3 (enableMinimapIntegration -> Row 1)
@@ -270,47 +268,46 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showDay.tooltip"))
         .withValues(ShowDay.getValues())
         .withInitialValue(showDay)
-        .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
+        .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+            Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
 
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(seasonColor)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
-        .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"),
-                (b, val) -> this.seasonColor = val);
+        .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+            Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"),
+            (b, val) -> this.seasonColor = val);
     widgets.addAll(Arrays.asList(showDayButton, seasonColorButton));
 
     if (Common.hasSubSeasons()) {
       row += 1; // Row 4 (enableMinimapIntegration -> Row 2)
       CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
-          .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
-                  (b, val) -> this.showSubSeason = val);
+          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+              Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
+              (b, val) -> this.showSubSeason = val);
 
       CycleButton<Boolean> showTropicalSeasonButton = CycleButton.onOffBuilder(showTropicalSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showTropicalSeason.tooltip"))
-          .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
-                  (b, val) -> this.showTropicalSeason = val);
+          .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+              Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
+              (b, val) -> this.showTropicalSeason = val);
 
       widgets.addAll(Arrays.asList(showSubSeasonButton, showTropicalSeasonButton));
     }
 
     if (Common.hasCalendarLoaded()) {
-      row += 1; //Row 5 ((enableMinimapIntegration -> Row 3)
+      row += 1; // Row 5 ((enableMinimapIntegration -> Row 3)
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.needCalendar.tooltip"))
-          .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Common.translatedText("menu.seasonhud.season.needCalendar.button"),
-                  (b, val) -> this.needCalendar = val);
+          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+              Common.translatedText("menu.seasonhud.season.needCalendar.button"), (b, val) -> this.needCalendar = val);
 
       needCalendarButton.active = Common.clientSideConfig();
 
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.calendarDetail.tooltip"))
-          .create(rightButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Common.translatedText("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
+          .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+              Common.translatedText("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
                 this.enableCalendarDetail = val;
               });
 
@@ -329,16 +326,17 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       row += 1;
       CycleButton<Boolean> showFertilityButton = CycleButton.onOffBuilder(showFertility)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showFertility.tooltip"))
-          .create(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT,
-                  Common.translatedText("menu.seasonhud.season.showFertility.button"),
-                  (b, val) -> this.showFertility = val);
+          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+              Common.translatedText("menu.seasonhud.season.showFertility.button"),
+              (b, val) -> this.showFertility = val);
       widgets.add(showFertilityButton);
     }
 
     if (Common.fabricSeasonsLoaded()) {
-      row += 2; //Row 4 (enableMinimapIntegration -> Row 2)
-      dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * yOffset)), BUTTON_WIDTH - 2,
-                                 BUTTON_HEIGHT, Common.literalText(String.valueOf(dayLength)));
+      row += 2; // Row 4 (enableMinimapIntegration -> Row 2)
+      dayLengthBox =
+          new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * offsetY)), buttonWidth - 2, buttonHeight,
+              Common.literalText(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);
       dayLengthBox.setValue(String.valueOf(dayLength));
       dayLengthBox.setResponder((lengthString) -> {
@@ -352,8 +350,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           }
 
           doneButton.active = true;
-        }
-        else {
+        } else {
           dayLengthBox.setTextColor(16733525);
           doneButton.active = false;
         }

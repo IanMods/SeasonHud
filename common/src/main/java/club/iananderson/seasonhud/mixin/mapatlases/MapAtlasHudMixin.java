@@ -22,12 +22,14 @@ import pepjebs.mapatlases.utils.MapDataHolder;
 
 @Mixin(MapAtlasesHUD.class)
 public class MapAtlasHudMixin {
+  @SuppressWarnings({"checkstyle:AbbreviationAsWordInName", "checkstyle:MemberName"})
   @Shadow
   protected final int BG_SIZE = 64;
 
   @Shadow
   private float globalScale;
 
+  @SuppressWarnings("checkstyle:ParameterName")
   @Inject(method = "render", at = @At(value = "INVOKE", target = "Lpepjebs/mapatlases/client/ui/MapAtlasesHUD;"
       + "drawMapComponentBiome(Lnet/minecraft/client/gui/GuiGraphics;" + "Lnet/minecraft/client/gui/Font;"
       + "IIIFLnet/minecraft/core/BlockPos;"
@@ -42,7 +44,7 @@ public class MapAtlasHudMixin {
         textHeightOffset += (int) (10.0F * textScaling);
       }
       MapAtlasesCommon.drawMapComponentSeason(graphics, font, x, (int) (y + BG_SIZE + (textHeightOffset / globalScale)),
-                                              actualBgSize, textScaling, globalScale);
+          actualBgSize, textScaling, globalScale);
     }
   }
 }
