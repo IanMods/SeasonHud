@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.platform.services;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public interface IPlatformHelper {
+public interface PlatformHelper {
 
   /**
    * Gets the name of the current platform.

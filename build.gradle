@@ -79,6 +79,12 @@ subprojects {
                 includeGroup "io.github.onyxstudios.Cardinal-Components-API"
             }
         }
+        maven {
+            url = "https://chocolateminecraft.com/maven"
+            content {
+                includeGroup "xaero.lib"
+            }
+        }
         //Journeymap API
         maven {
             url = "https://jm.gserv.me/repository/maven-public/"

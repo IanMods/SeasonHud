@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.forge.platform;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.platform.services.IMinimapHelper;
+import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import pepjebs.dicemc.util.MapAtlasesAccessUtils;
 import sereneseasons.config.SeasonsConfig;
 
-public class ForgeMinimapHelper implements IMinimapHelper {
+public class ForgeMinimapHelper implements MinimapHelper {
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
     for (String validDimension : validDimensions) {
       if (dimension.location().toString().equals(validDimension)) {
@@ -23,7 +23,6 @@ public class ForgeMinimapHelper implements IMinimapHelper {
 
     return false;
   }
-
   // Needed for older versions. Makes it easier to port.
   @Override
   public boolean hideMapAtlases() {
@@ -41,8 +40,7 @@ public class ForgeMinimapHelper implements IMinimapHelper {
       boolean hasAtlas = atlas.getCount() > 0;
 
       return !drawMinimapHud || !hasAtlas;
-    }
-    else {
+    } else {
       return false;
     }
   }

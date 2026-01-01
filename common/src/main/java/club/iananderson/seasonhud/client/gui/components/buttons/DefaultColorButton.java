@@ -2,11 +2,14 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
+import club.iananderson.seasonhud.util.DrawUtil;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Map;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
 import org.jetbrains.annotations.NotNull;
 
 public class DefaultColorButton extends Button {
@@ -48,12 +51,15 @@ public class DefaultColorButton extends Button {
     int k = 1;
     if (!this.active) {
       k = 0;
-    }
-    else if (this.isHoveredOrFocused()) {
+    } else if (this.isHoveredOrFocused()) {
       k = 2;
     }
 
     return 46 + k * 20;
+  }
+
+  public int getFGColor() {
+    return this.active ? 16777215 : 10526880;
   }
 
   @Override
@@ -78,8 +84,8 @@ public class DefaultColorButton extends Button {
   public static class Builder {
     protected final OnPress onPress;
     protected final ColorEditBox colorEditBox;
-    protected int x;
-    protected int y;
+    protected int posX;
+    protected int posY;
 
     public Builder(ColorEditBox colorEditBox, OnPress onPress) {
       this.colorEditBox = colorEditBox;
@@ -87,19 +93,19 @@ public class DefaultColorButton extends Button {
     }
 
     /**
-     * Uses default width = 150 and height = 20
+     * Uses default width = 150 and height = 20.
      *
      * @param x The horizontal position of the button
      * @param y The vertical position of the button
      */
     public Builder withPos(int x, int y) {
-      this.x = x;
-      this.y = y;
+      this.posX = x;
+      this.posY = y;
       return this;
     }
 
     public DefaultColorButton build() {
-      DefaultColorButton button = new DefaultColorButton(this.x, this.y, this.colorEditBox, this.onPress);
+      DefaultColorButton button = new DefaultColorButton(this.posX, this.posY, this.colorEditBox, this.onPress);
       return button;
     }
   }

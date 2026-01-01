@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.platform.services;
 
-public interface IMinimapHelper {
+public interface MinimapHelper {
   /**
    * Needed to do differences in Forge and Fabric versions, depending on the Minecraft version.
    *

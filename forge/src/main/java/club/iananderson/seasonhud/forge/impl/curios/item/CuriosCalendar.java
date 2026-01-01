@@ -18,7 +18,7 @@ public class CuriosCalendar implements ICurioItem {
 
   public static ICapabilityProvider initCapabilities() {
     ICurio curio = new ICurio() {
-      final ItemStack stack = CommonSeasonHelper.commonSeasons.CALENDAR().getDefaultInstance();
+      final ItemStack stack = CommonSeasonHelper.commonSeasons.calendar().getDefaultInstance();
     };
     return new ICapabilityProvider() {
       private final LazyOptional<ICurio> curioOpt = LazyOptional.of(() -> curio);

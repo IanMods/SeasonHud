@@ -1,13 +1,13 @@
 package club.iananderson.seasonhud.fabric.platform;
 
-import club.iananderson.seasonhud.platform.services.IPlatformHelper;
+import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import java.util.Optional;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricPlatformHelper implements IPlatformHelper {
+public class FabricPlatformHelper implements PlatformHelper {
 
   @Override
   public String getPlatformName() {
@@ -25,8 +25,7 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     if (mod.isPresent()) {
       return mod.get().getMetadata().getVersion().toString();
-    }
-    else {
+    } else {
       return "Not Loaded";
     }
   }

@@ -11,13 +11,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class EclipticSeasonsHelper implements ISeasonModHelper {
+public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     if (Common.eclipticSeasonsLoaded()) {
       return Registry.ITEM.get(new ResourceLocation("eclipticseasons", "calendar"));
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -52,7 +51,7 @@ public class EclipticSeasonsHelper implements ISeasonModHelper {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
-      duration /= 6; //6 terms per season
+      duration /= 6; // 6 terms per season
     }
 
     return duration;

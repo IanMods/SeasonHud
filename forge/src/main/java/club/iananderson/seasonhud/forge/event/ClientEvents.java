@@ -5,7 +5,7 @@ import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.MapAtlases;
-import club.iananderson.seasonhud.forge.client.overlays.SeasonHUDOverlay;
+import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -51,7 +51,30 @@ public class ClientEvents {
 
   @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModBusEvents {
-    //Key Bindings
+    // Overlays
+    @SubscribeEvent
+    public static void registerGuiOverlays(FMLClientSetupEvent event) {
+      SeasonHudOverlay.init();
+      OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "seasonhud", SeasonHudOverlay.HUD_INSTANCE);
+    }
+
+    @SubscribeEvent
+    public static void registerJourneyMapOverlay(FMLClientSetupEvent event) {
+      if (CurrentMinimap.journeyMapLoaded()) {
+        JourneyMap.init();
+        OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "journeymap", JourneyMap.HUD_INSTANCE);
+      }
+    }
+
+    @SubscribeEvent
+    public static void registerMapAtlasesOverlay(FMLClientSetupEvent event) {
+      if (CurrentMinimap.mapAtlasesLoaded()) {
+        MapAtlases.init();
+        OverlayRegistry.registerOverlayAbove(FROSTBITE_ELEMENT, "mapatlases", MapAtlases.HUD_INSTANCE);
+      }
+    }
+
+    // Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(FMLClientSetupEvent event) {
       ClientRegistry.registerKeyBinding(KeyBindings.seasonhudOptionsKeyMapping);

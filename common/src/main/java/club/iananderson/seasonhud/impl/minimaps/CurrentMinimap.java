@@ -14,11 +14,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
 import xaero.common.HudMod;
+import xaero.lib.client.gui.ScreenBase;
 
 public class CurrentMinimap {
   private static boolean minimapLoaded(Minimap minimap) {
-    String modID = minimap.getModID();
-    return Services.PLATFORM.isModLoaded(modID);
+    String modId = minimap.getModId();
+    return Services.PLATFORM.isModLoaded(modId);
   }
 
   public static boolean xaeroLoaded() {
@@ -53,6 +54,18 @@ public class CurrentMinimap {
     return getLoadedMinimaps().isEmpty();
   }
 
+  /* TODO:
+   ** Double check all logic
+   ** Add option to display current loaded integration
+   ** Add a dropdown to override this if more than one are loaded
+   */
+
+  /**
+   * Determines if the minimap is currently hidden.
+   *
+   * @param minimap Current loaded minimap mod.
+   * @return True if the minimap is not currently displayed
+   */
   public static boolean hiddenMinimap(Minimap minimap) {
     Minecraft mc = Minecraft.getInstance();
     boolean hidden = false;
@@ -109,6 +122,8 @@ public class CurrentMinimap {
   }
 
   /**
+   * Determines if the minimap version of the season hud should be used.
+   *
    * @param minimap Current loaded minimap mod.
    * @return True if the minimap version of the HUD should be drawn instead of the default.
    */
@@ -140,14 +155,14 @@ public class CurrentMinimap {
 
     VOXELMAP("voxelmap");
 
-    private final String modID;
+    private final String modId;
 
-    Minimap(String modID) {
-      this.modID = modID;
+    Minimap(String modId) {
+      this.modId = modId;
     }
 
-    public String getModID() {
-      return this.modID;
+    public String getModId() {
+      return this.modId;
     }
   }
 }

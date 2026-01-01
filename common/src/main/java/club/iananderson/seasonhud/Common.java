@@ -162,18 +162,22 @@ public class Common {
     return new ResourceLocation(MOD_ID, path);
   }
 
+  // Used to make porting new text to older versions easier
   public static MutableComponent literalText(String text) {
     return new TextComponent(text);
   }
 
+  // Used to make porting new text to older versions easier
   public static MutableComponent translatedText(@Translatable(foldMethod = true) String key) {
     return new TranslatableComponent(key);
   }
 
+  // Used to make porting new text to older versions easier
   public static MutableComponent translatedText(@Translatable(foldMethod = true) String key, Object... args) {
     return new TranslatableComponent(key, args);
   }
 
+  // Used to make porting new text to older versions easier
   public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key) {
     List<FormattedCharSequence> List = new ArrayList<>();
     List.add(translatedText(key).getVisualOrderText());

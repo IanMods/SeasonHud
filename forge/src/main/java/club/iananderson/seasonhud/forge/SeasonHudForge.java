@@ -19,6 +19,8 @@ public class SeasonHudForge {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     MinecraftForge.EVENT_BUS.register(this);
     Common.init();
+    MinecraftForge.EVENT_BUS.register(this);
+    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
 

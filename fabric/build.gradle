@@ -56,7 +56,10 @@ dependencies {
     modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
 
     // Xaero's Minimap
-    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.minecraft_version}") {
+    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.16.5") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly ("xaero.lib:xaerolib-fabric-1.16.5:${project.xaero_lib_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -109,13 +112,20 @@ dependencies {
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
     modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
-    //modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+    //modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.minecraft_version}")
+            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.minecraft_version}") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
+            modImplementation("xaero.lib:xaerolib-fabric-1.16.5:${project.xaero_lib_version}") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
             break
         case "journey":
             break

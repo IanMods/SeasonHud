@@ -23,6 +23,7 @@ dependencies {
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.minecraft_version}"
+    modCompileOnly "xaero.lib:xaerolib-common-1.16.5:${project.xaero_lib_version}"
     modCompileOnly "curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"
     modCompileOnly "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"

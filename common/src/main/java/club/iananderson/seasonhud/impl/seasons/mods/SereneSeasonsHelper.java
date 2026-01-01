@@ -17,12 +17,12 @@ import sereneseasons.config.FertilityConfig;
 import sereneseasons.config.SeasonsConfig;
 
 
-public class SereneSeasonsHelper implements ISeasonModHelper {
+public class SereneSeasonsHelper implements SeasonModHelper {
   public SereneSeasonsHelper() {
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     return Registry.ITEM.get(new ResourceLocation("sereneseasons", "calendar"));
   }
 
@@ -56,10 +56,10 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
     int duration = SeasonsConfig.subSeasonDuration.get() * 3;
 
     if (isTropicalSeason(player)) {
-      duration *= 2; //Tropical seasons are twice as long (Default 48 days)
+      duration *= 2; // Tropical seasons are twice as long (Default 48 days)
     }
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
-      duration /= 3; //3 sub-seasons per season
+      duration /= 3; // 3 sub-seasons per season
     }
 
     return duration;
@@ -69,9 +69,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
   public boolean infertileBiome(Player player) {
     if ((!FertilityConfig.seasonalCrops.get() || !Services.PLATFORM.sereneSeasonBiomeSeasonalEffects(player) || Services.MINIMAP.hideHudInCurrentDimension())) {
       return false;
-    }
-
-    else {
+    } else {
       return (Services.PLATFORM.sereneSeasonInfertileBiome(player));
     }
   }
@@ -80,7 +78,6 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
   public boolean alwaysWinterBiome(Player player) {
     return false;
   }
-
   @Override
   public boolean undergroundFertile(Player player) {
     Level level = player.level;
@@ -93,9 +90,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
     if (!level.canSeeSky(pos.above())) {
       return (pos.getY() > FertilityConfig.undergroundFertilityLevel.get());
-    }
-
-    else {
+    } else {
       return true;
     }
   }
@@ -108,9 +103,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
     if (alwaysWinterBiome(player)) {
       return Fertility.ALWAYS_WINTER;
-    }
-
-    else if (!undergroundFertile(player)) {
+    } else if (!undergroundFertile(player)) {
       return Fertility.UNDERGROUND;
     }
 
