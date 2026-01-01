@@ -9,11 +9,11 @@ public class AccessoriesCalendar implements Accessory {
   }
 
 //  public static void clientInit() {
-//    AccessoriesRendererRegistry.registerRenderer(CommonSeasonHelper.commonSeasons.CALENDAR(), Renderer::new);
+//    AccessoriesRendererRegistry.registerRenderer(CommonSeasonHelper.commonSeasons.calendar(), Renderer::new);
 //  }
 
   public static void init() {
-    AccessoriesAPI.registerAccessory(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
+    AccessoriesAPI.registerAccessory(CommonSeasonHelper.commonSeasons.calendar(), new AccessoriesCalendar());
   }
 
 //  public static class Renderer implements SimpleAccessoryRenderer {
