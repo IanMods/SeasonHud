@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - Updated to support Xaero's Minimap 25.3.x
+- General cleanup
 
 ## [1.13.16] - 2025-12-20
 
