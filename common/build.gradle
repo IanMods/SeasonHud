@@ -24,7 +24,7 @@ dependencies {
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.19.1"
-    modCompileOnly "xaero.lib:xaerolib-common-1.20:${project.xaero_lib_version}"
+    modCompileOnly "xaero.lib:xaerolib-common-1.19.1:${project.xaero_lib_version}"
     modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"

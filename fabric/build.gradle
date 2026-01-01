@@ -60,7 +60,9 @@ dependencies {
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly "xaero.lib:xaerolib-fabric-1.20:${project.xaero_lib_version}"
+    modCompileOnly ("xaero.lib:xaerolib-fabric-1.19.1:${project.xaero_lib_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
@@ -69,10 +71,18 @@ dependencies {
     }
 
     // FTB Chunks + Dependencies
-    modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
-    modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
-    modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-    modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
+    modCompileOnly("dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //Map Atlases
     modCompileOnly("curse.maven:map-atlases-436298:${project.map_atlases_fabric_version}") {
@@ -104,15 +114,20 @@ dependencies {
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${devauth_version}")
     modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
-    modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modLocalRuntime "maven.modrinth:text-animator:${project.text_animator_version_fabric}"
+    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1")
-            modImplementation "xaero.lib:xaerolib-fabric-1.20:${project.xaero_lib_version}"
+            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
+            modImplementation("xaero.lib:xaerolib-fabric-1.19.1:${project.xaero_lib_version}") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
             break
         case "journey":
             modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
