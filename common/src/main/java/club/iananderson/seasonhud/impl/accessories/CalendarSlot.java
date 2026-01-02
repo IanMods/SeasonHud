@@ -30,7 +30,7 @@ public class CalendarSlot implements UniqueSlotHandling.RegistrationCallback {
   public void init() {
     UniqueSlotHandling.EVENT.register(this);
 
-    Item calendar = CommonSeasonHelper.commonSeasons.CALENDAR();
+    Item calendar = CommonSeasonHelper.commonSeasons.calendar();
 
     if (Services.PLATFORM.getModVersion("accessories").startsWith("1.1.0") || Services.PLATFORM.getModVersion(
         "accessories").startsWith("1.0.0")) {
