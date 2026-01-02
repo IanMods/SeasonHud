@@ -39,13 +39,12 @@ public class SeasonHudServer {
   private static <T> T getOrDefault(ConfigValue<T> config) {
     if (SERVER_SPEC.isLoaded()) {
       return config.get();
-    }
-    else {
+    } else {
       return config.getDefault();
     }
   }
 
-  //Season
+  // Season
   public static boolean getNeedCalendar() {
     return getOrDefault(needCalendar);
   }

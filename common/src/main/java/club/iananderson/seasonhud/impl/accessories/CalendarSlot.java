@@ -28,7 +28,7 @@ public class CalendarSlot implements UniqueSlotHandling.RegistrationCallback {
   public void init() {
     UniqueSlotHandling.EVENT.register(this);
 
-    Item calendar = CommonSeasonHelper.commonSeasons.CALENDAR();
+    Item calendar = CommonSeasonHelper.commonSeasons.calendar();
 
     SlotPredicateRegistry.register(slotPredicate, SlotBasedPredicate.ofItem(item -> item.equals(calendar)));
 

@@ -10,8 +10,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.MutableComponent;
 
-public class SeasonHUDOverlayCommon {
-  private SeasonHUDOverlayCommon() {
+public class SeasonHudOverlayCommon {
+  private SeasonHudOverlayCommon() {
   }
 
   public static void render(GuiGraphics graphics) {
@@ -21,55 +21,58 @@ public class SeasonHUDOverlayCommon {
         && !Common.hideHudInCurrentDimension()) {
       int screenWidth = mc.getWindow().getGuiScaledWidth();
       int screenHeight = mc.getWindow().getGuiScaledHeight();
-      int x = 0;
-      int y = 0;
-      int xOffset = SeasonHudClient.getHudX();
-      int yOffset = SeasonHudClient.getHudY();
+      int offsetX = SeasonHudClient.getHudX();
+      int offsetY = SeasonHudClient.getHudY();
       double scale = SeasonHudClient.getHudScale();
-      int DEFAULT_X_OFFSET = Client.DEFAULT_X_OFFSET;
-      int DEFAULT_Y_OFFSET = Client.DEFAULT_Y_OFFSET;
+      int defaultOffsetX = Client.DEFAULT_X_OFFSET;
+      int defaultOffsetY = Client.DEFAULT_Y_OFFSET;
       MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
-      MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
       int stringWidth = (int) (mc.font.width(seasonCombined) * scale);
       int stringHeight = (int) (mc.font.lineHeight * scale);
+      int x;
+      int y;
 
       switch (SeasonHudClient.getHudLocation()) {
         case TOP_LEFT:
-          x = DEFAULT_X_OFFSET;
-          y = DEFAULT_Y_OFFSET;
+          x = defaultOffsetX;
+          y = defaultOffsetY;
           break;
 
         case TOP_CENTER:
           x = (int) ((((double) screenWidth / 2) - ((double) stringWidth / 2)) / scale);
-          y = DEFAULT_Y_OFFSET;
+          y = defaultOffsetY;
           break;
 
         case TOP_RIGHT:
-          x = (int) ((screenWidth - stringWidth - DEFAULT_X_OFFSET) / scale);
-          y = DEFAULT_Y_OFFSET;
+          x = (int) ((screenWidth - stringWidth - defaultOffsetX) / scale);
+          y = defaultOffsetY;
           break;
 
         case BOTTOM_LEFT:
-          x = DEFAULT_X_OFFSET;
-          y = (int) (((screenHeight - stringHeight - DEFAULT_Y_OFFSET)) / scale);
+          x = defaultOffsetX;
+          y = (int) (((screenHeight - stringHeight - defaultOffsetY)) / scale);
           break;
 
         case BOTTOM_RIGHT:
-          x = (int) (((screenWidth - stringWidth - DEFAULT_X_OFFSET)) / scale);
-          y = (int) (((screenHeight - stringHeight - DEFAULT_Y_OFFSET)) / scale);
+          x = (int) (((screenWidth - stringWidth - defaultOffsetX)) / scale);
+          y = (int) (((screenHeight - stringHeight - defaultOffsetY)) / scale);
           break;
 
         case CUSTOM:
-          x = xOffset;
-          y = yOffset;
+          x = offsetX;
+          y = offsetY;
           break;
+        default:
+          throw new IllegalStateException("Unexpected value: " + SeasonHudClient.getHudLocation());
       }
 
-      //Text
+      // Text
       graphics.pose().pushMatrix();
       graphics.pose().scale((float) scale, (float) scale);
       graphics.drawString(mc.font, seasonCombined, x, y, 0xffffffff);
       if (SeasonHudClient.getShowFertility()) {
+        MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
+
         y += stringHeight;
         graphics.drawString(mc.font, fertility, x, y, 0xffffff);
       }

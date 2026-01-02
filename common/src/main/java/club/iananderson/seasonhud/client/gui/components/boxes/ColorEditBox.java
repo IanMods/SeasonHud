@@ -38,8 +38,7 @@ public class ColorEditBox extends EditBox {
         }
 
         ColorScreen.doneButton.active = true;
-      }
-      else {
+      } else {
         this.setTextColor(16733525);
         ColorScreen.doneButton.active = false;
       }
@@ -99,8 +98,8 @@ public class ColorEditBox extends EditBox {
     int widgetTotalSize = ((80 + ColorScreen.BUTTON_PADDING) * seasonListSet().size());
     boolean seasonShort = (scaledWidth < widgetTotalSize);
 
-    MutableComponent seasonCombined = CurrentSeason.getInstance(mc)
-        .getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
+    MutableComponent seasonCombined =
+        CurrentSeason.getInstance(mc).getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
 
     graphics.pose().pushMatrix();
     if ((mc.font.width(seasonCombined) > this.getWidth() - PADDING)) {
@@ -108,7 +107,7 @@ public class ColorEditBox extends EditBox {
     }
     graphics.pose().scale(textScale, textScale);
     graphics.drawCenteredString(mc.font, seasonCombined, (int) ((getX() + (double) this.getWidth() / 2) / textScale),
-                                (int) ((getY() - (mc.font.lineHeight * textScale) - PADDING) / textScale), 0xffffffff);
+        (int) ((getY() - (mc.font.lineHeight * textScale) - PADDING) / textScale), 0xffffffff);
     graphics.pose().popMatrix();
 
     super.renderWidget(graphics, mouseX, mouseY, partialTicks);
