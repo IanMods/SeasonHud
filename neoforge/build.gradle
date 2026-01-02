@@ -62,7 +62,7 @@ dependencies {
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Xaero's Minimap
-    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21.9"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.minecraft_version}"
     modCompileOnly "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
@@ -100,7 +100,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21.9"
+            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.minecraft_version}"
             modImplementation "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
