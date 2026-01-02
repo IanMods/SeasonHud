@@ -74,7 +74,7 @@ public class MainConfigScreen extends SeasonHudScreen {
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
       graphics.drawCenteredString(font, JOURNEYMAP, this.width / 2,
-                                  MENU_PADDING + (4 * (BUTTON_HEIGHT + BUTTON_PADDING)) - (font.lineHeight
+                                  MENU_PADDING + (4 * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
                                       + BUTTON_PADDING), 16777215);
       journeyMapButton.active = enableMod;
     }
@@ -129,7 +129,7 @@ public class MainConfigScreen extends SeasonHudScreen {
       journeyMapButton = Button.builder(Common.translatedText("menu.seasonhud.main.journeymap.options.button"),
                                         (button) -> UIManager.INSTANCE.openAddonOptionsEditor(this, true))
           .tooltip(Tooltip.create(Common.translatedText("menu.seasonhud.main.journeymap.options.tooltip")))
-          .bounds(leftButtonX, (buttonStartY + (row * yOffset)), BUTTON_WIDTH, BUTTON_HEIGHT)
+          .bounds(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
           .build();
 
       this.addRenderableWidget(journeyMapButton);

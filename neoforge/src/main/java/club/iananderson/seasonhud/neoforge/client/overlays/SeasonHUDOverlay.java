@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.neoforge.client.overlays;
 
-import club.iananderson.seasonhud.client.overlays.SeasonHUDOverlayCommon;
+import club.iananderson.seasonhud.client.overlays.SeasonHudOverlayCommon;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
@@ -13,6 +13,6 @@ public class SeasonHUDOverlay implements LayeredDraw.Layer {
   }
 
   public void render(GuiGraphics seasonStack, DeltaTracker deltaTracker) {
-    SeasonHUDOverlayCommon.render(seasonStack);
+    SeasonHudOverlayCommon.render(seasonStack);
   }
 }
