@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.forge.event;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
-import club.iananderson.seasonhud.forge.client.overlays.SeasonHUDOverlay;
+import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,7 +18,7 @@ public class ClientEvents {
   public static class ClientForgeEvents {
 
     @SubscribeEvent
-    public static void onKeyInput(InputEvent.Key Event) {
+    public static void onKeyInput(InputEvent.Key event) {
       if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
         MainConfigScreen.getInstance().open();
       }
@@ -29,11 +29,11 @@ public class ClientEvents {
   public static class ClientModBusEvents {
     //Overlays
     public static void registerGuiOverlays(GuiGraphics graphics, DeltaTracker deltaTracker) {
-      SeasonHUDOverlay.init();
-      SeasonHUDOverlay.HUD_INSTANCE.render(graphics, deltaTracker);
+      SeasonHudOverlay.init();
+      SeasonHudOverlay.HUD_INSTANCE.render(graphics, deltaTracker);
     }
 
-    //Key Bindings
+    // Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
       event.register(KeyBindings.seasonhudOptionsKeyMapping);

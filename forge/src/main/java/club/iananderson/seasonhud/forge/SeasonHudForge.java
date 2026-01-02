@@ -12,10 +12,10 @@ import net.minecraftforge.fml.config.ModConfig;
 
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
-  public SeasonHudForge(FMLJavaModLoadingContext context) {
-    var modEventBus = context.getModEventBus();
-    MinecraftForge.EVENT_BUS.register(this);
+  public SeasonHudForge() {
     Common.init();
+    MinecraftForge.EVENT_BUS.register(this);
+    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     if (Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
       fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT,

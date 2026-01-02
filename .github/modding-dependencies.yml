@@ -115,6 +115,15 @@
     xaeros_minimap_version:
       source: wildcard
 
+# Xaero's Lib
+- repository: https://chocolateminecraft.com/maven
+  groupId: xaero.lib
+  artifactId: xaerolib-common-1.20
+  version: "${xaero_lib_version}"
+  properties:
+    xaero_lib_version:
+      source: version
+
 # Journeymap-API
 - repository: https://jm.gserv.me/repository/maven-public/
   groupId: info.journeymap

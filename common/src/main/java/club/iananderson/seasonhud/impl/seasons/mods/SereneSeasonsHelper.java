@@ -15,20 +15,20 @@ import sereneseasons.api.season.SeasonHelper;
 import sereneseasons.init.ModConfig;
 import sereneseasons.init.ModTags;
 
-public class SereneSeasonsHelper implements ISeasonModHelper {
+public class SereneSeasonsHelper implements SeasonModHelper {
   public SereneSeasonsHelper() {
   }
 
   @Override
-  public Item CALENDAR() {
+  public Item calendar() {
     return SSItems.CALENDAR;
   }
 
   @Override
   public boolean isTropicalSeason(Player player) {
     boolean showTropicalSeasons = SeasonHudClient.getShowTropicalSeason();
-    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(
-        player.level().getBiome(player.getOnPos()));
+    boolean isInTropicalSeason =
+        sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level().getBiome(player.getOnPos()));
 
     return showTropicalSeasons && isInTropicalSeason;
   }
@@ -44,8 +44,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
     if (isTropicalSeason(player)) {
       return currentSeasonState.getTropicalSeason().toString();
-    }
-    else {
+    } else {
       return currentSeasonState.getSubSeason().toString();
     }
   }
@@ -58,8 +57,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
       String currentSubSeason = getCurrentSubSeason(player);
 
       return currentSubSeason.substring(currentSubSeason.length() - 3);
-    }
-    else {
+    } else {
       return currentSeasonState.getSeason().toString();
     }
   }
@@ -67,10 +65,10 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
   @Override
   public long getDate(Player player) {
     ISeasonState currentSeasonState = SeasonHelper.getSeasonState(player.level());
-    long seasonDay = currentSeasonState.getDay(); //Current day out of the year (Default 24 days * 4 = 96 days)
-    long subSeasonDuration = ModConfig.seasons.subSeasonDuration; //In case the default duration is changed
-    long subSeasonDate = (seasonDay % subSeasonDuration) + 1; //Default 8 days in each sub-season (1 week)
-    long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; //Default 24 days in a season (8 days * 3)
+    long seasonDay = currentSeasonState.getDay(); // Current day out of the year (Default 24 days * 4 = 96 days)
+    long subSeasonDuration = ModConfig.seasons.subSeasonDuration; // In case the default duration is changed
+    long subSeasonDate = (seasonDay % subSeasonDuration) + 1; // Default 8 days in each sub-season (1 week)
+    long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; // Default 24 days in a season (8 days * 3)
 
     if (SeasonHudClient.getShowSubSeason()) {
       if (isTropicalSeason(player)) {
@@ -79,8 +77,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
         subSeasonDate = ((seasonDay + (subSeasonDuration * 3)) % (subSeasonDuration * 2)) + 1;
       }
       return subSeasonDate;
-    }
-    else {
+    } else {
       if (isTropicalSeason(player)) {
         // Default 48 days in each tropical season.
         // Starts are "Early Dry" (Summer 1), so need to offset Spring 1 -> Summer 1 (subSeasonDuration * 3)
@@ -95,10 +92,10 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
     int duration = ModConfig.seasons.subSeasonDuration * 3;
 
     if (isTropicalSeason(player)) {
-      duration *= 2; //Tropical seasons are twice as long (Default 48 days)
+      duration *= 2; // Tropical seasons are twice as long (Default 48 days)
     }
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
-      duration /= 3; //3 sub-seasons per season
+      duration /= 3; // 3 sub-seasons per season
     }
 
     return duration;
@@ -113,9 +110,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
     if ((!ModConfig.fertility.seasonalCrops || biome.is(ModTags.Biomes.BLACKLISTED_BIOMES)
         || !ModConfig.seasons.isDimensionWhitelisted(level.dimension()))) {
       return false;
-    }
-
-    else {
+    } else {
       return (biome.is(ModTags.Biomes.INFERTILE_BIOMES));
     }
   }
@@ -129,9 +124,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
     if ((!ModConfig.fertility.seasonalCrops || biome.is(ModTags.Biomes.BLACKLISTED_BIOMES)
         || !ModConfig.seasons.isDimensionWhitelisted(level.dimension()))) {
       return false;
-    }
-
-    else {
+    } else {
       return !biome.value().warmEnoughToRain(pos, level.getSeaLevel());
     }
   }
@@ -149,9 +142,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
     if (!level.canSeeSky(pos.above())) {
       return (pos.getY() > ModConfig.fertility.undergroundFertilityLevel);
-    }
-
-    else {
+    } else {
       return true;
     }
   }
@@ -164,9 +155,7 @@ public class SereneSeasonsHelper implements ISeasonModHelper {
 
     if (alwaysWinterBiome(player)) {
       return Fertility.ALWAYS_WINTER;
-    }
-
-    else if (!undergroundFertile(player)) {
+    } else if (!undergroundFertile(player)) {
       return Fertility.UNDERGROUND;
     }
 

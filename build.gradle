@@ -78,6 +78,12 @@ subprojects {
                 includeGroup "org.ladysnake.cardinal-components-api"
             }
         }
+        maven {
+            url = "https://chocolateminecraft.com/maven"
+            content {
+                includeGroup "xaero.lib"
+            }
+        }
         //Journeymap API
         maven {
             url = "https://jm.gserv.me/repository/maven-public/"

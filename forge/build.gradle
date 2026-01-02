@@ -73,6 +73,7 @@ dependencies {
 
     // Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.minecraft_version}"
+    modCompileOnly "xaero.lib:xaerolib-forge-1.21:${project.xaero_lib_version}"
 
     // JourneyMap
     compileOnly group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
@@ -97,6 +98,7 @@ dependencies {
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.minecraft_version}"
+            modImplementation "xaero.lib:xaerolib-forge-1.21:${project.xaero_lib_version}"
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-forge', version: project.journeymap_api_version, changing: true
