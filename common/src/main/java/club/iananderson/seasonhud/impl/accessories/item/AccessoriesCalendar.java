@@ -20,13 +20,13 @@ public class AccessoriesCalendar implements Accessory {
   }
 
   public static void clientInit() {
-    Item calendar = CommonSeasonHelper.commonSeasons.CALENDAR();
+    Item calendar = CommonSeasonHelper.commonSeasons.calendar();
 
     AccessoriesRendererRegistry.bindItemToRenderer(calendar, Common.location("calendar_renderer"), Renderer::new);
   }
 
   public static void init() {
-    AccessoryRegistry.register(CommonSeasonHelper.commonSeasons.CALENDAR(), new AccessoriesCalendar());
+    AccessoryRegistry.register(CommonSeasonHelper.commonSeasons.calendar(), new AccessoriesCalendar());
   }
 
   public static class Renderer implements SimpleAccessoryRenderer {

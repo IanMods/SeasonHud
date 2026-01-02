@@ -1,12 +1,12 @@
 package club.iananderson.seasonhud.neoforge.platform;
 
-import club.iananderson.seasonhud.platform.services.IPlatformHelper;
+import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import java.util.Optional;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 
-public class NeoForgePlatformHelper implements IPlatformHelper {
+public class NeoForgePlatformHelper implements PlatformHelper {
 
   @Override
   public String getPlatformName() {

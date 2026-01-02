@@ -65,6 +65,7 @@ dependencies {
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21.9") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+    modCompileOnly "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
@@ -137,6 +138,7 @@ dependencies {
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21.9")
+            modImplementation "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
             modImplementation group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true

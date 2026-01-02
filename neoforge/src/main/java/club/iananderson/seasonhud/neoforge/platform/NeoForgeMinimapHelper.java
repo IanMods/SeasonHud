@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.neoforge.platform;
 
-import club.iananderson.seasonhud.platform.services.IMinimapHelper;
+import club.iananderson.seasonhud.platform.services.MinimapHelper;
 
-public class NeoForgeMinimapHelper implements IMinimapHelper {
+public class NeoForgeMinimapHelper implements MinimapHelper {
   @Override
   public boolean hideMapAtlases() {
     return false;

@@ -17,9 +17,11 @@ public class Calendar {
   }
 
   /**
+   * Determines if the player has a calendar in an accessory mod slot.
+   *
    * @param player The player whose Curios/Trinket inventory will be searched.
    * @param item   The item that is being searched for.
-   * @return The int for the Curios/Trinket inventory location
+   * @return true if the player has a calendar in one of their accessory mod slots
    */
   public static boolean findCuriosCalendar(Player player, Item item) {
     Minecraft mc = Minecraft.getInstance();
@@ -43,9 +45,7 @@ public class Calendar {
       if (trinketInventory.isPresent()) {
         curioEquipped = trinketInventory.get().isEquipped(item);
       }
-    }
-
-    else if (Common.accessoriesLoaded()) {
+    } else if (Common.accessoriesLoaded()) {
       Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
       if (accessoriesInventory.isPresent()) {
         curioEquipped = !accessoriesInventory.get().getEquipped(item).isEmpty();
@@ -63,7 +63,7 @@ public class Calendar {
 
   private static boolean calendarFound() {
     Minecraft mc = Minecraft.getInstance();
-    Item calendar = CommonSeasonHelper.commonSeasons.CALENDAR();
+    Item calendar = CommonSeasonHelper.commonSeasons.calendar();
 
     if (!Common.hasCalendarLoaded()) {
       return true;
