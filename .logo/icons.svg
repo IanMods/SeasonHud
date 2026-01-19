@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 4000 4000" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+  style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Seasons">
+        <g id="Winter">
+            <g id="Winter_Inner">
+                <path id="Winter_Inner_Dark"
+                  d="M3432,3732l-150,0l-0,-225l150,-0l-0,-75l75,-0l-0,-150l225,0l-0,150l75,-0l-0,75l150,-0l-0,225l-150,0l-0,75l-75,-0l-0,150l-225,-0l-0,-150l-75,-0l-0,-75Z"
+                  style="fill:#dffcfc;"/>
+              <rect id="Winter_Inner_Medium" x="3432" y="3432" width="375" height="375" style="fill:#eefcfc;"/>
+              <rect id="Winter_Inner_Light" x="3507" y="3507" width="225" height="225" style="fill:#fff;"/>
+            </g>
+          <g id="Winter_Outline">
+                <path id="Winter_Outline_Dark"
+                  d="M3432,3807l-75,0l-0,-75l75,0l-0,75Zm300,75l-0,-75l75,0l-0,75l-75,0Zm150,-150l-0,-225l75,0l-0,225l-75,0Zm-375,150l225,0l-0,75l-225,0l-0,-75Zm300,-75l-0,-75l75,0l-0,75l-75,0Zm-375,0l75,0l-0,75l-75,0l-0,-75Z"
+                  style="fill:#66787d;"/>
+            <path id="Winter_Outline_Light"
+              d="M3357,3507l-0,225l-75,0l-0,-225l75,0Zm-0,0l-0,-75l75,0l-0,75l-75,0Zm375,-150l75,0l-0,75l-75,0l-0,-75Zm-225,0l-0,-75l225,0l-0,75l-225,0Zm300,75l75,0l-0,75l-75,0l-0,-75Zm-375,0l-0,-75l75,0l-0,75l-75,0Z"
+              style="fill:#76888d;"/>
+            </g>
+        </g>
+      <g id="Autumn">
+            <g id="Autumn_Inner">
+                <path id="Autumn_Inner_Dark"
+                  d="M2682,3507l-75,0l-0,-75l75,0l-0,-75l75,0l-0,75l75,0l-0,75l75,0l-0,-150l225,-0l0,300l-225,0l0,225l-300,-0l0,-225l150,0l-0,-75l-75,0l-0,-75Z"
+                  style="fill:#bc5e27;"/>
+              <path id="Autumn_Inner_Medium"
+                d="M2982,3732l-225,0l0,-75l75,0l-0,-75l75,0l-0,-75l75,0l0,225Zm-300,-225l-0,150l-75,0l-0,-150l75,0Zm225,-150l-0,75l-150,0l-0,-75l150,0Z"
+                style="fill:#d8853c;"/>
+              <path id="Autumn_Inner_Light"
+                d="M2757,3507l75,-0l-0,75l-75,0l-0,-75Zm-75,-75l-145,0l-0,-150l145,0l-0,150Zm75,150l-0,75l-150,0l-0,-75l150,0Zm75,-75l-0,-150l75,-0l-0,150l-75,-0Zm-150,-75l75,0l-0,75l-75,0l-0,-75Z"
+                style="fill:#eaaf5d;"/>
+            </g>
+        <g id="Autumn_Outline">
+                <path id="Autumn_Outline_Dark"
+                  d="M2907,3807l-0,-75l75,0l-0,-75l75,0l-0,75l75,0l-0,75l75,0l-0,75l-75,0l-0,75l-75,0l-0,-75l-75,0l-0,-75l-75,0Zm-0,0l-0,75l-300,0l-0,-75l300,0Zm150,-150l-0,-300l75,0l-0,300l-75,0Z"
+                  style="fill:#8c2c15;"/>
+          <path id="Autumn_Outline_Light"
+            d="M2982,3432l-0,-150l75,0l-0,150l-75,0Zm-150,300l-0,-75l75,0l-0,75l-75,0Zm-150,0l-0,75l-150,0l-0,-75l150,0Zm75,0l75,0l-0,75l-75,0l-0,-75Zm-75,-75l-150,0l-0,-75l150,0l-0,75Zm225,-225l-75,0l-0,-150l75,0l-0,150Zm75,75l-75,0l-0,-75l75,0l-0,75Zm-0,75l-0,-75l75,0l-0,75l-75,0Zm-75,75l-0,-75l75,0l-0,75l-75,0Zm-225,0l75,0l-0,75l-75,0l-0,-75Zm375,150l-75,0l-0,-75l75,0l-0,75Zm-0,0l75,0l-0,75l-75,0l-0,-75Zm-525,-375l-0,-150l150,0l-0,75l-75,0l-0,75l-75,0Z"
+            style="fill:#a84f1f;"/>
+            </g>
+        </g>
+      <g id="Summer">
+            <g id="Summer_Inner">
+                <rect id="Summer_Inner_Dark" x="3357" y="2607" width="525" height="525" style="fill:#fee92a;"/>
+              <rect id="Summer_Inner_Medium" x="3432" y="2682" width="375" height="375" style="fill:#ffffaf;"/>
+              <rect id="Summer_Inner_Light" x="3507" y="2757" width="225" height="225" style="fill:#fff;"/>
+            </g>
+        <g id="Summer_Outline">
+                <path id="Summer_Outline_Dark"
+                  d="M3882,2982l-0,-225l75,0l-0,225l-75,0Zm-375,150l-150,0l-0,-150l75,0l-0,75l75,0l-0,75Zm-0,0l225,0l-0,75l-225,0l-0,-75Zm225,0l-0,-75l75,0l-0,-75l75,0l-0,150l-150,0Z"
+                  style="fill:#a85900;"/>
+          <path id="Summer_Outline_Light"
+            d="M3507,2607l-0,-75l225,0l-0,75l-225,0Zm-150,150l-0,-150l150,0l-0,75l-75,0l-0,75l-75,0Zm375,-150l150,0l-0,150l-75,0l-0,-75l-75,0l-0,-75Zm-375,150l-0,225l-75,0l-0,-225l75,0Z"
+            style="fill:#c88105;"/>
+            </g>
+        </g>
+      <g id="Spring">
+            <g id="Spring_Inner">
+                <path id="Spring_Inner_Light"
+                  d="M2682,3057l-75,0l0,-375l75,0l0,-75l375,0l0,75l75,0l0,375l-75,0l0,75l-375,0l0,-75Z"
+                  style="fill:#ffa3bb;"/>
+              <rect id="Spring_Inner_Dark" x="2682" y="2685" width="375" height="372" style="fill:#e56b9b;"/>
+              <g id="Spring_Center">
+                    <rect id="Spring_Center_Light" x="2757" y="2757" width="225" height="225" style="fill:#ffe59c;"/>
+                <path id="Spring_Center_Medium" d="M2982,2982l-225,0l0,-75l150,0l-0,-150l75,0l0,225Z"
+                  style="fill:#feb432;"/>
+                <rect id="Spring_Center_Dark" x="2907" y="2907" width="75" height="75" style="fill:#d4641f;"/>
+                </g>
+            </g>
+        <g id="Spring_Outline">
+                <path id="Spring_Outline_Dark"
+                  d="M2757,3132l-75,0l-0,-75l-75,0l-0,-75l150,0l-0,150Zm375,-150l-0,-225l75,0l-0,225l-75,0Zm-150,150l-0,-150l150,0l-0,75l-75,0l-0,75l-75,0Zm-225,0l225,0l-0,75l-225,0l-0,-75Z"
+                  style="fill:#721864;"/>
+          <path id="Spring_Outline_Light"
+            d="M2607,2757l-0,-75l75,0l-0,-75l75,0l-0,150l-150,0Zm-0,0l-0,225l-75,0l-0,-225l75,0Zm150,-150l-0,-75l225,0l-0,75l-225,0Zm225,0l75,0l-0,75l75,0l-0,75l-150,0l-0,-150Z"
+            style="fill:#a32c82;"/>
+            </g>
+        </g>
+    </g>
+</svg>
