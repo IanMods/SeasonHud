@@ -5,6 +5,7 @@ import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
 import com.demonwav.mcdev.annotations.Translatable;
 import com.teamtea.eclipticseasons.config.CommonConfig.Season;
+import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,7 @@ public class Common {
   private static boolean fabricSeasonsExtrasLoaded;
   private static boolean terrafirmacraftLoaded;
   private static boolean eclipticSeasonsLoaded;
+  private static boolean homeostaticSeasonsLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
@@ -48,6 +50,7 @@ public class Common {
     fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded("seasonsextras");
     terrafirmacraftLoaded = Services.PLATFORM.isModLoaded("tfc");
     eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded("eclipticseasons");
+    homeostaticSeasonsLoaded = Services.PLATFORM.isModLoaded("homeostaticseasons");
     curiosLoaded = Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
@@ -77,6 +80,10 @@ public class Common {
     return Common.eclipticSeasonsLoaded;
   }
 
+  public static boolean homeostaticSeasonsLoaded() {
+    return Common.homeostaticSeasonsLoaded;
+  }
+
   public static boolean curiosLoaded() {
     return Common.curiosLoaded;
   }
@@ -94,7 +101,8 @@ public class Common {
   }
 
   public static boolean hasSubSeasons() {
-    return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
+    return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded()
+        || Common.homeostaticSeasonsLoaded();
   }
 
   public static boolean clientSideConfig() {
@@ -175,6 +183,9 @@ public class Common {
       List<? extends String> validDimensions = Season.validDimensions.get();
 
       return !isDimensionValid(validDimensions, currentDim);
+    }
+    if (Common.homeostaticSeasonsLoaded()) {
+      return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
     } else {
       return false;
     }

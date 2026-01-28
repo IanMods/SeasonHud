@@ -3,6 +3,7 @@ package club.iananderson.seasonhud.impl.seasons;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.seasons.mods.EclipticSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
+import club.iananderson.seasonhud.impl.seasons.mods.HomeostaticSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SeasonModHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.TerrafirmaCraftHelper;
@@ -17,6 +18,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
   public static SereneSeasonsHelper sereneSeasons = new SereneSeasonsHelper();
   public static TerrafirmaCraftHelper terrafirmaCraft = new TerrafirmaCraftHelper();
   public static EclipticSeasonsHelper eclipticSeasons = new EclipticSeasonsHelper();
+  public static HomeostaticSeasonsHelper homeostaticSeasons = new HomeostaticSeasonsHelper();
 
   private CommonSeasonHelper() {
   }
@@ -58,6 +60,11 @@ public class CommonSeasonHelper implements SeasonModHelper {
     if (Common.eclipticSeasonsLoaded()) {
       subSeason = eclipticSeasons.getCurrentSubSeason(player);
     }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      subSeason = homeostaticSeasons.getCurrentSubSeason(player);
+    }
+
     return subSeason;
   }
 
@@ -79,6 +86,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       season = eclipticSeasons.getCurrentSeason(player);
+    }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.getCurrentSeason(player);
     }
 
     return season;
@@ -104,6 +115,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
       date = eclipticSeasons.getDate(player);
     }
 
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.getDate(player);
+    }
+
     return date;
   }
 
@@ -127,6 +142,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
       duration = eclipticSeasons.seasonDuration(player);
     }
 
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.seasonDuration(player);
+    }
+
     return duration;
   }
 
@@ -148,6 +167,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       calendar = eclipticSeasons.calendar();
+    }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      calendar = homeostaticSeasons.calendar();
     }
 
     return calendar;
@@ -178,6 +201,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.infertileBiome(player);
+    }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.infertileBiome(player);
     } else {
       return false;
     }
@@ -199,6 +226,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.alwaysWinterBiome(player);
+    }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.alwaysWinterBiome(player);
     } else {
       return false;
     }
@@ -220,6 +251,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.undergroundFertile(player);
+    }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.undergroundFertile(player);
     } else {
       return true;
     }
@@ -241,6 +276,10 @@ public class CommonSeasonHelper implements SeasonModHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return eclipticSeasons.fertility(player);
+    }
+
+    if (Common.homeostaticSeasonsLoaded()) {
+      return homeostaticSeasons.fertility(player);
     } else {
       return Fertility.FERTILE;
     }

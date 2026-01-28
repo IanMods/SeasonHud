@@ -158,6 +158,14 @@ subprojects {
                 includeGroup "top.theillusivec4.curios"
             }
         }
+        maven {
+            url 'https://raw.githubusercontent.com/wendall911/maven/main/'
+            content {
+                includeGroup "com.github.wendall911.climatesettings"
+                includeGroup "com.github.wendall911.homeostaticseasons"
+                includeGroup "technology.roughness.whitenoise"
+            }
+        }
     }
 
     loom {

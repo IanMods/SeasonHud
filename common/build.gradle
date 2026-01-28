@@ -21,6 +21,9 @@ dependencies {
     modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+    modCompileOnly group: 'com.github.wendall911.climatesettings', name: "climatesettings-${project.minecraft_version}-common", version: "${project.climatesettings_version}"
+    modCompileOnly group: 'com.github.wendall911.homeostaticseasons', name: "homeostaticseasons-${project.minecraft_version}-common", version: "${project.homeostatic_seasons_version}"
+    modCompileOnly group: 'technology.roughness.whitenoise', name: "whitenoise-${project.minecraft_version}-common", version: "${project.whitenoise_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually  loaded.

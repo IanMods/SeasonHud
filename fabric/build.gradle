@@ -61,6 +61,9 @@ dependencies {
     modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
     modCompileOnly("net.jodah:typetools:0.6.3")
 
+    // Homeostatic Seasons
+    //modCompileOnly "maven.modrinth:homeostatic-seasons:${project.homeostatic_seasons_version}-fabric"
+
     // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
@@ -128,6 +131,9 @@ dependencies {
         case "fabric+extra":
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
             modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
+            break
+        case "homeostatic":
+            modImplementation "maven.modrinth:homeostatic-seasons:${project.minecraft_version}-${project.homeostatic_seasons_version}-fabric"
             break
         default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene or fabric")
     }
