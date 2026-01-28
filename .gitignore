@@ -30,3 +30,4 @@ build
 run
 /dist/
 /update-seasonhud-deps.ps1
+!/.idea/icon.svg
