@@ -1,0 +1,271 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+base {
+    archivesName = "${mod_id}-${project.name}-${minecraft_version}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+    //withSourcesJar()
+    //withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+    // CurseMaven
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+    // Modrinth Maven
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Sponge'
+                url = 'https://repo.spongepowered.org/repository/maven-public'
+            }
+        }
+        filter { includeGroupAndSubgroups('org.spongepowered') }
+    }
+
+    // Parchment mappings
+    maven {
+        url = "https://maven.parchmentmc.org"
+        content {
+            includeGroup "org.parchmentmc.data"
+        }
+    }
+    // Cloth Config, REI
+    maven {
+        url = "https://maven.shedaniel.me/"
+        content {
+            includeGroup "me.shedaniel"
+            includeGroup "dev.architectury"
+            includeGroup "me.shedaniel.cloth"
+        }
+    }
+    // JEI
+    maven {
+        url = "https://maven.blamejared.com/"
+        content {
+            includeGroup "mezz.jei"
+        }
+    }
+    // Cardinal Components
+    maven {
+        url = "https://maven.ladysnake.org/releases"
+        content {
+            includeGroup "dev.onyxstudios.cardinal-components-api"
+            includeGroup "org.ladysnake.cardinal-components-api"
+        }
+    }
+    maven {
+        url = "https://chocolateminecraft.com/maven"
+        content {
+            includeGroup "xaero.lib"
+        }
+    }
+    //Journeymap API
+    maven {
+        url = "https://jm.gserv.me/repository/maven-public/"
+        content {
+            includeGroup "info.journeymap"
+        }
+    }
+    // Curios
+    maven {
+        url = "https://maven.theillusivec4.top/"
+        content {
+            includeGroup "top.theillusivec4.curios"
+        }
+    }
+    // Mod Menu, Trinkets
+    maven {
+        url = "https://maven.terraformersmc.com/releases/"
+        content {
+            includeGroup "com.terraformersmc"
+            includeGroup "dev.emi"
+        }
+    }
+    // Accessories
+    maven {
+        url = "https://maven.wispforest.io/releases"
+        content {
+            includeGroup "io.wispforest"
+            includeGroup "io.wispforest.endec"
+        }
+    }
+    // Accessories Dependencies
+    maven {
+        url = "https://maven.su5ed.dev/releases"
+        content {
+            includeGroup "dev.su5ed.sinytra.fabric-api"
+        }
+    }
+    // Forge Config API Port
+    maven {
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+        content {
+            includeGroup "fuzs.forgeconfigapiport"
+        }
+    }
+    // DevAuth
+    maven {
+        url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
+        content {
+            includeGroup "me.djtheredstoner"
+        }
+    }
+    // FTB
+    maven {
+        url = "https://maven.ftb.dev/releases"
+        content {
+            includeGroup "dev.ftb.mods"
+        }
+    }
+    //Forge
+    maven {
+        url = 'https://maven.minecraftforge.net'
+    }
+
+    //Mekanism backup maven
+    maven {
+        url 'https://modmaven.dev/'
+    }
+}
+
+dependencies {
+    implementation 'com.demonwav.mcdev:annotations:2.1.0'
+}
+
+// Declare capabilities on the outgoing configurations.
+// Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
+//['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
+    configurations."$variant".outgoing {
+        capability("$group:${project.name}:$version")
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
+        capability("$group:$mod_id:$version")
+    }
+    publishing.publications.configureEach {
+        suppressPomMetadataWarningsFor(variant)
+    }
+}
+
+//sourcesJar {
+//    from(rootProject.file('LICENSE')) {
+//        rename { "${it}_${mod_name}" }
+//    }
+//}
+
+jar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${mod_name}" }
+    }
+
+    manifest {
+        attributes([
+                'Specification-Title'   : mod_name,
+                'Specification-Vendor'  : mod_author,
+                'Specification-Version' : project.jar.archiveVersion,
+                'Implementation-Title'  : project.name,
+                'Implementation-Version': project.jar.archiveVersion,
+                'Implementation-Vendor' : mod_author,
+                'Built-On-Minecraft'    : minecraft_version
+        ])
+    }
+}
+
+processResources {
+    def expandProps = ["version"                   : mod_version,
+                       "group"                     : project.group, //Else we target the task's group.
+                       "minecraft_version"         : minecraft_version,
+                       "forge_version"             : forge_version,
+                       "forge_loader_version_range": forge_loader_version_range,
+                       "forge_version_range"       : forge_version_range,
+                       "minecraft_version_range"   : minecraft_version_range,
+                       "fabric_api_version"        : fabric_api_version,
+                       "fabric_loader_version"     : fabric_loader_version,
+                       "fabric_version_range"      : fabric_version_range,
+                       "mod_name"                  : mod_name,
+                       "mod_author"                : mod_author,
+                       "mod_id"                    : mod_id,
+                       "license"                   : license,
+                       "description"               : description,
+                       "repoURL"                   : repoURL,
+                       "issueTrackerURL"           : issueTrackerURL,
+                       "credits"                   : credits,
+                       "java_version"              : java_version]
+
+    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
+        expand project.properties
+    }
+    inputs.properties(expandProps)
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId base.archivesName.get()
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url System.getenv('local_maven_url')
+        }
+    }
+}
+
+tasks.register('latestChangelog') {
+    group = "changelog"
+
+    String fullChangelogText = file("CHANGELOG.md").getText()
+
+    int firstHeading = fullChangelogText.indexOf("## [")
+    int nextHeading = fullChangelogText.indexOf("## [", firstHeading + 1)
+
+    String latestChangelogText = fullChangelogText.substring(firstHeading, nextHeading)
+
+    outputs.upToDateWhen {
+        if (file("LATEST_CHANGELOG.md").exists()) {
+            return latestChangelogText == file("LATEST_CHANGELOG.md").getText()
+        } else return false
+    }
+
+    outputs.file file("LATEST_CHANGELOG.md")
+    doLast {
+        def latestChangelog = file("LATEST_CHANGELOG.md")
+        latestChangelog.text = latestChangelogText
+        printf(latestChangelog.text)
+    }
+}
+
+tasks.register('publishAll') {
+    group = "upload"
+
+    dependsOn("latestChangelog")
+    dependsOn("fabric:publishFabric")
+    dependsOn("forge:publishForge")
+}
