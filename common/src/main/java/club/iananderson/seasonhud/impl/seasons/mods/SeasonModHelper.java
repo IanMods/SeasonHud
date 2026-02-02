@@ -6,6 +6,8 @@ import net.minecraft.world.item.Item;
 
 public interface SeasonModHelper {
 
+  String seasonModId();
+
   /**
    * The calendar item the season mod uses (if available).
    *

@@ -31,4 +31,9 @@ public class FabricMinimapHelper implements MinimapHelper {
       return false;
     }
   }
+
+  @Override
+  public boolean hideJourneyMap() {
+    return false;
+  }
 }

@@ -1,56 +1,43 @@
 plugins {
-    id 'com.gradleup.shadow'
+    id 'multiloader-loader'
+    id 'fabric-loom'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
 }
 
 loom {
+    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
+        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
+    }
+    mixin {
+        defaultRefmapName.set("${mod_id}.refmap.json")
+    }
     runs {
         client {
             client()
             setConfigName("Fabric Client")
             ideConfigGenerated(true)
-            runDir("run-client")
+            runDir("run")
         }
         server {
             server()
             setConfigName("Fabric Server")
             ideConfigGenerated(true)
-            runDir("run-server")
+            runDir("run")
         }
     }
 }
 
-architectury {
-    platformSetupLoomIde()
-    fabric()
-}
-
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
-
-    // Files in this configuration will be bundled into your mod using the Shadow plugin.
-    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-}
-
 dependencies {
-    modImplementation("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
-
-    // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
-
-    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
+    }
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+    implementation project(":common")
 
     // Fabric Seasons + Extras
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
@@ -68,7 +55,7 @@ dependencies {
     modCompileOnly "xaero.lib:xaerolib-fabric-1.20:${project.xaero_lib_version}"
 
     // JourneyMap
-    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version, changing: true
     modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -179,15 +166,6 @@ dependencies {
     }
 }
 
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
-}
-
-remapJar {
-    inputFile.set shadowJar.archiveFile
-}
-
 modrinth {
     debugMode = false
     token = System.getenv("MODRINTH_TOKEN")
@@ -195,7 +173,7 @@ modrinth {
     versionNumber = minecraft_version + "-" + version
     versionName = base.archivesName.get() + "-" + version
     versionType = "release"
-    uploadFile = remapJar
+    uploadFile = jar
 
     List<String> mcVersions = modrinth_gameVersions.split(",")
     gameVersions = mcVersions
@@ -224,7 +202,7 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
     disableVersionDetection()
     apiToken = System.getenv("CURSEFORGE_TOKEN")
 
-    def mainFile = upload(curseforge_fabric_id, remapJar)
+    def mainFile = upload(curseforge_fabric_id, jar)
     mainFile.changelogType = "markdown"
     mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
     mainFile.releaseType = "release"

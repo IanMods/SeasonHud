@@ -1,57 +1,56 @@
 plugins {
-    id 'com.gradleup.shadow'
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev.legacyforge'
     id 'net.darkhax.curseforgegradle'
     id "com.modrinth.minotaur"
 }
 
-loom {
-    forge {
-        mixinConfig "seasonhud.mixins.json"
-    }
+mixin {
+    add(sourceSets.main, "${mod_id}.refmap.json")
 
+    config("${mod_id}.mixins.json")
+    config("${mod_id}.forge.mixins.json")
+}
+
+legacyForge {
+    version = forge_version
+
+    validateAccessTransformers = true
+
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
     runs {
         client {
             client()
-            setConfigName("Forge Client")
-            ideConfigGenerated(true)
-            runDir("run-client")
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
         server {
             server()
-            setConfigName("Forge Server")
-            ideConfigGenerated(true)
-            runDir("run-server")
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
         }
     }
 }
 
-architectury {
-    platformSetupLoomIde()
-    forge()
-}
+sourceSets.main.resources.srcDir 'src/generated/resources'
 
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
-
-    // Files in this configuration will be bundled into your mod using the Shadow plugin.
-    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-}
 
 dependencies {
-    forge "net.minecraftforge:forge:${project.forge_version}"
-
-    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':common', configuration: 'transformProductionForge')
+    compileOnly project(":common")
+    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
@@ -93,31 +92,31 @@ dependencies {
     modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
     // Development QOL
-    modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
-    // modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_forge}")
+    implementation("me.djtheredstoner:DevAuth-forge-latest:${devauth_version}")
+    // implementation("maven.modrinth:text-animator:${project.text_animator_version_forge}")
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
+            modImplementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
             modImplementation "xaero.lib:xaerolib-forge-1.20:${project.xaero_lib_version}"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+            modImplementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
             break
         case "ftb":
-            modLocalRuntime "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
-            modLocalRuntime "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
-            modLocalRuntime "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
-            modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+forge"
+            modImplementation "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+            modImplementation "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+            modImplementation "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
+            implementation "maven.modrinth:architectury-api:${project.architectury_version}+forge"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
         case "atlas":
-            modLocalRuntime "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
-            modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
-            modLocalRuntime "maven.modrinth:moonlight:1.20-${project.moonlight_version_forge}"
+            modImplementation "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
+            modImplementation("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
+            modImplementation "maven.modrinth:moonlight:1.20-${project.moonlight_version_forge}"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
@@ -132,8 +131,8 @@ dependencies {
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
             implementation("io.github.llamalad7:mixinextras-forge:0.3.5")
-            modLocalRuntime("io.wispforest:accessories-neoforge:${project.accessories_version}")
-            modLocalRuntime("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}") {
+            modImplementation("io.wispforest:accessories-neoforge:${project.accessories_version}")
+            modImplementation("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}") {
                 exclude(group: "fabric-api")
             }
 
@@ -163,8 +162,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_forge.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
+            modImplementation "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
+            modImplementation "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
@@ -180,14 +179,13 @@ dependencies {
     }
 }
 
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
+jar {
+    finalizedBy('reobfJar')
+    manifest.attributes([
+            "MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
+    ])
 }
 
-remapJar {
-    inputFile.set shadowJar.archiveFile
-}
 
 modrinth {
     debugMode = false
@@ -196,7 +194,7 @@ modrinth {
     versionNumber = minecraft_version + "-" + version
     versionName = base.archivesName.get() + "-" + mod_version
     versionType = "release"
-    uploadFile = remapJar
+    uploadFile = jar
 
     List<String> mcVersions = modrinth_gameVersions.split(",")
     gameVersions = mcVersions
@@ -223,7 +221,7 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
     disableVersionDetection()
     apiToken = System.getenv("CURSEFORGE_TOKEN")
 
-    def mainFile = upload(curseforge_forge_id, remapJar)
+    def mainFile = upload(curseforge_forge_id, jar)
     mainFile.changelogType = "markdown"
     mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
     mainFile.releaseType = "release"

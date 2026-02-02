@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.fabric.client.overlays;
 
 import club.iananderson.seasonhud.client.overlays.JourneyMapCommon;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
+import club.iananderson.seasonhud.util.ModIds.MinimapMods;
 import journeymap.client.render.draw.DrawUtil;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
@@ -18,7 +18,7 @@ public class JourneyMap implements HudRenderCallback {
 
   @Override
   public void onHudRender(GuiGraphics graphics, float alpha) {
-    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(Minimap.JOURNEYMAP)) {
+    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.journeymap)) {
       JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
 
       graphics.pose().pushPose();

@@ -3,9 +3,9 @@ package club.iananderson.seasonhud;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
+import club.iananderson.seasonhud.util.ModIds.AccessoryMods;
+import club.iananderson.seasonhud.util.ModIds.SeasonMods;
 import com.demonwav.mcdev.annotations.Translatable;
-import com.teamtea.eclipticseasons.config.CommonConfig.Season;
-import io.github.lucaargolo.seasons.FabricSeasons;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
@@ -20,7 +20,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sereneseasons.init.ModConfig;
 
 public class Common {
   public static final String MOD_ID = "seasonhud";
@@ -43,14 +42,14 @@ public class Common {
 
   public static void init() {
     platformName = Services.PLATFORM.getPlatformName();
-    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded("sereneseasons");
-    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded("seasons");
-    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded("seasonsextras");
-    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded("tfc");
-    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded("eclipticseasons");
-    curiosLoaded = Services.PLATFORM.isModLoaded("curios");
-    trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
-    accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
+    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.sereneSeasons);
+    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasons);
+    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasonsExtras);
+    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded(SeasonMods.terrafirmacraft);
+    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.eclipticSeasons);
+    curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.curios);
+    trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.trinkets);
+    accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.accessories);
   }
 
   public static String platformName() {
@@ -166,15 +165,13 @@ public class Common {
     ResourceKey<Level> currentDim = Objects.requireNonNull(mc.level).dimension();
 
     if (Common.fabricSeasonsLoaded()) {
-      return !FabricSeasons.CONFIG.isValidInDimension(currentDim);
+      return !Services.SEASON.validFabricSeasonsDim(currentDim);
     }
     if (Common.sereneSeasonsLoaded()) {
-      return !ModConfig.seasons.isDimensionWhitelisted(currentDim);
+      return !Services.SEASON.validSereneSeasonsDim(currentDim);
     }
     if (Common.eclipticSeasonsLoaded()) {
-      List<? extends String> validDimensions = Season.validDimensions.get();
-
-      return !isDimensionValid(validDimensions, currentDim);
+      return !Services.SEASON.validEclipticSeasonsDim(currentDim);
     } else {
       return false;
     }

@@ -20,6 +20,11 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
+  public String seasonModId() {
+    return "sereneseasons";
+  }
+
+  @Override
   public Item calendar() {
     return SSItems.CALENDAR;
   }

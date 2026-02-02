@@ -131,6 +131,29 @@ public class CommonSeasonHelper implements SeasonModHelper {
   }
 
   @Override
+  public String seasonModId() {
+    String modId = "";
+
+    if (Common.fabricSeasonsLoaded()) {
+      modId = fabricSeasons.seasonModId();
+    }
+
+    if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
+      modId = sereneSeasons.seasonModId();
+    }
+
+    if (Common.terrafirmacraftLoaded()) {
+      modId = terrafirmaCraft.seasonModId();
+    }
+
+    if (Common.eclipticSeasonsLoaded()) {
+      modId = eclipticSeasons.seasonModId();
+    }
+
+    return modId;
+  }
+
+  @Override
   public Item calendar() {
     Item calendar = null;
 

@@ -78,6 +78,11 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
   }
 
   @Override
+  public String seasonModId() {
+    return "tfc";
+  }
+
+  @Override
   public Item calendar() {
     return null;
   }

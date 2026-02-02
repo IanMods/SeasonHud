@@ -3,9 +3,8 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.seasons.Fertility;
+import club.iananderson.seasonhud.platform.Services;
 import io.github.lucaargolo.seasons.FabricSeasons;
-import io.github.lucaargolo.seasons.utils.Season;
-import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.time.LocalDateTime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -15,12 +14,13 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
+  public String seasonModId() {
+    return "seasons";
+  }
+
+  @Override
   public Item calendar() {
-    if (Common.fabricSeasonsLoaded() && Common.hasCalendarLoaded()) {
-      return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
-    } else {
-      return null;
-    }
+    return Services.SEASON.fabricSeasonsCalendar();
   }
 
   @Override
@@ -39,31 +39,19 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
   @Override
   public String getCurrentSubSeason(Player player) {
-    Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
-
-    if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
-      return "Autumn";
-    } else {
-      return currentSeasonState.toString();
-    }
+    return Services.SEASON.currentFabricSeason(player);
   }
 
   @Override
   public String getCurrentSeason(Player player) {
-    Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
-
-    if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
-      return "Autumn";
-    } else {
-      return currentSeasonState.toString();
-    }
+    return Services.SEASON.currentFabricSeason(player);
   }
 
   @Override
   public long getDate(Player player) {
     long dayLength = SeasonHudServer.getDayLength();
-    int seasonLength = FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
-    long timeToNextSeason = FabricSeasons.getTimeToNextSeason(player.level());
+    int seasonLength = Services.SEASON.currentFabricSeasonLength(player);
+    long timeToNextSeason = Services.SEASON.timeToNextFabricSeason(player);
 
     // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
     if (isSeasonTiedWithSystemTime()) {
@@ -76,7 +64,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   @Override
   public int seasonDuration(Player player) {
     int dayLength = SeasonHudServer.getDayLength();
-    int seasonLength = FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
+    int seasonLength = Services.SEASON.currentFabricSeasonLength(player);
 
     return seasonLength / dayLength;
   }

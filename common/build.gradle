@@ -1,21 +1,35 @@
-architectury {
-    common enabled_platforms.split(',')
+plugins {
+    id 'multiloader-common'
+    id 'net.neoforged.moddev.legacyforge'
+}
+
+legacyForge {
+    mcpVersion = minecraft_version
+    if (file("src/main/resources/META-INF/accesstransformer.cfg").exists()) {
+        accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
 }
 
 dependencies {
-    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
-    // which get remapped to the correct annotations on each platform.
-    // Do NOT use other classes from Fabric Loader.
-    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5")
+
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+    implementation "org.ow2.asm:asm-tree:9.5"
+    implementation "org.ow2.asm:asm-commons:9.5"
+    implementation "org.ow2.asm:asm-util:9.5"
 
     // Config Mod
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
 
     //Season Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-common:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-common:${project.glitchcore_version}"
     modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
     modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
@@ -25,15 +39,30 @@ dependencies {
     // Not used in common unless they are actually  loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
     modCompileOnly "xaero.lib:xaerolib-common-1.20:${project.xaero_lib_version}"
-    modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
-    modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
-    modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"
+    modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
+    modApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version, changing: true
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
-    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
+    compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
 
     // Accessory Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
-    modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
-    modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
+    compileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
+}
+
+configurations {
+    commonJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonResources {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    commonJava sourceSets.main.java.sourceDirectories.singleFile
+    commonResources sourceSets.main.resources.sourceDirectories.singleFile
 }

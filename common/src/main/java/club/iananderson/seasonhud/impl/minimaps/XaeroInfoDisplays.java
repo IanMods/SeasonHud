@@ -2,14 +2,14 @@ package club.iananderson.seasonhud.impl.minimaps;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.util.ModIds.MinimapMods;
 import net.minecraft.client.Minecraft;
 import xaero.hud.minimap.info.InfoDisplay;
 import xaero.hud.minimap.info.InfoDisplay.Builder;
-import xaero.hud.minimap.info.codec.InfoDisplayCommonStateCodecs;
 import xaero.hud.minimap.info.widget.InfoDisplayCommonWidgetFactories;
+import xaero.lib.common.config.option.value.io.serialization.BuiltInConfigValueIOCodecs;
 
 public class XaeroInfoDisplays {
   public static final Builder<Boolean> SEASON_INFO_BUILDER;
@@ -22,12 +22,11 @@ public class XaeroInfoDisplays {
 
     SEASON_INFO_BUILDER = builder.setId("season")
         .setName(Common.translatedText("xaerominimap.seasonhud.infodisplay.season"))
-        .setDefaultState(true)
-        .setCodec(InfoDisplayCommonStateCodecs.BOOLEAN)
+        .setDefaultState(true).setCodec(BuiltInConfigValueIOCodecs.BOOLEAN)
         .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)
         .setCompiler((displayInfo, compiler, session, availableWidth, playerPos) -> {
-          if ((Boolean) displayInfo.getState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
-              Minimap.XAERO) && mc.level != null) {
+          if (displayInfo.getEffectiveState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
+              MinimapMods.xaeroMinimap) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getHudText());
 
             if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {

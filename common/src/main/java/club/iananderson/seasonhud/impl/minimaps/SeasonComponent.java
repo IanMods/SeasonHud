@@ -2,9 +2,9 @@ package club.iananderson.seasonhud.impl.minimaps;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
 import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
 import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.util.ModIds.MinimapMods;
 import dev.ftb.mods.ftbchunks.api.FTBChunksAPI;
 import dev.ftb.mods.ftbchunks.api.client.FTBChunksClientAPI;
 import dev.ftb.mods.ftbchunks.api.client.minimap.MinimapContext;
@@ -62,6 +62,6 @@ public class SeasonComponent implements MinimapInfoComponent {
 
   @Override
   public boolean shouldRender(MinimapContext context) {
-    return CurrentMinimap.shouldDrawMinimapHud(Minimap.FTB_CHUNKS);
+    return CurrentMinimap.shouldDrawMinimapHud(MinimapMods.ftbChunks);
   }
 }

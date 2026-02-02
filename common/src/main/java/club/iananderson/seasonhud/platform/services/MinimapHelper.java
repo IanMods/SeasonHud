@@ -7,4 +7,6 @@ public interface MinimapHelper {
    * @return If the MapAtlases minimap is not displayed
    */
   boolean hideMapAtlases();
+
+  boolean hideJourneyMap();
 }

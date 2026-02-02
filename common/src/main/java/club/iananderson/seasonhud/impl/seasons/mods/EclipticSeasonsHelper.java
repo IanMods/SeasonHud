@@ -19,6 +19,11 @@ import net.minecraft.world.level.Level;
 
 public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
+  public String seasonModId() {
+    return "eclipticseasons";
+  }
+
+  @Override
   public Item calendar() {
     if (Common.eclipticSeasonsLoaded()) {
       return BuiltInRegistries.ITEM.get(new ResourceLocation("eclipticseasons", "calendar"));

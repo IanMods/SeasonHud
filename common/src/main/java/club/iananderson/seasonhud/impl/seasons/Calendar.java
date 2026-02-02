@@ -2,16 +2,12 @@ package club.iananderson.seasonhud.impl.seasons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudServer;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
+import club.iananderson.seasonhud.platform.Services;
 import io.wispforest.accessories.api.AccessoriesCapability;
-import java.util.List;
 import java.util.Optional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotResult;
 
 public class Calendar {
   private Calendar() {
@@ -33,16 +29,11 @@ public class Calendar {
     }
 
     if (Common.curiosLoaded() && !Common.accessoriesLoaded()) {
-      List<SlotResult> curiosInventory = CuriosApi.getCuriosHelper().findCurios(player, item);
-      curioEquipped = !curiosInventory.isEmpty();
+      curioEquipped = Services.ACCESSORY.curiosEquiped(player, item);
     }
 
     if (Common.trinketsLoaded() && !Common.accessoriesLoaded()) {
-      Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
-
-      if (trinketInventory.isPresent()) {
-        curioEquipped = trinketInventory.get().isEquipped(item);
-      }
+      curioEquipped = Services.ACCESSORY.trinketEquiped(player, item);
     } else if (Common.accessoriesLoaded()) {
       Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
       if (accessoriesInventory.isPresent()) {
