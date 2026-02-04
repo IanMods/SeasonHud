@@ -5,51 +5,51 @@ import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
+import java.util.Locale;
 import java.util.Map;
 import net.minecraft.network.chat.Component;
 
 @SuppressWarnings("checkstyle:AvoidEscapedUnicodeCharacters")
 public enum Seasons {
-  SPRING(0, "desc.seasonhud.season.spring", "spring", "\uEA00", Client.DEFAULT_SPRING_COLOR,
-      SeasonHudClient.getSpringColor(), Rgb.seasonMap(SeasonHudClient.getSpringColor())),
+  SPRING(0, "desc.seasonhud.season.spring", "\uEA00", Client.DEFAULT_SPRING_COLOR, SeasonHudClient.getSpringColor(),
+      Rgb.seasonMap(SeasonHudClient.getSpringColor())),
 
-  SUMMER(1, "desc.seasonhud.season.summer", "summer", "\uEA01", Client.DEFAULT_SUMMER_COLOR,
+  SUMMER(1, "desc.seasonhud.season.summer", "\uEA01", Client.DEFAULT_SUMMER_COLOR,
       SeasonHudClient.getSummerColor(), Rgb.seasonMap(SeasonHudClient.getSummerColor())),
 
-  AUTUMN(2, "desc.seasonhud.season.autumn", "autumn", "\uEA02", Client.DEFAULT_AUTUMN_COLOR,
+  AUTUMN(2, "desc.seasonhud.season.autumn", "\uEA02", Client.DEFAULT_AUTUMN_COLOR,
       SeasonHudClient.getAutumnColor(), Rgb.seasonMap(SeasonHudClient.getAutumnColor())),
 
-  WINTER(3, "desc.seasonhud.season.winter", "winter", "\uEA03", Client.DEFAULT_WINTER_COLOR,
+  WINTER(3, "desc.seasonhud.season.winter", "\uEA03", Client.DEFAULT_WINTER_COLOR,
       SeasonHudClient.getWinterColor(), Rgb.seasonMap(SeasonHudClient.getWinterColor())),
 
-  DRY(4, "desc.seasonhud.season.dry", "dry", "\uEA04", Client.DEFAULT_DRY_COLOR, SeasonHudClient.getDryColor(),
+  DRY(4, "desc.seasonhud.season.dry", "\uEA04", Client.DEFAULT_DRY_COLOR, SeasonHudClient.getDryColor(),
       Rgb.seasonMap(SeasonHudClient.getDryColor())),
 
-  WET(5, "desc.seasonhud.season.wet", "wet", "\uEA05", Client.DEFAULT_WET_COLOR, SeasonHudClient.getWetColor(),
+  WET(5, "desc.seasonhud.season.wet", "\uEA05", Client.DEFAULT_WET_COLOR, SeasonHudClient.getWetColor(),
       Rgb.seasonMap(SeasonHudClient.getWetColor())),
 
-  NULL(100, "desc.seasonhud.season.null", "null", "\uEA99", 16777215, 16777215, Rgb.seasonMap(16777215));
+  NULL(100, "desc.seasonhud.season.null", "\uEA99", 16777215, 16777215, Rgb.seasonMap(16777215));
 
   public static final EnumSet<Seasons> SEASONS_ENUM_LIST = EnumSet.allOf(Seasons.class);
   private final int id;
   private final String key;
-  private final String seasonFileName;
   private final String seasonIconChar;
   private final int defaultColor;
   private final Map<String, Integer> rgbMap;
-  private final Component seasonName;
+  private final String seasonNameSerilized;
+  private final Component seasonNameTranslated;
   private int seasonColor;
 
-  Seasons(int id, String key, String fileName, String iconChar, int defaultColor, int seasonColor,
-      Map<String, Integer> rgbMap) {
+  Seasons(int id, String key, String iconChar, int defaultColor, int seasonColor, Map<String, Integer> rgbMap) {
     this.id = id;
     this.key = key;
-    this.seasonFileName = fileName;
     this.seasonIconChar = iconChar;
     this.defaultColor = defaultColor;
     this.seasonColor = seasonColor;
     this.rgbMap = rgbMap;
-    this.seasonName = Common.translatedText(key);
+    this.seasonNameSerilized = this.toString().toLowerCase(Locale.ROOT);
+    this.seasonNameTranslated = Common.translatedText(key);
   }
 
   public int getId() {
@@ -58,10 +58,6 @@ public enum Seasons {
 
   public String getTranslationKey() {
     return this.key;
-  }
-
-  public String getFileName() {
-    return this.seasonFileName;
   }
 
   public String getIconChar() {
@@ -95,7 +91,11 @@ public enum Seasons {
     return this.rgbMap;
   }
 
-  public Component getSeasonName() {
-    return this.seasonName;
+  public String getSeasonNameSerilized() {
+    return this.seasonNameSerilized;
+  }
+
+  public Component getSeasonNameTranslated() {
+    return this.seasonNameTranslated;
   }
 }

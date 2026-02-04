@@ -182,7 +182,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
    * @return The current season's file name for the platform.
    */
   public String getSeasonFileName(Player player) {
-    return commonSeasons.getCurrentSeason(player).getFileName();
+    return commonSeasons.getCurrentSeason(player).getSeasonNameSerilized();
   }
 
   @Override

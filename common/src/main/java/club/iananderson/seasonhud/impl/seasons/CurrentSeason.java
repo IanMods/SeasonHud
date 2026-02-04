@@ -163,7 +163,7 @@ public class CurrentSeason {
       seasonFormat = Style.EMPTY.withColor(newRgb);
     }
 
-    MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonName());
+    MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonNameTranslated());
 
     if (season == Seasons.DRY && seasonShort) {
       seasonText = Common.translatedText("menu.seasonhud.color.season.dry.editbox");

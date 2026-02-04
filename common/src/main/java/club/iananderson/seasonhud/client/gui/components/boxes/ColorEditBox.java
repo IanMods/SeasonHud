@@ -21,7 +21,7 @@ public class ColorEditBox extends EditBox {
   private int newSeasonColor;
 
   public ColorEditBox(Font font, int x, int y, int width, int height, Seasons season) {
-    super(font, x, y, width, height, season.getSeasonName());
+    super(font, x, y, width, height, season.getSeasonNameTranslated());
     this.boxSeason = season;
     this.seasonColor = season.getSeasonColor();
     this.newSeasonColor = seasonColor;
