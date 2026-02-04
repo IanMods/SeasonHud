@@ -2,9 +2,13 @@ package club.iananderson.seasonhud.forge.platform;
 
 import static club.iananderson.seasonhud.Common.isDimensionValid;
 
+import club.iananderson.seasonhud.impl.seasons.Seasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.teamtea.eclipticseasons.config.CommonConfig;
 import java.util.List;
+import net.dries007.tfc.util.calendar.Calendars;
+import net.dries007.tfc.util.calendar.Month;
+import net.dries007.tfc.util.calendar.Season;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -27,6 +31,18 @@ public class ForgeSeasonHelper implements SeasonHelper {
     List<? extends String> validDimensions = CommonConfig.Season.validDimensions.get();
 
     return isDimensionValid(validDimensions, currentDim);
+  }
+
+  @Override
+  public Seasons currentTerraFirmaCraftSeason() {
+    Month month = Calendars.CLIENT.getCalendarMonthOfYear();
+    Season season = month.getSeason();
+
+    if (season == Season.FALL) {
+      return "AUTUMN";
+    } else {
+      return Calendars.CLIENT.getCalendarMonthOfYear().getSeason().getSerializedName();
+    }
   }
 
   @Override

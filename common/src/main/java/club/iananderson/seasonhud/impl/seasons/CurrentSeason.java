@@ -11,8 +11,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 
 public class CurrentSeason {
-  private final String currentSeason;
-  private final String currentSubSeason;
+  private final Seasons currentSeason;
+  private final SubSeasons currentSubSeason;
   private final String seasonFileName;
   private final long seasonDate;
   private final int seasonDuration;

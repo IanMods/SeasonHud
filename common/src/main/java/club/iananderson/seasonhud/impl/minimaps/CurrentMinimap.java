@@ -23,19 +23,19 @@ public class CurrentMinimap {
   }
 
   public static boolean xaeroLoaded() {
-    return minimapLoaded(MinimapMods.xaeroMinimap) || minimapLoaded(MinimapMods.xaeroMinimapFairplay);
+    return minimapLoaded(MinimapMods.xaeroMinimapId) || minimapLoaded(MinimapMods.xaeroMinimapFairplayId);
   }
 
   public static boolean journeyMapLoaded() {
-    return minimapLoaded(MinimapMods.journeymap);
+    return minimapLoaded(MinimapMods.journeymapId);
   }
 
   public static boolean ftbChunksLoaded() {
-    return minimapLoaded(MinimapMods.ftbChunks);
+    return minimapLoaded(MinimapMods.ftbChunksId);
   }
 
   public static boolean mapAtlasesLoaded() {
-    return minimapLoaded(MinimapMods.mapAtlases);
+    return minimapLoaded(MinimapMods.mapAtlasesId);
   }
 
   private static List<String> getLoadedMinimaps() {
@@ -73,23 +73,23 @@ public class CurrentMinimap {
       return false;
     }
 
-    if (minimapModId.equals(MinimapMods.journeymap)) {
+    if (minimapModId.equals(MinimapMods.journeymapId)) {
       MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
       return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
           mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
     }
 
-    if (minimapModId.equals(MinimapMods.ftbChunks)) {
+    if (minimapModId.equals(MinimapMods.ftbChunksId)) {
       return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.options.renderDebug;
     }
 
-    if (minimapModId.equals(MinimapMods.xaeroMinimap) || minimapModId.equals(MinimapMods.xaeroMinimapFairplay)) {
+    if (minimapModId.equals(MinimapMods.xaeroMinimapId) || minimapModId.equals(MinimapMods.xaeroMinimapFairplayId)) {
       return !HudMod.INSTANCE.getSettings().getMinimap() || mc.options.renderDebug || !(mc.screen == null
           || mc.screen instanceof ChatScreen || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
     }
 
-    if (minimapModId.equals(MinimapMods.mapAtlases)) {
+    if (minimapModId.equals(MinimapMods.mapAtlasesId)) {
       return Services.MINIMAP.hideMapAtlases();
     } else {
       return false;

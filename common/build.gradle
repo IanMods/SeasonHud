@@ -32,7 +32,7 @@ dependencies {
     modCompileOnly "com.github.glitchfiend:GlitchCore-common:${project.glitchcore_version}"
     modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
     modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
-    modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
+    compileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Minimap Mods

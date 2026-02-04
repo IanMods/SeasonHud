@@ -56,7 +56,7 @@ public enum Seasons {
     return this.id;
   }
 
-  public String getKey() {
+  public String getTranslationKey() {
     return this.key;
   }
 

@@ -18,7 +18,7 @@ public class JourneyMap implements HudRenderCallback {
 
   @Override
   public void onHudRender(GuiGraphics graphics, float alpha) {
-    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.journeymap)) {
+    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.journeymapId)) {
       JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
 
       graphics.pose().pushPose();

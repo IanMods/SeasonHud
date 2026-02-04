@@ -4,6 +4,8 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.Fertility;
+import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.seasons.SubSeasons;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
 import com.teamtea.eclipticseasons.config.CommonConfig.Season;
@@ -18,10 +20,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
 public class EclipticSeasonsHelper implements SeasonModHelper {
-  @Override
-  public String seasonModId() {
-    return "eclipticseasons";
-  }
 
   @Override
   public Item calendar() {
@@ -43,7 +41,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSubSeason(Player player) {
+  public SubSeasons getCurrentSubSeason(Player player) {
     String currentSolarTerm = "MID_NULL"; // Just in case
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
     List<? extends String> validDimensions = Season.validDimensions.get();
@@ -56,8 +54,8 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSeason(Player player) {
-    String currentSeason = "NULL";
+  public Seasons getCurrentSeason(Player player) {
+    Seasons currentSeason = Seasons.NULL;
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
     List<? extends String> validDimensions = Season.validDimensions.get();
 

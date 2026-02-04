@@ -6,6 +6,7 @@ import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SeasonModHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.seasons.mods.TerrafirmaCraftHelper;
+import club.iananderson.seasonhud.util.ModIds.SeasonMods;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -40,8 +41,8 @@ public class CommonSeasonHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSubSeason(Player player) {
-    String subSeason = "MID_NULL"; // Just in case
+  public SubSeasons getCurrentSubSeason(Player player) {
+    SubSeasons subSeason = SubSeasons.NONE; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
       subSeason = fabricSeasons.getCurrentSubSeason(player);
@@ -62,8 +63,8 @@ public class CommonSeasonHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSeason(Player player) {
-    String season = "NULL"; // Just in case
+  public Seasons getCurrentSeason(Player player) {
+    Seasons season = Seasons.NULL; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
       season = fabricSeasons.getCurrentSeason(player);
@@ -130,24 +131,23 @@ public class CommonSeasonHelper implements SeasonModHelper {
     return duration;
   }
 
-  @Override
   public String seasonModId() {
     String modId = "";
 
     if (Common.fabricSeasonsLoaded()) {
-      modId = fabricSeasons.seasonModId();
+      modId = SeasonMods.fabricSeasonsId;
     }
 
     if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
-      modId = sereneSeasons.seasonModId();
+      modId = SeasonMods.sereneSeasonsId;
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      modId = terrafirmaCraft.seasonModId();
+      modId = SeasonMods.terrafirmacraftId;
     }
 
     if (Common.eclipticSeasonsLoaded()) {
-      modId = eclipticSeasons.seasonModId();
+      modId = SeasonMods.eclipticSeasonsId;
     }
 
     return modId;
@@ -182,7 +182,7 @@ public class CommonSeasonHelper implements SeasonModHelper {
    * @return The current season's file name for the platform.
    */
   public String getSeasonFileName(Player player) {
-    return commonSeasons.getCurrentSeason(player).toLowerCase();
+    return commonSeasons.getCurrentSeason(player).getFileName();
   }
 
   @Override

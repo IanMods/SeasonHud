@@ -1,12 +1,12 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
 import club.iananderson.seasonhud.impl.seasons.Fertility;
+import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.seasons.SubSeasons;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public interface SeasonModHelper {
-
-  String seasonModId();
 
   /**
    * The calendar item the season mod uses (if available).
@@ -35,14 +35,14 @@ public interface SeasonModHelper {
    *
    * @return The name of the current season for the platform.
    */
-  String getCurrentSubSeason(Player player);
+  SubSeasons getCurrentSubSeason(Player player);
 
   /**
    * Gets the name of the current season for the platform.
    *
    * @return The name of the current season for the platform.
    */
-  String getCurrentSeason(Player player);
+  Seasons getCurrentSeason(Player player);
 
   /**
    * Gets the current season's file name for the platform.

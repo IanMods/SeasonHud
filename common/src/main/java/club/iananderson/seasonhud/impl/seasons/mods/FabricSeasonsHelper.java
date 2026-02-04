@@ -3,6 +3,8 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.seasons.Fertility;
+import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.seasons.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import java.time.LocalDateTime;
@@ -11,11 +13,6 @@ import net.minecraft.world.item.Item;
 
 public class FabricSeasonsHelper implements SeasonModHelper {
   public FabricSeasonsHelper() {
-  }
-
-  @Override
-  public String seasonModId() {
-    return "seasons";
   }
 
   @Override
@@ -38,12 +35,12 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSubSeason(Player player) {
+  public SubSeasons getCurrentSubSeason(Player player) {
     return Services.SEASON.currentFabricSeason(player);
   }
 
   @Override
-  public String getCurrentSeason(Player player) {
+  public Seasons getCurrentSeason(Player player) {
     return Services.SEASON.currentFabricSeason(player);
   }
 

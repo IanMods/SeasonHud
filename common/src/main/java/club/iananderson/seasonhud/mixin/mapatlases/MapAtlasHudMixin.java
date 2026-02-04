@@ -39,7 +39,7 @@ public class MapAtlasHudMixin {
       int mapWidgetSize, Anchoring anchorLocation, int off, int x, int y, float yRot, int light, int borderSize,
       float textScaling, int textHeightOffset, int actualBgSize, Font font) {
 
-    if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.mapAtlases)) {
+    if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.mapAtlasesId)) {
       if (MapAtlasesClientConfig.drawMinimapBiome.get()) {
         textHeightOffset += (int) (10.0F * textScaling);
       }

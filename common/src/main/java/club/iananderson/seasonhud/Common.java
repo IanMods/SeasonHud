@@ -42,14 +42,14 @@ public class Common {
 
   public static void init() {
     platformName = Services.PLATFORM.getPlatformName();
-    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.sereneSeasons);
-    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasons);
-    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasonsExtras);
-    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded(SeasonMods.terrafirmacraft);
-    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.eclipticSeasons);
-    curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.curios);
-    trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.trinkets);
-    accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.accessories);
+    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.sereneSeasonsId);
+    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasonsId);
+    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasonsExtrasId);
+    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded(SeasonMods.terrafirmacraftId);
+    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.eclipticSeasonsId);
+    curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.curiosId);
+    trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.trinketsId);
+    accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.accessoriesId);
   }
 
   public static String platformName() {

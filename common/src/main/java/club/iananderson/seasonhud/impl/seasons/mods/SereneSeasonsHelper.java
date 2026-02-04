@@ -3,6 +3,9 @@ package club.iananderson.seasonhud.impl.seasons.mods;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.seasons.Calendar;
 import club.iananderson.seasonhud.impl.seasons.Fertility;
+import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.seasons.SubSeasons;
+import java.util.Locale;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
@@ -20,11 +23,6 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public String seasonModId() {
-    return "sereneseasons";
-  }
-
-  @Override
   public Item calendar() {
     return SSItems.CALENDAR;
   }
@@ -32,8 +30,7 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   @Override
   public boolean isTropicalSeason(Player player) {
     boolean showTropicalSeasons = SeasonHudClient.getShowTropicalSeason();
-    boolean isInTropicalSeason =
-        sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level().getBiome(player.getOnPos()));
+    boolean isInTropicalSeason = SeasonHelper.usesTropicalSeasons(player.level().getBiome(player.getOnPos()));
 
     return showTropicalSeasons && isInTropicalSeason;
   }
@@ -44,27 +41,36 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSubSeason(Player player) {
-    ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level());
+  public SubSeasons getCurrentSubSeason(Player player) {
+    ISeasonState currentSeasonState = SeasonHelper.getSeasonState(player.level());
+    String currentSubSeasonFull = currentSeasonState.getTropicalSeason().toString();
 
     if (isTropicalSeason(player)) {
-      return currentSeasonState.getTropicalSeason().toString();
-    } else {
-      return currentSeasonState.getSubSeason().toString();
+      currentSubSeasonFull = currentSeasonState.getTropicalSeason().toString();
     }
+
+    // TODO: double check this
+    String currentSubSeason = currentSubSeasonFull.substring(0, currentSubSeasonFull.indexOf("_"));
+
+    // TODO: double check this
+    return SubSeasons.valueOf(currentSubSeason.toUpperCase(Locale.ROOT));
   }
 
   @Override
-  public String getCurrentSeason(Player player) {
+  public Seasons getCurrentSeason(Player player) {
     ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level());
-    if (isTropicalSeason(player)) {
-      // Removes the "Early", "Mid", "Late" from the tropical season.
-      String currentSubSeason = getCurrentSubSeason(player);
+    String currentSeason = currentSeasonState.getSeason().toString();
 
-      return currentSubSeason.substring(currentSubSeason.length() - 3);
-    } else {
-      return currentSeasonState.getSeason().toString();
+    if (isTropicalSeason(player)) {
+      String currentSubSeason = currentSeasonState.getTropicalSeason().toString();
+
+      // Removes the "Early_", "Mid_", "Late_" from the tropical season.
+      // TODO: double check this
+      currentSeason = currentSubSeason.substring(currentSubSeason.indexOf("_") + 1);
     }
+
+    // TODO: double check this
+    return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
   }
 
   @Override
