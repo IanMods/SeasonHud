@@ -92,7 +92,7 @@ public class Common {
     return Common.fabricSeasonsExtrasLoaded() || Common.sereneSeasonsLoaded() || Common.eclipticSeasonsLoaded();
   }
 
-  public static boolean hasSubSeasons() {
+  public static boolean hasTropicalSeasons() {
     return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 

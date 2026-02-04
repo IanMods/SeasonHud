@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.seasons;
 
-import net.dries007.tfc.util.Helpers;
-import net.dries007.tfc.util.calendar.Season;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <h1>Sub-seasons for each month.</h1>
@@ -50,6 +50,11 @@ public enum Months {
     this.key = key;
     this.season = season;
     this.subSeason = subSeason;
+  }
+
+  public static Months getById(int monthNumber) {
+    // Month number is one more than ordinal
+    return VALUES[monthNumber - 1];
   }
 
   public int getId() {

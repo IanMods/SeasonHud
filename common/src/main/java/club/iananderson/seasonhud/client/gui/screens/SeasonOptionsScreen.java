@@ -85,9 +85,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
     SeasonHudClient.setShowDay(showDay);
     SeasonHudClient.setEnableSeasonNameColor(seasonColor);
+    SeasonHudClient.setShowSubSeason(showSubSeason);
 
-    if (Common.hasSubSeasons()) {
-      SeasonHudClient.setShowSubSeason(showSubSeason);
+    if (Common.hasTropicalSeasons()) {
       SeasonHudClient.setShowTropicalSeason(showTropicalSeason);
     }
 
@@ -278,14 +278,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
             (b, val) -> this.seasonColor = val);
     widgets.addAll(Arrays.asList(showDayButton, seasonColorButton));
 
-    if (Common.hasSubSeasons()) {
-      row += 1; // Row 4 (enableMinimapIntegration -> Row 2)
-      CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
-          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
-              (b, val) -> this.showSubSeason = val);
+    row += 1; // Row 4 (enableMinimapIntegration -> Row 2)
+    CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
+        .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
+        .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+            Common.translatedText("menu.seasonhud.season.showSubSeason.button"), (b, val) -> this.showSubSeason = val);
 
+    // TODO: Double check this looks okay
+    if (Common.hasTropicalSeasons()) {
       CycleButton<Boolean> showTropicalSeasonButton = CycleButton.onOffBuilder(showTropicalSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showTropicalSeason.tooltip"))
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
