@@ -42,20 +42,20 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
 
   @Override
   public SubSeasons getCurrentSubSeason(Player player) {
-    String currentSolarTerm = "MID_NULL"; // Just in case
+    String currentSolarTerm = "NONE"; // Just in case
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
     List<? extends String> validDimensions = Season.validDimensions.get();
 
     if (Common.isDimensionValid(validDimensions, currentDim)) {
       currentSolarTerm = EclipticUtil.INSTANCE.getSolarTerm(player.level()).getName();
-
     }
+
     return currentSolarTerm;
   }
 
   @Override
   public Seasons getCurrentSeason(Player player) {
-    Seasons currentSeason = Seasons.NULL;
+    String currentSeason = "NULL";
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
     List<? extends String> validDimensions = Season.validDimensions.get();
 
@@ -82,7 +82,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public int seasonDuration(Player player) {
+  public int seasonDurationDays(Player player) {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {

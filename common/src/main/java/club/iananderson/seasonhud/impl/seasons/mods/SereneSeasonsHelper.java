@@ -99,7 +99,7 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public int seasonDuration(Player player) {
+  public int seasonDurationDays(Player player) {
     int duration = ModConfig.seasons.subSeasonDuration * 3;
 
     if (isTropicalSeason(player)) {

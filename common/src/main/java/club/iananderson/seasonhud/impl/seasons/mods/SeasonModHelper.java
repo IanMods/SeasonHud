@@ -56,7 +56,7 @@ public interface SeasonModHelper {
    *
    * @return The duration of the current season/sub-season.
    */
-  int seasonDuration(Player player);
+  int seasonDurationDays(Player player);
 
   /**
    * Checks if the current biome the player is in is marked as infertile.

@@ -25,7 +25,7 @@ public class CurrentSeason {
     this.currentSubSeason = CommonSeasonHelper.commonSeasons.getCurrentSubSeason(player);
     this.seasonFileName = CommonSeasonHelper.commonSeasons.getSeasonFileName(player);
     this.seasonDate = CommonSeasonHelper.commonSeasons.getDate(player);
-    this.seasonDuration = CommonSeasonHelper.commonSeasons.seasonDuration(player);
+    this.seasonDuration = CommonSeasonHelper.commonSeasons.seasonDurationDays(player);
   }
 
   public static CurrentSeason getInstance(Minecraft mc) {

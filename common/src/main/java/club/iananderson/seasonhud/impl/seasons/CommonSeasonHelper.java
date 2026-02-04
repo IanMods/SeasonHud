@@ -109,23 +109,23 @@ public class CommonSeasonHelper implements SeasonModHelper {
   }
 
   @Override
-  public int seasonDuration(Player player) {
+  public int seasonDurationDays(Player player) {
     int duration = 0; // Just in case
 
     if (Common.fabricSeasonsLoaded()) {
-      duration = fabricSeasons.seasonDuration(player);
+      duration = fabricSeasons.seasonDurationDays(player);
     }
 
     if (Common.sereneSeasonsLoaded() && !Common.eclipticSeasonsLoaded()) {
-      duration = sereneSeasons.seasonDuration(player);
+      duration = sereneSeasons.seasonDurationDays(player);
     }
 
     if (Common.terrafirmacraftLoaded()) {
-      duration = terrafirmaCraft.seasonDuration(player);
+      duration = terrafirmaCraft.seasonDurationDays(player);
     }
 
     if (Common.eclipticSeasonsLoaded()) {
-      duration = eclipticSeasons.seasonDuration(player);
+      duration = eclipticSeasons.seasonDurationDays(player);
     }
 
     return duration;

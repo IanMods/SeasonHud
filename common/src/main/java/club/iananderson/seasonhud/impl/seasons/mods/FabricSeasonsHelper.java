@@ -36,7 +36,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
   @Override
   public SubSeasons getCurrentSubSeason(Player player) {
-    return Services.SEASON.currentFabricSeason(player);
+    return Services.SEASON.currentFabricSubSeason(player);
   }
 
   @Override
@@ -59,7 +59,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public int seasonDuration(Player player) {
+  public int seasonDurationDays(Player player) {
     int dayLength = SeasonHudServer.getDayLength();
     int seasonLength = Services.SEASON.currentFabricSeasonLength(player);
 
