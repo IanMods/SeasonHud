@@ -2,11 +2,18 @@ package club.iananderson.seasonhud.fabric.platform;
 
 import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
+import journeymap.client.properties.MiniMapProperties;
+import journeymap.client.ui.UIManager;
+import journeymap.client.ui.dialog.MinimapOptions;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.world.item.Item;
 import pepjebs.mapatlases.MapAtlasesMod;
 import pepjebs.mapatlases.client.MapAtlasesClient;
 import pepjebs.mapatlases.config.MapAtlasesClientConfig;
+import xaero.common.HudMod;
+import xaero.lib.client.gui.ScreenBase;
 
 public class FabricMinimapHelper implements MinimapHelper {
   // Needed for older versions. Makes it easier to port.
@@ -34,6 +41,29 @@ public class FabricMinimapHelper implements MinimapHelper {
 
   @Override
   public boolean hideJourneyMap() {
-    return false;
+    if (CurrentMinimap.journeyMapLoaded()) {
+      Minecraft mc = Minecraft.getInstance();
+
+      MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
+
+      return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
+          mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public boolean hideXaero() {
+    if (CurrentMinimap.xaeroLoaded()) {
+      Minecraft mc = Minecraft.getInstance();
+
+      boolean minimapDisplayed = !HudMod.INSTANCE.getSettings().getMinimap();
+
+      return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
+          || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
+    } else {
+      return false;
+    }
   }
 }

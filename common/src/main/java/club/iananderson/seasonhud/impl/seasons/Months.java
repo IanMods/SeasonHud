@@ -1,8 +1,5 @@
 package club.iananderson.seasonhud.impl.seasons;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * <h1>Sub-seasons for each month.</h1>
  * <pre>

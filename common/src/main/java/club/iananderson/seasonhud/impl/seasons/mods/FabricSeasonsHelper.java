@@ -1,12 +1,10 @@
 package club.iananderson.seasonhud.impl.seasons.mods;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.seasons.Fertility;
 import club.iananderson.seasonhud.impl.seasons.Seasons;
 import club.iananderson.seasonhud.impl.seasons.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
-import io.github.lucaargolo.seasons.FabricSeasons;
 import java.time.LocalDateTime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -27,11 +25,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
   @Override
   public boolean isSeasonTiedWithSystemTime() {
-    if (Common.fabricSeasonsLoaded()) {
-      return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
-    } else {
-      return false;
-    }
+    return Services.SEASON.fabricSeasonsTiedWithSystemTime();
   }
 
   @Override

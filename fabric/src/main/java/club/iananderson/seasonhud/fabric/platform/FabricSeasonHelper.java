@@ -24,6 +24,11 @@ public class FabricSeasonHelper implements SeasonHelper {
   }
 
   @Override
+  public boolean fabricSeasonsTiedWithSystemTime() {
+    return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
+  }
+
+  @Override
   public Item fabricSeasonsCalendar() {
     if (Common.fabricSeasonsExtrasLoaded()) {
       return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
@@ -86,6 +91,26 @@ public class FabricSeasonHelper implements SeasonHelper {
     return false;
   }
 
+  @Override
+  public SubSeasons currentEclipticSubSeason(Player player) {
+    return null;
+  }
+
+  @Override
+  public Seasons currentEclipticSeason(Player player) {
+    return null;
+  }
+
+  @Override
+  public long currentEclipticSeasonDate(Player player) {
+    return 0;
+  }
+
+  @Override
+  public int currentEclipticSeasonDuration(Player player) {
+    return 0;
+  }
+
   // TerrafirmaCraft
   @Override
   public Months currentTerraFirmaCraftMonth() {
@@ -93,7 +118,7 @@ public class FabricSeasonHelper implements SeasonHelper {
   }
 
   @Override
-  public int terraFirmaCraftCurrentDayofMonth() {
+  public int terraFirmaCraftCurrentDayOfMonth() {
     return 0;
   }
 

@@ -44,7 +44,7 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
     Months currentMonth = Services.SEASON.currentTerraFirmaCraftMonth();
     SubSeasons currentSubSeason = currentMonth.getSubSeason();
 
-    int dayOfMonth = Services.SEASON.terraFirmaCraftCurrentDayofMonth();
+    int dayOfMonth = Services.SEASON.terraFirmaCraftCurrentDayOfMonth();
     int daysInMonth = Services.SEASON.terraFirmaCraftTotalDaysInMonth();
 
     // Assumes that there are 3 months per season

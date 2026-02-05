@@ -12,6 +12,8 @@ public interface SeasonHelper {
   // FabricSeasons
   boolean validFabricSeasonsDim(ResourceKey<Level> currentDim);
 
+  boolean fabricSeasonsTiedWithSystemTime();
+
   Item fabricSeasonsCalendar();
 
   SubSeasons currentFabricSubSeason(Player player);
@@ -28,10 +30,18 @@ public interface SeasonHelper {
   // EclipticSeasons
   boolean validEclipticSeasonsDim(ResourceKey<Level> currentDim);
 
+  SubSeasons currentEclipticSubSeason(Player player);
+
+  Seasons currentEclipticSeason(Player player);
+
+  long currentEclipticSeasonDate(Player player);
+
+  int currentEclipticSeasonDuration(Player player);
+
   // TerrafirmaCraft
   Months currentTerraFirmaCraftMonth();
 
-  int terraFirmaCraftCurrentDayofMonth();
+  int terraFirmaCraftCurrentDayOfMonth();
 
   int terraFirmaCraftTotalDaysInMonth();
 }

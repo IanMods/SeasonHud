@@ -8,43 +8,37 @@ import club.iananderson.seasonhud.util.ModIds.MinimapMods;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
-import journeymap.client.properties.MiniMapProperties;
-import journeymap.client.ui.UIManager;
-import journeymap.client.ui.dialog.MinimapOptions;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.ChatScreen;
-import net.minecraft.client.gui.screens.DeathScreen;
-import xaero.common.HudMod;
-import xaero.lib.client.gui.ScreenBase;
 
 public class CurrentMinimap {
-  private static boolean minimapLoaded(String minimapModId) {
-    return Services.PLATFORM.isModLoaded(minimapModId);
+  private static boolean minimapLoaded(Minimap minimap) {
+    String modId = minimap.getModId();
+    return Services.PLATFORM.isModLoaded(modId);
   }
 
   public static boolean xaeroLoaded() {
-    return minimapLoaded(MinimapMods.xaeroMinimapId) || minimapLoaded(MinimapMods.xaeroMinimapFairplayId);
+    return minimapLoaded(Minimap.XAERO) || minimapLoaded(Minimap.XAERO_FAIRPLAY);
   }
 
   public static boolean journeyMapLoaded() {
-    return minimapLoaded(MinimapMods.journeymapId);
+    return minimapLoaded(Minimap.JOURNEYMAP);
   }
 
   public static boolean ftbChunksLoaded() {
-    return minimapLoaded(MinimapMods.ftbChunksId);
+    return minimapLoaded(Minimap.FTB_CHUNKS);
   }
 
   public static boolean mapAtlasesLoaded() {
-    return minimapLoaded(MinimapMods.mapAtlasesId);
+    return minimapLoaded(Minimap.MAP_ATLASES);
   }
 
-  private static List<String> getLoadedMinimaps() {
-    List<String> values = MinimapMods.allMods;
-    List<String> loaded = new ArrayList<>();
+  private static List<Minimap> getLoadedMinimaps() {
+    List<Minimap> values = new ArrayList<>(List.of(Minimap.values()));
+    List<Minimap> loaded = new ArrayList<>();
 
-    values.forEach(modId -> {
-      if (minimapLoaded(modId)) {
-        loaded.add(modId);
+    values.forEach(minimaps -> {
+      if (minimapLoaded(minimaps)) {
+        loaded.add(minimaps);
       }
     });
     return loaded;
@@ -61,38 +55,34 @@ public class CurrentMinimap {
    */
 
   /**
-   * Determines if the minimap is currently hidden.
+   * Finds if the minimap is hidden.
    *
-   * @param minimapModId Current loaded minimap's modId.
+   * @param minimap Current loaded minimap mod
    * @return True if the minimap is not currently displayed
    */
-  public static boolean hiddenMinimap(String minimapModId) {
+  public static boolean hiddenMinimap(Minimap minimap) {
     Minecraft mc = Minecraft.getInstance();
 
     if (mc.level == null || mc.player == null) {
       return false;
     }
 
-    if (minimapModId.equals(MinimapMods.journeymapId)) {
-      MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
-
-      return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
-          mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
-    }
-
-    if (minimapModId.equals(MinimapMods.ftbChunksId)) {
-      return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.options.renderDebug;
-    }
-
-    if (minimapModId.equals(MinimapMods.xaeroMinimapId) || minimapModId.equals(MinimapMods.xaeroMinimapFairplayId)) {
-      return !HudMod.INSTANCE.getSettings().getMinimap() || mc.options.renderDebug || !(mc.screen == null
-          || mc.screen instanceof ChatScreen || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
-    }
-
-    if (minimapModId.equals(MinimapMods.mapAtlasesId)) {
-      return Services.MINIMAP.hideMapAtlases();
-    } else {
-      return false;
+    switch (minimap) {
+      case JOURNEYMAP -> {
+        return Services.MINIMAP.hideJourneyMap();
+      }
+      case FTB_CHUNKS -> {
+        return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.options.renderDebug;
+      }
+      case XAERO, XAERO_FAIRPLAY -> {
+        return Services.MINIMAP.hideXaero();
+      }
+      case MAP_ATLASES -> {
+        return Services.MINIMAP.hideMapAtlases();
+      }
+      default -> {
+        return false;
+      }
     }
   }
 
@@ -102,7 +92,7 @@ public class CurrentMinimap {
    * @return True if all the loaded minimaps are hidden.
    */
   public static boolean allMinimapsHidden() {
-    List<String> loadedMinimaps = CurrentMinimap.getLoadedMinimaps();
+    List<Minimap> loadedMinimaps = CurrentMinimap.getLoadedMinimaps();
     List<Boolean> hiddenMinimaps = new ArrayList<>();
 
     loadedMinimaps.forEach(minimap -> hiddenMinimaps.add(hiddenMinimap(minimap)));
@@ -111,12 +101,12 @@ public class CurrentMinimap {
   }
 
   /**
-   * Determines if the minimap version of the season hud should be used.
+   * Determines if the season hud should be drawn.
    *
-   * @param minimapModId Current loaded minimap's modId
-   * @return True if the minimap version of the HUD should be drawn instead of the default.
+   * @param minimap Current loaded minimap mod
+   * @return True if the minimap version of the HUD should be drawn instead of the default
    */
-  public static boolean shouldDrawMinimapHud(String minimapModId) {
+  public static boolean shouldDrawMinimapHud(Minimap minimap) {
     Minecraft mc = Minecraft.getInstance();
 
     if (mc.level == null || mc.player == null) {
@@ -124,8 +114,30 @@ public class CurrentMinimap {
     }
 
     boolean enabled = SeasonHudClient.getEnableMod() && SeasonHudClient.getEnableMinimapIntegration();
-    boolean hiddenMinimap = Common.hideHudInCurrentDimension() || hiddenMinimap(minimapModId);
+    boolean hiddenMinimap = Common.hideHudInCurrentDimension() || hiddenMinimap(minimap);
 
     return enabled && Calendar.validNeedCalendar() && !mc.options.hideGui && !hiddenMinimap;
+  }
+
+  public enum Minimap {
+    XAERO(MinimapMods.xaeroMinimapId),
+
+    XAERO_FAIRPLAY(MinimapMods.xaeroMinimapFairplayId),
+
+    JOURNEYMAP(MinimapMods.journeymapId),
+
+    FTB_CHUNKS(MinimapMods.ftbChunksId),
+
+    MAP_ATLASES(MinimapMods.mapAtlasesId);
+
+    private final String modId;
+
+    Minimap(String modId) {
+      this.modId = modId;
+    }
+
+    public String getModId() {
+      return this.modId;
+    }
   }
 }

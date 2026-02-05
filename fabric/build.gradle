@@ -117,7 +117,7 @@ dependencies {
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
             modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
-        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene or fabric")
+        default: println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
     }
 
     // Minimap Mod Dev Tests
@@ -162,7 +162,7 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown accessory mod specified: ${project.minimap_mod}. Must be accessories, or none")
+        default: println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
     }
 }
 

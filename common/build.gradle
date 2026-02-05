@@ -16,6 +16,7 @@ legacyForge {
 
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
+    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5")
 
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
@@ -30,10 +31,6 @@ dependencies {
     // Not used in common unless they are actually  loaded.
     modCompileOnly "com.github.glitchfiend:SereneSeasons-common:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-common:${project.glitchcore_version}"
-    modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
-    modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
-    compileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
-    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
@@ -42,7 +39,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
-    modApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version, changing: true
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version, changing: true
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
     compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
 

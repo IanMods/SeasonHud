@@ -7,6 +7,9 @@ base {
     archivesName = "${mod_id}-${project.name}-${minecraft_version}"
 }
 
+group = project.group
+version = project.mod_version
+
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     //withSourcesJar()
@@ -198,29 +201,40 @@ jar {
 }
 
 processResources {
-    def expandProps = ["version"                   : mod_version,
-                       "group"                     : project.group, //Else we target the task's group.
-                       "minecraft_version"         : minecraft_version,
-                       "forge_version"             : forge_version,
-                       "forge_loader_version_range": forge_loader_version_range,
-                       "forge_version_range"       : forge_version_range,
-                       "minecraft_version_range"   : minecraft_version_range,
-                       "fabric_api_version"        : fabric_api_version,
-                       "fabric_loader_version"     : fabric_loader_version,
-                       "fabric_version_range"      : fabric_version_range,
-                       "mod_name"                  : mod_name,
-                       "mod_author"                : mod_author,
-                       "mod_id"                    : mod_id,
-                       "license"                   : license,
-                       "description"               : description,
-                       "repoURL"                   : repoURL,
-                       "issueTrackerURL"           : issueTrackerURL,
-                       "credits"                   : credits,
-                       "java_version"              : java_version]
+    def expandProps = [
+            "version"                   : project.version,
+            "group"                     : project.group, //Else we target the task's group.
+            "minecraft_version"         : minecraft_version,
+            "forge_version"             : forge_version,
+            "forge_loader_version_range": forge_loader_version_range,
+            "forge_version_range"       : forge_version_range,
+            "minecraft_version_range"   : minecraft_version_range,
+            "fabric_api_version"        : fabric_api_version,
+            "fabric_loader_version"     : fabric_loader_version,
+            "fabric_version_range"      : fabric_version_range,
+            "mod_name"                  : mod_name,
+            "mod_author"                : mod_author,
+            "mod_id"                    : mod_id,
+            "license"                   : license,
+            "description"               : project.description,
+            "repoURL"                   : repoURL,
+            "issueTrackerURL"           : issueTrackerURL,
+            "credits"                   : credits,
+            "java_version"              : java_version
+    ]
 
-    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
-        expand project.properties
+    var jsonExpandProps = expandProps.collectEntries {
+        key, value -> [(key): value instanceof String ? value.replace("\n", "\\\\n") : value]
     }
+
+    filesMatching(['META-INF/mods.toml']) {
+        expand expandProps
+    }
+
+    filesMatching(['pack.mcmeta', 'fabric.mod.json', '*.mixins.json']) {
+        expand jsonExpandProps
+    }
+
     inputs.properties(expandProps)
 }
 

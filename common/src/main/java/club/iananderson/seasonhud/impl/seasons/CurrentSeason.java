@@ -13,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 public class CurrentSeason {
   private final Seasons currentSeason;
   private final SubSeasons currentSubSeason;
-  private final String seasonFileName;
   private final long seasonDate;
   private final int seasonDuration;
   private Style seasonFormat;
@@ -23,7 +22,6 @@ public class CurrentSeason {
     this.seasonFormat = Style.EMPTY;
     this.currentSeason = CommonSeasonHelper.commonSeasons.getCurrentSeason(player);
     this.currentSubSeason = CommonSeasonHelper.commonSeasons.getCurrentSubSeason(player);
-    this.seasonFileName = CommonSeasonHelper.commonSeasons.getSeasonFileName(player);
     this.seasonDate = CommonSeasonHelper.commonSeasons.getDate(player);
     this.seasonDuration = CommonSeasonHelper.commonSeasons.seasonDurationDays(player);
   }
@@ -32,55 +30,22 @@ public class CurrentSeason {
     return new CurrentSeason(mc);
   }
 
-  public String getSubSeasonLowerCase() {
-    String lowerSubSeason = currentSubSeason.toLowerCase();
-    if (Common.fabricSeasonsLoaded()) {
-      return currentSeason.toLowerCase();
+  public Component getTranslation(boolean showSubSeason) {
+    String seasonKey = currentSeason.getTranslationKey();
+    String subSeasonKey = currentSubSeason.getSubSeasonKey();
+
+    if (Calendar.validDetailedMode() && showSubSeason) {
+      return Common.translatedText(seasonKey + subSeasonKey);
     } else {
-      return currentSeason.toLowerCase() + "." + lowerSubSeason.substring(0, lowerSubSeason.indexOf("_"));
+      return Common.translatedText(seasonKey);
+
     }
-  }
-
-  public String getSeasonLowerCase() {
-    return currentSeason.toLowerCase();
-  }
-
-  public Component getKey(boolean showSubSeason) {
-    String season = showSubSeason
-                    ? getSubSeasonLowerCase()
-                    : getSeasonLowerCase();
-
-    if (!Calendar.validDetailedMode() || Common.fabricSeasonsLoaded()) {
-      season = getSeasonLowerCase();
-    }
-
-    if (Common.eclipticSeasonsLoaded() && Calendar.validDetailedMode() && SeasonHudClient.getShowSubSeason()) {
-      season = currentSubSeason;
-
-      if (currentSubSeason.equals("MID_NULL")) {
-        return Common.translatedText("desc.seasonhud.season" + "." + getSubSeasonLowerCase());
-      } else {
-        return Common.translatedText("info.eclipticseasons.environment.solar_term" + "." + season);
-      }
-    }
-
-    return Common.translatedText("desc.seasonhud.season" + "." + season);
-  }
-
-  // Get the current season and match it to the icon for the font
-  public String getIcon() {
-    for (Seasons season : Seasons.values()) {
-      if (season.getFileName().equals(seasonFileName)) {
-        return season.getIconChar();
-      }
-    }
-    return "Icon Error";
   }
 
   // Localized name with icon
   public Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text;
-    Component seasonKey = getKey(showSubSeason);
+    Component seasonKey = getTranslation(showSubSeason);
 
     switch (showDay) {
       case NONE:
@@ -122,40 +87,25 @@ public class CurrentSeason {
     return text;
   }
 
-  // Get the current season and match it to the icon for the font
-  public int getTextColor() {
-    for (Seasons season : Seasons.values()) {
-      if (season.getFileName().equals(seasonFileName)) {
-        return season.getSeasonColor();
-      }
-    }
-    return 16777215;
-  }
-
   public MutableComponent getHudTextNoFormat() {
-    Component seasonIcon =
-        Common.translatedText("desc.seasonhud.hud.icon", getIcon()).withStyle(Common.SEASON_ICON_STYLE);
-    ShowDay showDay = SeasonHudClient.getShowDay();
-    boolean showSubSeason = SeasonHudClient.getShowSubSeason();
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", currentSeason.getIconChar());
+    MutableComponent seasonText = getText(SeasonHudClient.getShowDay(), SeasonHudClient.getShowSubSeason()).copy();
 
-    MutableComponent seasonText = getText(showDay, showSubSeason).copy();
-
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon, seasonText);
+    // TODO: Double check that the icon style is still applies
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+        seasonText);
   }
 
   public MutableComponent getHudText() {
-    ShowDay showDay = SeasonHudClient.getShowDay();
-    boolean showSubSeason = SeasonHudClient.getShowSubSeason();
-    MutableComponent seasonText = getText(showDay, showSubSeason).copy();
+    MutableComponent seasonText = getText(SeasonHudClient.getShowDay(), SeasonHudClient.getShowSubSeason()).copy();
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", currentSeason.getIconChar());
 
     if (SeasonHudClient.getEnableSeasonNameColor()) {
-      seasonFormat = Style.EMPTY.withColor(getTextColor());
+      seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
     }
 
-    MutableComponent seasonIcon =
-        Common.translatedText("desc.seasonhud.hud.icon", getIcon()).withStyle(Common.SEASON_ICON_STYLE);
-
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon, seasonText.withStyle(seasonFormat));
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+        seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
@@ -164,27 +114,28 @@ public class CurrentSeason {
     }
 
     MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonNameTranslated());
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar());
 
+    // Removes "Season" from Dry Season if the total color widget width is too large for the screen
     if (season == Seasons.DRY && seasonShort) {
       seasonText = Common.translatedText("menu.seasonhud.color.season.dry.editbox");
     }
 
+    // Removes "Season" from Wet Season if the total color widget width is too large for the screen
     if (season == Seasons.WET && seasonShort) {
       seasonText = Common.translatedText("menu.seasonhud.color.season.wet.editbox");
     }
 
-    MutableComponent seasonIcon =
-        Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar()).withStyle(Common.SEASON_ICON_STYLE);
-
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon, seasonText.withStyle(seasonFormat));
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+        seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason, boolean seasonColor) {
-    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", getIcon());
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", currentSeason.getIconChar());
     MutableComponent seasonText = getText(showDay, showSubSeason).copy();
 
     if (seasonColor) {
-      seasonFormat = Style.EMPTY.withColor(getTextColor());
+      seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),

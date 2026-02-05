@@ -155,7 +155,7 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown accessory mod specified: ${project.minimap_mod}. Must be accessories, or none")
+        default: println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
     }
 
     // Season Mod Dev Tests (Forge)
@@ -175,7 +175,7 @@ dependencies {
         case "ecliptic":
             modImplementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
             break
-        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
+        default: println("Unknown season mod specified: ${project.season_mod_forge}. Must be serene, terra, or ecliptic")
     }
 }
 

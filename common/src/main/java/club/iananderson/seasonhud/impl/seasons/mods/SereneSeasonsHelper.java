@@ -43,16 +43,14 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   @Override
   public SubSeasons getCurrentSubSeason(Player player) {
     ISeasonState currentSeasonState = SeasonHelper.getSeasonState(player.level());
-    String currentSubSeasonFull = currentSeasonState.getTropicalSeason().toString();
+    String currentSubSeasonFull = currentSeasonState.getSubSeason().toString();
 
     if (isTropicalSeason(player)) {
       currentSubSeasonFull = currentSeasonState.getTropicalSeason().toString();
     }
 
-    // TODO: double check this
     String currentSubSeason = currentSubSeasonFull.substring(0, currentSubSeasonFull.indexOf("_"));
 
-    // TODO: double check this
     return SubSeasons.valueOf(currentSubSeason.toUpperCase(Locale.ROOT));
   }
 
@@ -65,11 +63,9 @@ public class SereneSeasonsHelper implements SeasonModHelper {
       String currentSubSeason = currentSeasonState.getTropicalSeason().toString();
 
       // Removes the "Early_", "Mid_", "Late_" from the tropical season.
-      // TODO: double check this
       currentSeason = currentSubSeason.substring(currentSubSeason.indexOf("_") + 1);
     }
 
-    // TODO: double check this
     return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
   }
 

@@ -9,4 +9,6 @@ public interface MinimapHelper {
   boolean hideMapAtlases();
 
   boolean hideJourneyMap();
+
+  boolean hideXaero();
 }

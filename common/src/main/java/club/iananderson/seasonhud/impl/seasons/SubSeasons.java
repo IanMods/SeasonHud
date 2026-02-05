@@ -1,14 +1,5 @@
 package club.iananderson.seasonhud.impl.seasons;
 
-import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.DefaultValues.Client;
-import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.util.Rgb;
-import java.util.EnumSet;
-import java.util.Map;
-import net.dries007.tfc.util.calendar.Month;
-import net.minecraft.network.chat.Component;
-
 public enum SubSeasons {
 
   EARLY(0, "EARLY_", ".early"),
@@ -19,7 +10,7 @@ public enum SubSeasons {
 
   NONE(100, "", "");
 
-  public static final EnumSet<SubSeasons> SUB_SEASONS_ENUM_LIST = EnumSet.allOf(SubSeasons.class);
+  public static final SubSeasons[] VALUES = values();
   private final int id;
   private final String prefix;
   private final String subSeasonKey;
@@ -28,6 +19,11 @@ public enum SubSeasons {
     this.id = id;
     this.prefix = prefix;
     this.subSeasonKey = subSeasonKey;
+  }
+
+  public static SubSeasons getById(int idNum) {
+    // Month number is one more than ordinal
+    return VALUES[idNum];
   }
 
   public int getId() {
