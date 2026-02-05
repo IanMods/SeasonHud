@@ -188,7 +188,7 @@ jar {
 
 
 modrinth {
-    debugMode = false
+    debugMode = true
     token = System.getenv("MODRINTH_TOKEN")
     projectId = modrinth_forge_id
     versionNumber = minecraft_version + "-" + version
@@ -217,7 +217,7 @@ modrinth {
 tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     group = "curseforge"
 
-    debugMode = false
+    debugMode = true
     disableVersionDetection()
     apiToken = System.getenv("CURSEFORGE_TOKEN")
 

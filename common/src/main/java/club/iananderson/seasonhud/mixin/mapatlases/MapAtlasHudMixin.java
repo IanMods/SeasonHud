@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.mixin.mapatlases;
 
 import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -39,7 +39,7 @@ public class MapAtlasHudMixin {
       int mapWidgetSize, Anchoring anchorLocation, int off, int x, int y, float yRot, int light, int borderSize,
       float textScaling, int textHeightOffset, int actualBgSize, Font font) {
 
-    if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(Minimap.MAP_ATLASES)) {
+    if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.MAP_ATLASES)) {
       if (MapAtlasesClientConfig.drawMinimapBiome.get()) {
         textHeightOffset += (int) (10.0F * textScaling);
       }

@@ -5,7 +5,7 @@ import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;

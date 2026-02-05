@@ -18,10 +18,11 @@ java {
 
 repositories {
     mavenCentral()
-    // CurseMaven
+
     exclusiveContent {
         forRepository {
             maven {
+                name = "CurseMaven"
                 url = "https://cursemaven.com"
             }
         }
@@ -29,10 +30,11 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    // Modrinth Maven
+
     exclusiveContent {
         forRepository {
             maven {
+                name = "Modrinth Maven"
                 url = "https://api.modrinth.com/maven"
             }
         }
@@ -44,22 +46,23 @@ repositories {
     exclusiveContent {
         forRepository {
             maven {
-                name = 'Sponge'
+                name = 'Sponge Maven'
                 url = 'https://repo.spongepowered.org/repository/maven-public'
             }
         }
         filter { includeGroupAndSubgroups('org.spongepowered') }
     }
 
-    // Parchment mappings
     maven {
+        name = "Parchment Maven"
         url = "https://maven.parchmentmc.org"
         content {
             includeGroup "org.parchmentmc.data"
         }
     }
-    // Cloth Config, REI
+
     maven {
+        name = "shedaniel Maven - Cloth Config, REI, Architectury"
         url = "https://maven.shedaniel.me/"
         content {
             includeGroup "me.shedaniel"
@@ -67,15 +70,9 @@ repositories {
             includeGroup "me.shedaniel.cloth"
         }
     }
-    // JEI
+
     maven {
-        url = "https://maven.blamejared.com/"
-        content {
-            includeGroup "mezz.jei"
-        }
-    }
-    // Cardinal Components
-    maven {
+        name = "LadySnake Maven - Cardinal Components"
         url = "https://maven.ladysnake.org/releases"
         content {
             includeGroup "dev.onyxstudios.cardinal-components-api"
@@ -83,20 +80,23 @@ repositories {
         }
     }
     maven {
+        name = "Xaero Maven"
         url = "https://chocolateminecraft.com/maven"
         content {
             includeGroup "xaero.lib"
         }
     }
-    //Journeymap API
+
     maven {
+        name = "Journeymap API MAven"
         url = "https://jm.gserv.me/repository/maven-public/"
         content {
             includeGroup "info.journeymap"
         }
     }
-    // Curios
+
     maven {
+        name = "Curios Maven"
         url = "https://maven.theillusivec4.top/"
         content {
             includeGroup "top.theillusivec4.curios"
@@ -104,14 +104,16 @@ repositories {
     }
     // Mod Menu, Trinkets
     maven {
+        name = "TerraformerMC Maven"
         url = "https://maven.terraformersmc.com/releases/"
         content {
             includeGroup "com.terraformersmc"
             includeGroup "dev.emi"
         }
     }
-    // Accessories
+
     maven {
+        name = "Accessories Maven"
         url = "https://maven.wispforest.io/releases"
         content {
             includeGroup "io.wispforest"
@@ -120,40 +122,45 @@ repositories {
     }
     // Accessories Dependencies
     maven {
+        name = "Sinytra Maven"
         url = "https://maven.su5ed.dev/releases"
         content {
             includeGroup "dev.su5ed.sinytra.fabric-api"
         }
     }
-    // Forge Config API Port
+
     maven {
+        name = "Forge Config API Port Maven"
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
         content {
             includeGroup "fuzs.forgeconfigapiport"
         }
     }
-    // DevAuth
+
     maven {
+        name = "DevAuth Maven"
         url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
         content {
             includeGroup "me.djtheredstoner"
         }
     }
-    // FTB
+
     maven {
+        name = "FTB Maven"
         url = "https://maven.ftb.dev/releases"
         content {
             includeGroup "dev.ftb.mods"
         }
     }
-    //Forge
+
     maven {
-        url = 'https://maven.minecraftforge.net'
+        name = "Forge Maven"
+        url = "https://maven.minecraftforge.net"
     }
 
-    //Mekanism backup maven
     maven {
-        url 'https://modmaven.dev/'
+        name = "ModMaven (Backup)"
+        url = "https://modmaven.dev/"
     }
 }
 

@@ -2,8 +2,8 @@ package club.iananderson.seasonhud.client.overlays;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import journeymap.client.JourneymapClient;
 import journeymap.client.io.ThemeLoader;
 import journeymap.client.properties.MiniMapProperties;

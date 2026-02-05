@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.platform.services;
 
-import club.iananderson.seasonhud.impl.seasons.Months;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
-import club.iananderson.seasonhud.impl.seasons.SubSeasons;
+import club.iananderson.seasonhud.impl.season.Months;
+import club.iananderson.seasonhud.impl.season.Seasons;
+import club.iananderson.seasonhud.impl.season.SubSeasons;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;

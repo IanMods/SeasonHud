@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.forge.platform;
 
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;

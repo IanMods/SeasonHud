@@ -1,10 +1,10 @@
 package club.iananderson.seasonhud.fabric.platform;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.impl.seasons.Months;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
-import club.iananderson.seasonhud.impl.seasons.SubSeasons;
-import club.iananderson.seasonhud.impl.seasons.mods.FabricSeasonsHelper;
+import club.iananderson.seasonhud.impl.season.Months;
+import club.iananderson.seasonhud.impl.season.Seasons;
+import club.iananderson.seasonhud.impl.season.SubSeasons;
+import club.iananderson.seasonhud.impl.season.mods.fabricseasons.FabricSeasonsHelper;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;

@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.forge.client;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
+import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -1,10 +1,10 @@
 package club.iananderson.seasonhud;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.accessory.mods.AccessoryMods;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
 import club.iananderson.seasonhud.platform.Services;
-import club.iananderson.seasonhud.util.ModIds.AccessoryMods;
-import club.iananderson.seasonhud.util.ModIds.SeasonMods;
 import com.demonwav.mcdev.annotations.Translatable;
 import java.util.List;
 import java.util.Objects;
@@ -42,14 +42,14 @@ public class Common {
 
   public static void init() {
     platformName = Services.PLATFORM.getPlatformName();
-    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.sereneSeasonsId);
-    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasonsId);
-    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded(SeasonMods.fabricSeasonsExtrasId);
-    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded(SeasonMods.terrafirmacraftId);
-    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.eclipticSeasonsId);
-    curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.curiosId);
-    trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.trinketsId);
-    accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.accessoriesId);
+    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.SERENE.getModId());
+    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.FABRIC.getModId());
+    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded(SeasonMods.FABRIC_EXTRAS.getModId());
+    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded(SeasonMods.TERRAFIRMACRAFT.getModId());
+    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.ECLIPTIC.getModId());
+    curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.CURIOS.getModId());
+    trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.TRINKETS.getModId());
+    accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.ACCESSORIES.getModId());
   }
 
   public static String platformName() {

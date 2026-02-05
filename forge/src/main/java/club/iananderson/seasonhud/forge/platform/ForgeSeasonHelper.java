@@ -3,10 +3,10 @@ package club.iananderson.seasonhud.forge.platform;
 import static club.iananderson.seasonhud.Common.isDimensionValid;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.Calendar;
-import club.iananderson.seasonhud.impl.seasons.Months;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
-import club.iananderson.seasonhud.impl.seasons.SubSeasons;
+import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
+import club.iananderson.seasonhud.impl.season.Months;
+import club.iananderson.seasonhud.impl.season.Seasons;
+import club.iananderson.seasonhud.impl.season.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
@@ -123,9 +123,9 @@ public class ForgeSeasonHelper implements SeasonHelper {
   public int currentEclipticSeasonDuration(Player player) {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
-    // TODO: Check this and make sure it is working correctly with sub-seasons
+    // TODO: Check this and make sure it is working correctly with sub-season
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
-      duration /= 3; // 3 sub-seasons per season
+      duration /= 3; // 3 sub-season per season
     }
 
     return duration;

@@ -235,7 +235,7 @@
 # Accessories
 - repository: https://maven.wispforest.io/releases
   groupId: io.wispforest
-  artifactId: accessories-neoforge
+  artifactId: accessory-neoforge
   version: "*+${mcVersion}"
   properties:
     accessories_version:

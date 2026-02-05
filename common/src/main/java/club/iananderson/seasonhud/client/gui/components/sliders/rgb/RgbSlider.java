@@ -4,7 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.season.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;

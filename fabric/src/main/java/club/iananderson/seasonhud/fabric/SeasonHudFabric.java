@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.fabric;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
-import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
+import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.minecraftforge.fml.config.ModConfig;

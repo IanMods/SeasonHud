@@ -116,7 +116,7 @@ public class SeasonHudClient {
 
     builder.push("Season");
     showTropicalSeason = builder.comment(StringLine.builder()
-            .addLine("Show the Tropical seasons (Wet/Dry) in Tropical Biomes.")
+            .addLine("Show the Tropical season (Wet/Dry) in Tropical Biomes.")
             .addLine("Will not change the season behavior in the biomes, just what is displayed")
             .addLine("(true/false)")
             .lastLine("Default is " + Client.DEFAULT_SHOW_TROPICAL_SEASON + "."))
