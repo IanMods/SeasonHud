@@ -66,8 +66,8 @@ dependencies {
     modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Xaero's Minimap
-    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
-    modCompileOnly "xaero.lib:xaerolib-forge-1.20:${project.xaero_lib_version}"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.xaero_mc_version}"
+    modCompileOnly "xaero.lib:xaerolib-forge-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
@@ -81,7 +81,7 @@ dependencies {
     // Map Atlases
     modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
     modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_forge}"
-    modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge"
+    modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}-forge"
 
     // Curios
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
@@ -99,8 +99,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modImplementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
-            modImplementation "xaero.lib:xaerolib-forge-1.20:${project.xaero_lib_version}"
+            modImplementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.xaero_mc_version}"
+            modImplementation "xaero.lib:xaerolib-forge-${project.xaero_mc_version}:${project.xaero_lib_version}"
             break
         case "journey":
             modImplementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
@@ -115,7 +115,7 @@ dependencies {
             break
         case "atlas":
             modImplementation "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
-            modImplementation("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.20.4-forge")
+            modImplementation("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}-forge")
             modImplementation "maven.modrinth:moonlight:1.20-${project.moonlight_version_forge}"
             compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
