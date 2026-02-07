@@ -1,23 +1,23 @@
 package club.iananderson.seasonhud.impl.minimap.mods;
 
 public enum MinimapMods {
-    XAERO("xaerominimap"),
+  XAERO("xaerominimap"),
 
-    XAERO_FAIRPLAY("xaerominimapfair"),
+  XAERO_FAIRPLAY("xaerominimapfair"),
 
-    JOURNEYMAP("journeymap"),
+  JOURNEYMAP("journeymap"),
 
-    FTB_CHUNKS("ftbchunks"),
+  FTB_CHUNKS("ftbchunks"),
 
-    MAP_ATLASES("map_atlases");
+  MAP_ATLASES("map_atlases");
 
-    private final String modId;
+  private final String modId;
 
-    MinimapMods(String modId) {
-        this.modId = modId;
-    }
+  MinimapMods(String modId) {
+    this.modId = modId;
+  }
 
-    public String getModId() {
-        return this.modId;
-    }
+  public String getModId() {
+    return this.modId;
+  }
 }

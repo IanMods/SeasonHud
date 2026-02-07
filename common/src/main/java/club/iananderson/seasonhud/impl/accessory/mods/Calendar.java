@@ -11,10 +11,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class Calendar {
+  private static final Item calendar = CommonSeasonHelper.commonSeasons.getHelper().calendar();
+
   private Calendar() {
   }
-
-  private static final Item calendar = CommonSeasonHelper.commonSeasons.getHelper().calendar();
 
   /**
    * Determines if the player has a calendar in an accessory mod slot.

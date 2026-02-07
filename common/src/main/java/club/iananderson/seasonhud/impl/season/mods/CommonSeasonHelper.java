@@ -13,7 +13,7 @@ public class CommonSeasonHelper {
   private CommonSeasonHelper() {
   }
 
-  public SeasonModHelper getHelper(){
+  public SeasonModHelper getHelper() {
     if (Common.fabricSeasonsLoaded()) {
       return new FabricSeasonsHelper();
     }
@@ -28,8 +28,9 @@ public class CommonSeasonHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return new EclipticSeasonsHelper();
+    } else {
+      throw new RuntimeException("No supported Season mods are loaded");
     }
-    else throw new RuntimeException("No supported Season mods are loaded");
   }
 
 }

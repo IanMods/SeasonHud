@@ -1,19 +1,19 @@
 package club.iananderson.seasonhud.impl.accessory.mods;
 
 public enum AccessoryMods {
-    CURIOS("curios"),
+  CURIOS("curios"),
 
-    TRINKETS("trinkets"),
+  TRINKETS("trinkets"),
 
-    ACCESSORIES("accessory");
+  ACCESSORIES("accessory");
 
-    private final String modId;
+  private final String modId;
 
-    AccessoryMods(String modId) {
-        this.modId = modId;
-    }
+  AccessoryMods(String modId) {
+    this.modId = modId;
+  }
 
-    public String getModId() {
-        return modId;
-    }
+  public String getModId() {
+    return modId;
+  }
 }

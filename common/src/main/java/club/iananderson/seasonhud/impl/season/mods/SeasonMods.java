@@ -1,23 +1,23 @@
 package club.iananderson.seasonhud.impl.season.mods;
 
 public enum SeasonMods {
-    SERENE("sereneseasons"),
+  SERENE("sereneseasons"),
 
-    FABRIC("season"),
+  FABRIC("season"),
 
-    FABRIC_EXTRAS("seasonsextras"),
+  FABRIC_EXTRAS("seasonsextras"),
 
-    TERRAFIRMACRAFT("tfc"),
+  TERRAFIRMACRAFT("tfc"),
 
-    ECLIPTIC("eclipticseasons");
+  ECLIPTIC("eclipticseasons");
 
-    private final String modId;
+  private final String modId;
 
-    SeasonMods(String modId) {
-        this.modId = modId;
-    }
+  SeasonMods(String modId) {
+    this.modId = modId;
+  }
 
-    public String getModId() {
-        return modId;
-    }
+  public String getModId() {
+    return modId;
+  }
 }

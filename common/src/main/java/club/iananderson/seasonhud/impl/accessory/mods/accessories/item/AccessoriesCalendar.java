@@ -15,20 +15,20 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class AccessoriesCalendar implements Accessory {
+  private static final Item calender = CommonSeasonHelper.commonSeasons.getHelper().calendar();
+
   public AccessoriesCalendar() {
   }
 
-  private static final Item calender = CommonSeasonHelper.commonSeasons.getHelper().calendar();
-
   // TODO: Double check this is still working
   public static void clientInit() {
-    if(calender != null){
+    if (calender != null) {
       AccessoriesRendererRegistry.registerRenderer(calender, Renderer::new);
     }
   }
 
   public static void init() {
-    if(calender != null) {
+    if (calender != null) {
       AccessoriesAPI.registerAccessory(calender, new AccessoriesCalendar());
     }
   }

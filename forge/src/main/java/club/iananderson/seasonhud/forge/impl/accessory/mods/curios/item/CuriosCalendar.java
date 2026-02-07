@@ -6,10 +6,10 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class CuriosCalendar implements ICurioItem {
+  private static final Item calendar = CommonSeasonHelper.commonSeasons.getHelper().calendar();
+
   public CuriosCalendar() {
   }
-
-  private static final Item calendar = CommonSeasonHelper.commonSeasons.getHelper().calendar();
 
   public static void init() {
     if (calendar != null) {
