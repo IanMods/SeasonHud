@@ -123,10 +123,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
     var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
-    // Assigned here so it still draws if the
-    int posX = Client.DEFAULT_X_OFFSET;
-    int posY = Client.DEFAULT_Y_OFFSET;
-    double seasonScale = 1.0;
 
     if (drawDefaultHud) {
       boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
@@ -190,20 +186,20 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                                     MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
                                         + BUTTON_PADDING), 16777215);
       }
+
+      graphics.pose().pushPose();
+      graphics.pose().translate(0, 0, 50);
+      graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
+      graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
+
+      if (showFertility) {
+        MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+
+        posY += this.font.lineHeight;
+        graphics.drawString(font, fertility, posX, posY, 0xffffff);
+      }
+      graphics.pose().popPose();
     }
-
-    graphics.pose().pushPose();
-    graphics.pose().translate(0, 0, 50);
-    graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
-    graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
-
-    if (showFertility) {
-      MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
-
-      posY += this.font.lineHeight;
-      graphics.drawString(font, fertility, posX, posY, 0xffffff);
-    }
-    graphics.pose().popPose();
   }
 
   private int maxWidth(MutableComponent seasonText) {

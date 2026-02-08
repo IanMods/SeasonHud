@@ -22,16 +22,7 @@
             </map>
           </option>
         </ConfigurationLocation>
-        <ConfigurationLocation id="51dd62ee-23df-48ad-af7f-bba3628248f9" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
-          $PROJECT_DIR$/.idea/checkstyle/seasonhud_checks.xml
-          <option name="properties">
-            <map>
-              <entry key="org.checkstyle.google.severity" value="warning" />
-              <entry key="org.checkstyle.google.suppressionfilter.config" value="checkstyle-suppressions.xml" />
-              <entry key="org.checkstyle.google.suppressionxpathfilter.config" value="checkstyle-xpath-suppressions.xml" />
-            </map>
-          </option>
-        </ConfigurationLocation>
+        <ConfigurationLocation id="51dd62ee-23df-48ad-af7f-bba3628248f9" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">$PROJECT_DIR$/.idea/checkstyle/seasonhud_checks.xml</ConfigurationLocation>
       </list>
     </option>
   </component>
