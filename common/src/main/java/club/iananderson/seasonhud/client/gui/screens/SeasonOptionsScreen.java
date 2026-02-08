@@ -305,9 +305,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.calendarDetail.tooltip"))
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
-                this.enableCalendarDetail = val;
-              });
+                  Common.translatedText("menu.seasonhud.season.calendarDetail.button"),
+                  (b, val) -> this.enableCalendarDetail = val);
 
       if (!Common.clientSideConfig()) {
         needCalendarButton.active = false;

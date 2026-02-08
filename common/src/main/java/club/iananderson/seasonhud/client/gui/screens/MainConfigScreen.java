@@ -6,11 +6,8 @@ import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuB
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
