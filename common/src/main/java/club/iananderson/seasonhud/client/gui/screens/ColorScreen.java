@@ -103,6 +103,7 @@ public class ColorScreen extends SeasonHudScreen {
     y -= (greenSlider.getHeight() + redSlider.getHeight() + RgbSlider.SLIDER_PADDING + buttonHeight
         + RgbSlider.SLIDER_PADDING);
 
+    @SuppressWarnings("checkstyle:Indentation")
     DefaultColorButton defaultButton = DefaultColorButton.builder(colorBox, press -> {
           int defaultColorInt = season.getDefaultColor();
 

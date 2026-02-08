@@ -1,5 +1,7 @@
 package club.iananderson.seasonhud.impl.minimap.mods;
 
+import club.iananderson.seasonhud.platform.Services;
+
 public enum MinimapMods {
   XAERO("xaerominimap"),
 
@@ -19,5 +21,9 @@ public enum MinimapMods {
 
   public String getModId() {
     return this.modId;
+  }
+
+  public String getModName() {
+    return Services.PLATFORM.getModName(modId);
   }
 }

@@ -1,15 +1,17 @@
 package club.iananderson.seasonhud.fabric.platform;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.components.Months;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
-import club.iananderson.seasonhud.impl.season.mods.fabricseasons.FabricSeasonsHelper;
+import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Locale;
+import java.util.Optional;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -29,23 +31,22 @@ public class FabricSeasonHelper implements SeasonHelper {
   }
 
   @Override
-  public Item fabricSeasonsCalendar() {
+  public Optional<Item> fabricSeasonsCalendar() {
     if (Common.fabricSeasonsExtrasLoaded()) {
-      return FabricSeasonsExtras.SEASON_CALENDAR_ITEM;
-    } else {
-      return null;
+      return Optional.of(FabricSeasonsExtras.SEASON_CALENDAR_ITEM);
     }
+    return Optional.empty();
   }
 
   @Override
   public SubSeasons currentFabricSubSeason(Player player) {
-    FabricSeasonsHelper fabricSeasonsHelper = new FabricSeasonsHelper();
+    long dayLengthTick = SeasonHudServer.getDayLength();
+    long seasonLengthTick = Services.SEASON.currentFabricSeasonLength(player);
+    long seasonLengthDay = seasonLengthTick / dayLengthTick; // Current season length (Default 28)
+    long timeToNextSeason = Services.SEASON.timeToNextFabricSeason(player);
+    long seasonDay = ((seasonLengthTick - timeToNextSeason) / dayLengthTick) + 1;
 
-    int currentSeasonDurationDays = fabricSeasonsHelper.seasonDurationDays(player);
-    long currentSeasonDate = fabricSeasonsHelper.getDate(player);
-
-    // TODO: Check this math
-    int seasonPercent = (int) ((currentSeasonDate * 100.0f) / currentSeasonDurationDays);
+    int seasonPercent = (int) ((seasonDay * 100.0f) / seasonLengthDay);
 
     if (seasonPercent <= 33) {
       return SubSeasons.EARLY;
@@ -65,7 +66,6 @@ public class FabricSeasonHelper implements SeasonHelper {
       currentSeason = "Autumn";
     }
 
-    // TODO: double check this
     return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
   }
 

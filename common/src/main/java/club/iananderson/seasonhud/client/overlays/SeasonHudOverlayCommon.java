@@ -17,7 +17,7 @@ public class SeasonHudOverlayCommon {
   public static void render(GuiGraphics graphics) {
     Minecraft mc = Minecraft.getInstance();
 
-    if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()
+    if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar(mc.player)
         && !Common.hideHudInCurrentDimension()) {
       int screenWidth = mc.getWindow().getGuiScaledWidth();
       int screenHeight = mc.getWindow().getGuiScaledHeight();

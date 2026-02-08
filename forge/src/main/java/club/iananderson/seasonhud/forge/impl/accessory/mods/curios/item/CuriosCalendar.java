@@ -1,19 +1,16 @@
 package club.iananderson.seasonhud.forge.impl.accessory.mods.curios.item;
 
-import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
-import net.minecraft.world.item.Item;
+import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class CuriosCalendar implements ICurioItem {
-  private static final Item calendar = CommonSeasonHelper.commonSeasons.getHelper().calendar();
-
   public CuriosCalendar() {
   }
 
   public static void init() {
-    if (calendar != null) {
-      CuriosApi.registerCurio(calendar, new CuriosCalendar());
+    if (Calendar.calendar().isPresent()) {
+      CuriosApi.registerCurio(Calendar.calendar().get(), new CuriosCalendar());
     }
   }
 }

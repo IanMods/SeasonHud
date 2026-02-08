@@ -104,6 +104,7 @@
   "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Alt Mevsimi Göster",
   "menu.seasonhud.season.showSubSeason.tooltip": "Normal mevsim yerine alt mevsimi (örn. Kış Başlangıcı, Sonbahar Ortaları, İlkbahar Sonları) göster",
+  "menu.seasonhud.season.showSubSeason.tooltip.error": "Current season length %d days (%d ticks) is not divisible by 3\n\nTo enable this feature, you will need to edit the\n\n'seasonLength' values in 'seasons.json' to be divisible by 3",
   "menu.seasonhud.season.showTropicalSeason.button": "Tropikal Mevsimleri Göster",
   "menu.seasonhud.season.showTropicalSeason.tooltip": "Tropikal Biyomlarda Tropikal mevsimleri (Nemli/ Kurak) göster",
   "menu.seasonhud.season.title": "Mevsim Görüntüleme Ayarları",

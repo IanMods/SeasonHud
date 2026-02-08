@@ -32,7 +32,7 @@ public class CurrentMinimap {
     return minimapLoaded(MinimapMods.MAP_ATLASES);
   }
 
-  private static List<MinimapMods> getLoadedMinimaps() {
+  public static List<MinimapMods> getLoadedMinimaps() {
     List<MinimapMods> values = new ArrayList<>(List.of(MinimapMods.values()));
     List<MinimapMods> loaded = new ArrayList<>();
 
@@ -116,6 +116,6 @@ public class CurrentMinimap {
     boolean enabled = SeasonHudClient.getEnableMod() && SeasonHudClient.getEnableMinimapIntegration();
     boolean hiddenMinimap = Common.hideHudInCurrentDimension() || hiddenMinimap(minimap);
 
-    return enabled && Calendar.validNeedCalendar() && !mc.options.hideGui && !hiddenMinimap;
+    return enabled && Calendar.validNeedCalendar(mc.player) && !mc.options.hideGui && !hiddenMinimap;
   }
 }

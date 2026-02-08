@@ -59,7 +59,9 @@ public class DefaultColorButton extends Button {
   }
 
   public int getFgColor() {
-    return this.active ? 16777215 : 10526880;
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   @Override

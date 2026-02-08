@@ -22,7 +22,7 @@ public class DefaultValues {
     public static final int DEFAULT_DRY_COLOR = 16745216;
     public static final int DEFAULT_WET_COLOR = 2068975;
     public static final boolean DEFAULT_SHOW_TROPICAL_SEASON = true;
-    public static final boolean DEFAULT_SHOW_SUB_SEASON = true;
+    public static final boolean DEFAULT_SHOW_SUB_SEASON = false;
     public static final ShowDay DEFAULT_SHOW_DAY = ShowDay.SHOW_DAY;
     public static final boolean DEFAULT_SHOW_FERTILITY = false;
     public static final boolean DEFAULT_ENABLE_MINIMAP_INTEGRATION = true;

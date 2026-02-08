@@ -11,11 +11,13 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -281,6 +283,19 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                 Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
                 (b, val) -> this.showSubSeason = val);
 
+    if (Common.fabricSeasonsLoaded() && this.minecraft != null) {
+      int seasonLength = Services.SEASON.currentFabricSeasonLength(this.minecraft.player);
+
+      if ((seasonLength % 3) != 0) {
+        showSubSeasonButton.active = false;
+        showSubSeasonButton.setTooltip(Tooltip.create(
+            Common.translatedText("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength,
+                                  seasonLength * 24000)));
+      }
+    }
+
+    widgets.add(showSubSeasonButton);
+
     // TODO: Double check this looks okay
     if (Common.hasTropicalSeasons()) {
       CycleButton<Boolean> showTropicalSeasonButton = CycleButton.onOffBuilder(showTropicalSeason)
@@ -289,7 +304,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                   Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
                   (b, val) -> this.showTropicalSeason = val);
 
-      widgets.addAll(Arrays.asList(showSubSeasonButton, showTropicalSeasonButton));
+      widgets.add(showTropicalSeasonButton);
     }
 
     if (Common.hasCalendarLoaded()) {

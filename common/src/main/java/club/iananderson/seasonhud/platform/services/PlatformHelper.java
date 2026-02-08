@@ -19,6 +19,8 @@ public interface PlatformHelper {
 
   String getModVersion(String modId);
 
+  String getModName(String modId);
+
   /**
    * Check if the game is currently in a development environment.
    *

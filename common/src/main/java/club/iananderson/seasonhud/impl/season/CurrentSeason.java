@@ -16,21 +16,18 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 
 public class CurrentSeason {
+  private final Player player;
   private final SeasonModHelper seasonModHelper;
   private final Seasons currentSeason;
   private final SubSeasons currentSubSeason;
-  private final long seasonDate;
-  private final int seasonDuration;
   private Style seasonFormat;
 
-  public CurrentSeason(Minecraft mc) {
-    Player player = mc.player;
+  private CurrentSeason(Minecraft mc) {
+    this.player = mc.player;
     this.seasonFormat = Style.EMPTY;
     this.seasonModHelper = CommonSeasonHelper.commonSeasons.getHelper();
-    this.currentSeason = seasonModHelper.getCurrentSeason(player);
-    this.currentSubSeason = seasonModHelper.getCurrentSubSeason(player);
-    this.seasonDate = seasonModHelper.getDate(player);
-    this.seasonDuration = seasonModHelper.seasonDurationDays(player);
+    this.currentSeason = CommonSeasonHelper.commonSeasons.getHelper().getCurrentSeason(player);
+    this.currentSubSeason = CommonSeasonHelper.commonSeasons.getHelper().getCurrentSubSeason(player);
   }
 
   public static CurrentSeason getInstance(Minecraft mc) {
@@ -41,7 +38,7 @@ public class CurrentSeason {
     String seasonKey = currentSeason.getTranslationKey();
     String subSeasonKey = currentSubSeason.getSubSeasonKey();
 
-    if (Calendar.validDetailedMode() && showSubSeason) {
+    if (Calendar.validDetailedMode(player) && showSubSeason) {
       return Common.translatedText(seasonKey + subSeasonKey);
     } else {
       return Common.translatedText(seasonKey);
@@ -53,6 +50,9 @@ public class CurrentSeason {
   public Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text;
     Component seasonKey = getTranslation(showSubSeason);
+
+    long seasonDate = seasonModHelper.getDate(player);
+    int seasonDuration = seasonModHelper.seasonDurationDays(player);
 
     switch (showDay) {
       case NONE:
@@ -80,7 +80,7 @@ public class CurrentSeason {
 
           text = Common.translatedText(ShowDay.SHOW_WITH_MONTH.getKey(), seasonKey, currentMonth, seasonDate);
 
-          if (!Calendar.validDetailedMode()) {
+          if (!Calendar.validDetailedMode(player)) {
             text = Common.translatedText(ShowDay.NONE.getKey(), seasonKey);
           }
         } else {

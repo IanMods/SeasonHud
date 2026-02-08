@@ -13,6 +13,7 @@ import com.teamtea.eclipticseasons.config.CommonConfig;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
@@ -35,8 +36,8 @@ public class ForgeSeasonHelper implements SeasonHelper {
   }
 
   @Override
-  public Item fabricSeasonsCalendar() {
-    return null;
+  public Optional<Item> fabricSeasonsCalendar() {
+    return Optional.empty();
   }
 
   @Override
@@ -124,7 +125,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
     // TODO: Check this and make sure it is working correctly with sub-season
-    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       duration /= 3; // 3 sub-season per season
     }
 

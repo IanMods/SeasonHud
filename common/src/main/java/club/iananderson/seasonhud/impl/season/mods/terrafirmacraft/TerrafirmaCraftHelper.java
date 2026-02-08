@@ -8,6 +8,7 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
+import java.util.Optional;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -16,8 +17,8 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
   }
 
   @Override
-  public Item calendar() {
-    return null;
+  public Optional<Item> calendar() {
+    return Optional.empty();
   }
 
   @Override
@@ -63,7 +64,7 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
     int daysInMonth = Services.SEASON.terraFirmaCraftTotalDaysInMonth();
 
     // Currently the days in a month is 8 by default, and determined by the 'yearLength' config value divided by 12
-    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       return daysInMonth;
     } else {
       return daysInMonth * 3;

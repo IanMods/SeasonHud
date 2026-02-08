@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import java.util.Locale;
+import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
@@ -24,8 +25,8 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public Item calendar() {
-    return SSItems.CALENDAR;
+  public Optional<Item> calendar() {
+    return Optional.ofNullable(SSItems.CALENDAR);
   }
 
   @Override
@@ -102,7 +103,7 @@ public class SereneSeasonsHelper implements SeasonModHelper {
     if (isTropicalSeason(player)) {
       duration *= 2; // Tropical season are twice as long (Default 48 days)
     }
-    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       duration /= 3; // 3 sub-season per season
     }
 

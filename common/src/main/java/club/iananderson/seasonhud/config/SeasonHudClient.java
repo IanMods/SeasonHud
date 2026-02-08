@@ -112,7 +112,11 @@ public class SeasonHudClient {
         .define("enable_show_tropical_season", Client.DEFAULT_SHOW_TROPICAL_SEASON);
 
     showSubSeason = builder.comment(StringLine.builder().addLine(
-                "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season?").addLine("(true/false)")
+                "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of the basic season?")
+                                        .addLine("(true/false)").addLine("").addLine("If using Fabric Seasons: ")
+                                        .addLine("You will want to change the 'seasonLength' options in the")
+                                        .addLine("Fabric Seasons config (seasons.json) to be divisible by 3")
+                                        .addLine("It defaults to 672000 ticks (28 days)").addLine("")
                                         .lastLine("Default is " + Client.DEFAULT_SHOW_SUB_SEASON + "."))
         .define("enable_show_sub_season", Client.DEFAULT_SHOW_SUB_SEASON);
 

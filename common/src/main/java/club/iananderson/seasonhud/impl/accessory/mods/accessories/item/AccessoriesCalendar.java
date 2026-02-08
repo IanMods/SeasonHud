@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.impl.accessory.mods.accessories.item;
 
-import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
+import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.wispforest.accessories.api.AccessoriesAPI;
 import io.wispforest.accessories.api.Accessory;
@@ -11,25 +11,22 @@ import io.wispforest.accessories.api.slot.SlotReference;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class AccessoriesCalendar implements Accessory {
-  private static final Item calender = CommonSeasonHelper.commonSeasons.getHelper().calendar();
-
   public AccessoriesCalendar() {
   }
 
   // TODO: Double check this is still working
   public static void clientInit() {
-    if (calender != null) {
-      AccessoriesRendererRegistry.registerRenderer(calender, Renderer::new);
+    if (Calendar.calendar().isPresent()) {
+      AccessoriesRendererRegistry.registerRenderer(Calendar.calendar().get(), Renderer::new);
     }
   }
 
   public static void init() {
-    if (calender != null) {
-      AccessoriesAPI.registerAccessory(calender, new AccessoriesCalendar());
+    if (Calendar.calendar().isPresent()) {
+      AccessoriesAPI.registerAccessory(Calendar.calendar().get(), new AccessoriesCalendar());
     }
   }
 

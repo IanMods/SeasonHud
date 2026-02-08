@@ -3,6 +3,8 @@ package club.iananderson.seasonhud;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.AccessoryMods;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
+import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
 import club.iananderson.seasonhud.platform.Services;
 import com.demonwav.mcdev.annotations.Translatable;
@@ -36,6 +38,8 @@ public class Common {
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
+  private static List<SeasonMods> loadedSeasonMods;
+  private static List<MinimapMods> loadedMinimapMods;
 
   private Common() {
   }
@@ -50,6 +54,16 @@ public class Common {
     curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.CURIOS.getModId());
     trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.TRINKETS.getModId());
     accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.ACCESSORIES.getModId());
+    loadedSeasonMods = CommonSeasonHelper.commonSeasons.getLoadedSeasonMods();
+    loadedMinimapMods = CurrentMinimap.getLoadedMinimaps();
+
+    if (loadedSeasonMods.iterator().hasNext()) {
+      Common.LOG.info("Loading [{}] Compat", loadedSeasonMods.iterator().next().getModName());
+    }
+
+    if (loadedMinimapMods.iterator().hasNext()) {
+      Common.LOG.info("Loading [{}] Compat", loadedMinimapMods.iterator().next().getModName());
+    }
   }
 
   public static String platformName() {
@@ -86,6 +100,14 @@ public class Common {
 
   public static boolean accessoriesLoaded() {
     return Common.accessoriesLoaded;
+  }
+
+  public static List<SeasonMods> getLoadedSeasonMods() {
+    return Common.loadedSeasonMods;
+  }
+
+  public static List<MinimapMods> getLoadedMinimapMods() {
+    return Common.loadedMinimapMods;
   }
 
   public static boolean hasCalendarLoaded() {
