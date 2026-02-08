@@ -117,6 +117,7 @@ public class DefaultColorButton extends Button {
       return this;
     }
 
+    @SuppressWarnings({"unused"})
     public Builder withTooltip(@Nullable Tooltip tooltip) {
       this.tooltip = tooltip;
       return this;

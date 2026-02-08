@@ -17,8 +17,15 @@ public interface PlatformHelper {
    */
   boolean isModLoaded(String modId);
 
+  @SuppressWarnings({"unused"})
   String getModVersion(String modId);
 
+  /**
+   * Gets the mod name for the given id.
+   *
+   * @param modId The mod id for the mod.
+   * @return Mod name.
+   */
   String getModName(String modId);
 
   /**
@@ -26,5 +33,6 @@ public interface PlatformHelper {
    *
    * @return True if in a development environment, false otherwise.
    */
+  @SuppressWarnings({"unused"})
   boolean isDevelopmentEnvironment();
 }

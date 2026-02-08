@@ -69,6 +69,7 @@ public class DrawUtil {
   }
 
   // for 1.18
+  @SuppressWarnings({"unused"})
   public static void blitWithBorder(GuiGraphics graphics, ResourceLocation texture, int x, int y, int u, int v,
       int width, int height, int textureWidth, int textureHeight, int borderSize) {
     blitWithBorder(graphics, texture, x, y, u, v, width, height, textureWidth, textureHeight, borderSize, borderSize,
@@ -76,6 +77,7 @@ public class DrawUtil {
   }
 
   // for 1.18
+  @SuppressWarnings({"unused"})
   public static void enableScissor(int i, int j, int k, int l) {
     Window window = Minecraft.getInstance().getWindow();
     int height = window.getHeight();
@@ -88,6 +90,7 @@ public class DrawUtil {
   }
 
   // for 1.18
+  @SuppressWarnings({"unused"})
   public static void disableScissor() {
     RenderSystem.disableScissor();
   }

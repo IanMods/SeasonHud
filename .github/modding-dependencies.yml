@@ -79,7 +79,7 @@
     glitchcore_version:
       source: version
 
-# Terrafirmacraft
+# TerraFirmaCraft
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: terrafirmacraft

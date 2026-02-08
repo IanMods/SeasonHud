@@ -834,7 +834,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Added ability to change position of the season text when using Xaero's Minimap
-    - Minimap Menu ('Y' by default) -> Information Settings -> Info Display Manager
+    - Minimap Menu ('Y' by default) → Information Settings → Info Display Manager
 
 ## [1.4.19] - 2023-06-29
 
@@ -1035,6 +1035,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Due to some changes from 1.19.2 -> 1.19.3, I had to change to separate builds for each, rather
+- Due to some changes from 1.19.2 → 1.19.3, I had to change to separate builds for each, rather
   than a unified version
 - Fixed an issue with tropical season dates. Should be accurate now
