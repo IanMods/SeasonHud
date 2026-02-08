@@ -1,4 +1,4 @@
-package club.iananderson.seasonhud.impl.season;
+package club.iananderson.seasonhud.impl.season.components;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Style;

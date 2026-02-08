@@ -1,4 +1,4 @@
-package club.iananderson.seasonhud.impl.season;
+package club.iananderson.seasonhud.impl.season.components;
 
 /**
  * <h1>Sub-season for each month.</h1>

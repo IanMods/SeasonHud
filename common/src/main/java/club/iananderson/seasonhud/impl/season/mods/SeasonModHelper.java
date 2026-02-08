@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.impl.season.mods;
 
-import club.iananderson.seasonhud.impl.season.Fertility;
-import club.iananderson.seasonhud.impl.season.Seasons;
-import club.iananderson.seasonhud.impl.season.SubSeasons;
+import club.iananderson.seasonhud.impl.season.components.Fertility;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
+import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 

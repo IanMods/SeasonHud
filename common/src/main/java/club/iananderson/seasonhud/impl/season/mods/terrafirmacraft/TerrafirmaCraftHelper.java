@@ -2,10 +2,10 @@ package club.iananderson.seasonhud.impl.season.mods.terrafirmacraft;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
-import club.iananderson.seasonhud.impl.season.Fertility;
-import club.iananderson.seasonhud.impl.season.Months;
-import club.iananderson.seasonhud.impl.season.Seasons;
-import club.iananderson.seasonhud.impl.season.SubSeasons;
+import club.iananderson.seasonhud.impl.season.components.Fertility;
+import club.iananderson.seasonhud.impl.season.components.Months;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
+import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
 import net.minecraft.world.entity.player.Player;

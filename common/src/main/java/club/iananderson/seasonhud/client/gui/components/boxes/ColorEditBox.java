@@ -4,7 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.ColorScreen;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
-import club.iananderson.seasonhud.impl.season.Seasons;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
 import net.minecraft.client.Minecraft;

@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.impl.season;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.MutableComponent;

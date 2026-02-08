@@ -4,6 +4,8 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
+import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import java.time.LocalDateTime;

@@ -8,7 +8,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.rgb.GreenSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.RedSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.RgbSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.season.Seasons;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.ArrayList;
 import java.util.Arrays;

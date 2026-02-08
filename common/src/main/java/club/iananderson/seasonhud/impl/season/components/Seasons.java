@@ -1,4 +1,4 @@
-package club.iananderson.seasonhud.impl.season;
+package club.iananderson.seasonhud.impl.season.components;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.DefaultValues.Client;

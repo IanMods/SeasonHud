@@ -4,9 +4,9 @@ import static club.iananderson.seasonhud.Common.isDimensionValid;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
-import club.iananderson.seasonhud.impl.season.Months;
-import club.iananderson.seasonhud.impl.season.Seasons;
-import club.iananderson.seasonhud.impl.season.SubSeasons;
+import club.iananderson.seasonhud.impl.season.components.Months;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
+import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;

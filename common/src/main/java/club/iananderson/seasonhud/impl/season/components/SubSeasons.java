@@ -1,4 +1,4 @@
-package club.iananderson.seasonhud.impl.season;
+package club.iananderson.seasonhud.impl.season.components;
 
 public enum SubSeasons {
 
