@@ -21,10 +21,10 @@ public class SeasonHudFabric implements ModInitializer {
     Common.init();
 
     ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
-        "seasonhud-client.toml");
+                                          "seasonhud-client.toml");
 
     ForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
-        "seasonhud-server.toml");
+                                          "seasonhud-server.toml");
 
     if (Common.accessoriesLoaded() && !Common.trinketsLoaded()) {
       AccessoriesCompat.init();

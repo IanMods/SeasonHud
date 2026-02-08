@@ -58,8 +58,7 @@ public class ForgeMinimapHelper implements MinimapHelper {
     if (CurrentMinimap.xaeroLoaded()) {
       Minecraft mc = Minecraft.getInstance();
 
-      boolean minimapDisplayed = HudMod.INSTANCE.getHudConfigs()
-          .getClientConfigManager()
+      boolean minimapDisplayed = HudMod.INSTANCE.getHudConfigs().getClientConfigManager()
           .getEffective(MinimapProfiledConfigOptions.DISPLAY_MINIMAP);
 
       return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen

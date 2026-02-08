@@ -59,9 +59,7 @@ public enum Months {
   }
 
   public Months next() {
-    return this == DECEMBER
-           ? JANUARY
-           : VALUES[this.ordinal() + 1];
+    return this == DECEMBER ? JANUARY : VALUES[this.ordinal() + 1];
   }
 
   public String getTranslationKey() {

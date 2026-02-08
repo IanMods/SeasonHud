@@ -22,8 +22,8 @@ public class ClientEvents {
   }
 
   private static void registerKeyMappings() {
-    KeyBindings.seasonhudOptionsKeyMapping =
-        KeyBindingHelper.registerKeyBinding(KeyBindings.seasonhudOptionsKeyMapping);
+    KeyBindings.seasonhudOptionsKeyMapping = KeyBindingHelper.registerKeyBinding(
+        KeyBindings.seasonhudOptionsKeyMapping);
   }
 
   private static void registerHud() {

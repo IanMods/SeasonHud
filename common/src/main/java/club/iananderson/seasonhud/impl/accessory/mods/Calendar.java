@@ -5,15 +5,27 @@ import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.platform.Services;
 import io.wispforest.accessories.api.AccessoriesCapability;
+import java.util.Objects;
 import java.util.Optional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class Calendar {
-  private static final Item calendar = CommonSeasonHelper.commonSeasons.getHelper().calendar();
-
   private Calendar() {
+  }
+
+  private static Optional<Item> calendar() {
+    return Optional.ofNullable(CommonSeasonHelper.commonSeasons.getHelper().calendar());
+  }
+
+  private static Optional<ItemStack> calendarStack() {
+    if (Common.hasCalendarLoaded()) {
+      return Objects.requireNonNull(Calendar.calendar()).getDefaultInstance();
+    } else {
+      return Optional.empty();
+    }
   }
 
   /**
@@ -46,9 +58,13 @@ public class Calendar {
     return curioEquipped;
   }
 
-  private static boolean findCalendar(Player player, Item item) {
-    boolean invCalendarFound = player.getInventory().contains(item.getDefaultInstance());
-    boolean curiosCalendarFound = Calendar.findCuriosCalendar(player, item);
+  private static boolean findCalendar(Player player) {
+    if (Calendar.calendar() == null) {
+      return true;
+    }
+
+    boolean invCalendarFound = player.getInventory().contains(Calendar.calendarStack());
+    boolean curiosCalendarFound = Calendar.findCuriosCalendar(player, Calendar.calendar());
 
     return invCalendarFound | curiosCalendarFound;
   }
@@ -64,7 +80,7 @@ public class Calendar {
       return false;
     }
 
-    return findCalendar(mc.player, calendar);
+    return findCalendar(mc.player);
   }
 
   public static boolean validNeedCalendar() {

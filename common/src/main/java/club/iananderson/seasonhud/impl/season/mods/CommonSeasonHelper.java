@@ -5,6 +5,7 @@ import club.iananderson.seasonhud.impl.season.mods.eclipticseasons.EclipticSeaso
 import club.iananderson.seasonhud.impl.season.mods.fabricseasons.FabricSeasonsHelper;
 import club.iananderson.seasonhud.impl.season.mods.sereneseasons.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.season.mods.terrafirmacraft.TerrafirmaCraftHelper;
+import javax.annotation.Nullable;
 
 public class CommonSeasonHelper {
 
@@ -13,7 +14,7 @@ public class CommonSeasonHelper {
   private CommonSeasonHelper() {
   }
 
-  public SeasonModHelper getHelper() {
+  public @Nullable SeasonModHelper getHelper() {
     if (Common.fabricSeasonsLoaded()) {
       return new FabricSeasonsHelper();
     }
@@ -28,9 +29,7 @@ public class CommonSeasonHelper {
 
     if (Common.eclipticSeasonsLoaded()) {
       return new EclipticSeasonsHelper();
-    } else {
-      throw new RuntimeException("No supported Season mods are loaded");
     }
+    return null;
   }
-
 }

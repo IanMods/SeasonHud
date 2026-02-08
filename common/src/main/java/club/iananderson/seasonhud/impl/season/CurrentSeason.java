@@ -100,7 +100,7 @@ public class CurrentSeason {
 
     // TODO: Double check that the icon style is still applies
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-        seasonText);
+                                 seasonText);
   }
 
   public MutableComponent getHudText() {
@@ -112,7 +112,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-        seasonText.withStyle(seasonFormat));
+                                 seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
@@ -134,7 +134,7 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-        seasonText.withStyle(seasonFormat));
+                                 seasonText.withStyle(seasonFormat));
   }
 
   public MutableComponent getConfigText(ShowDay showDay, boolean showSubSeason, boolean seasonColor) {
@@ -146,6 +146,6 @@ public class CurrentSeason {
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
-        seasonText.withStyle(seasonFormat));
+                                 seasonText.withStyle(seasonFormat));
   }
 }

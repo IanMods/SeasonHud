@@ -22,7 +22,7 @@ public class DefaultColorButton extends Button {
 
   private DefaultColorButton(int x, int y, ColorEditBox colorEditBox, OnPress onPress) {
     super(x, y, colorEditBox.getWidth() + 2, colorEditBox.getHeight() - 2, DefaultColorButton.DEFAULT, onPress,
-        DEFAULT_NARRATION);
+          DEFAULT_NARRATION);
     this.colorEditBox = colorEditBox;
     this.defaultColor = colorEditBox.getSeason().getDefaultColor();
   }
@@ -59,19 +59,17 @@ public class DefaultColorButton extends Button {
   }
 
   public int getFgColor() {
-    return this.active
-           ? 16777215
-           : 10526880;
+    return this.active ? 16777215 : 10526880;
   }
 
   @Override
   public void renderWidget(@NotNull GuiGraphics graphics, int i, int j, float f) {
     Minecraft mc = Minecraft.getInstance();
     DrawUtil.blitWithBorder(graphics, WIDGETS_LOCATION, this.getX(), this.getY(), 0, getTextureY(), this.width,
-        this.height, 200, 20, 2, 3, 2, 2);
+                            this.height, 200, 20, 2, 3, 2, 2);
     FormattedText buttonText = this.getMessage();
     graphics.drawCenteredString(mc.font, Language.getInstance().getVisualOrder(buttonText),
-        this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, getFgColor());
+                                this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, getFgColor());
   }
 
   @Override

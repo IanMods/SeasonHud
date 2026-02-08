@@ -104,21 +104,23 @@ public class ColorScreen extends SeasonHudScreen {
         + RgbSlider.SLIDER_PADDING);
 
     DefaultColorButton defaultButton = DefaultColorButton.builder(colorBox, press -> {
-      int defaultColorInt = season.getDefaultColor();
+          int defaultColorInt = season.getDefaultColor();
 
-      if (colorBox.getNewColor() != defaultColorInt) {
-        int r = Rgb.red(defaultColorInt);
-        int g = Rgb.green(defaultColorInt);
-        int b = Rgb.blue(defaultColorInt);
+          if (colorBox.getNewColor() != defaultColorInt) {
+            int r = Rgb.red(defaultColorInt);
+            int g = Rgb.green(defaultColorInt);
+            int b = Rgb.blue(defaultColorInt);
 
-        redSlider.setValue(r);
-        greenSlider.setValue(g);
-        blueSlider.setValue(b);
-        colorBox.setValue(String.valueOf(defaultColorInt));
+            redSlider.setValue(r);
+            greenSlider.setValue(g);
+            blueSlider.setValue(b);
+            colorBox.setValue(String.valueOf(defaultColorInt));
 
-        Rgb.setRgb(season, defaultColorInt);
-      }
-    }).withPos(x, y).build();
+            Rgb.setRgb(season, defaultColorInt);
+          }
+        })
+        .withPos(x, y)
+        .build();
 
     seasonBoxes.add(colorBox);
 
@@ -144,7 +146,7 @@ public class ColorScreen extends SeasonHudScreen {
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(SeasonHudClient.getEnableSeasonNameColor())
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
         .create(leftButtonX, MENU_PADDING, buttonWidth, buttonHeight,
-            Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
+                Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
               SeasonHudClient.setEnableSeasonNameColor(val);
               rebuildWidgets();
             });
