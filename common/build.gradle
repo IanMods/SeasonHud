@@ -16,8 +16,6 @@ legacyForge {
 
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
-    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5")
 
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation "org.ow2.asm:asm-tree:9.5"

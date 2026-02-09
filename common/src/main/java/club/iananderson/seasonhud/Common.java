@@ -4,7 +4,6 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.AccessoryMods;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
-import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
 import club.iananderson.seasonhud.platform.Services;
 import com.demonwav.mcdev.annotations.Translatable;
@@ -29,7 +28,6 @@ public class Common {
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   public static final ResourceLocation SEASON_ICONS = location("season_icons");
   public static final Style SEASON_ICON_STYLE = Style.EMPTY.withFont(SEASON_ICONS);
-  private static String platformName;
   private static boolean sereneSeasonsLoaded;
   private static boolean fabricSeasonsLoaded;
   private static boolean fabricSeasonsExtrasLoaded;
@@ -38,36 +36,27 @@ public class Common {
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
-  private static List<SeasonMods> loadedSeasonMods;
-  private static List<MinimapMods> loadedMinimapMods;
 
   private Common() {
   }
 
   public static void init() {
-    platformName = Services.PLATFORM.getPlatformName();
-    sereneSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.SERENE.getModId());
-    fabricSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.FABRIC.getModId());
-    fabricSeasonsExtrasLoaded = Services.PLATFORM.isModLoaded(SeasonMods.FABRIC_EXTRAS.getModId());
-    terrafirmacraftLoaded = Services.PLATFORM.isModLoaded(SeasonMods.TERRAFIRMACRAFT.getModId());
-    eclipticSeasonsLoaded = Services.PLATFORM.isModLoaded(SeasonMods.ECLIPTIC.getModId());
-    curiosLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.CURIOS.getModId());
-    trinketsLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.TRINKETS.getModId());
-    accessoriesLoaded = Services.PLATFORM.isModLoaded(AccessoryMods.ACCESSORIES.getModId());
-    loadedSeasonMods = CommonSeasonHelper.commonSeasons.getLoadedSeasonMods();
-    loadedMinimapMods = CurrentMinimap.getLoadedMinimaps();
+    sereneSeasonsLoaded = SeasonMods.SERENE.modLoaded();
+    fabricSeasonsLoaded = SeasonMods.FABRIC.modLoaded();
+    fabricSeasonsExtrasLoaded = SeasonMods.FABRIC_EXTRAS.modLoaded();
+    terrafirmacraftLoaded = SeasonMods.TERRAFIRMACRAFT.modLoaded();
+    eclipticSeasonsLoaded = SeasonMods.ECLIPTIC.modLoaded();
+    curiosLoaded = AccessoryMods.CURIOS.modLoaded();
+    trinketsLoaded = AccessoryMods.TRINKETS.modLoaded();
+    accessoriesLoaded = AccessoryMods.ACCESSORIES.modLoaded();
 
-    if (loadedSeasonMods.iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", loadedSeasonMods.iterator().next().getModName());
+    if (SeasonMods.getLoaded().iterator().hasNext()) {
+      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
     }
 
-    if (loadedMinimapMods.iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", loadedMinimapMods.iterator().next().getModName());
+    if (MinimapMods.getLoaded().iterator().hasNext()) {
+      Common.LOG.info("Loading [{}] Compat", MinimapMods.getLoaded().iterator().next().getModName());
     }
-  }
-
-  public static String platformName() {
-    return Common.platformName;
   }
 
   public static boolean sereneSeasonsLoaded() {
@@ -102,14 +91,6 @@ public class Common {
     return Common.accessoriesLoaded;
   }
 
-  public static List<SeasonMods> getLoadedSeasonMods() {
-    return Common.loadedSeasonMods;
-  }
-
-  public static List<MinimapMods> getLoadedMinimapMods() {
-    return Common.loadedMinimapMods;
-  }
-
   public static boolean hasCalendarLoaded() {
     return Common.fabricSeasonsExtrasLoaded() || Common.sereneSeasonsLoaded() || Common.eclipticSeasonsLoaded();
   }
@@ -118,15 +99,11 @@ public class Common {
     return Common.sereneSeasonsLoaded() || Common.terrafirmacraftLoaded() || Common.eclipticSeasonsLoaded();
   }
 
-  public static boolean clientSideConfig() {
-    Minecraft mc = Minecraft.getInstance();
-
+  public static boolean clientSideConfig(Minecraft mc) {
     return (mc.getCurrentServer() == null);
   }
 
-  public static boolean vanillaShouldDrawHud() {
-    Minecraft mc = Minecraft.getInstance();
-
+  public static boolean vanillaShouldDrawHud(Minecraft mc) {
     if (mc.player == null) {
       return false;
     }
@@ -135,25 +112,21 @@ public class Common {
         && !mc.options.renderDebug && !mc.options.hideGui && !mc.player.isScoping();
   }
 
-  public static boolean minimapIntegrationHidden() {
-    return SeasonHudClient.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden()
+  public static boolean minimapIntegrationHidden(Minecraft mc) {
+    return SeasonHudClient.getEnableMinimapIntegration() && (CurrentMinimap.allMinimapsHidden(mc)
         && SeasonHudClient.getShowDefaultWhenMinimapHidden());
   }
 
-  public static boolean drawDefaultHud() {
-    Minecraft mc = Minecraft.getInstance();
-
+  public static boolean drawDefaultHud(Minecraft mc) {
     if (mc.player == null) {
       return false;
     }
 
     return SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
-        || !SeasonHudClient.getEnableMinimapIntegration() || minimapIntegrationHidden());
+        || !SeasonHudClient.getEnableMinimapIntegration() || minimapIntegrationHidden(mc));
   }
 
-  public static boolean drawDefaultHudMenu() {
-    Minecraft mc = Minecraft.getInstance();
-
+  public static boolean drawDefaultHudMenu(Minecraft mc) {
     if (mc.player == null) {
       return false;
     }
@@ -177,9 +150,7 @@ public class Common {
    *
    * @return True if the current dimension is whitelisted in the season mod's config.
    */
-  public static boolean hideHudInCurrentDimension() {
-    Minecraft mc = Minecraft.getInstance();
-
+  public static boolean hideHudInCurrentDimension(Minecraft mc) {
     if (mc.player == null) {
       return false;
     }

@@ -11,41 +11,29 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 
 public class CurrentMinimap {
-  private static boolean minimapLoaded(MinimapMods minimap) {
-    String modId = minimap.getModId();
-    return Services.PLATFORM.isModLoaded(modId);
+  public CurrentMinimap() {
   }
 
   public static boolean xaeroLoaded() {
-    return minimapLoaded(MinimapMods.XAERO) || minimapLoaded(MinimapMods.XAERO_FAIRPLAY);
+    return MinimapMods.XAERO.modLoaded() || MinimapMods.XAERO_FAIRPLAY.modLoaded();
   }
 
   public static boolean journeyMapLoaded() {
-    return minimapLoaded(MinimapMods.JOURNEYMAP);
+    return MinimapMods.JOURNEYMAP.modLoaded();
   }
 
   public static boolean ftbChunksLoaded() {
-    return minimapLoaded(MinimapMods.FTB_CHUNKS);
+    return MinimapMods.FTB_CHUNKS.modLoaded();
   }
 
   public static boolean mapAtlasesLoaded() {
-    return minimapLoaded(MinimapMods.MAP_ATLASES);
+    return MinimapMods.MAP_ATLASES.modLoaded();
   }
 
-  public static List<MinimapMods> getLoadedMinimaps() {
-    List<MinimapMods> values = new ArrayList<>(List.of(MinimapMods.values()));
-    List<MinimapMods> loaded = new ArrayList<>();
 
-    values.forEach(minimaps -> {
-      if (minimapLoaded(minimaps)) {
-        loaded.add(minimaps);
-      }
-    });
-    return loaded;
-  }
 
   public static boolean noMinimapLoaded() {
-    return getLoadedMinimaps().isEmpty();
+    return MinimapMods.getLoaded().isEmpty();
   }
 
   /* TODO:
@@ -60,25 +48,19 @@ public class CurrentMinimap {
    * @param minimap Current loaded minimap mod
    * @return True if the minimap is not currently displayed
    */
-  public static boolean hiddenMinimap(MinimapMods minimap) {
-    Minecraft mc = Minecraft.getInstance();
-
-    if (mc.level == null || mc.player == null) {
-      return false;
-    }
-
+  public static boolean hiddenMinimap(MinimapMods minimap, Minecraft mc) {
     switch (minimap) {
       case JOURNEYMAP -> {
-        return Services.MINIMAP.hideJourneyMap();
+        return Services.MINIMAP.hideJourneyMap(mc);
       }
       case FTB_CHUNKS -> {
         return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.options.renderDebug;
       }
       case XAERO, XAERO_FAIRPLAY -> {
-        return Services.MINIMAP.hideXaero();
+        return Services.MINIMAP.hideXaero(mc);
       }
       case MAP_ATLASES -> {
-        return Services.MINIMAP.hideMapAtlases();
+        return Services.MINIMAP.hideMapAtlases(mc);
       }
       default -> {
         return false;
@@ -87,15 +69,14 @@ public class CurrentMinimap {
   }
 
   /**
-   * Used incase FtbChunks or Journeymap are loaded, but not used for the minimap.
+   * Used in case FtbChunks or Journeymap are loaded, but not used for the minimap.
    *
    * @return True if all the loaded minimap are hidden.
    */
-  public static boolean allMinimapsHidden() {
-    List<MinimapMods> loadedMinimaps = CurrentMinimap.getLoadedMinimaps();
+  public static boolean allMinimapsHidden(Minecraft mc) {
     List<Boolean> hiddenMinimaps = new ArrayList<>();
 
-    loadedMinimaps.forEach(minimap -> hiddenMinimaps.add(hiddenMinimap(minimap)));
+    MinimapMods.getLoaded().forEach(minimap -> hiddenMinimaps.add(hiddenMinimap(minimap, mc)));
 
     return Common.allTrue(hiddenMinimaps);
   }
@@ -106,15 +87,13 @@ public class CurrentMinimap {
    * @param minimap Current loaded minimap mod
    * @return True if the minimap version of the HUD should be drawn instead of the default
    */
-  public static boolean shouldDrawMinimapHud(MinimapMods minimap) {
-    Minecraft mc = Minecraft.getInstance();
-
+  public static boolean shouldDrawMinimapHud(MinimapMods minimap, Minecraft mc) {
     if (mc.level == null || mc.player == null) {
       return false;
     }
 
     boolean enabled = SeasonHudClient.getEnableMod() && SeasonHudClient.getEnableMinimapIntegration();
-    boolean hiddenMinimap = Common.hideHudInCurrentDimension() || hiddenMinimap(minimap);
+    boolean hiddenMinimap = Common.hideHudInCurrentDimension(mc) || hiddenMinimap(minimap, mc);
 
     return enabled && Calendar.validNeedCalendar(mc.player) && !mc.options.hideGui && !hiddenMinimap;
   }

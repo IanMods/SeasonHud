@@ -1,6 +1,8 @@
 package club.iananderson.seasonhud.impl.minimap.mods;
 
 import club.iananderson.seasonhud.platform.Services;
+import java.util.ArrayList;
+import java.util.List;
 
 public enum MinimapMods {
   XAERO("xaerominimap"),
@@ -24,6 +26,22 @@ public enum MinimapMods {
   }
 
   public String getModName() {
-    return Services.PLATFORM.getModName(modId);
+    return Services.PLATFORM.getModName(this.modId);
+  }
+
+  public boolean modLoaded(){
+    return Services.PLATFORM.isModLoaded(this.modId);
+  }
+
+  public static List<MinimapMods> getLoaded() {
+    List<MinimapMods> values = new ArrayList<>(List.of(MinimapMods.values()));
+    List<MinimapMods> loaded = new ArrayList<>();
+
+    values.forEach(minimaps -> {
+      if (minimaps.modLoaded()) {
+        loaded.add(minimaps);
+      }
+    });
+    return loaded;
   }
 }

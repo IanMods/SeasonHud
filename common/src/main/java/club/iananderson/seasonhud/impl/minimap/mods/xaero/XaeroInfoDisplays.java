@@ -28,7 +28,7 @@ public class XaeroInfoDisplays {
         .setWidgetFactory(InfoDisplayCommonWidgetFactories.OFF_ON)
         .setCompiler((displayInfo, compiler, session, availableWidth, playerPos) -> {
           if (displayInfo.getEffectiveState() && CurrentMinimap.xaeroLoaded() && CurrentMinimap.shouldDrawMinimapHud(
-              MinimapMods.XAERO) && mc.level != null) {
+              MinimapMods.XAERO, mc) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getHudText());
 
             if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {

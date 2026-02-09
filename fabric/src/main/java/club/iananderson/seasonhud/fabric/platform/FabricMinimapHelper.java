@@ -18,10 +18,7 @@ import xaero.lib.client.gui.ScreenBase;
 public class FabricMinimapHelper implements MinimapHelper {
   // Needed for older versions. Makes it easier to port.
   @Override
-  public boolean hideMapAtlases() {
-    if (CurrentMinimap.mapAtlasesLoaded()) {
-      Minecraft mc = Minecraft.getInstance();
-
+  public boolean hideMapAtlases(Minecraft mc) {
       if (mc.level == null || mc.player == null || mc.options.renderDebug) {
         return true;
       }
@@ -34,36 +31,29 @@ public class FabricMinimapHelper implements MinimapHelper {
       boolean hasAtlas = (mc.player.getMainHandItem().is(atlasItem) || mc.player.getOffhandItem().is(atlasItem));
 
       return !drawMinimapHud || emptyAtlas || (hideInHand && hasAtlas);
-    } else {
-      return false;
-    }
   }
 
   @Override
-  public boolean hideJourneyMap() {
-    if (CurrentMinimap.journeyMapLoaded()) {
-      Minecraft mc = Minecraft.getInstance();
+  public boolean hideJourneyMap(Minecraft mc) {
+    if (mc.level == null || mc.player == null) {
+      return true;
+    }
 
       MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
       return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
           mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
-    } else {
-      return false;
-    }
   }
 
   @Override
-  public boolean hideXaero() {
-    if (CurrentMinimap.xaeroLoaded()) {
-      Minecraft mc = Minecraft.getInstance();
+  public boolean hideXaero(Minecraft mc) {
+    if (mc.level == null || mc.player == null) {
+      return true;
+    }
 
       boolean minimapDisplayed = !HudMod.INSTANCE.getSettings().getMinimap();
 
       return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
           || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
-    } else {
-      return false;
-    }
   }
 }

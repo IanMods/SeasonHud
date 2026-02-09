@@ -18,7 +18,9 @@ public class JourneyMap implements IGuiOverlay {
 
   @Override
   public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int scaledWidth, int scaledHeight) {
-    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP)) {
+    Minecraft mc = Minecraft.getInstance();
+
+    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
       JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
 
       graphics.pose().pushPose();

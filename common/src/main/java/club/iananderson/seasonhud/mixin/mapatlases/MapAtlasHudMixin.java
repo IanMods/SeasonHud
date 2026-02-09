@@ -4,11 +4,13 @@ import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,6 +31,8 @@ public class MapAtlasHudMixin {
   @Shadow
   private float globalScale;
 
+  @Shadow @Final private Minecraft mc;
+
   @SuppressWarnings("checkstyle:ParameterName")
   @Inject(remap = false, method = "render", at = @At(value = "INVOKE", target = "Lpepjebs/mapatlases/client/ui"
       + "/MapAtlasesHUD;" + "drawMapComponentBiome(Lnet/minecraft/client/gui/GuiGraphics;"
@@ -39,7 +43,7 @@ public class MapAtlasHudMixin {
       int mapWidgetSize, Anchoring anchorLocation, int off, int x, int y, float yRot, int light, int borderSize,
       float textScaling, int textHeightOffset, int actualBgSize, Font font) {
 
-    if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.MAP_ATLASES)) {
+    if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.MAP_ATLASES, mc)) {
       if (MapAtlasesClientConfig.drawMinimapBiome.get()) {
         textHeightOffset += (int) (10.0F * textScaling);
       }

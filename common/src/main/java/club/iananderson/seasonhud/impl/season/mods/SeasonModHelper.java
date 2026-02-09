@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public interface SeasonModHelper {
-
   /**
    * The calendar item the season mod uses (if available).
    *

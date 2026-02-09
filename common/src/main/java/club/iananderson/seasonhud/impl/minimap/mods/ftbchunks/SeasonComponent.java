@@ -63,6 +63,6 @@ public class SeasonComponent implements MinimapInfoComponent {
 
   @Override
   public boolean shouldRender(MinimapContext context) {
-    return CurrentMinimap.shouldDrawMinimapHud(MinimapMods.FTB_CHUNKS);
+    return CurrentMinimap.shouldDrawMinimapHud(MinimapMods.FTB_CHUNKS, context.minecraft());
   }
 }

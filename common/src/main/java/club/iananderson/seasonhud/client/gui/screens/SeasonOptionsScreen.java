@@ -54,7 +54,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   }
 
   public void loadConfig() {
-    drawDefaultHud = Common.drawDefaultHudMenu();
+    drawDefaultHud = Common.drawDefaultHudMenu(this.minecraft);
     hudLocation = SeasonHudClient.getHudLocation();
     posX = SeasonHudClient.getHudX();
     posY = SeasonHudClient.getHudY();
@@ -93,7 +93,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       SeasonHudClient.setShowTropicalSeason(showTropicalSeason);
     }
 
-    if (Common.clientSideConfig()) {
+    if (Common.clientSideConfig(this.minecraft)) {
       if (Common.hasCalendarLoaded()) {
         SeasonHudServer.setCalendarDetailMode(enableCalendarDetail);
         SeasonHudServer.setNeedCalendar(needCalendar);
@@ -173,7 +173,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
 
-      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
+      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
         int row = 4;
 
         if (Common.fabricSeasonsExtrasLoaded()) {
@@ -315,7 +315,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                   Common.translatedText("menu.seasonhud.season.needCalendar.button"),
                   (b, val) -> this.needCalendar = val);
 
-      needCalendarButton.active = Common.clientSideConfig();
+      needCalendarButton.active = Common.clientSideConfig(this.minecraft);
 
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.calendarDetail.tooltip"))
@@ -323,7 +323,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                   Common.translatedText("menu.seasonhud.season.calendarDetail.button"),
                   (b, val) -> this.enableCalendarDetail = val);
 
-      if (!Common.clientSideConfig()) {
+      if (!Common.clientSideConfig(this.minecraft)) {
         needCalendarButton.active = false;
         needCalendarButton.setTooltip(Common.newTooltip("menu.seasonhud.season.serverSide.tooltip"));
 
@@ -367,7 +367,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         }
       });
       dayLengthBox.setHint(Common.literalText("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
-      dayLengthBox.visible = Common.clientSideConfig();
+      dayLengthBox.visible = Common.clientSideConfig(this.minecraft);
 
       widgets.add(dayLengthBox);
     }
