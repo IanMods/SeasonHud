@@ -17,7 +17,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -288,9 +287,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       if ((seasonLength % 3) != 0) {
         showSubSeasonButton.active = false;
-        showSubSeasonButton.setTooltip(Tooltip.create(
-            Common.translatedText("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength,
-                                  seasonLength * 24000)));
+        showSubSeasonButton.setTooltip(
+            Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength, seasonLength * 24000));
       }
     }
 

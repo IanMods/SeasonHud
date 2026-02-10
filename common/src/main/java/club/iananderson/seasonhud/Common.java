@@ -202,4 +202,9 @@ public class Common {
   public static Tooltip newTooltip(@Translatable(foldMethod = true) String key) {
     return Tooltip.create(translatedText(key));
   }
+
+  // Used to make porting new text to older versions easier
+  public static Tooltip newTooltip(@Translatable(foldMethod = true) String key, Object... args) {
+    return Tooltip.create(translatedText(key, args));
+  }
 }
