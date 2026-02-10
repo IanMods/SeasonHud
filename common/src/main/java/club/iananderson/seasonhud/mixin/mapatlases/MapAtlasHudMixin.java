@@ -31,7 +31,9 @@ public class MapAtlasHudMixin {
   @Shadow
   private float globalScale;
 
-  @Shadow @Final private Minecraft mc;
+  @Shadow
+  @Final
+  private Minecraft mc;
 
   @SuppressWarnings("checkstyle:ParameterName")
   @Inject(remap = false, method = "render", at = @At(value = "INVOKE", target = "Lpepjebs/mapatlases/client/ui"

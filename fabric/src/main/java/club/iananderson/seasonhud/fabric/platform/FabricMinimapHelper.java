@@ -1,6 +1,5 @@
 package club.iananderson.seasonhud.fabric.platform;
 
-import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
@@ -19,18 +18,18 @@ public class FabricMinimapHelper implements MinimapHelper {
   // Needed for older versions. Makes it easier to port.
   @Override
   public boolean hideMapAtlases(Minecraft mc) {
-      if (mc.level == null || mc.player == null || mc.options.renderDebug) {
-        return true;
-      }
+    if (mc.level == null || mc.player == null || mc.options.renderDebug) {
+      return true;
+    }
 
-      Item atlasItem = MapAtlasesMod.MAP_ATLAS.get();
+    Item atlasItem = MapAtlasesMod.MAP_ATLAS.get();
 
-      boolean drawMinimapHud = MapAtlasesClientConfig.drawMiniMapHUD.get();
-      boolean emptyAtlas = MapAtlasesClient.getCurrentActiveAtlas().isEmpty();
-      boolean hideInHand = MapAtlasesClientConfig.hideWhenInHand.get();
-      boolean hasAtlas = (mc.player.getMainHandItem().is(atlasItem) || mc.player.getOffhandItem().is(atlasItem));
+    boolean drawMinimapHud = MapAtlasesClientConfig.drawMiniMapHUD.get();
+    boolean emptyAtlas = MapAtlasesClient.getCurrentActiveAtlas().isEmpty();
+    boolean hideInHand = MapAtlasesClientConfig.hideWhenInHand.get();
+    boolean hasAtlas = (mc.player.getMainHandItem().is(atlasItem) || mc.player.getOffhandItem().is(atlasItem));
 
-      return !drawMinimapHud || emptyAtlas || (hideInHand && hasAtlas);
+    return !drawMinimapHud || emptyAtlas || (hideInHand && hasAtlas);
   }
 
   @Override
@@ -39,10 +38,10 @@ public class FabricMinimapHelper implements MinimapHelper {
       return true;
     }
 
-      MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
+    MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
-      return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
-          mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
+        mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
   }
 
   @Override
@@ -51,9 +50,9 @@ public class FabricMinimapHelper implements MinimapHelper {
       return true;
     }
 
-      boolean minimapDisplayed = !HudMod.INSTANCE.getSettings().getMinimap();
+    boolean minimapDisplayed = !HudMod.INSTANCE.getSettings().getMinimap();
 
-      return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
-          || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
+    return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
+        || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
   }
 }

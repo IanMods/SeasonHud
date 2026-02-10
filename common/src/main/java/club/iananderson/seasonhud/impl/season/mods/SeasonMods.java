@@ -27,22 +27,6 @@ public enum SeasonMods {
     this.seasonModHelper = seasonModHelper;
   }
 
-  public String getModId() {
-    return modId;
-  }
-
-  public String getModName() {
-    return Services.PLATFORM.getModName(modId);
-  }
-
-  public boolean modLoaded(){
-    return Services.PLATFORM.isModLoaded(this.modId);
-  }
-
-  public SeasonModHelper getSeasonModHelper() {
-    return seasonModHelper;
-  }
-
   public static List<SeasonMods> getLoaded() {
     List<SeasonMods> values = new ArrayList<>(List.of(SeasonMods.values()));
     List<SeasonMods> loaded = new ArrayList<>();
@@ -53,5 +37,21 @@ public enum SeasonMods {
       }
     });
     return loaded;
+  }
+
+  public String getModId() {
+    return this.modId;
+  }
+
+  public String getModName() {
+    return Services.PLATFORM.getModName(this.modId);
+  }
+
+  public boolean modLoaded() {
+    return Services.PLATFORM.isModLoaded(this.modId);
+  }
+
+  public SeasonModHelper getSeasonModHelper() {
+    return seasonModHelper;
   }
 }

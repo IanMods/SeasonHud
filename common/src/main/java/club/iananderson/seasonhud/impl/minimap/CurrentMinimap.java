@@ -30,8 +30,6 @@ public class CurrentMinimap {
     return MinimapMods.MAP_ATLASES.modLoaded();
   }
 
-
-
   public static boolean noMinimapLoaded() {
     return MinimapMods.getLoaded().isEmpty();
   }

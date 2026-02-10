@@ -52,7 +52,6 @@ public class ForgeMinimapHelper implements MinimapHelper {
 
     boolean minimapDisplayed = !HudMod.INSTANCE.getSettings().getMinimap();
 
-
     return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
         || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
   }

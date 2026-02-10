@@ -21,18 +21,6 @@ public enum MinimapMods {
     this.modId = modId;
   }
 
-  public String getModId() {
-    return this.modId;
-  }
-
-  public String getModName() {
-    return Services.PLATFORM.getModName(this.modId);
-  }
-
-  public boolean modLoaded(){
-    return Services.PLATFORM.isModLoaded(this.modId);
-  }
-
   public static List<MinimapMods> getLoaded() {
     List<MinimapMods> values = new ArrayList<>(List.of(MinimapMods.values()));
     List<MinimapMods> loaded = new ArrayList<>();
@@ -43,5 +31,17 @@ public enum MinimapMods {
       }
     });
     return loaded;
+  }
+
+  public String getModId() {
+    return this.modId;
+  }
+
+  public String getModName() {
+    return Services.PLATFORM.getModName(this.modId);
+  }
+
+  public boolean modLoaded() {
+    return Services.PLATFORM.isModLoaded(this.modId);
   }
 }

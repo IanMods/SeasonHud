@@ -19,7 +19,7 @@ public enum AccessoryMods {
     return this.modId;
   }
 
-  public boolean modLoaded(){
+  public boolean modLoaded() {
     return Services.PLATFORM.isModLoaded(this.modId);
   }
 }
