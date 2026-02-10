@@ -75,9 +75,6 @@ dependencies {
     modCompileOnly("maven.modrinth:moonlight:${project.moonlight_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}-fabric") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
 
     // Trinkets
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
@@ -127,7 +124,6 @@ dependencies {
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.xaero_mc_version}")
-            modLocalRuntime(group: "maven.modrinth", name: "xaeros-minimap", version: "${project.xaeros_minimap_version}_Fabric_${project.xaero_mc_version}")
             modImplementation "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
             break
         case "journey":
@@ -140,9 +136,8 @@ dependencies {
             modLocalRuntime("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
             break
         case "atlas":
-            modLocalRuntime("maven.modrinth:map-atlases:1.20-${project.map_atlases_version}")
-            modLocalRuntime("maven.modrinth:moonlight:1.20-${project.moonlight_version_fabric}")
-            modLocalRuntime("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}-fabric")
+            modLocalRuntime("maven.modrinth:map-atlases:${project.map_atlases_version}")
+            modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
             modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cardinal_components_version}")
             modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}")
             modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}")

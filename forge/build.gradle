@@ -55,7 +55,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     compileOnly project(":common")
-    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+    annotationProcessor("org.spongepowered:mixin:${project.mixin_version}-SNAPSHOT:processor")
 
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
@@ -86,7 +86,6 @@ dependencies {
     // Map Atlases
     modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
     modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_forge}"
-    modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}-forge"
 
     // Curios
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
@@ -119,11 +118,8 @@ dependencies {
             implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
             break
         case "atlas":
-            modImplementation "maven.modrinth:map-atlases-forge:1.20-${project.map_atlases_version}"
-            modImplementation("maven.modrinth:immediatelyfast:${project.immediatelyfast_version}-forge")
-            modImplementation "maven.modrinth:moonlight:1.20-${project.moonlight_version_forge}"
-            compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
+            modImplementation "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
+            modImplementation "maven.modrinth:moonlight:${project.moonlight_version_forge}"
             break
         case "none":
             break
