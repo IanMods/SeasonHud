@@ -1,7 +1,11 @@
-## [1.13.17] - 2026-01-01
+## [2.0.0] - 2026-02-05
 
 ### Changed
 
-- Updated to support Xaero's Minimap 25.3.x
-- General cleanup
+- Large rewrite to hopefully make porting easier
+
+### Added
+
+- Added sub-season support for Fabric Seasons
+- Added sub-season support for Ecliptic Seasons
 
