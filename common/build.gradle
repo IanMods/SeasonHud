@@ -26,12 +26,11 @@ dependencies {
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
 
     //Season Mods
-    // Not used in common unless they are actually  loaded.
     modCompileOnly "com.github.glitchfiend:SereneSeasons-common:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-common:${project.glitchcore_version}"
 
     // Minimap Mods
-    // Not used in common unless they are actually  loaded.
+    // Not used in common unless they are actually loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_${project.xaero_mc_version}"
     modCompileOnly "xaero.lib:xaerolib-common-${project.xaero_mc_version}:${project.xaero_lib_version}"
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
@@ -42,7 +41,6 @@ dependencies {
     compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
 
     // Accessory Mods
-    // Not used in common unless they are actually  loaded.
     compileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
 }
 

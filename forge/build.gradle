@@ -46,6 +46,7 @@ legacyForge {
     mods {
         "${mod_id}" {
             sourceSet sourceSets.main
+            sourceSet project(":common").sourceSets.main
         }
     }
 }
@@ -55,7 +56,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     compileOnly project(":common")
-    annotationProcessor("org.spongepowered:mixin:${project.mixin_version}-SNAPSHOT:processor")
+    annotationProcessor("org.spongepowered:mixin:${project.mixin_version}:processor")
 
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
@@ -250,6 +251,85 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     mainFile.addOptional("xaeros-minimap")
     mainFile.addOptional("xaeros-minimap-fair-play-edition")
     mainFile.addOptional("map-atlases-forge")
+}
+
+publishMods {
+    var mcVer = minecraft_version.split("\\.").toList()
+    int mcMajor
+    int mcMinor
+    if (mcVer.get(0).toInteger() == 1) {
+        mcMajor = mcVer.get(1).toInteger()
+        mcMinor = mcVer.get(2).toInteger()
+    } else {
+        mcMajor = mcVer.get(0).toInteger()
+        mcMinor = mcVer.get(1).toInteger()
+    }
+
+    displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
+    version = "${minecraft_version}-${mod_version}"
+    file project(":forge")
+
+    def cfOptions = curseforgeOptions {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(curseforge_gameVersions.split(","))
+        projectId = project.curseforge_forge_id
+    }
+
+    def mrOptions = modrinthOptions {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
+    }
+
+    curseforge("curseforgeForge") {
+        from cfOptions
+        modLoaders.add("forge")
+
+        if (minecraft_version == "1.20.1") {
+            modLoaders.add("neoforge")
+        }
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios", "accessories")
+    }
+
+    modrinth("modrinthForge") {
+        from mrOptions
+        modLoaders.add("forge")
+
+        if (minecraft_version == "1.20.1") {
+            modLoaders.add("neoforge")
+        }
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios", "accessories")
+    }
+
+    if (mcMajor >= 21) {
+        curseforge("curseforgeNeoForge") {
+            from cfOptions
+            file project(":neoforge")
+            displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
+            modLoaders.add("neoforge")
+            optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+            optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+            optional("curios", "accessories")
+        }
+
+        modrinth("modrinthNeoForge") {
+            from mrOptions
+            file project(":neoforge")
+            displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
+            modLoaders.add("neoforge")
+            optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+            optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+            optional("curios", "accessories")
+        }
+    }
+
+
 }
 
 tasks.register('publishForge') {

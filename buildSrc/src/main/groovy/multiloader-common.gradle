@@ -5,7 +5,7 @@ plugins {
 }
 
 base {
-    archivesName = "${mod_id}-${project.name}-${minecraft_version}"
+    archivesName = "${project.mod_id}-${project.name}-${project.minecraft_version}"
 }
 
 group = project.group
@@ -13,8 +13,7 @@ version = project.mod_version
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-    //withSourcesJar()
-    //withJavadocJar()
+    withSourcesJar()
 }
 
 repositories {
@@ -171,24 +170,24 @@ dependencies {
 
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
-//['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
-['apiElements', 'runtimeElements'].each { variant ->
-    configurations."$variant".outgoing {
-        capability("$group:${project.name}:$version")
-        capability("$group:${base.archivesName.get()}:$version")
-        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
-        capability("$group:$mod_id:$version")
+['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+//['apiElements', 'runtimeElements'].each { variant ->
+    configurations."${variant}".outgoing {
+        capability("${project.group}:${project.name}:${project.version}")
+        capability("${project.group}:${base.archivesName.get()}:${project.version}")
+        capability("${project.group}:${project.mod_id}-${project.name}-${project.minecraft_version}:${project.version}")
+        capability("${project.group}:${project.mod_id}:${project.version}")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
     }
 }
 
-//sourcesJar {
-//    from(rootProject.file('LICENSE')) {
-//        rename { "${it}_${mod_name}" }
-//    }
-//}
+sourcesJar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${mod_name}" }
+    }
+}
 
 jar {
     from(rootProject.file('LICENSE')) {
@@ -197,13 +196,13 @@ jar {
 
     manifest {
         attributes([
-                'Specification-Title'   : mod_name,
-                'Specification-Vendor'  : mod_author,
+                'Specification-Title'  : project.mod_name,
+                'Specification-Vendor' : project.mod_author,
                 'Specification-Version' : project.jar.archiveVersion,
                 'Implementation-Title'  : project.name,
                 'Implementation-Version': project.jar.archiveVersion,
-                'Implementation-Vendor' : mod_author,
-                'Built-On-Minecraft'    : minecraft_version
+                'Implementation-Vendor': project.mod_author,
+                'Built-On-Minecraft'   : project.minecraft_version
         ])
     }
 }
@@ -212,23 +211,23 @@ processResources {
     def expandProps = [
             "version"                   : project.version,
             "group"                     : project.group, //Else we target the task's group.
-            "minecraft_version"         : minecraft_version,
-            "forge_version"             : forge_version,
-            "forge_loader_version_range": forge_loader_version_range,
-            "forge_version_range"       : forge_version_range,
-            "minecraft_version_range"   : minecraft_version_range,
-            "fabric_api_version"        : fabric_api_version,
-            "fabric_loader_version"     : fabric_loader_version,
-            "fabric_version_range"      : fabric_version_range,
-            "mod_name"                  : mod_name,
-            "mod_author"                : mod_author,
-            "mod_id"                    : mod_id,
-            "license"                   : license,
+            "minecraft_version"         : project.minecraft_version,
+            "forge_version"             : project.forge_version,
+            "forge_loader_version_range": project.forge_loader_version_range,
+            "forge_version_range"       : project.forge_version_range,
+            "minecraft_version_range"   : project.minecraft_version_range,
+            "fabric_api_version"        : project.fabric_api_version,
+            "fabric_loader_version"     : project.fabric_loader_version,
+            "fabric_version_range"      : project.fabric_version_range,
+            "mod_name"                  : project.mod_name,
+            "mod_author"                : project.mod_author,
+            "mod_id"                    : project.mod_id,
+            "license"                   : project.license,
             "description"               : project.description,
-            "repoURL"                   : repoURL,
-            "issueTrackerURL"           : issueTrackerURL,
-            "credits"                   : credits,
-            "java_version"              : java_version
+            "repoURL"                   : project.repoURL,
+            "issueTrackerURL"           : project.issueTrackerURL,
+            "credits"                   : project.credits,
+            "java_version"              : project.java_version
     ]
 
     var jsonExpandProps = expandProps.collectEntries {
@@ -285,72 +284,9 @@ tasks.register('latestChangelog') {
 }
 
 publishMods {
-    var mcVer = minecraft_version.split("\\.").toList()
-    int mcMajor
-    int mcMinor
-    if (mcVer.get(0).toInteger() == 1) {
-        mcMajor = mcVer.get(1).toInteger()
-        mcMinor = mcVer.get(2).toInteger()
-    } else {
-        mcMajor = mcVer.get(0).toInteger()
-        mcMinor = mcVer.get(1).toInteger()
-    }
-
     dryRun = true
     type = STABLE
     changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-
-    def cfOptions = curseforgeOptions {
-        accessToken = System.getenv("CURSEFORGE_TOKEN")
-        changelogType = "markdown"
-        javaVersions.add(JavaVersion.toVersion(project.java_version))
-        version = "${minecraft_version}-${mod_version}"
-        minecraftVersions.addAll(curseforge_gameVersions.split(","))
-    }
-
-    def mrOptions = modrinthOptions {
-        accessToken = System.getenv("MODRINTH_TOKEN")
-        minecraftVersions.addAll(modrinth_gameVersions.split(","))
-    }
-
-    curseforge("curseforgeFabric") {
-        from cfOptions
-        projectId = project.curseforge_fabric_id
-        file project(":fabric")
-        displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
-        modLoaders.add("fabric")
-        requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
-        optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
-        optional("trinkets", "accessories")
-    }
-
-    curseforge("curseforgeForge") {
-        from cfOptions
-        projectId = project.curseforge_forge_id
-        file project(":forge")
-        displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}" + mcMajor + mcMinor
-        modLoaders.add("forge")
-        if (minecraft_version == "1.20.1") {
-            modLoaders.add("neoforge")
-        }
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-        optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
-        optional("curios", "accessories")
-    }
-
-    if (mcMajor >= 21) {
-        curseforge("curseforgeNeoForge") {
-            from cfOptions
-            projectId = project.curseforge_forge_id
-            file project(":neoforge")
-            displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
-            modLoaders.add("neoforge")
-            optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-            optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
-            optional("curios", "accessories")
-        }
-    }
 }
 
 tasks.register('publishAll') {

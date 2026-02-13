@@ -223,6 +223,38 @@ tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurs
     mainFile.addOptional("map-atlases")
 }
 
+publishMods {
+    displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
+    version = "${minecraft_version}-${mod_version}"
+    modLoaders.add("fabric")
+    file project(":fabric")
+
+
+    curseforge("curseforgeFabric") {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(curseforge_gameVersions.split(","))
+        projectId = project.curseforge_fabric_id
+
+        requires("forge-config-api-port")
+        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
+        optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
+        optional("trinkets", "accessories")
+    }
+
+    modrinth("modrinthFabric") {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_fabric_id
+
+        requires("forge-config-api-port")
+        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
+        optional("trinkets", "accessories")
+    }
+}
+
 tasks.register('publishFabric') {
     group = "upload"
     dependsOn(tasks.publishCurseForge)
