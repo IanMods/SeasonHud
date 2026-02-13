@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.fabric.platform;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
-import journeymap.client.ui.dialog.MinimapOptions;
+import journeymap.client.ui.option.MinimapOptions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -18,7 +18,7 @@ public class FabricMinimapHelper implements MinimapHelper {
   // Needed for older versions. Makes it easier to port.
   @Override
   public boolean hideMapAtlases(Minecraft mc) {
-    if (mc.level == null || mc.player == null || mc.options.renderDebug) {
+    if (mc.level == null || mc.player == null || mc.getDebugOverlay().showDebugScreen()) {
       return true;
     }
 
@@ -52,7 +52,7 @@ public class FabricMinimapHelper implements MinimapHelper {
 
     boolean minimapDisplayed = HudMod.INSTANCE.getSettings().getMinimap();
 
-    return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
-        || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
+    return !minimapDisplayed || mc.getDebugOverlay().showDebugScreen() || !(mc.screen == null
+        || mc.screen instanceof ChatScreen || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
   }
 }

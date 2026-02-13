@@ -9,12 +9,12 @@ import net.minecraft.world.item.Item;
 
 public class FabricAccessoryHelper implements AccessoryHelper {
   @Override
-  public boolean curiosEquiped(Player player, Item item) {
+  public boolean curiosEquipped(Player player, Item item) {
     return false;
   }
 
   @Override
-  public boolean trinketEquiped(Player player, Item item) {
+  public boolean trinketEquipped(Player player, Item item) {
     Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
 
     return trinketInventory.map(trinketComponent -> trinketComponent.isEquipped(item)).orElse(false);

@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.fabric.client;
 
 import club.iananderson.seasonhud.fabric.event.ClientEvents;
-import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.ftbchunks.SeasonComponent;
 import net.fabricmc.api.ClientModInitializer;

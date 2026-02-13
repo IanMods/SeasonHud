@@ -1,17 +1,22 @@
-package club.iananderson.seasonhud.impl.seasons.mods;
+package club.iananderson.seasonhud.impl.season.mods.homeostaticseasons;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.Calendar;
-import club.iananderson.seasonhud.impl.seasons.Fertility;
+import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
+import club.iananderson.seasonhud.impl.season.components.Fertility;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
+import club.iananderson.seasonhud.impl.season.components.SubSeasons;
+import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import homeostaticseasons.api.Season;
+import java.util.Locale;
+import java.util.Optional;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class HomeostaticSeasonsHelper implements SeasonModHelper {
   @Override
-  public Item calendar() {
-    return null;
+  public Optional<Item> calendar() {
+    return Optional.empty();
   }
 
   @Override
@@ -25,15 +30,19 @@ public class HomeostaticSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public String getCurrentSubSeason(Player player) {
-    return HomeostaticSeasonsAPI.getCurrentSeason(player.level()).getSerializedName();
+  public SubSeasons getCurrentSubSeason(Player player) {
+    String currentSubSeasonFull = HomeostaticSeasonsAPI.getCurrentSeason(player.level()).getSerializedName();
+    String currentSubSeason = currentSubSeasonFull.substring(0, currentSubSeasonFull.indexOf("_"));
+
+    return SubSeasons.valueOf(currentSubSeason.toUpperCase(Locale.ROOT));
   }
 
   @Override
-  public String getCurrentSeason(Player player) {
-    // Removes the "Early", "Mid", "Late" from the season.
-    String currentSubSeason = getCurrentSubSeason(player);
-    return currentSubSeason.substring(currentSubSeason.indexOf("_") + 1);
+  public Seasons getCurrentSeason(Player player) {
+    String currentSubSeasonFull = HomeostaticSeasonsAPI.getCurrentSeason(player.level()).getSerializedName();
+    String currentSeason = currentSubSeasonFull.substring(currentSubSeasonFull.indexOf("_") + 1);
+
+    return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
   }
 
   private Season nextFullSeason(Season subSeason) {
@@ -68,10 +77,25 @@ public class HomeostaticSeasonsHelper implements SeasonModHelper {
     // sub-season (1 week)
     long seasonDate = ((seasonDuration - timeToNextSeason) / dayLength) + 1; // Default 9 days in a season (3 days * 3)
 
-    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       return subSeasonDate;
     } else {
       return seasonDate;
+    }
+  }
+
+  @Override
+  public int seasonDurationDays(Player player) {
+    long dayLength = 24000L;
+
+    Season subSeason = HomeostaticSeasonsAPI.getCurrentSeason(player.level());
+    long subSeasonDuration = subSeason.getSeasonLength();
+    long seasonDuration = fullSeasonDuration(subSeason);
+
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
+      return (int) (subSeasonDuration / dayLength);
+    } else {
+      return (int) (seasonDuration / dayLength);
     }
   }
 
@@ -94,21 +118,6 @@ public class HomeostaticSeasonsHelper implements SeasonModHelper {
             + Season.LATE_WINTER.getSeasonLength());
       }
       default -> throw new IllegalStateException("Unexpected value: " + subSeason);
-    }
-  }
-
-  @Override
-  public int seasonDuration(Player player) {
-    long dayLength = 24000L;
-
-    Season subSeason = HomeostaticSeasonsAPI.getCurrentSeason(player.level());
-    long subSeasonDuration = subSeason.getSeasonLength();
-    long seasonDuration = fullSeasonDuration(subSeason);
-
-    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode()) {
-      return (int) (subSeasonDuration / dayLength);
-    } else {
-      return (int) (seasonDuration / dayLength);
     }
   }
 

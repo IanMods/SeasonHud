@@ -52,7 +52,7 @@ public class CurrentMinimap {
         return Services.MINIMAP.hideJourneyMap(mc);
       }
       case FTB_CHUNKS -> {
-        return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.options.renderDebug;
+        return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.getDebugOverlay().showDebugScreen();
       }
       case XAERO, XAERO_FAIRPLAY -> {
         return Services.MINIMAP.hideXaero(mc);

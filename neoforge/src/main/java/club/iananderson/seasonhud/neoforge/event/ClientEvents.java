@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
-@EventBusSubscriber(value = Dist.CLIENT, modid = Common.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(value = Dist.CLIENT, modid = Common.MOD_ID)
 public class ClientEvents {
 
   @SubscribeEvent
@@ -22,9 +22,9 @@ public class ClientEvents {
     }
   }
 
-  @EventBusSubscriber(value = Dist.CLIENT, modid = Common.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+  @EventBusSubscriber(value = Dist.CLIENT, modid = Common.MOD_ID)
   public static class ModBus {
-    //Overlays
+    // Overlays
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
       SeasonHUDOverlay.init();
@@ -32,7 +32,7 @@ public class ClientEvents {
                           SeasonHUDOverlay.HUD_INSTANCE);
     }
 
-    //Key Bindings
+    // Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
       event.register(KeyBindings.seasonhudOptionsKeyMapping);

@@ -17,7 +17,8 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
   public Optional<Item> calendar() {
     if (Common.eclipticSeasonsLoaded()) {
-      return Optional.of(BuiltInRegistries.ITEM.get(new ResourceLocation("eclipticseasons", "calendar")));
+      return Optional.of(
+          BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("eclipticseasons", "calendar")));
     } else {
       return Optional.empty();
     }

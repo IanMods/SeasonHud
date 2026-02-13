@@ -23,7 +23,7 @@ repositories {
         forRepository {
             maven {
                 name = "CurseMaven"
-                url = "https://cursemaven.com"
+                url = uri("https://cursemaven.com")
             }
         }
         filter {
@@ -35,7 +35,7 @@ repositories {
         forRepository {
             maven {
                 name = "Modrinth Maven"
-                url = "https://api.modrinth.com/maven"
+                url = uri("https://api.modrinth.com/maven")
             }
         }
         filter {
@@ -43,27 +43,28 @@ repositories {
         }
     }
 
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Sponge Maven'
-                url = 'https://repo.spongepowered.org/repository/maven-public'
-            }
-        }
-        filter { includeGroupAndSubgroups('org.spongepowered') }
+    maven {
+        name = 'Sponge Maven'
+        url = uri("https://repo.spongepowered.org/repository/maven-public/")
     }
 
-    maven {
-        name = "Parchment Maven"
-        url = "https://maven.parchmentmc.org"
-        content {
-            includeGroup "org.parchmentmc.data"
-        }
+    exclusiveContent {
+        forRepositories(
+                maven {
+                    name = 'ParchmentMC'
+                    url = uri("https://maven.parchmentmc.org/")
+                },
+                maven {
+                    name = "NeoForge"
+                    url = uri('https://maven.neoforged.net/releases')
+                }
+        )
+        filter { includeGroup('org.parchmentmc.data') }
     }
 
     maven {
         name = "shedaniel Maven - Cloth Config, REI, Architectury"
-        url = "https://maven.shedaniel.me/"
+        url = uri("https://maven.shedaniel.me/")
         content {
             includeGroup "me.shedaniel"
             includeGroup "dev.architectury"
@@ -73,15 +74,16 @@ repositories {
 
     maven {
         name = "LadySnake Maven - Cardinal Components"
-        url = "https://maven.ladysnake.org/releases"
+        url = uri("https://maven.ladysnake.org/releases")
         content {
             includeGroup "dev.onyxstudios.cardinal-components-api"
             includeGroup "org.ladysnake.cardinal-components-api"
         }
     }
+
     maven {
         name = "Xaero Maven"
-        url = "https://chocolateminecraft.com/maven"
+        url = uri("https://chocolateminecraft.com/maven")
         content {
             includeGroup "xaero.lib"
         }
@@ -89,7 +91,7 @@ repositories {
 
     maven {
         name = "Journeymap API MAven"
-        url = "https://jm.gserv.me/repository/maven-public/"
+        url = uri("https://jm.gserv.me/repository/maven-public/")
         content {
             includeGroup "info.journeymap"
         }
@@ -97,15 +99,15 @@ repositories {
 
     maven {
         name = "Curios Maven"
-        url = "https://maven.theillusivec4.top/"
+        url = uri("https://maven.theillusivec4.top/")
         content {
             includeGroup "top.theillusivec4.curios"
         }
     }
-    // Mod Menu, Trinkets
+
     maven {
         name = "TerraformerMC Maven"
-        url = "https://maven.terraformersmc.com/releases/"
+        url = uri("https://maven.terraformersmc.com/releases/")
         content {
             includeGroup "com.terraformersmc"
             includeGroup "dev.emi"
@@ -114,16 +116,16 @@ repositories {
 
     maven {
         name = "Accessories Maven"
-        url = "https://maven.wispforest.io/releases"
+        url = uri("https://maven.wispforest.io/releases")
         content {
             includeGroup "io.wispforest"
             includeGroup "io.wispforest.endec"
         }
     }
-    // Accessories Dependencies
+
     maven {
         name = "Sinytra Maven"
-        url = "https://maven.su5ed.dev/releases"
+        url = uri("https://maven.su5ed.dev/releases")
         content {
             includeGroup "dev.su5ed.sinytra.fabric-api"
         }
@@ -131,7 +133,7 @@ repositories {
 
     maven {
         name = "Forge Config API Port Maven"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
         content {
             includeGroup "fuzs.forgeconfigapiport"
         }
@@ -139,7 +141,7 @@ repositories {
 
     maven {
         name = "DevAuth Maven"
-        url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
+        url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
         content {
             includeGroup "me.djtheredstoner"
         }
@@ -147,7 +149,7 @@ repositories {
 
     maven {
         name = "FTB Maven"
-        url = "https://maven.ftb.dev/releases"
+        url = uri("https://maven.ftb.dev/releases")
         content {
             includeGroup "dev.ftb.mods"
         }
@@ -155,12 +157,22 @@ repositories {
 
     maven {
         name = "Forge Maven"
-        url = "https://maven.minecraftforge.net"
+        url = uri("https://maven.minecraftforge.net")
     }
 
     maven {
         name = "ModMaven (Backup)"
-        url = "https://modmaven.dev/"
+        url = uri("https://modmaven.dev/")
+    }
+
+    maven {
+        name = "Homeostatic Seasons"
+        url = uri("https://raw.githubusercontent.com/wendall911/maven/main/")
+        content {
+            includeGroup "com.github.wendall911.climatesettings"
+            includeGroup "com.github.wendall911.homeostaticseasons"
+            includeGroup "technology.roughness.whitenoise"
+        }
     }
 }
 

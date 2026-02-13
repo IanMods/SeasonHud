@@ -1,4 +1,4 @@
-package club.iananderson.seasonhud.impl.minimaps.journeymap;
+package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
 import club.iananderson.seasonhud.Common;
 import journeymap.api.v2.client.event.InfoSlotDisplayEvent.Position;

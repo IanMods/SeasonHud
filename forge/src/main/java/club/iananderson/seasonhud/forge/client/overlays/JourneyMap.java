@@ -10,24 +10,24 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class JourneyMap implements IGuiOverlay {
-  public static JourneyMap HUD_INSTANCE;
+	public static JourneyMap HUD_INSTANCE;
 
-  public static void init() {
-    HUD_INSTANCE = new JourneyMap();
-  }
+	public static void init() {
+		HUD_INSTANCE = new JourneyMap();
+	}
 
-  @Override
-  public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int scaledWidth, int scaledHeight) {
-    Minecraft mc = Minecraft.getInstance();
+	@Override
+	public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int scaledWidth, int scaledHeight) {
+		Minecraft mc = Minecraft.getInstance();
 
-    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
-      JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
+		if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
+			JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
 
-      graphics.pose().pushPose();
-      graphics.pose().scale(1 / journeyMapCommon.getFontScale(), 1 / journeyMapCommon.getFontScale(), 0);
-      DrawUtil.sizeDisplay(graphics.pose(), journeyMapCommon.getScreenWidth(), journeyMapCommon.getScreenHeight());
-      graphics.pose().popPose();
-      journeyMapCommon.drawSeasonLabel(graphics);
-    }
-  }
+			graphics.pose().pushPose();
+			graphics.pose().scale(1 / journeyMapCommon.getFontScale(), 1 / journeyMapCommon.getFontScale(), 0);
+			DrawUtil.sizeDisplay(graphics.pose(), journeyMapCommon.getScreenWidth(), journeyMapCommon.getScreenHeight());
+			graphics.pose().popPose();
+			journeyMapCommon.drawSeasonLabel(graphics);
+		}
+	}
 }

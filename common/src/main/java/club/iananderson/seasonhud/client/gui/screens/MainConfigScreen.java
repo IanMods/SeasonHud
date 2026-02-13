@@ -4,10 +4,11 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
+import journeymap.client.ui.UIManager;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -121,7 +122,7 @@ public class MainConfigScreen extends SeasonHudScreen {
     widgets.addAll(Arrays.asList(enableMinimapIntegrationButton, showMinimapHiddenButton));
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
-      row += 2; //6
+      row += 2; // 6
       journeyMapButton = Button.builder(Common.translatedText("menu.seasonhud.main.journeymap.options.button"),
                                         (button) -> UIManager.INSTANCE.openAddonOptionsEditor(this, true))
           .tooltip(Tooltip.create(Common.translatedText("menu.seasonhud.main.journeymap.options.tooltip")))

@@ -45,4 +45,8 @@ public interface SeasonHelper {
   int terraFirmaCraftCurrentDayOfMonth();
 
   int terraFirmaCraftTotalDaysInMonth();
+
+  // HomeostaticSeasons
+  boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim);
+
 }

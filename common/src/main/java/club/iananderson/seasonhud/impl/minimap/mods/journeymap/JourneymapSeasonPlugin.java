@@ -1,9 +1,9 @@
-package club.iananderson.seasonhud.impl.minimaps.journeymap;
+package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import journeymap.api.v2.client.IClientAPI;
 import journeymap.api.v2.client.IClientPlugin;
 import journeymap.api.v2.client.JourneyMapPlugin;
