@@ -1,10 +1,6 @@
-import net.darkhax.curseforgegradle.TaskPublishCurseForge
-
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev.legacyforge'
-    id 'net.darkhax.curseforgegradle'
-    id "com.modrinth.minotaur"
 }
 
 mixin {
@@ -195,64 +191,6 @@ jar {
     }
 }
 
-
-modrinth {
-    debugMode = true
-    token = System.getenv("MODRINTH_TOKEN")
-    projectId = modrinth_forge_id
-    versionNumber = minecraft_version + "-" + version
-    versionName = base.archivesName.get() + "-" + mod_version
-    versionType = "release"
-    uploadFile = jar
-
-    List<String> mcVersions = modrinth_gameVersions.split(",")
-    gameVersions = mcVersions
-    loaders = ["forge", "neoforge"]
-
-    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-
-    dependencies {
-        optional.project "serene-seasons"
-        optional.project "terrafirmacraft"
-        optional.project "curios"
-        optional.project "accessories"
-        optional.project "journeymap"
-        optional.project "xaeros-minimap"
-        optional.project "xaeros-minimap-fair"
-        optional.project "map-atlases"
-    }
-}
-
-tasks.register('publishCurseForge', TaskPublishCurseForge) {
-    group = "curseforge"
-
-    debugMode = true
-    disableVersionDetection()
-    apiToken = System.getenv("CURSEFORGE_TOKEN")
-
-    def mainFile = upload(curseforge_forge_id, jar)
-    mainFile.changelogType = "markdown"
-    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-    mainFile.releaseType = "release"
-
-    List<String> mcVersions = curseforge_gameVersions.split(",")
-    mainFile.gameVersions = mcVersions
-    mainFile.addGameVersion("Forge")
-    mainFile.addGameVersion("NeoForge")
-    mainFile.addJavaVersion("Java 17")
-
-    mainFile.addOptional("serene-seasons")
-    mainFile.addOptional("terrafirmacraft")
-    mainFile.addOptional("ecliptic-seasons")
-    mainFile.addOptional("curios")
-    mainFile.addOptional("accessories")
-    mainFile.addOptional("ftb-chunks-forge")
-    mainFile.addOptional("journeymap")
-    mainFile.addOptional("xaeros-minimap")
-    mainFile.addOptional("xaeros-minimap-fair-play-edition")
-    mainFile.addOptional("map-atlases-forge")
-}
-
 publishMods {
     var mcVer = minecraft_version.split("\\.").toList()
     int mcMajor
@@ -328,12 +266,4 @@ publishMods {
             optional("curios", "accessories")
         }
     }
-
-
-}
-
-tasks.register('publishForge') {
-    group = "upload"
-    dependsOn(tasks.publishCurseForge)
-    dependsOn(tasks.modrinth)
 }

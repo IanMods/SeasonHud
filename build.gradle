@@ -1,7 +1,5 @@
 plugins {
     id 'fabric-loom' version '1.14-SNAPSHOT' apply(false)
     id 'net.neoforged.moddev.legacyforge' version '2.+' apply(false)
-    id 'net.darkhax.curseforgegradle' version '1.+' apply(false)
-    id 'com.modrinth.minotaur' version '2.+' apply(false)
     id 'me.modmuss50.mod-publish-plugin' version '1.+' apply(false)
 }
