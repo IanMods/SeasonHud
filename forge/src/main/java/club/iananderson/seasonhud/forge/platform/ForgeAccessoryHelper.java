@@ -9,14 +9,14 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 public class ForgeAccessoryHelper implements AccessoryHelper {
   @Override
-  public boolean curiosEquiped(Player player, Item item) {
+  public boolean curiosEquipped(Player player, Item item) {
     LazyOptional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player);
 
     return curiosInventory.map(inv -> inv.isEquipped(item)).orElse(false);
   }
 
   @Override
-  public boolean trinketEquiped(Player player, Item item) {
+  public boolean trinketEquipped(Player player, Item item) {
     return false;
   }
 }
