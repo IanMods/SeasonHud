@@ -1,0 +1,216 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+neoForge {
+    version = neoforge_version
+    // Automatically enable neoforge AccessTransformers if the file exists
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+        }
+        client {
+            client()
+        }
+        data {
+            data()
+
+            // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+
+        }
+        server {
+            server()
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+dependencies {
+    neoForge "net.neoforged:neoforge:${project.neoforge_version}"
+
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
+
+    // Serene Seasons
+    modCompileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${project.serene_seasons_version}"
+    modCompileOnly "com.github.glitchfiend:GlitchCore-neoforge:${project.glitchcore_version}"
+    modCompileOnly("net.jodah:typetools:0.6.3")
+
+    // Terrafirmacraft
+    modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
+    modCompileOnly "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
+
+    // Ecliptic Seasons
+    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+
+    // Homeostatic Seasons
+    modCompileOnly group: 'com.github.wendall911.homeostaticseasons', name: "homeostaticseasons-${project.minecraft_version}-neoforge", version: "${project.homeostatic_seasons_version}"
+    modCompileOnly group: 'technology.roughness.whitenoise', name: "whitenoise-${project.minecraft_version}-neoforge", version: "${project.whitenoise_version}"
+    modCompileOnly group: 'com.github.wendall911.climatesettings', name: "climatesettings-${project.minecraft_version}-neoforge", version: "${project.climatesettings_version}"
+
+    // Xaero's Minimap
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
+    modCompileOnly "xaero.lib:xaerolib-neoforge-1.21:${project.xaero_lib_version}"
+
+    // JourneyMap
+    compileOnly group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
+    modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
+
+    // FTB Chunks + Dependencies
+    modCompileOnly "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
+    modCompileOnly "dev.architectury:architectury-neoforge:${project.architectury_version}"
+
+    // Map Atlases
+    modCompileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
+    modCompileOnly "maven.modrinth:moonlight:${project.moonlight_version_neoforge}"
+    modCompileOnly "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+${project.minecraft_version}-neoforge"
+
+    // Curios
+    modCompileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
+    modCompileOnlyApi "top.theillusivec4.curios:curios-neoforge:${project.curios_version}:api"
+
+    // Accessories
+    modCompileOnly("io.wispforest:accessories-neoforge:${project.accessories_version}")
+    modCompileOnly("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+
+    // Development QOL
+    modLocalRuntime "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
+//    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_neoforge}"
+
+//    modLocalRuntime("maven.modrinth:text-animator:${project.text_animator_version_neoforge}")
+
+    // Minimap Mod Dev Tests
+    // See root gradle.properties to choose which to use at runtime.
+    switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
+        case "xaero":
+            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
+            modImplementation "xaero.lib:xaerolib-neoforge-1.21:${project.xaero_lib_version}"
+            break
+        case "journey":
+            implementation group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
+            modImplementation "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
+            modImplementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
+            break
+        case "ftb":
+            modLocalRuntime "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
+            modLocalRuntime "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
+            modImplementation "dev.architectury:architectury-neoforge:${project.architectury_version}"
+            break
+        case "atlas":
+            modLocalRuntime "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
+            modLocalRuntime "maven.modrinth:moonlight:${project.moonlight_version_neoforge}"
+            modLocalRuntime "maven.modrinth:immediatelyfast:${project.immediatelyfast_version}+1.21.1-neoforge"
+            break
+        case "none":
+            break
+        default: println("Unknown recipe viewer specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
+                "atlas, or none")
+    }
+
+    // Season Mod Dev Tests (Forge)
+    // See root gradle.properties to choose which to use at runtime.
+    switch (project.season_mod_neoforge.toLowerCase(Locale.ROOT)) {
+        case "serene":
+            modLocalRuntime "com.github.glitchfiend:SereneSeasons-neoforge:${project.serene_seasons_version}"
+            modLocalRuntime "com.github.glitchfiend:GlitchCore-neoforge:${project.glitchcore_version}"
+            modImplementation("net.jodah:typetools:0.6.3")
+            break
+        case "terra":
+            modImplementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
+            modImplementation "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
+            break
+        case "ecliptic":
+            modImplementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+            break
+        case "homeostatic":
+            modImplementation group: 'com.github.wendall911.climatesettings', name: "climatesettings-${project.minecraft_version}-neoforge", version: "${project.climatesettings_version}"
+            modImplementation group: 'com.github.wendall911.homeostaticseasons', name: "homeostaticseasons-${project.minecraft_version}-neoforge", version: "${project.homeostatic_seasons_version}"
+            modImplementation group: 'technology.roughness.whitenoise', name: "whitenoise-${project.minecraft_version}-neoforge", version: "${project.whitenoise_version}"
+            break
+        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
+    }
+
+    // Accessory Mod Dev Tests
+    // See root gradle.properties to choose which to use at runtime.
+    switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
+        case "accessories":
+            modLocalRuntime "io.wispforest:accessories-neoforge:${project.accessories_version}"
+            modLocalRuntime "io.wispforest:owo-lib-neoforge:${project.owo_version_neoforge}"
+            modLocalRuntime("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
+                exclude(group: "fabric-api")
+            }
+
+            forgeRuntimeLibrary(implementation("blue.endless:jankson:1.2.2"))
+
+            forgeRuntimeLibrary("io.wispforest:endec:${project.endec_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:gson:${project.endec_gson_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:jankson:${project.endec_jankson_version}")
+            forgeRuntimeLibrary("io.wispforest.endec:netty:${project.endec_netty_version}")
+
+            break
+        case "none":
+            break
+        default: println("Unknown accessory mod specified: ${project.minimap_mod}. Must be accessories, or none")
+    }
+}
+
+publishMods {
+    displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
+    version = "${minecraft_version}-${mod_version}"
+    file project(":neoforge")
+    modLoaders.add("neoforge")
+
+    def cfOptions = curseforgeOptions {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(curseforge_gameVersions.split(","))
+        projectId = project.curseforge_forge_id
+    }
+
+    def mrOptions = modrinthOptions {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
+    }
+
+    curseforge("curseforgeNeoForge") {
+        from cfOptions
+
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios", "accessories")
+    }
+
+    modrinth("modrinthNeoForge") {
+        from mrOptions
+
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios", "accessories")
+
+    }
+}

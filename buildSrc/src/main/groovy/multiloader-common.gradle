@@ -209,32 +209,35 @@ jar {
 
 processResources {
     def expandProps = [
-            "version"                   : project.version,
-            "group"                     : project.group, //Else we target the task's group.
-            "minecraft_version"         : project.minecraft_version,
-            "forge_version"             : project.forge_version,
-            "forge_loader_version_range": project.forge_loader_version_range,
-            "forge_version_range"       : project.forge_version_range,
-            "minecraft_version_range"   : project.minecraft_version_range,
-            "fabric_api_version"        : project.fabric_api_version,
-            "fabric_loader_version"     : project.fabric_loader_version,
-            "fabric_version_range"      : project.fabric_version_range,
-            "mod_name"                  : project.mod_name,
-            "mod_author"                : project.mod_author,
-            "mod_id"                    : project.mod_id,
-            "license"                   : project.license,
-            "description"               : project.description,
-            "repoURL"                   : project.repoURL,
-            "issueTrackerURL"           : project.issueTrackerURL,
-            "credits"                   : project.credits,
-            "java_version"              : project.java_version
+            "version"                      : project.version,
+            "group"                        : project.group, //Else we target the task's group.
+            "minecraft_version"            : project.minecraft_version,
+            "minecraft_version_range"      : project.minecraft_version_range,
+            "forge_version"                : project.forge_version,
+            "forge_loader_version_range"   : project.forge_loader_version_range,
+            "forge_version_range"          : project.forge_version_range,
+            "fabric_api_version"           : project.fabric_api_version,
+            "fabric_loader_version"        : project.fabric_loader_version,
+            "fabric_version_range"         : project.fabric_version_range,
+            "neoforge_version"             : project.neoforge_version,
+            "neoforge_loader_version_range": project.neoforge_loader_version_range,
+            "neoforge_version_range"       : project.neoforge_version_range,
+            "mod_name"                     : project.mod_name,
+            "mod_author"                   : project.mod_author,
+            "mod_id"                       : project.mod_id,
+            "license"                      : project.license,
+            "description"                  : project.description,
+            "repoURL"                      : project.repoURL,
+            "issueTrackerURL"              : project.issueTrackerURL,
+            "credits"                      : project.credits,
+            "java_version"                 : project.java_version
     ]
 
     var jsonExpandProps = expandProps.collectEntries {
         key, value -> [(key): value instanceof String ? value.replace("\n", "\\\\n") : value]
     }
 
-    filesMatching(['META-INF/mods.toml']) {
+    filesMatching(['META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
         expand expandProps
     }
 

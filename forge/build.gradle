@@ -192,20 +192,10 @@ jar {
 }
 
 publishMods {
-    var mcVer = minecraft_version.split("\\.").toList()
-    int mcMajor
-    int mcMinor
-    if (mcVer.get(0).toInteger() == 1) {
-        mcMajor = mcVer.get(1).toInteger()
-        mcMinor = mcVer.get(2).toInteger()
-    } else {
-        mcMajor = mcVer.get(0).toInteger()
-        mcMinor = mcVer.get(1).toInteger()
-    }
-
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
     file project(":forge")
+    modLoaders.add("forge")
 
     def cfOptions = curseforgeOptions {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
@@ -223,11 +213,11 @@ publishMods {
 
     curseforge("curseforgeForge") {
         from cfOptions
-        modLoaders.add("forge")
 
         if (minecraft_version == "1.20.1") {
             modLoaders.add("neoforge")
         }
+
         optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
         optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
         optional("curios", "accessories")
@@ -235,35 +225,13 @@ publishMods {
 
     modrinth("modrinthForge") {
         from mrOptions
-        modLoaders.add("forge")
 
         if (minecraft_version == "1.20.1") {
             modLoaders.add("neoforge")
         }
+
         optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
         optional("curios", "accessories")
-    }
-
-    if (mcMajor >= 21) {
-        curseforge("curseforgeNeoForge") {
-            from cfOptions
-            file project(":neoforge")
-            displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
-            modLoaders.add("neoforge")
-            optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-            optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
-            optional("curios", "accessories")
-        }
-
-        modrinth("modrinthNeoForge") {
-            from mrOptions
-            file project(":neoforge")
-            displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
-            modLoaders.add("neoforge")
-            optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-            optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
-            optional("curios", "accessories")
-        }
     }
 }
