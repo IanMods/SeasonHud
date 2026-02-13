@@ -18,7 +18,7 @@ public class DefaultColorButton extends Button {
 
   private DefaultColorButton(int x, int y, ColorEditBox colorEditBox, OnPress onPress) {
     super(x, y, colorEditBox.getWidth() + 2, colorEditBox.getHeight() - 2, DefaultColorButton.DEFAULT, onPress,
-        DEFAULT_NARRATION);
+          DEFAULT_NARRATION);
     this.colorEditBox = colorEditBox;
     this.defaultColor = colorEditBox.getSeason().getDefaultColor();
   }
@@ -103,6 +103,7 @@ public class DefaultColorButton extends Button {
       return this;
     }
 
+    @SuppressWarnings({"unused"})
     public Builder withTooltip(@Nullable Tooltip tooltip) {
       this.tooltip = tooltip;
       return this;

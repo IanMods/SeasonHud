@@ -1,47 +1,47 @@
 plugins {
-    id 'com.gradleup.shadow'
-    id 'net.darkhax.curseforgegradle'
-    id 'com.modrinth.minotaur'
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
 }
 
-loom {
+neoForge {
+    version = neoforge_version
+    // Automatically enable neoforge AccessTransformers if the file exists
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
     runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+        }
         client {
             client()
-            setConfigName("NeoForge Client")
-            ideConfigGenerated(true)
-            runDir("run-client")
+        }
+        data {
+            data()
+
+            // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+
         }
         server {
             server()
-            setConfigName("NeoForge Server")
-            ideConfigGenerated(true)
-            runDir("run-server")
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
         }
     }
 }
 
-architectury {
-    platformSetupLoomIde()
-    neoForge()
-}
-
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentNeoForge.extendsFrom common
-
-    // Files in this configuration will be bundled into your mod using the Shadow plugin.
-    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-}
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     neoForge "net.neoforged:neoforge:${project.neoforge_version}"
@@ -177,71 +177,40 @@ dependencies {
     }
 }
 
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
-}
+publishMods {
+    displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
+    version = "${minecraft_version}-${mod_version}"
+    file project(":neoforge")
+    modLoaders.add("neoforge")
 
-remapJar {
-    inputFile.set shadowJar.archiveFile
-}
-
-modrinth {
-    debugMode = false
-    token = System.getenv("MODRINTH_TOKEN")
-    projectId = modrinth_forge_id
-    versionNumber = minecraft_version + "-" + version
-    versionName = base.archivesName.get() + "-" + mod_version
-    versionType = "release"
-    uploadFile = remapJar
-
-    List<String> mcVersions = modrinth_gameVersions.split(",")
-    gameVersions = mcVersions
-    loaders = ["neoforge"]
-
-    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-
-    dependencies {
-        optional.project "serene-seasons"
-        optional.project "terrafirmacraft"
-        optional.project "curios"
-        optional.project "accessories"
-        optional.project "xaeros-minimap"
-        optional.project "xaeros-minimap-fair"
-        optional.project "journeymap"
-        optional.project "map-atlases"
+    def cfOptions = curseforgeOptions {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(curseforge_gameVersions.split(","))
+        projectId = project.curseforge_forge_id
     }
-}
 
-tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
-    debugMode = false
-    disableVersionDetection()
-    apiToken = System.getenv("CURSEFORGE_TOKEN")
+    def mrOptions = modrinthOptions {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
+    }
 
-    def mainFile = upload(curseforge_forge_id, remapJar)
-    mainFile.changelogType = "markdown"
-    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-    mainFile.releaseType = "release"
+    curseforge("curseforgeNeoForge") {
+        from cfOptions
 
-    List<String> mcVersions = curseforge_gameVersions.split(",")
-    mainFile.gameVersions = mcVersions
-    mainFile.addGameVersion("NeoForge")
-    mainFile.addJavaVersion("Java 21")
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios", "accessories")
+    }
 
-    mainFile.addOptional("serene-seasons")
-    mainFile.addOptional("terrafirmacraft")
-    mainFile.addOptional("ecliptic-seasons")
-    mainFile.addOptional("curios")
-    mainFile.addOptional("accessories")
-    mainFile.addOptional("xaeros-minimap")
-    mainFile.addOptional("xaeros-minimap-fair-play-edition")
-    mainFile.addOptional("ftb-chunks-forge")
-    mainFile.addOptional("journeymap")
-    mainFile.addOptional("map-atlases-forge")
-}
+    modrinth("modrinthNeoForge") {
+        from mrOptions
 
-tasks.register('publishNeoForge') {
-    group = "upload"
-    dependsOn(tasks.publishCurseForge)
-    dependsOn(tasks.modrinth)
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios", "accessories")
+
+    }
 }

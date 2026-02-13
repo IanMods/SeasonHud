@@ -29,6 +29,17 @@ public class FabricPlatformHelper implements PlatformHelper {
   }
 
   @Override
+  public String getModName(String modId) {
+    Optional<? extends ModContainer> mod = FabricLoader.getInstance().getModContainer(modId);
+
+    if (mod.isPresent()) {
+      return mod.get().getMetadata().getName();
+    } else {
+      return "Not Loaded";
+    }
+  }
+
+  @Override
   public boolean isDevelopmentEnvironment() {
     return FabricLoader.getInstance().isDevelopmentEnvironment();
   }

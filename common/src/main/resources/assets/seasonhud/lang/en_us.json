@@ -106,6 +106,7 @@
   "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Show Sub-Season",
   "menu.seasonhud.season.showSubSeason.tooltip": "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season",
+  "menu.seasonhud.season.showSubSeason.tooltip.error": "Current season length %d days (%d ticks) is not divisible by 3\n\nTo enable this feature, you will need to edit the 'seasonLength' values in 'seasons.json' to be divisible by 3",
   "menu.seasonhud.season.showTropicalSeason.button": "Show Tropical Seasons",
   "menu.seasonhud.season.showTropicalSeason.tooltip": "Show the Tropical seasons (Wet/Dry) in Tropical Biomes",
   "menu.seasonhud.season.title": "Season Display Options",

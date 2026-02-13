@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="NeoForge" pattern="file[seasonhud-*.neoforge.main]:*/||file[seasonhud-*.neoforge]:build.gradle||file[seasonhud-*.beoforge]:gradle.properties||ext[Gradle: *-neoforge*]:*" />
+  <scope name="NeoForge" pattern="ext[Gradle: *-neoforge*]:*&amp;&amp;!ext[Gradle:*-common*:*]:*||file[seasonhud*.neoforge.main]:*||file[seasonhud*.neoforge*]:*//*||file[seasonhud*.neoforge]:*||file[seasonhud*.neoforge]:*/" />
 </component>

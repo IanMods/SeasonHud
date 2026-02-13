@@ -72,7 +72,7 @@ public class BasicSlider extends AbstractSliderButton {
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,
       double maxValue, double defaultValue, double stepSize, int precision) {
     this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, stepSize, precision,
-        ChatFormatting.WHITE);
+         ChatFormatting.WHITE);
   }
 
   protected BasicSlider(int x, int y, int width, int height, boolean drawString, double initial, double minValue,

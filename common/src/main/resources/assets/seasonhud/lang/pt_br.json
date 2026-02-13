@@ -106,6 +106,7 @@
   "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Mostrar a subestação",
   "menu.seasonhud.season.showSubSeason.tooltip": "Substituir a estação pela subestação atual",
+  "menu.seasonhud.season.showSubSeason.tooltip.error": "Current season length %d days (%d ticks) is not divisible by 3\n\nTo enable this feature, you will need to edit the 'seasonLength' values in 'seasons.json' to be divisible by 3",
   "menu.seasonhud.season.showTropicalSeason.button": "Mostrar estações tropicais",
   "menu.seasonhud.season.showTropicalSeason.tooltip": "Show the Tropical seasons (Wet/Dry) in Tropical Biomes",
   "menu.seasonhud.season.title": "Season Display Options",
