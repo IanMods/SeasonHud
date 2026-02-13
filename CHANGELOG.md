@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Added Homeostatic Seasons support
 - Added sub-season support for Fabric Seasons
 - Added sub-season support for Ecliptic Seasons
 
