@@ -50,7 +50,7 @@ public class FabricMinimapHelper implements MinimapHelper {
       return true;
     }
 
-    boolean minimapDisplayed = !HudMod.INSTANCE.getSettings().getMinimap();
+    boolean minimapDisplayed = HudMod.INSTANCE.getSettings().getMinimap();
 
     return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
         || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
