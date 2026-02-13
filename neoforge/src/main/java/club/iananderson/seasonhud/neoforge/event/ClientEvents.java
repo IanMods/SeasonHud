@@ -24,7 +24,7 @@ public class ClientEvents {
 
   @EventBusSubscriber(value = Dist.CLIENT, modid = Common.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
   public static class ModBus {
-    //Overlays
+    // Overlays
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
       SeasonHUDOverlay.init();
@@ -32,7 +32,7 @@ public class ClientEvents {
                           SeasonHUDOverlay.HUD_INSTANCE);
     }
 
-    //Key Bindings
+    // Key Bindings
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
       event.register(KeyBindings.seasonhudOptionsKeyMapping);
