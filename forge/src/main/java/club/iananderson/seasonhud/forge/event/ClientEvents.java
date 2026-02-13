@@ -13,29 +13,29 @@ import net.minecraftforge.fml.common.Mod;
 
 public class ClientEvents {
 
-	@Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
-	public static class ClientForgeEvents {
+  @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
+  public static class ClientForgeEvents {
 
-		@SubscribeEvent
-		public static void onKeyInput(InputEvent.Key event) {
-			if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
-				MainConfigScreen.getInstance().open();
-			}
-		}
-	}
+    @SubscribeEvent
+    public static void onKeyInput(InputEvent.Key event) {
+      if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
+        MainConfigScreen.getInstance().open();
+      }
+    }
+  }
 
-	@Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class ClientModBusEvents {
-		//Overlays
-		public static void registerGuiOverlays(GuiGraphics graphics, DeltaTracker deltaTracker) {
-			SeasonHudOverlay.init();
-			SeasonHudOverlay.HUD_INSTANCE.render(graphics, deltaTracker);
-		}
+  @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+  public static class ClientModBusEvents {
+    // Overlays
+    public static void registerGuiOverlays(GuiGraphics graphics, DeltaTracker deltaTracker) {
+      SeasonHudOverlay.init();
+      SeasonHudOverlay.HUD_INSTANCE.render(graphics, deltaTracker);
+    }
 
-		// Key Bindings
-		@SubscribeEvent
-		public static void onKeyRegister(RegisterKeyMappingsEvent event) {
-			event.register(KeyBindings.seasonhudOptionsKeyMapping);
-		}
-	}
+    // Key Bindings
+    @SubscribeEvent
+    public static void onKeyRegister(RegisterKeyMappingsEvent event) {
+      event.register(KeyBindings.seasonhudOptionsKeyMapping);
+    }
+  }
 }

@@ -15,22 +15,22 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
-	public SeasonHudForge() {
-		Common.init();
-		MinecraftForge.EVENT_BUS.register(this);
-		var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+  public SeasonHudForge() {
+    Common.init();
+    MinecraftForge.EVENT_BUS.register(this);
+    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
-				"seasonhud-client.toml");
+    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
+                                             "seasonhud-client.toml");
 
-		NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
-				"seasonhud-server.toml");
+    NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
+                                             "seasonhud-server.toml");
 
-		modEventBus.addListener(SeasonHudForge::onInitialize);
-		modEventBus.addListener(SeasonHudForge::ftbChunkSetup);
-	}
+    modEventBus.addListener(SeasonHudForge::onInitialize);
+    modEventBus.addListener(SeasonHudForge::ftbChunkSetup);
+  }
 
-	public static void onInitialize(FMLCommonSetupEvent event) {
+  public static void onInitialize(FMLCommonSetupEvent event) {
 //    if (Common.curiosLoaded()) {
 //      Common.LOG.info("Talking to Curios");
 //      CuriosCompat.init();
@@ -38,12 +38,12 @@ public class SeasonHudForge {
 //    else if (Common.accessoriesLoaded()) {
 //      AccessoriesCompat.init();
 //    }
-	}
+  }
 
-	public static void ftbChunkSetup(FMLCommonSetupEvent event) {
+  public static void ftbChunkSetup(FMLCommonSetupEvent event) {
 //    if (CurrentMinimap.ftbChunksLoaded()) {
 //      Common.LOG.info("Loading FTB Chunks Season Component");
 //      EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
 //    }
-	}
+  }
 }

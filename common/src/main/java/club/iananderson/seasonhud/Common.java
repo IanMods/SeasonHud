@@ -7,7 +7,6 @@ import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
 import club.iananderson.seasonhud.platform.Services;
 import com.demonwav.mcdev.annotations.Translatable;
-import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
