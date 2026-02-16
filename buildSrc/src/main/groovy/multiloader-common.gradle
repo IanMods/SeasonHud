@@ -1,5 +1,4 @@
 plugins {
-    id 'java'
     id 'idea'
     id 'java-library'
     id 'maven-publish'
@@ -10,27 +9,30 @@ base {
     archivesName = "${project.mod_id}-${project.name}-${project.minecraft_version}"
 }
 
-group = project.group
-version = project.mod_version
-
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'com.demonwav.mcdev:annotations:2.1.0'
+    implementation "com.demonwav.mcdev:annotations:2.1.0"
 }
 
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 ['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
-//['apiElements', 'runtimeElements'].each { variant ->
-    configurations."${variant}".outgoing {
-        capability("${project.group}:${project.name}:${project.version}")
-        capability("${project.group}:${base.archivesName.get()}:${project.version}")
-        capability("${project.group}:${project.mod_id}-${project.name}-${project.minecraft_version}:${project.version}")
-        capability("${project.group}:${project.mod_id}:${project.version}")
+    configurations."$variant".outgoing {
+        capability("$group:${project.name}:$version")
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
+        capability("$group:$mod_id:$version")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
@@ -105,13 +107,13 @@ processResources {
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            artifactId base.archivesName.get()
+            artifactId = base.archivesName.get()
             from components.java
         }
     }
     repositories {
         maven {
-            url System.getenv('local_maven_url')
+            url = System.getenv('local_maven_url')
         }
     }
 }

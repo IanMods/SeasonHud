@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.forge.platform;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
-import journeymap.client.ui.dialog.MinimapOptions;
+import journeymap.client.ui.option.MinimapOptions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -52,7 +52,7 @@ public class ForgeMinimapHelper implements MinimapHelper {
 
     boolean minimapDisplayed = HudMod.INSTANCE.getSettings().getMinimap();
 
-    return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
-        || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
+    return !minimapDisplayed || mc.getDebugOverlay().showDebugScreen() || !(mc.screen == null
+        || mc.screen instanceof ChatScreen || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
   }
 }

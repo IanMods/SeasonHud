@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.impl.season.components;
 
 /**
- * <h1>Sub-season for each month.</h1>
+ * Sub-season for each month.
  * <pre>
  * | Season | Early     | Mid     | Late     |
  * |--------|-----------|---------|----------|
