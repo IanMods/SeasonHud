@@ -17,13 +17,21 @@ loom {
             client()
             setConfigName("Fabric Client")
             ideConfigGenerated(true)
-            runDir("run")
+            var clientDir = "run/client"
+            if (!file(clientDir).exists()) {
+                mkdir(clientDir)
+            }
+            runDir(clientDir)
         }
         server {
             server()
             setConfigName("Fabric Server")
             ideConfigGenerated(true)
-            runDir("run")
+            var serverDir = "run/server"
+            if (!file(serverDir).exists()) {
+                mkdir(serverDir)
+            }
+            runDir(serverDir)
         }
     }
 }
