@@ -49,10 +49,20 @@ minecraft {
 
         client {
             workingDir = file('run/client')
+            var clientDir = "run/client"
+            if (!file(clientDir).exists()) {
+                mkdir(clientDir)
+            }
+            setGameDirectory(file(clientDir))
         }
 
         server {
             workingDir = file('run/server')
+            var serverDir = "run/server"
+            if (!file(serverDir).exists()) {
+                mkdir(serverDir)
+            }
+            setGameDirectory(file(serverDir))
         }
 
         data {
