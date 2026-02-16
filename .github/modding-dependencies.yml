@@ -209,7 +209,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: map-atlases-forge
-  version: "*_${mcVersion}-${map_atlases_version}"
+  version: "*-${mcVersion}-${map_atlases_version}"
   properties:
     map_atlases_version_neoforge:
       source: version
@@ -218,7 +218,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: map-atlases
-  version: "*_${mcVersion}-${map_atlases_version}"
+  version: "*-${mcVersion}-${map_atlases_version}"
   properties:
     map_atlases_version_fabric:
       source: version
@@ -240,15 +240,6 @@
   properties:
     moonlight_version_fabric:
       source: version
-
-# ImmediatelyFast
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: immediatelyfast
-  version: "${immediatelyfast_version}+${mcVersion}-*"
-  properties:
-    immediatelyfast_version:
-      source: wildcard
 
 # Sodium Neoforge
 - repository: https://api.modrinth.com/maven
