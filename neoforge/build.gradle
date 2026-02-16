@@ -21,6 +21,11 @@ neoForge {
         }
         client {
             client()
+            var clientDir = "run/client"
+            if (!file(clientDir).exists()) {
+                mkdir(clientDir)
+            }
+            setGameDirectory(file(clientDir))
         }
         data {
             data()
@@ -31,13 +36,21 @@ neoForge {
 
         }
         server {
-            server()
+            server {
+                server()
+                var serverDir = "run/server"
+                if (!file(serverDir).exists()) {
+                    mkdir(serverDir)
+                }
+                setGameDirectory(file(serverDir))
+            }
         }
     }
-    mods {
-        "${mod_id}" {
-            sourceSet sourceSets.main
-        }
+}
+
+mods {
+    "${mod_id}" {
+        sourceSet sourceSets.main
     }
 }
 
