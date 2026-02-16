@@ -25,8 +25,7 @@ jar {
 }
 
 minecraft {
-    mappings channel: parchment, version: $ { parchment_minecraft } - $ { parchment_version }
-    mappings channel: 'official', version: minecraft_version
+    mappings channel: 'parchment', version: parchment_version - parchment_minecraft
 
     // Automatically enable forge AccessTransformers if the file exists
     // This location is hardcoded in Forge and can not be changed.
@@ -48,21 +47,19 @@ minecraft {
         }
 
         client {
-            workingDir = file('run/client')
             var clientDir = "run/client"
             if (!file(clientDir).exists()) {
                 mkdir(clientDir)
             }
-            setGameDirectory(file(clientDir))
+            workingDir = file(clientDir)
         }
 
         server {
-            workingDir = file('run/server')
             var serverDir = "run/server"
             if (!file(serverDir).exists()) {
                 mkdir(serverDir)
             }
-            setGameDirectory(file(serverDir))
+            workingDir = file(serverDir)
         }
 
         data {
