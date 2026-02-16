@@ -1,4 +1,6 @@
 plugins {
+    id 'java'
+    id 'idea'
     id 'java-library'
     id 'maven-publish'
     id 'me.modmuss50.mod-publish-plugin'
@@ -18,6 +20,11 @@ java {
 
 repositories {
     mavenCentral()
+
+    maven {
+        name = 'Forge'
+        url = uri('https://maven.minecraftforge.net/releases')
+    }
 
     exclusiveContent {
         forRepository {
@@ -303,6 +310,8 @@ publishMods {
     type = STABLE
     changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
 }
+
+idea.module { downloadJavadoc = downloadSources = true }
 
 tasks.register('publishAll') {
     group = "upload"
