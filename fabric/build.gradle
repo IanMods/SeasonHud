@@ -38,21 +38,49 @@ loom {
 repositories {
     mavenCentral()
 
-    maven {
-        name = "CurseMaven"
-        url = uri("https://cursemaven.com")
-
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "CurseMaven"
+                url = uri("https://cursemaven.com")
+            }
+        }
+        filter {
             includeGroup "curse.maven"
         }
     }
 
-    maven {
-        name = "Modrinth Maven"
-        url = uri("https://api.modrinth.com/maven")
-
-        content {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth Maven"
+                url = uri("https://api.modrinth.com/maven")
+            }
+        }
+        filter {
             includeGroup "maven.modrinth"
+        }
+    }
+
+    exclusiveContent {
+        forRepositories(
+                maven {
+                    name = 'ParchmentMC'
+                    url = uri("https://maven.parchmentmc.org/")
+                },
+                maven {
+                    name = "NeoForge"
+                    url = uri('https://maven.neoforged.net/releases')
+                }
+        )
+        filter { includeGroup('org.parchmentmc.data') }
+    }
+
+    maven {
+        name = 'Forge'
+        url = uri('https://maven.minecraftforge.net/releases')
+        content {
+            includeGroup "com.github.glitchfiend"
         }
     }
 
@@ -81,6 +109,43 @@ repositories {
     }
 
     maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+        content {
+            includeGroup "mezz.jei"
+        }
+    }
+
+    maven {
+        name = "shedaniel Maven"
+        url = uri("https://maven.shedaniel.me/")
+        content {
+            includeGroup "me.shedaniel"
+            includeGroup "dev.architectury"
+            includeGroup "me.shedaniel.cloth"
+        }
+    }
+
+    maven {
+        name = "TerraformerMC Maven"
+        url = uri("https://maven.terraformersmc.com/releases/")
+        content {
+            includeGroup "com.terraformersmc"
+            includeGroup "dev.emi"
+        }
+    }
+
+    maven {
+        name = "LadySnake Maven - Cardinal Components"
+        url = uri("https://maven.ladysnake.org/releases")
+        content {
+            includeGroup "dev.onyxstudios.cardinal-components-api"
+            includeGroup "org.ladysnake.cardinal-components-api"
+        }
+    }
+
+    maven {
         name = "Xaero Maven"
         url = uri("https://chocolateminecraft.com/maven")
         content {
@@ -104,6 +169,21 @@ repositories {
             includeGroup "com.github.wendall911.homeostaticseasons"
             includeGroup "technology.roughness.whitenoise"
         }
+    }
+
+    maven {
+        name = "Accessories Maven"
+        url = uri("https://maven.wispforest.io/releases")
+        content {
+            includeGroup "io.wispforest"
+            includeGroup "io.wispforest.endec"
+        }
+    }
+
+
+    maven {
+        name = "ModMaven (Backup)"
+        url = uri("https://modmaven.dev/")
     }
 }
 
