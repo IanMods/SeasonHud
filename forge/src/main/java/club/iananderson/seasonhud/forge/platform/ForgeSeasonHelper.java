@@ -10,10 +10,12 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
+import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import net.dries007.tfc.client.ClientHelpers;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
@@ -135,7 +137,8 @@ public class ForgeSeasonHelper implements SeasonHelper {
   // TerrafirmaCraft
   @Override
   public Months currentTerraFirmaCraftMonth() {
-    Month terraFirmaCraftmonth = Calendars.CLIENT.getCalendarMonthOfYear();
+    Month terraFirmaCraftmonth = Calendars.get()
+        .getHemispheralCalendarMonthOfYear(ClientHelpers.inNorthernHemisphere());
 
     // Starts at '0', so need to adjust by 1
     int monthNumber = terraFirmaCraftmonth.ordinal() + 1;
@@ -151,5 +154,10 @@ public class ForgeSeasonHelper implements SeasonHelper {
   @Override
   public int terraFirmaCraftTotalDaysInMonth() {
     return Calendars.CLIENT.getCalendarDaysInMonth();
+  }
+
+  @Override
+  public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
+    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
   }
 }

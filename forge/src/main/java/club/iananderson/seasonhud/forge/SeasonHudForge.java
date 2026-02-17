@@ -12,10 +12,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
-  public SeasonHudForge() {
+  public SeasonHudForge(FMLJavaModLoadingContext context) {
     Common.init();
     MinecraftForge.EVENT_BUS.register(this);
-    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    var modEventBus = context.getModEventBus();
 
     NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
                                              "seasonhud-client.toml");
