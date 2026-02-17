@@ -13,6 +13,7 @@ import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
+import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.CycleButton;
@@ -20,7 +21,6 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import org.jetbrains.annotations.NotNull;
 
 public class SeasonOptionsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.season.title");
@@ -125,7 +125,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
-  public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
     var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
 

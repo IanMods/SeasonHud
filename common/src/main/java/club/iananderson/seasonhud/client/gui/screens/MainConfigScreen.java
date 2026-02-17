@@ -6,13 +6,13 @@ import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuB
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
+import javax.annotation.Nonnull;
 import journeymap.client.ui.UIManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.NotNull;
 
 public class MainConfigScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.main.title");
@@ -62,7 +62,7 @@ public class MainConfigScreen extends SeasonHudScreen {
   }
 
   @Override
-  public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
     graphics.drawCenteredString(font, MINIMAP_SETTINGS, this.width / 2,

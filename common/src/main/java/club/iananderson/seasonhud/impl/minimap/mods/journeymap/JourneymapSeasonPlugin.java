@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import javax.annotation.Nonnull;
 import journeymap.api.v2.client.IClientAPI;
 import journeymap.api.v2.client.IClientPlugin;
 import journeymap.api.v2.client.JourneyMapPlugin;
@@ -14,7 +15,6 @@ import journeymap.api.v2.common.event.ClientEventRegistry;
 import journeymap.api.v2.common.event.MinimapEventRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.NotNull;
 
 @JourneyMapPlugin(apiVersion = "2.0.0")
 public class JourneymapSeasonPlugin implements IClientPlugin {
@@ -39,7 +39,7 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
   }
 
   @Override
-  public void initialize(@NotNull IClientAPI api) {
+  public void initialize(@Nonnull IClientAPI api) {
     INSTANCE = this;
     this.api = api;
     this.mc = Minecraft.getInstance();
