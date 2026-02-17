@@ -1,7 +1,7 @@
 plugins {
     id 'multiloader-loader'
     id 'net.minecraftforge.gradle' version '[7.0.5,8.0)'
-    id 'net.minecraftforge.jarjar' version '0.2.3'
+    //id 'net.minecraftforge.jarjar' version '0.2.3'
 }
 
 base {
