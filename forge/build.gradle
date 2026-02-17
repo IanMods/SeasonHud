@@ -86,11 +86,11 @@ dependencies {
     //annotationProcessor 'net.minecraftforge:eventbus-validator:7.0-beta.10'
 
     compileOnly "com.demonwav.mcdev:annotations:2.1.0"
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
-    implementation "io.github.llamalad7:mixinextras-forge:${project.mixin_extras_version}"
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${project.mixin_extras_version}"))
+
 
     // Forge Config API Port
-    api "fuzs.forgeconfigapiport:forgeconfigapiport-forge:${project.forge_config_api_port_version}"
+    compileOnlyApi "fuzs.forgeconfigapiport:forgeconfigapiport-forge:${project.forge_config_api_port_version}"
     implementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Forge") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -157,8 +157,8 @@ dependencies {
             implementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
                 changing = true
             }
-            modLocalRuntime "maven.modrinth:journeymap:${project.journeymap_version_forge}"
-            modLocalRuntime("maven.modrinth:common-network:${project.common_network_version}-forge")
+            implementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+            implementation("maven.modrinth:common-network:${project.common_network_version}-forge")
             break
         case "ftb":
             break
@@ -177,7 +177,7 @@ dependencies {
         case "serene":
             implementation "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
             implementation "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
-            implementation("net.jodah:typetools:0.6.3")
+            //implementation("net.jodah:typetools:0.6.3")
             break
         case "terra":
             implementation "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
