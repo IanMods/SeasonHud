@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.fabric.client;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.SeasonHudClientCommon;
 import club.iananderson.seasonhud.fabric.event.ClientEvents;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
@@ -18,8 +19,6 @@ public class SeasonHudClientFabric implements ClientModInitializer {
       SeasonComponent.ftbChunkSetup();
     }
 
-    if (Common.accessoriesLoaded() && Calendar.calendar().isPresent() && !Common.curiosLoaded()) {
-      AccessoriesCompat.clientInit();
-    }
+    SeasonHudClientCommon.initAccessoriesClient();
   }
 }

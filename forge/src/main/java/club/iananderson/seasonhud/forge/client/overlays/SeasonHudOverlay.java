@@ -14,7 +14,7 @@ public class SeasonHudOverlay implements LayeredDraw.Layer {
   }
 
   @Override
-  public void render(@Nonnull GuiGraphics graphics, @Nonnull DeltaTracker deltaTracker) {
-    SeasonHudOverlayCommon.render(graphics);
+  public void render(@Nonnull GuiGraphics graphics, @Nonnull DeltaTracker tickCounter) {
+    SeasonHudOverlayCommon.render(graphics, tickCounter);
   }
 }

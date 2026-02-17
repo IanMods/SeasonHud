@@ -6,6 +6,8 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import javax.annotation.Nonnull;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.MutableComponent;
@@ -14,7 +16,7 @@ public class SeasonHudOverlayCommon {
   private SeasonHudOverlayCommon() {
   }
 
-  public static void render(GuiGraphics graphics) {
+  public static void render(@Nonnull GuiGraphics graphics, @Nonnull DeltaTracker tickCounter) {
     Minecraft mc = Minecraft.getInstance();
 
     if (Common.drawDefaultHud(mc) && Common.vanillaShouldDrawHud(mc) && Calendar.validNeedCalendar(mc.player)
