@@ -1,4 +1,6 @@
 plugins {
+    id 'java'
+    id 'checkstyle'
     id 'idea'
     id 'java-library'
     id 'maven-publish'
@@ -158,4 +160,9 @@ tasks.register('publishAll') {
 
     dependsOn("latestChangelog")
     dependsOn("publishMods")
+}
+
+checkstyle {
+    configFile = file('seasonhud_checkstyle.xml')
+    toolVersion = "13.2.0"
 }

@@ -1,5 +1,4 @@
 plugins {
-    id 'java'
     id 'multiloader-common'
     id 'net.neoforged.moddev'
 }

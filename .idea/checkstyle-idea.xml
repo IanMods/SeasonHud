@@ -6,7 +6,7 @@
     <copyLibs>true</copyLibs>
     <option name="thirdPartyClasspath" />
     <option name="activeLocationIds">
-      <option value="ff2bf768-00c7-4d12-b5f0-da38246bb5ce" />
+      <option value="d2e24640-2e9e-40e0-8d22-6175dc49e2b0" />
     </option>
     <option name="locations">
       <list>
@@ -21,8 +21,8 @@
             </map>
           </option>
         </ConfigurationLocation>
-        <ConfigurationLocation id="ff2bf768-00c7-4d12-b5f0-da38246bb5ce" type="LOCAL_FILE" scope="All" description="SeasonHud Checks">
-          $PROJECT_DIR$/../seasonhud_checks.xml
+        <ConfigurationLocation id="d2e24640-2e9e-40e0-8d22-6175dc49e2b0" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
+          $PROJECT_DIR$/seasonhud_checkstyle.xml
           <option name="properties">
             <map>
               <entry key="org.checkstyle.google.severity" value="warning" />
