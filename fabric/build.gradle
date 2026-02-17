@@ -284,7 +284,9 @@ dependencies {
         case "homeostatic":
             modImplementation "maven.modrinth:homeostatic-seasons:${project.minecraft_version}-${project.homeostatic_seasons_version}-fabric"
             break
-        default: println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
+        default:
+            println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
+            break
     }
 
     // Minimap Mod Dev Tests
@@ -314,8 +316,9 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
-                "atlas, or none")
+        default:
+            println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, atlas, or none")
+            break
     }
 
     // Accessory Mod Dev Tests
@@ -330,7 +333,9 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
+        default:
+            println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
+            break
     }
 }
 
