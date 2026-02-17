@@ -1,4 +1,7 @@
 plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'idea'
     id 'java-library'
     id 'maven-publish'
     id 'me.modmuss50.mod-publish-plugin'
@@ -14,164 +17,22 @@ version = project.mod_version
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
     mavenCentral()
-
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "CurseMaven"
-                url = "https://cursemaven.com"
-            }
-        }
-        filter {
-            includeGroup "curse.maven"
-        }
-    }
-
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth Maven"
-                url = "https://api.modrinth.com/maven"
-            }
-        }
-        filter {
-            includeGroup "maven.modrinth"
-        }
-    }
-
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Sponge Maven'
-                url = 'https://repo.spongepowered.org/repository/maven-public'
-            }
-        }
-        filter { includeGroupAndSubgroups('org.spongepowered') }
-    }
-
-    maven {
-        name = "Parchment Maven"
-        url = "https://maven.parchmentmc.org"
-        content {
-            includeGroup "org.parchmentmc.data"
-        }
-    }
-
-    maven {
-        name = "shedaniel Maven - Cloth Config, REI, Architectury"
-        url = "https://maven.shedaniel.me/"
-        content {
-            includeGroup "me.shedaniel"
-            includeGroup "dev.architectury"
-            includeGroup "me.shedaniel.cloth"
-        }
-    }
-
-    maven {
-        name = "LadySnake Maven - Cardinal Components"
-        url = "https://maven.ladysnake.org/releases"
-        content {
-            includeGroup "dev.onyxstudios.cardinal-components-api"
-            includeGroup "org.ladysnake.cardinal-components-api"
-        }
-    }
-    maven {
-        name = "Xaero Maven"
-        url = "https://chocolateminecraft.com/maven"
-        content {
-            includeGroup "xaero.lib"
-        }
-    }
-
-    maven {
-        name = "Journeymap API MAven"
-        url = "https://jm.gserv.me/repository/maven-public/"
-        content {
-            includeGroup "info.journeymap"
-        }
-    }
-
-    maven {
-        name = "Curios Maven"
-        url = "https://maven.theillusivec4.top/"
-        content {
-            includeGroup "top.theillusivec4.curios"
-        }
-    }
-    // Mod Menu, Trinkets
-    maven {
-        name = "TerraformerMC Maven"
-        url = "https://maven.terraformersmc.com/releases/"
-        content {
-            includeGroup "com.terraformersmc"
-            includeGroup "dev.emi"
-        }
-    }
-
-    maven {
-        name = "Accessories Maven"
-        url = "https://maven.wispforest.io/releases"
-        content {
-            includeGroup "io.wispforest"
-            includeGroup "io.wispforest.endec"
-        }
-    }
-    // Accessories Dependencies
-    maven {
-        name = "Sinytra Maven"
-        url = "https://maven.su5ed.dev/releases"
-        content {
-            includeGroup "dev.su5ed.sinytra.fabric-api"
-        }
-    }
-
-    maven {
-        name = "Forge Config API Port Maven"
-        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-        content {
-            includeGroup "fuzs.forgeconfigapiport"
-        }
-    }
-
-    maven {
-        name = "DevAuth Maven"
-        url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
-        content {
-            includeGroup "me.djtheredstoner"
-        }
-    }
-
-    maven {
-        name = "FTB Maven"
-        url = "https://maven.ftb.dev/releases"
-        content {
-            includeGroup "dev.ftb.mods"
-        }
-    }
-
-    maven {
-        name = "Forge Maven"
-        url = "https://maven.minecraftforge.net"
-    }
-
-    maven {
-        name = "ModMaven (Backup)"
-        url = "https://modmaven.dev/"
-    }
 }
 
 dependencies {
-    implementation 'com.demonwav.mcdev:annotations:2.1.0'
+    implementation "com.demonwav.mcdev:annotations:2.1.0"
 }
 
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 ['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
-//['apiElements', 'runtimeElements'].each { variant ->
     configurations."${variant}".outgoing {
         capability("${project.group}:${project.name}:${project.version}")
         capability("${project.group}:${base.archivesName.get()}:${project.version}")
@@ -297,4 +158,9 @@ tasks.register('publishAll') {
 
     dependsOn("latestChangelog")
     dependsOn("publishMods")
+}
+
+checkstyle {
+    configFile = file('seasonhud_checkstyle.xml')
+    toolVersion = "13.2.0"
 }
