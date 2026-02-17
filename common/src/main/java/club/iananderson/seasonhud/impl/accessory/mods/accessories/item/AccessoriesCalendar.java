@@ -10,9 +10,9 @@ public class AccessoriesCalendar implements Accessory {
 
   // TODO: Double check this is still working
   public static void clientInit() {
-//    if (Calendar.calendar().isPresent()) {
-//      AccessoriesRendererRegistry.registerRenderer(Calendar.calendar().get(), Renderer::new);
-//    }
+    // if (Calendar.calendar().isPresent()) {
+    //   AccessoriesRendererRegistry.registerRenderer(Calendar.calendar().get(), Renderer::new);
+    // }
   }
 
   public static void init() {
@@ -21,18 +21,18 @@ public class AccessoriesCalendar implements Accessory {
     }
   }
 
-//  public static class Renderer implements SimpleAccessoryRenderer {
-//
-//    @Override
-//    public <M extends LivingEntityRenderState> void align(ItemStack stack, SlotReference reference,
-//        EntityModel<M> model, M renderState, PoseStack matrices) {
-//      if (!(model instanceof HumanoidModel<? extends HumanoidRenderState> humanoidModel)) {
-//        return;
-//      }
-//
-//      matrices.scale(0.4F, 0.4F, 0.4F);
-//      AccessoryRenderer.transformToModelPart(matrices, humanoidModel.body, 0.75, -1, null);
-//      matrices.translate(-0.25F, -1.75F, -0.72F);
-//    }
-//  }
+  // public static class Renderer implements SimpleAccessoryRenderer {
+  //
+  //   @Override
+  //   public <M extends LivingEntityRenderState> void align(ItemStack stack, SlotReference reference,
+  //       EntityModel<M> model, M renderState, PoseStack matrices) {
+  //     if (!(model instanceof HumanoidModel<? extends HumanoidRenderState> humanoidModel)) {
+  //       return;
+  //     }
+  //
+  //     matrices.scale(0.4F, 0.4F, 0.4F);
+  //     AccessoryRenderer.transformToModelPart(matrices, humanoidModel.body, 0.75, -1, null);
+  //     matrices.translate(-0.25F, -1.75F, -0.72F);
+  //   }
+  // }
 }

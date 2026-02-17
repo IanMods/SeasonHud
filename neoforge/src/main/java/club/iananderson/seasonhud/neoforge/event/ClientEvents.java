@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.neoforge.event;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
-import club.iananderson.seasonhud.neoforge.client.overlays.SeasonHUDOverlay;
+import club.iananderson.seasonhud.neoforge.client.overlays.SeasonHudOverlay;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -16,7 +16,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 public class ClientEvents {
 
   @SubscribeEvent
-  public static void onKeyInput(InputEvent.Key Event) {
+  public static void onKeyInput(InputEvent.Key event) {
     if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
       MainConfigScreen.getInstance().open();
     }
@@ -27,9 +27,9 @@ public class ClientEvents {
     // Overlays
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
-      SeasonHUDOverlay.init();
+      SeasonHudOverlay.init();
       event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, Common.location("seasonhud"),
-                          SeasonHUDOverlay.HUD_INSTANCE);
+                          SeasonHudOverlay.HUD_INSTANCE);
     }
 
     // Key Bindings

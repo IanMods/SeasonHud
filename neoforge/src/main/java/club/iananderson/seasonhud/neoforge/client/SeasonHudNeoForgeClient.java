@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.neoforge.client;
 
-//@EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+// @EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class SeasonHudNeoForgeClient {
 
 //  @SubscribeEvent

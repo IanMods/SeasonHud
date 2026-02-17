@@ -169,8 +169,9 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
-                "atlas, or none")
+        default:
+            println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, atlas, or none")
+            break
     }
 
     // Season Mod Dev Tests (Forge)
@@ -190,7 +191,9 @@ dependencies {
         case "ecliptic":
             implementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
             break
-        default: println("Unknown season mod specified: ${project.season_mod_forge}. Must be serene, terra, or ecliptic")
+        default:
+            println("Unknown season mod specified: ${project.season_mod_forge}. Must be serene, terra, or ecliptic")
+            break
     }
 }
 
