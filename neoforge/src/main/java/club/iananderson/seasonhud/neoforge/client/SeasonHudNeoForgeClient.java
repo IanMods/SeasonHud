@@ -1,12 +1,16 @@
 package club.iananderson.seasonhud.neoforge.client;
 
-//@EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.SeasonHudClientCommon;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;@EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
+
 public class SeasonHudNeoForgeClient {
 
-//  @SubscribeEvent
-//  public static void onInitializeClient(FMLClientSetupEvent event) {
-//    if (Common.accessoriesLoaded() && !Common.curiosLoaded()) {
-//      AccessoriesCompat.clientInit();
-//    }
-//  }
+  @SubscribeEvent
+  public static void onInitializeClient(FMLClientSetupEvent event) {
+    SeasonHudClientCommon.initAccessoriesClient();
+  }
 }
