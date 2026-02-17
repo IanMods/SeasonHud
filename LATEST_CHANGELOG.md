@@ -6,6 +6,7 @@
 
 ### Added
 
+- Added Homeostatic Seasons support
 - Added sub-season support for Fabric Seasons
 - Added sub-season support for Ecliptic Seasons
 

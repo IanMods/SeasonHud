@@ -31,9 +31,6 @@ minecraft {
         configureEach {
             // Mixin requires either specifying the config via command line, or in the Manifest
             args "--mixin.config=${mod_id}.mixins.json"
-            if (project(":forge").file("src/main/resources/${mod_id}.forge.mixins.json").exists()) {
-                args "--mixin.config=${mod_id}.forge.mixins.json"
-            }
         }
 
         client {
@@ -338,7 +335,7 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.named('jar', Jar) {
     manifest {
-        attributes["MixinConfigs"] = "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
+        attributes["MixinConfigs"] = "${mod_id}.mixins.json"
     }
 }
 

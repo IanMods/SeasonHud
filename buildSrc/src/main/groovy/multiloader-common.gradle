@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'checkstyle'
     id 'idea'
     id 'java-library'
     id 'maven-publish'
@@ -27,6 +26,7 @@ repositories {
 }
 
 dependencies {
+    implementation "com.google.code.findbugs:jsr305:3.0.1"
     implementation "com.demonwav.mcdev:annotations:2.1.0"
 }
 
@@ -150,7 +150,7 @@ tasks.register('latestChangelog') {
 publishMods {
     dryRun = true
     type = STABLE
-    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
+    changelog = project.getRootDir().toPath().resolve("LATEST_CHANGELOG.md").getText()
 }
 
 idea.module { downloadJavadoc = downloadSources = true }
@@ -160,9 +160,4 @@ tasks.register('publishAll') {
 
     dependsOn("latestChangelog")
     dependsOn("publishMods")
-}
-
-checkstyle {
-    configFile = file('seasonhud_checkstyle.xml')
-    toolVersion = "13.2.0"
 }
