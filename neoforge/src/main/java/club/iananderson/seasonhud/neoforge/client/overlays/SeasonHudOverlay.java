@@ -6,8 +6,8 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
 
-public class SeasonHUDOverlay implements LayeredDraw.Layer {
-  public static SeasonHUDOverlay HUD_INSTANCE;
+public class SeasonHudOverlay implements LayeredDraw.Layer {
+  public static SeasonHudOverlay HUD_INSTANCE;
 
   public static void init() {
     HUD_INSTANCE = new SeasonHUDOverlay();

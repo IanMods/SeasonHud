@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Added Xaero's Better PVP support
 - Added Homeostatic Seasons support
 - Added sub-season support for Fabric Seasons
     - Fabric Season's default season length is 28, which is not evenly divisible to 3 sub-seasons

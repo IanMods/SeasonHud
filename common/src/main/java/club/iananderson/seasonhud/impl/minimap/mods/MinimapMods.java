@@ -9,6 +9,8 @@ public enum MinimapMods {
 
   XAERO_FAIRPLAY("xaerominimapfair"),
 
+  XAERO_BETTER_PVP("xaerobetterpvp"),
+
   JOURNEYMAP("journeymap"),
 
   FTB_CHUNKS("ftbchunks"),
