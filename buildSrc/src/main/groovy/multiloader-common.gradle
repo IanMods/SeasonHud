@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'checkstyle'
     id 'idea'
     id 'java-library'
     id 'maven-publish'
@@ -18,8 +17,8 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -27,17 +26,18 @@ repositories {
 }
 
 dependencies {
+    implementation "com.google.code.findbugs:jsr305:3.0.1"
     implementation "com.demonwav.mcdev:annotations:2.1.0"
 }
 
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 ['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
-    configurations."${variant}".outgoing {
-        capability("${project.group}:${project.name}:${project.version}")
-        capability("${project.group}:${base.archivesName.get()}:${project.version}")
-        capability("${project.group}:${project.mod_id}-${project.name}-${project.minecraft_version}:${project.version}")
-        capability("${project.group}:${project.mod_id}:${project.version}")
+    configurations."$variant".outgoing {
+        capability("$group:${project.name}:$version")
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
+        capability("$group:$mod_id:$version")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
@@ -112,13 +112,13 @@ processResources {
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            artifactId base.archivesName.get()
+            artifactId = base.archivesName.get()
             from components.java
         }
     }
     repositories {
         maven {
-            url System.getenv('local_maven_url')
+            url = System.getenv('local_maven_url')
         }
     }
 }
@@ -150,17 +150,14 @@ tasks.register('latestChangelog') {
 publishMods {
     dryRun = true
     type = STABLE
-    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
+    changelog = project.getRootDir().toPath().resolve("LATEST_CHANGELOG.md").getText()
 }
+
+idea.module { downloadJavadoc = downloadSources = true }
 
 tasks.register('publishAll') {
     group = "upload"
 
     dependsOn("latestChangelog")
     dependsOn("publishMods")
-}
-
-checkstyle {
-    configFile = file('seasonhud_checkstyle.xml')
-    toolVersion = "13.2.0"
 }

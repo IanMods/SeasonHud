@@ -205,33 +205,6 @@
     moonlight_version_fabric:
       source: version
 
-# ImmediatelyFast
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: immediatelyfast
-  version: "${immediatelyfast_version}+1.20.4*"
-  properties:
-    immediatelyfast_version:
-      source: wildcard
-
-# Text Animator Forge
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: text-animator
-  version: "2.*+forge"
-  properties:
-    text_animator_version_forge:
-      source: version
-
-# Text Animator Fabric
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: text-animator
-  version: "2.*+fabric"
-  properties:
-    text_animator_version_fabric:
-      source: version
-
 # Accessories
 - repository: https://maven.wispforest.io/releases
   groupId: io.wispforest

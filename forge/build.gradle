@@ -59,10 +59,147 @@ legacyForge {
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
+repositories {
+    mavenCentral()
+
+    maven {
+        url = uri("https://repo.spongepowered.org/maven")
+    }
+
+    maven {
+        name = 'Forge'
+        url = uri('https://maven.minecraftforge.net/')
+        content {
+            includeGroup "net.minecraftforge"
+        }
+    }
+
+
+    maven {
+        name = "CurseMaven"
+        url = uri("https://cursemaven.com")
+
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+
+
+    maven {
+        name = "Modrinth Maven"
+        url = uri("https://api.modrinth.com/maven")
+
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+    maven {
+        name = "Forge Config API Port Maven"
+        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
+        content {
+            includeGroup "fuzs.forgeconfigapiport"
+        }
+    }
+
+    maven {
+        name = "DevAuth Maven"
+        url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+        content {
+            includeGroup "me.djtheredstoner"
+        }
+    }
+
+    maven {
+        name = 'Serene Seasons'
+        url = uri('https://maven.minecraftforge.net/releases')
+        content {
+            includeGroup "com.github.glitchfiend"
+        }
+    }
+
+    maven {
+        name = "FTB Maven"
+        url = uri("https://maven.ftb.dev/releases")
+        content {
+            includeGroup "dev.ftb.mods"
+        }
+    }
+
+    maven {
+        name = "shedaniel Maven"
+        url = uri("https://maven.shedaniel.me/")
+        content {
+            includeGroup "me.shedaniel"
+            includeGroup "dev.architectury"
+            includeGroup "me.shedaniel.cloth"
+        }
+    }
+
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+        content {
+            includeGroup "mezz.jei"
+        }
+    }
+
+    maven {
+        name = "Xaero Maven"
+        url = uri("https://chocolateminecraft.com/maven")
+        content {
+            includeGroup "xaero.lib"
+        }
+    }
+
+    maven {
+        name = "Journeymap API MAven"
+        url = uri("https://jm.gserv.me/repository/maven-public/")
+        content {
+            includeGroup "info.journeymap"
+        }
+    }
+
+    maven {
+        name = "Homeostatic Seasons"
+        url = uri("https://raw.githubusercontent.com/wendall911/maven/main/")
+        content {
+            includeGroup "com.github.wendall911.climatesettings"
+            includeGroup "com.github.wendall911.homeostaticseasons"
+            includeGroup "technology.roughness.whitenoise"
+        }
+    }
+
+    maven {
+        name = "Accessories Maven"
+        url = uri("https://maven.wispforest.io/releases")
+        content {
+            includeGroup "io.wispforest"
+            includeGroup "io.wispforest.endec"
+        }
+    }
+
+    maven {
+        name = "Sinytra Maven"
+        url = uri("https://maven.su5ed.dev/releases")
+    }
+
+    maven {
+        name = "ModMaven (Backup)"
+        url = uri("https://modmaven.dev/")
+    }
+
+    maven {
+        name = "Curios Maven"
+        url = uri("https://maven.theillusivec4.top/")
+    }
+}
 
 dependencies {
-    compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:${project.mixin_version}:processor")
+    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${project.mixin_extras_version}"))
 
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
@@ -121,8 +258,7 @@ dependencies {
             modImplementation "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
             modImplementation "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
             implementation "maven.modrinth:architectury-api:${project.architectury_version}+forge"
-            compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
+            implementation("io.github.llamalad7:mixinextras-forge:${project.mixin_extras_version}")
             break
         case "atlas":
             modImplementation "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
@@ -130,8 +266,9 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
-                "atlas, or none")
+        default:
+            println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, atlas, or none")
+            break
     }
 
     // Accessory Mod Dev Tests
@@ -163,7 +300,9 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
+        default:
+            println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
+            break
     }
 
     // Season Mod Dev Tests (Forge)
@@ -183,7 +322,9 @@ dependencies {
         case "ecliptic":
             modImplementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
             break
-        default: println("Unknown season mod specified: ${project.season_mod_forge}. Must be serene, terra, or ecliptic")
+        default:
+            println("Unknown season mod specified: ${project.season_mod_forge}. Must be serene, terra, or ecliptic")
+            break
     }
 }
 
@@ -198,6 +339,38 @@ jar {
         manifest.attributes([
                 "MixinConfigs": "${mod_id}.mixins.json"
         ])
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+        }
+    }
+}
+
+sourceSets.each {
+    def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
+    it.output.resourcesDir = dir
+    it.java.destinationDirectory = dir
+}
+
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+    configurations.named("$variant") {
+        attributes {
+            attribute(loaderAttribute, 'forge')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
+        configurations.named("$variant") {
+            attributes {
+                attribute(loaderAttribute, 'forge')
+            }
+        }
     }
 }
 

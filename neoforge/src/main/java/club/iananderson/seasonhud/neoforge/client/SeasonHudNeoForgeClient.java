@@ -5,7 +5,9 @@ import club.iananderson.seasonhud.SeasonHudClientCommon;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;@EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+
+@EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
 
 public class SeasonHudNeoForgeClient {
 

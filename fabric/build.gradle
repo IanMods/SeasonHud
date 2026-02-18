@@ -4,8 +4,9 @@ plugins {
 }
 
 loom {
-    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
+    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
+    if (aw.exists()) {
+        accessWidenerPath.set(aw)
     }
 
     mixin {
@@ -36,6 +37,158 @@ loom {
     }
 }
 
+repositories {
+    mavenCentral()
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "CurseMaven"
+                url = uri("https://cursemaven.com")
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth Maven"
+                url = uri("https://api.modrinth.com/maven")
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+    exclusiveContent {
+        forRepositories(
+                maven {
+                    name = 'ParchmentMC'
+                    url = uri("https://maven.parchmentmc.org/")
+                },
+                maven {
+                    name = "NeoForge"
+                    url = uri('https://maven.neoforged.net/releases')
+                }
+        )
+        filter { includeGroup('org.parchmentmc.data') }
+    }
+
+    maven {
+        name = 'Forge'
+        url = uri('https://maven.minecraftforge.net/releases')
+        content {
+            includeGroup "com.github.glitchfiend"
+        }
+    }
+
+    maven {
+        name = "Forge Config API Port Maven"
+        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
+        content {
+            includeGroup "fuzs.forgeconfigapiport"
+        }
+    }
+
+    maven {
+        name = "DevAuth Maven"
+        url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+        content {
+            includeGroup "me.djtheredstoner"
+        }
+    }
+
+    maven {
+        name = "FTB Maven"
+        url = uri("https://maven.ftb.dev/releases")
+        content {
+            includeGroup "dev.ftb.mods"
+        }
+    }
+
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+        content {
+            includeGroup "mezz.jei"
+        }
+    }
+
+    maven {
+        name = "shedaniel Maven"
+        url = uri("https://maven.shedaniel.me/")
+        content {
+            includeGroup "me.shedaniel"
+            includeGroup "dev.architectury"
+            includeGroup "me.shedaniel.cloth"
+        }
+    }
+
+    maven {
+        name = "TerraformerMC Maven"
+        url = uri("https://maven.terraformersmc.com/releases/")
+        content {
+            includeGroup "com.terraformersmc"
+            includeGroup "dev.emi"
+        }
+    }
+
+    maven {
+        name = "LadySnake Maven - Cardinal Components"
+        url = uri("https://maven.ladysnake.org/releases")
+        content {
+            includeGroup "dev.onyxstudios.cardinal-components-api"
+            includeGroup "org.ladysnake.cardinal-components-api"
+        }
+    }
+
+    maven {
+        name = "Xaero Maven"
+        url = uri("https://chocolateminecraft.com/maven")
+        content {
+            includeGroup "xaero.lib"
+        }
+    }
+
+    maven {
+        name = "Journeymap API MAven"
+        url = uri("https://jm.gserv.me/repository/maven-public/")
+        content {
+            includeGroup "info.journeymap"
+        }
+    }
+
+    maven {
+        name = "Homeostatic Seasons"
+        url = uri("https://raw.githubusercontent.com/wendall911/maven/main/")
+        content {
+            includeGroup "com.github.wendall911.climatesettings"
+            includeGroup "com.github.wendall911.homeostaticseasons"
+            includeGroup "technology.roughness.whitenoise"
+        }
+    }
+
+    maven {
+        name = "Accessories Maven"
+        url = uri("https://maven.wispforest.io/releases")
+        content {
+            includeGroup "io.wispforest"
+            includeGroup "io.wispforest.endec"
+        }
+    }
+
+
+    maven {
+        name = "ModMaven (Backup)"
+        url = uri("https://modmaven.dev/")
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered {
@@ -44,8 +197,14 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
-    implementation project(":common")
+
+    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
+
+    // Forge Config API Port
+    modCompileOnlyApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+    modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Fabric Seasons + Extras
     modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
@@ -63,7 +222,9 @@ dependencies {
     modCompileOnly "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version, changing: true
+    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
+        changing = true
+    }
     modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -95,12 +256,6 @@ dependencies {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    // Forge Config API Port
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
     modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
@@ -122,7 +277,9 @@ dependencies {
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
             modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
-        default: println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
+        default:
+            println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
+            break
     }
 
     // Minimap Mod Dev Tests
@@ -150,8 +307,9 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
-                "atlas, voxel, or none")
+        default:
+            println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, atlas, or none")
+            break
     }
 
     // Accessory Mod Dev Tests
@@ -166,7 +324,35 @@ dependencies {
             break
         case "none":
             break
-        default: println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
+        default:
+            println("Unknown accessory mod specified: ${project.accessory_mod}. Must be accessories, or none")
+            break
+    }
+}
+
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+    configurations.named("$variant") {
+        attributes {
+            attribute(loaderAttribute, 'fabric')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
+        configurations.named("$variant") {
+            attributes {
+                attribute(loaderAttribute, 'fabric')
+            }
+        }
+    }
+}
+loom.remapConfigurations.configureEach {
+    configurations.named(it.name) {
+        attributes {
+            attribute(loaderAttribute, 'fabric')
+        }
     }
 }
 
