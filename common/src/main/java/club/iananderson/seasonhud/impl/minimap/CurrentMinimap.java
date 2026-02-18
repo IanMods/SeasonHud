@@ -15,7 +15,8 @@ public class CurrentMinimap {
   }
 
   public static boolean xaeroLoaded() {
-    return MinimapMods.XAERO.modLoaded() || MinimapMods.XAERO_FAIRPLAY.modLoaded();
+    return MinimapMods.XAERO.modLoaded() || MinimapMods.XAERO_FAIRPLAY.modLoaded()
+        || MinimapMods.XAERO_BETTER_PVP.modLoaded();
   }
 
   public static boolean journeyMapLoaded() {
@@ -54,7 +55,7 @@ public class CurrentMinimap {
       case FTB_CHUNKS -> {
         return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.getDebugOverlay().showDebugScreen();
       }
-      case XAERO, XAERO_FAIRPLAY -> {
+      case XAERO, XAERO_FAIRPLAY, XAERO_BETTER_PVP -> {
         return Services.MINIMAP.hideXaero(mc);
       }
       case MAP_ATLASES -> {
