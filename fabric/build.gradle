@@ -201,7 +201,7 @@ dependencies {
     compileOnly "com.demonwav.mcdev:annotations:2.1.0"
 
     // Forge Config API Port
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+    modCompileOnlyApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }

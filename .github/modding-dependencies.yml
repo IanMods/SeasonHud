@@ -259,24 +259,6 @@
     sodium_version_fabric:
       source: version
 
-# Text Animator NeoForge
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: text-animator
-  version: "3.*+neoforge"
-  properties:
-    text_animator_version_neoforge:
-      source: version
-
-# Text Animator Fabric
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: text-animator
-  version: "3.*+fabric"
-  properties:
-    text_animator_version_fabric:
-      source: version
-
 # Accessories
 - repository: https://maven.wispforest.io/releases
   groupId: io.wispforest
