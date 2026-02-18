@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.impl.minimap.mods.ftbchunks;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
@@ -45,7 +44,7 @@ public class SeasonComponent implements MinimapInfoComponent {
 
     this.drawCenteredText(font, graphics, seasonCombined, 0);
 
-    if (SeasonHudClient.getShowFertility()) {
+    if (CurrentFertility.getInstance(context.minecraft()).shouldDrawNewLine()) {
       this.drawCenteredText(font, graphics, fertility, (int) (lineHeight / scale));
     }
   }
@@ -54,7 +53,7 @@ public class SeasonComponent implements MinimapInfoComponent {
   public int height(MinimapContext context) {
     int lines = 1;
 
-    if (SeasonHudClient.getShowFertility()) {
+    if (CurrentFertility.getInstance(context.minecraft()).shouldDrawNewLine()) {
       lines = 2;
     }
 

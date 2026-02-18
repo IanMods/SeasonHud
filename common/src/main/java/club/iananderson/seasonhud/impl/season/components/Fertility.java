@@ -15,11 +15,17 @@ public enum Fertility {
   private final int id;
   private final String key;
   private final Style style;
+  private final int color;
 
   Fertility(int id, String key, Style style) {
     this.id = id;
     this.key = key;
     this.style = style;
+    if (style.getColor() != null) {
+      this.color = style.getColor().getValue();
+    } else {
+      this.color = 16777215; // White
+    }
   }
 
   public int getId() {
@@ -32,5 +38,9 @@ public enum Fertility {
 
   public Style getStyle() {
     return this.style;
+  }
+
+  public int getColor() {
+    return this.color;
   }
 }

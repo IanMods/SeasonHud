@@ -197,7 +197,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
       graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
 
-      if (showFertility) {
+      if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
         MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
         posY += this.font.lineHeight;
@@ -218,6 +218,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     return (int) ((this.height - (textHeight * seasonScale)) / seasonScale);
   }
+
+  // TODO: Need to add a button for the 'fertilityReplacesSeason' config option
 
   @Override
   public void init() {
