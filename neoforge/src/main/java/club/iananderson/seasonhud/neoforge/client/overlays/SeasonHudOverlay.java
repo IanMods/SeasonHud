@@ -10,7 +10,7 @@ public class SeasonHudOverlay implements LayeredDraw.Layer {
   public static SeasonHudOverlay HUD_INSTANCE;
 
   public static void init() {
-    HUD_INSTANCE = new SeasonHUDOverlay();
+    HUD_INSTANCE = new SeasonHudOverlay();
   }
 
   public void render(@Nonnull GuiGraphics graphics, @Nonnull DeltaTracker tickCounter) {
