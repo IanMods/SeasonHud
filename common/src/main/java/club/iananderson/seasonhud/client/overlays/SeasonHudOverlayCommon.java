@@ -71,7 +71,7 @@ public class SeasonHudOverlayCommon {
       graphics.pose().pushPose();
       graphics.pose().scale((float) scale, (float) scale, 1F);
       graphics.drawString(mc.font, seasonCombined, x, y, 0xffffff);
-      if (SeasonHudClient.getShowFertility()) {
+      if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
         MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
 
         y += stringHeight;

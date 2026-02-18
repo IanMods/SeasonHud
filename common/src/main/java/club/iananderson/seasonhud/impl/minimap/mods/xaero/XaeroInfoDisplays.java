@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.impl.minimap.mods.xaero;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
@@ -31,7 +30,7 @@ public class XaeroInfoDisplays {
               MinimapMods.XAERO, mc) && mc.level != null) {
             compiler.addLine(CurrentSeason.getInstance(mc).getHudText());
 
-            if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
+            if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
               compiler.addLine(CurrentFertility.getInstance(mc).getMinimapText());
             }
           }

@@ -1,6 +1,5 @@
 package club.iananderson.seasonhud.client.overlays;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
@@ -22,6 +21,7 @@ public class JourneyMapCommon {
   private final MutableComponent seasonCombined;
   private final MutableComponent fertility;
   private final Font fontRenderer;
+  private final Minecraft mc;
   private final boolean fontShadow;
   private final float fontScale;
   private final float labelAlpha;
@@ -42,6 +42,7 @@ public class JourneyMapCommon {
   private double screenHeight;
 
   public JourneyMapCommon(Minecraft mc) {
+    this.mc = mc;
     this.fontRenderer = mc.font;
     this.seasonCombined = CurrentSeason.getInstance(mc).getHudText();
     this.fertility = CurrentFertility.getInstance(mc).getMinimapText();
@@ -116,7 +117,7 @@ public class JourneyMapCommon {
     buffers.endBatch();
     DrawUtil.drawBatchLabel(graphics.pose(), seasonCombined, buffers, labelX(), labelY(), DrawUtil.HAlign.Center,
                             DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
-    if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
+    if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
       DrawUtil.drawBatchLabel(graphics.pose(), fertility, buffers, labelX(),
                               labelY() + (fontRenderer.lineHeight * fontScale) + margin, DrawUtil.HAlign.Center,
                               DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha, fontScale,

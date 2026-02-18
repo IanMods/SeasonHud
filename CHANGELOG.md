@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Large rewrite to hopefully make porting easier
 - (1.21+ Forge) Updated to use the default Forge overlay rendering, now that it actually exists
+- Biome fertility now only shows when it differs from the biome's default fertility (and is enabled in the config)
 
 ### Added
 
@@ -21,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
             - Also added a tooltip to suggest changing it to a number divisible by 3
         - Also added a warning to the "showSubSeason" option in the config file
 - Added sub-season support for Ecliptic Seasons
+- Added a config option to replace the season name with the fertility value, when it differs from the biome's default
 
 ## [1.13.17] - 2026-01-01
 
