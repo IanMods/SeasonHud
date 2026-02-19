@@ -5,6 +5,7 @@ import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.platform.Services;
 import dev.ftb.mods.ftbchunks.api.FTBChunksAPI;
 import dev.ftb.mods.ftbchunks.api.client.FTBChunksClientAPI;
 import dev.ftb.mods.ftbchunks.api.client.minimap.MinimapContext;
@@ -30,7 +31,10 @@ public class SeasonComponent implements MinimapInfoComponent {
     clientApi.registerMinimapComponent(new SeasonComponent());
 
     Common.LOG.info("FTB Chunks Season Component Loaded");
-    FTBChunksClient.INSTANCE.setupComponents();
+
+    if (Services.PLATFORM.isModLoaded("moonlight")) {
+      FTBChunksClient.INSTANCE.setupComponents();
+    }
   }
 
   public ResourceLocation id() {
