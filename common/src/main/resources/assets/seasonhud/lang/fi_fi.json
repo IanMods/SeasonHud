@@ -112,6 +112,7 @@
   "menu.seasonhud.season.xOffset.tooltip": "HUDin horisontaalinen siirros kun minikarttaa ei ole ladattu\n(pikseleissä)",
   "menu.seasonhud.season.yOffset.slider": "Y-Siirros: ",
   "menu.seasonhud.season.yOffset.tooltip": "HUDin vertikaalinen siirros kun minikarttaa ei ole ladattu\n(pikseleissä)",
+  "minimap.info.ftbchunks.season.description": "Render Season",
   "minimap.info.ftbchunks.season.title": "Vuodenaika",
   "trinkets.slot.calendar.calendarslot": "Kalenterin",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",

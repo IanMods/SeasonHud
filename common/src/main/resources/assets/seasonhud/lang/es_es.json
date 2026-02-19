@@ -112,6 +112,7 @@
   "menu.seasonhud.season.xOffset.tooltip": "The horizontal offset of the Hud when no minimap is installed\n(in pixels)",
   "menu.seasonhud.season.yOffset.slider": "Y Offset: ",
   "menu.seasonhud.season.yOffset.tooltip": "The vertical offset of the Hud when no minimap is installed\n(in pixels)",
+  "minimap.info.ftbchunks.season.description": "Render Season",
   "minimap.info.ftbchunks.season.title": "Estación",
   "trinkets.slot.calendar.calendarslot": "Calendario",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",

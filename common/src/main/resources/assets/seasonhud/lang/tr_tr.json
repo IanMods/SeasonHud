@@ -112,6 +112,7 @@
   "menu.seasonhud.season.xOffset.tooltip": "Minimap yüklü olmadığında mevsim metninin yatay ofseti\n(piksel cinsinden)",
   "menu.seasonhud.season.yOffset.slider": "Y-Ofseti: ",
   "menu.seasonhud.season.yOffset.tooltip": "Minimap yüklü olmadığında mevsim metninin dikey ofseti\n(piksel cinsinden)",
+  "minimap.info.ftbchunks.season.description": "Render Season",
   "minimap.info.ftbchunks.season.title": "Mevsim",
   "trinkets.slot.calendar.calendarslot": "Takvim",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
