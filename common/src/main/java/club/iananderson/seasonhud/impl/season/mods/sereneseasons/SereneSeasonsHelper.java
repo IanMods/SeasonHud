@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.impl.season.mods.sereneseasons;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
@@ -79,6 +80,10 @@ public class SereneSeasonsHelper implements SeasonModHelper {
     long subSeasonDate = (seasonDay % subSeasonDuration) + 1; // Default 8 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; // Default 24 days in a season (8 days * 3)
 
+    if (subSeasonDuration != SeasonHudServer.getSubSeasonLength()) {
+      subSeasonDuration = SeasonHudServer.getSubSeasonLength();
+    }
+
     if (SeasonHudClient.getShowSubSeason()) {
       if (isTropicalSeason(player)) {
         // Default 16 days in each tropical "sub-season".
@@ -98,16 +103,22 @@ public class SereneSeasonsHelper implements SeasonModHelper {
 
   @Override
   public int seasonDurationDays(Player player) {
-    int duration = ModConfig.seasons.subSeasonDuration * 3;
+    int subSeasonDuration = ModConfig.seasons.subSeasonDuration;
+
+    if (subSeasonDuration != SeasonHudServer.getSubSeasonLength()) {
+      subSeasonDuration = SeasonHudServer.getSubSeasonLength();
+    }
+
+    int seasonDuration = subSeasonDuration * 3;
 
     if (isTropicalSeason(player)) {
-      duration *= 2; // Tropical season are twice as long (Default 48 days)
+      seasonDuration *= 2; // Tropical season are twice as long (Default 48 days)
     }
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
-      duration /= 3; // 3 sub-season per season
+      seasonDuration /= 3; // 3 sub-season per season
     }
 
-    return duration;
+    return seasonDuration;
   }
 
   @Override
