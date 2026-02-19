@@ -16,7 +16,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 
 public class SeasonComponent implements MinimapInfoComponent {
-  public static final ResourceLocation ID = FTBChunksAPI.rl("season");
+  public static final ResourceLocation ID = Common.location("season");
 
   public SeasonComponent() {
     super();
