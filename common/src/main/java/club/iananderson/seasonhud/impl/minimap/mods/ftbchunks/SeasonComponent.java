@@ -9,6 +9,7 @@ import dev.ftb.mods.ftbchunks.api.FTBChunksAPI;
 import dev.ftb.mods.ftbchunks.api.client.FTBChunksClientAPI;
 import dev.ftb.mods.ftbchunks.api.client.minimap.MinimapContext;
 import dev.ftb.mods.ftbchunks.api.client.minimap.MinimapInfoComponent;
+import dev.ftb.mods.ftbchunks.client.FTBChunksClient;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -29,6 +30,7 @@ public class SeasonComponent implements MinimapInfoComponent {
     clientApi.registerMinimapComponent(new SeasonComponent());
 
     Common.LOG.info("FTB Chunks Season Component Loaded");
+    FTBChunksClient.INSTANCE.setupComponents();
   }
 
   public ResourceLocation id() {
