@@ -114,8 +114,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "Горизонтальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
   "menu.seasonhud.season.yOffset.slider": "Смещение по Y: ",
   "menu.seasonhud.season.yOffset.tooltip": "Вертикальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
-  "minimap.info.ftbchunks.season.description": "Render Season",
-  "minimap.info.ftbchunks.season.title": "Сезон",
+  "minimap.info.seasonhud.season.description": "Render Season",
+  "minimap.info.seasonhud.season.title": "Сезон",
   "trinkets.slot.calendar.calendarslot": "Календарь",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "Сезон"

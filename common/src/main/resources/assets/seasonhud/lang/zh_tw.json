@@ -114,8 +114,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "未安裝小地圖時 HUD 的水平偏移\n（以像素為單位）",
   "menu.seasonhud.season.yOffset.slider": "Y 偏移：",
   "menu.seasonhud.season.yOffset.tooltip": "未安裝小地圖時 HUD 的垂直偏移\n（以像素為單位）",
-  "minimap.info.ftbchunks.season.description": "Render Season",
-  "minimap.info.ftbchunks.season.title": "季節",
+  "minimap.info.seasonhud.season.description": "Render Season",
+  "minimap.info.seasonhud.season.title": "季節",
   "trinkets.slot.calendar.calendarslot": "日曆",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "季節"
