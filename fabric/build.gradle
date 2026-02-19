@@ -201,7 +201,7 @@ dependencies {
     compileOnly "com.demonwav.mcdev:annotations:2.1.0"
 
     // Forge Config API Port
-    modCompileOnlyApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
@@ -306,6 +306,7 @@ dependencies {
             modLocalRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
             modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
             modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
+            modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
             break
         case "atlas":
             modLocalRuntime("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}")
