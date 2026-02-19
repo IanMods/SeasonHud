@@ -23,6 +23,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
         - Also added a warning to the "showSubSeason" option in the config file
 - Added sub-season support for Ecliptic Seasons
 - Added a config option to replace the season name with the fertility value, when it differs from the biome's default
+- Added a server config option to override the Serene Seasons sub-season length used in the date calculations
+    - Used if the server owner changes the length, but the clients don't have the updated Serene Season config.
 
 ## [1.13.17] - 2026-01-01
 
