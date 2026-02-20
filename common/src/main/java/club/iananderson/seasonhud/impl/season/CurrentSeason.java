@@ -22,8 +22,8 @@ public class CurrentSeason {
   private final SeasonModHelper seasonModHelper;
   private final Seasons currentSeason;
   private final SubSeasons currentSubSeason;
-  private Style seasonFormat;
   private final Style seasonIconFormat;
+  private Style seasonFormat;
 
   private CurrentSeason(Minecraft mc) {
     this.mc = mc;
