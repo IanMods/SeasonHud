@@ -297,7 +297,9 @@ dependencies {
             modImplementation "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
             break
         case "journey":
-            modImplementation group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version, changing: true
+            modImplementation("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}") {
+                changing = true
+            }
             modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
             modLocalRuntime("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
