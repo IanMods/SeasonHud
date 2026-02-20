@@ -12,10 +12,10 @@ import net.minecraftforge.fml.config.ModConfig;
 
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
-  public SeasonHudForge() {
+  public SeasonHudForge(FMLJavaModLoadingContext context) {
     Common.init();
     MinecraftForge.EVENT_BUS.register(this);
-    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    var modEventBus = context.getModEventBus();
 
     if (Services.PLATFORM.getModVersion("forgeconfigapiport").startsWith("21.5")) {
       fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT,
@@ -42,19 +42,19 @@ public class SeasonHudForge {
   }
 
   public static void onInitialize(FMLCommonSetupEvent event) {
-//    if (Common.curiosLoaded()) {
-//      Common.LOG.info("Talking to Curios");
-//      CuriosCompat.init();
-//    }
-//    else if (Common.accessoriesLoaded()) {
-//      AccessoriesCompat.init();
-//    }
+    // if (Common.curiosLoaded()) {
+    //   Common.LOG.info("Talking to Curios");
+    //   CuriosCompat.init();
+    // }
+    // else if (Common.accessoriesLoaded()) {
+    //   AccessoriesCompat.init();
+    // }
   }
 
   public static void ftbChunkSetup(FMLCommonSetupEvent event) {
-//    if (CurrentMinimap.ftbChunksLoaded()) {
-//      Common.LOG.info("Loading FTB Chunks Season Component");
-//      EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
-//    }
+    // if (CurrentMinimap.ftbChunksLoaded()) {
+    //   Common.LOG.info("Loading FTB Chunks Season Component");
+    //   EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
+    // }
   }
 }

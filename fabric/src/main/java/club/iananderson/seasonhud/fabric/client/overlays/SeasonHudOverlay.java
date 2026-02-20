@@ -15,6 +15,6 @@ public class SeasonHudOverlay implements HudRenderCallback {
 
   @Override
   public void onHudRender(GuiGraphics graphics, DeltaTracker tickCounter) {
-    SeasonHudOverlayCommon.render(graphics);
+    SeasonHudOverlayCommon.render(graphics, tickCounter);
   }
 }
