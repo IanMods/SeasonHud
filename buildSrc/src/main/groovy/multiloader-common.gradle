@@ -87,7 +87,7 @@ processResources {
             "mod_author"                   : project.mod_author,
             "mod_id"                       : project.mod_id,
             "license"                      : project.license,
-            "description"                  : project.description,
+            mod_description: project.mod_description,
             "repoURL"                      : project.repoURL,
             "issueTrackerURL"              : project.issueTrackerURL,
             "credits"                      : project.credits,
