@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.client.gui;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.impl.seasons.CommonSeasonHelper;
+import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.network.chat.Component;
@@ -30,7 +30,7 @@ public enum ShowDay {
   public static List<ShowDay> getValues() {
     List<ShowDay> values = new ArrayList<>(List.of(ShowDay.values()));
 
-    if (!CommonSeasonHelper.commonSeasons.isSeasonTiedWithSystemTime()) {
+    if (!CommonSeasonHelper.commonSeasons.getHelper().isSeasonTiedWithSystemTime()) {
       values.remove(SHOW_WITH_MONTH.getId());
     }
 

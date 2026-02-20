@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.util;
 
-import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.season.components.Fertility;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,5 +82,22 @@ public class Rgb {
 
   public static int getBlue(Seasons season) {
     return season.getRgbMap().get("b");
+  }
+
+  public static int mixRgb(Seasons season, Fertility fertility) {
+    int fertilityColor = fertility.getColor();
+    int seasonColor = season.getSeasonColor();
+
+    // White = default color
+    if (fertilityColor == 16777215) {
+      return seasonColor;
+    } else {
+      // (3/4 seasonColor + 1/4 fertilityColor) / 2
+      int mixedRed = (int) ((0.9 * red(seasonColor)) + (0.1 * red(fertilityColor)));
+      int mixedGreen = (int) ((0.9 * green(seasonColor)) + (0.1 * green(fertilityColor)));
+      int mixedBlue = (int) ((0.9 * blue(seasonColor)) + (0.1 * blue(fertilityColor)));
+
+      return rgbInt(mixedRed, mixedGreen, mixedBlue);
+    }
   }
 }

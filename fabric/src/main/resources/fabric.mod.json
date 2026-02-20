@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${version}",
   "name": "${mod_name}",
-  "description": "${description}",
+  "description": "${mod_description}",
   "authors": [
     "${mod_author}"
   ],
@@ -23,7 +23,7 @@
       "club.iananderson.seasonhud.fabric.SeasonHudFabric"
     ],
     "journeymap": [
-      "club.iananderson.seasonhud.impl.minimaps.journeymap.JourneymapSeasonPlugin"
+      "club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin"
     ]
   },
   "mixins": [

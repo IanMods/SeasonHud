@@ -4,12 +4,12 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.Map;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class DefaultColorButton extends Button {
   private static final Component DEFAULT = Common.translatedText("menu.seasonhud.color.default.button");
@@ -18,7 +18,7 @@ public class DefaultColorButton extends Button {
 
   private DefaultColorButton(int x, int y, ColorEditBox colorEditBox, OnPress onPress) {
     super(x, y, colorEditBox.getWidth() + 2, colorEditBox.getHeight() - 2, DefaultColorButton.DEFAULT, onPress,
-        DEFAULT_NARRATION);
+          DEFAULT_NARRATION);
     this.colorEditBox = colorEditBox;
     this.defaultColor = colorEditBox.getSeason().getDefaultColor();
   }
@@ -61,7 +61,7 @@ public class DefaultColorButton extends Button {
   }
 
   @Override
-  public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void renderWidget(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     refresh();
     String boxValue = this.colorEditBox.getValue();
 
@@ -103,6 +103,7 @@ public class DefaultColorButton extends Button {
       return this;
     }
 
+    @SuppressWarnings({"unused"})
     public Builder withTooltip(@Nullable Tooltip tooltip) {
       this.tooltip = tooltip;
       return this;

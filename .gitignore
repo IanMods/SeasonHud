@@ -21,8 +21,10 @@ out
 *.iml
 .idea/*
 !/.idea/scopes
+!/.idea/checkstyle
 !/.idea/codeStyles
 !/.idea/fileColors.xml
+!/.idea/checkstyle-idea.xml
 # gradle
 build
 libs
@@ -33,3 +35,4 @@ runs
 !/.idea/shelf/
 /dist/
 /update-seasonhud-deps.ps1
+!/.idea/icon.svg
