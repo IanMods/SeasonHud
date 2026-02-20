@@ -18,8 +18,10 @@ out
 *.iml
 .idea/*
 !/.idea/scopes
+!/.idea/checkstyle
 !/.idea/codeStyles
 !/.idea/fileColors.xml
+!/.idea/checkstyle-idea.xml
 # gradle
 build
 .gradle

@@ -24,7 +24,7 @@ public class DrawUtil {
     graphics.blit(texture, x + leftBorder + canvasWidth, y, u + leftBorder + fillerWidth, v, rightBorder, topBorder);
     graphics.blit(texture, x, y + topBorder + canvasHeight, u, v + topBorder + fillerHeight, leftBorder, bottomBorder);
     graphics.blit(texture, x + leftBorder + canvasWidth, y + topBorder + canvasHeight, u + leftBorder + fillerWidth,
-        v + topBorder + fillerHeight, rightBorder, bottomBorder);
+                  v + topBorder + fillerHeight, rightBorder, bottomBorder);
 
     int passesX = canvasWidth / fillerWidth;
     int remainderWidth = canvasWidth % fillerWidth;
@@ -38,19 +38,19 @@ public class DrawUtil {
                                                                                      ? remainderWidth
                                                                                      : fillerWidth, topBorder);
       graphics.blit(texture, x + leftBorder + i * fillerWidth, y + topBorder + canvasHeight, u + leftBorder,
-          v + topBorder + fillerHeight, i == passesX
-                                        ? remainderWidth
-                                        : fillerWidth, bottomBorder);
+                    v + topBorder + fillerHeight, i == passesX
+                                                  ? remainderWidth
+                                                  : fillerWidth, bottomBorder);
 
       for (int j = 0; j < passesY + (remainderHeight > 0
                                      ? 1
                                      : 0); ++j) {
         graphics.blit(texture, x + leftBorder + i * fillerWidth, y + topBorder + j * fillerHeight, u + leftBorder,
-            v + topBorder, i == passesX
-                           ? remainderWidth
-                           : fillerWidth, j == passesY
-                                          ? remainderHeight
-                                          : fillerHeight);
+                      v + topBorder, i == passesX
+                                     ? remainderWidth
+                                     : fillerWidth, j == passesY
+                                                    ? remainderHeight
+                                                    : fillerHeight);
       }
     }
 
@@ -61,20 +61,23 @@ public class DrawUtil {
                                                                                                 ? remainderHeight
                                                                                                 : fillerHeight);
       graphics.blit(texture, x + leftBorder + canvasWidth, y + topBorder + i * fillerHeight,
-          u + leftBorder + fillerWidth, v + topBorder, rightBorder, i == passesY
-                                                                    ? remainderHeight
-                                                                    : fillerHeight);
+                    u + leftBorder + fillerWidth, v + topBorder, rightBorder, i == passesY
+                                                                              ? remainderHeight
+                                                                              : fillerHeight);
     }
 
   }
 
+  // for 1.18
+  @SuppressWarnings({"unused"})
   public static void blitWithBorder(GuiGraphics graphics, ResourceLocation texture, int x, int y, int u, int v,
       int width, int height, int textureWidth, int textureHeight, int borderSize) {
     blitWithBorder(graphics, texture, x, y, u, v, width, height, textureWidth, textureHeight, borderSize, borderSize,
-        borderSize, borderSize);
+                   borderSize, borderSize);
   }
 
-  // 1.18
+  // for 1.18
+  @SuppressWarnings({"unused"})
   public static void enableScissor(int i, int j, int k, int l) {
     Window window = Minecraft.getInstance().getWindow();
     int height = window.getHeight();
@@ -86,7 +89,8 @@ public class DrawUtil {
     RenderSystem.enableScissor((int) e, (int) f, Math.max(0, (int) g), Math.max(0, (int) h));
   }
 
-  // 1.18
+  // for 1.18
+  @SuppressWarnings({"unused"})
   public static void disableScissor() {
     RenderSystem.disableScissor();
   }

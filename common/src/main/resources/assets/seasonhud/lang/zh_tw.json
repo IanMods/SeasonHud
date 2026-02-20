@@ -104,6 +104,7 @@
   "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "顯示子季節",
   "menu.seasonhud.season.showSubSeason.tooltip": "顯示子季節（例如初冬、中秋、晚春），而不是基本季節",
+  "menu.seasonhud.season.showSubSeason.tooltip.error": "Current season length %d days (%d ticks) is not divisible by 3\n\nTo enable this feature, you will need to edit the\n\n'seasonLength' values in 'seasons.json' to be divisible by 3",
   "menu.seasonhud.season.showTropicalSeason.button": "顯示熱帶季節",
   "menu.seasonhud.season.showTropicalSeason.tooltip": "在熱帶生態域中顯示熱帶季節（濕／乾）",
   "menu.seasonhud.season.title": "季節顯示選項",
@@ -111,7 +112,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "未安裝小地圖時 HUD 的水平偏移\n（以像素為單位）",
   "menu.seasonhud.season.yOffset.slider": "Y 偏移：",
   "menu.seasonhud.season.yOffset.tooltip": "未安裝小地圖時 HUD 的垂直偏移\n（以像素為單位）",
-  "minimap.info.ftbchunks.season.title": "季節",
+  "minimap.info.seasonhud.season.description": "Render Season",
+  "minimap.info.seasonhud.season.title": "季節",
   "trinkets.slot.calendar.calendarslot": "日曆",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "季節"

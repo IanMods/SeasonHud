@@ -104,6 +104,7 @@
   "menu.seasonhud.season.showFertility.tooltip": "Show the fertility level of the current biome",
   "menu.seasonhud.season.showSubSeason.button": "Показывать подсезон",
   "menu.seasonhud.season.showSubSeason.tooltip": "Заменить сезон текущим подсезоном",
+  "menu.seasonhud.season.showSubSeason.tooltip.error": "Current season length %d days (%d ticks) is not divisible by 3\n\nTo enable this feature, you will need to edit the 'seasonLength' values in 'seasons.json' to be divisible by 3",
   "menu.seasonhud.season.showTropicalSeason.button": "Показывать тропические сезоны",
   "menu.seasonhud.season.showTropicalSeason.tooltip": "Покажите тропические сезоны (поводок/засуха) в тропических биомах",
   "menu.seasonhud.season.title": "Параметры отображения сезона",
@@ -111,7 +112,8 @@
   "menu.seasonhud.season.xOffset.tooltip": "Горизонтальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
   "menu.seasonhud.season.yOffset.slider": "Смещение по Y: ",
   "menu.seasonhud.season.yOffset.tooltip": "Вертикальное смещение интерфейса, если миникарта не установлена\n(в пикселях)",
-  "minimap.info.ftbchunks.season.title": "Сезон",
+  "minimap.info.seasonhud.season.description": "Render Season",
+  "minimap.info.seasonhud.season.title": "Сезон",
   "trinkets.slot.calendar.calendarslot": "Календарь",
   "xaerominimap.seasonhud.infodisplay.fertility": "Fertility",
   "xaerominimap.seasonhud.infodisplay.season": "Сезон"
