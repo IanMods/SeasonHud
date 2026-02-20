@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.impl.accessory.mods.accessories.item;
 
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
-import io.wispforest.accessories.api.AccessoriesAPI;
-import io.wispforest.accessories.api.Accessory;
+import io.wispforest.accessories.api.core.Accessory;
+import io.wispforest.accessories.api.core.AccessoryRegistry;
 
 public class AccessoriesCalendar implements Accessory {
   public AccessoriesCalendar() {
@@ -17,7 +17,7 @@ public class AccessoriesCalendar implements Accessory {
 
   public static void init() {
     if (Calendar.calendar().isPresent()) {
-      AccessoriesAPI.registerAccessory(Calendar.calendar().get(), new AccessoriesCalendar());
+      AccessoryRegistry.register(Calendar.calendar().get(), new AccessoriesCalendar());
     }
   }
 
