@@ -14,7 +14,7 @@ mixin {
 }
 
 legacyForge {
-    version = forge_version
+    version = "${minecraft_version}-${forge_version}"
 
     validateAccessTransformers = true
 
