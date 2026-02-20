@@ -216,9 +216,9 @@ dependencies {
     modCompileOnly("net.jodah:typetools:0.6.3")
 
     // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-${project.minecraft_version}-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.minecraft_version}-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-${project.minecraft_version}-fabric:${project.whitenoise_version}"
+    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-fabric:${project.climatesettings_version}"
+    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
+    modCompileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.xaero_mc_version}") {
@@ -264,7 +264,7 @@ dependencies {
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
 //    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
-    modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+//    modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
 //    modLocalRuntime "maven.modrinth:text-animator:${project.text_animator_version_fabric}"
 
     // Season Mod Dev Tests (Fabric)
@@ -282,7 +282,7 @@ dependencies {
             modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
         case "homeostatic":
-            modImplementation "maven.modrinth:homeostatic-seasons:${project.minecraft_version}-${project.homeostatic_seasons_version}-fabric"
+            modImplementation "maven.modrinth:homeostatic-seasons:${project.homeostatic_seasons_mc_version}-${project.homeostatic_seasons_version}-fabric"
             break
         default:
             println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")

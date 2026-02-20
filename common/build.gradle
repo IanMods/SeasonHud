@@ -163,9 +163,9 @@ dependencies {
     // Not used in common unless they are actually  loaded.
     compileOnly "com.github.glitchfiend:SereneSeasons-common:${project.serene_seasons_version}"
     compileOnly "com.github.glitchfiend:GlitchCore-common:${glitchcore_version}"
-    compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.minecraft_version}-common:${project.climatesettings_version}"
-    compileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.minecraft_version}-common:${project.homeostatic_seasons_version}"
-    compileOnly "technology.roughness.whitenoise:whitenoise-${project.minecraft_version}-common:${project.whitenoise_version}"
+    compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-common:${project.climatesettings_version}"
+    compileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-common:${project.homeostatic_seasons_version}"
+    compileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-common:${project.whitenoise_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually loaded.

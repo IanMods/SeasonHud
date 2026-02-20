@@ -28,7 +28,8 @@ neoForge {
             setGameDirectory(file(clientDir))
         }
         data {
-            data()
+            clientData()
+            serverData()
 
             // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
@@ -216,13 +217,13 @@ dependencies {
     compileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Homeostatic Seasons
-    compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.minecraft_version}-neoforge:${project.climatesettings_version}"
-    compileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.minecraft_version}-neoforge:${project.homeostatic_seasons_version}"
-    compileOnly "technology.roughness.whitenoise:whitenoise-${project.minecraft_version}-neoforge:${project.whitenoise_version}"
+    compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-neoforge:${project.climatesettings_version}"
+    compileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-neoforge:${project.homeostatic_seasons_version}"
+    compileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-neoforge:${project.whitenoise_version}"
 
     // Xaero's Minimap
-    compileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.xaero_lib_version}"
-    compileOnly "xaero.lib:xaerolib-neoforge-${project.xaero_lib_version}:${project.xaero_lib_version}"
+    compileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.xaero_mc_version}"
+    compileOnly "xaero.lib:xaerolib-neoforge-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     compileOnly("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
@@ -258,8 +259,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            implementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.xaero_lib_version}"
-            implementation "xaero.lib:xaerolib-neoforge-${project.xaero_lib_version}:${project.xaero_lib_version}"
+            implementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.xaero_mc_version}"
+            implementation "xaero.lib:xaerolib-neoforge-${project.xaero_mc_version}:${project.xaero_lib_version}"
             break
         case "journey":
             implementation("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
@@ -300,9 +301,9 @@ dependencies {
             implementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
             break
         case "homeostatic":
-            implementation "com.github.wendall911.climatesettings:climatesettings-${project.minecraft_version}-neoforge:${project.climatesettings_version}"
-            implementation "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.minecraft_version}-neoforge:${project.homeostatic_seasons_version}"
-            implementation "technology.roughness.whitenoise:whitenoise-${project.minecraft_version}-neoforge:${project.whitenoise_version}"
+            implementation "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-neoforge:${project.climatesettings_version}"
+            implementation "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-neoforge:${project.homeostatic_seasons_version}"
+            implementation "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-neoforge:${project.whitenoise_version}"
             break
         default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
     }
