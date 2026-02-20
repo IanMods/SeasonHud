@@ -9,9 +9,11 @@ import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
+import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.CycleButton;
@@ -19,7 +21,6 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import org.jetbrains.annotations.NotNull;
 
 public class SeasonOptionsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.season.title");
@@ -52,7 +53,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   }
 
   public void loadConfig() {
-    drawDefaultHud = Common.drawDefaultHudMenu();
+    drawDefaultHud = Common.drawDefaultHudMenu(this.minecraft);
     hudLocation = SeasonHudClient.getHudLocation();
     posX = SeasonHudClient.getHudX();
     posY = SeasonHudClient.getHudY();
@@ -85,13 +86,13 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
     SeasonHudClient.setShowDay(showDay);
     SeasonHudClient.setEnableSeasonNameColor(seasonColor);
+    SeasonHudClient.setShowSubSeason(showSubSeason);
 
-    if (Common.hasSubSeasons()) {
-      SeasonHudClient.setShowSubSeason(showSubSeason);
+    if (Common.hasTropicalSeasons()) {
       SeasonHudClient.setShowTropicalSeason(showTropicalSeason);
     }
 
-    if (Common.clientSideConfig()) {
+    if (Common.clientSideConfig(this.minecraft)) {
       if (Common.hasCalendarLoaded()) {
         SeasonHudServer.setCalendarDetailMode(enableCalendarDetail);
         SeasonHudServer.setNeedCalendar(needCalendar);
@@ -124,13 +125,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
-  public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
     var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
-    // Assigned here so it still draws if the
-    int posX = Client.DEFAULT_X_OFFSET;
-    int posY = Client.DEFAULT_Y_OFFSET;
-    double seasonScale = 1.0;
 
     if (drawDefaultHud) {
       boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
@@ -179,7 +176,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
 
-      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig()) {
+      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
         int row = 4;
 
         if (Common.fabricSeasonsExtrasLoaded()) {
@@ -191,21 +188,22 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         }
 
         graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
-            MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING), 16777215);
+                                    MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
+                                        + BUTTON_PADDING), 16777215);
       }
-    }
 
-    graphics.pose().pushMatrix();
-    graphics.pose().translate(0, 0);
-    graphics.pose().scale((float) seasonScale, (float) seasonScale);
-    graphics.drawString(font, seasonCombined, posX, posY, 0xffffffff);
-    if (showFertility) {
-      MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+      graphics.pose().pushMatrix();
+      graphics.pose().translate(0, 0);
+      graphics.pose().scale((float) seasonScale, (float) seasonScale);
+      graphics.drawString(font, seasonCombined, posX, posY, 0xffffffff);
+      if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
+        MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
-      posY += this.font.lineHeight;
-      graphics.drawString(font, fertility, posX, posY, 0xffffff);
+        posY += this.font.lineHeight;
+        graphics.drawString(font, fertility, posX, posY, 0xffffff);
+      }
+      graphics.pose().popMatrix();
     }
-    graphics.pose().popMatrix();
   }
 
   private int maxWidth(MutableComponent seasonText) {
@@ -219,6 +217,8 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     return (int) ((this.height - (textHeight * seasonScale)) / seasonScale);
   }
+
+  // TODO: Need to add a button for the 'fertilityReplacesSeason' config option
 
   @Override
   public void init() {
@@ -236,15 +236,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withValues(Location.values())
           .withInitialValue(hudLocation)
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.hudLocation.button"), (b, val) -> this.hudLocation = val);
+                  Common.translatedText("menu.seasonhud.season.hudLocation.button"),
+                  (b, val) -> this.hudLocation = val);
 
       hudScaleSlider = HudScaleSlider.builder(Common.translatedText("menu.seasonhud.season.scale.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.scale.tooltip"))
           .withValueRange(Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX)
           .withInitialValue(seasonScale)
-          .withDefaultValue(Client.DEFAULT_HUD_SCALE)
-          .withStepSize(0.5)
-          .withPrecision(1)
+          .withDefaultValue(Client.DEFAULT_HUD_SCALE).withStepSize(0.5).withPrecision(1)
           .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
           .build();
 
@@ -253,14 +252,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .withTooltip(Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
           .withValues(0, this.maxWidth(seasonCombined), posX, Client.DEFAULT_X_OFFSET)
           .withBounds(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth / 2 - BasicSlider.SLIDER_PADDING,
-              buttonHeight)
+                      buttonHeight)
           .build();
 
       sliderY = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.yOffset.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.yOffset.tooltip"))
           .withValues(0, this.maxHeight(), posY, Client.DEFAULT_Y_OFFSET)
           .withBounds(rightButtonX + buttonWidth / 2 + BasicSlider.SLIDER_PADDING, (buttonStartY + (row * offsetY)),
-              buttonWidth / 2 - BasicSlider.SLIDER_PADDING, buttonHeight)
+                      buttonWidth / 2 - BasicSlider.SLIDER_PADDING, buttonHeight)
           .build();
 
       widgets.addAll(Arrays.asList(hudLocationButton, hudScaleSlider, sliderX, sliderY));
@@ -272,29 +271,42 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .withValues(ShowDay.getValues())
         .withInitialValue(showDay)
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-            Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
+                Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
 
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(seasonColor)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
         .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-            Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"),
-            (b, val) -> this.seasonColor = val);
+                Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"),
+                (b, val) -> this.seasonColor = val);
     widgets.addAll(Arrays.asList(showDayButton, seasonColorButton));
 
-    if (Common.hasSubSeasons()) {
-      row += 1; // Row 4 (enableMinimapIntegration -> Row 2)
-      CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
-          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
-              (b, val) -> this.showSubSeason = val);
+    row += 1; // Row 4 (enableMinimapIntegration -> Row 2)
+    CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
+        .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
+        .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+                Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
+                (b, val) -> this.showSubSeason = val);
 
+    if (Common.fabricSeasonsLoaded() && this.minecraft != null) {
+      int seasonLength = Services.SEASON.currentFabricSeasonLength(this.minecraft.player);
+
+      if ((seasonLength % 3) != 0) {
+        showSubSeasonButton.active = false;
+        showSubSeasonButton.setTooltip(
+            Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength, seasonLength * 24000));
+      }
+    }
+
+    widgets.add(showSubSeasonButton);
+
+    // TODO: Double check this looks okay
+    if (Common.hasTropicalSeasons()) {
       CycleButton<Boolean> showTropicalSeasonButton = CycleButton.onOffBuilder(showTropicalSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showTropicalSeason.tooltip"))
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
-              (b, val) -> this.showTropicalSeason = val);
-      widgets.addAll(Arrays.asList(showSubSeasonButton, showTropicalSeasonButton));
+                  Common.translatedText("menu.seasonhud.season.showTropicalSeason.button"),
+                  (b, val) -> this.showTropicalSeason = val);
+      widgets.add(showTropicalSeasonButton);
     }
 
     if (Common.hasCalendarLoaded()) {
@@ -302,18 +314,18 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.needCalendar.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.needCalendar.button"), (b, val) -> this.needCalendar = val);
+                  Common.translatedText("menu.seasonhud.season.needCalendar.button"),
+                  (b, val) -> this.needCalendar = val);
 
-      needCalendarButton.active = Common.clientSideConfig();
+      needCalendarButton.active = Common.clientSideConfig(this.minecraft);
 
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.calendarDetail.tooltip"))
           .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.calendarDetail.button"), (b, val) -> {
-                this.enableCalendarDetail = val;
-              });
+                  Common.translatedText("menu.seasonhud.season.calendarDetail.button"),
+                  (b, val) -> this.enableCalendarDetail = val);
 
-      if (!Common.clientSideConfig()) {
+      if (!Common.clientSideConfig(this.minecraft)) {
         needCalendarButton.active = false;
         needCalendarButton.setTooltip(Common.newTooltip("menu.seasonhud.season.serverSide.tooltip"));
 
@@ -329,16 +341,15 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       CycleButton<Boolean> showFertilityButton = CycleButton.onOffBuilder(showFertility)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showFertility.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-              Common.translatedText("menu.seasonhud.season.showFertility.button"),
-              (b, val) -> this.showFertility = val);
+                  Common.translatedText("menu.seasonhud.season.showFertility.button"),
+                  (b, val) -> this.showFertility = val);
       widgets.add(showFertilityButton);
     }
 
     if (Common.fabricSeasonsLoaded()) {
       row += 2; // Row 4 (enableMinimapIntegration -> Row 2)
-      dayLengthBox =
-          new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * offsetY)), buttonWidth - 2, buttonHeight,
-              Common.literalText(String.valueOf(dayLength)));
+      dayLengthBox = new EditBox(this.font, leftButtonX + 1, (buttonStartY + (row * offsetY)), buttonWidth - 2,
+                                 buttonHeight, Common.literalText(String.valueOf(dayLength)));
       dayLengthBox.setMaxLength(10);
       dayLengthBox.setValue(String.valueOf(dayLength));
       dayLengthBox.setResponder((lengthString) -> {
@@ -358,7 +369,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         }
       });
       dayLengthBox.setHint(Common.literalText("" + dayLength).withStyle(ChatFormatting.DARK_GRAY));
-      dayLengthBox.visible = Common.clientSideConfig();
+      dayLengthBox.visible = Common.clientSideConfig(this.minecraft);
 
       widgets.add(dayLengthBox);
     }

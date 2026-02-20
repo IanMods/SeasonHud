@@ -22,9 +22,10 @@ public class DefaultValues {
     public static final int DEFAULT_DRY_COLOR = 16745216;
     public static final int DEFAULT_WET_COLOR = 2068975;
     public static final boolean DEFAULT_SHOW_TROPICAL_SEASON = true;
-    public static final boolean DEFAULT_SHOW_SUB_SEASON = true;
+    public static final boolean DEFAULT_SHOW_SUB_SEASON = false;
     public static final ShowDay DEFAULT_SHOW_DAY = ShowDay.SHOW_DAY;
     public static final boolean DEFAULT_SHOW_FERTILITY = false;
+    public static final boolean DEFAULT_FERTILITY_REPLACES_SEASON = false;
     public static final boolean DEFAULT_ENABLE_MINIMAP_INTEGRATION = true;
     public static final boolean DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN = false;
   }
@@ -33,5 +34,6 @@ public class DefaultValues {
     public static final boolean DEFAULT_NEED_CALENDAR = false;
     public static final boolean DEFAULT_CALENDAR_DETAIL_MODE = false;
     public static final int DEFAULT_DAY_LENGTH = 24000;
+    public static final int DEFAULT_SUB_SEASON_LENGTH = 8;
   }
 }

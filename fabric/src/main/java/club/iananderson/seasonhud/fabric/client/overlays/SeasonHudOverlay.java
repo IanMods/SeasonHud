@@ -17,7 +17,7 @@ public class SeasonHudOverlay implements HudElement {
 
   @Override
   public void render(GuiGraphics graphics, DeltaTracker tickCounter) {
-    SeasonHudOverlayCommon.render(graphics);
+    SeasonHudOverlayCommon.render(graphics, tickCounter);
   }
 
 }

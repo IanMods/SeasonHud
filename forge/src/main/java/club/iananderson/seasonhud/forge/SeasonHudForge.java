@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.forge;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
-import fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry;
+import fuzs.forgeconfigapiport.forge.api.neoforge.v5.NeoForgeConfigRegistry;
 import java.lang.invoke.MethodHandles;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -13,10 +13,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Common.MOD_ID)
 public class SeasonHudForge {
-  public SeasonHudForge() {
+  public SeasonHudForge(FMLJavaModLoadingContext context) {
     Common.init();
     MinecraftForge.EVENT_BUS.register(this);
-    var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    var modEventBus = context.getModEventBus();
 
     NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC,
                                              "seasonhud-client.toml");
@@ -24,24 +24,24 @@ public class SeasonHudForge {
     NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
                                              "seasonhud-server.toml");
 
-    FMLCommonSetupEvent.getBus(modEventBus).addListener(SeasonHudForge::onInitialize);
-    FMLCommonSetupEvent.getBus(modEventBus).addListener(SeasonHudForge::ftbChunkSetup);
+    modEventBus.addListener(SeasonHudForge::onInitialize);
+    modEventBus.addListener(SeasonHudForge::ftbChunkSetup);
   }
 
   public static void onInitialize(FMLCommonSetupEvent event) {
-//    if (Common.curiosLoaded()) {
-//      Common.LOG.info("Talking to Curios");
-//      CuriosCompat.init();
-//    }
-//    else if (Common.accessoriesLoaded()) {
-//      AccessoriesCompat.init();
-//    }
+    // if (Common.curiosLoaded()) {
+    //   Common.LOG.info("Talking to Curios");
+    //   CuriosCompat.init();
+    // }
+    // else if (Common.accessoriesLoaded()) {
+    //   AccessoriesCompat.init();
+    // }
   }
 
   public static void ftbChunkSetup(FMLCommonSetupEvent event) {
-//    if (CurrentMinimap.ftbChunksLoaded()) {
-//      Common.LOG.info("Loading FTB Chunks Season Component");
-//      EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
-//    }
+    // if (CurrentMinimap.ftbChunksLoaded()) {
+    //   Common.LOG.info("Loading FTB Chunks Season Component");
+    //   EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
+    // }
   }
 }

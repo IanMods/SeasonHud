@@ -24,8 +24,18 @@ public class NeoForgePlatformHelper implements PlatformHelper {
 
     if (mod.isPresent()) {
       return mod.get().getModInfo().getVersion().toString();
+    } else {
+      return "Not Loaded";
     }
-    else {
+  }
+
+  @Override
+  public String getModName(String modId) {
+    Optional<? extends ModContainer> mod = ModList.get().getModContainerById(modId);
+
+    if (mod.isPresent()) {
+      return mod.get().getModInfo().getDisplayName();
+    } else {
       return "Not Loaded";
     }
   }
