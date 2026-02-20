@@ -57,13 +57,13 @@ jar {
 
     manifest {
         attributes([
-                'Specification-Title'  : project.mod_name,
-                'Specification-Vendor' : project.mod_author,
+                'Specification-Title'   : project.mod_name,
+                'Specification-Vendor'  : project.mod_author,
                 'Specification-Version' : project.jar.archiveVersion,
                 'Implementation-Title'  : project.name,
                 'Implementation-Version': project.jar.archiveVersion,
-                'Implementation-Vendor': project.mod_author,
-                'Built-On-Minecraft'   : project.minecraft_version
+                'Implementation-Vendor' : project.mod_author,
+                'Built-On-Minecraft'    : project.minecraft_version
         ])
     }
 }
@@ -86,7 +86,7 @@ processResources {
             "mod_name"                     : project.mod_name,
             "mod_author"                   : project.mod_author,
             "mod_id"                       : project.mod_id,
-            "mod_description": project.mod_description,
+            "mod_description"              : project.mod_description,
             "license"                      : project.license,
             "repoURL"                      : project.repoURL,
             "issueTrackerURL"              : project.issueTrackerURL,

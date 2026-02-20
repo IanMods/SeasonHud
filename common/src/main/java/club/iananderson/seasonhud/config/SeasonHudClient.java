@@ -42,12 +42,15 @@ public class SeasonHudClient {
 
   private static void setupConfig(ModConfigSpec.Builder builder) {
     builder.push("SeasonHUD");
-    enableMod = builder.comment(StringLine.builder().addLine("Enable the mod?").addLine("(true/false)")
+    enableMod = builder.comment(StringLine.builder()
+                                    .addLine("Enable the mod?")
+                                    .addLine("(true/false)")
                                     .lastLine("Default is " + Client.DEFAULT_ENABLE_MOD + "."))
         .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
 
     builder.push("HUD");
-    hudLocation = builder.comment(StringLine.builder().addLine("Where to display the Hud when no minimap is installed.")
+    hudLocation = builder.comment(StringLine.builder()
+                                      .addLine("Where to display the Hud when no minimap is installed.")
                                       .lastLine("Default is " + Client.DEFAULT_HUD_LOCATION + "."))
         .defineEnum("hud_location", Client.DEFAULT_HUD_LOCATION);
 
@@ -63,7 +66,8 @@ public class SeasonHudClient {
                                .lastLine("Default is " + Client.DEFAULT_Y_OFFSET + "."))
         .define("hud_y_position", Client.DEFAULT_Y_OFFSET);
 
-    hudScale = builder.comment(StringLine.builder().addLine("The scale of the HUD when no minimap is installed.")
+    hudScale = builder.comment(StringLine.builder()
+                                   .addLine("The scale of the HUD when no minimap is installed.")
                                    .lastLine("Default is " + Client.DEFAULT_HUD_SCALE + "."))
         .defineInRange("hud_scale", Client.DEFAULT_HUD_SCALE, Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX);
 
@@ -74,32 +78,38 @@ public class SeasonHudClient {
                                                 .lastLine("Default is " + Client.DEFAULT_SEASON_NAME_COLOR + "."))
         .define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
 
-    springColor = builder.comment(StringLine.builder().addLine("The RGB color (decimal) for spring.")
+    springColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for spring.")
                                       .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
                                       .lastLine("Default is " + Client.DEFAULT_SPRING_COLOR + "."))
         .defineInRange("spring_color", Client.DEFAULT_SPRING_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    summerColor = builder.comment(StringLine.builder().addLine("The RGB color (decimal) for summer.")
+    summerColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for summer.")
                                       .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
                                       .lastLine("Default is " + Client.DEFAULT_SUMMER_COLOR + "."))
         .defineInRange("summer_color", Client.DEFAULT_SUMMER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    autumnColor = builder.comment(StringLine.builder().addLine("The RGB color (decimal) for autumn.")
+    autumnColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for autumn.")
                                       .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
                                       .lastLine("Default is " + Client.DEFAULT_AUTUMN_COLOR + "."))
         .defineInRange("autumn_color", Client.DEFAULT_AUTUMN_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    winterColor = builder.comment(StringLine.builder().addLine("The RGB color (decimal) for winter.")
+    winterColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for winter.")
                                       .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
                                       .lastLine("Default is " + Client.DEFAULT_WINTER_COLOR + "."))
         .defineInRange("winter_color", Client.DEFAULT_WINTER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    dryColor = builder.comment(StringLine.builder().addLine("The RGB color (decimal) for dry tropical season.")
+    dryColor = builder.comment(StringLine.builder()
+                                   .addLine("The RGB color (decimal) for dry tropical season.")
                                    .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
                                    .lastLine("Default is " + Client.DEFAULT_DRY_COLOR + "."))
         .defineInRange("dry_color", Client.DEFAULT_DRY_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    wetColor = builder.comment(StringLine.builder().addLine("The RGB color (decimal) for wet tropical season.")
+    wetColor = builder.comment(StringLine.builder()
+                                   .addLine("The RGB color (decimal) for wet tropical season.")
                                    .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
                                    .lastLine("Default is " + Client.DEFAULT_WET_COLOR + "."))
         .defineInRange("wet_color", Client.DEFAULT_WET_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
@@ -129,7 +139,8 @@ public class SeasonHudClient {
         .define("enable_show_sub_season", Client.DEFAULT_SHOW_SUB_SEASON);
 
     if (Common.fabricSeasonsLoaded()) {
-      showDay = builder.comment(StringLine.builder().addLine("Show the current day of the season/sub-season?")
+      showDay = builder.comment(StringLine.builder()
+                                    .addLine("Show the current day of the season/sub-season?")
                                     .lastLine("Default is " + Client.DEFAULT_SHOW_DAY + "."))
           .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS,
@@ -137,7 +148,8 @@ public class SeasonHudClient {
     }
 
     if (!Common.fabricSeasonsLoaded()) {
-      showDay = builder.comment(StringLine.builder().addLine("Show the current day of the season/sub-season?")
+      showDay = builder.comment(StringLine.builder()
+                                    .addLine("Show the current day of the season/sub-season?")
                                     .lastLine("Default is " + Client.DEFAULT_SHOW_DAY + "."))
           .defineEnum("enable_show_day", Client.DEFAULT_SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
