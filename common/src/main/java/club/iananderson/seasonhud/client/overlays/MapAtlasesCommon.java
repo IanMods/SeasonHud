@@ -84,8 +84,9 @@ public class MapAtlasesCommon {
                      originOffsetHeight);
 
       if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
-	      MutableComponent fertility = CurrentFertility.getInstance(Minecraft.getInstance()).getMinimapText();
-	      MutableComponent fertilityShadowText = CurrentFertility.getInstance(Minecraft.getInstance()).getHudTextNoFormat();
+        MutableComponent fertility = CurrentFertility.getInstance(Minecraft.getInstance()).getMinimapText();
+        MutableComponent fertilityShadowText = CurrentFertility.getInstance(Minecraft.getInstance())
+            .getHudTextNoFormat();
 
         drawScaledText(poseStack, x, y + mc.font.lineHeight, fertility, fertilityShadowText, textScaling,
                        originOffsetWidth, originOffsetHeight);

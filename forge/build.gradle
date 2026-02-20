@@ -29,38 +29,51 @@ minecraft {
 
     runs {
         configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            systemProperty 'forge.logging.console.level', 'debug'
+
+            systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
+
             // Mixin requires either specifying the config via command line, or in the Manifest
             args "--mixin.config=${mod_id}.mixins.json"
         }
 
-        client {
+        register('client') {
             var clientDir = "run/client"
             if (!file(clientDir).exists()) {
                 mkdir(clientDir)
             }
-            systemProperty 'forge.enabledGameTestNamespaces', mod_id
-
             workingDir = file(clientDir)
+
+            systemProperty 'forge.enabledGameTestNamespaces', mod_id
         }
 
-        server {
+        register('server') {
             var serverDir = "run/server"
             if (!file(serverDir).exists()) {
                 mkdir(serverDir)
             }
+            workingDir = file(serverDir)
 
             systemProperty 'forge.enabledGameTestNamespaces', mod_id
-
-            workingDir = file(serverDir)
             args '--nogui'
         }
+        register('gameTestServer') {
+            var dataDir = "run/game-test-server"
+            if (!file(dataDir).exists()) {
+                mkdir(dataDir)
+            }
+            workingDir = file(dataDir)
 
-        data {
+            systemProperty 'forge.enabledGameTestNamespaces', mod_id
+        }
+
+        register('data') {
             var dataDir = "run/data"
             if (!file(dataDir).exists()) {
                 mkdir(dataDir)
             }
-
             workingDir = file(dataDir)
 
             args '--mod', mod_id, '--all', '--output', layout.projectDirectory.dir('src/generated/resources'), '--existing', layout.projectDirectory.dir('src/main/resources')
@@ -214,6 +227,11 @@ repositories {
 }
 
 dependencies {
+    // Specify the version of Minecraft to use.
+    // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
+    // The "userdev" classifier will be requested and setup by ForgeGradle.
+    // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
+    // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     // Forge 1.21.6+ uses EventBus 7, which shifts most of its runtime validation to compile-time via an annotation processor
     // to improve performance in production environments. This line is required to enable said compile-time validation

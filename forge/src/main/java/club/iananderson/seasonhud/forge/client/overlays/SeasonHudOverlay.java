@@ -4,9 +4,9 @@ import club.iananderson.seasonhud.client.overlays.SeasonHudOverlayCommon;
 import javax.annotation.Nonnull;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.LayeredDraw;
+import net.minecraftforge.client.gui.overlay.ForgeLayer;
 
-public class SeasonHudOverlay implements LayeredDraw.Layer {
+public class SeasonHudOverlay implements ForgeLayer {
   public static SeasonHudOverlay HUD_INSTANCE;
 
   public static void init() {
