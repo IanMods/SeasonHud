@@ -154,6 +154,7 @@ repositories {
         url = uri("https://chocolateminecraft.com/maven")
         content {
             includeGroup "xaero.lib"
+            includeGroup "xaero.minimap"
         }
     }
 
@@ -221,8 +222,8 @@ dependencies {
     compileOnly "technology.roughness.whitenoise:whitenoise-${project.minecraft_version}-neoforge:${project.whitenoise_version}"
 
     // Xaero's Minimap
-    compileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
-    compileOnly "xaero.lib:xaerolib-neoforge-1.21:${project.xaero_lib_version}"
+    compileOnly "xaero.minimap:xaerominimap-neoforge-${project.minecraft_version}:${project.xaero_minimap_version}"
+    compileOnly "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     compileOnly("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
@@ -258,8 +259,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            implementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
-            implementation "xaero.lib:xaerolib-neoforge-1.21:${project.xaero_lib_version}"
+            implementation "xaero.minimap:xaerominimap-neoforge-${project.minecraft_version}:${project.xaero_minimap_version}"
+            implementation "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
             implementation group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
