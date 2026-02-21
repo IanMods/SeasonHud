@@ -107,10 +107,10 @@
       source: version
 
 # Xaero
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: xaeros-minimap
-  version: "${xaeros_minimap_version}_NeoForge_${mcVersion}"
+- repository: https://chocolateminecraft.com/maven
+  groupId: xaero.minimap
+  artifactId: xaerominimap-common-1.21.10
+  version: "${xaeros_minimap_version}"
   properties:
     xaeros_minimap_version:
       source: wildcard
@@ -118,7 +118,7 @@
 # Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.lib
-  artifactId: xaerolib-common-1.20
+  artifactId: xaerolib-common-1.21.10
   version: "${xaero_lib_version}"
   properties:
     xaero_lib_version:
