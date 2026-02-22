@@ -155,6 +155,7 @@ repositories {
         url = uri("https://chocolateminecraft.com/maven")
         content {
             includeGroup "xaero.lib"
+            includeGroup "xaero.minimap"
         }
     }
 
@@ -221,9 +222,12 @@ dependencies {
     compileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-neoforge:${project.homeostatic_seasons_version}"
     compileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-neoforge:${project.whitenoise_version}"
 
+    // ProtoManly's Weather
+    compileOnly "maven.modrinth:protomanlys-weather:${project.protomanlys_version}"
+
     // Xaero's Minimap
-    compileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.xaero_mc_version}"
-    compileOnly "xaero.lib:xaerolib-neoforge-${project.xaero_mc_version}:${project.xaero_lib_version}"
+    compileOnly "xaero.minimap:xaerominimap-neoforge-${project.minecraft_version}:${project.xaero_minimap_version}"
+    compileOnly "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     compileOnly("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
@@ -259,8 +263,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            implementation "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_${project.xaero_mc_version}"
-            implementation "xaero.lib:xaerolib-neoforge-${project.xaero_mc_version}:${project.xaero_lib_version}"
+            implementation "xaero.minimap:xaerominimap-neoforge-${project.minecraft_version}:${project.xaero_minimap_version}"
+            implementation "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
             implementation("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
@@ -305,7 +309,10 @@ dependencies {
             implementation "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-neoforge:${project.homeostatic_seasons_version}"
             implementation "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-neoforge:${project.whitenoise_version}"
             break
-        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
+        case "protomanlys":
+            implementation "maven.modrinth:protomanlys-weather:${project.protomanlys_version}"
+            break
+    default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
     }
 
     // Accessory Mod Dev Tests
@@ -382,7 +389,7 @@ publishMods {
     modrinth("modrinthNeoForge") {
         from mrOptions
 
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons", "protomanlys-weather")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
         optional("curios", "accessories")
 

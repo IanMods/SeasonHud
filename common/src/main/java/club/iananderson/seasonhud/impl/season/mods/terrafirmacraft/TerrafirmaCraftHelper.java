@@ -9,6 +9,7 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -50,10 +51,9 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
     int daysInMonth = Services.SEASON.terraFirmaCraftTotalDaysInMonth();
 
     // Assumes that there are 3 months per season
-    if (SeasonHudClient.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       return dayOfMonth;
     } else {
-      // TODO: Double check this
       // Early = 0; Mid = 1; Late = 2
       return dayOfMonth + ((long) currentSubSeason.ordinal() * daysInMonth);
     }
@@ -88,7 +88,12 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
 
   @Override
   public Fertility fertility(Player player) {
-    return Fertility.FERTILE;
+    return SeasonModHelper.super.fertility(player);
+  }
+
+  @Override
+  public void debugHud(GuiGraphics graphics) {
+
   }
 
 }

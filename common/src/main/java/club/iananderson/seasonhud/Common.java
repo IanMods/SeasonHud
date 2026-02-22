@@ -34,6 +34,7 @@ public class Common {
   private static boolean terrafirmacraftLoaded;
   private static boolean eclipticSeasonsLoaded;
   private static boolean homeostaticSeasonsLoaded;
+  private static boolean protomanlyWeatherLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
@@ -47,7 +48,8 @@ public class Common {
     fabricSeasonsExtrasLoaded = SeasonMods.FABRIC_EXTRAS.modLoaded();
     terrafirmacraftLoaded = SeasonMods.TERRAFIRMACRAFT.modLoaded();
     eclipticSeasonsLoaded = SeasonMods.ECLIPTIC.modLoaded();
-    homeostaticSeasonsLoaded = Services.PLATFORM.isModLoaded("homeostaticseasons");
+    homeostaticSeasonsLoaded = SeasonMods.HOMEOSTATIC.modLoaded();
+    protomanlyWeatherLoaded = SeasonMods.PROTOMANLY_WEATHER.modLoaded();
     curiosLoaded = AccessoryMods.CURIOS.modLoaded();
     trinketsLoaded = AccessoryMods.TRINKETS.modLoaded();
     accessoriesLoaded = AccessoryMods.ACCESSORIES.modLoaded();
@@ -57,7 +59,7 @@ public class Common {
     }
 
     if (MinimapMods.getLoaded().iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", MinimapMods.getLoaded().iterator().next().getModName());
+      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
     }
   }
 
@@ -83,6 +85,10 @@ public class Common {
 
   public static boolean homeostaticSeasonsLoaded() {
     return Common.homeostaticSeasonsLoaded;
+  }
+
+  public static boolean protomanlyWeatherLoaded() {
+    return Common.protomanlyWeatherLoaded;
   }
 
   public static boolean curiosLoaded() {

@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -16,7 +17,7 @@ public class CommonSeasonHelper {
 
   public SeasonModHelper getHelper() {
     if (SeasonMods.getLoaded().iterator().hasNext()) {
-      return SeasonMods.getLoaded().iterator().next().getSeasonModHelper();
+      return SeasonMods.getLoaded().getFirst().getSeasonModHelper();
     } else {
       return new NoSeasonModHelper();
     }
@@ -40,12 +41,12 @@ public class CommonSeasonHelper {
 
     @Override
     public SubSeasons getCurrentSubSeason(Player player) {
-      return SubSeasons.NONE;
+      return SeasonModHelper.super.getCurrentSubSeason(player);
     }
 
     @Override
     public Seasons getCurrentSeason(Player player) {
-      return Seasons.NULL;
+      return SeasonModHelper.super.getCurrentSeason(player);
     }
 
     @Override
@@ -75,7 +76,12 @@ public class CommonSeasonHelper {
 
     @Override
     public Fertility fertility(Player player) {
-      return Fertility.FERTILE;
+      return SeasonModHelper.super.fertility(player);
+    }
+
+    @Override
+    public void debugHud(GuiGraphics graphics) {
+
     }
   }
 }
