@@ -220,11 +220,6 @@ dependencies {
     modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
     modCompileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
 
-    // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-1.21.1-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-1.21.1-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-1.21.1-fabric:${project.whitenoise_version}"
-
     // Xaero's Minimap
     modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
     modCompileOnly "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
