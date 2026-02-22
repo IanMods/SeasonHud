@@ -388,7 +388,7 @@ publishMods {
     modrinth("modrinthNeoForge") {
         from mrOptions
 
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons", "protomanlys-weather")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
         optional("curios", "accessories")
 

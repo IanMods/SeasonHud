@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -35,14 +36,18 @@ public interface SeasonModHelper {
    *
    * @return The name of the current season for the platform.
    */
-  SubSeasons getCurrentSubSeason(Player player);
+  default SubSeasons getCurrentSubSeason(Player player) {
+    return SubSeasons.NONE;
+  }
 
   /**
    * Gets the name of the current season for the platform.
    *
    * @return The name of the current season for the platform.
    */
-  Seasons getCurrentSeason(Player player);
+  default Seasons getCurrentSeason(Player player) {
+    return Seasons.NULL;
+  }
 
   /**
    * Gets the current season's file name for the platform.
@@ -85,6 +90,10 @@ public interface SeasonModHelper {
    *
    * @return If the current biome the player in is considered fertile
    */
-  Fertility fertility(Player player);
+  default Fertility fertility(Player player) {
+    return Fertility.FERTILE;
+  }
+
+  void debugHud(GuiGraphics graphics);
 
 }

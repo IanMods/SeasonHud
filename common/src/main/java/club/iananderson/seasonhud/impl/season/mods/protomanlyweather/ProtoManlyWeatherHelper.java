@@ -1,26 +1,22 @@
-package club.iananderson.seasonhud.impl.season.mods.fabricseasons;
+package club.iananderson.seasonhud.impl.season.mods.protomanlyweather;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.components.Fertility;
+import club.iananderson.seasonhud.impl.season.components.Months;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
-public class FabricSeasonsHelper implements SeasonModHelper {
-  public FabricSeasonsHelper() {
-  }
-
+public class ProtoManlyWeatherHelper implements SeasonModHelper {
   @Override
   public Optional<Item> calendar() {
-    return Services.SEASON.fabricSeasonsCalendar();
+    return Services.SEASON.protoManlyWeatherCalendar();
   }
 
   @Override
@@ -30,53 +26,46 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
   @Override
   public boolean isSeasonTiedWithSystemTime() {
-    return Services.SEASON.fabricSeasonsTiedWithSystemTime();
+    return false;
   }
 
   @Override
   public SubSeasons getCurrentSubSeason(Player player) {
-    return Services.SEASON.currentFabricSubSeason(player);
+    return Services.SEASON.protoManlyWeatherMonth(player).getSubSeason();
   }
 
   @Override
   public Seasons getCurrentSeason(Player player) {
-    return Services.SEASON.currentFabricSeason(player);
+    return Services.SEASON.protoManlyWeatherMonth(player).getSeason();
   }
 
   @Override
   public long getDate(Player player) {
-    long dayLengthTick = SeasonHudServer.getDayLength();
-    long seasonLengthTick = Services.SEASON.currentFabricSeasonLength(player);
-    long seasonLengthDay = seasonLengthTick / dayLengthTick; // Current season length (Default 28)
-    long subSeasonLengthDay = seasonLengthDay / 3;
-    long timeToNextSeason = Services.SEASON.timeToNextFabricSeason(player);
-    // long seasonDay = ((seasonLength - timeToNextSeason) / dayLength) + 1;
-    long seasonDay = (seasonLengthTick - timeToNextSeason) / dayLengthTick;
-    long seasonDate = (seasonDay % seasonLengthDay) + 1; // Default 28 days in a season
-    long subSeasonDate = (seasonDay % subSeasonLengthDay) + 1; // Default ~9 days
+    Months currentMonth = Services.SEASON.protoManlyWeatherMonth(player);
+    SubSeasons currentSubSeason = currentMonth.getSubSeason();
 
-    // Get the current day of month from the system. Used with fabric seasons' system time tied with season option
-    if (isSeasonTiedWithSystemTime()) {
-      return LocalDateTime.now().getDayOfMonth();
-    }
+    int dayOfMonth = Services.SEASON.protoManlyWeatherCurrentDayOfMonth(player);
+    int daysInMonth = Services.SEASON.protoManlyWeatherTotalDaysInMonth(player);
+
+    // Assumes that there are 3 months per season
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
-      return subSeasonDate;
+      return dayOfMonth;
     } else {
-      return seasonDate;
+      // Early = 0; Mid = 1; Late = 2
+      return dayOfMonth + ((long) currentSubSeason.ordinal() * daysInMonth);
     }
   }
 
   @Override
   public int seasonDurationDays(Player player) {
-    int dayLength = SeasonHudServer.getDayLength();
-    int seasonLength = Services.SEASON.currentFabricSeasonLength(player);
-    int duration = seasonLength / dayLength;
+    int subSeasonDuration = Services.SEASON.protoManlyWeatherTotalDaysInMonth(player);
+    int seasonDuration = subSeasonDuration * 3;
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
-      duration /= 3;
+      return subSeasonDuration;
     }
 
-    return duration;
+    return seasonDuration;
   }
 
   @Override
@@ -91,7 +80,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
   @Override
   public boolean undergroundFertile(Player player) {
-    return true;
+    return false;
   }
 
   @Override
@@ -101,6 +90,6 @@ public class FabricSeasonsHelper implements SeasonModHelper {
 
   @Override
   public void debugHud(GuiGraphics graphics) {
-
+    Services.SEASON.protoManlyDebug(graphics);
   }
 }

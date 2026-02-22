@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -71,6 +72,11 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
 
   @Override
   public Fertility fertility(Player player) {
-    return Fertility.FERTILE;
+    return SeasonModHelper.super.fertility(player);
+  }
+
+  @Override
+  public void debugHud(GuiGraphics graphics) {
+
   }
 }
