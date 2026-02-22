@@ -121,7 +121,7 @@
   artifactId: journeymap-api
   version: "${mcVersion}-*"
   properties:
-    journeymap_api_version_fabric:
+    journeymap_api_version:
       source: version
 
 # Journeymap-Forge
