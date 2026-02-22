@@ -9,6 +9,7 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import java.util.Locale;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
@@ -84,7 +85,7 @@ public class SereneSeasonsHelper implements SeasonModHelper {
       subSeasonDuration = SeasonHudServer.getSubSeasonLength();
     }
 
-    if (SeasonHudClient.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       if (isTropicalSeason(player)) {
         // Default 16 days in each tropical "sub-season".
         // Starts are "Early Dry" (Summer 1), so need to offset Spring 1 -> Summer 1 (subSeasonDuration * 3)
@@ -180,5 +181,10 @@ public class SereneSeasonsHelper implements SeasonModHelper {
     }
 
     return Fertility.FERTILE;
+  }
+
+  @Override
+  public void debugHud(GuiGraphics graphics) {
+
   }
 }

@@ -12,6 +12,7 @@ import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Locale;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -125,5 +126,35 @@ public class FabricSeasonHelper implements SeasonHelper {
   @Override
   public int terraFirmaCraftTotalDaysInMonth() {
     return 0;
+  }
+
+  @Override
+  public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
+    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+  }
+
+  @Override
+  public Optional<Item> protoManlyWeatherCalendar() {
+    return Optional.empty();
+  }
+
+  @Override
+  public Months protoManlyWeatherMonth(Player player) {
+    return null;
+  }
+
+  @Override
+  public int protoManlyWeatherCurrentDayOfMonth(Player player) {
+    return 0;
+  }
+
+  @Override
+  public int protoManlyWeatherTotalDaysInMonth(Player player) {
+    return 0;
+  }
+
+  @Override
+  public void protoManlyDebug(GuiGraphics graphics) {
+
   }
 }

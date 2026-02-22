@@ -2,6 +2,8 @@ package club.iananderson.seasonhud.impl.season.mods;
 
 import club.iananderson.seasonhud.impl.season.mods.eclipticseasons.EclipticSeasonsHelper;
 import club.iananderson.seasonhud.impl.season.mods.fabricseasons.FabricSeasonsHelper;
+import club.iananderson.seasonhud.impl.season.mods.homeostaticseasons.HomeostaticSeasonsHelper;
+import club.iananderson.seasonhud.impl.season.mods.protomanlyweather.ProtoManlyWeatherHelper;
 import club.iananderson.seasonhud.impl.season.mods.sereneseasons.SereneSeasonsHelper;
 import club.iananderson.seasonhud.impl.season.mods.terrafirmacraft.TerrafirmaCraftHelper;
 import club.iananderson.seasonhud.platform.Services;
@@ -17,7 +19,11 @@ public enum SeasonMods {
 
   TERRAFIRMACRAFT("tfc", new TerrafirmaCraftHelper()),
 
-  ECLIPTIC("eclipticseasons", new EclipticSeasonsHelper());
+  ECLIPTIC("eclipticseasons", new EclipticSeasonsHelper()),
+
+  HOMEOSTATIC("homeostaticseasons", new HomeostaticSeasonsHelper()),
+
+  PROTOMANLY_WEATHER("pmweather", new ProtoManlyWeatherHelper());
 
   private final String modId;
   private final SeasonModHelper seasonModHelper;

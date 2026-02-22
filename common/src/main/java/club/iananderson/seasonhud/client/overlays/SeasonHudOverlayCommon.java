@@ -6,6 +6,8 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
+import club.iananderson.seasonhud.platform.Services;
 import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -77,6 +79,11 @@ public class SeasonHudOverlayCommon {
         y += stringHeight;
         graphics.drawString(mc.font, fertility, x, y, 0xffffff);
       }
+
+      if (Services.PLATFORM.isDevelopmentEnvironment()) {
+        CommonSeasonHelper.commonSeasons.getHelper().debugHud(graphics);
+      }
+
       graphics.pose().popPose();
     }
   }

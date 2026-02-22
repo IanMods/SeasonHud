@@ -1,5 +1,8 @@
 package club.iananderson.seasonhud.impl.season.components;
 
+import club.iananderson.seasonhud.Common;
+import net.minecraft.network.chat.Component;
+
 /**
  * <h1>Sub-season for each month.</h1>
  * <pre>
@@ -64,8 +67,33 @@ public enum Months {
            : VALUES[this.ordinal() + 1];
   }
 
+  public Months opposite() {
+    Months month;
+    switch (this.ordinal()) {
+      case 1 -> month = JULY;
+      case 2 -> month = AUGUST;
+      case 3 -> month = SEPTEMBER;
+      case 4 -> month = OCTOBER;
+      case 5 -> month = NOVEMBER;
+      case 6 -> month = DECEMBER;
+      case 7 -> month = JANUARY;
+      case 8 -> month = FEBRUARY;
+      case 9 -> month = MARCH;
+      case 10 -> month = APRIL;
+      case 11 -> month = MAY;
+      case 12 -> month = JUNE;
+      default -> throw new MatchException(null, null);
+    }
+
+    return month;
+  }
+
   public String getTranslationKey() {
     return this.key;
+  }
+
+  public Component getTranslatedText() {
+    return Common.translatedText(this.key);
   }
 
   public Seasons getSeason() {

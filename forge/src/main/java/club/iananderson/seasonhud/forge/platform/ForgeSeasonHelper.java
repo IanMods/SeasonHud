@@ -17,6 +17,7 @@ import java.util.Optional;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -113,7 +114,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
     long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; // Default 7 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; // Default 42 days in a season (7 days * 6)
 
-    if (SeasonHudClient.getShowSubSeason()) {
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       return subSeasonDate;
     } else {
       return seasonDate;
@@ -151,5 +152,35 @@ public class ForgeSeasonHelper implements SeasonHelper {
   @Override
   public int terraFirmaCraftTotalDaysInMonth() {
     return Calendars.CLIENT.getCalendarDaysInMonth();
+  }
+
+  @Override
+  public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
+    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+  }
+
+  @Override
+  public Optional<Item> protoManlyWeatherCalendar() {
+    return Optional.empty();
+  }
+
+  @Override
+  public Months protoManlyWeatherMonth(Player player) {
+    return null;
+  }
+
+  @Override
+  public int protoManlyWeatherCurrentDayOfMonth(Player player) {
+    return 0;
+  }
+
+  @Override
+  public int protoManlyWeatherTotalDaysInMonth(Player player) {
+    return 0;
+  }
+
+  @Override
+  public void protoManlyDebug(GuiGraphics graphics) {
+
   }
 }
