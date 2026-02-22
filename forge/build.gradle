@@ -215,7 +215,7 @@ repositories {
 }
 
 dependencies {
-    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    implementation minecraft.dependency("net.minecraftforge:forge:${forge_version}")
     // Forge 1.21.6+ uses EventBus 7, which shifts most of its runtime validation to compile-time via an annotation processor
     // to improve performance in production environments. This line is required to enable said compile-time validation
     // in your development environment, helping you catch issues early.
