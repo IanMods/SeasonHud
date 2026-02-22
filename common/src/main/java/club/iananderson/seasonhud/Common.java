@@ -55,11 +55,11 @@ public class Common {
     accessoriesLoaded = AccessoryMods.ACCESSORIES.modLoaded();
 
     if (SeasonMods.getLoaded().iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().getFirst().getModName());
+      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
     }
 
     if (MinimapMods.getLoaded().iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", MinimapMods.getLoaded().getFirst().getModName());
+      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
     }
   }
 
