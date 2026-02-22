@@ -107,18 +107,18 @@
       source: version
 
 # Xaero
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: xaeros-minimap
-  version: "${xaeros_minimap_version}_Fabric_${mcVersion}"
+- repository: https://chocolateminecraft.com/maven
+  groupId: xaero.minimap
+  artifactId: xaerominimap-common-1.20.1
+  version: "${xaero_minimap_version}"
   properties:
-    xaeros_minimap_version:
-      source: wildcard
+    xaero_minimap_version:
+      source: version
 
 # Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.lib
-  artifactId: xaerolib-common-1.20
+  artifactId: xaerolib-common-1.20.1
   version: "${xaero_lib_version}"
   properties:
     xaero_lib_version:

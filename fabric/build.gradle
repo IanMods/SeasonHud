@@ -152,6 +152,7 @@ repositories {
         url = uri("https://chocolateminecraft.com/maven")
         content {
             includeGroup "xaero.lib"
+            includeGroup "xaero.minimap"
         }
     }
 
@@ -221,10 +222,8 @@ dependencies {
     modCompileOnly "technology.roughness.whitenoise:whitenoise-${project.minecraft_version}-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
-    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.xaero_mc_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-    modCompileOnly "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
+    modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
+    modCompileOnly "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     modCompileOnlyApi("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}") {
@@ -265,7 +264,6 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
 //    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
     modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
-//    modLocalRuntime "maven.modrinth:text-animator:${project.text_animator_version_fabric}"
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
@@ -293,8 +291,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_${project.xaero_mc_version}")
-            modImplementation "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
+            modImplementation "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
+            modImplementation "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
             modImplementation("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}") {
