@@ -144,6 +144,9 @@
       <option name="FOR_BRACE_FORCE" value="3" />
       <option name="PARENT_SETTINGS_INSTALLED" value="true" />
     </codeStyleSettings>
+    <codeStyleSettings language="EditorConfig">
+      <option name="SOFT_MARGINS" value="150" />
+    </codeStyleSettings>
     <codeStyleSettings language="Groovy">
       <option name="WRAP_ON_TYPING" value="0" />
     </codeStyleSettings>
