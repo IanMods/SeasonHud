@@ -148,9 +148,7 @@
       <option name="SOFT_MARGINS" value="150" />
     </codeStyleSettings>
     <codeStyleSettings language="Groovy">
-      <option name="RIGHT_MARGIN" value="150" />
       <option name="WRAP_ON_TYPING" value="0" />
-      <option name="SOFT_MARGINS" value="150" />
     </codeStyleSettings>
     <codeStyleSettings language="HTML">
       <indentOptions>

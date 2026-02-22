@@ -109,11 +109,11 @@
 # Xaero
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.minimap
-  artifactId: xaerominimap-common-1.21.10
-  version: "${xaeros_minimap_version}"
+  artifactId: xaerominimap-common-1.21.8
+  version: "${xaero_minimap_version}"
   properties:
-    xaeros_minimap_version:
-      source: wildcard
+    xaero_minimap_version:
+      source: version
 
 # Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
