@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.impl.season.components.Months;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import java.util.Optional;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -49,4 +50,14 @@ public interface SeasonHelper {
   // HomeostaticSeasons
   boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim);
 
+  // ProtoManly's Weather
+  Optional<Item> protoManlyWeatherCalendar();
+
+  Months protoManlyWeatherMonth(Player player);
+
+  int protoManlyWeatherCurrentDayOfMonth(Player player);
+
+  int protoManlyWeatherTotalDaysInMonth(Player player);
+
+  void protoManlyDebug(GuiGraphics graphics);
 }

@@ -1,5 +1,8 @@
 package club.iananderson.seasonhud.impl.season.components;
 
+import club.iananderson.seasonhud.Common;
+import net.minecraft.network.chat.Component;
+
 /**
  * Sub-season for each month.
  * <pre>
@@ -79,7 +82,7 @@ public enum Months {
       case 10 -> month = APRIL;
       case 11 -> month = MAY;
       case 12 -> month = JUNE;
-      default -> throw new MatchException((String) null, (Throwable) null);
+      default -> throw new MatchException(null, null);
     }
 
     return month;
@@ -87,6 +90,10 @@ public enum Months {
 
   public String getTranslationKey() {
     return this.key;
+  }
+
+  public Component getTranslatedText() {
+    return Common.translatedText(this.key);
   }
 
   public Seasons getSeason() {
