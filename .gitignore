@@ -25,6 +25,7 @@ out
 !/.idea/codeStyles
 !/.idea/fileColors.xml
 !/.idea/checkstyle-idea.xml
+!/.idea/icon.svg
 # gradle
 build
 .gradle
@@ -32,4 +33,3 @@ build
 run
 /dist/
 /update-seasonhud-deps.ps1
-!/.idea/icon.svg
