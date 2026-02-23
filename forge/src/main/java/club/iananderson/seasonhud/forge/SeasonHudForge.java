@@ -32,8 +32,8 @@ public class SeasonHudForge {
     NeoForgeConfigRegistry.INSTANCE.register(Common.MOD_ID, ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC,
                                              "seasonhud-server.toml");
 
-    RegisterKeyMappingsEvent.getBus(context.getModBusGroup()).addListener(ClientModBusEvents::onKeyRegister);
-    AddGuiOverlayLayersEvent.getBus(context.getModBusGroup()).addListener(ClientModBusEvents::registerGuiOverlays);
+    RegisterKeyMappingsEvent.BUS.addListener(ClientModBusEvents::onKeyRegister);
+    AddGuiOverlayLayersEvent.BUS.addListener(ClientModBusEvents::registerGuiOverlays);
   }
 
   public static void commonSetupEvent(FMLCommonSetupEvent event) {

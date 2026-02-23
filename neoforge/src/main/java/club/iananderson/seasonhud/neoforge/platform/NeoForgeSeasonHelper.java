@@ -163,7 +163,7 @@ public class NeoForgeSeasonHelper implements SeasonHelper {
   // HomeostaticSeasons
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    return HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
   }
 
   // ProtoManly's Weather
