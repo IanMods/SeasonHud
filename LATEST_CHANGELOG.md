@@ -1,8 +1,22 @@
-## [1.13.16] - 2025-12-20
+## [2.0.0] - 2026-02-20
 
 ### Changed
 
-- Updated to latest Forge / Fabric versions
-- Updated to latest versions of Terrafirmacraft
-- Updated to latest versions of FTB Chunks / Journeymap / Xaero's Minimap
+- Large rewrite to hopefully make porting easier
+- (1.21+ Forge) Updated to use the default Forge overlay rendering, now that it actually exists
+- Biome fertility now only shows when it differs from the biome's default fertility (and is enabled in the config)
+
+### Added
+
+- Added Xaero's Better PVP support
+- Added Homeostatic Seasons support
+- Added sub-season support for Fabric Seasons
+    - Fabric Season's default season length is 28, which is not evenly divisible to 3 sub-seasons
+        - The ingame config button is disabled if that is detected
+            - Also added a tooltip to suggest changing it to a number divisible by 3
+        - Also added a warning to the "showSubSeason" option in the config file
+- Added sub-season support for Ecliptic Seasons
+- Added a config option to replace the season name with the fertility value, when it differs from the biome's default
+- Added a server config option to override the Serene Seasons sub-season length used in the date calculations
+    - Used if the server owner changes the length, but the clients don't have the updated Serene Season config.
 

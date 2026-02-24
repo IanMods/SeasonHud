@@ -1,12 +1,12 @@
 package club.iananderson.seasonhud.neoforge.platform;
 
-import club.iananderson.seasonhud.platform.services.IPlatformHelper;
+import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import java.util.Optional;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 
-public class NeoForgePlatformHelper implements IPlatformHelper {
+public class NeoForgePlatformHelper implements PlatformHelper {
 
   @Override
   public String getPlatformName() {
@@ -24,8 +24,18 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     if (mod.isPresent()) {
       return mod.get().getModInfo().getVersion().toString();
+    } else {
+      return "Not Loaded";
     }
-    else {
+  }
+
+  @Override
+  public String getModName(String modId) {
+    Optional<? extends ModContainer> mod = ModList.get().getModContainerById(modId);
+
+    if (mod.isPresent()) {
+      return mod.get().getModInfo().getDisplayName();
+    } else {
       return "Not Loaded";
     }
   }

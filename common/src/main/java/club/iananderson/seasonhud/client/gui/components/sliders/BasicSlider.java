@@ -3,6 +3,7 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
+import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
@@ -10,7 +11,6 @@ import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -55,11 +55,9 @@ public class BasicSlider extends AbstractSliderButton {
       }
 
       this.format = new DecimalFormat(builder.toString());
-    }
-    else if (Mth.equal(this.stepSize, Math.floor(this.stepSize))) {
+    } else if (Mth.equal(this.stepSize, Math.floor(this.stepSize))) {
       this.format = new DecimalFormat("0");
-    }
-    else {
+    } else {
       this.format = new DecimalFormat(Double.toString(this.stepSize).replaceAll("\\d", "0"));
     }
 
@@ -87,17 +85,23 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public int getTextureY() {
-    int i = this.isFocused() && !this.canChangeValue ? 1 : 0;
+    int i = this.isFocused() && !this.canChangeValue
+            ? 1
+            : 0;
     return i * 20;
   }
 
   public int getHandleTextureY() {
-    int i = !this.isHovered && !this.canChangeValue ? 2 : 3;
+    int i = !this.isHovered && !this.canChangeValue
+            ? 2
+            : 3;
     return i * 20;
   }
 
-  public int getFGColor() {
-    return this.active ? 16777215 : 10526880;
+  public int getFgColor() {
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   protected double snapToNearest(double value) {
@@ -111,8 +115,7 @@ public class BasicSlider extends AbstractSliderButton {
 
     if (this.minValue > this.maxValue) {
       value = Mth.clamp(value, this.maxValue, this.minValue);
-    }
-    else {
+    } else {
       value = Mth.clamp(value, this.minValue, this.maxValue);
     }
 
@@ -171,11 +174,12 @@ public class BasicSlider extends AbstractSliderButton {
       if (this.minValue > this.maxValue) {
         bl = !bl;
       }
-      float f = bl ? -1F : 1F;
+      float f = bl
+                ? -1F
+                : 1F;
       if (stepSize <= 0D) {
         this.setSliderValue(this.value + (f / (this.width - 8)));
-      }
-      else {
+      } else {
         this.setValue(this.getValue() + f * this.stepSize);
       }
     }
@@ -187,14 +191,13 @@ public class BasicSlider extends AbstractSliderButton {
   protected void updateMessage() {
     if (this.drawString) {
       this.setMessage(Common.literalText(this.getValueString()));
-    }
-    else {
+    } else {
       this.setMessage(Component.empty());
     }
   }
 
   @Override
-  public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+  public void renderWidget(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 }

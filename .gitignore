@@ -21,8 +21,11 @@ out
 *.iml
 .idea/*
 !/.idea/scopes
+!/.idea/checkstyle
 !/.idea/codeStyles
 !/.idea/fileColors.xml
+!/.idea/checkstyle-idea.xml
+!/.idea/icon.svg
 # gradle
 build
 libs

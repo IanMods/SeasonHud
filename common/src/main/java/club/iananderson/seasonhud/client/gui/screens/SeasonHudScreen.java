@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
-import org.jetbrains.annotations.NotNull;
 
 public class SeasonHudScreen extends Screen {
   public static final int MENU_PADDING = 50;
@@ -22,22 +23,19 @@ public class SeasonHudScreen extends Screen {
   public static MenuButton cancelButton;
   public final List<AbstractWidget> widgets = new ArrayList<>();
   public final Screen parentScreen;
-  public int BUTTON_WIDTH = 150;
-  public int BUTTON_HEIGHT = 20;
+  public int buttonWidth = 150;
+  public int buttonHeight = 20;
   public int leftButtonX;
   public int rightButtonX;
   public int row;
   public int buttonStartY = MENU_PADDING;
-  public int yOffset = BUTTON_HEIGHT + BUTTON_PADDING;
+  public int offsetY = buttonHeight + BUTTON_PADDING;
   protected boolean hasPendingChanges;
   protected List<ConfigValue<?>> configOptions = new ArrayList<>();
 
   public SeasonHudScreen(Screen parentScreen, Component title) {
     super(title);
     this.parentScreen = parentScreen;
-    this.minecraft = Minecraft.getInstance();
-    this.width = minecraft.getWindow().getGuiScaledWidth();
-    this.height = minecraft.getWindow().getGuiScaledHeight();
   }
 
   public void open() {
@@ -63,7 +61,6 @@ public class SeasonHudScreen extends Screen {
   }
 
   public void saveConfig() {
-
   }
 
   @Override
@@ -81,21 +78,28 @@ public class SeasonHudScreen extends Screen {
     this.init();
   }
 
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public void rebuildUI() {
     this.rebuildWidgets();
   }
 
   @Override
-  public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    super.render(graphics, mouseX, mouseY, partialTicks);
+  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+
+    int titleWidth = this.font.width(this.title);
+
+    this.addRenderableWidget(
+        new StringWidget(this.width / 2 - titleWidth / 2, TITLE_PADDING, titleWidth, 9, this.title, this.font));
     graphics.drawCenteredString(font, this.getTitle(), this.width / 2, TITLE_PADDING, 16777215);
+
+    super.render(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override
   public void init() {
     super.init();
     this.widgets.clear();
-    leftButtonX = (this.width / 2) - (BUTTON_WIDTH + BUTTON_PADDING);
+    leftButtonX = (this.width / 2) - (buttonWidth + BUTTON_PADDING);
     rightButtonX = (this.width / 2) + BUTTON_PADDING;
 
     cancelButton = MenuButton.builder(MenuButtons.CANCEL, press -> this.onClose())

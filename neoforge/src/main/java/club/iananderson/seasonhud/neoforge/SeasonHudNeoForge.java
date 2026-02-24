@@ -3,9 +3,9 @@ package club.iananderson.seasonhud.neoforge;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
-import club.iananderson.seasonhud.impl.accessories.AccessoriesCompat;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.SeasonComponent;
+import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.ftbchunks.SeasonComponent;
 import club.iananderson.seasonhud.neoforge.impl.curios.CuriosCompat;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -30,15 +30,15 @@ public class SeasonHudNeoForge {
     if (Common.curiosLoaded() && !Common.accessoriesLoaded()) {
       Common.LOG.info("Talking to Curios");
       CuriosCompat.init();
-    }
-    else if (Common.accessoriesLoaded()) {
+    } else if (Common.accessoriesLoaded()) {
       AccessoriesCompat.init();
     }
   }
 
   public static void ftbChunkSetup(FMLCommonSetupEvent event) {
     if (CurrentMinimap.ftbChunksLoaded()) {
-      SeasonComponent.ftbChunkSetup();
+      // Disabled until FTBChunks is updated
+      // SeasonComponent.ftbChunkSetup();
     }
   }
 }

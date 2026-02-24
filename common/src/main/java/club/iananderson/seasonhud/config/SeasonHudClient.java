@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.Location;
 import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
+import club.iananderson.seasonhud.util.StringLine;
 import java.util.Arrays;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
@@ -26,6 +27,7 @@ public class SeasonHudClient {
   private static ConfigValue<Boolean> showSubSeason;
   private static ConfigValue<ShowDay> showDay;
   private static ConfigValue<Boolean> showFertility;
+  private static ConfigValue<Boolean> fertilityReplacesSeason;
   private static ConfigValue<Boolean> enableMinimapIntegration;
   private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
 
@@ -40,107 +42,149 @@ public class SeasonHudClient {
 
   private static void setupConfig(ModConfigSpec.Builder builder) {
     builder.push("SeasonHUD");
-    enableMod = builder.comment(
-            "Enable the mod?\n" + "(true/false)\n" + "Default is " + Client.DEFAULT_ENABLE_MOD + ".")
+    enableMod = builder.comment(StringLine.builder()
+                                    .addLine("Enable the mod?")
+                                    .addLine("(true/false)")
+                                    .lastLine("Default is " + Client.DEFAULT_ENABLE_MOD + "."))
         .define("enable_mod", Client.DEFAULT_ENABLE_MOD);
 
     builder.push("HUD");
-    hudLocation = builder.comment(
-            "Where to display the Hud when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_LOCATION + ".")
+    hudLocation = builder.comment(StringLine.builder()
+                                      .addLine("Where to display the Hud when no minimap is installed.")
+                                      .lastLine("Default is " + Client.DEFAULT_HUD_LOCATION + "."))
         .defineEnum("hud_location", Client.DEFAULT_HUD_LOCATION);
 
-    hudX = builder.comment(
-            "The horizontal offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
-                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_X_OFFSET + ".")
+    hudX = builder.comment(StringLine.builder()
+                               .addLine("The horizontal offset of the HUD when no minimap is installed (in pixels)")
+                               .addLine("'hudLocation' must be set to 'CUSTOM' to take effect")
+                               .lastLine("Default is " + Client.DEFAULT_X_OFFSET + "."))
         .define("hud_x_position", Client.DEFAULT_X_OFFSET);
 
-    hudY = builder.comment(
-            "The vertical offset of the HUD when no minimap is installed (in pixels)\n" + "'hudLocation' must be set to"
-                + " 'CUSTOM'\n" + "Default is " + Client.DEFAULT_Y_OFFSET + ".")
+    hudY = builder.comment(StringLine.builder()
+                               .addLine("The vertical offset of the HUD when no minimap is installed (in pixels)")
+                               .addLine("'hudLocation' must be set to 'CUSTOM' to take effect")
+                               .lastLine("Default is " + Client.DEFAULT_Y_OFFSET + "."))
         .define("hud_y_position", Client.DEFAULT_Y_OFFSET);
 
-    hudScale = builder.comment(
-            "The scale of the HUD when no minimap is installed.\n" + "Default is " + Client.DEFAULT_HUD_SCALE + ".")
+    hudScale = builder.comment(StringLine.builder()
+                                   .addLine("The scale of the HUD when no minimap is installed.")
+                                   .lastLine("Default is " + Client.DEFAULT_HUD_SCALE + "."))
         .defineInRange("hud_scale", Client.DEFAULT_HUD_SCALE, Client.HUD_SCALE_MIN, Client.HUD_SCALE_MAX);
 
     builder.push("Colors");
-    enableSeasonNameColor = builder.comment(
-        "Display the season name in a color?\n" + "(true/false)" + "Default is " + Client.DEFAULT_SEASON_NAME_COLOR
-            + ".").define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
+    enableSeasonNameColor = builder.comment(StringLine.builder()
+                                                .addLine("Display the season name in a color?")
+                                                .addLine("(true/false)")
+                                                .lastLine("Default is " + Client.DEFAULT_SEASON_NAME_COLOR + "."))
+        .define("season_name_color", Client.DEFAULT_SEASON_NAME_COLOR);
 
-    springColor = builder.comment(
-            "The RGB color (decimal) for spring.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-                + Client.DEFAULT_SPRING_COLOR + ".")
+    springColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for spring.")
+                                      .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
+                                      .lastLine("Default is " + Client.DEFAULT_SPRING_COLOR + "."))
         .defineInRange("spring_color", Client.DEFAULT_SPRING_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    summerColor = builder.comment(
-            "The RGB color (decimal) for summer.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-                + Client.DEFAULT_SUMMER_COLOR + ".")
+    summerColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for summer.")
+                                      .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
+                                      .lastLine("Default is " + Client.DEFAULT_SUMMER_COLOR + "."))
         .defineInRange("summer_color", Client.DEFAULT_SUMMER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    autumnColor = builder.comment(
-            "The RGB color (decimal) for autumn.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-                + Client.DEFAULT_AUTUMN_COLOR + ".")
+    autumnColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for autumn.")
+                                      .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
+                                      .lastLine("Default is " + Client.DEFAULT_AUTUMN_COLOR + "."))
         .defineInRange("autumn_color", Client.DEFAULT_AUTUMN_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    winterColor = builder.comment(
-            "The RGB color (decimal) for winter.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n" + "Default is "
-                + Client.DEFAULT_WINTER_COLOR + ".")
+    winterColor = builder.comment(StringLine.builder()
+                                      .addLine("The RGB color (decimal) for winter.")
+                                      .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
+                                      .lastLine("Default is " + Client.DEFAULT_WINTER_COLOR + "."))
         .defineInRange("winter_color", Client.DEFAULT_WINTER_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    dryColor = builder.comment(
-            " The RGB color (decimal) for dry tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
-                + "Default is " + Client.DEFAULT_DRY_COLOR + ".")
+    dryColor = builder.comment(StringLine.builder()
+                                   .addLine("The RGB color (decimal) for dry tropical season.")
+                                   .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
+                                   .lastLine("Default is " + Client.DEFAULT_DRY_COLOR + "."))
         .defineInRange("dry_color", Client.DEFAULT_DRY_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
 
-    wetColor = builder.comment(
-            "The RGB color (decimal) for wet tropical season.\n" + "(256 * 256 * r) + (256 * g) + (b) is the formula.\n"
-                + "Default is " + Client.DEFAULT_WET_COLOR + ".")
+    wetColor = builder.comment(StringLine.builder()
+                                   .addLine("The RGB color (decimal) for wet tropical season.")
+                                   .addLine("(256 * 256 * r) + (256 * g) + (b) is the formula.")
+                                   .lastLine("Default is " + Client.DEFAULT_WET_COLOR + "."))
         .defineInRange("wet_color", Client.DEFAULT_WET_COLOR, Client.COLOR_MIN, Client.COLOR_MAX);
     builder.pop();
     builder.pop();
 
     builder.push("Season");
-    showTropicalSeason = builder.comment("Show the Tropical seasons (Wet/Dry) in Tropical Biomes.\n"
-                                             + "Will not change the season behavior in the biomes.\n" + "(true/false)\n"
-                                             + "Default is " + Client.DEFAULT_SHOW_TROPICAL_SEASON + ".")
+    showTropicalSeason = builder.comment(StringLine.builder()
+                                             .addLine("Show the Tropical season (Wet/Dry) while in Tropical Biomes.")
+                                             .addLine("This will not change the season behavior in the biomes, just")
+                                             .addLine("what is displayed on the Hud")
+                                             .addLine("(true/false)")
+                                             .lastLine("Default is " + Client.DEFAULT_SHOW_TROPICAL_SEASON + "."))
         .define("enable_show_tropical_season", Client.DEFAULT_SHOW_TROPICAL_SEASON);
 
-    showSubSeason = builder.comment(
-            "Show sub-season (i.e. Early Winter, Mid Autumn, Late Spring) instead of basic season?\n" + "(true/false)\n"
-                + " Default is " + Client.DEFAULT_SHOW_SUB_SEASON + ".")
+    showSubSeason = builder.comment(StringLine.builder()
+                                        .addLine("Show sub-season instead of the basic season?")
+                                        .addLine(("i.e. Early Winter, Mid Autumn, Late Spring"))
+                                        .addLine("(true/false)")
+                                        .addLine("")
+                                        .addLine("If using Fabric Seasons: ")
+                                        .addLine("You will want to change the 'seasonLength' options in the")
+                                        .addLine("Fabric Seasons config (seasons.json) to be divisible by 3")
+                                        .addLine("It defaults to 672000 ticks (28 days)")
+                                        .addLine("")
+                                        .lastLine("Default is " + Client.DEFAULT_SHOW_SUB_SEASON + "."))
         .define("enable_show_sub_season", Client.DEFAULT_SHOW_SUB_SEASON);
 
     if (Common.fabricSeasonsLoaded()) {
-      showDay = builder.comment(
-              "Show the current day of the season/sub-season?\n" + "Default is " + Client.DEFAULT_SHOW_DAY + ".")
+      showDay = builder.comment(StringLine.builder()
+                                    .addLine("Show the current day of the season/sub-season?")
+                                    .lastLine("Default is " + Client.DEFAULT_SHOW_DAY + "."))
           .defineEnum("enable_show_day", ShowDay.SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS,
                                     ShowDay.SHOW_WITH_MONTH));
     }
 
     if (!Common.fabricSeasonsLoaded()) {
-      showDay = builder.comment(
-              "Show the day of the current Season/Sub-Season?\n" + "Default is " + Client.DEFAULT_SHOW_DAY + ".")
+      showDay = builder.comment(StringLine.builder()
+                                    .addLine("Show the current day of the season/sub-season?")
+                                    .lastLine("Default is " + Client.DEFAULT_SHOW_DAY + "."))
           .defineEnum("enable_show_day", Client.DEFAULT_SHOW_DAY,
                       Arrays.asList(ShowDay.NONE, ShowDay.SHOW_DAY, ShowDay.SHOW_WITH_TOTAL_DAYS));
     }
 
-    showFertility = builder.comment(
-            "Show the current fertility of the biome\n" + "Default is " + Client.DEFAULT_SHOW_FERTILITY + ".")
+    showFertility = builder.comment(StringLine.builder()
+                                        .addLine("Show the current fertility of the biome?")
+                                        .addLine("Only shows if not the default fertility of the season")
+                                        .lastLine("Default is " + Client.DEFAULT_SHOW_FERTILITY + "."))
         .define("enable_show_fertility", Client.DEFAULT_SHOW_FERTILITY);
+
+    fertilityReplacesSeason = builder.comment(StringLine.builder()
+                                                  .addLine("If the season name should be replaced with the fertility")
+                                                  .addLine("value when it differs from the default of the biome")
+                                                  .lastLine(
+                                                      "Default is " + Client.DEFAULT_FERTILITY_REPLACES_SEASON + "."))
+        .define("enable_fertility_replaces_season", Client.DEFAULT_FERTILITY_REPLACES_SEASON);
 
     builder.pop();
 
     builder.push("Minimap");
-    enableMinimapIntegration = builder.comment(
-            "Enable integration with minimap mods?\n" + "(true/false)\n" + "Default is "
-                + Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION + ".")
+    enableMinimapIntegration = builder.comment(StringLine.builder()
+                                                   .addLine("Enable integration with minimap mods?")
+                                                   .addLine("(true/false)")
+                                                   .lastLine(
+                                                       "Default is " + Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION + "."))
         .define("enable_minimap_integration", Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
 
-    showDefaultWhenMinimapHidden = builder.comment(
-            "Show the default SeasonHUD display when the minimap is hidden?\n" + "(true/false)\n" + "Default is "
-                + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN + ".")
+    showDefaultWhenMinimapHidden = builder.comment(StringLine.builder()
+                                                       .addLine(
+                                                           "Show the default SeasonHUD when the minimap is hidden?")
+                                                       .addLine("(true/false)")
+                                                       .lastLine("Default is "
+                                                                     + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN
+                                                                     + "."))
         .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
 
     builder.pop();
@@ -150,13 +194,12 @@ public class SeasonHudClient {
   private static <T> T getOrDefault(ConfigValue<T> config) {
     if (CLIENT_SPEC.isLoaded()) {
       return config.get();
-    }
-    else {
+    } else {
       return config.getDefault();
     }
   }
 
-  //SeasonHUD
+  // SeasonHUD
   public static boolean getEnableMod() {
     return getOrDefault(enableMod);
   }
@@ -165,7 +208,7 @@ public class SeasonHudClient {
     SeasonHudClient.enableMod.set(enable);
   }
 
-  //HUD
+  // HUD
   public static Location getHudLocation() {
     return getOrDefault(hudLocation);
   }
@@ -199,7 +242,7 @@ public class SeasonHudClient {
     SeasonHudClient.hudScale.set(scale);
   }
 
-  //Colors
+  // Colors
   public static boolean getEnableSeasonNameColor() {
     return getOrDefault(enableSeasonNameColor);
   }
@@ -256,6 +299,7 @@ public class SeasonHudClient {
     SeasonHudClient.wetColor.set(rgbColor);
   }
 
+  // Season
   public static boolean getShowTropicalSeason() {
     return getOrDefault(showTropicalSeason);
   }
@@ -288,6 +332,14 @@ public class SeasonHudClient {
     SeasonHudClient.showFertility.set(showFertility);
   }
 
+  public static boolean getFertilityReplacesSeason() {
+    return getOrDefault(fertilityReplacesSeason);
+  }
+
+  public static void setFertilityReplacesSeason(boolean fertilityReplacesSeason) {
+    SeasonHudClient.fertilityReplacesSeason.set(fertilityReplacesSeason);
+  }
+
   public static boolean getShowDefaultWhenMinimapHidden() {
     return getOrDefault(showDefaultWhenMinimapHidden);
   }
@@ -296,7 +348,7 @@ public class SeasonHudClient {
     SeasonHudClient.showDefaultWhenMinimapHidden.set(enable);
   }
 
-  //Minimap
+  // Minimap
   public static boolean getEnableMinimapIntegration() {
     return getOrDefault(enableMinimapIntegration);
   }

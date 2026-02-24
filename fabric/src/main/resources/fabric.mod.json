@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${version}",
   "name": "${mod_name}",
-  "description": "${description}",
+  "description": "${mod_description}",
   "authors": [
     "${mod_author}"
   ],
@@ -23,7 +23,7 @@
       "club.iananderson.seasonhud.fabric.SeasonHudFabric"
     ],
     "journeymap": [
-      "club.iananderson.seasonhud.impl.minimaps.journeymap.JourneymapSeasonPlugin"
+      "club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin"
     ]
   },
   "mixins": [
@@ -42,7 +42,7 @@
   "breaks": {
     "seasons": "<2.4.2-BETA",
     "sereneseasons": "<9.1.0.0",
-    "xaerominimap": "<25.2.0",
+    "xaerominimap": "<25.3.0",
     "journeymap": "<1.21-6.0.0-beta.25",
     "ftbchunks": "<2101.1.10"
   }

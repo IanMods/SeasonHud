@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.neoforge.impl.curios.item;
 
-import club.iananderson.seasonhud.impl.seasons.CommonSeasonHelper;
+import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -9,6 +9,8 @@ public class CuriosCalendar implements ICurioItem {
   }
 
   public static void init() {
-    CuriosApi.registerCurio(CommonSeasonHelper.commonSeasons.CALENDAR(), new CuriosCalendar());
+    if (Calendar.calendar().isPresent()) {
+      CuriosApi.registerCurio(Calendar.calendar().get(), new CuriosCalendar());
+    }
   }
 }
