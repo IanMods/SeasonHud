@@ -10,6 +10,7 @@ import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
@@ -35,9 +36,6 @@ public class SeasonHudScreen extends Screen {
   public SeasonHudScreen(Screen parentScreen, Component title) {
     super(title);
     this.parentScreen = parentScreen;
-    this.minecraft = Minecraft.getInstance();
-    this.width = minecraft.getWindow().getGuiScaledWidth();
-    this.height = minecraft.getWindow().getGuiScaledHeight();
   }
 
   public void open() {
@@ -87,8 +85,14 @@ public class SeasonHudScreen extends Screen {
 
   @Override
   public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    super.render(graphics, mouseX, mouseY, partialTicks);
+
+    int titleWidth = this.font.width(this.title);
+
+    this.addRenderableWidget(
+        new StringWidget(this.width / 2 - titleWidth / 2, TITLE_PADDING, titleWidth, 9, this.title, this.font));
     graphics.drawCenteredString(font, this.getTitle(), this.width / 2, TITLE_PADDING, 16777215);
+
+    super.render(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override
