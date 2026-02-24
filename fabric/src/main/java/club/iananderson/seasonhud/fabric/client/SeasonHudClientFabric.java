@@ -13,7 +13,8 @@ public class SeasonHudClientFabric implements ClientModInitializer {
     ClientEvents.register();
 
     if (CurrentMinimap.ftbChunksLoaded()) {
-      SeasonComponent.ftbChunkSetup();
+      // Disabled until FTBChunks is updated
+      // SeasonComponent.ftbChunkSetup();
     }
 
     SeasonHudClientCommon.initAccessoriesClient();

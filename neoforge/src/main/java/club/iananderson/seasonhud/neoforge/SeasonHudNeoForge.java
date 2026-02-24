@@ -37,7 +37,8 @@ public class SeasonHudNeoForge {
 
   public static void ftbChunkSetup(FMLCommonSetupEvent event) {
     if (CurrentMinimap.ftbChunksLoaded()) {
-      SeasonComponent.ftbChunkSetup();
+      // Disabled until FTBChunks is updated
+      // SeasonComponent.ftbChunkSetup();
     }
   }
 }

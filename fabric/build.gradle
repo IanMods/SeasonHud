@@ -233,10 +233,11 @@ dependencies {
     }
 
     // FTB Chunks + Dependencies
-    modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
-    modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
-    modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-    modCompileOnly "dev.architectury:architectury-fabric:${project.architectury_version}"
+    // Disabled until FTBChunks is updated
+//    modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
+//    modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+//    modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
+//    modCompileOnly "dev.architectury:architectury-fabric:${project.architectury_version}"
 
     // Map Atlases
     modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}") {
@@ -304,11 +305,12 @@ dependencies {
             modLocalRuntime("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
         case "ftb":
-            modLocalRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
-            modLocalRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
-            modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-            modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
-            modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
+            // Disabled until FTBChunks is updated
+//            modLocalRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
+//            modLocalRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+//            modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
+//            modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
+//            modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
             break
         case "atlas":
             modLocalRuntime("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}")

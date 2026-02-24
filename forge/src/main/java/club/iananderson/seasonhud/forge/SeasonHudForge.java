@@ -53,7 +53,8 @@ public class SeasonHudForge {
 
   private static void ftbChunkSetup(FMLCommonSetupEvent event) {
     if (CurrentMinimap.ftbChunksLoaded()) {
-      event.enqueueWork(SeasonComponent::ftbChunkSetup);
+      // Disabled until FTBChunks is updated
+      // event.enqueueWork(SeasonComponent::ftbChunkSetup);
     }
   }
 }

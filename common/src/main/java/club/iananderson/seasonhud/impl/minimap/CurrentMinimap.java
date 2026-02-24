@@ -5,7 +5,6 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.platform.Services;
-import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -53,7 +52,9 @@ public class CurrentMinimap {
         return Services.MINIMAP.hideJourneyMap(mc);
       }
       case FTB_CHUNKS -> {
-        return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.getDebugOverlay().showDebugScreen();
+        // return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.getDebugOverlay().showDebugScreen();
+        // Disabled until FTBChunks is updated
+        return false;
       }
       case XAERO, XAERO_FAIRPLAY, XAERO_BETTER_PVP -> {
         return Services.MINIMAP.hideXaero(mc);
