@@ -116,8 +116,6 @@ public class ColorScreen extends SeasonHudScreen {
             greenSlider.setValue(g);
             blueSlider.setValue(b);
             colorBox.setValue(String.valueOf(defaultColorInt));
-
-            Rgb.setRgb(season, defaultColorInt);
           }
         })
         .withPos(x, y)

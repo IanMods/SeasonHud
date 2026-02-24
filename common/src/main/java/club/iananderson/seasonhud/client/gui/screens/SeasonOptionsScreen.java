@@ -6,6 +6,7 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
+import club.iananderson.seasonhud.config.DefaultValues;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
@@ -231,10 +232,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     if (drawDefaultHud) {
       row += 1; // Row 1
-      hudLocationButton = CycleButton.builder(Location::getLocationName)
+      hudLocationButton = CycleButton.builder(Location::getLocationName, hudLocation)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.hudLocation.tooltip"))
           .withValues(Location.values())
-          .withInitialValue(hudLocation)
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
                   Common.translatedText("menu.seasonhud.season.hudLocation.button"),
                   (b, val) -> this.hudLocation = val);
@@ -266,10 +266,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     }
 
     row += 1; // Row 3 (enableMinimapIntegration -> Row 1)
-    CycleButton<ShowDay> showDayButton = CycleButton.builder(ShowDay::getDayDisplayName)
+    CycleButton<ShowDay> showDayButton = CycleButton.builder(ShowDay::getDayDisplayName, showDay)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showDay.tooltip"))
         .withValues(ShowDay.getValues())
-        .withInitialValue(showDay)
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
                 Common.translatedText("menu.seasonhud.season.showDay.button"), (b, val) -> this.showDay = val);
 

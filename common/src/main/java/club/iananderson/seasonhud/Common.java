@@ -17,8 +17,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -151,7 +151,7 @@ public class Common {
 
   public static boolean isDimensionValid(List<? extends String> validDimensions, ResourceKey<Level> dimension) {
     for (String validDimension : validDimensions) {
-      if (dimension.location().toString().equals(validDimension)) {
+      if (dimension.identifier().toString().equals(validDimension)) {
         return true;
       }
     }
@@ -196,8 +196,8 @@ public class Common {
     return true;
   }
 
-  public static ResourceLocation location(String path) {
-    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+  public static Identifier location(String path) {
+    return Identifier.fromNamespaceAndPath(MOD_ID, path);
   }
 
   // Used to make porting new text to older versions easier

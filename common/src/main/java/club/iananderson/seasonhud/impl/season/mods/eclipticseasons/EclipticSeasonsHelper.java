@@ -9,7 +9,7 @@ import club.iananderson.seasonhud.platform.Services;
 import java.util.Optional;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -18,7 +18,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
   public Optional<Item> calendar() {
     if (Common.eclipticSeasonsLoaded()) {
-      return BuiltInRegistries.ITEM.getOptional(ResourceLocation.fromNamespaceAndPath("eclipticseasons", "calendar"));
+      return BuiltInRegistries.ITEM.getOptional(Identifier.fromNamespaceAndPath("eclipticseasons", "calendar"));
     } else {
       return Optional.empty();
     }

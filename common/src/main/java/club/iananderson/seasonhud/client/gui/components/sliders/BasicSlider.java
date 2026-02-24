@@ -3,18 +3,20 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
-import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.input.MouseButtonInfo;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
+import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
-  protected static final ResourceLocation SLIDER_LOCATION = Common.location("textures/gui/slider.png");
+  protected static final Identifier SLIDER_LOCATION = Common.location("textures/gui/slider.png");
   protected boolean drawString;
   protected boolean canChangeValue;
   protected double minValue;
@@ -80,30 +82,6 @@ public class BasicSlider extends AbstractSliderButton {
     this(x, y, width, height, drawString, initial, minValue, maxValue, defaultValue, 1D, 0, ChatFormatting.WHITE);
   }
 
-  public void onRightClick() {
-    this.setValue(defaultValue);
-  }
-
-  public int getTextureY() {
-    int i = this.isFocused() && !this.canChangeValue
-            ? 1
-            : 0;
-    return i * 20;
-  }
-
-  public int getHandleTextureY() {
-    int i = !this.isHovered && !this.canChangeValue
-            ? 2
-            : 3;
-    return i * 20;
-  }
-
-  public int getFgColor() {
-    return this.active
-           ? 16777215
-           : 10526880;
-  }
-
   protected double snapToNearest(double value) {
     if (stepSize <= 0D) {
       return Mth.clamp(value, 0D, 1D);
@@ -127,7 +105,12 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public void setValue(double value) {
+    double oldValue = this.value;
     this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
+
     this.updateMessage();
   }
 
@@ -161,20 +144,47 @@ public class BasicSlider extends AbstractSliderButton {
   protected void applyValue() {
   }
 
-  private void setValueFromMouse(double mouseX) {
-    this.setSliderValue((mouseX - (this.getX() + 4)) / (this.width - 8));
+  private void setValueFromMouse(MouseButtonEvent event) {
+    this.setSliderValue((event.x() - (double) (this.getX() + 4)) / (double) (this.width - 8));
+  }
+
+  @Override
+  protected void onDrag(MouseButtonEvent event, double dragX, double dragY) {
+    super.onDrag(event, dragX, dragY);
+    this.setValueFromMouse(event);
+  }
+
+  public void onRightClick() {
+    this.setValue(defaultValue);
+  }
+
+  @Override
+  public void onClick(MouseButtonEvent event, boolean isDoubleClick) {
+    boolean rightClick = event.button() == InputConstants.MOUSE_BUTTON_RIGHT;
+
+    if (!rightClick) {
+      this.setValueFromMouse(event);
+    }
+
+    if (this.active && this.visible && rightClick) {
+      this.playDownSound(Minecraft.getInstance().getSoundManager());
+      this.onRightClick();
+    }
+  }
+
+  @Override
+  protected boolean isValidClickButton(MouseButtonInfo buttonInfo) {
+    return buttonInfo.button() == 0 || buttonInfo.button() == 1;
   }
 
   @Override
   public boolean keyPressed(KeyEvent event) {
-    int keyCode = event.key();
-
-    boolean bl = keyCode == InputConstants.KEY_LEFT;
-    if (bl || keyCode == InputConstants.KEY_RIGHT) {
+    boolean flag = event.key() == GLFW.GLFW_KEY_LEFT;
+    if (flag || event.key() == GLFW.GLFW_KEY_RIGHT) {
       if (this.minValue > this.maxValue) {
-        bl = !bl;
+        flag = !flag;
       }
-      float f = bl
+      float f = flag
                 ? -1F
                 : 1F;
       if (stepSize <= 0D) {
@@ -194,10 +204,5 @@ public class BasicSlider extends AbstractSliderButton {
     } else {
       this.setMessage(Component.empty());
     }
-  }
-
-  @Override
-  public void renderWidget(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 }

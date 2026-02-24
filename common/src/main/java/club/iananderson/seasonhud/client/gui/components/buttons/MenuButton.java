@@ -3,12 +3,14 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.SeasonHudScreen;
 import javax.annotation.Nullable;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.NonNull;
 
-public class MenuButton extends Button {
+public class MenuButton extends Button.Plain {
   protected MenuButton(int x, int y, int width, int height, MenuButtons buttonType, OnPress onPress) {
     super(x, y, width, height, buttonType.getButtonText(), onPress, DEFAULT_NARRATION);
   }
@@ -22,6 +24,11 @@ public class MenuButton extends Button {
       currentScreen.saveConfig();
       newScreen.open();
     });
+  }
+
+  @Override
+  protected void renderContents(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    super.renderContents(graphics, mouseX, mouseY, partialTicks);
   }
 
   public enum MenuButtons {

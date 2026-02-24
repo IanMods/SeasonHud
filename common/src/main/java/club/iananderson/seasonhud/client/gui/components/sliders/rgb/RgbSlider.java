@@ -39,6 +39,7 @@ public class RgbSlider extends BasicSlider {
   public void onClick(MouseButtonEvent event, boolean isDoubleClick) {
     if (enableColor) {
       super.onClick(event, isDoubleClick);
+
     }
   }
 
@@ -57,16 +58,6 @@ public class RgbSlider extends BasicSlider {
     }
 
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
-  }
-
-  public void setValue(int newValue) {
-    double oldValue = this.value;
-    this.value = this.snapToNearest((newValue - this.minValue) / (this.maxValue - this.minValue));
-    if (!Mth.equal(oldValue, this.value)) {
-      this.applyValue();
-    }
-
-    this.updateMessage();
   }
 
   @Override

@@ -11,7 +11,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 
-public class DefaultColorButton extends Button {
+public class DefaultColorButton extends Button.Plain {
   private static final Component DEFAULT = Common.translatedText("menu.seasonhud.color.default.button");
   private final ColorEditBox colorEditBox;
   private final int defaultColor;
@@ -61,7 +61,7 @@ public class DefaultColorButton extends Button {
   }
 
   @Override
-  public void renderWidget(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  protected void renderContents(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     refresh();
     String boxValue = this.colorEditBox.getValue();
 
@@ -69,7 +69,7 @@ public class DefaultColorButton extends Button {
       this.active = false;
     }
 
-    super.renderWidget(graphics, mouseX, mouseY, partialTicks);
+    super.renderContents(graphics, mouseX, mouseY, partialTicks);
   }
 
   private void refresh() {
