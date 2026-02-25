@@ -30,7 +30,6 @@ public class Common {
   public static final ResourceLocation SEASON_ICONS = location("season_icons");
   public static final Style SEASON_ICON_STYLE = Style.EMPTY.withFont(SEASON_ICONS);
   public static ResourceLocation slotIcon = new ResourceLocation(MOD_ID, "slot/calendarslot");
-  private static String platformName;
   private static boolean sereneSeasonsLoaded;
   private static boolean fabricSeasonsLoaded;
   private static boolean fabricSeasonsExtrasLoaded;
