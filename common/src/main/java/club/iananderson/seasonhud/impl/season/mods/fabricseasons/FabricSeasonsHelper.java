@@ -8,9 +8,9 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.time.LocalDateTime;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -100,7 +100,7 @@ public class FabricSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public void debugHud(GuiGraphics graphics) {
+  public void debugHud(PoseStack graphics) {
 
   }
 }

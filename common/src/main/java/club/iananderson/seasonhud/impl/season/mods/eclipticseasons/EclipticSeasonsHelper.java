@@ -6,9 +6,9 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -18,7 +18,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   @Override
   public Optional<Item> calendar() {
     if (Common.eclipticSeasonsLoaded()) {
-      return Optional.of(BuiltInRegistries.ITEM.get(new ResourceLocation("eclipticseasons", "calendar")));
+      return Optional.of(Registry.ITEM.get(new ResourceLocation("eclipticseasons", "calendar")));
     } else {
       return Optional.empty();
     }
@@ -75,7 +75,7 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public void debugHud(GuiGraphics graphics) {
+  public void debugHud(PoseStack graphics) {
 
   }
 }

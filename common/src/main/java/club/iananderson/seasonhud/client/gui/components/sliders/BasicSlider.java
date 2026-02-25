@@ -3,9 +3,11 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.util.DrawUtil;
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.text.DecimalFormat;
 import java.util.Objects;
+import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -15,7 +17,6 @@ import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -98,12 +99,11 @@ public class BasicSlider extends AbstractSliderButton {
       double d = (double) Util.getMillis() / 1000.0;
       double e = Math.max((double) r * 0.5, 3.0);
       double f = Math.sin(1.5707963267948966 * Math.cos(6.283185307179586 * d / e)) / 2.0 + 0.5;
-      double g = Mth.lerp(f, 0.0, (double) r);
+      double g = Mth.lerp(f, 0.0, r);
       GuiComponent.enableScissor(j, k, l, m);
       GuiComponent.drawString(graphics, font, component, j - (int) g, p, n);
       GuiComponent.disableScissor();
-    }
-    else {
+    } else {
       r = Mth.clamp(i, j + o / 2, l - o / 2);
       GuiComponent.drawCenteredString(graphics, font, component, r, p, n);
     }
@@ -112,6 +112,12 @@ public class BasicSlider extends AbstractSliderButton {
   protected static void renderScrollingString(PoseStack graphics, Font font, Component component, int i, int j, int k,
       int l, int m) {
     renderScrollingString(graphics, font, component, (i + k) / 2, i, j, k, l, m);
+  }
+
+  protected void renderScrollingString(PoseStack graphics, Font font, int i, int j) {
+    int k = this.x + i;
+    int l = this.x + this.getWidth() - i;
+    renderScrollingString(graphics, font, this.getMessage(), k, this.y, l, this.y + this.getHeight(), j);
   }
 
   public void onRightClick() {
@@ -251,14 +257,8 @@ public class BasicSlider extends AbstractSliderButton {
     }
   }
 
-  protected void renderScrollingString(PoseStack graphics, Font font, int i, int j) {
-    int k = this.x + i;
-    int l = this.x + this.getWidth() - i;
-    renderScrollingString(graphics, font, this.getMessage(), k, this.y, l, this.y + this.getHeight(), j);
-  }
-
   @Override
-  protected void renderBg(@NotNull PoseStack graphics, @NotNull Minecraft mc, int mouseX, int mouseY) {
+  protected void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
     DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x, this.y, 0, this.getTextureY(), this.width,
                             this.height, 200, 20, 2, 3, 2, 2);
     DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x + (int) (this.value * (double) (this.width - 8)),

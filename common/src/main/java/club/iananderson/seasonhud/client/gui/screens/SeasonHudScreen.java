@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -14,7 +15,6 @@ import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import org.jetbrains.annotations.NotNull;
 
 public class SeasonHudScreen extends Screen {
   public static final int MENU_PADDING = 50;
@@ -78,7 +78,7 @@ public class SeasonHudScreen extends Screen {
 
   protected void rebuildWidgets() {
     this.clearWidgets();
-    this.setFocused((GuiEventListener) null);
+    this.setFocused(null);
     this.init();
   }
 
@@ -88,7 +88,7 @@ public class SeasonHudScreen extends Screen {
   }
 
   @Override
-  public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     this.renderBackground(graphics);
 
     GuiComponent.drawCenteredString(graphics, font, this.getTitle(), this.width / 2, TITLE_PADDING, 16777215);

@@ -3,8 +3,8 @@ package club.iananderson.seasonhud.impl.season.mods;
 import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -94,6 +94,6 @@ public interface SeasonModHelper {
     return Fertility.FERTILE;
   }
 
-  void debugHud(GuiGraphics graphics);
+  void debugHud(PoseStack graphics);
 
 }

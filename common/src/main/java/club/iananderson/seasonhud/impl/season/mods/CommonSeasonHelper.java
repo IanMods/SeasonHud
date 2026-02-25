@@ -3,8 +3,8 @@ package club.iananderson.seasonhud.impl.season.mods;
 import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -17,7 +17,7 @@ public class CommonSeasonHelper {
 
   public SeasonModHelper getHelper() {
     if (SeasonMods.getLoaded().iterator().hasNext()) {
-      return SeasonMods.getLoaded().getFirst().getSeasonModHelper();
+      return SeasonMods.getLoaded().iterator().next().getSeasonModHelper();
     } else {
       return new NoSeasonModHelper();
     }
@@ -80,7 +80,7 @@ public class CommonSeasonHelper {
     }
 
     @Override
-    public void debugHud(GuiGraphics graphics) {
+    public void debugHud(PoseStack graphics) {
 
     }
   }

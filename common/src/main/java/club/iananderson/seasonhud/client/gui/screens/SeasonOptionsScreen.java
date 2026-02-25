@@ -11,11 +11,10 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
-import com.mojang.blaze3d.vertex.PoseStack;
 import club.iananderson.seasonhud.platform.Services;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
 import javax.annotation.Nonnull;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
@@ -185,22 +184,22 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         }
 
         GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + buttonWidth / 2,
-                                      MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                          + BUTTON_PADDING), 16777215);}
+                                        MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
+                                            + BUTTON_PADDING), 16777215);
+      }
     }
 
-      graphics.pushPose();
-      graphics.translate(0, 0, 50);
-      graphics.scale((float) seasonScale, (float) seasonScale, 1.0F);
-      GuiComponent.drawString(graphics, font, seasonCombined, posX, posY, 0xffffff);
+    graphics.pushPose();
+    graphics.translate(0, 0, 50);
+    graphics.scale((float) seasonScale, (float) seasonScale, 1.0F);
+    GuiComponent.drawString(graphics, font, seasonCombined, posX, posY, 0xffffff);
     if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
-        MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+      MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
-        posY += this.font.lineHeight;
-        GuiComponent.drawString(graphics, font, fertility, posX, posY, 0xffffff);
+      posY += this.font.lineHeight;
+      GuiComponent.drawString(graphics, font, fertility, posX, posY, 0xffffff);
     }
     graphics.popPose();
-    }
   }
 
   private int maxWidth(MutableComponent seasonText) {
@@ -289,8 +288,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       if ((seasonLength % 3) != 0) {
         showSubSeasonButton.active = false;
-        showSubSeasonButton.setTooltip(
-            Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength, seasonLength * 24000));
+        showSubSeasonButton.getTooltip()
+            .set(0, Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength,
+                                      seasonLength * 24000).get(0));
       }
     }
 
@@ -311,11 +311,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
       row += 1; // Row 5 ((enableMinimapIntegration -> Row 3)
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> {
-            if (!Common.clientSideConfig()) {
+            if (!Common.clientSideConfig(this.minecraft)) {
               return Common.newTooltip("menu.seasonhud.season.serverSide.tooltip");
-            }
-
-            else {
+            } else {
               return Common.newTooltip("menu.seasonhud.season.needCalendar.tooltip");
             }
           })
@@ -327,10 +325,9 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
       CycleButton<Boolean> calendarDetailModeButton = CycleButton.onOffBuilder(enableCalendarDetail)
           .withTooltip(t -> {
-            if (!Common.clientSideConfig()) {
+            if (!Common.clientSideConfig(this.minecraft)) {
               return Common.newTooltip("menu.seasonhud.season.serverSide.tooltip");
-            }
-            else {
+            } else {
               return Common.newTooltip("menu.seasonhud.season.calendarDetail.tooltip");
             }
           })

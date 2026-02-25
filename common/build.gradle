@@ -96,6 +96,7 @@ repositories {
         url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
         content {
             includeGroup "fuzs.forgeconfigapiport"
+            includeGroup "net.minecraftforge"
         }
     }
 
@@ -165,8 +166,8 @@ dependencies {
 
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "xaero.minimap:xaerominimap-common-${project.minecraft_version}:${project.xaero_minimap_version}"
-    modCompileOnly "xaero.lib:xaerolib-common-${project.minecraft_version}:${project.xaero_lib_version}"
+    modCompileOnly "xaero.minimap:xaerominimap-common-${xaero_mc_version}:${project.xaero_minimap_version}"
+    modCompileOnly "xaero.lib:xaerolib-common-${xaero_mc_version}:${project.xaero_lib_version}"
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
@@ -174,7 +175,7 @@ dependencies {
         changing = true
     }
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
-    compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
+    modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
 }
 
 configurations {

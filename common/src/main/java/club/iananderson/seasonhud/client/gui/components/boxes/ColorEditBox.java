@@ -8,11 +8,11 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.EnumSet;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.MutableComponent;
-import org.jetbrains.annotations.NotNull;
 
 public class ColorEditBox extends EditBox {
   private static final int PADDING = 4;
@@ -91,7 +91,7 @@ public class ColorEditBox extends EditBox {
   }
 
   @Override
-  public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     Minecraft mc = Minecraft.getInstance();
     float textScale = 1;
     int scaledWidth = mc.getWindow().getGuiScaledWidth();

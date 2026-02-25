@@ -3,12 +3,12 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
 
 public class HudOffsetSlider extends BasicSlider {
   protected final Component prefix;
@@ -36,7 +36,7 @@ public class HudOffsetSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@NotNull PoseStack graphics, @NotNull Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 
@@ -56,11 +56,54 @@ public class HudOffsetSlider extends BasicSlider {
       this.prefix = prefix;
     }
 
+    /**
+     * Uses default width = 180 and height = 20.
+     *
+     * @param x The horizontal position of the slider
+     * @param y The vertical position of the slider
+     */
+    public HudOffsetSlider.Builder withPos(int x, int y) {
+      this.posX = x;
+      this.posY = y;
+      return this;
+    }
+
+    /**
+     * Uses default height = 20.
+     *
+     * @param width The width of the slider
+     */
+    public HudOffsetSlider.Builder withWidth(int width) {
+      this.width = width;
+      return this;
+    }
+
     public HudOffsetSlider.Builder withBounds(int x, int y, int width, int height) {
       this.posX = x;
       this.posY = y;
       this.width = width;
       this.height = height;
+      return this;
+    }
+
+    public HudOffsetSlider.Builder withValueRange(int minValue, int maxValue) {
+      this.minValue = minValue;
+      this.maxValue = maxValue;
+      return this;
+    }
+
+    public HudOffsetSlider.Builder withInitialValue(int initial) {
+      this.initial = initial;
+      return this;
+    }
+
+    /**
+     * Sets the default value to return to when right-clicked.
+     *
+     * @param defaultValue The value that the slider will return to if right-clicked.
+     */
+    public HudOffsetSlider.Builder withDefaultValue(int defaultValue) {
+      this.defaultValue = defaultValue;
       return this;
     }
 

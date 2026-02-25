@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
 import club.iananderson.seasonhud.platform.Services;
 import com.demonwav.mcdev.annotations.Translatable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.client.Minecraft;
@@ -56,12 +57,12 @@ public class Common {
     trinketsLoaded = AccessoryMods.TRINKETS.modLoaded();
     accessoriesLoaded = AccessoryMods.ACCESSORIES.modLoaded();
 
-    if (SeasonMods.getLoaded().iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
+    if (!SeasonMods.getLoaded().isEmpty()) {
+      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().get(0).getModName());
     }
 
-    if (MinimapMods.getLoaded().iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
+    if (!MinimapMods.getLoaded().isEmpty()) {
+      Common.LOG.info("Loading [{}] Compat", MinimapMods.getLoaded().get(0).getModName());
     }
   }
 
@@ -214,14 +215,17 @@ public class Common {
 
   // Used to make porting new text to older versions easier
   public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key) {
-    List<FormattedCharSequence> List = new ArrayList<>();
-    List.add(translatedText(key).getVisualOrderText());
+    List<FormattedCharSequence> list = new ArrayList<>();
+    list.add(translatedText(key).getVisualOrderText());
 
-    return List;
+    return list;
   }
 
   // Used to make porting new text to older versions easier
-  public static Tooltip newTooltip(@Translatable(foldMethod = true) String key, Object... args) {
-    return Tooltip.create(translatedText(key, args));
+  public static List<FormattedCharSequence> newTooltip(@Translatable(foldMethod = true) String key, Object... args) {
+    List<FormattedCharSequence> list = new ArrayList<>();
+    list.add(translatedText(key, args).getVisualOrderText());
+
+    return list;
   }
 }

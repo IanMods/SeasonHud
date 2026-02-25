@@ -91,6 +91,7 @@ repositories {
         url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
         content {
             includeGroup "fuzs.forgeconfigapiport"
+            includeGroup "net.minecraftforge"
         }
     }
 
@@ -211,19 +212,14 @@ dependencies {
     modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
-    // Serene Seasons
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-    compileOnly("net.jodah:typetools:0.6.3")
-
     // Homeostatic Seasons
     modCompileOnly "com.github.wendall911.climatesettings:climatesettings-1.21.1-fabric:${project.climatesettings_version}"
     modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-1.21.1-fabric:${project.homeostatic_seasons_version}"
     modCompileOnly "technology.roughness.whitenoise:whitenoise-1.21.1-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
-    modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
-    modCompileOnly "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
+    modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.xaero_mc_version}:${project.xaero_minimap_version}"
+    modCompileOnly "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
     // JourneyMap
     modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
@@ -267,16 +263,11 @@ dependencies {
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
     modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
-   // modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+    // modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_fabric.toLowerCase(Locale.ROOT)) {
-        case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-            implementation("net.jodah:typetools:0.6.3")
-            break
         case "fabric":
             modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
             break
@@ -285,7 +276,7 @@ dependencies {
             modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
         default:
-            println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
+            println("Unknown season mod specified: ${project.season_mod_fabric}. Must be fabric")
             break
     }
 
@@ -293,8 +284,8 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modImplementation "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
-            modImplementation "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
+            modImplementation "xaero.minimap:xaerominimap-fabric-${project.xaero_mc_version}:${project.xaero_minimap_version}"
+            modImplementation "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
             break
         case "journey":
             modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")

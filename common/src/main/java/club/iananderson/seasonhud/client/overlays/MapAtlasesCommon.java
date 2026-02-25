@@ -1,6 +1,8 @@
 package club.iananderson.seasonhud.client.overlays;
 
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;

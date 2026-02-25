@@ -2,15 +2,12 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
-import club.iananderson.seasonhud.util.DrawUtil;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Map;
-import net.minecraft.client.Minecraft;
+import javax.annotation.Nonnull;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
-import org.jetbrains.annotations.NotNull;
 
 public class DefaultColorButton extends Button {
   private static final Component DEFAULT = Common.translatedText("menu.seasonhud.color.default.button");
@@ -54,12 +51,14 @@ public class DefaultColorButton extends Button {
     return 46 + k * 20;
   }
 
-  public int getFGColor() {
-    return this.active ? 16777215 : 10526880;
+  public int getFgColor() {
+    return this.active
+           ? 16777215
+           : 10526880;
   }
 
   @Override
-  public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     refresh();
     String boxValue = this.colorEditBox.getValue();
 

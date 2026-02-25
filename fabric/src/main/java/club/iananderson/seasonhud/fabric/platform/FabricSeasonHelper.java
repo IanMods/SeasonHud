@@ -7,17 +7,16 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
+import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Locale;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import sereneseasons.init.ModConfig;
 
 public class FabricSeasonHelper implements SeasonHelper {
   // FabricSeasons
@@ -60,7 +59,7 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public Seasons currentFabricSeason(Player player) {
-    Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
+    Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level);
     String currentSeason = currentSeasonState.toString();
 
     if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
@@ -72,18 +71,59 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public int currentFabricSeasonLength(Player player) {
-    return FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
+    return FabricSeasons.getCurrentSeason(player.level).getSeasonLength();
   }
 
   @Override
   public long timeToNextFabricSeason(Player player) {
-    return FabricSeasons.getTimeToNextSeason(player.level());
+    return FabricSeasons.getTimeToNextSeason(player.level);
   }
 
   // SereneSeasons
   @Override
+  public boolean isTropicalSereneSeason(Player player) {
+    return false;
+  }
+
+  @Override
+  public SubSeasons getCurrentSereneSubSeason(Player player) {
+    return SubSeasons.NONE;
+  }
+
+  @Override
+  public Seasons getCurrentSereneSeason(Player player) {
+    return Seasons.NULL;
+  }
+
+  @Override
+  public long getSereneDate(Player player) {
+    return 1;
+  }
+
+  @Override
+  public int sereneSeasonDurationDays(Player player) {
+    return 1;
+  }
+
+  @Override
   public boolean validSereneSeasonsDim(ResourceKey<Level> currentDim) {
-    return ModConfig.seasons.isDimensionWhitelisted(currentDim);
+    // No Fabric Serene Seasons for 1.19 and below
+    return true;
+  }
+
+  @Override
+  public boolean infertileSereneBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean alwaysWinterBiomeSereneBiome(Player player) {
+    return false;
+  }
+
+  @Override
+  public boolean undergroundFertileSereneBiome(Player player) {
+    return false;
   }
 
   // EclipticSeasons
@@ -130,7 +170,8 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    // return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    return true;
   }
 
   @Override
@@ -154,7 +195,7 @@ public class FabricSeasonHelper implements SeasonHelper {
   }
 
   @Override
-  public void protoManlyDebug(GuiGraphics graphics) {
+  public void protoManlyDebug(PoseStack graphics) {
 
   }
 }

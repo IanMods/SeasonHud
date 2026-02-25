@@ -82,7 +82,7 @@ public enum Months {
       case 10 -> month = APRIL;
       case 11 -> month = MAY;
       case 12 -> month = JUNE;
-      default -> throw new MatchException(null, null);
+      default -> throw new IllegalStateException("Unexpected value: " + this.ordinal());
     }
 
     return month;

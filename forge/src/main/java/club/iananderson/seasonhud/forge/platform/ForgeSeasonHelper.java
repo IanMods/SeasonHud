@@ -1,28 +1,32 @@
 package club.iananderson.seasonhud.forge.platform;
 
-import static club.iananderson.seasonhud.Common.isDimensionValid;
-
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.components.Months;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import sereneseasons.init.ModConfig;
+import net.minecraft.world.level.biome.Biome;
+import sereneseasons.api.season.ISeasonState;
+import sereneseasons.config.BiomeConfig;
+import sereneseasons.config.FertilityConfig;
+import sereneseasons.config.ServerConfig;
 
 public class ForgeSeasonHelper implements SeasonHelper {
   // FabricSeasons
@@ -63,16 +67,150 @@ public class ForgeSeasonHelper implements SeasonHelper {
 
   // SereneSeasons
   @Override
+  public boolean isTropicalSereneSeason(Player player) {
+    boolean showTropicalSeasons = SeasonHudClient.getShowTropicalSeason();
+    boolean isInTropicalSeason =
+        sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level.getBiome(player.getOnPos()));
+
+    return showTropicalSeasons && isInTropicalSeason;
+  }
+
+  @Override
+  public SubSeasons getCurrentSereneSubSeason(Player player) {
+    ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level);
+    String currentSubSeasonFull = currentSeasonState.getSubSeason().toString();
+
+    if (isTropicalSereneSeason(player)) {
+      currentSubSeasonFull = currentSeasonState.getTropicalSeason().toString();
+    }
+
+    String currentSubSeason = currentSubSeasonFull.substring(0, currentSubSeasonFull.indexOf("_"));
+
+    return SubSeasons.valueOf(currentSubSeason.toUpperCase(Locale.ROOT));
+  }
+
+  @Override
+  public Seasons getCurrentSereneSeason(Player player) {
+    ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level);
+    String currentSeason = currentSeasonState.getSeason().toString();
+    if (isTropicalSereneSeason(player)) {
+      String currentSubSeason = currentSeasonState.getTropicalSeason().toString();
+
+      // Removes the "Early_", "Mid_", "Late_" from the tropical season.
+      currentSeason = currentSubSeason.substring(currentSubSeason.indexOf("_") + 1);
+    }
+
+    return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
+  }
+
+  @Override
+  public long getSereneDate(Player player) {
+    ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level);
+    long seasonDay = currentSeasonState.getDay(); // Current day out of the year (Default 24 days * 4 = 96 days)
+    long subSeasonDuration = ServerConfig.subSeasonDuration.get(); // In case the default duration is changed
+    long subSeasonDate = (seasonDay % subSeasonDuration) + 1; // Default 8 days in each sub-season (1 week)
+    long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; // Default 24 days in a season (8 days * 3)
+
+    if (subSeasonDuration != SeasonHudServer.getSubSeasonLength()) {
+      subSeasonDuration = SeasonHudServer.getSubSeasonLength();
+    }
+
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
+      if (isTropicalSereneSeason(player)) {
+        // Default 16 days in each tropical "sub-season".
+        // Starts are "Early Dry" (Summer 1), so need to offset Spring 1 -> Summer 1 (subSeasonDuration * 3)
+        subSeasonDate = ((seasonDay + (subSeasonDuration * 3)) % (subSeasonDuration * 2)) + 1;
+      }
+      return subSeasonDate;
+    } else {
+      if (isTropicalSereneSeason(player)) {
+        // Default 48 days in each tropical season.
+        // Starts are "Early Dry" (Summer 1), so need to offset Spring 1 -> Summer 1 (subSeasonDuration * 3)
+        seasonDate = ((seasonDay + (subSeasonDuration * 3)) % (subSeasonDuration * 6)) + 1;
+      }
+      return seasonDate;
+    }
+  }
+
+  @Override
+  public int sereneSeasonDurationDays(Player player) {
+    int subSeasonDuration = ServerConfig.subSeasonDuration.get();
+
+    if (subSeasonDuration != SeasonHudServer.getSubSeasonLength()) {
+      subSeasonDuration = SeasonHudServer.getSubSeasonLength();
+    }
+
+    int seasonDuration = subSeasonDuration * 3;
+
+    if (isTropicalSereneSeason(player)) {
+      seasonDuration *= 2; // Tropical season are twice as long (Default 48 days)
+    }
+    if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
+      seasonDuration /= 3; // 3 sub-season per season
+    }
+
+    return seasonDuration;
+  }
+
+  @Override
   public boolean validSereneSeasonsDim(ResourceKey<Level> currentDim) {
-    return ModConfig.seasons.isDimensionWhitelisted(currentDim);
+    return ServerConfig.isDimensionWhitelisted(currentDim);
+  }
+
+  @Override
+  public boolean infertileSereneBiome(Player player) {
+    Level level = player.level;
+    BlockPos pos = player.getOnPos();
+    Holder<Biome> biome = level.getBiome(pos);
+
+    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
+        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
+      return false;
+    } else {
+      return (BiomeConfig.infertileBiome(biome));
+    }
+  }
+
+  @Override
+  public boolean alwaysWinterBiomeSereneBiome(Player player) {
+    Level level = player.level;
+    BlockPos pos = player.getOnPos();
+    Holder<Biome> biome = level.getBiome(pos);
+
+    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
+        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
+      return false;
+    } else {
+      return !biome.value().warmEnoughToRain(pos);
+    }
+  }
+
+  @Override
+  public boolean undergroundFertileSereneBiome(Player player) {
+    Level level = player.level;
+    BlockPos pos = player.getOnPos();
+    Holder<Biome> biome = level.getBiome(pos);
+
+    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
+        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
+      return true;
+    }
+
+    if (!level.canSeeSky(pos.above())) {
+      return (pos.getY() > FertilityConfig.undergroundFertilityLevel.get());
+    } else {
+      return true;
+    }
   }
 
   // EclipticSeasons
   @Override
   public boolean validEclipticSeasonsDim(ResourceKey<Level> currentDim) {
-    List<? extends String> validDimensions = CommonConfig.Season.validDimensions.get();
+    // List<? extends String> validDimensions = CommonConfig.Season.validDimensions.get();
 
-    return isDimensionValid(validDimensions, currentDim);
+    // return isDimensionValid(validDimensions, currentDim);
+
+    return true;
   }
 
   @Override
@@ -80,7 +218,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
 
     if (validEclipticSeasonsDim(currentDim)) {
-      int currentSolarTermNumber = EclipticUtil.INSTANCE.getSolarTerm(player.level()).ordinal();
+      int currentSolarTermNumber = EclipticUtil.INSTANCE.getSolarTerm(player.level).ordinal();
 
       // TODO: Check this
       // 6 solar terms per season -> 2 solar terms per sub-season
@@ -96,7 +234,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
 
     if (validEclipticSeasonsDim(currentDim)) {
-      currentSeason = EclipticUtil.INSTANCE.getSolarTerm(player.level()).getSeason().getSerializedName();
+      currentSeason = EclipticUtil.INSTANCE.getSolarTerm(player.level).getSeason().getName();
 
       if (currentSeason.equals("none")) {
         currentSeason = "null";
@@ -108,8 +246,8 @@ public class ForgeSeasonHelper implements SeasonHelper {
 
   @Override
   public long currentEclipticSeasonDate(Player player) {
-    long seasonDay = EclipticUtil.getNowSolarDay(player.level()); // Day out of the year (42 days * 4 = 168 days)
-    long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level()); // Day out of the sub season (7 days)
+    long seasonDay = EclipticUtil.getNowSolarDay(player.level); // Day out of the year (42 days * 4 = 168 days)
+    long subSeasonDay = EclipticUtil.getTimeInSolarTerm(player.level); // Day out of the sub season (7 days)
     long subSeasonDuration = CommonConfig.Season.lastingDaysOfEachTerm.get(); // In case the default duration is changed
     long subSeasonDate = (subSeasonDay % (subSeasonDuration)) + 1; // Default 7 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 6)) + 1; // Default 42 days in a season (7 days * 6)
@@ -156,7 +294,8 @@ public class ForgeSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    // return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    return true;
   }
 
   @Override
@@ -180,7 +319,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
   }
 
   @Override
-  public void protoManlyDebug(GuiGraphics graphics) {
+  public void protoManlyDebug(PoseStack graphics) {
 
   }
 }

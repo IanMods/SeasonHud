@@ -1,10 +1,10 @@
 package club.iananderson.seasonhud.mixin.ftbchunks;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClient;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import dev.ftb.mods.ftbchunks.client.map.MapDimension;
@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FTBChunksClient.class)
-public class FTBChunksClientMixin {
+public class FtbChunksClientMixin {
 
   @Unique
   private static final BooleanValue MINIMAP_SEASON = FTBChunksClientConfig.MINIMAP.getBoolean("season", true)
@@ -35,9 +35,9 @@ public class FTBChunksClientMixin {
 
     SeasonHudClient.setEnableMod(MINIMAP_SEASON.get());
 
-    if (CurrentMinimap.shouldDrawMinimapHud(Minimap.FTB_CHUNKS)) {
+    if (CurrentMinimap.shouldDrawMinimapHud(MinimapMods.FTB_CHUNKS, mc)) {
       res.add(seasonCombined);
-      if(SeasonHudClient.getShowFertility()){
+      if (SeasonHudClient.getShowFertility()) {
         res.add(fertility);
       }
     }

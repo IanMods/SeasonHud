@@ -1,18 +1,18 @@
 package club.iananderson.seasonhud.forge.platform;
 
 import club.iananderson.seasonhud.platform.services.AccessoryHelper;
+import java.util.List;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.util.LazyOptional;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.SlotResult;
 
 public class ForgeAccessoryHelper implements AccessoryHelper {
   @Override
   public boolean curiosEquipped(Player player, Item item) {
-    LazyOptional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player);
+    List<SlotResult> curiosInventory = CuriosApi.getCuriosHelper().findCurios(player, item);
 
-    return curiosInventory.map(inv -> inv.isEquipped(item)).orElse(false);
+    return !curiosInventory.isEmpty();
   }
 
   @Override
