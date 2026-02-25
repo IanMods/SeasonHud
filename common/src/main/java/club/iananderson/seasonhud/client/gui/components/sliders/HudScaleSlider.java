@@ -58,28 +58,6 @@ public class HudScaleSlider extends BasicSlider {
       this.prefix = prefix;
     }
 
-    /**
-     * Uses default width = 180 and height = 20.
-     *
-     * @param x The horizontal position of the slider
-     * @param y The vertical position of the slider
-     */
-    public HudScaleSlider.Builder withPos(int x, int y) {
-      this.posX = x;
-      this.posY = y;
-      return this;
-    }
-
-    /**
-     * Uses default height = 20.
-     *
-     * @param width The width of the slider
-     */
-    public HudScaleSlider.Builder withWidth(int width) {
-      this.width = width;
-      return this;
-    }
-
     public HudScaleSlider.Builder withBounds(int x, int y, int width, int height) {
       this.posX = x;
       this.posY = y;
@@ -125,9 +103,9 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     public HudScaleSlider build() {
-      HudScaleSlider slider =
-          new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial, this.minValue,
-              this.maxValue, this.defaultValue, this.stepSize, this.precision, this.tooltipSupplier);
+      HudScaleSlider slider = new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix,
+                                                 this.initial, this.minValue, this.maxValue, this.defaultValue,
+                                                 this.stepSize, this.precision, this.tooltipSupplier);
       return slider;
     }
   }

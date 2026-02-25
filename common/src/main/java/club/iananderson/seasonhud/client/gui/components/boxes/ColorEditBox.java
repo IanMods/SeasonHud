@@ -3,8 +3,8 @@ package club.iananderson.seasonhud.client.gui.components.boxes;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.ColorScreen;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.EnumSet;
@@ -21,7 +21,7 @@ public class ColorEditBox extends EditBox {
   private int newSeasonColor;
 
   public ColorEditBox(Font font, int x, int y, int width, int height, Seasons season) {
-    super(font, x, y, width, height, season.getSeasonName());
+    super(font, x, y, width, height, season.getSeasonNameTranslated());
     this.boxSeason = season;
     this.seasonColor = season.getSeasonColor();
     this.newSeasonColor = seasonColor;
@@ -98,8 +98,8 @@ public class ColorEditBox extends EditBox {
     int widgetTotalSize = ((80 + ColorScreen.BUTTON_PADDING) * seasonListSet().size());
     boolean seasonShort = (scaledWidth < widgetTotalSize);
 
-    MutableComponent seasonCombined =
-        CurrentSeason.getInstance(mc).getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
+    MutableComponent seasonCombined = CurrentSeason.getInstance(mc)
+        .getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
 
     graphics.pushPose();
     if ((mc.font.width(seasonCombined) > this.getWidth() - PADDING)) {

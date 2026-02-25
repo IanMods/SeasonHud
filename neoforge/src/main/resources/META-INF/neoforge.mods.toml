@@ -1,0 +1,62 @@
+modLoader = "javafml" #mandatory
+loaderVersion = "${neoforge_loader_version_range}" #mandatory
+
+license = "${license}"
+issueTrackerURL = "${issueTrackerURL}"
+
+[[mods]] #mandatory
+modId = "${mod_id}" #mandatory
+version = "${version}" #mandatory
+displayName = "${mod_name}" #mandatory
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/seasonhud"
+logoFile = "${mod_id}.png"
+authors = "${mod_author}" #optional
+description = '''
+${mod_description}
+'''
+
+[[mixins]]
+config = "${mod_id}.mixins.json"
+
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.${ mod_id }]] #optional
+modId = "neoforge"
+type = "required"
+versionRange = "${neoforge_version_range}" #mandatory
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "sereneseasons"
+type = "optional"
+versionRange = "[10.0.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "xaerominimap"
+type = "optional"
+versionRange = "[25.2.0,)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies.${ mod_id }]]
+modId = "journeymap"
+type = "optional"
+versionRange = "[1.21-6.0.0-beta.25,)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies.${ mod_id }]]
+modId = "ftbchunks"
+type = "optional"
+versionRange = "[2101.1.10,)"
+ordering = "AFTER"
+side = "CLIENT"

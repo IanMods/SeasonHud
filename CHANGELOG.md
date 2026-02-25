@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.0] - 2026-02-22
+
+### Changed
+
+- Large rewrite to hopefully make porting easier
+- (1.21+ Forge) Updated to use the default Forge overlay rendering, now that it actually exists
+- Biome fertility now only shows when it differs from the biome's default fertility (and is enabled in the config)
+
+### Added
+- Minimap Mods:
+  - Added Xaero's Better PVP support
+- Season Mods:
+  - Added Homeostatic Seasons support
+  - Added ProtoManly's Weather support
+- Added sub-season support for:
+  1. Fabric Seasons
+      - Fabric Season's default season length is 28, which is not evenly divisible to 3 sub-seasons
+          - The ingame config button is disabled if that is detected
+              - Also added a tooltip to suggest changing it to a number divisible by 3
+          - Also added a warning to the "showSubSeason" option in the config file
+  2. Ecliptic Seasons
+- Added a config option to replace the season name with the fertility value, when it differs from the biome's default
+- Added a server config option to override the Serene Seasons sub-season length used in the date calculations
+    - Used if the server owner changes the length, but the clients don't have the updated Serene Season config.
+
 ## [1.13.17] - 2026-01-01
 
 ### Changed
@@ -823,7 +848,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Added ability to change position of the season text when using Xaero's Minimap
-    - Minimap Menu ('Y' by default) -> Information Settings -> Info Display Manager
+    - Minimap Menu ('Y' by default) → Information Settings → Info Display Manager
 
 ## [1.4.19] - 2023-06-29
 
@@ -1024,6 +1049,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Due to some changes from 1.19.2 -> 1.19.3, I had to change to separate builds for each, rather
+- Due to some changes from 1.19.2 → 1.19.3, I had to change to separate builds for each, rather
   than a unified version
 - Fixed an issue with tropical season dates. Should be accurate now

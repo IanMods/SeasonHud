@@ -105,7 +105,7 @@ public class SeasonHudScreen extends Screen {
 
     cancelButton = MenuButton.builder(MenuButtons.CANCEL, press -> this.onClose())
         .withPos((this.width / 2) - (MenuButton.DEFAULT_WIDTH + BUTTON_PADDING),
-            (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
+                 (this.height - MenuButton.DEFAULT_HEIGHT - BUTTON_PADDING))
         .build();
 
     doneButton = MenuButton.builder(MenuButtons.DONE, press -> this.onDone())

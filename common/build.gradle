@@ -1,12 +1,159 @@
-architectury {
-    common enabled_platforms.split(',')
+plugins {
+    id 'multiloader-common'
+    id 'net.neoforged.moddev.legacyforge'
+}
+
+legacyForge {
+    mcpVersion = minecraft_version
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+}
+
+repositories {
+    mavenCentral()
+
+    maven {
+        name = 'Forge'
+        url = uri('https://maven.minecraftforge.net/releases')
+        content {
+            includeGroup "com.github.glitchfiend"
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "CurseMaven"
+                url = uri("https://cursemaven.com")
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth Maven"
+                url = uri("https://api.modrinth.com/maven")
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+    maven {
+        name = 'Sponge Maven'
+        url = uri("https://repo.spongepowered.org/repository/maven-public/")
+    }
+
+    maven {
+        name = "shedaniel Maven"
+        url = uri("https://maven.shedaniel.me/")
+        content {
+            includeGroup "me.shedaniel"
+            includeGroup "dev.architectury"
+            includeGroup "me.shedaniel.cloth"
+        }
+    }
+
+    maven {
+        name = "Xaero Maven"
+        url = uri("https://chocolateminecraft.com/maven")
+        content {
+            includeGroup "xaero.lib"
+            includeGroup "xaero.minimap"
+        }
+    }
+
+    maven {
+        name = "Journeymap API MAven"
+        url = uri("https://jm.gserv.me/repository/maven-public/")
+        content {
+            includeGroup "info.journeymap"
+        }
+    }
+
+    maven {
+        name = "Accessories Maven"
+        url = uri("https://maven.wispforest.io/releases")
+        content {
+            includeGroup "io.wispforest"
+            includeGroup "io.wispforest.endec"
+        }
+    }
+
+    maven {
+        name = "Forge Config API Port Maven"
+        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
+        content {
+            includeGroup "fuzs.forgeconfigapiport"
+        }
+    }
+
+    maven {
+        name = "FTB Maven"
+        url = uri("https://maven.ftb.dev/releases")
+        content {
+            includeGroup "dev.ftb.mods"
+        }
+    }
+
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+        content {
+            includeGroup "mezz.jei"
+        }
+    }
+
+    maven {
+        name = "ModMaven (Backup)"
+        url = uri("https://modmaven.dev/")
+    }
+
+    maven {
+        name = 'Forge'
+        url = uri('https://maven.minecraftforge.net/releases')
+        content {
+            includeGroup "com.github.glitchfiend"
+        }
+    }
+
+    maven {
+        name = "Homeostatic Seasons"
+        url = uri("https://raw.githubusercontent.com/wendall911/maven/main/")
+        content {
+            includeGroup "com.github.wendall911.climatesettings"
+            includeGroup "com.github.wendall911.homeostaticseasons"
+            includeGroup "technology.roughness.whitenoise"
+        }
+    }
+
+    maven {
+        name = "ModMaven (Backup)"
+        url = uri("https://modmaven.dev/")
+    }
 }
 
 dependencies {
-    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
-    // which get remapped to the correct annotations on each platform.
-    // Do NOT use other classes from Fabric Loader.
-    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    compileOnly group: 'org.spongepowered', name: 'mixin', version: project.mixin_version
+
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+    implementation "org.ow2.asm:asm-tree:9.5"
+    implementation "org.ow2.asm:asm-commons:9.5"
+    implementation "org.ow2.asm:asm-util:9.5"
+
+    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
 
     // Config Mod
     implementation 'com.electronwill.night-config:core:3.6.3'
@@ -14,27 +161,53 @@ dependencies {
     compileOnly "net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
 
     //Season Mods
-    // Not used in common unless they are actually  loaded.
     modCompileOnly "maven.modrinth:serene-seasons:${project.serene_seasons_version}-forge"
-    modCompileOnly "maven.modrinth:fabric-seasons:${project.fabric_seasons_version}"
-    modCompileOnly "maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}"
-    modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
-    modCompileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually  loaded.
-    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.19.1"
-    modCompileOnly "xaero.lib:xaerolib-common-1.19.1:${project.xaero_lib_version}"
-    modCompileOnly "dev.ftb.mods:ftb-library:${project.ftb_library_version}"
-    modCompileOnly "dev.ftb.mods:ftb-teams:${project.ftb_teams_version}"
-    modCompileOnly "dev.ftb.mods:ftb-chunks:${project.ftb_chunks_version}"
+    modCompileOnly "xaero.minimap:xaerominimap-common-${project.minecraft_version}:${project.xaero_minimap_version}"
+    modCompileOnly "xaero.lib:xaerolib-common-${project.minecraft_version}:${project.xaero_lib_version}"
+    modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
+    modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
+    modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
+    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
+        changing = true
+    }
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
-    modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
+    compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version}"
+}
 
-    // Accessory Mods
-    // Not used in common unless they are actually  loaded.
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
-    modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
-    modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}"
+configurations {
+    commonJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonResources {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    commonJava sourceSets.main.java.sourceDirectories.singleFile
+    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+}
+
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+    configurations.named("$variant") {
+        attributes {
+            attribute(loaderAttribute, 'common')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
+        configurations.named("$variant") {
+            attributes {
+                attribute(loaderAttribute, 'common')
+            }
+        }
+    }
 }
