@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.forge.client.overlays;
 
 import club.iananderson.seasonhud.client.overlays.JourneyMapCommon;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import com.mojang.blaze3d.vertex.PoseStack;
 import journeymap.client.render.draw.DrawUtil;
 import net.minecraft.client.Minecraft;
@@ -18,7 +18,9 @@ public class JourneyMap implements IIngameOverlay {
 
   @Override
   public void render(ForgeIngameGui gui, PoseStack graphics, float partialTick, int scaledWidth, int scaledHeight) {
-    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(Minimap.JOURNEYMAP)) {
+    Minecraft mc = Minecraft.getInstance();
+
+    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
       JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
 
       graphics.pushPose();

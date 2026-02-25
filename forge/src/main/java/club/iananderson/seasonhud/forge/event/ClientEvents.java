@@ -3,12 +3,12 @@ package club.iananderson.seasonhud.forge.event;
 import static net.minecraftforge.client.gui.ForgeIngameGui.FROSTBITE_ELEMENT;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.SeasonHudClientCommon;
 import club.iananderson.seasonhud.client.KeyBindings;
-import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.MapAtlases;
 import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
@@ -24,9 +24,7 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onKeyInput(InputEvent.KeyInputEvent event) {
-      if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
-        MainConfigScreen.getInstance().open();
-      }
+      SeasonHudClientCommon.optionsKeyInput();
     }
   }
 

@@ -8,7 +8,7 @@ import club.iananderson.seasonhud.client.gui.components.sliders.rgb.GreenSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.RedSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.rgb.RgbSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,22 +103,25 @@ public class ColorScreen extends SeasonHudScreen {
     y -= (greenSlider.getHeight() + redSlider.getHeight() + RgbSlider.SLIDER_PADDING + buttonHeight
         + RgbSlider.SLIDER_PADDING);
 
+    @SuppressWarnings("checkstyle:Indentation")
     DefaultColorButton defaultButton = DefaultColorButton.builder(colorBox, press -> {
-      int defaultColorInt = season.getDefaultColor();
+          int defaultColorInt = season.getDefaultColor();
 
-      if (colorBox.getNewColor() != defaultColorInt) {
-        int r = Rgb.red(defaultColorInt);
-        int g = Rgb.green(defaultColorInt);
-        int b = Rgb.blue(defaultColorInt);
+          if (colorBox.getNewColor() != defaultColorInt) {
+            int r = Rgb.red(defaultColorInt);
+            int g = Rgb.green(defaultColorInt);
+            int b = Rgb.blue(defaultColorInt);
 
-        redSlider.setValue(r);
-        greenSlider.setValue(g);
-        blueSlider.setValue(b);
-        colorBox.setValue(String.valueOf(defaultColorInt));
+            redSlider.setValue(r);
+            greenSlider.setValue(g);
+            blueSlider.setValue(b);
+            colorBox.setValue(String.valueOf(defaultColorInt));
 
-        Rgb.setRgb(season, defaultColorInt);
-      }
-    }).withPos(x, y).build();
+            Rgb.setRgb(season, defaultColorInt);
+          }
+        })
+        .withPos(x, y)
+        .build();
 
     seasonBoxes.add(colorBox);
 
@@ -144,7 +147,7 @@ public class ColorScreen extends SeasonHudScreen {
     CycleButton<Boolean> seasonColorButton = CycleButton.onOffBuilder(SeasonHudClient.getEnableSeasonNameColor())
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.color.enableSeasonNameColor.tooltip"))
         .create(leftButtonX, MENU_PADDING, buttonWidth, buttonHeight,
-            Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
+                Common.translatedText("menu.seasonhud.color.enableSeasonNameColor.button"), (b, val) -> {
               SeasonHudClient.setEnableSeasonNameColor(val);
               rebuildWidgets();
             });

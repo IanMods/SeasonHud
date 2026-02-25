@@ -3,16 +3,16 @@ package club.iananderson.seasonhud.client.gui.components.boxes;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.ColorScreen;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.EnumSet;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.MutableComponent;
-import org.jetbrains.annotations.NotNull;
 
 public class ColorEditBox extends EditBox {
   private static final int PADDING = 4;
@@ -21,7 +21,7 @@ public class ColorEditBox extends EditBox {
   private int newSeasonColor;
 
   public ColorEditBox(Font font, int x, int y, int width, int height, Seasons season) {
-    super(font, x, y, width, height, season.getSeasonName());
+    super(font, x, y, width, height, season.getSeasonNameTranslated());
     this.boxSeason = season;
     this.seasonColor = season.getSeasonColor();
     this.newSeasonColor = seasonColor;
@@ -91,15 +91,15 @@ public class ColorEditBox extends EditBox {
   }
 
   @Override
-  public void render(@NotNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     Minecraft mc = Minecraft.getInstance();
     float textScale = 1;
     int scaledWidth = mc.getWindow().getGuiScaledWidth();
     int widgetTotalSize = ((80 + ColorScreen.BUTTON_PADDING) * seasonListSet().size());
     boolean seasonShort = (scaledWidth < widgetTotalSize);
 
-    MutableComponent seasonCombined =
-        CurrentSeason.getInstance(mc).getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
+    MutableComponent seasonCombined = CurrentSeason.getInstance(mc)
+        .getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
 
     graphics.pushPose();
     if ((mc.font.width(seasonCombined) > this.getWidth() - PADDING)) {

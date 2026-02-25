@@ -12,7 +12,7 @@ displayURL = "https://www.curseforge.com/minecraft/mc-mods/seasonhud"
 logoFile = "${mod_id}.png"
 authors = "${mod_author}" #optional
 description = '''
-${description}
+${mod_description}
 '''
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.

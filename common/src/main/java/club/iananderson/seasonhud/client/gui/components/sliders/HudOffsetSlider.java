@@ -3,13 +3,13 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.CycleButton.TooltipSupplier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
 
 public class HudOffsetSlider extends BasicSlider {
   protected final Component prefix;
@@ -37,7 +37,7 @@ public class HudOffsetSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@NotNull PoseStack graphics, @NotNull Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 
@@ -122,9 +122,8 @@ public class HudOffsetSlider extends BasicSlider {
     }
 
     public HudOffsetSlider build() {
-      HudOffsetSlider slider =
-          new HudOffsetSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial, this.minValue,
-              this.maxValue, this.defaultValue,
+      HudOffsetSlider slider = new HudOffsetSlider(this.posX, this.posY, this.width, this.height, this.prefix,
+                                                   this.initial, this.minValue, this.maxValue, this.defaultValue,
                                                    this.tooltipSupplier);
       return slider;
     }

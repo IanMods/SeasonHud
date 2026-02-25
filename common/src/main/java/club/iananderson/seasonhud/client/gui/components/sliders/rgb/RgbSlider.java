@@ -4,14 +4,14 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.Seasons;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
+import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
 
 public class RgbSlider extends BasicSlider {
   public static final int SLIDER_PADDING = 2;
@@ -25,7 +25,7 @@ public class RgbSlider extends BasicSlider {
 
   public RgbSlider(int x, int y, int initial, ColorEditBox seasonBox, ChatFormatting textColor) {
     super(x, y, seasonBox.getWidth() + 2, seasonBox.getHeight() - 6, true, initial, 0, 255,
-        seasonBox.getSeason().getDefaultColor(), textColor);
+          seasonBox.getSeason().getDefaultColor(), textColor);
     this.seasonBox = seasonBox;
     this.season = seasonBox.getSeason();
     this.rgb = Integer.parseInt(seasonBox.getValue());
@@ -50,7 +50,7 @@ public class RgbSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@NotNull PoseStack graphics, Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@Nonnull PoseStack graphics, Minecraft mc, int mouseX, int mouseY) {
     if (!enableColor) {
       this.active = false;
       this.isHovered = false;

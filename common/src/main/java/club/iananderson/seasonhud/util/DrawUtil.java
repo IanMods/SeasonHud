@@ -14,6 +14,7 @@ public class DrawUtil {
   public static void blitWithBorder(PoseStack graphics, GuiComponent guiComponent, ResourceLocation texture, int x,
       int y, int u, int v, int width, int height, int textureWidth, int textureHeight, int topBorder, int bottomBorder,
       int leftBorder, int rightBorder) {
+    RenderSystem.setShaderTexture(0, texture);
     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     RenderSystem.enableBlend();
     RenderSystem.defaultBlendFunc();
@@ -37,49 +38,50 @@ public class DrawUtil {
     for (i = 0; i < passesX + (remainderWidth > 0
                                ? 1
                                : 0); ++i) {
-      guiComponent.blit(graphics, x + leftBorder + i * fillerWidth, y, u + leftBorder, v,
-                        i == passesX
-                                                                                     ? remainderWidth
-                                                                                     : fillerWidth, topBorder);
+      guiComponent.blit(graphics, x + leftBorder + i * fillerWidth, y, u + leftBorder, v, i == passesX
+                                                                                          ? remainderWidth
+                                                                                          : fillerWidth, topBorder);
       guiComponent.blit(graphics, x + leftBorder + i * fillerWidth, y + topBorder + canvasHeight, u + leftBorder,
                         v + topBorder + fillerHeight, i == passesX
-                                        ? remainderWidth
-                                        : fillerWidth, bottomBorder);
+                                                      ? remainderWidth
+                                                      : fillerWidth, bottomBorder);
 
       for (int j = 0; j < passesY + (remainderHeight > 0
                                      ? 1
                                      : 0); ++j) {
         guiComponent.blit(graphics, x + leftBorder + i * fillerWidth, y + topBorder + j * fillerHeight, u + leftBorder,
-                          v + topBorder, i == passesX ? remainderWidth : fillerWidth,
-                          j == passesY
-                                          ? remainderHeight
-                                          : fillerHeight);
+                          v + topBorder, i == passesX
+                                         ? remainderWidth
+                                         : fillerWidth, j == passesY
+                                                        ? remainderHeight
+                                                        : fillerHeight);
       }
     }
 
     for (i = 0; i < passesY + (remainderHeight > 0
                                ? 1
                                : 0); ++i) {
-      guiComponent.blit(graphics, x, y + topBorder + i * fillerHeight, u, v + topBorder, leftBorder,
-                        i == passesY
-                                                                                                ? remainderHeight
-                                                                                                : fillerHeight);
+      guiComponent.blit(graphics, x, y + topBorder + i * fillerHeight, u, v + topBorder, leftBorder, i == passesY
+                                                                                                     ? remainderHeight
+                                                                                                     : fillerHeight);
       guiComponent.blit(graphics, x + leftBorder + canvasWidth, y + topBorder + i * fillerHeight,
-                        u + leftBorder + fillerWidth, v + topBorder, rightBorder,
-                        i == passesY
-                                                                    ? remainderHeight
-                                                                    : fillerHeight);
+                        u + leftBorder + fillerWidth, v + topBorder, rightBorder, i == passesY
+                                                                                  ? remainderHeight
+                                                                                  : fillerHeight);
     }
 
   }
 
+  // for 1.18
+  @SuppressWarnings({"unused"})
   public static void blitWithBorder(PoseStack graphics, GuiComponent guiComponent, ResourceLocation texture, int x,
       int y, int u, int v, int width, int height, int textureWidth, int textureHeight, int borderSize) {
     blitWithBorder(graphics, guiComponent, texture, x, y, u, v, width, height, textureWidth, textureHeight, borderSize,
-        borderSize, borderSize, borderSize);
+                   borderSize, borderSize, borderSize);
   }
 
-  // 1.18
+  // for 1.18
+  @SuppressWarnings({"unused"})
   public static void enableScissor(int i, int j, int k, int l) {
     Window window = Minecraft.getInstance().getWindow();
     int height = window.getHeight();
@@ -91,7 +93,8 @@ public class DrawUtil {
     RenderSystem.enableScissor((int) e, (int) f, Math.max(0, (int) g), Math.max(0, (int) h));
   }
 
-  // 1.18
+  // for 1.18
+  @SuppressWarnings({"unused"})
   public static void disableScissor() {
     RenderSystem.disableScissor();
   }
