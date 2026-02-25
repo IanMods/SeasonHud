@@ -10,10 +10,11 @@ import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
-import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Locale;
 import java.util.Optional;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -33,7 +34,7 @@ public class FabricSeasonHelper implements SeasonHelper {
   @Override
   public Optional<Item> fabricSeasonsCalendar() {
     if (Common.fabricSeasonsExtrasLoaded()) {
-      return Optional.of(FabricSeasonsExtras.SEASON_CALENDAR_ITEM);
+      return Optional.of(Registry.ITEM.get(new ResourceLocation("seasons", "season_calendar")));
     }
     return Optional.empty();
   }
@@ -71,12 +72,27 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public int currentFabricSeasonLength(Player player) {
-    return FabricSeasons.getCurrentSeason(player.level).getSeasonLength();
+    return FabricSeasons.CONFIG.getSeasonLength();
   }
 
   @Override
   public long timeToNextFabricSeason(Player player) {
-    return FabricSeasons.getTimeToNextSeason(player.level);
+    int yearLength = FabricSeasons.CONFIG.getSeasonLength() * 4;
+
+    long springTime = player.level.getDayTime() % (long) yearLength;
+    long summerTime = springTime - (long) FabricSeasons.CONFIG.getSeasonLength();
+    long fallTime = summerTime - (long) FabricSeasons.CONFIG.getSeasonLength();
+    long winterTime = fallTime - (long) FabricSeasons.CONFIG.getSeasonLength();
+    long seasonTime;
+    switch (FabricSeasons.getCurrentSeason(player.level)) {
+      case SPRING -> seasonTime = springTime;
+      case SUMMER -> seasonTime = summerTime;
+      case FALL -> seasonTime = fallTime;
+      case WINTER -> seasonTime = winterTime;
+      default -> throw new IncompatibleClassChangeError();
+    }
+
+    return currentFabricSeasonLength(player) - seasonTime;
   }
 
   // SereneSeasons

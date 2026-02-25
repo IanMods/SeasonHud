@@ -38,7 +38,7 @@ public class FtbChunksClientMixin {
 
     SeasonHudClient.setEnableMod(MINIMAP_SEASON.get());
 
-    if (CurrentMinimap.shouldDrawMinimapHud(MinimapMods.FTB_CHUNKS, mc)) {
+    if (CurrentMinimap.shouldDrawMinimapHud(MinimapMods.FTB_CHUNKS, Minecraft.getInstance())) {
       MINIMAP_TEXT_LIST.add(seasonCombined);
       if (SeasonHudClient.getShowFertility()) {
         MINIMAP_TEXT_LIST.add(fertility);

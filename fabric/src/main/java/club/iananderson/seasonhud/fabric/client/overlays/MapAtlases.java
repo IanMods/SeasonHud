@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.fabric.client.overlays;
 
 import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -26,30 +26,24 @@ public class MapAtlases implements HudRenderCallback {
     if (CurrentMinimap.mapAtlasesLoaded()) {
       if (mc.player == null) {
         return false;
-      }
-      else if (MapAtlasesMod.CONFIG != null && !MapAtlasesMod.CONFIG.drawMiniMapHUD) {
+      } else if (MapAtlasesMod.CONFIG != null && !MapAtlasesMod.CONFIG.drawMiniMapHUD) {
         return false;
-      }
-      else if (mc.options.renderDebug) {
+      } else if (mc.options.renderDebug) {
         return false;
-      }
-      else {
+      } else {
         ItemStack atlas = MapAtlasesAccessUtils.getAtlasFromPlayerByConfig(mc.player);
         if (atlas.isEmpty()) {
           return false;
-        }
-        else if (MapAtlasesClient.currentMapStateId == null) {
+        } else if (MapAtlasesClient.currentMapStateId == null) {
           return false;
-        }
-        else {
+        } else {
           return atlas.getTag() != null && atlas.getTag().contains("maps") && Arrays.stream(
               atlas.getTag().getIntArray("maps")).anyMatch((i) -> {
             return i == MapAtlasesAccessUtils.getMapIntFromString(MapAtlasesClient.currentMapStateId);
           });
         }
       }
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -68,8 +62,12 @@ public class MapAtlases implements HudRenderCallback {
         if (MapAtlasesMod.CONFIG != null) {
           anchorLocation = MapAtlasesMod.CONFIG.miniMapAnchoring;
         }
-        int x = anchorLocation.contains("Left") ? 0 : mc.getWindow().getGuiScaledWidth() - mapBgScaledSize;
-        int y = anchorLocation.contains("Lower") ? mc.getWindow().getGuiScaledHeight() - mapBgScaledSize : 0;
+        int x = anchorLocation.contains("Left")
+                ? 0
+                : mc.getWindow().getGuiScaledWidth() - mapBgScaledSize;
+        int y = anchorLocation.contains("Lower")
+                ? mc.getWindow().getGuiScaledHeight() - mapBgScaledSize
+                : 0;
         if (MapAtlasesMod.CONFIG != null) {
           x += MapAtlasesMod.CONFIG.miniMapHorizontalOffset;
           y += MapAtlasesMod.CONFIG.miniMapVerticalOffset;
@@ -90,8 +88,7 @@ public class MapAtlases implements HudRenderCallback {
 
           if (hasNegative && y < 2 * textHeightOffset) {
             y += 2 * textHeightOffset - y;
-          }
-          else if (hasBeneficial && y < textHeightOffset) {
+          } else if (hasBeneficial && y < textHeightOffset) {
             y += textHeightOffset - y;
           }
         }

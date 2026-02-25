@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.forge.client.overlays;
 
 import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import lilypuree.mapatlases.MapAtlasesMod;
 import lilypuree.mapatlases.util.MapAtlasesAccessUtils;
@@ -30,12 +30,10 @@ public class MapAtlases implements IIngameOverlay {
 
       if (!mapAtlasesConfig) {
         return false;
-      }
-      else {
+      } else {
         return !mc.options.renderDebug && atlas.getCount() > 0;
       }
-    }
-    else {
+    } else {
       return false;
     }
   }
