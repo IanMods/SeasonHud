@@ -3,10 +3,13 @@ package club.iananderson.seasonhud.client.overlays;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.Calendar;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
+import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.MutableComponent;
 
@@ -14,11 +17,11 @@ public class SeasonHudOverlayCommon {
   private SeasonHudOverlayCommon() {
   }
 
-  public static void render(PoseStack graphics) {
+  public static void render(@Nonnull PoseStack graphics) {
     Minecraft mc = Minecraft.getInstance();
 
-    if (Common.drawDefaultHud() && Common.vanillaShouldDrawHud() && Calendar.validNeedCalendar()
-        && !Common.hideHudInCurrentDimension()) {
+    if (Common.drawDefaultHud(mc) && Common.vanillaShouldDrawHud(mc) && Calendar.validNeedCalendar(mc.player)
+        && !Common.hideHudInCurrentDimension(mc)) {
       int screenWidth = mc.getWindow().getGuiScaledWidth();
       int screenHeight = mc.getWindow().getGuiScaledHeight();
       //    int iconWidth = 9;
@@ -72,12 +75,17 @@ public class SeasonHudOverlayCommon {
       graphics.pushPose();
       graphics.scale((float) scale, (float) scale, 1F);
       mc.font.drawShadow(graphics, seasonCombined, x, y, 0xffffff);
-      if (SeasonHudClient.getShowFertility()) {
+      if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
         MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
 
         y += stringHeight;
         mc.font.drawShadow(graphics, fertility, x, y, 0xffffff);
       }
+
+      if (Services.PLATFORM.isDevelopmentEnvironment()) {
+        CommonSeasonHelper.commonSeasons.getHelper().debugHud(graphics);
+      }
+
       graphics.popPose();
     }
   }

@@ -1,12 +1,12 @@
 package club.iananderson.seasonhud.forge.event;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.SeasonHudClientCommon;
 import club.iananderson.seasonhud.client.KeyBindings;
-import club.iananderson.seasonhud.client.gui.screens.MainConfigScreen;
 import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.MapAtlases;
 import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
@@ -17,10 +17,12 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+import static net.minecraftforge.client.gui.ForgeIngameGui.FROSTBITE_ELEMENT;
+
 public class ClientEvents {
 
-  @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
-  public static class ClientForgeEvents {
+	@Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
+	public static class ClientForgeEvents {
     @SubscribeEvent
     public static void renderSeasonHUDOverlay(RenderGameOverlayEvent.Post event) {
       if (event.getType() == ElementType.ALL) {
@@ -41,13 +43,11 @@ public class ClientEvents {
       }
     }
 
-    @SubscribeEvent
-    public static void onKeyInput(InputEvent.KeyInputEvent event) {
-      if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
-        MainConfigScreen.getInstance().open();
-      }
-    }
-  }
+		@SubscribeEvent
+		public static void onKeyInput(InputEvent.KeyInputEvent event) {
+			SeasonHudClientCommon.optionsKeyInput();
+		}
+	}
 
   @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModBusEvents {

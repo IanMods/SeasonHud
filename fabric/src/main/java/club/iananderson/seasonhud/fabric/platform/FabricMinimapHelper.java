@@ -1,34 +1,58 @@
 package club.iananderson.seasonhud.fabric.platform;
 
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
+import journeymap.client.properties.MiniMapProperties;
+import journeymap.client.ui.UIManager;
+import journeymap.client.ui.dialog.MinimapOptions;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import pepjebs.mapatlases.MapAtlasesMod;
 import pepjebs.mapatlases.utils.MapAtlasesAccessUtils;
+import xaero.common.HudMod;
+import xaero.lib.client.gui.ScreenBase;
 
 public class FabricMinimapHelper implements MinimapHelper {
   // Needed for older versions. Makes it easier to port.
   @Override
-  public boolean hideMapAtlases() {
-    if (CurrentMinimap.mapAtlasesLoaded()) {
-      Minecraft mc = Minecraft.getInstance();
+  public boolean hideMapAtlases(Minecraft mc) {
+    if (mc.level == null || mc.player == null || mc.player.level.dimension() != Level.OVERWORLD) {
+      return true;
+    }
 
-      if (mc.level == null || mc.player == null || mc.player.level.dimension() != Level.OVERWORLD) {
-        return true;
-      }
-
-      ItemStack atlas = MapAtlasesAccessUtils.getAtlasFromPlayerByConfig(mc.player.inventory);
+    ItemStack atlas = MapAtlasesAccessUtils.getAtlasFromPlayerByConfig(mc.player.inventory);
 
       boolean drawMinimapHud = MapAtlasesMod.CONFIG.drawMiniMapHUD;
 
-      boolean hasAtlas = atlas.getCount() > 0;
+    boolean hasAtlas = atlas.getCount() > 0;
 
-      return !drawMinimapHud || !hasAtlas;
-    } else {
-      return false;
+    return !drawMinimapHud || !hasAtlas;
+  }
+
+  @Override
+  public boolean hideJourneyMap(Minecraft mc) {
+    if (mc.level == null || mc.player == null) {
+      return true;
     }
+
+    MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
+
+    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
+        mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+  }
+
+  @Override
+  public boolean hideXaero(Minecraft mc) {
+    if (mc.level == null || mc.player == null) {
+      return true;
+    }
+
+    boolean minimapDisplayed = HudMod.INSTANCE.getSettings().getMinimap();
+
+    return !minimapDisplayed || mc.options.renderDebug || !(mc.screen == null || mc.screen instanceof ChatScreen
+        || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
   }
 
   @Override

@@ -3,10 +3,10 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.function.Supplier;
+import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import org.jetbrains.annotations.NotNull;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
@@ -34,7 +34,7 @@ public class HudScaleSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@NotNull PoseStack graphics, @NotNull Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 
@@ -54,28 +54,6 @@ public class HudScaleSlider extends BasicSlider {
 
     public Builder(Component prefix) {
       this.prefix = prefix;
-    }
-
-    /**
-     * Uses default width = 180 and height = 20.
-     *
-     * @param x The horizontal position of the slider
-     * @param y The vertical position of the slider
-     */
-    public HudScaleSlider.Builder withPos(int x, int y) {
-      this.posX = x;
-      this.posY = y;
-      return this;
-    }
-
-    /**
-     * Uses default height = 20.
-     *
-     * @param width The width of the slider
-     */
-    public HudScaleSlider.Builder withWidth(int width) {
-      this.width = width;
-      return this;
     }
 
     public HudScaleSlider.Builder withBounds(int x, int y, int width, int height) {
@@ -123,9 +101,9 @@ public class HudScaleSlider extends BasicSlider {
     }
 
     public HudScaleSlider build() {
-      HudScaleSlider slider =
-          new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix, this.initial, this.minValue,
-              this.maxValue, this.defaultValue, this.stepSize, this.precision, this.tooltipSupplier);
+      HudScaleSlider slider = new HudScaleSlider(this.posX, this.posY, this.width, this.height, this.prefix,
+                                                 this.initial, this.minValue, this.maxValue, this.defaultValue,
+                                                 this.stepSize, this.precision, this.tooltipSupplier);
       return slider;
     }
   }

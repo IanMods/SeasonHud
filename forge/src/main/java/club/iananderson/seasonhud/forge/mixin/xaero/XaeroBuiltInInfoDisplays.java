@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.forge.mixin.xaero;
 
-import club.iananderson.seasonhud.forge.impl.minimaps.XaeroInfoDisplays;
+import club.iananderson.seasonhud.forge.impl.minimap.mods.xaero.XaeroInfoDisplays;
 import java.util.List;
 import java.util.Objects;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +20,7 @@ public class XaeroBuiltInInfoDisplays {
 
   private static void injected(CallbackInfo ci) {
     Objects.requireNonNull(ALL);
-    XaeroInfoDisplays.SEASON = XaeroInfoDisplays.SEASON_INFO_BUILDER.setDestination(ALL::add).build();
+    XaeroInfoDisplays.SEASON = XaeroInfoDisplays.SEASON_INFO_BUILDER.setDestination(ALL::add)
+        .build();
   }
 }

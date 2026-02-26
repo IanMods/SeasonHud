@@ -50,6 +50,17 @@ public class ForgePlatformHelper implements PlatformHelper {
   }
 
   @Override
+  public String getModName(String modId) {
+    Optional<? extends ModContainer> mod = ModList.get().getModContainerById(modId);
+
+    if (mod.isPresent()) {
+      return mod.get().getModInfo().getDisplayName();
+    } else {
+      return "Not Loaded";
+    }
+  }
+
+  @Override
   public boolean isDevelopmentEnvironment() {
     return !FMLLoader.isProduction();
   }

@@ -1,9 +1,8 @@
 package club.iananderson.seasonhud.forge.client.overlays;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
 import journeymap.client.JourneymapClient;
 import journeymap.client.io.ThemeLoader;
@@ -22,6 +21,7 @@ public class JourneyMapCommon {
   private final Component seasonCombined;
   private final Component fertility;
   private final Font fontRenderer;
+  private final Minecraft mc;
   private final boolean fontShadow;
   private final float fontScale;
   private final float labelAlpha;
@@ -42,6 +42,7 @@ public class JourneyMapCommon {
   private double screenHeight;
 
   public JourneyMapCommon(Minecraft mc) {
+    this.mc = mc;
     this.fontRenderer = mc.font;
     this.seasonCombined = CurrentSeason.getInstance(mc).getHudText();
     this.fertility = CurrentFertility.getInstance(mc).getMinimapText();
@@ -63,11 +64,11 @@ public class JourneyMapCommon {
     this.labelHeight = (int) ((DrawUtil.getLabelHeight(fontRenderer, fontShadow) + currentTheme.margin) * fontScale);
     MiniMapProperties mapProperties = jm.getActiveMiniMapProperties();
     this.topLabelHeight = vars.getInfoLabelAreaHeight(fontRenderer, currentTheme,
-        ThemeLabelSource.values.get(mapProperties.info1Label.get()),
-        ThemeLabelSource.values.get(mapProperties.info2Label.get()));
+                                                      ThemeLabelSource.values.get(mapProperties.info1Label.get()),
+                                                      ThemeLabelSource.values.get(mapProperties.info2Label.get()));
     this.bottomLabelHeight = vars.getInfoLabelAreaHeight(fontRenderer, currentTheme,
-        ThemeLabelSource.values.get(mapProperties.info3Label.get()),
-        ThemeLabelSource.values.get(mapProperties.info4Label.get()));
+                                                         ThemeLabelSource.values.get(mapProperties.info3Label.get()),
+                                                         ThemeLabelSource.values.get(mapProperties.info4Label.get()));
     this.screenWidth = mc.getWindow().getWidth();
     this.screenHeight = mc.getWindow().getHeight();
     if (SeasonHudClient.getJourneyMapMacOs()) {
@@ -116,7 +117,7 @@ public class JourneyMapCommon {
     buffers.endBatch();
     DrawUtil.drawLabel(graphics, seasonCombined, labelX(), labelY(), DrawUtil.HAlign.Center, DrawUtil.VAlign.Below,
                        labelColor, labelAlpha, textColor, textAlpha, fontScale, fontShadow);
-    if (Common.sereneSeasonsLoaded() && SeasonHudClient.getShowFertility()) {
+    if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
       DrawUtil.drawLabel(graphics, fertility, labelX(), labelY() + (fontRenderer.lineHeight * fontScale) + margin,
                          DrawUtil.HAlign.Center, DrawUtil.VAlign.Below, labelColor, labelAlpha, textColor, textAlpha,
                          fontScale, fontShadow);

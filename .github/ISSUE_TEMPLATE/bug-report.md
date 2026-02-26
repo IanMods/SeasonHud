@@ -19,11 +19,11 @@ assignees: ''
 
 - .
 
-**Modloader(Fabric/Forge/NeoForge)**
+**ModLoader(Fabric/Forge/NeoForge)**
 
 - .
 
-**Modloader Version**
+**ModLoader Version**
 
 - .
 
