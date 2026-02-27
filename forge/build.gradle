@@ -408,7 +408,7 @@ publishMods {
             modLoaders.add("neoforge")
         }
 
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("serene-seasons", "terrafirmacraft")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
         optional("curios", "accessories")
     }
