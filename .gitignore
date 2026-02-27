@@ -17,6 +17,7 @@ out
 *.iws
 *.iml
 .idea/*
+!/.idea/modules.xml
 !/.idea/modules/
 !/.idea/modules/common/*
 !/.idea/modules/fabric/*

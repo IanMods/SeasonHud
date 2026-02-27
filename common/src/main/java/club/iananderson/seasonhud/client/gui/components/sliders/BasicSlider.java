@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.util.DrawUtil;
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.text.DecimalFormat;
 import java.util.Objects;
@@ -213,7 +212,7 @@ public class BasicSlider extends AbstractSliderButton {
   @Override
   public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
     if (this.active && this.visible) {
-      if (mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+      if (mouseButton == GLFW.GLFW_MOUSE_BUTTON_2) {
         this.playDownSound(Minecraft.getInstance().getSoundManager());
         this.onRightClick();
       }
