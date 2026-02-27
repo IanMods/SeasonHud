@@ -22,7 +22,7 @@ public class ClientEvents {
   @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
   public static class ClientForgeEvents {
     @SubscribeEvent
-    public static void renderSeasonHUDOverlay(RenderGameOverlayEvent.Post event) {
+    public static void renderSeasonHudOverlay(RenderGameOverlayEvent.Post event) {
       if (event.getType() == ElementType.ALL) {
         PoseStack graphics = event.getMatrixStack();
 

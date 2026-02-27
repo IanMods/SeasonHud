@@ -29,7 +29,7 @@ public class Calendar {
   }
 
   public static ItemStack calendarStack() {
-    if (Calendar.calendar().isEmpty()) {
+    if (!Calendar.calendar().isPresent()) {
       return null;
     }
 
@@ -68,7 +68,7 @@ public class Calendar {
       return false;
     }
 
-    if (Calendar.calendar().isEmpty()) {
+    if (!Calendar.calendar().isPresent()) {
       return true;
     }
 

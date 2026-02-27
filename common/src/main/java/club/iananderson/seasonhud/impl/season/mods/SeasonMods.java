@@ -8,6 +8,7 @@ import club.iananderson.seasonhud.impl.season.mods.sereneseasons.SereneSeasonsHe
 import club.iananderson.seasonhud.impl.season.mods.terrafirmacraft.TerrafirmaCraftHelper;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public enum SeasonMods {
@@ -34,7 +35,7 @@ public enum SeasonMods {
   }
 
   public static List<SeasonMods> getLoaded() {
-    List<SeasonMods> values = new ArrayList<>(List.of(SeasonMods.values()));
+    List<SeasonMods> values = Arrays.asList(SeasonMods.values());
     List<SeasonMods> loaded = new ArrayList<>();
 
     values.forEach(seasonMod -> {

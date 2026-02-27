@@ -70,19 +70,44 @@ public enum Months {
   public Months opposite() {
     Months month;
     switch (this.ordinal()) {
-      case 1 -> month = JULY;
-      case 2 -> month = AUGUST;
-      case 3 -> month = SEPTEMBER;
-      case 4 -> month = OCTOBER;
-      case 5 -> month = NOVEMBER;
-      case 6 -> month = DECEMBER;
-      case 7 -> month = JANUARY;
-      case 8 -> month = FEBRUARY;
-      case 9 -> month = MARCH;
-      case 10 -> month = APRIL;
-      case 11 -> month = MAY;
-      case 12 -> month = JUNE;
-      default -> throw new IllegalStateException("Unexpected value: " + this.ordinal());
+      case 1:
+        month = JULY;
+        break;
+      case 2:
+        month = AUGUST;
+        break;
+      case 3:
+        month = SEPTEMBER;
+        break;
+      case 4:
+        month = OCTOBER;
+        break;
+      case 5:
+        month = NOVEMBER;
+        break;
+      case 6:
+        month = DECEMBER;
+        break;
+      case 7:
+        month = JANUARY;
+        break;
+      case 8:
+        month = FEBRUARY;
+        break;
+      case 9:
+        month = MARCH;
+        break;
+      case 10:
+        month = APRIL;
+        break;
+      case 11:
+        month = MAY;
+        break;
+      case 12:
+        month = JUNE;
+        break;
+      default:
+        throw new IllegalStateException("Unexpected value: " + this.ordinal());
     }
 
     return month;

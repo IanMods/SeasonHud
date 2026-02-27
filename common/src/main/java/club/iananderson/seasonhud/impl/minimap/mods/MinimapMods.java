@@ -2,6 +2,7 @@ package club.iananderson.seasonhud.impl.minimap.mods;
 
 import club.iananderson.seasonhud.platform.Services;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public enum MinimapMods {
@@ -26,7 +27,7 @@ public enum MinimapMods {
   }
 
   public static List<MinimapMods> getLoaded() {
-    List<MinimapMods> values = new ArrayList<>(List.of(MinimapMods.values()));
+    List<MinimapMods> values = Arrays.asList(MinimapMods.values());
     List<MinimapMods> loaded = new ArrayList<>();
 
     values.forEach(minimaps -> {

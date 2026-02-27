@@ -49,21 +49,18 @@ public class CurrentMinimap {
    */
   public static boolean hiddenMinimap(MinimapMods minimap, Minecraft mc) {
     switch (minimap) {
-      case JOURNEYMAP -> {
+      case JOURNEYMAP:
         return Services.MINIMAP.hideJourneyMap(mc);
-      }
-      case FTB_CHUNKS -> {
+      case FTB_CHUNKS:
         return !FTBChunksClientConfig.MINIMAP_ENABLED.get() || mc.options.renderDebug;
-      }
-      case XAERO, XAERO_FAIRPLAY, XAERO_BETTER_PVP -> {
+      case XAERO:
+      case XAERO_FAIRPLAY:
+      case XAERO_BETTER_PVP:
         return Services.MINIMAP.hideXaero(mc);
-      }
-      case MAP_ATLASES -> {
+      case MAP_ATLASES:
         return Services.MINIMAP.hideMapAtlases(mc);
-      }
-      default -> {
+      default:
         return false;
-      }
     }
   }
 

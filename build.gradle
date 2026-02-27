@@ -3,8 +3,7 @@ plugins {
     id 'dev.architectury.loom' version '1.13-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.gradleup.shadow' version '8.3.6' apply false
-    id 'net.darkhax.curseforgegradle' version '1.+'
-    id 'com.modrinth.minotaur' version '2.+'
+    id 'me.modmuss50.mod-publish-plugin' version '1.+'
 }
 
 architectury {
@@ -20,7 +19,6 @@ subprojects {
     apply plugin: 'dev.architectury.loom'
     apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
-    apply plugin: 'java'
 
     base {
         // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
@@ -194,12 +192,12 @@ subprojects {
         // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
         // if it is present.
         // If you remove this line, sources will not be generated.
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 17
+        it.options.release = 8
     }
 
     // Configure Maven publishing.
@@ -221,29 +219,43 @@ subprojects {
     }
 
     processResources {
-        def expandProps = ["version"                   : mod_version,
-                           "group"                     : project.group, //Else we target the task's group.
-                           "minecraft_version"         : minecraft_version,
-                           "forge_version"             : forge_version,
-                           "forge_loader_version_range": forge_loader_version_range,
-                           "forge_version_range"       : forge_version_range,
-                           "minecraft_version_range"   : minecraft_version_range,
-                           "fabric_api_version"        : fabric_api_version,
-                           "fabric_loader_version"     : fabric_loader_version,
-                           "fabric_version_range"      : fabric_version_range,
-                           "mod_name"                  : mod_name,
-                           "mod_author"                : mod_author,
-                           "mod_id"                    : mod_id,
-                           "license"                   : license,
-                           "description"               : description,
-                           "repoURL"                   : repoURL,
-                           "issueTrackerURL"           : issueTrackerURL,
-                           "credits"                   : credits,
-                           "java_version"              : java_version]
+        def expandProps = [
+                "version"                      : project.version,
+                "group"                        : project.group, //Else we target the task's group.
+                "minecraft_version"            : project.minecraft_version,
+                "minecraft_version_range"      : project.minecraft_version_range,
+                "forge_version"                : project.forge_version,
+                "forge_loader_version_range"   : project.forge_loader_version_range,
+                "forge_version_range"          : project.forge_version_range,
+                "fabric_api_version"           : project.fabric_api_version,
+                "fabric_loader_version"        : project.fabric_loader_version,
+                "fabric_version_range"         : project.fabric_version_range,
+                "neoforge_version"             : project.neoforge_version,
+                "neoforge_loader_version_range": project.neoforge_loader_version_range,
+                "neoforge_version_range"       : project.neoforge_version_range,
+                "mod_name"                     : project.mod_name,
+                "mod_author"                   : project.mod_author,
+                "mod_id"                       : project.mod_id,
+                "mod_description"              : project.mod_description,
+                "license"                      : project.license,
+                "repoURL"                      : project.repoURL,
+                "issueTrackerURL"              : project.issueTrackerURL,
+                "credits"                      : project.credits,
+                "java_version"                 : project.java_version
+        ]
 
-        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
-            expand project.properties
+        var jsonExpandProps = expandProps.collectEntries {
+            key, value -> [(key): value instanceof String ? value.replace("\n", "\\\\n") : value]
         }
+
+        filesMatching(['META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
+            expand expandProps
+        }
+
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', '*.mixins.json']) {
+            expand jsonExpandProps
+        }
+
         inputs.properties(expandProps)
     }
 }
@@ -251,31 +263,38 @@ subprojects {
 tasks.register('latestChangelog') {
     group = "changelog"
 
-    String fullChangelogText = file("CHANGELOG.md").getText()
+    def fullChangelog = projectDir.toPath().getParent().resolve("CHANGELOG.md").toFile()
+    def latestChangelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").toFile()
 
-    int firstHeading = fullChangelogText.indexOf("## [")
-    int nextHeading = fullChangelogText.indexOf("## [", firstHeading + 1)
+    int firstHeading = fullChangelog.getText().indexOf("## [")
+    int nextHeading = fullChangelog.getText().indexOf("## [", firstHeading + 1)
 
-    String latestChangelogText = fullChangelogText.substring(firstHeading, nextHeading)
+    String latestChangelogText = fullChangelog.getText().substring(firstHeading, nextHeading)
 
     outputs.upToDateWhen {
-        if (file("LATEST_CHANGELOG.md").exists()) {
-            return latestChangelogText == file("LATEST_CHANGELOG.md").getText()
+        if (latestChangelog.exists()) {
+            return latestChangelogText == latestChangelog.getText()
         } else return false
     }
 
     outputs.file file("LATEST_CHANGELOG.md")
     doLast {
-        def latestChangelog = file("LATEST_CHANGELOG.md")
         latestChangelog.text = latestChangelogText
         printf(latestChangelog.text)
     }
 }
 
+publishMods {
+    dryRun = true
+    type = STABLE
+    changelog = project.getRootDir().toPath().resolve("LATEST_CHANGELOG.md").getText()
+}
+
+idea.module { downloadJavadoc = downloadSources = true }
+
 tasks.register('publishAll') {
     group = "upload"
 
     dependsOn("latestChangelog")
-    dependsOn("fabric:publishFabric")
-    dependsOn("forge:publishForge")
+    dependsOn("publishMods")
 }

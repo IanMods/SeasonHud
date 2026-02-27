@@ -26,6 +26,7 @@ import sereneseasons.api.season.ISeasonState;
 import sereneseasons.config.BiomeConfig;
 import sereneseasons.config.FertilityConfig;
 import sereneseasons.config.SeasonsConfig;
+import sereneseasons.util.biome.BiomeUtil;
 
 public class ForgeSeasonHelper implements SeasonHelper {
   // FabricSeasons
@@ -67,7 +68,16 @@ public class ForgeSeasonHelper implements SeasonHelper {
   // SereneSeasons
   @Override
   public boolean isTropicalSereneSeason(Player player) {
-    return false;
+    Level level = player.level;
+    BlockPos pos = player.blockPosition();
+    Biome biome = level.getBiome(pos);
+    ResourceKey<Biome> biomeKey = BiomeUtil.getBiomeKey(biome);
+
+    if (!SeasonHudClient.getShowTropicalSeason()) {
+      return false;
+    } else {
+      return BiomeConfig.usesTropicalSeasons(biomeKey);
+    }
   }
 
   @Override
@@ -156,18 +166,10 @@ public class ForgeSeasonHelper implements SeasonHelper {
   public boolean infertileSereneBiome(Player player) {
     Level level = player.level;
     BlockPos pos = player.blockPosition();
-    if (level.getBiomeName(pos).isPresent()) {
-      ResourceKey<Biome> biome = level.getBiomeName(pos).get();
+    Biome biome = level.getBiome(pos);
+    ResourceKey<Biome> biomeKey = BiomeUtil.getBiomeKey(biome);
 
-      if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-          || !SeasonsConfig.isDimensionWhitelisted(level.dimension()))) {
-        return false;
-      } else {
-        return (BiomeConfig.infertileBiome(biome));
-      }
-    } else {
-      return false;
-    }
+    return BiomeConfig.infertileBiome(biomeKey);
   }
 
   @Override
@@ -179,19 +181,19 @@ public class ForgeSeasonHelper implements SeasonHelper {
   public boolean undergroundFertileSereneBiome(Player player) {
     Level level = player.level;
     BlockPos pos = player.blockPosition();
-    if (level.getBiomeName(pos).isPresent()) {
-      ResourceKey<Biome> biome = level.getBiomeName(pos).get();
+    Biome biome = level.getBiome(pos);
+    ResourceKey<Biome> biomeKey = BiomeUtil.getBiomeKey(biome);
 
-      if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-          || !SeasonsConfig.isDimensionWhitelisted(level.dimension()))) {
-        return true;
-      }
-
-      if (!level.canSeeSky(pos.above())) {
-        return (pos.getY() > FertilityConfig.undergroundFertilityLevel.get());
-      }
+    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biomeKey)
+        || !SeasonsConfig.isDimensionWhitelisted(level.dimension()))) {
+      return true;
     }
-    return true;
+
+    if (!level.canSeeSky(pos.above())) {
+      return (pos.getY() > FertilityConfig.undergroundFertilityLevel.get());
+    } else {
+      return true;
+    }
   }
 
   // EclipticSeasons

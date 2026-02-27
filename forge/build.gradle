@@ -1,7 +1,6 @@
 plugins {
     id 'com.gradleup.shadow'
-    id 'net.darkhax.curseforgegradle'
-    id "com.modrinth.minotaur"
+    id 'me.modmuss50.mod-publish-plugin'
 }
 
 loom {
@@ -146,63 +145,47 @@ remapJar {
     inputFile.set shadowJar.archiveFile
 }
 
-modrinth {
-    debugMode = false
-    token = System.getenv("MODRINTH_TOKEN")
-    projectId = modrinth_forge_id
-    versionNumber = minecraft_version + "-" + version
-    versionName = base.archivesName.get() + "-" + mod_version
-    versionType = "release"
-    uploadFile = remapJar
+publishMods {
+    displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
+    version = "${minecraft_version}-${mod_version}"
+    modLoaders.add("forge")
+    file project(":forge")
 
-    List<String> mcVersions = modrinth_gameVersions.split(",")
-    gameVersions = mcVersions
-    loaders = ["forge"]
-
-    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-
-    dependencies {
-        optional.project "serene-seasons"
-        optional.project "terrafirmacraft"
-        optional.project "curios"
-        optional.project "journeymap"
-        optional.project "xaeros-minimap"
-        optional.project "xaeros-minimap-fair"
-        optional.project "map-atlases"
+    def cfOptions = curseforgeOptions {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(curseforge_gameVersions.split(","))
+        projectId = project.curseforge_forge_id
     }
-}
 
-tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
-    group = "curseforge"
+    def mrOptions = modrinthOptions {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
+    }
 
-    debugMode = false
-    disableVersionDetection()
-    apiToken = System.getenv("CURSEFORGE_TOKEN")
+    curseforge("curseforgeForge") {
+        from cfOptions
 
-    def mainFile = upload(curseforge_forge_id, remapJar)
-    mainFile.changelogType = "markdown"
-    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-    mainFile.releaseType = "release"
+        if (minecraft_version == "1.20.1") {
+            modLoaders.add("neoforge")
+        }
 
-    List<String> mcVersions = curseforge_gameVersions.split(",")
-    mainFile.gameVersions = mcVersions
-    mainFile.addGameVersion("Forge")
-    mainFile.addGameVersion("Java 8")
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge", "voxelmap")
+        optional("curios")
+    }
 
-    mainFile.addOptional("serene-seasons")
-    mainFile.addOptional("terrafirmacraft")
-    mainFile.addOptional("ecliptic-seasons")
-    mainFile.addOptional("curios")
-    mainFile.addOptional("ftb-chunks-forge")
-    mainFile.addOptional("journeymap")
-    mainFile.addOptional("xaeros-minimap")
-    mainFile.addOptional("xaeros-minimap-fair-play-edition")
-    mainFile.addOptional("map-atlases-forge")
-    mainFile.addOptional("voxelmap")
-}
+    modrinth("modrinthForge") {
+        from mrOptions
 
-tasks.register('publishForge') {
-    group = "upload"
-    dependsOn(tasks.publishCurseForge)
-    dependsOn(tasks.modrinth)
+        if (minecraft_version == "1.20.1") {
+            modLoaders.add("neoforge")
+        }
+
+        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("curios")
+    }
 }

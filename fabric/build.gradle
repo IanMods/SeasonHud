@@ -1,7 +1,6 @@
 plugins {
     id 'com.gradleup.shadow'
-    id 'net.darkhax.curseforgegradle'
-    id 'com.modrinth.minotaur'
+    id 'me.modmuss50.mod-publish-plugin'
 }
 
 loom {
@@ -147,64 +146,33 @@ remapJar {
     inputFile.set shadowJar.archiveFile
 }
 
-modrinth {
-    debugMode = false
-    token = System.getenv("MODRINTH_TOKEN")
-    projectId = modrinth_fabric_id
-    versionNumber = minecraft_version + "-" + version
-    versionName = base.archivesName.get() + "-" + version
-    versionType = "release"
-    uploadFile = remapJar
+publishMods {
+    displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
+    version = "${minecraft_version}-${mod_version}"
+    modLoaders.add("fabric")
+    file project(":fabric")
 
-    List<String> mcVersions = modrinth_gameVersions.split(",")
-    gameVersions = mcVersions
-    loaders = ["fabric"]
+    curseforge("curseforgeFabric") {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(curseforge_gameVersions.split(","))
+        projectId = project.curseforge_fabric_id
 
-    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-
-    dependencies {
-        required.project "fabric-seasons"
-        optional.project "fabric-seasons-extras"
-        required.project "forge-config-api-port"
-        optional.project "journeymap"
-        optional.project "trinkets"
-        optional.project "xaeros-minimap"
-        optional.project "xaeros-minimap-fair"
-        optional.project "map-atlases"
+        requires("forge-config-api-port")
+        optional("fabric-seasons")
+        optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
+        optional("trinkets")
     }
-}
 
-tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
-    group = "curseforge"
+    modrinth("modrinthFabric") {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_fabric_id
 
-    debugMode = false
-    disableVersionDetection()
-    apiToken = System.getenv("CURSEFORGE_TOKEN")
-
-    def mainFile = upload(curseforge_fabric_id, remapJar)
-    mainFile.changelogType = "markdown"
-    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
-    mainFile.releaseType = "release"
-
-    List<String> mcVersions = curseforge_gameVersions.split(",")
-    mainFile.gameVersions = mcVersions
-    mainFile.addGameVersion("Fabric")
-    mainFile.addJavaVersion("Java 8")
-
-    mainFile.addRequirement("fabric-seasons")
-    mainFile.addRequirement("forge-config-api-port")
-    mainFile.addOptional("fabric-seasons-extras")
-    mainFile.addOptional("ftb-chunks-fabric")
-    mainFile.addOptional("journeymap")
-    mainFile.addOptional("trinkets")
-    mainFile.addOptional("xaeros-minimap")
-    mainFile.addOptional("xaeros-minimap-fair-play-edition")
-    mainFile.addOptional("map-atlases")
-    mainFile.addOptional("voxelmap")
-}
-
-tasks.register('publishFabric') {
-    group = "upload"
-    dependsOn(tasks.publishCurseForge)
-    dependsOn(tasks.modrinth)
+        requires("forge-config-api-port")
+        optional("fabric-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases", "voxelmap")
+        optional("trinkets")
+    }
 }

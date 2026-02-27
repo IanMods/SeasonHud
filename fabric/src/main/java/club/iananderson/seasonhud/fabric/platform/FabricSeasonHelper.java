@@ -85,11 +85,20 @@ public class FabricSeasonHelper implements SeasonHelper {
     long winterTime = fallTime - (long) FabricSeasons.CONFIG.getSeasonLength();
     long seasonTime;
     switch (FabricSeasons.getCurrentSeason(player.level)) {
-      case SPRING -> seasonTime = springTime;
-      case SUMMER -> seasonTime = summerTime;
-      case FALL -> seasonTime = fallTime;
-      case WINTER -> seasonTime = winterTime;
-      default -> throw new IncompatibleClassChangeError();
+      case SPRING:
+        seasonTime = springTime;
+        break;
+      case SUMMER:
+        seasonTime = summerTime;
+        break;
+      case FALL:
+        seasonTime = fallTime;
+        break;
+      case WINTER:
+        seasonTime = winterTime;
+        break;
+      default:
+        throw new IncompatibleClassChangeError();
     }
 
     return currentFabricSeasonLength(player) - seasonTime;

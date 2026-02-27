@@ -1,14 +1,13 @@
 package club.iananderson.seasonhud.forge.impl.accessory.mods.curios.item;
 
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
-import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
-import javax.annotation.Nonnull;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -24,9 +23,9 @@ public class CuriosCalendar implements ICurioItem {
     return new ICapabilityProvider() {
       private final LazyOptional<ICurio> curioOpt = LazyOptional.of(() -> curio);
 
-      @Nonnull
+      @NonNull
       @Override
-      public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+      public <T> LazyOptional<T> getCapability(@NonNull Capability<T> cap, @Nullable Direction side) {
 
         return CuriosCapability.ITEM.orEmpty(cap, curioOpt);
       }

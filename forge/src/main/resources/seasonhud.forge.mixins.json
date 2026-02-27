@@ -7,7 +7,7 @@
   "mixins": [
   ],
   "client": [
-    "ftbchunks.FTBChunksClientMixin",
+    "ftbchunks.FtbChunksClientMixin",
     "voxel.VoxelMapMixin",
     "xaero.XaeroBuiltInInfoDisplays"
   ],
