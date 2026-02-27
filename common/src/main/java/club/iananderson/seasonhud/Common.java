@@ -16,11 +16,12 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.Level;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Common {
   public static final String MOD_ID = "seasonhud";
@@ -156,11 +157,11 @@ public class Common {
    * @return True if the current dimension is whitelisted in the season mod's config.
    */
   public static boolean hideHudInCurrentDimension(Minecraft mc) {
-    if (mc.player == null) {
+    if (mc.level == null || mc.player == null) {
       return false;
     }
 
-    ResourceKey<Level> currentDim = Objects.requireNonNull(mc.level).dimension();
+    ResourceKey<Level> currentDim = mc.level.dimension();
 
     if (Common.fabricSeasonsLoaded()) {
       return !Services.SEASON.validFabricSeasonsDim(currentDim);

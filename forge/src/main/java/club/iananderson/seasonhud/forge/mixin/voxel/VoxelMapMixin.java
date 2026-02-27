@@ -1,8 +1,9 @@
 package club.iananderson.seasonhud.forge.mixin.voxel;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import com.mamiyaotaru.voxelmap.Map;
 import com.mamiyaotaru.voxelmap.MapSettingsManager;
 import com.mamiyaotaru.voxelmap.util.GLShim;
@@ -56,8 +57,7 @@ public class VoxelMapMixin {
       if (this.options.coords) {
         textStart -= 5;
       }
-    }
-    else {
+    } else {
       textStart = y + 32 + 4;
       if (this.options.coords) {
         textStart += 10;
@@ -69,7 +69,9 @@ public class VoxelMapMixin {
 
     if (!this.options.hide && !this.fullscreenMap) {
       boolean unicode = this.game.options.forceUnicodeFont;
-      float scale = unicode ? 1.0F : 0.5F;
+      float scale = unicode
+                    ? 1.0F
+                    : 0.5F;
       GLShim.glPushMatrix();
       GLShim.glScalef(scale, scale, 1.0F);
       MutableComponent seasonCombined = CurrentSeason.getInstance(game).getHudText();
@@ -83,7 +85,7 @@ public class VoxelMapMixin {
       + "(Lcom/mojang/blaze3d/vertex/PoseStack;II)V", shift = At.Shift.BY, by = 2))
   private void drawMinimap(PoseStack matrixStack, Minecraft mc, CallbackInfo ci) {
     if (SeasonHudClient.getEnableMod() && SeasonHudClient.getEnableMinimapIntegration()
-        && CurrentMinimap.shouldDrawMinimapHud(CurrentMinimap.Minimap.VOXELMAP)) {
+        && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.VOXELMAP, mc)) {
       this.seasonhud$showSeason(matrixStack, this.mapX, this.mapY);
     }
   }

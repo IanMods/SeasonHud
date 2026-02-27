@@ -1,8 +1,5 @@
 package club.iananderson.seasonhud.fabric.client.overlays;
 
-import club.iananderson.seasonhud.client.overlays.JourneyMapCommon;
-import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 

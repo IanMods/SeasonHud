@@ -14,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.entity.player.Player;
 
 public class CurrentSeason {
@@ -119,9 +120,9 @@ public class CurrentSeason {
       if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
         int mixedColor = Rgb.mixRgb(currentSeason, CommonSeasonHelper.commonSeasons.getHelper().fertility(player));
 
-        seasonFormat = Style.EMPTY.withColor(mixedColor);
+        seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(mixedColor));
       } else {
-        seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
+        seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(currentSeason.getSeasonColor()));
       }
     }
 
@@ -131,7 +132,7 @@ public class CurrentSeason {
 
   public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
     if (SeasonHudClient.getEnableSeasonNameColor()) {
-      seasonFormat = Style.EMPTY.withColor(newRgb);
+      seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(newRgb));
     }
 
     MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonNameTranslated());
@@ -160,9 +161,9 @@ public class CurrentSeason {
         if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
           int mixedColor = Rgb.mixRgb(currentSeason, CommonSeasonHelper.commonSeasons.getHelper().fertility(player));
 
-          seasonFormat = Style.EMPTY.withColor(mixedColor);
+          seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(mixedColor));
         } else {
-          seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
+          seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(currentSeason.getSeasonColor()));
         }
       }
     }

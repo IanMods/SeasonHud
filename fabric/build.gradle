@@ -1,232 +1,63 @@
 plugins {
-    id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'com.gradleup.shadow'
+    id 'net.darkhax.curseforgegradle'
+    id 'com.modrinth.minotaur'
 }
 
 loom {
-    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
-    if (aw.exists()) {
-        accessWidenerPath.set(aw)
-    }
-
-    mixin {
-        useLegacyMixinAp = true
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
     runs {
         client {
             client()
             setConfigName("Fabric Client")
             ideConfigGenerated(true)
-            var clientDir = "run/client"
-            if (!file(clientDir).exists()) {
-                mkdir(clientDir)
-            }
-            runDir(clientDir)
+            runDir("run-client")
         }
         server {
             server()
             setConfigName("Fabric Server")
             ideConfigGenerated(true)
-            var serverDir = "run/server"
-            if (!file(serverDir).exists()) {
-                mkdir(serverDir)
-            }
-            runDir(serverDir)
+            runDir("run-server")
         }
     }
 }
 
-repositories {
-    mavenCentral()
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
 
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "CurseMaven"
-                url = uri("https://cursemaven.com")
-            }
-        }
-        filter {
-            includeGroup "curse.maven"
-        }
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
     }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
 
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth Maven"
-                url = uri("https://api.modrinth.com/maven")
-            }
-        }
-        filter {
-            includeGroup "maven.modrinth"
-        }
-    }
-
-    exclusiveContent {
-        forRepositories(
-                maven {
-                    name = 'ParchmentMC'
-                    url = uri("https://maven.parchmentmc.org/")
-                },
-                maven {
-                    name = "NeoForge"
-                    url = uri('https://maven.neoforged.net/releases')
-                }
-        )
-        filter { includeGroup('org.parchmentmc.data') }
-    }
-
-    maven {
-        name = 'Forge'
-        url = uri('https://maven.minecraftforge.net/releases')
-        content {
-            includeGroup "com.github.glitchfiend"
-        }
-    }
-
-    maven {
-        name = "Forge Config API Port Maven"
-        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
-        content {
-            includeGroup "fuzs.forgeconfigapiport"
-            includeGroup "net.minecraftforge"
-        }
-    }
-
-    maven {
-        name = "DevAuth Maven"
-        url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
-        content {
-            includeGroup "me.djtheredstoner"
-        }
-    }
-
-    maven {
-        name = "FTB Maven"
-        url = uri("https://maven.ftb.dev/releases")
-        content {
-            includeGroup "dev.ftb.mods"
-        }
-    }
-
-    maven {
-        // location of the maven that hosts JEI files since January 2023
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-        content {
-            includeGroup "mezz.jei"
-        }
-    }
-
-    maven {
-        name = "shedaniel Maven"
-        url = uri("https://maven.shedaniel.me/")
-        content {
-            includeGroup "me.shedaniel"
-            includeGroup "dev.architectury"
-            includeGroup "me.shedaniel.cloth"
-        }
-    }
-
-    maven {
-        name = "TerraformerMC Maven"
-        url = uri("https://maven.terraformersmc.com/releases/")
-        content {
-            includeGroup "com.terraformersmc"
-            includeGroup "dev.emi"
-        }
-    }
-
-    maven {
-        name = "LadySnake Maven - Cardinal Components"
-        url = uri("https://maven.ladysnake.org/releases")
-        content {
-            includeGroup "dev.onyxstudios.cardinal-components-api"
-            includeGroup "org.ladysnake.cardinal-components-api"
-        }
-    }
-
-    maven {
-        name = "Xaero Maven"
-        url = uri("https://chocolateminecraft.com/maven")
-        content {
-            includeGroup "xaero.lib"
-            includeGroup "xaero.minimap"
-        }
-    }
-
-    maven {
-        name = "Journeymap API MAven"
-        url = uri("https://jm.gserv.me/repository/maven-public/")
-        content {
-            includeGroup "info.journeymap"
-        }
-    }
-
-    maven {
-        name = "Homeostatic Seasons"
-        url = uri("https://raw.githubusercontent.com/wendall911/maven/main/")
-        content {
-            includeGroup "com.github.wendall911.climatesettings"
-            includeGroup "com.github.wendall911.homeostaticseasons"
-            includeGroup "technology.roughness.whitenoise"
-        }
-    }
-
-    maven {
-        name = "Accessories Maven"
-        url = uri("https://maven.wispforest.io/releases")
-        content {
-            includeGroup "io.wispforest"
-            includeGroup "io.wispforest.endec"
-        }
-    }
-
-    maven {
-        name = "ModMaven (Backup)"
-        url = uri("https://modmaven.dev/")
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
     }
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
 
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 
-    // Forge Config API Port
-    modImplementation "com.electronwill.night-config:core:3.6.5"
-    modImplementation "com.electronwill.night-config:toml:3.6.5"
-    modImplementation("net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     // Fabric Seasons + Extras
     modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
 
-    // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-1.21.1-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-1.21.1-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-1.21.1-fabric:${project.whitenoise_version}"
-
     // Xaero's Minimap
     modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.xaero_mc_version}:${project.xaero_minimap_version}"
     modCompileOnly "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
-
-    // JourneyMap
-    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
-        changing = true
-    }
-    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
 
     // FTB Chunks + Dependencies
     modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}") {
@@ -302,66 +133,78 @@ dependencies {
             break
         case "none":
             break
-        default:
-            println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, atlas, or none")
-            break
+        default: println("Unknown minimap mod specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
+                "atlas, voxel, or none")
     }
 }
 
-// Implement mcgradleconventions loader attribute
-def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
-    configurations.named("$variant") {
-        attributes {
-            attribute(loaderAttribute, 'fabric')
-        }
-    }
-}
-sourceSets.configureEach {
-    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
-        configurations.named("$variant") {
-            attributes {
-                attribute(loaderAttribute, 'fabric')
-            }
-        }
-    }
-}
-loom.remapConfigurations.configureEach {
-    configurations.named(it.name) {
-        attributes {
-            attribute(loaderAttribute, 'fabric')
-        }
-    }
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
 }
 
-publishMods {
-    displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
-    version = "${minecraft_version}-${mod_version}"
-    modLoaders.add("fabric")
-    file project(":fabric")
+remapJar {
+    inputFile.set shadowJar.archiveFile
+}
 
+modrinth {
+    debugMode = false
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = modrinth_fabric_id
+    versionNumber = minecraft_version + "-" + version
+    versionName = base.archivesName.get() + "-" + version
+    versionType = "release"
+    uploadFile = remapJar
 
-    curseforge("curseforgeFabric") {
-        accessToken = System.getenv("CURSEFORGE_TOKEN")
-        changelogType = "markdown"
-        javaVersions.add(JavaVersion.toVersion(project.java_version))
-        minecraftVersions.addAll(curseforge_gameVersions.split(","))
-        projectId = project.curseforge_fabric_id
+    List<String> mcVersions = modrinth_gameVersions.split(",")
+    gameVersions = mcVersions
+    loaders = ["fabric"]
 
-        requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
-        optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
-        optional("trinkets", "accessories")
+    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
+
+    dependencies {
+        required.project "fabric-seasons"
+        optional.project "fabric-seasons-extras"
+        required.project "forge-config-api-port"
+        optional.project "journeymap"
+        optional.project "trinkets"
+        optional.project "xaeros-minimap"
+        optional.project "xaeros-minimap-fair"
+        optional.project "map-atlases"
     }
+}
 
-    modrinth("modrinthFabric") {
-        accessToken = System.getenv("MODRINTH_TOKEN")
-        minecraftVersions.addAll(modrinth_gameVersions.split(","))
-        projectId = project.modrinth_fabric_id
+tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    group = "curseforge"
 
-        requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
-        optional("trinkets", "accessories")
-    }
+    debugMode = false
+    disableVersionDetection()
+    apiToken = System.getenv("CURSEFORGE_TOKEN")
+
+    def mainFile = upload(curseforge_fabric_id, remapJar)
+    mainFile.changelogType = "markdown"
+    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
+    mainFile.releaseType = "release"
+
+    List<String> mcVersions = curseforge_gameVersions.split(",")
+    mainFile.gameVersions = mcVersions
+    mainFile.addGameVersion("Fabric")
+    mainFile.addJavaVersion("Java 8")
+
+    mainFile.addRequirement("fabric-seasons")
+    mainFile.addRequirement("forge-config-api-port")
+    mainFile.addOptional("fabric-seasons-extras")
+    mainFile.addOptional("ftb-chunks-fabric")
+    mainFile.addOptional("journeymap")
+    mainFile.addOptional("trinkets")
+    mainFile.addOptional("xaeros-minimap")
+    mainFile.addOptional("xaeros-minimap-fair-play-edition")
+    mainFile.addOptional("map-atlases")
+    mainFile.addOptional("voxelmap")
+}
+
+tasks.register('publishFabric') {
+    group = "upload"
+    dependsOn(tasks.publishCurseForge)
+    dependsOn(tasks.modrinth)
 }

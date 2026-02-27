@@ -1,9 +1,10 @@
 package club.iananderson.seasonhud.fabric.platform;
 
 import club.iananderson.seasonhud.platform.services.AccessoryHelper;
-import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.Set;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -15,8 +16,10 @@ public class FabricAccessoryHelper implements AccessoryHelper {
 
   @Override
   public boolean trinketEquipped(Player player, Item item) {
-    Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
+    Container trinketInventory = TrinketsApi.getTrinketComponent(player).getInventory();
 
-    return trinketInventory.map(trinketComponent -> trinketComponent.isEquipped(item)).orElse(false);
+    Set<Item> curioSet = Collections.singleton(item);
+
+    return trinketInventory.hasAnyOf(curioSet);
   }
 }

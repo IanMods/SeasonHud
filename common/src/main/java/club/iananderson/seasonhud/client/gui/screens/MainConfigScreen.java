@@ -9,10 +9,9 @@ import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
-import javax.annotation.Nonnull;
 import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.NonNull;
 
 public class MainConfigScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.main.title");
@@ -72,7 +71,7 @@ public class MainConfigScreen extends SeasonHudScreen {
   }
 
   @Override
-  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
     GuiComponent.drawCenteredString(graphics, font, MINIMAP_SETTINGS, this.width / 2,

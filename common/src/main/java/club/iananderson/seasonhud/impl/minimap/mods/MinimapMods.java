@@ -15,7 +15,9 @@ public enum MinimapMods {
 
   FTB_CHUNKS("ftbchunks"),
 
-  MAP_ATLASES("map_atlases");
+  MAP_ATLASES("map_atlases"),
+
+  VOXELMAP("voxelmap");
 
   private final String modId;
 

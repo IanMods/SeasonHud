@@ -5,6 +5,8 @@ import club.iananderson.seasonhud.platform.services.AccessoryHelper;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
+import java.util.Iterator;
+import java.util.Optional;
 import java.util.ServiceLoader;
 
 public class Services {
@@ -18,13 +20,11 @@ public class Services {
 
   public static <T> T load(Class<T> clazz) {
     Optional<T> findFirst;
-    final Iterator<T> iterator = ServiceLoader.load(clazz)
-        .iterator();
+    final Iterator<T> iterator = ServiceLoader.load(clazz).iterator();
 
     if (iterator.hasNext()) {
       findFirst = Optional.of(iterator.next());
-    }
-    else {
+    } else {
       findFirst = Optional.empty();
     }
 

@@ -17,12 +17,10 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-import static net.minecraftforge.client.gui.ForgeIngameGui.FROSTBITE_ELEMENT;
-
 public class ClientEvents {
 
-	@Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
-	public static class ClientForgeEvents {
+  @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT)
+  public static class ClientForgeEvents {
     @SubscribeEvent
     public static void renderSeasonHUDOverlay(RenderGameOverlayEvent.Post event) {
       if (event.getType() == ElementType.ALL) {
@@ -43,11 +41,11 @@ public class ClientEvents {
       }
     }
 
-		@SubscribeEvent
-		public static void onKeyInput(InputEvent.KeyInputEvent event) {
-			SeasonHudClientCommon.optionsKeyInput();
-		}
-	}
+    @SubscribeEvent
+    public static void onKeyInput(InputEvent.KeyInputEvent event) {
+      SeasonHudClientCommon.optionsKeyInput();
+    }
+  }
 
   @Mod.EventBusSubscriber(modid = Common.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModBusEvents {

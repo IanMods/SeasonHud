@@ -17,7 +17,6 @@ import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,7 +25,7 @@ import net.minecraft.world.level.biome.Biome;
 import sereneseasons.api.season.ISeasonState;
 import sereneseasons.config.BiomeConfig;
 import sereneseasons.config.FertilityConfig;
-import sereneseasons.config.ServerConfig;
+import sereneseasons.config.SeasonsConfig;
 
 public class ForgeSeasonHelper implements SeasonHelper {
   // FabricSeasons
@@ -68,11 +67,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
   // SereneSeasons
   @Override
   public boolean isTropicalSereneSeason(Player player) {
-    boolean showTropicalSeasons = SeasonHudClient.getShowTropicalSeason();
-    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(
-        player.level.getBiome(player.getOnPos()));
-
-    return showTropicalSeasons && isInTropicalSeason;
+    return false;
   }
 
   @Override
@@ -107,7 +102,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
   public long getSereneDate(Player player) {
     ISeasonState currentSeasonState = sereneseasons.api.season.SeasonHelper.getSeasonState(player.level);
     long seasonDay = currentSeasonState.getDay(); // Current day out of the year (Default 24 days * 4 = 96 days)
-    long subSeasonDuration = ServerConfig.subSeasonDuration.get(); // In case the default duration is changed
+    long subSeasonDuration = SeasonsConfig.subSeasonDuration.get(); // In case the default duration is changed
     long subSeasonDate = (seasonDay % subSeasonDuration) + 1; // Default 8 days in each sub-season (1 week)
     long seasonDate = (seasonDay % (subSeasonDuration * 3)) + 1; // Default 24 days in a season (8 days * 3)
 
@@ -134,7 +129,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
 
   @Override
   public int sereneSeasonDurationDays(Player player) {
-    int subSeasonDuration = ServerConfig.subSeasonDuration.get();
+    int subSeasonDuration = SeasonsConfig.subSeasonDuration.get();
 
     if (subSeasonDuration != SeasonHudServer.getSubSeasonLength()) {
       subSeasonDuration = SeasonHudServer.getSubSeasonLength();
@@ -154,53 +149,49 @@ public class ForgeSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validSereneSeasonsDim(ResourceKey<Level> currentDim) {
-    return ServerConfig.isDimensionWhitelisted(currentDim);
+    return SeasonsConfig.isDimensionWhitelisted(currentDim);
   }
 
   @Override
   public boolean infertileSereneBiome(Player player) {
     Level level = player.level;
-    BlockPos pos = player.getOnPos();
-    Holder<Biome> biome = level.getBiome(pos);
+    BlockPos pos = player.blockPosition();
+    if (level.getBiomeName(pos).isPresent()) {
+      ResourceKey<Biome> biome = level.getBiomeName(pos).get();
 
-    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
-      return false;
+      if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
+          || !SeasonsConfig.isDimensionWhitelisted(level.dimension()))) {
+        return false;
+      } else {
+        return (BiomeConfig.infertileBiome(biome));
+      }
     } else {
-      return (BiomeConfig.infertileBiome(biome));
+      return false;
     }
   }
 
   @Override
   public boolean alwaysWinterBiomeSereneBiome(Player player) {
-    Level level = player.level;
-    BlockPos pos = player.getOnPos();
-    Holder<Biome> biome = level.getBiome(pos);
-
-    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
-      return false;
-    } else {
-      return !biome.value().warmEnoughToRain(pos);
-    }
+    return false;
   }
 
   @Override
   public boolean undergroundFertileSereneBiome(Player player) {
     Level level = player.level;
-    BlockPos pos = player.getOnPos();
-    Holder<Biome> biome = level.getBiome(pos);
+    BlockPos pos = player.blockPosition();
+    if (level.getBiomeName(pos).isPresent()) {
+      ResourceKey<Biome> biome = level.getBiomeName(pos).get();
 
-    if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
-        || !ServerConfig.isDimensionWhitelisted(level.dimension()))) {
-      return true;
-    }
+      if ((!FertilityConfig.seasonalCrops.get() || !BiomeConfig.enablesSeasonalEffects(biome)
+          || !SeasonsConfig.isDimensionWhitelisted(level.dimension()))) {
+        return true;
+      }
 
-    if (!level.canSeeSky(pos.above())) {
-      return (pos.getY() > FertilityConfig.undergroundFertilityLevel.get());
-    } else {
-      return true;
+      if (!level.canSeeSky(pos.above())) {
+        return (pos.getY() > FertilityConfig.undergroundFertilityLevel.get());
+      }
     }
+    return true;
   }
 
   // EclipticSeasons

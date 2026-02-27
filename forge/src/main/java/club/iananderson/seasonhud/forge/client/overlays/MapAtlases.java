@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.forge.client.overlays;
 import club.iananderson.seasonhud.client.overlays.MapAtlasesCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
@@ -39,7 +39,7 @@ public class MapAtlases extends GuiComponent {
   }
 
   public void render(PoseStack graphics) {
-    if (CurrentMinimap.mapAtlasesLoaded() && !CurrentMinimap.hiddenMinimap(Minimap.MAP_ATLASES)) {
+    if (CurrentMinimap.mapAtlasesLoaded() && !CurrentMinimap.hiddenMinimap(MinimapMods.MAP_ATLASES, mc)) {
       if (mc.level != null && mc.player != null) {
         int mapBgScaledSize = 64;
 

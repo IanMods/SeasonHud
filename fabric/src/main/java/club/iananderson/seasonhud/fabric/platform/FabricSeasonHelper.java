@@ -23,7 +23,7 @@ public class FabricSeasonHelper implements SeasonHelper {
   // FabricSeasons
   @Override
   public boolean validFabricSeasonsDim(ResourceKey<Level> currentDim) {
-    return FabricSeasons.CONFIG.isValidInDimension(currentDim);
+    return true;
   }
 
   @Override

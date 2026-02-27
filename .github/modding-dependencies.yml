@@ -44,21 +44,12 @@
       source: version
 
 # Xaero
-- repository: https://api.modrinth.com/maven
-  groupId: maven.modrinth
-  artifactId: xaeros-minimap
-  version: "${xaeros_minimap_version}_Fabric_${mcVersion}"
-  properties:
-    xaeros_minimap_version:
-      source: wildcard
-
-# Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
-  groupId: xaero.lib
-  artifactId: xaerolib-fabric-${mcVersion}
-  version: "${xaero_lib_version}"
+  groupId: xaero.minimap
+  artifactId: xaerominimap-common-${mcVersion}
+  version: "${xaero_minimap_version}"
   properties:
-    xaero_lib_version_fabric:
+    xaero_minimap_version:
       source: version
 
 # Xaero's Lib

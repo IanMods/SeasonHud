@@ -56,9 +56,9 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   }
 
   public static Builder<Boolean> onOffBuilder() {
-    return (new Builder(
-        (boolean_) -> (Boolean) boolean_ ? CommonComponents.OPTION_ON : CommonComponents.OPTION_OFF)).withValues(
-        BOOLEAN_OPTIONS);
+    return (new Builder((boolean_) -> (Boolean) boolean_
+                                      ? CommonComponents.OPTION_ON
+                                      : CommonComponents.OPTION_OFF)).withValues(BOOLEAN_OPTIONS);
   }
 
   public static Builder<Boolean> onOffBuilder(boolean bl) {
@@ -68,8 +68,7 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   public void onPress() {
     if (Screen.hasShiftDown()) {
       this.cycleValue(-1);
-    }
-    else {
+    } else {
       this.cycleValue(1);
     }
 
@@ -91,8 +90,7 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   public boolean mouseScrolled(double d, double e, double f) {
     if (f > 0.0) {
       this.cycleValue(-1);
-    }
-    else if (f < 0.0) {
+    } else if (f < 0.0) {
       this.cycleValue(1);
     }
 
@@ -106,7 +104,9 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   }
 
   private Component createLabelForValue(T object) {
-    return this.displayOnlyValue ? this.valueStringifier.apply(object) : this.createFullName(object);
+    return this.displayOnlyValue
+           ? this.valueStringifier.apply(object)
+           : this.createFullName(object);
   }
 
   private MutableComponent createFullName(T object) {
@@ -151,7 +151,9 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
       final List<T> list4 = ImmutableList.copyOf(list2);
       return new ValueListSupplier<T>() {
         public List<T> getSelectedList() {
-          return booleanSupplier.getAsBoolean() ? list4 : list3;
+          return booleanSupplier.getAsBoolean()
+                 ? list4
+                 : list3;
         }
 
         public List<T> getDefaultList() {
@@ -169,8 +171,7 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
     void onValueChange(CycleButton cycleButton, T object);
   }
 
-  public interface TooltipSupplier<T> extends Function<T, List<FormattedCharSequence>> {
-  }
+  public interface TooltipSupplier<T> extends Function<T, List<FormattedCharSequence>> {}
 
   public static class Builder<T> {
     private final Function<T, Component> valueStringifier;
@@ -235,11 +236,14 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
       List<T> list = this.values.getDefaultList();
       if (list.isEmpty()) {
         throw new IllegalStateException("No values for cycle button");
-      }
-      else {
-        T object = this.initialValue != null ? this.initialValue : list.get(this.initialIndex);
+      } else {
+        T object = this.initialValue != null
+                   ? this.initialValue
+                   : list.get(this.initialIndex);
         Component component2 = this.valueStringifier.apply(object);
-        Component component3 = this.displayOnlyValue ? component2 : optionNameValue(component, component2);
+        Component component3 = this.displayOnlyValue
+                               ? component2
+                               : optionNameValue(component, component2);
         return new CycleButton(i, j, k, l, component3, component, this.initialIndex, object, this.values,
                                this.valueStringifier, onValueChange, this.tooltipSupplier, this.displayOnlyValue);
       }

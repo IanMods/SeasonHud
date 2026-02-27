@@ -1,10 +1,10 @@
 package club.iananderson.seasonhud.forge.mixin.ftbchunks;
 
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimaps.CurrentMinimap.Minimap;
-import club.iananderson.seasonhud.impl.seasons.CurrentFertility;
-import club.iananderson.seasonhud.impl.seasons.CurrentSeason;
+import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
+import club.iananderson.seasonhud.impl.season.CurrentFertility;
+import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.ftb.mods.ftbchunks.FTBChunksCommon;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClient;
@@ -39,10 +39,10 @@ public class FTBChunksClientMixin extends FTBChunksCommon {
 
     SeasonHudClient.setEnableMod(MINIMAP_SEASON.get());
 
-    if (CurrentMinimap.shouldDrawMinimapHud(Minimap.FTB_CHUNKS)) {
+    if (CurrentMinimap.shouldDrawMinimapHud(MinimapMods.FTB_CHUNKS, Minecraft.getInstance())) {
       MINIMAP_TEXT_LIST.add(seasonCombined);
 
-      if(SeasonHudClient.getShowFertility()){
+      if (SeasonHudClient.getShowFertility()) {
         MINIMAP_TEXT_LIST.add(fertility);
       }
     }

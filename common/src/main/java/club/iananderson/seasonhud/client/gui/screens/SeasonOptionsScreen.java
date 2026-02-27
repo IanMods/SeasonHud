@@ -12,15 +12,14 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
-import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
-import javax.annotation.Nonnull;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.jspecify.annotations.NonNull;
 
 public class SeasonOptionsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.season.title");
@@ -121,9 +120,10 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
-  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
-    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft)
+        .getConfigText(showDay, showSubSeason, seasonColor);
 
     if (drawDefaultHud) {
       boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
@@ -279,17 +279,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
                 Common.translatedText("menu.seasonhud.season.showSubSeason.button"),
                 (b, val) -> this.showSubSeason = val);
-
-    if (Common.fabricSeasonsLoaded() && this.minecraft != null) {
-      int seasonLength = Services.SEASON.currentFabricSeasonLength(this.minecraft.player);
-
-      if ((seasonLength % 3) != 0) {
-        showSubSeasonButton.active = false;
-        showSubSeasonButton.getTooltip()
-            .set(0, Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength,
-                                      seasonLength * 24000).get(0));
-      }
-    }
 
     widgets.add(showSubSeasonButton);
 
