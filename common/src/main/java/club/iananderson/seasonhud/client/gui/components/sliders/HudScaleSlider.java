@@ -3,13 +3,11 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
-import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.network.chat.Component;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 import net.minecraft.util.FormattedCharSequence;
+import org.jspecify.annotations.NonNull;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
@@ -38,7 +36,7 @@ public class HudScaleSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@NonNull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@NonNull PoseStack graphics, @NonNull Minecraft mc, int mouseX, int mouseY) {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 

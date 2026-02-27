@@ -8,7 +8,6 @@ import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
-import javax.annotation.Nonnull;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.network.chat.Component;

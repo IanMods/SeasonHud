@@ -9,7 +9,6 @@ import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
-import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.MutableComponent;
 import org.jspecify.annotations.NonNull;

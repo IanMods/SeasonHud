@@ -69,8 +69,8 @@ public class ForgeSeasonHelper implements SeasonHelper {
   @Override
   public boolean isTropicalSereneSeason(Player player) {
     boolean showTropicalSeasons = SeasonHudClient.getShowTropicalSeason();
-    boolean isInTropicalSeason =
-        sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(player.level.getBiome(player.getOnPos()));
+    boolean isInTropicalSeason = sereneseasons.api.season.SeasonHelper.usesTropicalSeasons(
+        player.level.getBiome(player.getOnPos()));
 
     return showTropicalSeasons && isInTropicalSeason;
   }

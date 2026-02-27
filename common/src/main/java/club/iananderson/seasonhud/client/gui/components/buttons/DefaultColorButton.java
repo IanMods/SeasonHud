@@ -5,11 +5,9 @@ import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.util.Rgb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Map;
-import javax.annotation.Nonnull;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 
 public class DefaultColorButton extends Button {
   private static final Component DEFAULT = Common.translatedText("menu.seasonhud.color.default.button");

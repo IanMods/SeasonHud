@@ -3,14 +3,12 @@ package club.iananderson.seasonhud.client.gui.components.sliders;
 import club.iananderson.seasonhud.Common;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.List;
-import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 
 public class HudOffsetSlider extends BasicSlider {
   protected final Component prefix;
@@ -38,7 +36,7 @@ public class HudOffsetSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@NonNull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@NonNull PoseStack graphics, @NonNull Minecraft mc, int mouseX, int mouseY) {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 

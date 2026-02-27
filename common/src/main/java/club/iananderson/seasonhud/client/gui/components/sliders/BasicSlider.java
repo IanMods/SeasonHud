@@ -1,12 +1,11 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.util.DrawUtil;
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.text.DecimalFormat;
 import java.util.Objects;
-import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -16,6 +15,7 @@ import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.jspecify.annotations.NonNull;
 import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
@@ -257,7 +257,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   @Override
-  protected void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
+  protected void renderBg(@NonNull PoseStack graphics, Minecraft mc, int mouseX, int mouseY) {
     DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x, this.y, 0, this.getTextureY(), this.width,
                             this.height, 200, 20, 2, 3, 2, 2);
     DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x + (int) (this.value * (double) (this.width - 8)),

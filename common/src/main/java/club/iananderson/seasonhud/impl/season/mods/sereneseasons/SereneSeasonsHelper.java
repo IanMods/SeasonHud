@@ -1,9 +1,6 @@
 package club.iananderson.seasonhud.impl.season.mods.sereneseasons;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.config.SeasonHudServer;
-import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
@@ -11,14 +8,10 @@ import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Optional;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 
 public class SereneSeasonsHelper implements SeasonModHelper {
   public SereneSeasonsHelper() {

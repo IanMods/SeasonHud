@@ -126,7 +126,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
-  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
     var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
 
@@ -195,10 +195,10 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     }
 
     if (Common.sereneSeasonsLoaded()) {
-        fertilityReplacesSeasonButton.active = showFertility;
-      }
+      fertilityReplacesSeasonButton.active = showFertility;
+    }
 
-      graphics.pushPose();
+    graphics.pushPose();
     graphics.translate(0, 0, 50);
     graphics.scale((float) seasonScale, (float) seasonScale, 1.0F);
     GuiComponent.drawString(graphics, font, seasonCombined, posX, posY, 0xffffff);
