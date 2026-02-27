@@ -149,12 +149,9 @@ repositories {
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: project.mixin_version
 
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation "org.ow2.asm:asm-tree:9.5"
     implementation "org.ow2.asm:asm-commons:9.5"
     implementation "org.ow2.asm:asm-util:9.5"
-
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
 
     // Config Mod
     implementation 'com.electronwill.night-config:core:3.6.3'
@@ -192,7 +189,7 @@ artifacts {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'common')

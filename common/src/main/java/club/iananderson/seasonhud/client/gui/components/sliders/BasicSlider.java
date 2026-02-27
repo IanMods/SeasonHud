@@ -14,6 +14,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.jspecify.annotations.NonNull;
+import org.lwjgl.glfw.GLFW;
 
 import javax.annotation.Nonnull;
 import java.text.DecimalFormat;
@@ -134,17 +136,7 @@ public class BasicSlider extends AbstractSliderButton {
 		this.setValue(defaultValue);
 	}
 
-	public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-		if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
-			boolean rightClicked = this.clicked(mouseX, mouseY);
-			if (rightClicked) {
-				this.playDownSound(Minecraft.getInstance().getSoundManager());
-				this.onRightClick();
-			}
-		}
 
-		return super.mouseClicked(mouseX, mouseY, mouseButton);
-	}
 
 	public int getTextureY() {
 		int i = this.isFocused() && !this.canChangeValue
@@ -190,7 +182,11 @@ public class BasicSlider extends AbstractSliderButton {
 	}
 
 	public void setValue(double value) {
-		this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+		double oldValue = this.value;
+    this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
 		this.updateMessage();
 	}
 
@@ -224,14 +220,17 @@ public class BasicSlider extends AbstractSliderButton {
 		this.setSliderValue((mouseX - (this.x + 4)) / (this.width - 8));
 	}
 
-	@Override
-	protected void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
-		DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x, this.y, 0, this.getTextureY(), this.width,
-				this.height, 200, 20, 2, 3, 2, 2);
-		DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x + (int) (this.value * (double) (this.width - 8)),
-				this.y, 0, this.getHandleTextureY(), 8, this.height, 200, 20, 2, 3, 2, 2);
-		this.renderScrollingString(graphics, mc.font, 2, this.getFgColor() | Mth.ceil(this.alpha * 255.0F) << 24);
-	}
+  @Override
+  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+    if (this.active && this.visible) {
+      if (mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+        this.playDownSound(Minecraft.getInstance().getSoundManager());
+        this.onRightClick();
+      }
+    }
+
+    return super.mouseClicked(mouseX, mouseY, mouseButton);
+  }
 
 	@Override
 	public void onClick(double mouseX, double mouseY) {
@@ -240,12 +239,10 @@ public class BasicSlider extends AbstractSliderButton {
 
 	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		boolean bl = keyCode == InputConstants.KEY_LEFT;
-		if (bl || keyCode == InputConstants.KEY_RIGHT) {
-			if (this.minValue > this.maxValue) {
-				bl = !bl;
-			}
-			float f = bl
+		boolean left = keyCode == GLFW.GLFW_KEY_LEFT;
+		boolean right = keyCode == GLFW.GLFW_KEY_RIGHT;
+			if (left || right) {
+			float f = left
 			          ? -1F
 			          : 1F;
 			if (stepSize <= 0D) {
@@ -254,7 +251,8 @@ public class BasicSlider extends AbstractSliderButton {
 			else {
 				this.setValue(this.getValue() + f * this.stepSize);
 			}
-		}
+		return true;
+    }
 
 		return false;
 	}
@@ -275,7 +273,16 @@ public class BasicSlider extends AbstractSliderButton {
 		}
 	}
 
-	@Override
-	protected void applyValue() {
-	}
+  @Override
+  protected void applyValue() {
+  }
+
+  @Override
+  protected void renderBg(@NonNull PoseStack graphics, Minecraft mc, int mouseX, int mouseY) {
+    DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x, this.y, 0, this.getTextureY(), this.width,
+                            this.height, 200, 20, 2, 3, 2, 2);
+    DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x + (int) (this.value * (double) (this.width - 8)),
+                            this.y, 0, this.getHandleTextureY(), 8, this.height, 200, 20, 2, 3, 2, 2);
+    this.renderScrollingString(graphics, mc.font, 2, this.getFgColor() | Mth.ceil(this.alpha * 255.0F) << 24);
+  }
 }

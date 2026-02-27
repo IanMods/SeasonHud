@@ -9,15 +9,15 @@ import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
-import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.MutableComponent;
+import org.jspecify.annotations.NonNull;
 
 public class SeasonHudOverlayCommon {
   private SeasonHudOverlayCommon() {
   }
 
-  public static void render(@Nonnull PoseStack graphics) {
+  public static void render(@NonNull PoseStack graphics) {
     Minecraft mc = Minecraft.getInstance();
 
     if (Common.drawDefaultHud(mc) && Common.vanillaShouldDrawHud(mc) && Calendar.validNeedCalendar(mc.player)
