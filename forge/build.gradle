@@ -371,7 +371,7 @@ publishMods {
         }
 
         optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
         optional("curios", "accessories")
     }
 }
