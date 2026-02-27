@@ -1,5 +1,4 @@
 plugins {
-    id 'checkstyle'
     id 'java'
     id 'multiloader-common'
 }
@@ -35,20 +34,4 @@ tasks.named('compileJava', JavaCompile) {
 processResources {
     dependsOn(configurations.commonResources)
     from(configurations.commonResources)
-}
-
-tasks.named('sourcesJar', Jar) {
-    dependsOn(configurations.commonJava)
-    from(configurations.commonJava)
-    dependsOn(configurations.commonResources)
-    from(configurations.commonResources)
-}
-
-checkstyle {
-    configFile = file(project.getRootDir().toPath().resolve("seasonhud_checkstyle.xml"))
-    toolVersion = "13.2.0"
-}
-
-tasks.withType(Checkstyle).each {
-    it.group = 'checkstyle'
 }

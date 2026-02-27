@@ -8,7 +8,6 @@ import club.iananderson.seasonhud.forge.event.ClientEvents.ClientModBusEvents;
 import club.iananderson.seasonhud.forge.impl.accessory.mods.curios.CuriosCompat;
 import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimap.mods.ftbchunks.SeasonComponent;
 import fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry;
 import net.minecraftforge.client.event.AddGuiOverlayLayersEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;

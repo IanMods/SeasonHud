@@ -143,12 +143,9 @@ dependencies {
     compileOnly "org.spongepowered:mixin:${project.mixin_version}"
     compileOnly(annotationProcessor "io.github.llamalad7:mixinextras-common:${project.mixin_extras_version}")
 
-    implementation "com.google.code.findbugs:jsr305:3.0.1"
     implementation "org.ow2.asm:asm-tree:9.5"
     implementation "org.ow2.asm:asm-commons:9.5"
     implementation "org.ow2.asm:asm-util:9.5"
-
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
 
     // Config Mod
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forge_config_api_port_version}"
@@ -198,7 +195,7 @@ artifacts {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'common')

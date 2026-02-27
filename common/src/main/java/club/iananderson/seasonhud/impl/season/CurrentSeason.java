@@ -107,7 +107,6 @@ public class CurrentSeason {
     MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", currentSeason.getIconChar());
     MutableComponent seasonText = getText(SeasonHudClient.getShowDay(), SeasonHudClient.getShowSubSeason()).copy();
 
-    // TODO: Double check that the icon style is still applies
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(seasonIconFormat), seasonText);
   }
 

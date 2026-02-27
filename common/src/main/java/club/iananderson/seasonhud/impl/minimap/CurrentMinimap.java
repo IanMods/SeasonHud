@@ -37,7 +37,7 @@ public class CurrentMinimap {
   /* TODO:
    ** Double check all logic
    ** Add option to display current loaded integration
-   ** Add a dropdown to override this if more than one are loaded
+   ** Add a dropdown to override this if more than one are loaded?
    */
 
   /**
