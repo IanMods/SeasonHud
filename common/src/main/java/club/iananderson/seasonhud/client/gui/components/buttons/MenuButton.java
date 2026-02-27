@@ -2,7 +2,6 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.SeasonHudScreen;
-import javax.annotation.Nullable;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;

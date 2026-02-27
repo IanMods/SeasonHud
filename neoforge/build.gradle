@@ -311,7 +311,7 @@ dependencies {
         case "protomanlys":
             implementation "maven.modrinth:protomanlys-weather:${project.protomanlys_version}"
             break
-    default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
+        default: println("Unknown season mod specified: ${project.minimap_mod}. Must be serene, terra, or ecliptic")
     }
 
     // Accessory Mod Dev Tests
@@ -360,7 +360,7 @@ sourceSets.configureEach {
 publishMods {
     displayName = "${mod_id}-neoforge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
-    file project(":neoforge")
+    file = tasks.jar.archiveFile
     modLoaders.add("neoforge")
 
     def cfOptions = curseforgeOptions {
@@ -388,8 +388,8 @@ publishMods {
     modrinth("modrinthNeoForge") {
         from mrOptions
 
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons", "protomanlys-weather")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
+        optional("serene-seasons", "terrafirmacraft", "protomanlys-weather")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
         optional("curios", "accessories")
 
     }

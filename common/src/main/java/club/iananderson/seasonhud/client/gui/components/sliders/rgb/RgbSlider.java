@@ -6,7 +6,6 @@ import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
-import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -47,16 +46,6 @@ public class RgbSlider extends BasicSlider {
     if (enableColor) {
       super.onDrag(mouseX, mouseY, dragX, dragY);
     }
-  }
-
-  @Override
-  public void renderWidget(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    if (!enableColor) {
-      this.active = false;
-      this.isHovered = false;
-    }
-
-    super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 
   public void setValue(int newValue) {

@@ -134,6 +134,10 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     super.render(graphics, mouseX, mouseY, partialTicks);
     var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
 
+    if (Common.sereneSeasonsLoaded()) {
+      fertilityReplacesSeasonButton.active = showFertility;
+    }
+
     if (drawDefaultHud) {
       boolean customLocation = (hudLocationButton.getValue() == Location.CUSTOM);
       hudScaleSlider.visible = drawDefaultHud;
@@ -180,40 +184,37 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
         default:
           throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
-
-      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
-        int row = 4;
-
-        if (Common.fabricSeasonsExtrasLoaded()) {
-          row += 1;
-        }
-
-        if (!drawDefaultHud) {
-          row -= 2;
-        }
-
-        graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
-                                    MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                        + BUTTON_PADDING), 16777215);
-      }
-
-      if (Common.sereneSeasonsLoaded()) {
-        fertilityReplacesSeasonButton.active = showFertility;
-      }
-
-      graphics.pose().pushPose();
-      graphics.pose().translate(0, 0, 50);
-      graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
-      graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
-
-      if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
-        MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
-
-        posY += this.font.lineHeight;
-        graphics.drawString(font, fertility, posX, posY, 0xffffff);
-      }
-      graphics.pose().popPose();
     }
+
+    graphics.pose().pushPose();
+    graphics.pose().translate(0, 0, 50);
+    graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
+    graphics.drawString(font, seasonCombined, posX, posY, 0xffffff);
+
+    if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
+      MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
+
+      posY += this.font.lineHeight;
+      graphics.drawString(font, fertility, posX, posY, 0xffffff);
+    }
+
+    if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
+      int row = 4;
+
+      if (Common.fabricSeasonsExtrasLoaded()) {
+        row += 1;
+      }
+
+      if (!drawDefaultHud) {
+        row -= 2;
+      }
+
+      graphics.drawCenteredString(font, "Day Length", leftButtonX + buttonWidth / 2,
+                                  MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
+                                      + BUTTON_PADDING), 16777215);
+    }
+
+    graphics.pose().popPose();
   }
 
   private int maxWidth(MutableComponent seasonText) {

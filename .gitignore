@@ -25,6 +25,7 @@ out
 !/.idea/modules/common/*
 !/.idea/modules/fabric/*
 !/.idea/modules/forge/*
+!/.idea/modules/neoforge/*
 !/.idea/scopes
 !/.idea/checkstyle
 !/.idea/codeStyles

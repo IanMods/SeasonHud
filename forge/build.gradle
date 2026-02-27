@@ -1,7 +1,7 @@
 plugins {
     id 'multiloader-loader'
-    id 'net.minecraftforge.gradle' version '[7.0.5,8.0)'
-    //id 'net.minecraftforge.jarjar' version '0.2.3'
+    id 'net.minecraftforge.gradle'
+    //id 'net.minecraftforge.jarjar'
 }
 
 base {
@@ -374,7 +374,7 @@ sourceSets.configureEach {
 publishMods {
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
-    file = tasks.reobfJar.archiveFile
+    file = tasks.jar.archiveFile
     modLoaders.add("forge")
 
     def cfOptions = curseforgeOptions {

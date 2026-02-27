@@ -6,7 +6,6 @@ import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuB
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
-import javax.annotation.Nonnull;
 import journeymap.client.ui.UIManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -63,7 +62,7 @@ public class MainOptionsScreen extends SeasonHudScreen {
   }
 
   @Override
-  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
     graphics.drawCenteredString(font, MINIMAP_SETTINGS, this.width / 2,

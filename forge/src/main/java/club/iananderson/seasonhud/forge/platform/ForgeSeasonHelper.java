@@ -10,7 +10,6 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
-import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
