@@ -7,6 +7,7 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
+import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
@@ -130,9 +131,7 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    // Disabled for 1.20.1 and below
-    // return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
-    return true;
+    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
   }
 
   @Override

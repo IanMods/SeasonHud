@@ -194,8 +194,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
       MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
-      posY += this.font.lineHeight;
-      graphics.drawString(font, fertility, posX, posY, 0xffffff);
+      graphics.drawString(font, fertility, posX, posY + 9, 0xffffff);
     }
 
     if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
