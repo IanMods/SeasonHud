@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/../../../common/build/generated/sources/annotationProcessor/java/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
+    </content>
+  </component>
   <component name="CheckStyle-IDEA-Module" serialisationVersion="2">
     <option name="activeLocationsIds" />
   </component>
@@ -7,7 +12,7 @@
     <facet type="minecraft" name="Minecraft">
       <configuration>
         <autoDetectTypes>
-          <platformType>FABRIC</platformType>
+          <platformType>ARCHITECTURY</platformType>
           <platformType>MIXIN</platformType>
           <platformType>MCP</platformType>
         </autoDetectTypes>
@@ -16,6 +21,6 @@
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="minecraftVersion" value="1.21.5" />
+    <option name="minecraftVersion" value="1.21.8" />
   </component>
 </module>

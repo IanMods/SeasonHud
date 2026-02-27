@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.5.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.5.common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.5.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.5.common.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.5.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.5.common.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.5.fabric.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.5.fabric.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.5.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.5.fabric.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.5.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.5.fabric.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.5.forge.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.5.forge.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.5.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.5.forge.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.5.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.5.forge.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.5.neoforge.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.5.neoforge.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.5.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.5.neoforge.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.5.neoforge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.5.neoforge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.8.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.8.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.8.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.8.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.8.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-1.21.8.common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.8.fabric.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.8.fabric.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.8.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.8.fabric.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.8.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-1.21.8.fabric.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.8.forge.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.8.forge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.8.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.8.forge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.8.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-1.21.8.forge.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.8.neoforge.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.8.neoforge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.8.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.8.neoforge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.8.neoforge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-1.21.8.neoforge.test.iml" />
     </modules>
   </component>
 </project>
