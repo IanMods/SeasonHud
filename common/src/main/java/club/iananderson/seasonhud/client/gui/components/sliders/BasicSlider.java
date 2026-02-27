@@ -11,7 +11,6 @@ import net.minecraft.client.input.MouseButtonInfo;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import org.jspecify.annotations.NonNull;
 import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {

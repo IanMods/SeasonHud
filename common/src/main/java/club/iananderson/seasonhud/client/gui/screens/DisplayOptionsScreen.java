@@ -6,7 +6,6 @@ import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.components.sliders.BasicSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudOffsetSlider;
 import club.iananderson.seasonhud.client.gui.components.sliders.HudScaleSlider;
-import club.iananderson.seasonhud.config.DefaultValues;
 import club.iananderson.seasonhud.config.DefaultValues.Client;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
@@ -195,8 +194,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
       MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
-      posY += this.font.lineHeight;
-      graphics.drawString(font, fertility, posX, posY, 0xffffff);
+      graphics.drawString(font, fertility, posX, posY + 9, 0xffffff);
     }
 
     if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
