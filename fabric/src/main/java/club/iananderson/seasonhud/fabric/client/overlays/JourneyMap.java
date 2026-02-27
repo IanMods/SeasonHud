@@ -13,16 +13,16 @@ public class JourneyMap implements HudRenderCallback {
 
   @Override
   public void onHudRender(PoseStack graphics, float alpha) {
-//    Minecraft mc = Minecraft.getInstance();
-//
-//    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
-//      JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
-//
-//      graphics.pushPose();
-//      graphics.scale(1 / journeyMapCommon.getFontScale(), 1 / journeyMapCommon.getFontScale(), 0);
-//      DrawUtil.sizeDisplay(graphics, journeyMapCommon.getScreenWidth(), journeyMapCommon.getScreenHeight());
-//      graphics.popPose();
-//      journeyMapCommon.drawSeasonLabel(graphics);
-//    }
+  //    Minecraft mc = Minecraft.getInstance();
+
+  //    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
+  //      JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
+
+  //      graphics.pushPose();
+  //      graphics.scale(1 / journeyMapCommon.getFontScale(), 1 / journeyMapCommon.getFontScale(), 0);
+  //      DrawUtil.sizeDisplay(graphics, journeyMapCommon.getScreenWidth(), journeyMapCommon.getScreenHeight());
+  //      graphics.popPose();
+  //      journeyMapCommon.drawSeasonLabel(graphics);
+  //    }
   }
 }

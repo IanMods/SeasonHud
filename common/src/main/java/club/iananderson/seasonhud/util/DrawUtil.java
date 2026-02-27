@@ -17,11 +17,11 @@ public class DrawUtil {
     RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     RenderSystem.enableBlend();
     RenderSystem.defaultBlendFunc();
-    int fillerWidth = textureWidth - leftBorder - rightBorder;
-    int fillerHeight = textureHeight - topBorder - bottomBorder;
-    int canvasWidth = width - leftBorder - rightBorder;
-    int canvasHeight = height - topBorder - bottomBorder;
     Minecraft.getInstance().getTextureManager().bind(texture);
+    int fillerWidth = textureWidth - leftBorder - rightBorder;
+    int canvasWidth = width - leftBorder - rightBorder;
+    int fillerHeight = textureHeight - topBorder - bottomBorder;
+    int canvasHeight = height - topBorder - bottomBorder;
     guiComponent.blit(graphics, x, y, u, v, leftBorder, topBorder);
     guiComponent.blit(graphics, x + leftBorder + canvasWidth, y, u + leftBorder + fillerWidth, v, rightBorder,
                       topBorder);

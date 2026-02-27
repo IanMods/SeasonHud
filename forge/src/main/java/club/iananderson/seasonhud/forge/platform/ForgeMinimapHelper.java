@@ -54,8 +54,8 @@ public class ForgeMinimapHelper implements MinimapHelper {
 
     MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
-    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || !(
-        mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || !(mc.screen == null
+        || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
   }
 
   @Override

@@ -14,7 +14,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   static final BooleanSupplier DEFAULT_ALT_LIST_SELECTOR = Screen::hasAltDown;
@@ -56,7 +56,7 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
   }
 
   public static Builder<Boolean> onOffBuilder() {
-    return (new Builder((boolean_) -> (Boolean) boolean_
+    return (new Builder((b) -> (Boolean) b
                                       ? CommonComponents.OPTION_ON
                                       : CommonComponents.OPTION_OFF)).withValues(BOOLEAN_OPTIONS);
   }
