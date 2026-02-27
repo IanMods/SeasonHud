@@ -87,7 +87,6 @@ public class NeoForgeSeasonHelper implements SeasonHelper {
     if (validEclipticSeasonsDim(currentDim)) {
       int currentSolarTermNumber = EclipticUtil.INSTANCE.getSolarTerm(player.level()).ordinal();
 
-      // TODO: Check this
       // 6 solar terms per season -> 2 solar terms per sub-season
       return SubSeasons.getById((currentSolarTermNumber % 6) / 2);
     } else {
@@ -130,7 +129,6 @@ public class NeoForgeSeasonHelper implements SeasonHelper {
   public int currentEclipticSeasonDuration(Player player) {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
-    // TODO: Check this and make sure it is working correctly with sub-season
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
       duration /= 3; // 3 sub-season per season
     }

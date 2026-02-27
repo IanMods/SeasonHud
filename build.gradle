@@ -2,4 +2,6 @@ plugins {
     id 'fabric-loom' version '1.14-SNAPSHOT' apply(false)
     id 'me.modmuss50.mod-publish-plugin' version '1.+' apply(false)
     id 'net.neoforged.moddev' version '2.+' apply false
+    id 'net.minecraftforge.gradle' version '[7.0.5,8.0)' apply false
+    id 'net.minecraftforge.jarjar' version '0.2.3' apply false
 }

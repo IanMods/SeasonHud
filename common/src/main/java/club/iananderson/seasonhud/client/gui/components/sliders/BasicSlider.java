@@ -1,9 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
-import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
-import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
@@ -11,6 +9,8 @@ import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.jspecify.annotations.NonNull;
+import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -127,7 +127,12 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public void setValue(double value) {
+    double oldValue = this.value;
     this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
+
     this.updateMessage();
   }
 
@@ -169,12 +174,10 @@ public class BasicSlider extends AbstractSliderButton {
   public boolean keyPressed(KeyEvent event) {
     int keyCode = event.key();
 
-    boolean bl = keyCode == InputConstants.KEY_LEFT;
-    if (bl || keyCode == InputConstants.KEY_RIGHT) {
-      if (this.minValue > this.maxValue) {
-        bl = !bl;
-      }
-      float f = bl
+    boolean left = keyCode == GLFW.GLFW_KEY_LEFT;
+    boolean right = keyCode == GLFW.GLFW_KEY_RIGHT;
+    if (left || right) {
+      float f = left
                 ? -1F
                 : 1F;
       if (stepSize <= 0D) {
@@ -182,6 +185,7 @@ public class BasicSlider extends AbstractSliderButton {
       } else {
         this.setValue(this.getValue() + f * this.stepSize);
       }
+      return true;
     }
 
     return false;
@@ -197,7 +201,7 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   @Override
-  public void renderWidget(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 }

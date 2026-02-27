@@ -198,8 +198,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
-
     // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     modImplementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}-fabric") {
@@ -346,7 +344,7 @@ dependencies {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+['apiElements', 'runtimeElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'fabric')
@@ -373,8 +371,8 @@ loom.remapConfigurations.configureEach {
 publishMods {
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
+    file = tasks.remapJar.archiveFile
     modLoaders.add("fabric")
-    file project(":fabric")
 
     curseforge("curseforgeFabric") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
@@ -384,7 +382,7 @@ publishMods {
         projectId = project.curseforge_fabric_id
 
         requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
+        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras", "homeostatic-seasons")
         optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
         optional("trinkets", "accessories")
     }
@@ -395,8 +393,8 @@ publishMods {
         projectId = project.modrinth_fabric_id
 
         requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
+        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras", "homeostatic-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases")
         optional("trinkets", "accessories")
     }
 }

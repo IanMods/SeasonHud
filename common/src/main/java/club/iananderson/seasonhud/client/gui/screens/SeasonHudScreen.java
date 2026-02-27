@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -14,6 +13,7 @@ import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
+import org.jspecify.annotations.NonNull;
 
 public class SeasonHudScreen extends Screen {
   public static final int MENU_PADDING = 50;
@@ -84,7 +84,7 @@ public class SeasonHudScreen extends Screen {
   }
 
   @Override
-  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
 
     int titleWidth = this.font.width(this.title);
 
