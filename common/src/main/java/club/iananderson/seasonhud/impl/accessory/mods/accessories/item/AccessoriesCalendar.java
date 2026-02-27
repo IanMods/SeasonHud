@@ -17,7 +17,6 @@ public class AccessoriesCalendar implements Accessory {
   public AccessoriesCalendar() {
   }
 
-  // TODO: Double check this is still working
   public static void clientInit() {
     if (Calendar.calendar().isPresent()) {
       AccessoriesRendererRegistry.registerRenderer(Calendar.calendar().get(), Renderer::new);

@@ -148,12 +148,9 @@ repositories {
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: project.mixin_version
 
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation "org.ow2.asm:asm-tree:9.5"
     implementation "org.ow2.asm:asm-commons:9.5"
     implementation "org.ow2.asm:asm-util:9.5"
-
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
 
     // Config Mod
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"

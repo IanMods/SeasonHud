@@ -12,8 +12,8 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class DefaultColorButton extends Button {
   private static final Component DEFAULT = Common.translatedText("menu.seasonhud.color.default.button");
@@ -65,7 +65,7 @@ public class DefaultColorButton extends Button {
   }
 
   @Override
-  public void renderWidget(@NotNull GuiGraphics graphics, int i, int j, float f) {
+  public void renderWidget(@NonNull GuiGraphics graphics, int i, int j, float f) {
     Minecraft mc = Minecraft.getInstance();
     DrawUtil.blitWithBorder(graphics, WIDGETS_LOCATION, this.getX(), this.getY(), 0, getTextureY(), this.width,
                             this.height, 200, 20, 2, 3, 2, 2);
@@ -75,7 +75,7 @@ public class DefaultColorButton extends Button {
   }
 
   @Override
-  public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     refresh();
     String boxValue = this.colorEditBox.getValue();
 

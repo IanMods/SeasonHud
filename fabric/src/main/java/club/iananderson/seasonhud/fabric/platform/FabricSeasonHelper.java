@@ -130,7 +130,9 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    // Disabled for 1.20.1 and below
+    // return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
+    return true;
   }
 
   @Override

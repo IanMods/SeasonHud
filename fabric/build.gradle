@@ -198,8 +198,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
-
     // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
@@ -214,11 +212,6 @@ dependencies {
     modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
     compileOnly("net.jodah:typetools:0.6.3")
-
-    // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-1.21.1-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-1.21.1-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-1.21.1-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
     modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"

@@ -199,13 +199,11 @@ repositories {
 
 dependencies {
     annotationProcessor("org.spongepowered:mixin:${project.mixin_version}:processor")
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${project.mixin_extras_version}"))
 
     // Serene Seasons
     modCompileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
     modCompileOnly "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
-    compileOnly("net.jodah:typetools:0.6.3")
 
     // Terrafirmacraft
     modCompileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"

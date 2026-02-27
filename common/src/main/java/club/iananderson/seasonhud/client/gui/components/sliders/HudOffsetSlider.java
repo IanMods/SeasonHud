@@ -5,8 +5,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class HudOffsetSlider extends BasicSlider {
   protected Component prefix;
@@ -32,7 +32,7 @@ public class HudOffsetSlider extends BasicSlider {
   }
 
   @Override
-  public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 

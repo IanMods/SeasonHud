@@ -4,8 +4,8 @@ import club.iananderson.seasonhud.Common;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;
@@ -31,7 +31,7 @@ public class HudScaleSlider extends BasicSlider {
   }
 
   @Override
-  public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
     super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 
