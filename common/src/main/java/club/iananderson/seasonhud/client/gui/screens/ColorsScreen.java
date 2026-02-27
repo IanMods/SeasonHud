@@ -19,21 +19,21 @@ import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-public class ColorScreen extends SeasonHudScreen {
+public class ColorsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.color.title");
   private final List<ColorEditBox> seasonBoxes = new ArrayList<>();
   private int posX;
   private int posY;
   private boolean seasonColor;
 
-  public ColorScreen(Screen parentScreen) {
+  public ColorsScreen(Screen parentScreen) {
     super(parentScreen, SCREEN_TITLE);
     this.buttonWidth = 170;
     loadConfig();
   }
 
-  public static ColorScreen getInstance(Screen parentScreen) {
-    return new ColorScreen(parentScreen);
+  public static ColorsScreen getInstance(Screen parentScreen) {
+    return new ColorsScreen(parentScreen);
   }
 
   private static EnumSet<Seasons> seasonListSet() {
@@ -116,8 +116,6 @@ public class ColorScreen extends SeasonHudScreen {
             greenSlider.setValue(g);
             blueSlider.setValue(b);
             colorBox.setValue(String.valueOf(defaultColorInt));
-
-            Rgb.setRgb(season, defaultColorInt);
           }
         })
         .withPos(x, y)

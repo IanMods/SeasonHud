@@ -2,11 +2,11 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.SeasonHudScreen;
-import javax.annotation.Nullable;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.Nullable;
 
 public class MenuButton extends Button {
   protected MenuButton(int x, int y, int width, int height, MenuButtons buttonType, OnPress onPress) {

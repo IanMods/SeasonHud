@@ -198,8 +198,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
-
     // Forge Config API Port
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     modCompileOnlyApi files("${project.rootDir}/libs/futz/ForgeConfigAPIPort-v21.5.2-1.21.5-Fabric.jar")
@@ -220,11 +218,6 @@ dependencies {
     modCompileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-fabric:${project.climatesettings_version}"
     modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
     modCompileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
-
-    // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-1.21.1-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-1.21.1-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-1.21.1-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
     modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
@@ -347,7 +340,7 @@ dependencies {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+['apiElements', 'runtimeElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'fabric')
@@ -374,8 +367,8 @@ loom.remapConfigurations.configureEach {
 publishMods {
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
+    file = tasks.remapJar.archiveFile
     modLoaders.add("fabric")
-    file project(":fabric")
 
     curseforge("curseforgeFabric") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
@@ -385,7 +378,7 @@ publishMods {
         projectId = project.curseforge_fabric_id
 
         requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
+        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras", "homeostatic-seasons")
         optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
         optional("trinkets", "accessories")
     }
@@ -396,8 +389,8 @@ publishMods {
         projectId = project.modrinth_fabric_id
 
         requires("forge-config-api-port")
-        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
+        optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras", "homeostatic-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases")
         optional("trinkets", "accessories")
     }
 }
