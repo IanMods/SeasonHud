@@ -7,6 +7,7 @@
     <facet type="minecraft" name="Minecraft">
       <configuration>
         <autoDetectTypes>
+          <platformType>ARCHITECTURY</platformType>
           <platformType>MIXIN</platformType>
           <platformType>NEOFORGE</platformType>
           <platformType>MCP</platformType>
@@ -16,8 +17,8 @@
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="minecraftVersion" value="1.21.8" />
-    <option name="platformVersion" value="21.8.52" />
+    <option name="minecraftVersion" value="1.21.10" />
+    <option name="platformVersion" value="21.10.64" />
     <option name="srgType" value="TSRG" />
   </component>
 </module>

@@ -156,7 +156,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    // Disabled for 1.20.1 and below
+    // Disabled for Forge 1.21.1 and up
     // return HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
     return true;
   }
