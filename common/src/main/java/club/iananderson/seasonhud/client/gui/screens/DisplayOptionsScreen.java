@@ -176,22 +176,18 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
         default:
           throw new IllegalStateException("Unexpected value: " + hudLocation);
       }
+    }
 
-      if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
-        int row = 4;
+    if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
+      int row = 5;
 
-        if (Common.fabricSeasonsExtrasLoaded()) {
-          row += 1;
-        }
-
-        if (!drawDefaultHud) {
-          row -= 2;
-        }
-
-        GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + buttonWidth / 2,
-                                        MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                            + BUTTON_PADDING), 16777215);
+      if (!drawDefaultHud) {
+        row -= 2;
       }
+
+      GuiComponent.drawCenteredString(graphics, font, "Day Length", leftButtonX + buttonWidth / 2,
+                                      MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
+                                          + BUTTON_PADDING), 16777215);
     }
 
     if (Common.sereneSeasonsLoaded()) {

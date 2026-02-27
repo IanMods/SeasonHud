@@ -258,13 +258,37 @@ subprojects {
 
         inputs.properties(expandProps)
     }
+
+    tasks.register('latestChangelog') {
+        group = "changelog"
+
+        def fullChangelog = projectDir.toPath().getParent().resolve("CHANGELOG.md").toFile()
+        def latestChangelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").toFile()
+
+        int firstHeading = fullChangelog.getText().indexOf("## [")
+        int nextHeading = fullChangelog.getText().indexOf("## [", firstHeading + 1)
+
+        String latestChangelogText = fullChangelog.getText().substring(firstHeading, nextHeading)
+
+        outputs.upToDateWhen {
+            if (latestChangelog.exists()) {
+                return latestChangelogText == latestChangelog.getText()
+            } else return false
+        }
+
+        outputs.file file("LATEST_CHANGELOG.md")
+        doLast {
+            latestChangelog.text = latestChangelogText
+            printf(latestChangelog.text)
+        }
+    }
 }
 
 tasks.register('latestChangelog') {
     group = "changelog"
 
-    def fullChangelog = projectDir.toPath().getParent().resolve("CHANGELOG.md").toFile()
-    def latestChangelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").toFile()
+    def fullChangelog = projectDir.toPath().resolve("CHANGELOG.md").toFile()
+    def latestChangelog = projectDir.toPath().resolve("LATEST_CHANGELOG.md").toFile()
 
     int firstHeading = fullChangelog.getText().indexOf("## [")
     int nextHeading = fullChangelog.getText().indexOf("## [", firstHeading + 1)
@@ -284,17 +308,12 @@ tasks.register('latestChangelog') {
     }
 }
 
-publishMods {
-    dryRun = true
-    type = STABLE
-    changelog = project.getRootDir().toPath().resolve("LATEST_CHANGELOG.md").getText()
-}
-
 idea.module { downloadJavadoc = downloadSources = true }
 
 tasks.register('publishAll') {
     group = "upload"
 
     dependsOn("latestChangelog")
-    dependsOn("publishMods")
+    dependsOn("fabric:publishMods")
+    dependsOn("forge:publishMods")
 }
