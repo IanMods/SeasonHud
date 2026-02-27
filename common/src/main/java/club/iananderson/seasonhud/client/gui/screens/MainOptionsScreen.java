@@ -13,7 +13,7 @@ import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
 
-public class MainConfigScreen extends SeasonHudScreen {
+public class MainOptionsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.main.title");
   private static final Component MINIMAP_SETTINGS = Common.translatedText("menu.seasonhud.main.minimap.options");
   private static final Component JOURNEYMAP = Common.translatedText("menu.seasonhud.main.journeymap.title");
@@ -29,14 +29,14 @@ public class MainConfigScreen extends SeasonHudScreen {
   private boolean journeyMapAboveMap;
   private boolean journeyMapMacOs;
 
-  public MainConfigScreen() {
+  public MainOptionsScreen() {
     super(null, SCREEN_TITLE);
     loadConfig();
     this.buttonWidth = 170;
   }
 
-  public static MainConfigScreen getInstance() {
-    return new MainConfigScreen();
+  public static MainOptionsScreen getInstance() {
+    return new MainOptionsScreen();
   }
 
   public void loadConfig() {
@@ -106,12 +106,12 @@ public class MainConfigScreen extends SeasonHudScreen {
     widgets.add(enableModButton);
 
     int row = 0;
-    seasonButton = MenuButton.builder(MenuButtons.SEASON, this, SeasonOptionsScreen.getInstance(this))
+    seasonButton = MenuButton.builder(MenuButtons.SEASON, this, DisplayOptionsScreen.getInstance(this))
         .withTooltip(Common.newTooltip("menu.seasonhud.main.season.tooltip"))
         .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
         .build();
 
-    colorButton = MenuButton.builder(MenuButtons.COLORS, this, ColorScreen.getInstance(this))
+    colorButton = MenuButton.builder(MenuButtons.COLORS, this, ColorsScreen.getInstance(this))
         .withTooltip(Common.newTooltip("menu.seasonhud.main.color.tooltip"))
         .withPos(rightButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
         .build();

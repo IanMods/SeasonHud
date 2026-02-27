@@ -148,8 +148,8 @@ remapJar {
 publishMods {
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
+    file = tasks.remapJar.archiveFile
     modLoaders.add("forge")
-    file project(":forge")
 
     def cfOptions = curseforgeOptions {
         accessToken = System.getenv("CURSEFORGE_TOKEN")

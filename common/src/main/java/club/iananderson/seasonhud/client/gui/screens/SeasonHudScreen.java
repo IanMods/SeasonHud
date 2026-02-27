@@ -36,9 +36,6 @@ public class SeasonHudScreen extends Screen {
   public SeasonHudScreen(Screen parentScreen, Component title) {
     super(title);
     this.parentScreen = parentScreen;
-    this.minecraft = Minecraft.getInstance();
-    this.width = minecraft.getWindow().getGuiScaledWidth();
-    this.height = minecraft.getWindow().getGuiScaledHeight();
   }
 
   public void open() {

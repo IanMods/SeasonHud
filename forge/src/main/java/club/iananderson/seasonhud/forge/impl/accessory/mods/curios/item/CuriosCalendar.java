@@ -25,7 +25,7 @@ public class CuriosCalendar implements ICurioItem {
 
       @NonNull
       @Override
-      public <T> LazyOptional<T> getCapability(@NonNull Capability<T> cap, @Nullable Direction side) {
+      public <T> LazyOptional<T> getCapability(@NonNull Capability<T> cap, @NonNull Direction side) {
 
         return CuriosCapability.ITEM.orEmpty(cap, curioOpt);
       }

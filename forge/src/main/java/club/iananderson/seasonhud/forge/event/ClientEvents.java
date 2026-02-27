@@ -1,5 +1,7 @@
 package club.iananderson.seasonhud.forge.event;
 
+import static net.minecraftforge.client.gui.ForgeIngameGui.FROSTBITE_ELEMENT;
+
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.SeasonHudClientCommon;
 import club.iananderson.seasonhud.client.KeyBindings;

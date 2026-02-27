@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.NonNull;
 
 public class HudScaleSlider extends BasicSlider {
   protected final Component prefix;

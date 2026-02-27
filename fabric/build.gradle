@@ -51,6 +51,13 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
+    // Forge Config API Port
+    modImplementation("com.electronwill.night-config:core:3.6.3")
+    modImplementation("com.electronwill.night-config:toml:3.6.3")
+    modImplementation("net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+
     // Fabric Seasons + Extras
     modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
 
@@ -97,13 +104,6 @@ dependencies {
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}"
 
-    // Forge Config API Port
-    modImplementation("com.electronwill.night-config:core:3.6.3")
-    modImplementation("com.electronwill.night-config:toml:3.6.3")
-    modImplementation("net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
-
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
     modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
@@ -149,8 +149,8 @@ remapJar {
 publishMods {
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
+    file = tasks.remapJar.archiveFile
     modLoaders.add("fabric")
-    file project(":fabric")
 
     curseforge("curseforgeFabric") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")

@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.boxes;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.client.gui.screens.ColorScreen;
+import club.iananderson.seasonhud.client.gui.screens.ColorsScreen;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
@@ -38,10 +38,10 @@ public class ColorEditBox extends EditBox {
           this.setValue(colorString);
         }
 
-        ColorScreen.doneButton.active = true;
+        ColorsScreen.doneButton.active = true;
       } else {
         this.setTextColor(16733525);
-        ColorScreen.doneButton.active = false;
+        ColorsScreen.doneButton.active = false;
       }
     });
     this.setEditable(SeasonHudClient.getEnableSeasonNameColor());
@@ -96,7 +96,7 @@ public class ColorEditBox extends EditBox {
     Minecraft mc = Minecraft.getInstance();
     float textScale = 1;
     int scaledWidth = mc.getWindow().getGuiScaledWidth();
-    int widgetTotalSize = ((80 + ColorScreen.BUTTON_PADDING) * seasonListSet().size());
+    int widgetTotalSize = ((80 + ColorsScreen.BUTTON_PADDING) * seasonListSet().size());
     boolean seasonShort = (scaledWidth < widgetTotalSize);
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(mc)

@@ -16,6 +16,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jspecify.annotations.NonNull;
+import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -123,18 +124,6 @@ public class BasicSlider extends AbstractSliderButton {
     this.setValue(defaultValue);
   }
 
-  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == 1) {
-      boolean rightClicked = this.clicked(mouseX, mouseY);
-      if (rightClicked) {
-        this.playDownSound(Minecraft.getInstance().getSoundManager());
-        this.onRightClick();
-      }
-    }
-
-    return super.mouseClicked(mouseX, mouseY, mouseButton);
-  }
-
   public int getTextureY() {
     int i = this.isFocused() && !this.canChangeValue
             ? 1
@@ -182,7 +171,11 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public void setValue(double value) {
+    double oldValue = this.value;
     this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
     this.updateMessage();
   }
 
@@ -217,12 +210,15 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   @Override
-  protected void renderBg(@NonNull PoseStack graphics, @NonNull Minecraft mc, int mouseX, int mouseY) {
-    DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x, this.y, 0, this.getTextureY(), this.width,
-                            this.height, 200, 20, 2, 3, 2, 2);
-    DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x + (int) (this.value * (double) (this.width - 8)),
-                            this.y, 0, this.getHandleTextureY(), 8, this.height, 200, 20, 2, 3, 2, 2);
-    this.renderScrollingString(graphics, mc.font, 2, this.getFgColor() | Mth.ceil(this.alpha * 255.0F) << 24);
+  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+    if (this.active && this.visible) {
+      if (mouseButton == GLFW.GLFW_MOUSE_BUTTON_2) {
+        this.playDownSound(Minecraft.getInstance().getSoundManager());
+        this.onRightClick();
+      }
+    }
+
+    return super.mouseClicked(mouseX, mouseY, mouseButton);
   }
 
   @Override
@@ -232,12 +228,10 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-    boolean bl = keyCode == 263;
-    if (bl || keyCode == 262) {
-      if (this.minValue > this.maxValue) {
-        bl = !bl;
-      }
-      float f = bl
+    boolean left = keyCode == GLFW.GLFW_KEY_LEFT;
+    boolean right = keyCode == GLFW.GLFW_KEY_RIGHT;
+    if (left || right) {
+      float f = left
                 ? -1F
                 : 1F;
       if (stepSize <= 0D) {
@@ -245,6 +239,7 @@ public class BasicSlider extends AbstractSliderButton {
       } else {
         this.setValue(this.getValue() + f * this.stepSize);
       }
+      return true;
     }
 
     return false;
@@ -267,5 +262,14 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   protected void applyValue() {
+  }
+
+  @Override
+  protected void renderBg(@NonNull PoseStack graphics, @NonNull Minecraft mc, int mouseX, int mouseY) {
+    DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x, this.y, 0, this.getTextureY(), this.width,
+                            this.height, 200, 20, 2, 3, 2, 2);
+    DrawUtil.blitWithBorder(graphics, this, SLIDER_LOCATION, this.x + (int) (this.value * (double) (this.width - 8)),
+                            this.y, 0, this.getHandleTextureY(), 8, this.height, 200, 20, 2, 3, 2, 2);
+    this.renderScrollingString(graphics, mc.font, 2, this.getFgColor() | Mth.ceil(this.alpha * 255.0F) << 24);
   }
 }
