@@ -377,7 +377,7 @@ publishMods {
 
         requires("forge-config-api-port")
         optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases")
         optional("trinkets", "accessories")
     }
 }
