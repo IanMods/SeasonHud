@@ -7,7 +7,7 @@
     <scanBeforeCheckin>true</scanBeforeCheckin>
     <option name="thirdPartyClasspath" />
     <option name="activeLocationIds">
-      <option value="700c4974-b4b5-4084-b1f3-5f13c6c3ba64" />
+      <option value="d2e24640-2e9e-40e0-8d22-6175dc49e2b0" />
     </option>
     <option name="locations">
       <list>
@@ -22,7 +22,7 @@
             </map>
           </option>
         </ConfigurationLocation>
-        <ConfigurationLocation id="700c4974-b4b5-4084-b1f3-5f13c6c3ba64" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
+        <ConfigurationLocation id="d2e24640-2e9e-40e0-8d22-6175dc49e2b0" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
           $PROJECT_DIR$/seasonhud_checkstyle.xml
           <option name="properties">
             <map>
