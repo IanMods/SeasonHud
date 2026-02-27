@@ -146,7 +146,7 @@ remapJar {
 }
 
 publishMods {
-    dryRun = true
+    dryRun = false
     type = STABLE
     changelog = project.getRootDir().toPath().resolve("LATEST_CHANGELOG.md").getText()
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
@@ -154,22 +154,12 @@ publishMods {
     file = tasks.remapJar.archiveFile
     modLoaders.add("forge")
 
-    def cfOptions = curseforgeOptions {
+    curseforge("curseforgeForge") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
         changelogType = "markdown"
         javaVersions.add(JavaVersion.toVersion(project.java_version))
         minecraftVersions.addAll(curseforge_gameVersions.split(","))
         projectId = project.curseforge_forge_id
-    }
-
-    def mrOptions = modrinthOptions {
-        accessToken = System.getenv("MODRINTH_TOKEN")
-        minecraftVersions.addAll(modrinth_gameVersions.split(","))
-        projectId = project.modrinth_forge_id
-    }
-
-    curseforge("curseforgeForge") {
-        from cfOptions
 
         if (minecraft_version == "1.20.1") {
             modLoaders.add("neoforge")
@@ -181,7 +171,9 @@ publishMods {
     }
 
     modrinth("modrinthForge") {
-        from mrOptions
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
 
         if (minecraft_version == "1.20.1") {
             modLoaders.add("neoforge")

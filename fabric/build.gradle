@@ -147,7 +147,7 @@ remapJar {
 }
 
 publishMods {
-    dryRun = true
+    dryRun = false
     type = STABLE
     changelog = project.getRootDir().toPath().resolve("LATEST_CHANGELOG.md").getText()
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
