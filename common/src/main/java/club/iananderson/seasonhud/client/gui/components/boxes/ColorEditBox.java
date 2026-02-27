@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.boxes;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.client.gui.screens.ColorScreen;
+import club.iananderson.seasonhud.client.gui.screens.ColorsScreen;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.MutableComponent;
+import org.jspecify.annotations.NonNull;
 
 public class ColorEditBox extends EditBox {
   private static final int PADDING = 4;
@@ -37,10 +38,10 @@ public class ColorEditBox extends EditBox {
           this.setValue(colorString);
         }
 
-        ColorScreen.doneButton.active = true;
+        ColorsScreen.doneButton.active = true;
       } else {
         this.setTextColor(16733525);
-        ColorScreen.doneButton.active = false;
+        ColorsScreen.doneButton.active = false;
       }
     });
     this.setEditable(SeasonHudClient.getEnableSeasonNameColor());
@@ -91,11 +92,11 @@ public class ColorEditBox extends EditBox {
   }
 
   @Override
-  public void render(@Nonnull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     Minecraft mc = Minecraft.getInstance();
     float textScale = 1;
     int scaledWidth = mc.getWindow().getGuiScaledWidth();
-    int widgetTotalSize = ((80 + ColorScreen.BUTTON_PADDING) * seasonListSet().size());
+    int widgetTotalSize = ((80 + ColorsScreen.BUTTON_PADDING) * seasonListSet().size());
     boolean seasonShort = (scaledWidth < widgetTotalSize);
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(mc)

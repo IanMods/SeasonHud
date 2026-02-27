@@ -199,7 +199,6 @@ repositories {
 
 dependencies {
     annotationProcessor("org.spongepowered:mixin:${project.mixin_version}:processor")
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${project.mixin_extras_version}"))
 
     //Serene Seasons
@@ -315,7 +314,7 @@ sourceSets.each {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'forge')
@@ -335,7 +334,7 @@ sourceSets.configureEach {
 publishMods {
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
-    file project(":forge")
+    file = tasks.reobfJar.archiveFile
     modLoaders.add("forge")
 
     def cfOptions = curseforgeOptions {

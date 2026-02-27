@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.util.DrawUtil;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -17,6 +16,7 @@ import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -124,18 +124,6 @@ public class BasicSlider extends AbstractSliderButton {
     this.setValue(defaultValue);
   }
 
-  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-    if (this.active && this.visible && mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
-      boolean rightClicked = this.clicked(mouseX, mouseY);
-      if (rightClicked) {
-        this.playDownSound(Minecraft.getInstance().getSoundManager());
-        this.onRightClick();
-      }
-    }
-
-    return super.mouseClicked(mouseX, mouseY, mouseButton);
-  }
-
   public int getTextureY() {
     int i = this.isFocused() && !this.canChangeValue
             ? 1
@@ -179,7 +167,12 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   public void setValue(double value) {
+    double oldValue = this.value;
     this.value = this.snapToNearest((value - this.minValue) / (this.maxValue - this.minValue));
+    if (!Mth.equal(oldValue, this.value)) {
+      this.applyValue();
+    }
+
     this.updateMessage();
   }
 
@@ -218,8 +211,15 @@ public class BasicSlider extends AbstractSliderButton {
   }
 
   @Override
-  public void onClick(double mouseX, double mouseY) {
-    this.setValueFromMouse(mouseX);
+  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+    if (this.active && this.visible) {
+      if (mouseButton == InputConstants.MOUSE_BUTTON_RIGHT) {
+        this.playDownSound(Minecraft.getInstance().getSoundManager());
+        this.onRightClick();
+      }
+    }
+
+    return super.mouseClicked(mouseX, mouseY, mouseButton);
   }
 
   @Override
@@ -230,12 +230,10 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-    boolean bl = keyCode == InputConstants.KEY_LEFT;
-    if (bl || keyCode == InputConstants.KEY_RIGHT) {
-      if (this.minValue > this.maxValue) {
-        bl = !bl;
-      }
-      float f = bl
+    boolean left = keyCode == GLFW.GLFW_KEY_LEFT;
+    boolean right = keyCode == GLFW.GLFW_KEY_RIGHT;
+    if (left || right) {
+      float f = left
                 ? -1F
                 : 1F;
       if (stepSize <= 0D) {
@@ -243,6 +241,7 @@ public class BasicSlider extends AbstractSliderButton {
       } else {
         this.setValue(this.getValue() + f * this.stepSize);
       }
+      return true;
     }
 
     return false;

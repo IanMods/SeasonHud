@@ -26,13 +26,13 @@ repositories {
 }
 
 dependencies {
-    implementation "com.google.code.findbugs:jsr305:3.0.1"
+    implementation("org.jspecify:jspecify:1.0.0")
     implementation "com.demonwav.mcdev:annotations:2.1.0"
 }
 
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
-['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
     configurations."$variant".outgoing {
         capability("$group:${project.name}:$version")
         capability("$group:${base.archivesName.get()}:$version")
@@ -41,12 +41,6 @@ dependencies {
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)
-    }
-}
-
-sourcesJar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${mod_name}" }
     }
 }
 

@@ -7,7 +7,7 @@
     <scanBeforeCheckin>true</scanBeforeCheckin>
     <option name="thirdPartyClasspath" />
     <option name="activeLocationIds">
-      <option value="51dd62ee-23df-48ad-af7f-bba3628248f9" />
+      <option value="700c4974-b4b5-4084-b1f3-5f13c6c3ba64" />
     </option>
     <option name="locations">
       <list>
@@ -22,8 +22,8 @@
             </map>
           </option>
         </ConfigurationLocation>
-        <ConfigurationLocation id="51dd62ee-23df-48ad-af7f-bba3628248f9" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
-          $PROJECT_DIR$/.idea/checkstyle/seasonhud_checks.xml
+        <ConfigurationLocation id="700c4974-b4b5-4084-b1f3-5f13c6c3ba64" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
+          $PROJECT_DIR$/seasonhud_checkstyle.xml
           <option name="properties">
             <map>
               <entry key="org.checkstyle.google.severity" value="warning" />

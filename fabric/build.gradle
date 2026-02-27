@@ -199,8 +199,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    compileOnly "com.demonwav.mcdev:annotations:2.1.0"
-
     // Forge Config API Port
     modImplementation "com.electronwill.night-config:core:3.6.5"
     modImplementation "com.electronwill.night-config:toml:3.6.5"
@@ -211,11 +209,6 @@ dependencies {
     // Fabric Seasons + Extras
     modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
     modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
-
-    // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-1.21.1-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-1.21.1-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-1.21.1-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
     modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.xaero_mc_version}:${project.xaero_minimap_version}"
@@ -312,7 +305,7 @@ dependencies {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+['apiElements', 'runtimeElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'fabric')
@@ -339,9 +332,8 @@ loom.remapConfigurations.configureEach {
 publishMods {
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
+    file = tasks.remapJar.archiveFile
     modLoaders.add("fabric")
-    file project(":fabric")
-
 
     curseforge("curseforgeFabric") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")

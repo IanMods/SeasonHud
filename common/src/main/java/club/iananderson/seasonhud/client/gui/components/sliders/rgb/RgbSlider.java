@@ -12,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
+import org.jspecify.annotations.NonNull;
 
 public class RgbSlider extends BasicSlider {
   public static final int SLIDER_PADDING = 2;
@@ -50,7 +51,7 @@ public class RgbSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@Nonnull PoseStack graphics, Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@NonNull PoseStack graphics, Minecraft mc, int mouseX, int mouseY) {
     if (!enableColor) {
       this.active = false;
       this.isHovered = false;
@@ -67,6 +68,16 @@ public class RgbSlider extends BasicSlider {
     }
 
     this.updateMessage();
+  }
+
+  @Override
+  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    if (!enableColor) {
+      this.active = false;
+      this.isHovered = false;
+    }
+
+    super.renderWidget(graphics, mouseX, mouseY, partialTick);
   }
 
   @Override

@@ -17,7 +17,7 @@ public class CommonSeasonHelper {
 
   public SeasonModHelper getHelper() {
     if (SeasonMods.getLoaded().iterator().hasNext()) {
-      return SeasonMods.getLoaded().iterator().next().getSeasonModHelper();
+      return SeasonMods.getLoaded().get(0).getSeasonModHelper();
     } else {
       return new NoSeasonModHelper();
     }

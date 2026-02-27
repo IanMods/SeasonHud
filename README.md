@@ -1,4 +1,4 @@
-# SeasonHUD
+# SeasonHud
 
 <ins>Current active versions are:</ins> **1.16.5**, **1.18.2**, **1.19.x**, **1.20.1**, **1.21.x**
 
@@ -10,6 +10,8 @@ This is a client-side addon that displays the current season on the HUD. Current
 - **Fabric Seasons** (Fabric)
 - **TerraFirmaCraft** (Forge 1.18.2/1.20.1/1.21.1)
 - **Ecliptic Seasons** (Forge/Neoforge)
+- **Homeostatic Seasons**
+- **ProtoManly's Weather**
 
 Also includes optional support for the following minimap mods:
 
@@ -31,7 +33,7 @@ If one of the mods is present, the season will be displayed under the map with t
 ___
 **Other links:**
 
-- [Disable SeasonHUD Curios/Trinkets/Accessories Slot datapack](https://www.curseforge.com/minecraft/data-packs/disable-seasonhud-slot)
+- [Disable SeasonHud Curios/Trinkets/Accessories Slot datapack](https://www.curseforge.com/minecraft/data-packs/disable-seasonhud-slot)
 
 ***
 

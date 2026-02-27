@@ -7,6 +7,8 @@ import javax.annotation.Nonnull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance.TooltipSupplier;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import net.minecraft.util.FormattedCharSequence;
 
 public class HudScaleSlider extends BasicSlider {
@@ -36,7 +38,7 @@ public class HudScaleSlider extends BasicSlider {
   }
 
   @Override
-  public void renderBg(@Nonnull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
+  public void renderBg(@NonNull PoseStack graphics, @Nonnull Minecraft mc, int mouseX, int mouseY) {
     super.renderBg(graphics, mc, mouseX, mouseY);
   }
 

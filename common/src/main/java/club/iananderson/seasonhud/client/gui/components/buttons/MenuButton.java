@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.Nullable;
 import net.minecraft.util.FormattedCharSequence;
 
 public class MenuButton extends Button {
