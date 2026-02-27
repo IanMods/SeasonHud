@@ -233,7 +233,6 @@ dependencies {
     // Serene Seasons
     compileOnly "com.github.glitchfiend:SereneSeasons-forge:${project.serene_seasons_version}"
     compileOnly "com.github.glitchfiend:GlitchCore-forge:${project.glitchcore_version}"
-    compileOnly("net.jodah:typetools:0.6.3")
 
     // Terrafirmacraft
     compileOnly "maven.modrinth:terrafirmacraft:${project.terrafirmacraft_version}"
@@ -355,7 +354,7 @@ sourceSets.each {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'forge')
@@ -375,7 +374,7 @@ sourceSets.configureEach {
 publishMods {
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
-    file project(":forge")
+    file = tasks.reobfJar.archiveFile
     modLoaders.add("forge")
 
     def cfOptions = curseforgeOptions {
@@ -395,24 +394,14 @@ publishMods {
     curseforge("curseforgeForge") {
         from cfOptions
 
-        if (minecraft_version == "1.20.1") {
-            modLoaders.add("neoforge")
-        }
-
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-        optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
-        optional("curios", "accessories")
+        optional("serene-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
     }
 
     modrinth("modrinthForge") {
         from mrOptions
 
-        if (minecraft_version == "1.20.1") {
-            modLoaders.add("neoforge")
-        }
-
-        optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
-        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
-        optional("curios", "accessories")
+        optional("serene-seasons")
+        optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
     }
 }

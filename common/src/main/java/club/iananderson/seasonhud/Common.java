@@ -59,7 +59,7 @@ public class Common {
     }
 
     if (MinimapMods.getLoaded().iterator().hasNext()) {
-      Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().iterator().next().getModName());
+      Common.LOG.info("Loading [{}] Compat", MinimapMods.getLoaded().iterator().next().getModName());
     }
   }
 

@@ -13,7 +13,6 @@ import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
-import javax.annotation.Nonnull;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.CycleButton;
@@ -21,8 +20,9 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.jspecify.annotations.NonNull;
 
-public class SeasonOptionsScreen extends SeasonHudScreen {
+public class DisplayOptionsScreen extends SeasonHudScreen {
   private static final Component SCREEN_TITLE = Common.translatedText("menu.seasonhud.season.title");
   private Location hudLocation;
   private int posX;
@@ -33,23 +33,26 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
   private boolean showSubSeason;
   private boolean showTropicalSeason;
   private boolean showFertility;
+  private boolean fertilityReplacesSeason;
   private boolean needCalendar;
   private boolean enableCalendarDetail;
   private boolean drawDefaultHud;
   private int dayLength;
   private int newDayLength;
   private CycleButton<Location> hudLocationButton;
+  private CycleButton<Boolean> fertilityReplacesSeasonButton;
   private HudOffsetSlider sliderX;
   private HudOffsetSlider sliderY;
   private HudScaleSlider hudScaleSlider;
   private EditBox dayLengthBox;
 
-  public SeasonOptionsScreen(Screen parentScreen) {
+  public DisplayOptionsScreen(Screen parentScreen) {
     super(parentScreen, SCREEN_TITLE);
+    this.buttonWidth = 175;
   }
 
-  public static SeasonOptionsScreen getInstance(Screen parentScreen) {
-    return new SeasonOptionsScreen(parentScreen);
+  public static DisplayOptionsScreen getInstance(Screen parentScreen) {
+    return new DisplayOptionsScreen(parentScreen);
   }
 
   public void loadConfig() {
@@ -74,6 +77,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     if (Common.sereneSeasonsLoaded()) {
       showFertility = SeasonHudClient.getShowFertility();
+      fertilityReplacesSeason = SeasonHudClient.getFertilityReplacesSeason();
     }
   }
 
@@ -107,6 +111,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     if (Common.sereneSeasonsLoaded()) {
       SeasonHudClient.setShowFertility(showFertility);
+      SeasonHudClient.setFertilityReplacesSeason(fertilityReplacesSeason);
     }
 
     SeasonHudClient.CLIENT_SPEC.save();
@@ -125,7 +130,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
-  public void render(@Nonnull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
     var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
 
@@ -192,6 +197,10 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
                                         + BUTTON_PADDING), 16777215);
       }
 
+      if (Common.sereneSeasonsLoaded()) {
+        fertilityReplacesSeasonButton.active = showFertility;
+      }
+
       graphics.pose().pushPose();
       graphics.pose().translate(0, 0, 50);
       graphics.pose().scale((float) seasonScale, (float) seasonScale, 1.0F);
@@ -219,7 +228,7 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
     return (int) ((this.height - (textHeight * seasonScale)) / seasonScale);
   }
 
-  // TODO: Need to add a button for the 'fertilityReplacesSeason' config option
+  // TODO: Make subscreens for Season options, fertility options. Make sure the preview displays on both
 
   @Override
   public void init() {
@@ -300,7 +309,6 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
 
     widgets.add(showSubSeasonButton);
 
-    // TODO: Double check this looks okay
     if (Common.hasTropicalSeasons()) {
       CycleButton<Boolean> showTropicalSeasonButton = CycleButton.onOffBuilder(showTropicalSeason)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showTropicalSeason.tooltip"))
@@ -344,7 +352,14 @@ public class SeasonOptionsScreen extends SeasonHudScreen {
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
                   Common.translatedText("menu.seasonhud.season.showFertility.button"),
                   (b, val) -> this.showFertility = val);
-      widgets.add(showFertilityButton);
+
+      fertilityReplacesSeasonButton = CycleButton.onOffBuilder(fertilityReplacesSeason)
+          .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.fertilityReplacesSeason.tooltip"))
+          .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+                  Common.translatedText("menu.seasonhud.season.fertilityReplacesSeason.button"),
+                  (b, val) -> this.fertilityReplacesSeason = val);
+
+      widgets.addAll(Arrays.asList(showFertilityButton, fertilityReplacesSeasonButton));
     }
 
     if (Common.fabricSeasonsLoaded()) {
