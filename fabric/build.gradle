@@ -327,7 +327,7 @@ dependencies {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
+['apiElements', 'runtimeElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'fabric')
@@ -354,9 +354,8 @@ loom.remapConfigurations.configureEach {
 publishMods {
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
+    file = tasks.remapJar.archiveFile
     modLoaders.add("fabric")
-    file project(":fabric")
-
 
     curseforge("curseforgeFabric") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")

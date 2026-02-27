@@ -292,9 +292,6 @@ dependencies {
                 exclude group: "dev.su5ed.sinytra.fabric-api"
             }
 
-            forgeRuntimeLibrary("io.wispforest:endec:${project.endec_version}")
-            forgeRuntimeLibrary("io.wispforest.endec:gson:${project.endec_gson_version}")
-            forgeRuntimeLibrary("io.wispforest.endec:netty:${project.endec_netty_version}")
             break
         case "none":
             break
@@ -355,7 +352,7 @@ sourceSets.each {
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
-['apiElements', 'runtimeElements', 'sourcesElements'].each { variant ->
+['apiElements', 'runtimeElements'].each { variant ->
     configurations.named("$variant") {
         attributes {
             attribute(loaderAttribute, 'forge')
@@ -375,7 +372,7 @@ sourceSets.configureEach {
 publishMods {
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
-    file project(":forge")
+    file = tasks.reobfJar.archiveFile
     modLoaders.add("forge")
 
     def cfOptions = curseforgeOptions {
