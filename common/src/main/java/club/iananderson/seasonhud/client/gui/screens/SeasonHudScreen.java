@@ -77,12 +77,36 @@ public class SeasonHudScreen extends Screen {
     if (componentPath != null) {
       componentPath.applyFocus(false);
     }
-
   }
 
   @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public void rebuildUI() {
     this.rebuildWidgets();
+  }
+
+  public void drawColumnHeading(@NonNull GuiGraphics graphics, Component text, Side side, int row) {
+    int x;
+
+    switch (side) {
+      case LEFT -> x = leftButtonX + (buttonWidth / 2);
+      case RIGHT -> x = rightButtonX + (buttonWidth / 2);
+      default -> throw new IllegalStateException("Unexpected value: " + side);
+    }
+
+    int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);
+
+    graphics.pose().pushPose();
+    graphics.drawCenteredString(font, text, x, y, 16777215);
+    graphics.pose().popPose();
+  }
+
+  public void drawHeading(@NonNull GuiGraphics graphics, Component text, int row) {
+    int x = this.width / 2;
+    int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);
+
+    graphics.pose().pushPose();
+    graphics.drawCenteredString(font, text, x, y, 16777215);
+    graphics.pose().popPose();
   }
 
   @Override
@@ -111,5 +135,10 @@ public class SeasonHudScreen extends Screen {
         .build();
 
     this.widgets.addAll(Arrays.asList(cancelButton, doneButton));
+  }
+
+  public enum Side {
+    LEFT,
+    RIGHT
   }
 }

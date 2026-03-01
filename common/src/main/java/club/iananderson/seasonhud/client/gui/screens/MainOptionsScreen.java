@@ -27,6 +27,8 @@ public class MainOptionsScreen extends SeasonHudScreen {
   private boolean enableMinimapIntegration;
   private boolean journeyMapAboveMap;
   private boolean journeyMapMacOs;
+  private int minimapRow;
+  private int journeyMapRow;
 
   public MainOptionsScreen() {
     super(null, SCREEN_TITLE);
@@ -73,18 +75,15 @@ public class MainOptionsScreen extends SeasonHudScreen {
   public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
-    graphics.drawCenteredString(font, MINIMAP_SETTINGS, this.width / 2,
-                                MENU_PADDING + (2 * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                    + BUTTON_PADDING), 16777215);
+    drawHeading(graphics, MINIMAP_SETTINGS, minimapRow);
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
-      graphics.drawCenteredString(font, JOURNEYMAP, this.width / 2,
-                                  MENU_PADDING + (4 * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                      + BUTTON_PADDING), 16777215);
+      drawHeading(graphics, MINIMAP_SETTINGS, journeyMapRow);
 
       journeyMapAboveMapButton.active = enableMod;
       journeyMapMacOsButton.active = enableMod;
     }
+
     seasonButton.active = enableMod;
     colorButton.active = enableMod;
     enableMinimapIntegrationButton.active = enableMod;
@@ -104,7 +103,7 @@ public class MainOptionsScreen extends SeasonHudScreen {
                 Common.translatedText("menu.seasonhud.main.enableMod.button"), (b, val) -> enableMod = val);
     widgets.add(enableModButton);
 
-    int row = 0;
+    row = 0;
     seasonButton = MenuButton.builder(MenuButtons.SEASON, this, DisplayOptionsScreen.getInstance(this))
         .withTooltip(Common.newTooltip("menu.seasonhud.main.season.tooltip"))
         .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
@@ -116,7 +115,9 @@ public class MainOptionsScreen extends SeasonHudScreen {
         .build();
     widgets.addAll(Arrays.asList(seasonButton, colorButton));
 
-    row = 2;
+    row += 2;
+    minimapRow = row;
+
     enableMinimapIntegrationButton = CycleButton.onOffBuilder(enableMinimapIntegration)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.minimapIntegration.tooltip"))
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
@@ -133,6 +134,8 @@ public class MainOptionsScreen extends SeasonHudScreen {
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
       row += 2;
+      journeyMapRow = row;
+
       journeyMapAboveMapButton = CycleButton.onOffBuilder(journeyMapAboveMap)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.aboveMap.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
