@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.0] - 2026-03-02
+
+### Changed
+
+- (1.20.1 and Below) Changed Journeymap implementation to try and better support Retina displays on macOS
+
 ## [2.0.0] - 2026-02-27
 
 ### Changed

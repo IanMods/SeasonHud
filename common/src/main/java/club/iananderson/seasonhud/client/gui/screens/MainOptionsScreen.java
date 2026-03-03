@@ -5,10 +5,13 @@ import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
+import club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
 
@@ -20,8 +23,9 @@ public class MainOptionsScreen extends SeasonHudScreen {
   MenuButton colorButton;
   CycleButton<Boolean> enableMinimapIntegrationButton;
   CycleButton<Boolean> showMinimapHiddenButton;
-  CycleButton<Boolean> journeyMapAboveMapButton;
-  CycleButton<Boolean> journeyMapMacOsButton;
+  // CycleButton<Boolean> journeyMapAboveMapButton;
+  // CycleButton<Boolean> journeyMapMacOsButton;
+  Button journeyMapButton;
   private boolean enableMod;
   private boolean showMinimapHidden;
   private boolean enableMinimapIntegration;
@@ -44,10 +48,10 @@ public class MainOptionsScreen extends SeasonHudScreen {
     enableMod = SeasonHudClient.getEnableMod();
     showMinimapHidden = SeasonHudClient.getShowDefaultWhenMinimapHidden();
     enableMinimapIntegration = SeasonHudClient.getEnableMinimapIntegration();
-    if (CurrentMinimap.journeyMapLoaded()) {
-      journeyMapAboveMap = SeasonHudClient.getJourneyMapAboveMap();
-      journeyMapMacOs = SeasonHudClient.getJourneyMapMacOs();
-    }
+    // if (CurrentMinimap.journeyMapLoaded()) {
+    //   journeyMapAboveMap = SeasonHudClient.getJourneyMapAboveMap();
+    //   journeyMapMacOs = SeasonHudClient.getJourneyMapMacOs();
+    // }
   }
 
   public void saveConfig() {
@@ -78,10 +82,12 @@ public class MainOptionsScreen extends SeasonHudScreen {
     drawHeading(graphics, MINIMAP_SETTINGS, minimapRow);
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
-      drawHeading(graphics, MINIMAP_SETTINGS, journeyMapRow);
+      drawHeading(graphics, JOURNEYMAP, journeyMapRow);
 
-      journeyMapAboveMapButton.active = enableMod;
-      journeyMapMacOsButton.active = enableMod;
+      journeyMapButton.active = enableMod;
+
+      // journeyMapAboveMapButton.active = enableMod;
+      // journeyMapMacOsButton.active = enableMod;
     }
 
     seasonButton.active = enableMod;
@@ -136,19 +142,28 @@ public class MainOptionsScreen extends SeasonHudScreen {
       row += 2;
       journeyMapRow = row;
 
-      journeyMapAboveMapButton = CycleButton.onOffBuilder(journeyMapAboveMap)
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.aboveMap.tooltip"))
-          .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.main.journeymap.aboveMap.button"),
-                  (b, val) -> journeyMapAboveMap = val);
+      journeyMapButton = Button.builder(
+              Common.translatedText("menu.seasonhud.main.journeymap.options.button").append("..."),
+              (button) -> JourneymapSeasonPlugin.getInstance().getClientProperties().openAddonOptionsEditor(this))
+          .tooltip(Tooltip.create(Common.translatedText("menu.seasonhud.main.journeymap.options.tooltip")))
+          .bounds(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
+          .build();
 
-      journeyMapMacOsButton = CycleButton.onOffBuilder(journeyMapMacOs)
-          .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.macOS.tooltip"))
-          .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-                  Common.translatedText("menu.seasonhud.main.journeymap.macOS.button"),
-                  (b, val) -> journeyMapMacOs = val);
+      this.addRenderableWidget(journeyMapButton);
 
-      widgets.addAll(Arrays.asList(journeyMapAboveMapButton, journeyMapMacOsButton));
+      // journeyMapAboveMapButton = CycleButton.onOffBuilder(journeyMapAboveMap)
+      //     .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.aboveMap.tooltip"))
+      //     .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+      //             Common.translatedText("menu.seasonhud.main.journeymap.aboveMap.button"),
+      //             (b, val) -> journeyMapAboveMap = val);
+      //
+      // journeyMapMacOsButton = CycleButton.onOffBuilder(journeyMapMacOs)
+      //     .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.macOS.tooltip"))
+      //     .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
+      //             Common.translatedText("menu.seasonhud.main.journeymap.macOS.button"),
+      //             (b, val) -> journeyMapMacOs = val);
+      //
+      // widgets.addAll(Arrays.asList(journeyMapAboveMapButton, journeyMapMacOsButton));
     }
 
     widgets.forEach(this::addRenderableWidget);

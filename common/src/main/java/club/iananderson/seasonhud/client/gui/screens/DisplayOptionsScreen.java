@@ -220,7 +220,6 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
   private void defaultHudButtons() {
     if (drawDefaultHud) {
-      MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getHudText();
 
       row += 1;
       hudLocationButton = CycleButton.builder(Location::getLocationName)
@@ -240,6 +239,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
           .build();
 
       row += 1;
+      MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getHudText();
       sliderX = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
           .withValues(0, this.maxWidth(seasonCombined), posX, Client.DEFAULT_X_OFFSET)

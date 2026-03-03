@@ -166,7 +166,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
     modCompileOnly "dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"
-    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
+    compileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}-SNAPSHOT") {
         changing = true
     }
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"

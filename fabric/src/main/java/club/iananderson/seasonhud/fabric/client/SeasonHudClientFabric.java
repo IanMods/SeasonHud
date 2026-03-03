@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.fabric.client;
 
-import club.iananderson.seasonhud.SeasonHudClientCommon;
+import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.fabric.event.ClientEvents;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.ftbchunks.SeasonComponent;

@@ -39,7 +39,7 @@ public class CurrentSeason {
     return new CurrentSeason(mc);
   }
 
-  public Component getTranslation(boolean showSubSeason) {
+  private Component getTranslation(boolean showSubSeason) {
     String seasonKey = currentSeason.getTranslationKey();
     String subSeasonKey = currentSubSeason.getSubSeasonKey();
     Component translatedText = Common.translatedText(seasonKey);
@@ -56,7 +56,7 @@ public class CurrentSeason {
   }
 
   // Localized name with icon
-  public Component getText(ShowDay showDay, boolean showSubSeason) {
+  private Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text;
     Component seasonKey = getTranslation(showSubSeason);
 
@@ -168,5 +168,21 @@ public class CurrentSeason {
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(seasonIconFormat),
                                  seasonText.withStyle(seasonFormat));
+  }
+
+  public MutableComponent journeymapText() {
+    MutableComponent seasonText = getText(SeasonHudClient.getShowDay(), SeasonHudClient.getShowSubSeason()).copy();
+
+    if (SeasonHudClient.getEnableSeasonNameColor()) {
+      if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
+        int mixedColor = Rgb.mixRgb(currentSeason, CommonSeasonHelper.commonSeasons.getHelper().fertility(player));
+
+        seasonFormat = Style.EMPTY.withColor(mixedColor);
+      } else {
+        seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
+      }
+    }
+
+    return Common.literalText("  ").append(seasonText).withStyle(seasonFormat);
   }
 }

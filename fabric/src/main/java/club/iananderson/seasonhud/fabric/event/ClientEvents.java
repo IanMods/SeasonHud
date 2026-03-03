@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.fabric.event;
 
-import club.iananderson.seasonhud.SeasonHudClientCommon;
 import club.iananderson.seasonhud.client.KeyBindings;
+import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.fabric.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.fabric.client.overlays.SeasonHudOverlay;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
