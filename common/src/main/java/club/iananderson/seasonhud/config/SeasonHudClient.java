@@ -30,8 +30,8 @@ public class SeasonHudClient {
   private static ConfigValue<Boolean> fertilityReplacesSeason;
   private static ConfigValue<Boolean> enableMinimapIntegration;
   private static ConfigValue<Boolean> showDefaultWhenMinimapHidden;
-  private static ConfigValue<Boolean> journeyMapAboveMap;
-  private static ConfigValue<Boolean> journeyMapMacOs;
+  // private static ConfigValue<Boolean> journeyMapAboveMap;
+  // private static ConfigValue<Boolean> journeyMapMacOs;
 
   static {
     ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -189,22 +189,22 @@ public class SeasonHudClient {
                                                                      + "."))
         .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
 
-    builder.push("Journeymap");
-    journeyMapAboveMap = builder.comment(StringLine.builder()
-                                             .addLine(
-                                                 "Display the season above the JourneyMap minimap, instead of below")
-                                             .addLine("(true/false)")
-                                             .lastLine("Default is " + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + "."))
-        .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
-
-    journeyMapMacOs = builder.comment(StringLine.builder()
-                                          .addLine("Toggle for macOS retina display scaling when using JourneyMap.")
-                                          .addLine("Enable this us using a retina display and the season line is")
-                                          .addLine("rendering around the halfway point of the screen.")
-                                          .addLine("(true/false)")
-                                          .lastLine("Default is " + Client.DEFAULT_JOURNEYMAP_MAC_OS + "."))
-        .define("enable_macOS", Client.DEFAULT_JOURNEYMAP_MAC_OS);
-    builder.pop();
+    // builder.push("Journeymap");
+    // journeyMapAboveMap = builder.comment(StringLine.builder()
+    //                                          .addLine(
+    //                                              "Display the season above the JourneyMap minimap, instead of below")
+    //                                          .addLine("(true/false)")
+    //                                          .lastLine("Default is " + Client.DEFAULT_JOURNEYMAP_ABOVE_MAP + "."))
+    //     .define("enable_above_map", Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
+    //
+    // journeyMapMacOs = builder.comment(StringLine.builder()
+    //                                       .addLine("Toggle for macOS retina display scaling when using JourneyMap.")
+    //                                       .addLine("Enable this us using a retina display and the season line is")
+    //                                       .addLine("rendering around the halfway point of the screen.")
+    //                                       .addLine("(true/false)")
+    //                                       .lastLine("Default is " + Client.DEFAULT_JOURNEYMAP_MAC_OS + "."))
+    //     .define("enable_macOS", Client.DEFAULT_JOURNEYMAP_MAC_OS);
+    // builder.pop();
     builder.pop();
     builder.pop();
   }
@@ -376,19 +376,19 @@ public class SeasonHudClient {
   }
 
   // Journeymap
-  public static boolean getJourneyMapAboveMap() {
-    return getOrDefault(journeyMapAboveMap);
-  }
-
-  public static void setJourneyMapAboveMap(boolean enable) {
-    SeasonHudClient.journeyMapAboveMap.set(enable);
-  }
-
-  public static boolean getJourneyMapMacOs() {
-    return getOrDefault(journeyMapMacOs);
-  }
-
-  public static void setJourneyMapMacOs(boolean enable) {
-    SeasonHudClient.journeyMapMacOs.set(enable);
-  }
+  // public static boolean getJourneyMapAboveMap() {
+  //   return getOrDefault(journeyMapAboveMap);
+  // }
+  //
+  // public static void setJourneyMapAboveMap(boolean enable) {
+  //   SeasonHudClient.journeyMapAboveMap.set(enable);
+  // }
+  //
+  // public static boolean getJourneyMapMacOs() {
+  //   return getOrDefault(journeyMapMacOs);
+  // }
+  //
+  // public static void setJourneyMapMacOs(boolean enable) {
+  //   SeasonHudClient.journeyMapMacOs.set(enable);
+  // }
 }

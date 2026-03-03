@@ -220,8 +220,8 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
   private void defaultHudButtons() {
     if (drawDefaultHud) {
-
       row += 1;
+
       hudLocationButton = CycleButton.builder(Location::getLocationName)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.hudLocation.tooltip"))
           .withValues(Location.values())
@@ -239,6 +239,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
           .build();
 
       row += 1;
+
       MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getHudText();
       sliderX = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
           .withTooltip(Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
@@ -260,6 +261,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
   private void seasonButtons() {
     row += 1;
+
     CycleButton<ShowDay> showDayButton = CycleButton.builder(ShowDay::getDayDisplayName)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showDay.tooltip"))
         .withValues(ShowDay.getValues())
@@ -275,6 +277,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     widgets.addAll(Arrays.asList(showDayButton, seasonColorButton));
 
     row += 1;
+
     CycleButton<Boolean> showSubSeasonButton = CycleButton.onOffBuilder(showSubSeason)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip"))
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
@@ -305,7 +308,8 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
   private void calendarButtons() {
     if (Common.hasCalendarLoaded()) {
-      row += 1; // Row 5 ((enableMinimapIntegration -> Row 3)
+      row += 1;
+
       CycleButton<Boolean> needCalendarButton = CycleButton.onOffBuilder(needCalendar)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.needCalendar.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
@@ -335,6 +339,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
   private void fertilityButtons() {
     if (Common.sereneSeasonsLoaded()) {
       row += 1;
+
       CycleButton<Boolean> showFertilityButton = CycleButton.onOffBuilder(showFertility)
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.showFertility.tooltip"))
           .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
