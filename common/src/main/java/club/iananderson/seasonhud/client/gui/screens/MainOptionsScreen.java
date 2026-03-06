@@ -22,14 +22,10 @@ public class MainOptionsScreen extends SeasonHudScreen {
   MenuButton colorButton;
   CycleButton<Boolean> enableMinimapIntegrationButton;
   CycleButton<Boolean> showMinimapHiddenButton;
-  // CycleButton<Boolean> journeyMapAboveMapButton;
-  // CycleButton<Boolean> journeyMapMacOsButton;
   Button journeyMapButton;
   private boolean enableMod;
   private boolean showMinimapHidden;
   private boolean enableMinimapIntegration;
-  private boolean journeyMapAboveMap;
-  private boolean journeyMapMacOs;
   private int minimapRow;
   private int journeyMapRow;
 
@@ -47,20 +43,12 @@ public class MainOptionsScreen extends SeasonHudScreen {
     enableMod = SeasonHudClient.getEnableMod();
     showMinimapHidden = SeasonHudClient.getShowDefaultWhenMinimapHidden();
     enableMinimapIntegration = SeasonHudClient.getEnableMinimapIntegration();
-    // if (CurrentMinimap.journeyMapLoaded()) {
-    //   journeyMapAboveMap = SeasonHudClient.getJourneyMapAboveMap();
-    //   journeyMapMacOs = SeasonHudClient.getJourneyMapMacOs();
-    // }
   }
 
   public void saveConfig() {
     SeasonHudClient.setEnableMod(enableMod);
     SeasonHudClient.setEnableMinimapIntegration(enableMinimapIntegration);
     SeasonHudClient.setShowDefaultWhenMinimapHidden(showMinimapHidden);
-    // if (CurrentMinimap.journeyMapLoaded()) {
-    //   SeasonHudClient.setJourneyMapAboveMap(journeyMapAboveMap);
-    //   SeasonHudClient.setJourneyMapMacOs(journeyMapMacOs);
-    // }
   }
 
   @Override
@@ -84,9 +72,6 @@ public class MainOptionsScreen extends SeasonHudScreen {
       drawHeading(graphics, JOURNEYMAP, journeyMapRow);
 
       journeyMapButton.active = enableMod;
-
-      // journeyMapAboveMapButton.active = enableMod;
-      // journeyMapMacOsButton.active = enableMod;
     }
 
     seasonButton.active = enableMod;
@@ -141,24 +126,9 @@ public class MainOptionsScreen extends SeasonHudScreen {
           .build();
 
       widgets.add(journeyMapButton);
-
-      // journeyMapAboveMapButton = CycleButton.onOffBuilder(journeyMapAboveMap)
-      //     .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.aboveMap.tooltip"))
-      //     .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-      //             Common.translatedText("menu.seasonhud.main.journeymap.aboveMap.button"),
-      //             (b, val) -> journeyMapAboveMap = val);
-      //
-      // journeyMapMacOsButton = CycleButton.onOffBuilder(journeyMapMacOs)
-      //     .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.journeymap.macOS.tooltip"))
-      //     .create(rightButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
-      //             Common.translatedText("menu.seasonhud.main.journeymap.macOS.button"),
-      //             (b, val) -> journeyMapMacOs = val);
-      //
-      // widgets.addAll(Arrays.asList(journeyMapAboveMapButton, journeyMapMacOsButton));
     }
   }
 
-  @SuppressWarnings("ConstantValue")
   @Override
   public void init() {
     super.init();

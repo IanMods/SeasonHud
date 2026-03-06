@@ -84,7 +84,7 @@ public class SeasonHudScreen extends Screen {
     this.rebuildWidgets();
   }
 
-  public void drawButtonRow(){
+  public void drawButtonRow() {
 
   }
 
