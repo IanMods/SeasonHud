@@ -28,8 +28,6 @@ public class DefaultValues {
     public static final boolean DEFAULT_FERTILITY_REPLACES_SEASON = false;
     public static final boolean DEFAULT_ENABLE_MINIMAP_INTEGRATION = true;
     public static final boolean DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN = false;
-    public static final boolean DEFAULT_JOURNEYMAP_ABOVE_MAP = false;
-    public static final boolean DEFAULT_JOURNEYMAP_MAC_OS = false;
   }
 
   public static class Server {

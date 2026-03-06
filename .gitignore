@@ -33,5 +33,5 @@ build
 .gradle
 # other
 run
-/dist/
+/.depUpdater/
 /update-seasonhud-deps.ps1
