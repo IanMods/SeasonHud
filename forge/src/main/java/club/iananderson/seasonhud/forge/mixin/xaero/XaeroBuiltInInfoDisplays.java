@@ -1,6 +1,6 @@
 package club.iananderson.seasonhud.forge.mixin.xaero;
 
-import club.iananderson.seasonhud.forge.impl.minimaps.XaeroInfoDisplays;
+import club.iananderson.seasonhud.forge.impl.minimap.XaeroInfoDisplays;
 import java.util.List;
 import java.util.Objects;
 import org.spongepowered.asm.mixin.Mixin;

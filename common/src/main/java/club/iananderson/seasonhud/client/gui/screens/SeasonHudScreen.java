@@ -96,9 +96,14 @@ public class SeasonHudScreen extends Screen {
     int x;
 
     switch (side) {
-      case LEFT -> x = leftButtonX + (buttonWidth / 2);
-      case RIGHT -> x = rightButtonX + (buttonWidth / 2);
-      default -> throw new IllegalStateException("Unexpected value: " + side);
+      case LEFT:
+        x = leftButtonX + (buttonWidth / 2);
+        break;
+      case RIGHT:
+        x = rightButtonX + (buttonWidth / 2);
+        break;
+      default:
+        throw new IllegalStateException("Unexpected value: " + side);
     }
 
     int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);

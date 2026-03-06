@@ -57,8 +57,8 @@ public class CycleButton<T> extends AbstractButton implements TooltipAccessor {
 
   public static Builder<Boolean> onOffBuilder() {
     return (new Builder((b) -> (Boolean) b
-                                      ? CommonComponents.OPTION_ON
-                                      : CommonComponents.OPTION_OFF)).withValues(BOOLEAN_OPTIONS);
+                               ? CommonComponents.OPTION_ON
+                               : CommonComponents.OPTION_OFF)).withValues(BOOLEAN_OPTIONS);
   }
 
   public static Builder<Boolean> onOffBuilder(boolean bl) {

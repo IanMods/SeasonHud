@@ -1,5 +1,6 @@
 package club.iananderson.seasonhud.forge.client.overlays;
 
+import club.iananderson.seasonhud.forge.impl.minimap.mods.journeymap.DrawUtilSeason;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import club.iananderson.seasonhud.impl.minimap.mods.MinimapMods;
 import club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin;
@@ -14,7 +15,7 @@ public class JourneyMapCommon {
       JourneymapSeasonPlugin jmPlugin = JourneymapSeasonPlugin.getInstance();
       DisplayVars dv = UIManager.INSTANCE.getMiniMap().getDisplayVars();
 
-      jmPlugin.drawSeasonInfoSlot(graphics, dv);
+      DrawUtilSeason.drawSeasonInfoSlot(graphics, dv);
     }
   }
 }

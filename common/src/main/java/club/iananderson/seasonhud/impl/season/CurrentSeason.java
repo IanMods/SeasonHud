@@ -184,9 +184,9 @@ public class CurrentSeason {
       if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
         int mixedColor = Rgb.mixRgb(currentSeason, CommonSeasonHelper.commonSeasons.getHelper().fertility(player));
 
-        seasonFormat = Style.EMPTY.withColor(mixedColor);
+        seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(mixedColor));
       } else {
-        seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
+        seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(currentSeason.getSeasonColor()));
       }
     }
 

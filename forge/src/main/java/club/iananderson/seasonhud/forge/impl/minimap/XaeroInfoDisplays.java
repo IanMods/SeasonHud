@@ -1,4 +1,4 @@
-package club.iananderson.seasonhud.forge.impl.minimaps;
+package club.iananderson.seasonhud.forge.impl.minimap;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;

@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import pepjebs.mapatlases.MapAtlasesMod;
@@ -48,5 +49,9 @@ public class FabricMinimapHelper implements MinimapHelper {
   @Override
   public boolean hideHudInCurrentDimension() {
     return false;
+  }
+
+  @Override
+  public void openJourneyMapOptions(Screen returnScreen) {
   }
 }

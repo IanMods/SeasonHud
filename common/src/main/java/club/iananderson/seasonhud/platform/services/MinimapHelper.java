@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.platform.services;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 
 public interface MinimapHelper {
   /**
@@ -15,4 +16,6 @@ public interface MinimapHelper {
   boolean hideXaero(Minecraft mc);
 
   boolean hideHudInCurrentDimension();
+
+  void openJourneyMapOptions(Screen returnScreen);
 }

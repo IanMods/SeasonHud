@@ -1,13 +1,9 @@
 package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.platform.Services;
 import journeymap.client.api.option.EnumOption;
 import journeymap.client.api.option.OptionCategory;
-import journeymap.client.ui.UIManager;
-import journeymap.client.ui.component.JmUI;
-import journeymap.client.ui.dialog.AddonOptionsManager;
-import journeymap.common.Journeymap;
-import journeymap.common.log.LogFormatter;
 import net.minecraft.client.gui.screens.Screen;
 
 public class ClientProperties {
@@ -21,14 +17,6 @@ public class ClientProperties {
   }
 
   public void openAddonOptionsEditor(Screen returnScreen) {
-    try {
-      JmUI editor = new AddonOptionsManager(returnScreen);
-      UIManager.INSTANCE.open(editor);
-    } catch (LinkageError e) {
-      UIManager.handleLinkageError(e);
-    } catch (Throwable e) {
-      Journeymap.getLogger().error("Error opening Addon options manager: " + LogFormatter.toString(e));
-    }
-
+    Services.MINIMAP.openJourneyMapOptions(returnScreen);
   }
 }

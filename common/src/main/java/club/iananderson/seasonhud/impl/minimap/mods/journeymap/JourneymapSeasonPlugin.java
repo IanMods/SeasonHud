@@ -1,9 +1,6 @@
 package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.impl.season.CurrentFertility;
-import club.iananderson.seasonhud.impl.season.CurrentSeason;
-import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.EnumSet;
 import journeymap.client.JourneymapClient;
 import journeymap.client.api.ClientPlugin;
@@ -16,18 +13,12 @@ import journeymap.client.api.event.RegistryEvent.OptionsRegistryEvent;
 import journeymap.client.api.event.RegistryEvent.RegistryType;
 import journeymap.client.io.ThemeLoader;
 import journeymap.client.properties.MiniMapProperties;
-import journeymap.client.render.RenderWrapper;
-import journeymap.client.render.draw.DrawUtil;
-import journeymap.client.ui.minimap.DisplayVars;
 import journeymap.client.ui.minimap.Shape;
 import journeymap.client.ui.theme.Theme;
-import journeymap.client.ui.theme.Theme.LabelSpec;
 import journeymap.client.ui.theme.Theme.Minimap;
-import journeymap.client.ui.theme.ThemeLabelSource;
 import journeymap.client.ui.theme.ThemeLabelSource.InfoSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import org.jspecify.annotations.NonNull;
 
 @ClientPlugin
@@ -104,64 +95,5 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
     } else {
       return currentTheme.square;
     }
-  }
-
-  public void drawSeasonInfoSlot(PoseStack graphics, DisplayVars dv) {
-    MiniMapProperties mapProperties = JourneymapClient.getInstance().getActiveMiniMapProperties();
-    LabelSpec labelSpec;
-    LabelPosition labelPosition = getClientProperties().position.get();
-    int labelsHeight;
-    int startY;
-    int labelOffset;
-
-    if (labelPosition == LabelPosition.Top) {
-      labelSpec = minimapSpec().labelTop;
-      labelsHeight = dv.getInfoLabelAreaHeight(mc.font, minimapSpec().labelTop,
-                                               ThemeLabelSource.values.get(mapProperties.info1Label.get()),
-                                               ThemeLabelSource.values.get(mapProperties.info2Label.get()));
-      startY = dv.textureY;
-      labelOffset = minimapSpec().labelTopInside
-                    ? minimapSpec().margin
-                    : -minimapSpec().margin - labelsHeight;
-    } else {
-      labelSpec = minimapSpec().labelBottom;
-      labelsHeight = dv.getInfoLabelAreaHeight(mc.font, minimapSpec().labelBottom,
-                                               ThemeLabelSource.values.get(mapProperties.info3Label.get()),
-                                               ThemeLabelSource.values.get(mapProperties.info4Label.get()));
-      startY = dv.textureY + dv.minimapHeight;
-      labelOffset = minimapSpec().labelBottomInside
-                    ? -minimapSpec().margin
-                    : minimapSpec().margin + labelsHeight;
-
-    }
-
-    int labelY = startY + labelOffset;
-    int labelX = (int) Math.floor((dv.textureX + (double) (dv.minimapWidth / 2)));
-
-    DrawUtil.sizeDisplay(graphics, mc.getWindow().getWidth(), mc.getWindow().getHeight());
-    RenderWrapper.enableBlend();
-
-    MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
-    DrawUtilSeason.drawLabel(graphics, seasonCombined, labelX, labelY, labelPosition.getHoriAlign(),
-                             labelPosition.getVertAlign(), labelSpec.background.getColor(),
-                             mapProperties.infoSlotAlpha.get(), labelSpec.foreground.getColor(),
-                             labelSpec.foreground.alpha, (double) mapProperties.fontScale.get(), labelSpec.shadow,
-                             0.0F);
-
-    if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
-      int singleLabelHeight = (int) ((double) (DrawUtil.getLabelHeight(mc.font, labelSpec.shadow) + labelSpec.margin)
-          * mapProperties.fontScale.get());
-      labelY += singleLabelHeight;
-
-      MutableComponent fertility = CurrentFertility.getInstance(mc).getMinimapText();
-      DrawUtilSeason.drawLabel(graphics, fertility, labelX, labelY, labelPosition.getHoriAlign(),
-                               labelPosition.getVertAlign(), labelSpec.background.getColor(),
-                               mapProperties.infoSlotAlpha.get(), labelSpec.foreground.getColor(),
-                               labelSpec.foreground.alpha, (double) mapProperties.fontScale.get(), labelSpec.shadow,
-                               0.0F);
-    }
-
-    RenderWrapper.disableBlend();
-    DrawUtil.sizeDisplay(graphics, mc.getWindow().getGuiScaledWidth(), mc.getWindow().getGuiScaledHeight());
   }
 }

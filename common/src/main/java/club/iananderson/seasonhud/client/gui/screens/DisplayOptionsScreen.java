@@ -12,6 +12,7 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
 import net.minecraft.client.gui.GuiComponent;
@@ -285,9 +286,6 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
       if ((seasonLength % 3) != 0) {
         showSubSeasonButton.active = false;
-        showSubSeasonButton.getTooltip()
-            .set(0, Common.newTooltip("menu.seasonhud.season.showSubSeason.tooltip.error", seasonLength,
-                                      seasonLength * 24000).get(0));
       }
     }
     widgets.add(showSubSeasonButton);
