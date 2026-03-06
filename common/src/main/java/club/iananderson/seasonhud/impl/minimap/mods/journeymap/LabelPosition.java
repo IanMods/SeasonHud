@@ -1,9 +1,9 @@
 package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
+import club.iananderson.seasonhud.Common;
 import journeymap.client.api.option.KeyedEnum;
 import journeymap.client.render.draw.DrawUtil.HAlign;
 import journeymap.client.render.draw.DrawUtil.VAlign;
-import net.minecraft.network.chat.Component;
 
 public enum LabelPosition implements KeyedEnum {
   Top("jm.minimap.info_slot.top", VAlign.Above),
@@ -24,7 +24,7 @@ public enum LabelPosition implements KeyedEnum {
 
   @Override
   public String toString() {
-    return Component.translatable(this.key).getString();
+    return Common.translatedText(this.key).getString();
   }
 
   public VAlign getVertAlign() {
