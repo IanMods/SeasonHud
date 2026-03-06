@@ -35,3 +35,5 @@ build
 run
 /.depUpdater/
 /update-seasonhud-deps.ps1
+/dist/
+

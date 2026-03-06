@@ -3,6 +3,7 @@ package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.EnumSet;
 import journeymap.client.JourneymapClient;
 import journeymap.client.api.ClientPlugin;
@@ -25,7 +26,6 @@ import journeymap.client.ui.theme.Theme.Minimap;
 import journeymap.client.ui.theme.ThemeLabelSource;
 import journeymap.client.ui.theme.ThemeLabelSource.InfoSlot;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jspecify.annotations.NonNull;
@@ -106,7 +106,7 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
     }
   }
 
-  public void drawSeasonInfoSlot(GuiGraphics graphics, DisplayVars dv) {
+  public void drawSeasonInfoSlot(PoseStack graphics, DisplayVars dv) {
     MiniMapProperties mapProperties = JourneymapClient.getInstance().getActiveMiniMapProperties();
     LabelSpec labelSpec;
     LabelPosition labelPosition = getClientProperties().position.get();
@@ -138,7 +138,7 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
     int labelY = startY + labelOffset;
     int labelX = (int) Math.floor((dv.textureX + (double) (dv.minimapWidth / 2)));
 
-    DrawUtil.sizeDisplay(graphics.pose(), mc.getWindow().getWidth(), mc.getWindow().getHeight());
+    DrawUtil.sizeDisplay(graphics, mc.getWindow().getWidth(), mc.getWindow().getHeight());
     RenderWrapper.enableBlend();
 
     MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
@@ -162,6 +162,6 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
     }
 
     RenderWrapper.disableBlend();
-    DrawUtil.sizeDisplay(graphics.pose(), mc.getWindow().getGuiScaledWidth(), mc.getWindow().getGuiScaledHeight());
+    DrawUtil.sizeDisplay(graphics, mc.getWindow().getGuiScaledWidth(), mc.getWindow().getGuiScaledHeight());
   }
 }

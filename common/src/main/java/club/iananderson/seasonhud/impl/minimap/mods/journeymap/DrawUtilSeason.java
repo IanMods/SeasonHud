@@ -1,17 +1,18 @@
 package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
-import com.mojang.math.Axis;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import java.util.Objects;
 import journeymap.client.cartography.color.RGB;
 import journeymap.client.render.draw.DrawUtil;
 import journeymap.client.render.draw.DrawUtil.HAlign;
 import journeymap.client.render.draw.DrawUtil.VAlign;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 
 public class DrawUtilSeason {
-  public static void drawLabel(GuiGraphics graphics, Component text, double x, double y, HAlign horiAlign,
+  public static void drawLabel(PoseStack graphics, Component text, double x, double y, HAlign horiAlign,
       VAlign vertAlign, Integer bgColor, float bgAlpha, Integer color, float alpha, double fontScale,
       boolean fontShadow, double rotation) {
     if (!text.getString().isEmpty()) {
@@ -33,13 +34,13 @@ public class DrawUtilSeason {
         --height;
       }
 
-      graphics.pose().pushPose();
+      graphics.pushPose();
 
       try {
         if (fontScale != (double) 1.0F) {
           x /= fontScale;
           y /= fontScale;
-          graphics.pose().scale((float) fontScale, (float) fontScale, 1.0F);
+          graphics.scale((float) fontScale, (float) fontScale, 1.0F);
         }
 
         float textX = (float) x;
@@ -97,25 +98,25 @@ public class DrawUtilSeason {
         }
 
         if (rotation != (double) 0.0F) {
-          graphics.pose().translate(x, y, 0.0F);
-          graphics.pose().mulPose(Axis.ZP.rotationDegrees((float) (-rotation)));
-          graphics.pose().translate(-x, -y, 0.0F);
+          graphics.translate(x, y, 0.0F);
+          graphics.mulPose(Vector3f.ZP.rotationDegrees((float) (-rotation)));
+          graphics.translate(-x, -y, 0.0F);
         }
 
         if (drawRect) {
           float horiPad = 2;
-          DrawUtil.drawRectangle(graphics.pose(), rectX - (double) horiPad - (double) 0.5F, rectY,
-                                 width + (2 * horiPad), height, bgColor, bgAlpha);
+          DrawUtil.drawRectangle(graphics, rectX - (double) horiPad - (double) 0.5F, rectY, width + (2 * horiPad),
+                                 height, bgColor, bgAlpha);
         }
 
         if (alpha < 1.0F) {
           color = RGB.toArbg(color, alpha);
         }
 
-        graphics.pose().translate((double) textX - Math.floor(textX), (double) textY - Math.floor(textY), 0.0F);
-        graphics.drawString(mc.font, text, (int) Math.floor(textX), (int) Math.floor(textY), color, fontShadow);
+        graphics.translate((double) textX - Math.floor(textX), (double) textY - Math.floor(textY), 0.0F);
+        GuiComponent.drawString(graphics, mc.font, text, (int) Math.floor(textX), (int) Math.floor(textY), color);
       } finally {
-        graphics.pose().popPose();
+        graphics.popPose();
       }
     }
   }

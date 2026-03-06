@@ -1,6 +1,5 @@
 package club.iananderson.seasonhud.client;
 
-import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.MainOptionsScreen;
 
 public class SeasonHudClientCommon {
