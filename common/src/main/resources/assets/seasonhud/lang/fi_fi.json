@@ -94,6 +94,8 @@
   "menu.seasonhud.main.title": "SeasonHud Asetukset",
   "menu.seasonhud.season.calendarDetail.button": "Calendar Detail Mode",
   "menu.seasonhud.season.calendarDetail.tooltip": "Having the calendar item shows the detailed version of the HUD",
+  "menu.seasonhud.season.fertilityReplacesSeason.button": "Fertility Replaces Season",
+  "menu.seasonhud.season.fertilityReplacesSeason.tooltip": "Replace the season name with the current fertility\n\nThis is only active when it differs from the default of the biome",
   "menu.seasonhud.season.hudLocation.button": "HUD Sijainti",
   "menu.seasonhud.season.hudLocation.tooltip": "Missä näyttää HUD jos minikarttaa ei ole ladattu",
   "menu.seasonhud.season.needCalendar.button": "Tarvitseeko kalenterin",

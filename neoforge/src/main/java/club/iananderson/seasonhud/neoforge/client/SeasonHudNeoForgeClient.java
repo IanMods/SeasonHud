@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.neoforge.client;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.SeasonHudClientCommon;
+import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

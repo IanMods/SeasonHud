@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import journeymap.api.client.impl.ClientAPI;
 import journeymap.api.v2.client.IClientAPI;
 import journeymap.api.v2.client.IClientPlugin;
 import journeymap.api.v2.client.JourneyMapPlugin;
@@ -23,7 +24,7 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
   private final String fertilityKeyString = "xaerominimap.seasonhud.infodisplay.fertility";
   private final Component seasonKey = Common.translatedText(seasonKeyString);
   private final Component fertilityKey = Common.translatedText(fertilityKeyString);
-  private IClientAPI api;
+  private ClientAPI api;
   private ClientProperties clientProperties;
   private Minecraft mc;
 
@@ -41,7 +42,8 @@ public class JourneymapSeasonPlugin implements IClientPlugin {
   @Override
   public void initialize(@NonNull IClientAPI api) {
     INSTANCE = this;
-    this.api = api;
+
+    this.api = (ClientAPI) api;
     this.mc = Minecraft.getInstance();
 
     ClientEventRegistry.INFO_SLOT_REGISTRY_EVENT.subscribe(this.getModId(), this::infoSlotRegistryEvent);

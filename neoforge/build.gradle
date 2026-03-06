@@ -223,7 +223,7 @@ dependencies {
     compileOnly "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    compileOnly("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
+    compileOnly("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}-SNAPSHOT") {
         changing = true
     }
     compileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
@@ -261,9 +261,9 @@ dependencies {
             implementation "xaero.lib:xaerolib-neoforge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
-            implementation("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}") {
-                changing = true
-            }
+//            implementation("info.journeymap:journeymap-api-neoforge:${project.journeymap_api_version}-SNAPSHOT") {
+//                changing = true
+//            }
             implementation "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
             implementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
