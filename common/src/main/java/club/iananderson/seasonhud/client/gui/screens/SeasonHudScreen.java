@@ -84,6 +84,10 @@ public class SeasonHudScreen extends Screen {
     this.rebuildWidgets();
   }
 
+  public void drawButtonRow(){
+
+  }
+
   public void drawColumnHeading(@NonNull GuiGraphics graphics, Component text, Side side, int row) {
     int x;
 

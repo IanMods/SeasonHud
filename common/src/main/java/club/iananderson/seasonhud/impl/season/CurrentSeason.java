@@ -8,6 +8,8 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
+import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
+import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.util.Rgb;
 import java.time.LocalDateTime;
 import net.minecraft.client.Minecraft;
@@ -45,7 +47,11 @@ public class CurrentSeason {
     Component translatedText = Common.translatedText(seasonKey);
 
     if (Calendar.validDetailedMode(player) && showSubSeason) {
-      translatedText = Common.translatedText(seasonKey + subSeasonKey);
+      if (SeasonMods.ECLIPTIC.modLoaded()) {
+        translatedText = Services.SEASON.eclipticSeasonComponent(player);
+      } else {
+        translatedText = Common.translatedText(seasonKey + subSeasonKey);
+      }
     }
 
     if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {

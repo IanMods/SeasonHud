@@ -18,6 +18,7 @@ import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -76,6 +77,17 @@ public class ForgeSeasonHelper implements SeasonHelper {
   }
 
   @Override
+  public Component eclipticSeasonComponent(Player player) {
+    ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
+
+    if (validEclipticSeasonsDim(currentDim)) {
+      return EclipticUtil.INSTANCE.getSolarTerm(player.level()).getTranslation();
+    } else {
+      return Seasons.NULL.getSeasonNameTranslated();
+    }
+  }
+
+  @Override
   public SubSeasons currentEclipticSubSeason(Player player) {
     ResourceKey<Level> currentDim = Objects.requireNonNull(Minecraft.getInstance().level).dimension();
 
@@ -125,7 +137,7 @@ public class ForgeSeasonHelper implements SeasonHelper {
     int duration = CommonConfig.Season.lastingDaysOfEachTerm.get() * 6;
 
     if (SeasonHudClient.getShowSubSeason() && Calendar.validDetailedMode(player)) {
-      duration /= 3; // 3 sub-season per season
+      duration /= 6; // 6 sub-season per season
     }
 
     return duration;
