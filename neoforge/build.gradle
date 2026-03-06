@@ -147,6 +147,7 @@ repositories {
         url = "https://maven.blamejared.com/"
         content {
             includeGroup "mezz.jei"
+            includeGroup "info.journeymap"
         }
     }
 
@@ -156,14 +157,6 @@ repositories {
         content {
             includeGroup "xaero.lib"
             includeGroup "xaero.minimap"
-        }
-    }
-
-    maven {
-        name = "Journeymap API MAven"
-        url = uri("https://jm.gserv.me/repository/maven-public/")
-        content {
-            includeGroup "info.journeymap"
         }
     }
 
