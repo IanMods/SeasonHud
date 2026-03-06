@@ -93,6 +93,8 @@
   "menu.seasonhud.main.title": "SeasonHud 옵션",
   "menu.seasonhud.season.calendarDetail.button": "자세한 달력",
   "menu.seasonhud.season.calendarDetail.tooltip": "달력 아이템을 가지고 있으면 HUD가 조금 더 자세해집니다",
+  "menu.seasonhud.season.fertilityReplacesSeason.button": "Fertility Replaces Season",
+  "menu.seasonhud.season.fertilityReplacesSeason.tooltip": "Replace the season name with the current fertility\n\nThis is only active when it differs from the default of the biome",
   "menu.seasonhud.season.hudLocation.button": "HUD 위치",
   "menu.seasonhud.season.hudLocation.tooltip": "미니맵이 없을 때 HUD를 어디 표시할지 결정합니다",
   "menu.seasonhud.season.needCalendar.button": "캘린더 아이템 필요",

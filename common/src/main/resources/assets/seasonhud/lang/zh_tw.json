@@ -94,6 +94,8 @@
   "menu.seasonhud.main.title": "SeasonHud 選項",
   "menu.seasonhud.season.calendarDetail.button": "日曆詳細模式",
   "menu.seasonhud.season.calendarDetail.tooltip": "擁有日曆物品時會顯示 HUD 的詳細版本",
+  "menu.seasonhud.season.fertilityReplacesSeason.button": "Fertility Replaces Season",
+  "menu.seasonhud.season.fertilityReplacesSeason.tooltip": "Replace the season name with the current fertility\n\nThis is only active when it differs from the default of the biome",
   "menu.seasonhud.season.hudLocation.button": "HUD 位置",
   "menu.seasonhud.season.hudLocation.tooltip": "未安裝小地圖時 HUD 的顯示位置",
   "menu.seasonhud.season.needCalendar.button": "需要日曆物品",

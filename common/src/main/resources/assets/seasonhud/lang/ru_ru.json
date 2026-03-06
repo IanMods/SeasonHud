@@ -93,6 +93,8 @@
   "menu.seasonhud.main.title": "Настройки сезонного интерфейса",
   "menu.seasonhud.season.calendarDetail.button": "Режим детализации календаря",
   "menu.seasonhud.season.calendarDetail.tooltip": "При наличии элемента календаря отображается подробная версия интерфейса",
+  "menu.seasonhud.season.fertilityReplacesSeason.button": "Fertility Replaces Season",
+  "menu.seasonhud.season.fertilityReplacesSeason.tooltip": "Replace the season name with the current fertility\n\nThis is only active when it differs from the default of the biome",
   "menu.seasonhud.season.hudLocation.button": "Расположение интерфейса",
   "menu.seasonhud.season.hudLocation.tooltip": "Где отображать интерфейс, если миникарта не установлена",
   "menu.seasonhud.season.needCalendar.button": "Нужен календарь",

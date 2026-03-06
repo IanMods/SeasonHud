@@ -94,6 +94,8 @@
   "menu.seasonhud.main.title": "SeasonHud Ayarları",
   "menu.seasonhud.season.calendarDetail.button": "Takvim Ayrıntı Modu",
   "menu.seasonhud.season.calendarDetail.tooltip": "Takvim eşyasının HUD'unun ayrıntılı sürümünü göstermesi",
+  "menu.seasonhud.season.fertilityReplacesSeason.button": "Fertility Replaces Season",
+  "menu.seasonhud.season.fertilityReplacesSeason.tooltip": "Replace the season name with the current fertility\n\nThis is only active when it differs from the default of the biome",
   "menu.seasonhud.season.hudLocation.button": "HUD Konumu",
   "menu.seasonhud.season.hudLocation.tooltip": "Minimap yüklü olmadığında Hud'un nerede görüntüleneceği",
   "menu.seasonhud.season.needCalendar.button": "Takvim Eşyası Gerekli",

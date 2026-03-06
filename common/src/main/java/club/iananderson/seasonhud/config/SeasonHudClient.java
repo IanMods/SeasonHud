@@ -186,7 +186,6 @@ public class SeasonHudClient {
                                                                      + Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN
                                                                      + "."))
         .define("enable_show_minimap_hidden", Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
-
     builder.pop();
     builder.pop();
   }

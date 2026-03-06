@@ -8,6 +8,8 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
+import club.iananderson.seasonhud.impl.season.mods.SeasonMods;
+import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.util.Rgb;
 import java.time.LocalDateTime;
 import net.minecraft.client.Minecraft;
@@ -39,13 +41,17 @@ public class CurrentSeason {
     return new CurrentSeason(mc);
   }
 
-  public Component getTranslation(boolean showSubSeason) {
+  private Component getTranslation(boolean showSubSeason) {
     String seasonKey = currentSeason.getTranslationKey();
     String subSeasonKey = currentSubSeason.getSubSeasonKey();
     Component translatedText = Common.translatedText(seasonKey);
 
     if (Calendar.validDetailedMode(player) && showSubSeason) {
-      translatedText = Common.translatedText(seasonKey + subSeasonKey);
+      if (SeasonMods.ECLIPTIC.modLoaded()) {
+        translatedText = Services.SEASON.eclipticSeasonComponent(player);
+      } else {
+        translatedText = Common.translatedText(seasonKey + subSeasonKey);
+      }
     }
 
     if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
@@ -56,7 +62,7 @@ public class CurrentSeason {
   }
 
   // Localized name with icon
-  public Component getText(ShowDay showDay, boolean showSubSeason) {
+  private Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text;
     Component seasonKey = getTranslation(showSubSeason);
 
@@ -168,5 +174,21 @@ public class CurrentSeason {
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(seasonIconFormat),
                                  seasonText.withStyle(seasonFormat));
+  }
+
+  public MutableComponent journeymapText() {
+    MutableComponent seasonText = getText(SeasonHudClient.getShowDay(), SeasonHudClient.getShowSubSeason()).copy();
+
+    if (SeasonHudClient.getEnableSeasonNameColor()) {
+      if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
+        int mixedColor = Rgb.mixRgb(currentSeason, CommonSeasonHelper.commonSeasons.getHelper().fertility(player));
+
+        seasonFormat = Style.EMPTY.withColor(mixedColor);
+      } else {
+        seasonFormat = Style.EMPTY.withColor(currentSeason.getSeasonColor());
+      }
+    }
+
+    return Common.literalText("  ").append(seasonText).withStyle(seasonFormat);
   }
 }

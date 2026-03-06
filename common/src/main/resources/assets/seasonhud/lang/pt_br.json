@@ -94,6 +94,8 @@
   "menu.seasonhud.main.title": "Opções do SeasonHud",
   "menu.seasonhud.season.calendarDetail.button": "Calendar Detail Mode",
   "menu.seasonhud.season.calendarDetail.tooltip": "Having the calendar item shows the detailed version of the HUD",
+  "menu.seasonhud.season.fertilityReplacesSeason.button": "Fertility Replaces Season",
+  "menu.seasonhud.season.fertilityReplacesSeason.tooltip": "Replace the season name with the current fertility\n\nThis is only active when it differs from the default of the biome",
   "menu.seasonhud.season.hudLocation.button": "Localização do HUD",
   "menu.seasonhud.season.hudLocation.tooltip": "Where to display the Hud when no minimap is installed",
   "menu.seasonhud.season.needCalendar.button": "Precisa de um item de calendário",
