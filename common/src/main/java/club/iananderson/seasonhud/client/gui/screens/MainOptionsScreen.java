@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
 import club.iananderson.seasonhud.config.SeasonHudClient;
+import club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
 import journeymap.client.ui.UIManager;
@@ -26,6 +27,8 @@ public class MainOptionsScreen extends SeasonHudScreen {
   private boolean enableMod;
   private boolean showMinimapHidden;
   private boolean enableMinimapIntegration;
+  private int minimapRow;
+  private int journeyMapRow;
 
   public MainOptionsScreen() {
     super(null, SCREEN_TITLE);
@@ -65,36 +68,22 @@ public class MainOptionsScreen extends SeasonHudScreen {
   public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
 
-    graphics.drawCenteredString(font, MINIMAP_SETTINGS, this.width / 2,
-                                MENU_PADDING + (2 * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                    + BUTTON_PADDING), 16777215);
+    drawHeading(graphics, MINIMAP_SETTINGS, minimapRow);
 
     if (Services.PLATFORM.isModLoaded("journeymap")) {
-      graphics.drawCenteredString(font, JOURNEYMAP, this.width / 2,
-                                  MENU_PADDING + (4 * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight
-                                      + BUTTON_PADDING), 16777215);
+      drawHeading(graphics, JOURNEYMAP, journeyMapRow);
+
       journeyMapButton.active = enableMod;
     }
+
     seasonButton.active = enableMod;
     colorButton.active = enableMod;
     enableMinimapIntegrationButton.active = enableMod;
     showMinimapHiddenButton.active = enableMod;
   }
 
-  @SuppressWarnings("ConstantValue")
-  @Override
-  public void init() {
-    super.init();
-
-    int enableModWidth = font.width(Common.translatedText("menu.seasonhud.main.enableMod.button").append(": OFF")) + 8;
-
-    CycleButton<Boolean> enableModButton = CycleButton.onOffBuilder(enableMod)
-        .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.enableMod.tooltip"))
-        .create(this.width - enableModWidth - TITLE_PADDING / 2, TITLE_PADDING / 2, enableModWidth, buttonHeight,
-                Common.translatedText("menu.seasonhud.main.enableMod.button"), (b, val) -> enableMod = val);
-    widgets.add(enableModButton);
-
-    int row = 0;
+  public void seasonHudOptionsButtons() {
+    row += 1;
     seasonButton = MenuButton.builder(MenuButtons.SEASON, this, DisplayOptionsScreen.getInstance(this))
         .withTooltip(Common.newTooltip("menu.seasonhud.main.season.tooltip"))
         .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
@@ -105,8 +94,12 @@ public class MainOptionsScreen extends SeasonHudScreen {
         .withPos(rightButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
         .build();
     widgets.addAll(Arrays.asList(seasonButton, colorButton));
+  }
 
-    row = 2;
+  public void minimapOptionsButtons() {
+    row += 2;
+    minimapRow = row;
+
     enableMinimapIntegrationButton = CycleButton.onOffBuilder(enableMinimapIntegration)
         .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.minimapIntegration.tooltip"))
         .create(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight,
@@ -120,17 +113,40 @@ public class MainOptionsScreen extends SeasonHudScreen {
                 (b, val) -> showMinimapHidden = val);
 
     widgets.addAll(Arrays.asList(enableMinimapIntegrationButton, showMinimapHiddenButton));
+  }
 
+  public void journeymapOptions() {
     if (Services.PLATFORM.isModLoaded("journeymap")) {
-      row += 2; // 6
-      journeyMapButton = Button.builder(Common.translatedText("menu.seasonhud.main.journeymap.options.button"),
-                                        (button) -> UIManager.INSTANCE.openAddonOptionsEditor(this, true))
-          .tooltip(Tooltip.create(Common.translatedText("menu.seasonhud.main.journeymap.options.tooltip")))
-          .bounds(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
+      row += 2;
+      journeyMapRow = row;
+
+      journeyMapButton = MenuButton.builder(MenuButtons.JOURNEYMAP, (button) -> JourneymapSeasonPlugin.getInstance()
+              .getClientProperties()
+              .openAddonOptionsEditor(this))
+          .withTooltip(Common.newTooltip("menu.seasonhud.main.journeymap.options.tooltip"))
+          .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
           .build();
 
-      this.addRenderableWidget(journeyMapButton);
+      widgets.add(journeyMapButton);
     }
+  }
+
+  @Override
+  public void init() {
+    super.init();
+
+    int enableModWidth = font.width(Common.translatedText("menu.seasonhud.main.enableMod.button").append(": OFF")) + 8;
+
+    CycleButton<Boolean> enableModButton = CycleButton.onOffBuilder(enableMod)
+        .withTooltip(t -> Common.newTooltip("menu.seasonhud.main.enableMod.tooltip"))
+        .create(this.width - enableModWidth - TITLE_PADDING / 2, TITLE_PADDING / 2, enableModWidth, buttonHeight,
+                Common.translatedText("menu.seasonhud.main.enableMod.button"), (b, val) -> enableMod = val);
+    widgets.add(enableModButton);
+
+    row = -1;
+    seasonHudOptionsButtons();
+    minimapOptionsButtons();
+    journeymapOptions();
 
     widgets.forEach(this::addRenderableWidget);
   }

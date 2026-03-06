@@ -31,7 +31,9 @@ public class MenuButton extends Button {
 
     COLORS(Common.translatedText("menu.seasonhud.main.color.button").append("...")),
 
-    SEASON(Common.translatedText("menu.seasonhud.main.season.button").append("..."));
+    SEASON(Common.translatedText("menu.seasonhud.main.season.button").append("...")),
+
+    JOURNEYMAP(Common.translatedText("menu.seasonhud.main.journeymap.options.button").append("..."));
 
     private final Component buttonText;
 
