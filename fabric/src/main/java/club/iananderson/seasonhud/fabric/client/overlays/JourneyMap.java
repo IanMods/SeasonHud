@@ -1,7 +1,9 @@
 package club.iananderson.seasonhud.fabric.client.overlays;
 
+import club.iananderson.seasonhud.client.overlays.JourneyMapCommon;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.Minecraft;
 
 public class JourneyMap implements HudRenderCallback {
   public static JourneyMap HUD_INSTANCE;
@@ -13,16 +15,8 @@ public class JourneyMap implements HudRenderCallback {
 
   @Override
   public void onHudRender(PoseStack graphics, float alpha) {
-  //    Minecraft mc = Minecraft.getInstance();
+     Minecraft mc = Minecraft.getInstance();
 
-  //    if (CurrentMinimap.journeyMapLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.JOURNEYMAP, mc)) {
-  //      JourneyMapCommon journeyMapCommon = JourneyMapCommon.getInstance(Minecraft.getInstance());
-
-  //      graphics.pushPose();
-  //      graphics.scale(1 / journeyMapCommon.getFontScale(), 1 / journeyMapCommon.getFontScale(), 0);
-  //      DrawUtil.sizeDisplay(graphics, journeyMapCommon.getScreenWidth(), journeyMapCommon.getScreenHeight());
-  //      graphics.popPose();
-  //      journeyMapCommon.drawSeasonLabel(graphics);
-  //    }
+    JourneyMapCommon.renderHud(graphics, mc);
   }
 }

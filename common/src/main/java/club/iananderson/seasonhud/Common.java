@@ -142,11 +142,7 @@ public class Common {
         || !SeasonHudClient.getEnableMinimapIntegration() || minimapIntegrationHidden(mc));
   }
 
-  public static boolean drawDefaultHudMenu(Minecraft mc) {
-    if (mc.player == null) {
-      return false;
-    }
-
+  public static boolean drawDefaultHudMenu() {
     return (SeasonHudClient.getEnableMod() && (CurrentMinimap.noMinimapLoaded()
         || !SeasonHudClient.getEnableMinimapIntegration() || SeasonHudClient.getShowDefaultWhenMinimapHidden()));
   }

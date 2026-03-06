@@ -65,6 +65,14 @@ dependencies {
     modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.xaero_mc_version}:${project.xaero_minimap_version}"
     modCompileOnly "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
+    // JourneyMap
+    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}-fabric-SNAPSHOT") {
+        changing = true
+    }
+    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+
     // FTB Chunks + Dependencies
     modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
