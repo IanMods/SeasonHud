@@ -213,7 +213,6 @@ public class SeasonHudClient {
     configOptions.put(showDay.getPath(), Client.DEFAULT_SHOW_DAY);
     configOptions.put(enableMinimapIntegration.getPath(), Client.DEFAULT_ENABLE_MINIMAP_INTEGRATION);
     configOptions.put(showDefaultWhenMinimapHidden.getPath(), Client.DEFAULT_SHOW_DEFAULT_WHEN_MINIMAP_HIDDEN);
-    configOptions.put(journeyMapAboveMap.getPath(), Client.DEFAULT_JOURNEYMAP_ABOVE_MAP);
 
     return configOptions.get(config.getPath());
   }
