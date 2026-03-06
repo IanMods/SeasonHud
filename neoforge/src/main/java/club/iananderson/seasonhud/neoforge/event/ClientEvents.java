@@ -1,8 +1,8 @@
 package club.iananderson.seasonhud.neoforge.event;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.SeasonHudClientCommon;
 import club.iananderson.seasonhud.client.KeyBindings;
+import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.neoforge.client.overlays.SeasonHudOverlay;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
