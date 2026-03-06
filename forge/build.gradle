@@ -172,6 +172,7 @@ repositories {
         url = "https://maven.blamejared.com/"
         content {
             includeGroup "mezz.jei"
+            // includeGroup "info.journeymap"
         }
     }
 
@@ -271,7 +272,7 @@ dependencies {
     compileOnly "xaero.lib:xaerolib-forge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    compileOnly("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+    compileOnly("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}-SNAPSHOT") {
         changing = true
     }
     compileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
@@ -307,7 +308,7 @@ dependencies {
             implementation "xaero.lib:xaerolib-forge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
-            implementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+            implementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}-SNAPSHOT") {
                 changing = true
             }
             implementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
@@ -413,6 +414,7 @@ publishMods {
     curseforge("curseforgeForge") {
         from cfOptions
 
+        requires("forge-config-api-port")
         optional("serene-seasons")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
     }
@@ -420,6 +422,7 @@ publishMods {
     modrinth("modrinthForge") {
         from mrOptions
 
+        requires("forge-config-api-port")
         optional("serene-seasons")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
     }

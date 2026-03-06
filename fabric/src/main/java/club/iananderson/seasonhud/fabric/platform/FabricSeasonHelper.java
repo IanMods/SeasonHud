@@ -7,12 +7,14 @@ import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
+import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import io.github.lucaargolo.seasons.FabricSeasons;
 import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Locale;
 import java.util.Optional;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -93,6 +95,11 @@ public class FabricSeasonHelper implements SeasonHelper {
   }
 
   @Override
+  public Component eclipticSeasonComponent(Player player) {
+    return null;
+  }
+
+  @Override
   public SubSeasons currentEclipticSubSeason(Player player) {
     return null;
   }
@@ -130,9 +137,7 @@ public class FabricSeasonHelper implements SeasonHelper {
 
   @Override
   public boolean validHomeostaticSeasonsDim(ResourceKey<Level> currentDim) {
-    // Disabled for 1.20.1 and below
-    // return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
-    return true;
+    return !HomeostaticSeasonsAPI.isSeasonalDimension(currentDim);
   }
 
   @Override
