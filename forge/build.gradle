@@ -252,7 +252,7 @@ dependencies {
     compileOnly "xaero.lib:xaerolib-forge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    compileOnly("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+    compileOnly("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}-SNAPSHOT") {
         changing = true
     }
     compileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
@@ -288,7 +288,7 @@ dependencies {
             implementation "xaero.lib:xaerolib-forge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
-            implementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+            implementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}-SNAPSHOT") {
                 changing = true
             }
             implementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
