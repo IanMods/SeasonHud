@@ -10,7 +10,6 @@ import java.util.Arrays;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
 
@@ -118,11 +117,11 @@ public class MainOptionsScreen extends SeasonHudScreen {
       row += 2;
       journeyMapRow = row;
 
-      journeyMapButton = Button.builder(
-              Common.translatedText("menu.seasonhud.main.journeymap.options.button").append("..."),
-              (button) -> JourneymapSeasonPlugin.getInstance().getClientProperties().openAddonOptionsEditor(this))
-          .tooltip(Tooltip.create(Common.translatedText("menu.seasonhud.main.journeymap.options.tooltip")))
-          .bounds(leftButtonX, (buttonStartY + (row * offsetY)), buttonWidth, buttonHeight)
+      journeyMapButton = MenuButton.builder(MenuButtons.JOURNEYMAP, (button) -> JourneymapSeasonPlugin.getInstance()
+              .getClientProperties()
+              .openAddonOptionsEditor(this))
+          .withTooltip(Common.newTooltip("menu.seasonhud.main.journeymap.options.tooltip"))
+          .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
           .build();
 
       widgets.add(journeyMapButton);
