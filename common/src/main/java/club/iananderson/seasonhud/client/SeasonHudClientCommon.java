@@ -1,6 +1,5 @@
-package club.iananderson.seasonhud;
+package club.iananderson.seasonhud.client;
 
-import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.gui.screens.MainOptionsScreen;
 
 public class SeasonHudClientCommon {

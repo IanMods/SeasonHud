@@ -168,6 +168,9 @@ dependencies {
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
     modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
+        changing = true
+    }
     modCompileOnly "curse.maven:map-atlases-forge-519759:${project.map_atlases_forge_version}"
 }
 

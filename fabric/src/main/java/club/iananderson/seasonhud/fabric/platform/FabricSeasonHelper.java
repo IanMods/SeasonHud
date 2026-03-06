@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.Optional;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -146,6 +147,11 @@ public class FabricSeasonHelper implements SeasonHelper {
   @Override
   public boolean validEclipticSeasonsDim(ResourceKey<Level> currentDim) {
     return false;
+  }
+
+  @Override
+  public Component eclipticSeasonComponent(Player player) {
+    return null;
   }
 
   @Override

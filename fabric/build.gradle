@@ -214,7 +214,7 @@ dependencies {
     modCompileOnly "xaero.lib:xaerolib-fabric-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}") {
+    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}-fabric-SNAPSHOT") {
         changing = true
     }
     modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
