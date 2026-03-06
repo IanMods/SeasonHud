@@ -97,18 +97,18 @@ public class SeasonHudScreen extends Screen {
 
     int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);
 
-    graphics.pose().pushPose();
+    graphics.pose().pushMatrix();
     graphics.drawCenteredString(font, text, x, y, 16777215);
-    graphics.pose().popPose();
+    graphics.pose().popMatrix();
   }
 
   public void drawHeading(@NonNull GuiGraphics graphics, Component text, int row) {
     int x = this.width / 2;
     int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);
 
-    graphics.pose().pushPose();
+    graphics.pose().pushMatrix();
     graphics.drawCenteredString(font, text, x, y, 16777215);
-    graphics.pose().popPose();
+    graphics.pose().popMatrix();
   }
 
   @Override
