@@ -35,10 +35,7 @@ public class MapAtlasHudMixin {
   private Minecraft mc;
 
   @SuppressWarnings("checkstyle:ParameterName")
-  @Inject(remap = false, method = "render", at = @At(value = "INVOKE", target = "Lpepjebs/mapatlases/client/ui"
-      + "/MapAtlasesHUD;" + "drawMapComponentBiome(Lcom/mojang/blaze3d/vertex/PoseStack;"
-      + "Lnet/minecraft/client/gui/Font;" + "IIIFLnet/minecraft/core/BlockPos;"
-      + "Lnet/minecraft/world/level/Level;)V", shift = At.Shift.BY, by = 2), locals = LocalCapture.CAPTURE_FAILSOFT)
+  @Inject(remap = false, method = "render", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
   private void render(PoseStack poseStack, float partialTick, int screenWidth, int screenHeight, CallbackInfo ci,
       ItemStack atlas, MapDataHolder activeMap, ClientLevel level, LocalPlayer player, int mapWidgetSize,
       Anchoring anchorLocation, int x, int y, float yRot, int light, int borderSize, float textScaling,
