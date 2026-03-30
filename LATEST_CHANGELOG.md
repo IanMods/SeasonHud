@@ -1,7 +1,6 @@
-## [2.0.1] - 2026-03-06
+## [2.0.3] - 2026-03-30
 
-### Changed
+### Fixed
 
-- (1.20.1 and Below) Changed Journeymap implementation to try and better support Retina displays on macOS
-- (Ecliptic Seasons) Switched back to Ecliptic Seasons' translations for its sub-seasons
+- Fixed crash when installed on server
 
