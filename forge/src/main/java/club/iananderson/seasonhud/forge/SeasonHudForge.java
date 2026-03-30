@@ -1,15 +1,10 @@
 package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.forge.client.SeasonHudForgeClient;
 import club.iananderson.seasonhud.forge.event.ClientEvents.ClientModBusEvents;
-import club.iananderson.seasonhud.forge.impl.accessory.mods.curios.CuriosCompat;
-import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
-import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
-import club.iananderson.seasonhud.impl.minimap.mods.ftbchunks.SeasonComponent;
 import fuzs.forgeconfigapiport.forge.api.v5.NeoForgeConfigRegistry;
 import net.minecraftforge.client.event.AddGuiOverlayLayersEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
