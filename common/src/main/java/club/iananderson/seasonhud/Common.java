@@ -42,6 +42,7 @@ public class Common {
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
   private static boolean accessoriesLoaded;
+  private static boolean ftbChunksLoaded;
 
   private Common() {
   }
@@ -57,6 +58,7 @@ public class Common {
     curiosLoaded = AccessoryMods.CURIOS.modLoaded();
     trinketsLoaded = AccessoryMods.TRINKETS.modLoaded();
     accessoriesLoaded = AccessoryMods.ACCESSORIES.modLoaded();
+    ftbChunksLoaded = MinimapMods.FTB_CHUNKS.modLoaded();
 
     if (!SeasonMods.getLoaded().isEmpty()) {
       Common.LOG.info("Loading [{}] Compat", SeasonMods.getLoaded().get(0).getModName());
@@ -105,6 +107,10 @@ public class Common {
 
   public static boolean accessoriesLoaded() {
     return Common.accessoriesLoaded;
+  }
+
+  public static boolean ftbChunksLoaded() {
+    return Common.ftbChunksLoaded;
   }
 
   public static boolean hasCalendarLoaded() {
