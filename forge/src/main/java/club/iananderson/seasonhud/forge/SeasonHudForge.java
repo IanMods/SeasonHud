@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import fuzs.forgeconfigapiport.forge.api.neoforge.v4.NeoForgeConfigRegistry;
@@ -24,23 +25,19 @@ public class SeasonHudForge {
                                              "seasonhud-server.toml");
 
     modEventBus.addListener(SeasonHudForge::onInitialize);
-    modEventBus.addListener(SeasonHudForge::ftbChunkSetup);
+
   }
 
   public static void onInitialize(FMLCommonSetupEvent event) {
+    // if (Common.ftbChunksLoaded()) {
+    //   SeasonHudClientCommon.ftbChunkSetup();
+    // }
+    //
     // if (Common.curiosLoaded()) {
     //   Common.LOG.info("Talking to Curios");
     //   CuriosCompat.init();
-    // }
-    // else if (Common.accessoriesLoaded()) {
+    // } else if (Common.accessoriesLoaded()) {
     //   AccessoriesCompat.init();
-    // }
-  }
-
-  public static void ftbChunkSetup(FMLCommonSetupEvent event) {
-    // if (CurrentMinimap.ftbChunksLoaded()) {
-    //   Common.LOG.info("Loading FTB Chunks Season Component");
-    //   EnvExecutor.runInEnv(Env.CLIENT, () -> SeasonComponent.INSTANCE::registerFtbSeason);
     // }
   }
 }
