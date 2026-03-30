@@ -33,6 +33,7 @@ public class SeasonHudForge {
   }
 
   public static void onInitialize(FMLCommonSetupEvent event) {
+    Common.init();
     // if (Common.ftbChunksLoaded()) {
     //   SeasonHudClientCommon.ftbChunkSetup();
     // }
