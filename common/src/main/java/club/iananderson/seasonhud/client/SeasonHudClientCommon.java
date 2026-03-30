@@ -17,4 +17,10 @@ public class SeasonHudClientCommon {
       MainOptionsScreen.getInstance().open();
     }
   }
+
+  public static void ftbChunkSetup() {
+    if (Common.ftbChunksLoaded()) {
+      // SeasonComponent.ftbChunkSetup();
+    }
+  }
 }

@@ -1,6 +1,6 @@
-## [2.0.2] - 2026-03-18
+## [2.0.3] - 2026-03-30
 
 ### Fixed
 
-- Fixed crash with MapAtlases
+- Fixed crash when installed on server
 
