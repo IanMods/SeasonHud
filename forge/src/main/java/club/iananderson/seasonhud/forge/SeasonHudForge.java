@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.forge;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.forge.impl.accessory.mods.curios.CuriosCompat;
@@ -30,6 +31,9 @@ public class SeasonHudForge {
   public static class ClientModEvents {
     @SubscribeEvent
     public static void onInitialize(FMLCommonSetupEvent event) {
+      if (Common.ftbChunksLoaded()) {
+        SeasonHudClientCommon.ftbChunkSetup();
+      }
       if (Common.curiosLoaded() && Common.hasCalendarLoaded()) {
         Common.LOG.info("Talking to Curios");
         new CuriosCompat().setup(event);
