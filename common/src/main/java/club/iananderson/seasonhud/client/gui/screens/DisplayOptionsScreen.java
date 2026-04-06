@@ -23,6 +23,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import org.jspecify.annotations.NonNull;
 
 public class DisplayOptionsScreen extends SeasonHudScreen {
@@ -143,7 +144,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
     if (this.seasonColor) {
       if (SeasonHudClient.getEnableSeasonNameColor()) {
-        seasonFormat = Style.EMPTY.withColor(season.getSeasonColor());
+        seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(season.getSeasonColor()));
       }
     }
 
