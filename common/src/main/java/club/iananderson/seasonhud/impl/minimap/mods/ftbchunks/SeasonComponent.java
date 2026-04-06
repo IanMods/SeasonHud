@@ -1,5 +1,7 @@
 package club.iananderson.seasonhud.impl.minimap.mods.ftbchunks;
 
+import club.iananderson.seasonhud.Common;
+
 // Disabled until FTBChunks is updated
 // public class SeasonComponent implements MinimapInfoComponent {
 public class SeasonComponent {
@@ -10,15 +12,12 @@ public class SeasonComponent {
 
   // public static void ftbChunkSetup() {
   //   Common.LOG.info("Loading FTB Chunks Season Component");
-
+  //
   //   FTBChunksClientAPI clientApi = FTBChunksAPI.clientApi();
   //   clientApi.registerMinimapComponent(new SeasonComponent());
-
+  //   FTBChunksClient.INSTANCE.setupComponents();
+  //
   //   Common.LOG.info("FTB Chunks Season Component Loaded");
-
-  //   if (Services.PLATFORM.isModLoaded("moonlight")) {
-  //     FTBChunksClient.INSTANCE.setupComponents();
-  //   }
   // }
 
   // public ResourceLocation id() {

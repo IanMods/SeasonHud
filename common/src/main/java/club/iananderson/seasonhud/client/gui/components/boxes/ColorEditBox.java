@@ -1,9 +1,9 @@
 package club.iananderson.seasonhud.client.gui.components.boxes;
 
 import club.iananderson.seasonhud.Common;
+import club.iananderson.seasonhud.client.gui.ShowDay;
 import club.iananderson.seasonhud.client.gui.screens.ColorsScreen;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
@@ -12,6 +12,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import org.jspecify.annotations.NonNull;
 
 public class ColorEditBox extends EditBox {
@@ -90,6 +91,30 @@ public class ColorEditBox extends EditBox {
     return this.boxSeason;
   }
 
+  public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
+    Style seasonFormat = Style.EMPTY;
+
+    if (SeasonHudClient.getEnableSeasonNameColor()) {
+      seasonFormat = Style.EMPTY.withColor(newRgb);
+    }
+
+    MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonNameTranslated());
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar());
+
+    // Removes "Season" from Dry Season if the total color widget width is too large for the screen
+    if (season == Seasons.DRY && seasonShort) {
+      seasonText = Common.translatedText("menu.seasonhud.color.season.dry.editbox");
+    }
+
+    // Removes "Season" from Wet Season if the total color widget width is too large for the screen
+    if (season == Seasons.WET && seasonShort) {
+      seasonText = Common.translatedText("menu.seasonhud.color.season.wet.editbox");
+    }
+
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+                                 seasonText.withStyle(seasonFormat));
+  }
+
   @Override
   public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
     Minecraft mc = Minecraft.getInstance();
@@ -98,8 +123,7 @@ public class ColorEditBox extends EditBox {
     int widgetTotalSize = ((80 + ColorsScreen.BUTTON_PADDING) * seasonListSet().size());
     boolean seasonShort = (scaledWidth < widgetTotalSize);
 
-    MutableComponent seasonCombined = CurrentSeason.getInstance(mc)
-        .getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
+    MutableComponent seasonCombined = this.getMenuText(this.boxSeason, this.newSeasonColor, seasonShort);
 
     graphics.pose().pushMatrix();
     if ((mc.font.width(seasonCombined) > this.getWidth() - PADDING)) {

@@ -24,6 +24,9 @@
     ],
     "journeymap": [
       "club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin"
+    ],
+    "modmenu": [
+      "club.iananderson.seasonhud.fabric.impl.ModMenuSeasonHud"
     ]
   },
   "mixins": [
