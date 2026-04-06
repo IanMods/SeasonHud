@@ -118,7 +118,7 @@ public class Common {
   }
 
   public static boolean clientSideConfig(Minecraft mc) {
-    return (mc.getCurrentServer() == null);
+    return (mc.getCurrentServer() == null && mc.level != null);
   }
 
   public static boolean vanillaShouldDrawHud(Minecraft mc) {
