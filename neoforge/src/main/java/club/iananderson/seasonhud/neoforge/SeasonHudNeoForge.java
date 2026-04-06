@@ -1,7 +1,6 @@
 package club.iananderson.seasonhud.neoforge;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.accessory.mods.accessories.AccessoriesCompat;
@@ -25,10 +24,6 @@ public class SeasonHudNeoForge {
   }
 
   public static void onInitialize(FMLCommonSetupEvent event) {
-    if (Common.ftbChunksLoaded()) {
-      SeasonHudClientCommon.ftbChunkSetup();
-    }
-
     if (Common.curiosLoaded()) {
       Common.LOG.info("Talking to Curios");
       CuriosCompat.init();

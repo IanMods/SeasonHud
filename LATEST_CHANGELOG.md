@@ -5,5 +5,6 @@
 - Actually fixed crash with FtbChunks on server
 
 ### Added
+
 - Added ModMenu compat
 
