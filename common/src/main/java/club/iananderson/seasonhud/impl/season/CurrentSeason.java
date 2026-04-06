@@ -42,6 +42,18 @@ public class CurrentSeason {
     return new CurrentSeason(mc);
   }
 
+  public static Component getTranslation(Seasons season, SubSeasons subSeasons, boolean showSubSeason) {
+    String seasonKey = season.getTranslationKey();
+    String subSeasonKey = subSeasons.getSubSeasonKey();
+    Component translatedText = Common.translatedText(seasonKey);
+
+    if (showSubSeason) {
+      translatedText = Common.translatedText(seasonKey + subSeasonKey);
+    }
+
+    return translatedText;
+  }
+
   private Component getTranslation(boolean showSubSeason) {
     String seasonKey = currentSeason.getTranslationKey();
     String subSeasonKey = currentSubSeason.getSubSeasonKey();
@@ -62,25 +74,69 @@ public class CurrentSeason {
     return translatedText;
   }
 
+  public static Component getText(Seasons season, SubSeasons subSeasons, ShowDay showDay, long seasonDate,
+      int seasonDuration, boolean showSubSeason) {
+    Component text;
+    Component seasonTranslation = CurrentSeason.getTranslation(season, subSeasons, showSubSeason);
+
+    switch (showDay) {
+      case NONE:
+        text = Common.translatedText(ShowDay.NONE.getKey(), seasonTranslation);
+        break;
+
+      case SHOW_DAY:
+        text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonTranslation, seasonDate);
+        break;
+
+      case SHOW_WITH_TOTAL_DAYS:
+        text = Common.translatedText(ShowDay.SHOW_WITH_TOTAL_DAYS.getKey(), seasonTranslation, seasonDate,
+                                     seasonDuration);
+        break;
+
+      case SHOW_WITH_MONTH:
+        if (CommonSeasonHelper.commonSeasons.getHelper().isSeasonTiedWithSystemTime()) {
+          int systemMonth = LocalDateTime.now().getMonth().getValue();
+          String systemMonthString = String.valueOf(systemMonth);
+
+          if (systemMonth < 10) {
+            systemMonthString = "0" + systemMonthString;
+          }
+
+          Component currentMonth = Common.translatedText("desc.seasonhud.month" + "." + systemMonthString);
+
+          text = Common.translatedText(ShowDay.SHOW_WITH_MONTH.getKey(), seasonTranslation, currentMonth, seasonDate);
+
+        } else {
+          text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonTranslation, seasonDate);
+        }
+        break;
+      default:
+        throw new IllegalStateException("Unexpected value: " + showDay);
+    }
+
+    return text;
+  }
+
   // Localized name with icon
   private Component getText(ShowDay showDay, boolean showSubSeason) {
     Component text;
-    Component seasonKey = getTranslation(showSubSeason);
+    Component seasonTranslation = getTranslation(showSubSeason);
 
     long seasonDate = seasonModHelper.getDate(player);
     int seasonDuration = seasonModHelper.seasonDurationDays(player);
 
     switch (showDay) {
       case NONE:
-        text = Common.translatedText(ShowDay.NONE.getKey(), seasonKey);
+        text = Common.translatedText(ShowDay.NONE.getKey(), seasonTranslation);
         break;
 
       case SHOW_DAY:
-        text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonKey, seasonDate);
+        text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonTranslation, seasonDate);
         break;
 
       case SHOW_WITH_TOTAL_DAYS:
-        text = Common.translatedText(ShowDay.SHOW_WITH_TOTAL_DAYS.getKey(), seasonKey, seasonDate, seasonDuration);
+        text = Common.translatedText(ShowDay.SHOW_WITH_TOTAL_DAYS.getKey(), seasonTranslation, seasonDate,
+                                     seasonDuration);
         break;
 
       case SHOW_WITH_MONTH:
@@ -94,13 +150,13 @@ public class CurrentSeason {
 
           Component currentMonth = Common.translatedText("desc.seasonhud.month" + "." + systemMonthString);
 
-          text = Common.translatedText(ShowDay.SHOW_WITH_MONTH.getKey(), seasonKey, currentMonth, seasonDate);
+          text = Common.translatedText(ShowDay.SHOW_WITH_MONTH.getKey(), seasonTranslation, currentMonth, seasonDate);
 
           if (!Calendar.validDetailedMode(player)) {
-            text = Common.translatedText(ShowDay.NONE.getKey(), seasonKey);
+            text = Common.translatedText(ShowDay.NONE.getKey(), seasonTranslation);
           }
         } else {
-          text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonKey, seasonDate);
+          text = Common.translatedText(ShowDay.SHOW_DAY.getKey(), seasonTranslation, seasonDate);
         }
         break;
       default:
@@ -129,28 +185,6 @@ public class CurrentSeason {
       } else {
         seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(currentSeason.getSeasonColor()));
       }
-    }
-
-    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(seasonIconFormat),
-                                 seasonText.withStyle(seasonFormat));
-  }
-
-  public MutableComponent getMenuText(Seasons season, int newRgb, boolean seasonShort) {
-    if (SeasonHudClient.getEnableSeasonNameColor()) {
-      seasonFormat = Style.EMPTY.withColor(TextColor.fromRgb(newRgb));
-    }
-
-    MutableComponent seasonText = Common.translatedText(ShowDay.NONE.getKey(), season.getSeasonNameTranslated());
-    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar());
-
-    // Removes "Season" from Dry Season if the total color widget width is too large for the screen
-    if (season == Seasons.DRY && seasonShort) {
-      seasonText = Common.translatedText("menu.seasonhud.color.season.dry.editbox");
-    }
-
-    // Removes "Season" from Wet Season if the total color widget width is too large for the screen
-    if (season == Seasons.WET && seasonShort) {
-      seasonText = Common.translatedText("menu.seasonhud.color.season.wet.editbox");
     }
 
     return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(seasonIconFormat),
