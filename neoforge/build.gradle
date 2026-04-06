@@ -267,9 +267,9 @@ dependencies {
             implementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
         case "ftb":
-            implementation "dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}"
-            implementation "dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}"
-            implementation "dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}"
+            implementation("dev.ftb.mods:ftb-library-neoforge:${project.ftb_library_version}") { transitive = false }
+            implementation("dev.ftb.mods:ftb-teams-neoforge:${project.ftb_teams_version}") { transitive = false }
+            implementation("dev.ftb.mods:ftb-chunks-neoforge:${project.ftb_chunks_version}") { transitive = false }
             implementation "dev.architectury:architectury-neoforge:${project.architectury_version}"
             break
         case "atlas":

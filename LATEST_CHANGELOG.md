@@ -1,6 +1,10 @@
-## [2.0.3] - 2026-03-30
+## [2.0.4] - 2026-04-06
 
 ### Fixed
 
-- Fixed crash when installed on server
+- Actually fixed crash with FtbChunks on server
+
+### Added
+
+- Added ModMenu compat
 
