@@ -21,6 +21,9 @@
     ],
     "main": [
       "club.iananderson.seasonhud.fabric.SeasonHudFabric"
+    ],
+    "modmenu": [
+      "club.iananderson.seasonhud.fabric.impl.ModMenuSeasonHud"
     ]
   },
   "mixins": [

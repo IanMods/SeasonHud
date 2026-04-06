@@ -10,6 +10,7 @@ import java.util.Arrays;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
 
@@ -28,14 +29,14 @@ public class MainOptionsScreen extends SeasonHudScreen {
   private int minimapRow;
   private int journeyMapRow;
 
-  public MainOptionsScreen() {
-    super(null, SCREEN_TITLE);
+  public MainOptionsScreen(Screen parentScreen) {
+    super(parentScreen, SCREEN_TITLE);
     loadConfig();
     this.buttonWidth = 170;
   }
 
-  public static MainOptionsScreen getInstance() {
-    return new MainOptionsScreen();
+  public static MainOptionsScreen getInstance(Screen parentScreen) {
+    return new MainOptionsScreen(parentScreen);
   }
 
   public void loadConfig() {
