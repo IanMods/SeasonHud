@@ -5,7 +5,7 @@ import club.iananderson.seasonhud.client.gui.screens.MainOptionsScreen;
 public class SeasonHudClientCommon {
   public static void optionsKeyInput() {
     if (KeyBindings.seasonhudOptionsKeyMapping.consumeClick()) {
-      MainOptionsScreen.getInstance().open();
+      MainOptionsScreen.getInstance(null).open();
     }
   }
 }

@@ -256,7 +256,7 @@ dependencies {
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
     modLocalRuntime "maven.modrinth:lazydfu:${project.lazydfu_version}"
-    // modLocalRuntime "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
