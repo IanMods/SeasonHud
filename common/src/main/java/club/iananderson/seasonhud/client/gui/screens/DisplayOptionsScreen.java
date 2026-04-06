@@ -11,6 +11,8 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
+import club.iananderson.seasonhud.impl.season.components.Seasons;
+import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
@@ -20,6 +22,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import org.jspecify.annotations.NonNull;
 
 public class DisplayOptionsScreen extends SeasonHudScreen {
@@ -125,11 +128,45 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     super.onClose();
   }
 
+  public MutableComponent getModMenuText() {
+    Seasons season = Seasons.SPRING;
+    SubSeasons subSeason = SubSeasons.EARLY;
+    long currentDate = 1;
+    int currentDuration = this.showSubSeason
+                          ? 8
+                          : 24;
+
+    MutableComponent seasonIcon = Common.translatedText("desc.seasonhud.hud.icon", season.getIconChar());
+    MutableComponent seasonText = CurrentSeason.getText(season, subSeason, this.showDay, currentDate, currentDuration,
+                                                        this.showSubSeason).copy();
+    Style seasonFormat = Style.EMPTY;
+
+    if (this.seasonColor) {
+      if (SeasonHudClient.getEnableSeasonNameColor()) {
+        seasonFormat = Style.EMPTY.withColor(season.getSeasonColor());
+      }
+    }
+
+    return Common.translatedText("desc.seasonhud.hud.combined", seasonIcon.withStyle(Common.SEASON_ICON_STYLE),
+                                 seasonText.withStyle(seasonFormat));
+  }
+
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
   public void render(@NonNull PoseStack graphics, int mouseX, int mouseY, float partialTicks) {
     super.render(graphics, mouseX, mouseY, partialTicks);
-    var seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    if (this.minecraft == null) {
+      return;
+    }
+
+    MutableComponent seasonCombined;
+
+    if (this.minecraft.player == null) {
+      seasonCombined = this.getModMenuText();
+    } else {
+      seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+    }
+
     posX = Client.DEFAULT_X_OFFSET;
     posY = Client.DEFAULT_Y_OFFSET;
 
@@ -194,7 +231,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
       drawColumnHeading(graphics, Common.literalText("Fabric Seasons Day Length"), Side.LEFT, (fabricSeasonsRow));
     }
 
-    if (CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
+    if (minecraft.player != null && CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
       MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
       posY += this.font.lineHeight;
@@ -239,7 +276,14 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
       row += 1;
 
-      MutableComponent seasonCombined = CurrentSeason.getInstance(this.minecraft).getHudText();
+      MutableComponent seasonCombined;
+
+      if (this.minecraft.player == null) {
+        seasonCombined = this.getModMenuText();
+      } else {
+        seasonCombined = CurrentSeason.getInstance(this.minecraft).getConfigText(showDay, showSubSeason, seasonColor);
+      }
+
       sliderX = HudOffsetSlider.builder(Common.translatedText("menu.seasonhud.season.xOffset.slider"))
           .withTooltip(t -> Common.newTooltip("menu.seasonhud.season.xOffset.tooltip"))
           .withValues(0, this.maxWidth(seasonCombined), posX, Client.DEFAULT_X_OFFSET)
