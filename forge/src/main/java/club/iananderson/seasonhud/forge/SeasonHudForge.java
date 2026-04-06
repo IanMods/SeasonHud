@@ -33,10 +33,6 @@ public class SeasonHudForge {
   }
 
   public static void onInitialize(FMLCommonSetupEvent event) {
-    // if (Common.ftbChunksLoaded()) {
-    //   SeasonHudClientCommon.ftbChunkSetup();
-    // }
-    //
     // if (Common.curiosLoaded()) {
     //   Common.LOG.info("Talking to Curios");
     //   CuriosCompat.init();
