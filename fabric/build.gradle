@@ -8,31 +8,18 @@ loom {
     if (aw.exists()) {
         accessWidenerPath.set(aw)
     }
-
-    mixin {
-        useLegacyMixinAp = true
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
     runs {
         client {
             client()
-            setConfigName("Fabric Client")
+            setConfigName('Fabric Client')
             ideConfigGenerated(true)
-            var clientDir = "run/client"
-            if (!file(clientDir).exists()) {
-                mkdir(clientDir)
-            }
-            runDir(clientDir)
+            runDir('run/client')
         }
         server {
             server()
-            setConfigName("Fabric Server")
+            setConfigName('Fabric Server')
             ideConfigGenerated(true)
-            var serverDir = "run/server"
-            if (!file(serverDir).exists()) {
-                mkdir(serverDir)
-            }
-            runDir(serverDir)
+            runDir('run/server')
         }
     }
 }
@@ -327,7 +314,7 @@ def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', Strin
     }
 }
 sourceSets.configureEach {
-    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
         configurations.named("$variant") {
             attributes {
                 attribute(loaderAttribute, 'fabric')
@@ -335,18 +322,11 @@ sourceSets.configureEach {
         }
     }
 }
-loom.remapConfigurations.configureEach {
-    configurations.named(it.name) {
-        attributes {
-            attribute(loaderAttribute, 'fabric')
-        }
-    }
-}
 
 publishMods {
     displayName = "${mod_id}-fabric-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
-    file = tasks.remapJar.archiveFile
+    file = tasks.jar.archiveFile
     modLoaders.add("fabric")
 
     curseforge("curseforgeFabric") {

@@ -10,10 +10,6 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-//    parchment {
-//        minecraftVersion = parchment_minecraft
-//        mappingsVersion = parchment_version
-//    }
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
@@ -21,30 +17,19 @@ neoForge {
         }
         client {
             client()
-            var clientDir = "run/client"
-            if (!file(clientDir).exists()) {
-                mkdir(clientDir)
-            }
-            setGameDirectory(file(clientDir))
+            gameDirectory = this.mkdir(this.file("run/client"))
         }
         data {
             clientData()
-            serverData()
-
+            gameDirectory = this.mkdir(this.file("run/data"))
             // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-
         }
         server {
-            server {
-                server()
-                var serverDir = "run/server"
-                if (!file(serverDir).exists()) {
-                    mkdir(serverDir)
-                }
-                setGameDirectory(file(serverDir))
-            }
+            server()
+            this.file("runs/server").createParentDirectories()
+            gameDirectory = this.mkdir(this.file("run/server"))
         }
     }
     mods {
@@ -53,7 +38,6 @@ neoForge {
         }
     }
 }
-
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
