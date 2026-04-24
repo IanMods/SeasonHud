@@ -19,19 +19,17 @@ out
 *.ipr
 *.iws
 *.iml
+
 .idea/*
-!/.idea/modules.xml
-!/.idea/modules/
-!/.idea/modules/common/*
-!/.idea/modules/fabric/*
-!/.idea/modules/forge/*
-!/.idea/modules/neoforge/*
 !/.idea/scopes
 !/.idea/checkstyle
 !/.idea/codeStyles
 !/.idea/fileColors.xml
 !/.idea/checkstyle-idea.xml
 !/.idea/icon.svg
+/.idea/shelf/
+/.idea/modules
+/.idea/modules/*
 # gradle
 build
 libs
@@ -39,7 +37,6 @@ libs
 # other
 run
 runs
-!/.idea/shelf/
 /.depUpdater/
 /update-seasonhud-deps.ps1
 /dist/
