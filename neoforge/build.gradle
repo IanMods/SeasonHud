@@ -218,7 +218,7 @@ dependencies {
 
     // Development QOL
     implementation "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
-    implementation "maven.modrinth:sodium:${project.sodium_version_neoforge}"
+    // implementation "maven.modrinth:sodium:${project.sodium_version_neoforge}"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.

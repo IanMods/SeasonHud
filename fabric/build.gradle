@@ -220,7 +220,7 @@ dependencies {
 
     // Development QOL
     implementation("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
-    implementation "maven.modrinth:sodium:${project.sodium_version_fabric}"
+    // implementation "maven.modrinth:sodium:${project.sodium_version_fabric}"
     implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Season Mod Dev Tests (Fabric)
