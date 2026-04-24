@@ -5,7 +5,8 @@ import club.iananderson.seasonhud.client.overlays.SeasonHudOverlayCommon;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import org.jspecify.annotations.NonNull;
 
 public class SeasonHudOverlay implements HudElement {
   public static SeasonHudOverlay HUD_INSTANCE;
@@ -16,7 +17,7 @@ public class SeasonHudOverlay implements HudElement {
   }
 
   @Override
-  public void render(GuiGraphics graphics, DeltaTracker tickCounter) {
+  public void extractRenderState(@NonNull GuiGraphicsExtractor graphics, @NonNull DeltaTracker tickCounter) {
     SeasonHudOverlayCommon.render(graphics, tickCounter);
   }
 

@@ -9,7 +9,7 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import java.util.Locale;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
@@ -184,7 +184,7 @@ public class SereneSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public void debugHud(GuiGraphics graphics) {
+  public void debugHud(GuiGraphicsExtractor graphics) {
 
   }
 }

@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
@@ -31,8 +31,9 @@ public class HudScaleSlider extends BasicSlider {
   }
 
   @Override
-  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    super.renderWidget(graphics, mouseX, mouseY, partialTick);
+  public void extractWidgetRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY,
+      float partialTick) {
+    super.extractWidgetRenderState(graphics, mouseX, mouseY, partialTick);
   }
 
   public static class Builder {

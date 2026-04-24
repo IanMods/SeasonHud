@@ -7,7 +7,7 @@ import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.MutableComponent;
 import org.joml.Matrix3x2fStack;
 
@@ -15,13 +15,13 @@ public class MapAtlasesCommon {
   private MapAtlasesCommon() {
   }
 
-  private static void drawSeasonWithLighterShadow(GuiGraphics graphics, Font font, MutableComponent text,
+  private static void drawSeasonWithLighterShadow(GuiGraphicsExtractor graphics, Font font, MutableComponent text,
       MutableComponent shadowText) {
-    graphics.drawString(font, shadowText, 1, 1, 5855577, false);
-    graphics.drawString(font, text, 0, 0, 0xffffffff, false);
+    graphics.text(font, shadowText, 1, 1, 5855577, false);
+    graphics.text(font, text, 0, 0, 0xffffffff, false);
   }
 
-  private static void drawScaledComponent(GuiGraphics graphics, Font font, int x, int y, MutableComponent text,
+  private static void drawScaledComponent(GuiGraphicsExtractor graphics, Font font, int x, int y, MutableComponent text,
       MutableComponent shadowText, float textScaling, int maxWidth, int targetWidth) {
     Matrix3x2fStack pose = graphics.pose();
     float textWidth = font.width(text);
@@ -36,7 +36,7 @@ public class MapAtlasesCommon {
     pose.popMatrix();
   }
 
-  public static void drawMapComponentSeason(GuiGraphics graphics, Font font, int x, int y, int targetWidth,
+  public static void drawMapComponentSeason(GuiGraphicsExtractor graphics, Font font, int x, int y, int targetWidth,
       float textScaling, float globalScale) {
     Minecraft mc = Minecraft.getInstance();
     MutableComponent seasonCombined = CurrentSeason.getInstance(mc).getHudText();
@@ -54,7 +54,7 @@ public class MapAtlasesCommon {
     }
   }
 
-  public static void drawScaledText(GuiGraphics context, int x, int y, MutableComponent text,
+  public static void drawScaledText(GuiGraphicsExtractor context, int x, int y, MutableComponent text,
       MutableComponent shadowText, float textScaling, int originOffsetWidth, int originOffsetHeight) {
     Minecraft mc = Minecraft.getInstance();
     Matrix3x2fStack poseStack = context.pose();
@@ -68,12 +68,12 @@ public class MapAtlasesCommon {
     poseStack.pushMatrix();
     poseStack.translate(textX, textY);
     poseStack.scale(textScaling, textScaling);
-    context.drawString(mc.font, shadowText, 1, 1, Integer.parseInt("595959", 16), false);
-    context.drawString(mc.font, text, 0, 0, Integer.parseInt("E0E0E0", 16), false);
+    context.text(mc.font, shadowText, 1, 1, Integer.parseInt("595959", 16), false);
+    context.text(mc.font, text, 0, 0, Integer.parseInt("E0E0E0", 16), false);
     poseStack.popMatrix();
   }
 
-  public static void drawMapComponentSeasonOld(GuiGraphics poseStack, int x, int y, int originOffsetWidth,
+  public static void drawMapComponentSeasonOld(GuiGraphicsExtractor poseStack, int x, int y, int originOffsetWidth,
       int originOffsetHeight, float textScaling) {
     if (CurrentMinimap.mapAtlasesLoaded()) {
       Minecraft mc = Minecraft.getInstance();

@@ -9,7 +9,7 @@ import club.iananderson.seasonhud.util.Rgb;
 import java.util.EnumSet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -116,7 +116,8 @@ public class ColorEditBox extends EditBox {
   }
 
   @Override
-  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void extractWidgetRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY,
+      float partialTicks) {
     Minecraft mc = Minecraft.getInstance();
     float textScale = 1;
     int scaledWidth = mc.getWindow().getGuiScaledWidth();
@@ -130,10 +131,10 @@ public class ColorEditBox extends EditBox {
       textScale = ((float) this.getWidth() - PADDING) / mc.font.width(seasonCombined);
     }
     graphics.pose().scale(textScale, textScale);
-    graphics.drawCenteredString(mc.font, seasonCombined, (int) ((getX() + (double) this.getWidth() / 2) / textScale),
-                                (int) ((getY() - (mc.font.lineHeight * textScale) - PADDING) / textScale), 0xffffffff);
+    graphics.centeredText(mc.font, seasonCombined, (int) ((getX() + (double) this.getWidth() / 2) / textScale),
+                          (int) ((getY() - (mc.font.lineHeight * textScale) - PADDING) / textScale), 0xffffffff);
     graphics.pose().popMatrix();
 
-    super.renderWidget(graphics, mouseX, mouseY, partialTicks);
+    super.extractWidgetRenderState(graphics, mouseX, mouseY, partialTicks);
   }
 }

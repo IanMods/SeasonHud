@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.neoforge.client.overlays;
 import club.iananderson.seasonhud.client.overlays.SeasonHudOverlayCommon;
 import javax.annotation.Nonnull;
 import net.minecraft.client.DeltaTracker;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.neoforged.neoforge.client.gui.GuiLayer;
 
 public class SeasonHudOverlay implements GuiLayer {
@@ -13,7 +13,7 @@ public class SeasonHudOverlay implements GuiLayer {
     HUD_INSTANCE = new SeasonHudOverlay();
   }
 
-  public void render(@Nonnull GuiGraphics graphics, @Nonnull DeltaTracker deltaTracker) {
+  public void render(@Nonnull GuiGraphicsExtractor graphics, @Nonnull DeltaTracker deltaTracker) {
     SeasonHudOverlayCommon.render(graphics, deltaTracker);
   }
 }

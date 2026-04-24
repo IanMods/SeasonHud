@@ -14,7 +14,7 @@ public class SeasonHudOverlay implements ForgeLayer {
   }
 
   @Override
-  public void render(@Nonnull GuiGraphics graphics, @Nonnull DeltaTracker tickCounter) {
+  public void render(@Nonnull GuiGraphicsExtractor graphics, @Nonnull DeltaTracker tickCounter) {
     SeasonHudOverlayCommon.render(graphics, tickCounter);
   }
 }

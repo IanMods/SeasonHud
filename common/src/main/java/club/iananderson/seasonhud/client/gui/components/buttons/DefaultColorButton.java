@@ -4,7 +4,7 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.boxes.ColorEditBox;
 import club.iananderson.seasonhud.util.Rgb;
 import java.util.Map;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -61,7 +61,7 @@ public class DefaultColorButton extends Button.Plain {
   }
 
   @Override
-  protected void renderContents(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  protected void extractContents(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     refresh();
     String boxValue = this.colorEditBox.getValue();
 
@@ -69,7 +69,7 @@ public class DefaultColorButton extends Button.Plain {
       this.active = false;
     }
 
-    super.renderContents(graphics, mouseX, mouseY, partialTicks);
+    super.extractContents(graphics, mouseX, mouseY, partialTicks);
   }
 
   private void refresh() {

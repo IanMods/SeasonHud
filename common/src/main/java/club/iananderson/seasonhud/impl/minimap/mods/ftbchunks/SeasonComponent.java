@@ -1,7 +1,5 @@
 package club.iananderson.seasonhud.impl.minimap.mods.ftbchunks;
 
-import club.iananderson.seasonhud.Common;
-
 // Disabled until FTBChunks is updated
 // public class SeasonComponent implements MinimapInfoComponent {
 public class SeasonComponent {

@@ -12,7 +12,7 @@ import org.spongepowered.asm.service.MixinService;
 public class SeasonHudMixinPlugin implements IMixinConfigPlugin {
 
   private static final boolean HAS_XAERO;
-  private static final boolean HAS_MAP_ATLASES;
+  // private static final boolean HAS_MAP_ATLASES;
 
   static {
     HAS_XAERO = hasClass("xaero.common.HudMod");

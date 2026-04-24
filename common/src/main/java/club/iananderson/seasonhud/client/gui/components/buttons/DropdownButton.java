@@ -1,7 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import org.jspecify.annotations.NonNull;
 
@@ -12,7 +12,7 @@ public class DropdownButton extends Button {
   }
 
   @Override
-  protected void renderContents(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    super.renderDefaultSprite(graphics);
+  protected void extractContents(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractDefaultSprite(graphics);
   }
 }

@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.impl.accessory.mods.accessories.item;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 
 // public class AccessoriesCalendar implements Accessory {
-public class AccessoriesCalendar{
+public class AccessoriesCalendar {
   public AccessoriesCalendar() {
   }
 

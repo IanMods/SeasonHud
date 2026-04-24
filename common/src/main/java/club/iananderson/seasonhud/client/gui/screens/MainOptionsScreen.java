@@ -7,7 +7,7 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
 import journeymap.client.ui.UIManager;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.screens.Screen;
@@ -64,8 +64,8 @@ public class MainOptionsScreen extends SeasonHudScreen {
   }
 
   @Override
-  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    super.render(graphics, mouseX, mouseY, partialTicks);
+  public void extractRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractRenderState(graphics, mouseX, mouseY, partialTicks);
 
     drawHeading(graphics, MINIMAP_SETTINGS, minimapRow);
 

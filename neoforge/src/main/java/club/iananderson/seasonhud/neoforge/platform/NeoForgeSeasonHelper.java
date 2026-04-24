@@ -10,19 +10,13 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import com.teamtea.eclipticseasons.api.util.EclipticUtil;
 import com.teamtea.eclipticseasons.config.CommonConfig;
-import dev.protomanly.pmweather.config.ServerConfig;
-import dev.protomanly.pmweather.item.ModItems;
-import dev.protomanly.pmweather.seasons.SeasonHandler;
 import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
-import net.dries007.tfc.client.ClientHelpers;
-import net.dries007.tfc.util.calendar.Calendars;
-import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
@@ -151,23 +145,27 @@ public class NeoForgeSeasonHelper implements SeasonHelper {
   // TerrafirmaCraft
   @Override
   public Months currentTerraFirmaCraftMonth() {
-    Month terraFirmaCraftmonth = Calendars.get()
-        .getHemispheralCalendarMonthOfYear(ClientHelpers.inNorthernHemisphere());
+    // Month terraFirmaCraftmonth = Calendars.get()
+    //     .getHemispheralCalendarMonthOfYear(ClientHelpers.inNorthernHemisphere());
+    //
+    // // Starts at '0', so need to adjust by 1
+    // int monthNumber = terraFirmaCraftmonth.ordinal() + 1;
+    //
+    // return Months.getById(monthNumber);
 
-    // Starts at '0', so need to adjust by 1
-    int monthNumber = terraFirmaCraftmonth.ordinal() + 1;
-
-    return Months.getById(monthNumber);
+    return Months.JANUARY;
   }
 
   @Override
   public int terraFirmaCraftCurrentDayOfMonth() {
-    return Calendars.CLIENT.getCalendarDayOfMonth();
+    // return Calendars.CLIENT.getCalendarDayOfMonth();
+    return 1;
   }
 
   @Override
   public int terraFirmaCraftTotalDaysInMonth() {
-    return Calendars.CLIENT.getCalendarDaysInMonth();
+    // return Calendars.CLIENT.getCalendarDaysInMonth();
+    return 1;
   }
 
   // HomeostaticSeasons
@@ -179,57 +177,61 @@ public class NeoForgeSeasonHelper implements SeasonHelper {
   // ProtoManly's Weather
   @Override
   public Optional<Item> protoManlyWeatherCalendar() {
-    return ModItems.CALENDAR.asOptional();
+    // return ModItems.CALENDAR.asOptional();
+    return Optional.empty();
   }
 
   @Override
   public Months protoManlyWeatherMonth(Player player) {
-    int protomanlyWeatherMonth = SeasonHandler.getMonth(player.level());
-
-    return Months.getById(protomanlyWeatherMonth);
+    // int protomanlyWeatherMonth = SeasonHandler.getMonth(player.level());
+    //
+    // return Months.getById(protomanlyWeatherMonth);
+    return Months.JANUARY;
   }
 
   @Override
   public int protoManlyWeatherCurrentDayOfMonth(Player player) {
-    return SeasonHandler.getDayInMonth(player.level());
+    // return SeasonHandler.getDayInMonth(player.level());
+    return 1;
   }
 
   @Override
   public int protoManlyWeatherTotalDaysInMonth(Player player) {
-    return ServerConfig.monthLength;
+    // return ServerConfig.monthLength;
+    return 1;
   }
 
   @Override
-  public void protoManlyDebug(GuiGraphics graphics) {
-    Minecraft mc = Minecraft.getInstance();
-    int screenWidth = mc.getWindow().getGuiScaledWidth();
-    int y = 32;
-
-    if (mc.player != null) {
-      String month = protoManlyWeatherMonth(mc.player).getTranslatedText().getString();
-      int day = protoManlyWeatherCurrentDayOfMonth(mc.player);
-      int monthLength = protoManlyWeatherTotalDaysInMonth(mc.player);
-
-      y += 8;
-      graphics.drawString(mc.font, "Month: " + month + " | " + "Day: " + day + "/" + monthLength, screenWidth / 2, y,
-                          0xffffff);
-
-      Level level = mc.player.level();
-      y += 8;
-      float springAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, -3.5F) + 1.0F) / 2.0F, 4.0F);
-      graphics.drawString(mc.font, "springAmount: " + springAmount, screenWidth / 2, y, 0xffffff);
-
-      y += 8;
-      float summerAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 0.0F) + 1.0F) / 2.0F, 4.0F);
-      graphics.drawString(mc.font, "summerAmount: " + summerAmount, screenWidth / 2, y, 0xffffff);
-
-      y += 8;
-      float fallAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 3.5F) + 1.0F) / 2.0F, 4.0F);
-      graphics.drawString(mc.font, "fallAmount: " + fallAmount, screenWidth / 2, y, 0xffffff);
-
-      y += 8;
-      float winterAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 6.0F) + 1.0F) / 2.0F, 4.0F);
-      graphics.drawString(mc.font, "winterAmount: " + winterAmount, screenWidth / 2, y, 0xffffff);
-    }
+  public void protoManlyDebug(GuiGraphicsExtractor graphics) {
+    // Minecraft mc = Minecraft.getInstance();
+    // int screenWidth = mc.getWindow().getGuiScaledWidth();
+    // int y = 32;
+    //
+    // if (mc.player != null) {
+    //   String month = protoManlyWeatherMonth(mc.player).getTranslatedText().getString();
+    //   int day = protoManlyWeatherCurrentDayOfMonth(mc.player);
+    //   int monthLength = protoManlyWeatherTotalDaysInMonth(mc.player);
+    //
+    //   y += 8;
+    //   graphics.text(mc.font, "Month: " + month + " | " + "Day: " + day + "/" + monthLength, screenWidth / 2, y,
+    //                       0xffffff);
+    //
+    //   Level level = mc.player.level();
+    //   y += 8;
+    //   float springAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, -3.5F) + 1.0F) / 2.0F, 4.0F);
+    //   graphics.text(mc.font, "springAmount: " + springAmount, screenWidth / 2, y, 0xffffff);
+    //
+    //   y += 8;
+    //   float summerAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 0.0F) + 1.0F) / 2.0F, 4.0F);
+    //   graphics.text(mc.font, "summerAmount: " + summerAmount, screenWidth / 2, y, 0xffffff);
+    //
+    //   y += 8;
+    //   float fallAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 3.5F) + 1.0F) / 2.0F, 4.0F);
+    //   graphics.text(mc.font, "fallAmount: " + fallAmount, screenWidth / 2, y, 0xffffff);
+    //
+    //   y += 8;
+    //   float winterAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 6.0F) + 1.0F) / 2.0F, 4.0F);
+    //   graphics.text(mc.font, "winterAmount: " + winterAmount, screenWidth / 2, y, 0xffffff);
+    // }
   }
 }

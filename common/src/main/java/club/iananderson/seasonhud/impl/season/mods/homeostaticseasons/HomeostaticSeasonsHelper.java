@@ -10,7 +10,7 @@ import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import homeostaticseasons.api.Season;
 import java.util.Locale;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -143,7 +143,7 @@ public class HomeostaticSeasonsHelper implements SeasonModHelper {
   }
 
   @Override
-  public void debugHud(GuiGraphics graphics) {
+  public void debugHud(GuiGraphicsExtractor graphics) {
 
   }
 }

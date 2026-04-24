@@ -1,19 +1,12 @@
 package club.iananderson.seasonhud.fabric.platform;
 
-import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.components.Months;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
-import club.iananderson.seasonhud.platform.Services;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import homeostaticseasons.api.HomeostaticSeasonsAPI;
-import io.github.lucaargolo.seasons.FabricSeasons;
-import io.github.lucaargolo.seasons.utils.Season;
-import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
-import java.util.Locale;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
@@ -26,13 +19,13 @@ public class FabricSeasonHelper implements SeasonHelper {
   @Override
   public boolean validFabricSeasonsDim(ResourceKey<Level> currentDim) {
     // return FabricSeasons.CONFIG.isValidInDimension(currentDim);
-    return true
+    return true;
   }
 
   @Override
   public boolean fabricSeasonsTiedWithSystemTime() {
     // return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
-    return false
+    return false;
   }
 
   @Override
@@ -61,7 +54,7 @@ public class FabricSeasonHelper implements SeasonHelper {
     //   return SubSeasons.LATE;
     // }
 
-    return SubSeasons.EARLY
+    return SubSeasons.EARLY;
   }
 
   @Override
@@ -74,19 +67,19 @@ public class FabricSeasonHelper implements SeasonHelper {
     // }
     //
     // return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
-    return Seasons.SPRING
+    return Seasons.SPRING;
   }
 
   @Override
   public int currentFabricSeasonLength(Player player) {
     // return FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
-    return 1
+    return 1;
   }
 
   @Override
   public long timeToNextFabricSeason(Player player) {
     // return FabricSeasons.getTimeToNextSeason(player.level());
-    return 1
+    return 1;
   }
 
   // SereneSeasons
@@ -168,7 +161,7 @@ public class FabricSeasonHelper implements SeasonHelper {
   }
 
   @Override
-  public void protoManlyDebug(GuiGraphics graphics) {
+  public void protoManlyDebug(GuiGraphicsExtractor graphics) {
 
   }
 }

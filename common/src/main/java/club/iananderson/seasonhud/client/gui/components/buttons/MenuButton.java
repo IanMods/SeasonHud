@@ -2,7 +2,7 @@ package club.iananderson.seasonhud.client.gui.components.buttons;
 
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.screens.SeasonHudScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.CommonComponents;
@@ -27,8 +27,8 @@ public class MenuButton extends Button.Plain {
   }
 
   @Override
-  protected void renderContents(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    super.renderContents(graphics, mouseX, mouseY, partialTicks);
+  protected void extractContents(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractContents(graphics, mouseX, mouseY, partialTicks);
   }
 
   public enum MenuButtons {

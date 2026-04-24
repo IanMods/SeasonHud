@@ -53,26 +53,6 @@ public class CurrentSeason {
     return translatedText;
   }
 
-  private Component getTranslation(boolean showSubSeason) {
-    String seasonKey = currentSeason.getTranslationKey();
-    String subSeasonKey = currentSubSeason.getSubSeasonKey();
-    Component translatedText = Common.translatedText(seasonKey);
-
-    if (Calendar.validDetailedMode(player) && showSubSeason) {
-      if (SeasonMods.ECLIPTIC.modLoaded()) {
-        translatedText = Services.SEASON.eclipticSeasonComponent(player);
-      } else {
-        translatedText = Common.translatedText(seasonKey + subSeasonKey);
-      }
-    }
-
-    if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
-      translatedText = CurrentFertility.getInstance(mc).getHudTextNoFormat();
-    }
-
-    return translatedText;
-  }
-
   public static Component getText(Seasons season, SubSeasons subSeasons, ShowDay showDay, long seasonDate,
       int seasonDuration, boolean showSubSeason) {
     Component text;
@@ -114,6 +94,26 @@ public class CurrentSeason {
     }
 
     return text;
+  }
+
+  private Component getTranslation(boolean showSubSeason) {
+    String seasonKey = currentSeason.getTranslationKey();
+    String subSeasonKey = currentSubSeason.getSubSeasonKey();
+    Component translatedText = Common.translatedText(seasonKey);
+
+    if (Calendar.validDetailedMode(player) && showSubSeason) {
+      if (SeasonMods.ECLIPTIC.modLoaded()) {
+        translatedText = Services.SEASON.eclipticSeasonComponent(player);
+      } else {
+        translatedText = Common.translatedText(seasonKey + subSeasonKey);
+      }
+    }
+
+    if (CurrentFertility.getInstance(mc).shouldOverwriteSeason()) {
+      translatedText = CurrentFertility.getInstance(mc).getHudTextNoFormat();
+    }
+
+    return translatedText;
   }
 
   // Localized name with icon

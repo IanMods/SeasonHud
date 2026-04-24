@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-26.1.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-26.1.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-26.1.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-26.1.forge.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-26.1.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-26.1.forge.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-26.1.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/seasonhud-26.1.neoforge.main.iml" />
     </modules>
   </component>

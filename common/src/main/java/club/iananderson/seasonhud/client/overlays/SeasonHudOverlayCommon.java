@@ -10,7 +10,7 @@ import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.platform.Services;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.MutableComponent;
 import org.jspecify.annotations.NonNull;
 
@@ -18,7 +18,7 @@ public class SeasonHudOverlayCommon {
   private SeasonHudOverlayCommon() {
   }
 
-  public static void render(@NonNull GuiGraphics graphics, @NonNull DeltaTracker tickCounter) {
+  public static void render(@NonNull GuiGraphicsExtractor graphics, @NonNull DeltaTracker tickCounter) {
     Minecraft mc = Minecraft.getInstance();
 
     if (Common.drawDefaultHud(mc) && Common.vanillaShouldDrawHud(mc) && Calendar.validNeedCalendar(mc.player)
@@ -73,12 +73,12 @@ public class SeasonHudOverlayCommon {
       // Text
       graphics.pose().pushMatrix();
       graphics.pose().scale((float) scale, (float) scale);
-      graphics.drawString(mc.font, seasonCombined, x, y, 0xffffffff);
+      graphics.text(mc.font, seasonCombined, x, y, 0xffffffff);
       if (CurrentFertility.getInstance(mc).shouldDrawNewLine()) {
         MutableComponent fertility = CurrentFertility.getInstance(mc).getHudText();
 
         y += stringHeight;
-        graphics.drawString(mc.font, fertility, x, y, 0xffffff);
+        graphics.text(mc.font, fertility, x, y, 0xffffff);
       }
 
       if (Services.PLATFORM.isDevelopmentEnvironment()) {

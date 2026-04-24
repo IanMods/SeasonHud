@@ -16,7 +16,7 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -157,8 +157,8 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
 
   // TODO: Need to fix Tropical Seasons option not updating in config screen
   @Override
-  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    super.render(graphics, mouseX, mouseY, partialTicks);
+  public void extractRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractRenderState(graphics, mouseX, mouseY, partialTicks);
     if (this.minecraft == null) {
       return;
     }
@@ -233,7 +233,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     graphics.pose().pushMatrix();
     graphics.pose().translate(0, 0);
     graphics.pose().scale((float) seasonScale, (float) seasonScale);
-    graphics.drawString(font, seasonCombined, posX, posY, 0xffffffff);
+    graphics.text(font, seasonCombined, posX, posY, 0xffffffff);
 
     if (Common.fabricSeasonsLoaded() && Common.clientSideConfig(this.minecraft)) {
       drawColumnHeading(graphics, Common.literalText("Fabric Seasons Day Length"), Side.LEFT, (fabricSeasonsRow));
@@ -242,7 +242,7 @@ public class DisplayOptionsScreen extends SeasonHudScreen {
     if (minecraft.player != null && CurrentFertility.getInstance(this.minecraft).shouldDrawNewLine()) {
       MutableComponent fertility = CurrentFertility.getInstance(this.minecraft).getHudText();
 
-      graphics.drawString(font, fertility, posX, posY + 9, 0xffffff);
+      graphics.text(font, fertility, posX, posY + 9, 0xffffff);
     }
 
     graphics.pose().popMatrix();

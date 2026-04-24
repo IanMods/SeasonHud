@@ -7,7 +7,7 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.util.Rgb;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import org.jspecify.annotations.NonNull;
@@ -50,13 +50,14 @@ public class RgbSlider extends BasicSlider {
   }
 
   @Override
-  public void renderWidget(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+  public void extractWidgetRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY,
+      float partialTick) {
     if (!enableColor) {
       this.active = false;
       this.isHovered = false;
     }
 
-    super.renderWidget(graphics, mouseX, mouseY, partialTick);
+    super.extractWidgetRenderState(graphics, mouseX, mouseY, partialTick);
   }
 
   @Override

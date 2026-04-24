@@ -55,12 +55,13 @@ public class Calendar {
 
     if (Common.trinketsLoaded() && !Common.accessoriesLoaded()) {
       curioEquipped = Services.ACCESSORY.trinketEquipped(player, item);
-    } else if (Common.accessoriesLoaded()) {
-      Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
-      if (accessoriesInventory.isPresent()) {
-        curioEquipped = !accessoriesInventory.get().getEquipped(item).isEmpty();
-      }
     }
+    // else if (Common.accessoriesLoaded()) {
+    //   Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
+    //   if (accessoriesInventory.isPresent()) {
+    //     curioEquipped = !accessoriesInventory.get().getEquipped(item).isEmpty();
+    //   }
+    // }
     return curioEquipped;
   }
 

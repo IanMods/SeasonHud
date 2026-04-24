@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
@@ -87,7 +87,7 @@ public class SeasonHudScreen extends Screen {
 
   }
 
-  public void drawColumnHeading(@NonNull GuiGraphics graphics, Component text, Side side, int row) {
+  public void drawColumnHeading(@NonNull GuiGraphicsExtractor graphics, Component text, Side side, int row) {
     int x;
 
     switch (side) {
@@ -99,29 +99,29 @@ public class SeasonHudScreen extends Screen {
     int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);
 
     graphics.pose().pushMatrix();
-    graphics.drawCenteredString(font, text, x, y, 16777215);
+    graphics.centeredText(font, text, x, y, 16777215);
     graphics.pose().popMatrix();
   }
 
-  public void drawHeading(@NonNull GuiGraphics graphics, Component text, int row) {
+  public void drawHeading(@NonNull GuiGraphicsExtractor graphics, Component text, int row) {
     int x = this.width / 2;
     int y = MENU_PADDING + (row * (buttonHeight + BUTTON_PADDING)) - (font.lineHeight + BUTTON_PADDING);
 
     graphics.pose().pushMatrix();
-    graphics.drawCenteredString(font, text, x, y, 16777215);
+    graphics.centeredText(font, text, x, y, 16777215);
     graphics.pose().popMatrix();
   }
 
   @Override
-  public void render(@NonNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+  public void extractRenderState(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
 
     int titleWidth = this.font.width(this.title);
 
     this.addRenderableWidget(
         new StringWidget(this.width / 2 - titleWidth / 2, TITLE_PADDING, titleWidth, 9, this.title, this.font));
-    graphics.drawCenteredString(font, this.getTitle(), this.width / 2, TITLE_PADDING, 16777215);
+    graphics.centeredText(font, this.getTitle(), this.width / 2, TITLE_PADDING, 16777215);
 
-    super.render(graphics, mouseX, mouseY, partialTicks);
+    super.extractRenderState(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override
