@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-26.1.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-26.1.common.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/seasonhud-26.1.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/seasonhud-26.1.common.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/seasonhud-26.1.fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/seasonhud-26.1.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/seasonhud-26.1.forge.main.iml" />
