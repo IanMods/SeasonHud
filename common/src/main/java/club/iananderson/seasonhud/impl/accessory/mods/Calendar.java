@@ -5,7 +5,6 @@ import club.iananderson.seasonhud.config.SeasonHudServer;
 import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
-import io.wispforest.accessories.api.AccessoriesCapability;
 import java.util.Objects;
 import java.util.Optional;
 import net.minecraft.client.Minecraft;
