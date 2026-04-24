@@ -3,11 +3,9 @@
   "minVersion": "0.8",
   "package": "club.iananderson.seasonhud.mixin",
   "plugin": "club.iananderson.seasonhud.mixin.SeasonHudMixinPlugin",
-  "compatibilityLevel": "JAVA_25",
   "mixins": [
   ],
   "client": [
-    "mapatlases.MapAtlasHudMixin",
     "xaero.XaeroBuiltInInfoDisplays"
   ],
   "injectors": {
