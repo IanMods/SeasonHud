@@ -16,7 +16,7 @@ tasks.withType(JavaCompile).configureEach {
 
 minecraft {
     //mappings channel: 'official', version: minecraft_version
-    mappings channel: "parchment", version: "${parchment_version}-${parchment_minecraft}"
+    mappings channel: "official", version: "${minecraft_version}"
 
     // Automatically enable forge AccessTransformers if the file exists
     // This location is hardcoded in Forge and can not be changed.

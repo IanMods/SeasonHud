@@ -44,7 +44,7 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
-rootProject.name = 'seasonhud-1.21.11'
+rootProject.name = 'seasonhud-26.1'
 
 include("common")
 include(enabled_platforms.split(','))

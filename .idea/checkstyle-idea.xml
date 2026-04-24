@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CheckStyle-IDEA" serialisationVersion="2">
-    <checkstyleVersion>13.2.0</checkstyleVersion>
+    <checkstyleVersion>13.1.0</checkstyleVersion>
     <scanScope>JavaOnly</scanScope>
     <copyLibs>true</copyLibs>
     <scanBeforeCheckin>true</scanBeforeCheckin>
     <option name="thirdPartyClasspath" />
     <option name="activeLocationIds">
-      <option value="d2e24640-2e9e-40e0-8d22-6175dc49e2b0" />
+      <option value="3be04f41-5cbc-44ba-99b6-653c1ed59f2a" />
     </option>
     <option name="locations">
       <list>
@@ -22,8 +22,8 @@
             </map>
           </option>
         </ConfigurationLocation>
-        <ConfigurationLocation id="d2e24640-2e9e-40e0-8d22-6175dc49e2b0" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
-          $PROJECT_DIR$/seasonhud_checkstyle.xml
+        <ConfigurationLocation id="3be04f41-5cbc-44ba-99b6-653c1ed59f2a" type="PROJECT_RELATIVE" scope="All" description="SeasonHud Checks">
+          $PROJECT_DIR$/../../SeasonHud/26.1/seasonhud_checkstyle.xml
           <option name="properties">
             <map>
               <entry key="org.checkstyle.google.severity" value="warning" />
