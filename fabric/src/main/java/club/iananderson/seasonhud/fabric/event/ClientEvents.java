@@ -4,6 +4,7 @@ import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.SeasonHudClientCommon;
 import club.iananderson.seasonhud.fabric.client.overlays.SeasonHudOverlay;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 
 public class ClientEvents {
   private ClientEvents() {
@@ -17,7 +18,7 @@ public class ClientEvents {
   }
 
   private static void registerKeyMappings() {
-    KeyBindings.seasonhudOptionsKeyMapping = KeyBindingHelper.registerKeyBinding(
+    KeyBindings.seasonhudOptionsKeyMapping = KeyMappingHelper.registerKeyMapping(
         KeyBindings.seasonhudOptionsKeyMapping);
   }
 
