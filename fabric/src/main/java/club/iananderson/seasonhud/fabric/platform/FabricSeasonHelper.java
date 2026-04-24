@@ -25,61 +25,68 @@ public class FabricSeasonHelper implements SeasonHelper {
   // FabricSeasons
   @Override
   public boolean validFabricSeasonsDim(ResourceKey<Level> currentDim) {
-    return FabricSeasons.CONFIG.isValidInDimension(currentDim);
+    // return FabricSeasons.CONFIG.isValidInDimension(currentDim);
+    return true
   }
 
   @Override
   public boolean fabricSeasonsTiedWithSystemTime() {
-    return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
+    // return FabricSeasons.CONFIG.isSeasonTiedWithSystemTime();
+    return false
   }
 
   @Override
   public Optional<Item> fabricSeasonsCalendar() {
-    if (Common.fabricSeasonsExtrasLoaded()) {
-      return Optional.of(FabricSeasonsExtras.SEASON_CALENDAR_ITEM);
-    }
+    // if (Common.fabricSeasonsExtrasLoaded()) {
+    //   return Optional.of(FabricSeasonsExtras.SEASON_CALENDAR_ITEM);
+    // }
     return Optional.empty();
   }
 
   @Override
   public SubSeasons currentFabricSubSeason(Player player) {
-    long dayLengthTick = SeasonHudServer.getDayLength();
-    long seasonLengthTick = Services.SEASON.currentFabricSeasonLength(player);
-    long seasonLengthDay = seasonLengthTick / dayLengthTick; // Current season length (Default 28)
-    long timeToNextSeason = Services.SEASON.timeToNextFabricSeason(player);
-    long seasonDay = ((seasonLengthTick - timeToNextSeason) / dayLengthTick) + 1;
+    // long dayLengthTick = SeasonHudServer.getDayLength();
+    // long seasonLengthTick = Services.SEASON.currentFabricSeasonLength(player);
+    // long seasonLengthDay = seasonLengthTick / dayLengthTick; // Current season length (Default 28)
+    // long timeToNextSeason = Services.SEASON.timeToNextFabricSeason(player);
+    // long seasonDay = ((seasonLengthTick - timeToNextSeason) / dayLengthTick) + 1;
+    //
+    // int seasonPercent = (int) ((seasonDay * 100.0f) / seasonLengthDay);
+    //
+    // if (seasonPercent <= 33) {
+    //   return SubSeasons.EARLY;
+    // } else if (seasonPercent <= 66) {
+    //   return SubSeasons.MID;
+    // } else {
+    //   return SubSeasons.LATE;
+    // }
 
-    int seasonPercent = (int) ((seasonDay * 100.0f) / seasonLengthDay);
-
-    if (seasonPercent <= 33) {
-      return SubSeasons.EARLY;
-    } else if (seasonPercent <= 66) {
-      return SubSeasons.MID;
-    } else {
-      return SubSeasons.LATE;
-    }
+    return SubSeasons.EARLY
   }
 
   @Override
   public Seasons currentFabricSeason(Player player) {
-    Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
-    String currentSeason = currentSeasonState.toString();
-
-    if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
-      currentSeason = "Autumn";
-    }
-
-    return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
+    // Season currentSeasonState = FabricSeasons.getCurrentSeason(player.level());
+    // String currentSeason = currentSeasonState.toString();
+    //
+    // if (currentSeasonState.toString().equalsIgnoreCase("fall")) {
+    //   currentSeason = "Autumn";
+    // }
+    //
+    // return Seasons.valueOf(currentSeason.toUpperCase(Locale.ROOT));
+    return Seasons.SPRING
   }
 
   @Override
   public int currentFabricSeasonLength(Player player) {
-    return FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
+    // return FabricSeasons.getCurrentSeason(player.level()).getSeasonLength();
+    return 1
   }
 
   @Override
   public long timeToNextFabricSeason(Player player) {
-    return FabricSeasons.getTimeToNextSeason(player.level());
+    // return FabricSeasons.getTimeToNextSeason(player.level());
+    return 1
   }
 
   // SereneSeasons
