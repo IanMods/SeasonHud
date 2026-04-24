@@ -22,14 +22,16 @@ public class FabricMinimapHelper implements MinimapHelper {
       return true;
     }
 
-    Item atlasItem = MapAtlasesMod.MAP_ATLAS.get();
+    // Item atlasItem = MapAtlasesMod.MAP_ATLAS.get();
+    //
+    // boolean drawMinimapHud = MapAtlasesClientConfig.drawMiniMapHUD.get();
+    // boolean emptyAtlas = MapAtlasesClient.getCurrentActiveAtlas().isEmpty();
+    // boolean hideInHand = MapAtlasesClientConfig.hideWhenInHand.get();
+    // boolean hasAtlas = (mc.player.getMainHandItem().is(atlasItem) || mc.player.getOffhandItem().is(atlasItem));
+    //
+    // return !drawMinimapHud || emptyAtlas || (hideInHand && hasAtlas);
 
-    boolean drawMinimapHud = MapAtlasesClientConfig.drawMiniMapHUD.get();
-    boolean emptyAtlas = MapAtlasesClient.getCurrentActiveAtlas().isEmpty();
-    boolean hideInHand = MapAtlasesClientConfig.hideWhenInHand.get();
-    boolean hasAtlas = (mc.player.getMainHandItem().is(atlasItem) || mc.player.getOffhandItem().is(atlasItem));
-
-    return !drawMinimapHud || emptyAtlas || (hideInHand && hasAtlas);
+    return false
   }
 
   @Override
