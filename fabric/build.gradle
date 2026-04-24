@@ -64,20 +64,6 @@ repositories {
         }
     }
 
-    exclusiveContent {
-        forRepositories(
-                maven {
-                    name = 'ParchmentMC'
-                    url = uri("https://maven.parchmentmc.org/")
-                },
-                maven {
-                    name = "NeoForge"
-                    url = uri('https://maven.neoforged.net/releases')
-                }
-        )
-        filter { includeGroup('org.parchmentmc.data') }
-    }
-
     maven {
         name = 'Forge'
         url = uri('https://maven.minecraftforge.net/releases')
@@ -188,89 +174,89 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
     // Forge Config API Port
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modImplementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}-fabric") {
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+    implementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}-fabric") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     // Fabric Seasons + Extras
-    modCompileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-    modCompileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
+    compileOnly("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+    compileOnly("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
 
     // Serene Seasons
-    modCompileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-    modCompileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
-    modCompileOnly("net.jodah:typetools:0.6.3")
+    compileOnly "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
+    compileOnly "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
+    compileOnly("net.jodah:typetools:0.6.3")
 
     // Homeostatic Seasons
-    modCompileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-fabric:${project.climatesettings_version}"
-    modCompileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
-    modCompileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
+    compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-fabric:${project.climatesettings_version}"
+    compileOnly "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
+    compileOnly "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
 
     // Xaero's Minimap
-    modCompileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
-    modCompileOnly "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
+    compileOnly "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
+    compileOnly "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    modCompileOnlyApi("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}-SNAPSHOT") {
+    compileOnlyApi("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}-SNAPSHOT") {
         changing = true
     }
-    modCompileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
+    compileOnly("maven.modrinth:journeymap:${project.journeymap_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     // FTB Chunks + Dependencies
     // Disabled until FTBChunks is updated
-//    modCompileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
-//    modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
-//    modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-//    modCompileOnly "dev.architectury:architectury-fabric:${project.architectury_version}"
+//    compileOnly "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
+//    compileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+//    compileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
+//    compileOnly "dev.architectury:architectury-fabric:${project.architectury_version}"
 
     // Map Atlases
-    modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}") {
+    compileOnly("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly("maven.modrinth:moonlight:${project.moonlight_version_fabric}") {
+    compileOnly("maven.modrinth:moonlight:${project.moonlight_version_fabric}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     // Trinkets
-    modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
+    compileOnly("dev.emi:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     // Accessories
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}"
-    modCompileOnly("io.wispforest:accessories-fabric:${project.accessories_version}")
-    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+    compileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"
+    compileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}"
+    compileOnly("io.wispforest:accessories-fabric:${project.accessories_version}")
+    compileOnly("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     // Development QOL
-    modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
-//    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
-    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    localRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
+//    localRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
+    implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Season Mod Dev Tests (Fabric)
     // See root gradle.properties to choose which to use at runtime.
     switch (project.season_mod_fabric.toLowerCase(Locale.ROOT)) {
         case "serene":
-            modLocalRuntime "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
-            modLocalRuntime "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
+            localRuntime "com.github.glitchfiend:SereneSeasons-fabric:${project.serene_seasons_version}"
+            localRuntime "com.github.glitchfiend:GlitchCore-fabric:${project.glitchcore_version}"
             implementation("net.jodah:typetools:0.6.3")
             break
         case "fabric":
-            modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+            implementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
             break
         case "fabric+extra":
-            modImplementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
-            modImplementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
+            implementation("maven.modrinth:fabric-seasons:${project.fabric_seasons_version}")
+            implementation("maven.modrinth:fabric-seasons-extras:${project.fabric_seasons_extras_version}")
             break
         case "homeostatic":
-            modImplementation "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-fabric:${project.climatesettings_version}"
-            modImplementation "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
-            modImplementation "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
+            implementation "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-fabric:${project.climatesettings_version}"
+            implementation "com.github.wendall911.homeostaticseasons:homeostaticseasons-${project.homeostatic_seasons_mc_version}-fabric:${project.homeostatic_seasons_version}"
+            implementation "technology.roughness.whitenoise:whitenoise-${project.homeostatic_seasons_mc_version}-fabric:${project.whitenoise_version}"
             break
         default:
             println("Unknown season mod specified: ${project.season_mod_fabric}. Must be serene or fabric")
@@ -281,30 +267,30 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modImplementation "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
-            modImplementation "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
+            implementation "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.xaero_minimap_version}"
+            implementation "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
-            modImplementation("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}-SNAPSHOT") {
+            implementation("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}-SNAPSHOT") {
                 changing = true
             }
-            modLocalRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
-            modLocalRuntime("maven.modrinth:common-network:${project.common_network_version}-fabric")
+            localRuntime("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
+            localRuntime("maven.modrinth:common-network:${project.common_network_version}-fabric")
             break
         case "ftb":
             // Disabled until FTBChunks is updated
-//            modLocalRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
-//            modLocalRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
-//            modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
-//            modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
-//            modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
+//            localRuntime "dev.ftb.mods:ftb-library-fabric:${project.ftb_library_version}"
+//            localRuntime "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+//            localRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
+//            implementation "dev.architectury:architectury-fabric:${project.architectury_version}"
+//            localRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
             break
         case "atlas":
-            modLocalRuntime("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}")
-            modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
-            modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cardinal_components_version}")
-            modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}")
-            modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}")
+            localRuntime("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}")
+            localRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
+            localRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cardinal_components_version}")
+            localRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}")
+            localRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}")
             break
         case "none":
             break
@@ -317,9 +303,9 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.accessory_mod.toLowerCase(Locale.ROOT)) {
         case "accessories":
-            modLocalRuntime "io.wispforest:accessories-fabric:${project.accessories_version}"
-            modLocalRuntime "io.wispforest:owo-lib:${project.owo_version}"
-            modLocalRuntime("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+            localRuntime "io.wispforest:accessories-fabric:${project.accessories_version}"
+            localRuntime "io.wispforest:owo-lib:${project.owo_version}"
+            localRuntime("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
                 exclude(group: "net.fabricmc.fabric-api")
             }
             break
