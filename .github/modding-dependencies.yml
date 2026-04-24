@@ -34,18 +34,6 @@
     neoforge_version:
       source: version
 
-# Parchment
-- repository: https://maven.parchmentmc.org/
-  groupId: org.parchmentmc.data
-  artifactId: parchment-${mcVersion}
-  version: "*"
-  properties:
-    parchment_version:
-      source: version
-    parchment_minecraft:
-      source: wildcard
-      name: mcVersion
-
 # DevAuth
 - repository: https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1
   groupId: me.djtheredstoner
@@ -176,7 +164,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-chunks-fabric
-  version: "${mcMinor}${mcPatch}.*"
+  version: "${mcVersion}.*"
   properties:
     ftb_chunks_version:
       source: version
@@ -185,7 +173,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-teams-fabric
-  version: "${mcMinor}${mcPatch}.*"
+  version: "${mcVersion}.*"
   properties:
     ftb_teams_version:
       source: version
@@ -194,7 +182,7 @@
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods
   artifactId: ftb-library-fabric
-  version: "${mcMinor}${mcPatch}.*"
+  version: "${mcVersion}.*"
   properties:
     ftb_library_version:
       source: version
