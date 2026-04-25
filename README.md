@@ -1,6 +1,6 @@
 # SeasonHud
 
-<ins>Current active versions are:</ins> **1.16.5**, **1.18.2**, **1.19.x**, **1.20.1**, **1.21.x**
+<ins>Current active versions are:</ins> **1.16.5**, **1.18.2**, **1.19.x**, **1.20.1**, **1.21.1**, **26.1.x**
 
 ___
 
