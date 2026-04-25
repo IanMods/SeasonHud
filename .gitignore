@@ -19,9 +19,6 @@ out
 *.ipr
 *.iws
 *.iml
-.idea/shelf/
-.idea/modules/
-.idea/modules/*
 .idea/*
 !/.idea/scopes
 !/.idea/checkstyle
