@@ -19,7 +19,9 @@ out
 *.ipr
 *.iws
 *.iml
-
+.idea/shelf/
+.idea/modules/
+.idea/modules/*
 .idea/*
 !/.idea/scopes
 !/.idea/checkstyle
@@ -27,9 +29,7 @@ out
 !/.idea/fileColors.xml
 !/.idea/checkstyle-idea.xml
 !/.idea/icon.svg
-/.idea/shelf/
-/.idea/modules
-/.idea/modules/*
+
 # gradle
 build
 libs
