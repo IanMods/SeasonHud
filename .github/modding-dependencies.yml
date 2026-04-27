@@ -56,7 +56,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "17.*"
+  version: "18.*"
   properties:
     modmenu_version:
       source: version
@@ -100,7 +100,7 @@
 # Xaero
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.minimap
-  artifactId: xaerominimap-common-1.21.8
+  artifactId: xaerominimap-common-26.1.2
   version: "${xaero_minimap_version}"
   properties:
     xaero_minimap_version:
@@ -109,7 +109,7 @@
 # Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.lib
-  artifactId: xaerolib-common-1.21.10
+  artifactId: xaerolib-common-26.1.2
   version: "${xaero_lib_version}"
   properties:
     xaero_lib_version:
