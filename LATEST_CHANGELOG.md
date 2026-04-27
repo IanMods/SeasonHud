@@ -1,9 +1,6 @@
-## [2.0.4] - 2026-04-06
+## [2.0.5] - 2026-04-27
 
-### Fixed
+### Changed
 
-- Actually fixed crash with FtbChunks on server
-
-### Added
-- Added ModMenu compat
+- Updated to latest Fabric/Forge/Neoforge
 
