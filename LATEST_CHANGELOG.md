@@ -1,6 +1,6 @@
-## [2.0.5] - 2026-04-27
+## [2.0.6] - 2026-05-17
 
-### Changed
+### Fixed
 
-- Updated to latest Fabric/Forge/Neoforge
+- Fixed Neoforge server crash
 

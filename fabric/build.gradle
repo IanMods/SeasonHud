@@ -116,6 +116,7 @@ repositories {
         url = "https://maven.blamejared.com/"
         content {
             includeGroup "mezz.jei"
+            includeGroup "info.journeymap"
         }
     }
 
