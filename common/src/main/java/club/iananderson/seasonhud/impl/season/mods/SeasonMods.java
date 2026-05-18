@@ -51,11 +51,11 @@ public enum SeasonMods {
   }
 
   public String getModName() {
-    return Services.PLATFORM.getModName(this.modId);
+    return Services.PLATFORM.getModName(this.getModId());
   }
 
   public boolean modLoaded() {
-    return Services.PLATFORM.isModLoaded(this.modId);
+    return Services.PLATFORM.isModLoaded(this.getModId());
   }
 
   public SeasonModHelper getSeasonModHelper() {
