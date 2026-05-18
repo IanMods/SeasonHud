@@ -146,6 +146,7 @@ repositories {
         url = "https://maven.blamejared.com/"
         content {
             includeGroup "mezz.jei"
+            includeGroup "info.journeymap"
         }
     }
 
@@ -158,13 +159,13 @@ repositories {
         }
     }
 
-    maven {
-        name = "Journeymap API MAven"
-        url = uri("https://jm.gserv.me/repository/maven-public/")
-        content {
-            includeGroup "info.journeymap"
-        }
-    }
+//    maven {
+//        name = "Journeymap API MAven"
+//        url = uri("https://jm.gserv.me/repository/maven-public/")
+//        content {
+//            includeGroup "info.journeymap"
+//        }
+//    }
 
     maven {
         name = "Homeostatic Seasons"
