@@ -116,7 +116,7 @@
       source: version
 
 # Journeymap-API
-- repository: https://jm.gserv.me/repository/maven-public/
+- repository: https://maven.blamejared.com/
   groupId: info.journeymap
   artifactId: journeymap-api-common
   version: "*-${mcVersion}-*"

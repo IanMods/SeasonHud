@@ -185,6 +185,14 @@ repositories {
         }
     }
 
+//    maven {
+//        name = "Journeymap API MAven"
+//        url = uri("https://jm.gserv.me/repository/maven-public/")
+//        content {
+//            includeGroup "info.journeymap"
+//        }
+//    }
+
     maven {
         name = "Homeostatic Seasons"
         url = uri("https://raw.githubusercontent.com/wendall911/maven/main/")
@@ -263,7 +271,7 @@ dependencies {
     compileOnly "xaero.lib:xaerolib-forge-${project.minecraft_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    compileOnlyApi("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}-SNAPSHOT") {
+    compileOnlyApi("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
         changing = true
     }
     compileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"

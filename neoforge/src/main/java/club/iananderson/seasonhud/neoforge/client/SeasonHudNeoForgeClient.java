@@ -12,6 +12,7 @@ public class SeasonHudNeoForgeClient {
 
   @SubscribeEvent
   public static void onInitializeClient(FMLClientSetupEvent event) {
+    Common.init();
     SeasonHudClientCommon.initAccessoriesClient();
     SeasonHudClientCommon.ftbChunkSetup();
   }
