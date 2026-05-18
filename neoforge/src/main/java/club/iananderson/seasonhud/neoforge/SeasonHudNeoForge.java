@@ -15,8 +15,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 public class SeasonHudNeoForge {
 
   public SeasonHudNeoForge(IEventBus modEventBus, ModContainer modContainer) {
-    Common.init();
-
     modContainer.registerConfig(ModConfig.Type.CLIENT, SeasonHudClient.CLIENT_SPEC, "seasonhud-client.toml");
     modContainer.registerConfig(ModConfig.Type.SERVER, SeasonHudServer.SERVER_SPEC, "seasonhud-server.toml");
 
