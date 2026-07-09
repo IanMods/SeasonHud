@@ -39,7 +39,7 @@ public class NeoForgeMinimapHelper implements MinimapHelper {
     MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
     return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
-        mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+        mc.gui.screen() == null || mc.gui.screen() instanceof ChatScreen || mc.gui.screen() instanceof MinimapOptions);
   }
 
   @Override
@@ -50,7 +50,7 @@ public class NeoForgeMinimapHelper implements MinimapHelper {
 
     boolean minimapDisplayed = HudMod.INSTANCE.getSettings().getMinimap();
 
-    return !minimapDisplayed || mc.getDebugOverlay().showDebugScreen() || !(mc.screen == null
-        || mc.screen instanceof ChatScreen || mc.screen instanceof DeathScreen || mc.screen instanceof ScreenBase);
+    return !minimapDisplayed || mc.getDebugOverlay().showDebugScreen() || !(mc.gui.screen() == null
+        || mc.gui.screen() instanceof ChatScreen || mc.gui.screen() instanceof DeathScreen || mc.gui.screen() instanceof ScreenBase);
   }
 }

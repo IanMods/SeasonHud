@@ -95,6 +95,6 @@ public class CurrentMinimap {
     boolean enabled = SeasonHudClient.getEnableMod() && SeasonHudClient.getEnableMinimapIntegration();
     boolean hiddenMinimap = Common.hideHudInCurrentDimension(mc) || hiddenMinimap(minimap, mc);
 
-    return enabled && Calendar.validNeedCalendar(mc.player) && !mc.options.hideGui && !hiddenMinimap;
+    return enabled && Calendar.validNeedCalendar(mc.player) && !mc.gui.hud.isHidden() && !hiddenMinimap;
   }
 }

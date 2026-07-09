@@ -128,8 +128,8 @@ public class Common {
       return false;
     }
 
-    return (mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof DeathScreen)
-        && !mc.getDebugOverlay().showDebugScreen() && !mc.options.hideGui && !mc.player.isScoping();
+    return (mc.gui.screen() == null || mc.gui.screen() instanceof ChatScreen || mc.gui.screen() instanceof DeathScreen)
+        && !mc.getDebugOverlay().showDebugScreen() && !mc.gui.hud.isHidden() && !mc.player.isScoping();
   }
 
   public static boolean minimapIntegrationHidden(Minecraft mc) {

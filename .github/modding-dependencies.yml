@@ -56,7 +56,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "18.*"
+  version: "20.*"
   properties:
     modmenu_version:
       source: version
@@ -191,7 +191,7 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "19.*"
+  version: "21.*"
   properties:
     architectury_version:
       source: version

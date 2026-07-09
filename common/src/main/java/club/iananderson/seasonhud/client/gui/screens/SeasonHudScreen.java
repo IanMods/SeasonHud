@@ -39,7 +39,7 @@ public class SeasonHudScreen extends Screen {
   }
 
   public void open() {
-    Minecraft.getInstance().setScreen(this);
+    Minecraft.getInstance().gui.setScreen(this);
   }
 
   @Override
@@ -65,11 +65,11 @@ public class SeasonHudScreen extends Screen {
 
   @Override
   public void onClose() {
-    Minecraft.getInstance().setScreen(this.parentScreen);
+    Minecraft.getInstance().gui.setScreen(this.parentScreen);
   }
 
   public void onDone() {
-    Minecraft.getInstance().setScreen(this.parentScreen);
+    Minecraft.getInstance().gui.setScreen(this.parentScreen);
   }
 
   protected void rebuildWidgets() {
