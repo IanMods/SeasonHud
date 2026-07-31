@@ -377,7 +377,6 @@ publishMods {
     if (minecraft_version == "1.20.1") {
         modLoaders.addAll("forge", "neoforge")
     } else modLoaders.add("forge")
-    dryRun = false
 
     curseforge("curseforgeForge") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
