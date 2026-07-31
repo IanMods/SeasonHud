@@ -376,7 +376,6 @@ publishMods {
     version = "${minecraft_version}-${mod_version}"
     file = tasks.remapJar.archiveFile
     modLoaders.add("fabric")
-    dryRun = false
 
     curseforge("curseforgeFabric") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
