@@ -1,5 +1,5 @@
 {
-  "icon": "seasonhud:gui/slots/calendarslot",
+  "icon": "seasonhud:container/slots/calendarslot",
   "amount": 1,
   "order": -256,
   "validator_predicates": [

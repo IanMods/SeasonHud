@@ -170,6 +170,11 @@ repositories {
         name = "Curios Maven"
         url = uri("https://maven.theillusivec4.top/")
     }
+
+    maven {
+        name "CaffeineMC (Sodium)"
+        url "https://maven.caffeinemc.net/releases" // or /snapshots
+    }
 }
 
 dependencies {
@@ -226,7 +231,9 @@ dependencies {
 
     // Development QOL
     implementation "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
-    // implementation "maven.modrinth:sodium:${project.sodium_version_neoforge}"
+    // implementation "net.caffeinemc:sodium-neoforge:${project.sodium_version_neoforge}"
+    implementation "net.caffeinemc:sodium-neoforge-api:${project.sodium_version_neoforge}"
+//    implementation "maven.modrinth:iris:${project.iris_version_neoforge}"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
@@ -333,22 +340,14 @@ publishMods {
     file = tasks.jar.archiveFile
     modLoaders.add("neoforge")
 
-    def cfOptions = curseforgeOptions {
+    curseforge("curseforgeNeoForge") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
         changelogType = "markdown"
         javaVersions.add(JavaVersion.toVersion(project.java_version))
         minecraftVersions.addAll(curseforge_gameVersions.split(","))
         projectId = project.curseforge_forge_id
-    }
-
-    def mrOptions = modrinthOptions {
-        accessToken = System.getenv("MODRINTH_TOKEN")
-        minecraftVersions.addAll(modrinth_gameVersions.split(","))
-        projectId = project.modrinth_forge_id
-    }
-
-    curseforge("curseforgeNeoForge") {
-        from cfOptions
+        client = true
+        server = true
 
         optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
         optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
@@ -356,11 +355,12 @@ publishMods {
     }
 
     modrinth("modrinthNeoForge") {
-        from mrOptions
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
 
         optional("serene-seasons", "terrafirmacraft", "protomanlys-weather")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
         optional("curios", "accessories")
-
     }
 }
