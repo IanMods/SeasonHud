@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.7] - 2026-07-31
+
+### Changed
+
+- Updated to latest version of all dependencies
+
+### Fixed
+
+- (26.1+) Updated to Trinkets Updated and updated the calendar slot directory
+
 ## [2.0.6] - 2026-05-17
 
 ### Fixed
