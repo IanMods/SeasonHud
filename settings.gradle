@@ -7,7 +7,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'seasonhud-1.16.5'
+rootProject.name = 'seasonhud'
 
 include("common")
 include(enabled_platforms.split(','))

@@ -15,7 +15,7 @@ assignees: ''
 
 - .
 
-**Mod Version**
+**SeasonHud Version**
 
 - .
 
@@ -27,6 +27,10 @@ assignees: ''
 
 - .
 
-**Additional Info (Crashlog/Modlist)**
+**Season Mod**
+
+- .
+
+**Additional Info (Crashlog/Modlist/Debug.log)**
 
 - .

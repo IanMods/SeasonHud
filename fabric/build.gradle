@@ -168,8 +168,9 @@ publishMods {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
         changelogType = "markdown"
         javaVersions.add(JavaVersion.toVersion(project.java_version))
-        minecraftVersions.addAll(curseforge_gameVersions.split(","))
         projectId = project.curseforge_fabric_id
+        client = true
+        server = true
 
         requires("forge-config-api-port")
         optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras")
