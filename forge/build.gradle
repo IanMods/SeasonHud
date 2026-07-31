@@ -336,40 +336,28 @@ publishMods {
     displayName = "${mod_id}-forge-${minecraft_version}-${mod_version}"
     version = "${minecraft_version}-${mod_version}"
     file = tasks.reobfJar.archiveFile
-    modLoaders.add("forge")
+    if (minecraft_version == "1.20.1") {
+        modLoaders.addAll("forge", "neoforge")
+    } else modLoaders.add("forge")
 
-    def cfOptions = curseforgeOptions {
+    curseforge("curseforgeForge") {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
         changelogType = "markdown"
         javaVersions.add(JavaVersion.toVersion(project.java_version))
         minecraftVersions.addAll(curseforge_gameVersions.split(","))
         projectId = project.curseforge_forge_id
-    }
-
-    def mrOptions = modrinthOptions {
-        accessToken = System.getenv("MODRINTH_TOKEN")
-        minecraftVersions.addAll(modrinth_gameVersions.split(","))
-        projectId = project.modrinth_forge_id
-    }
-
-    curseforge("curseforgeForge") {
-        from cfOptions
-
-        if (minecraft_version == "1.20.1") {
-            modLoaders.addAll("forge", "neoforge")
-        }
+        client = true
+        server = true
 
         optional("serene-seasons", "terrafirmacraft", "ecliptic-seasons")
         optional("ftb-chunks-forge", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases-forge")
         optional("curios", "accessories")
     }
 
-    modrinth("modrinthForge") {
-        from mrOptions
-
-        if (minecraft_version == "1.20.1") {
-            modLoaders.addAll("forge", "neoforge")
-        }
+    modrinth("modrinthFabric") {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
+        projectId = project.modrinth_forge_id
 
         optional("serene-seasons", "terrafirmacraft")
         optional("journeymap", "xaeros-minimap", "xaeros-minimap-fair", "map-atlases-forge")
