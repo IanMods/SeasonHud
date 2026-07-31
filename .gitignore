@@ -14,29 +14,28 @@
 /neoforge/.gradle/
 /neoforge/build/
 /neoforge/run*/
+
 # idea
 out
 *.ipr
 *.iws
 *.iml
 .idea/*
-!/.idea/modules.xml
-!/.idea/modules/
-!/.idea/modules/common/*
-!/.idea/modules/fabric/*
-!/.idea/modules/forge/*
-!/.idea/modules/neoforge/*
 !/.idea/scopes
 !/.idea/checkstyle
 !/.idea/codeStyles
 !/.idea/fileColors.xml
 !/.idea/checkstyle-idea.xml
 !/.idea/icon.svg
+
 # gradle
 build
+libs
 .gradle
+
 # other
 run
+runs
 /.depUpdater/
 /update-seasonhud-deps.ps1
 /dist/
