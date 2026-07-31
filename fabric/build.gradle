@@ -193,6 +193,11 @@ repositories {
         name = "Amec Keybinds"
         url = uri("https://maven.siphalor.de/")
     }
+
+    maven {
+        name "CaffeineMC (Sodium)"
+        url "https://maven.caffeinemc.net/releases" // or /snapshots
+    }
 }
 
 dependencies {
@@ -266,7 +271,9 @@ dependencies {
 
     // Development QOL
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
-//    modLocalRuntime "maven.modrinth:sodium:${project.sodium_version_fabric}"
+    modLocalRuntime "net.caffeinemc:sodium-fabric:${project.sodium_version_fabric}"
+    modLocalRuntime "net.caffeinemc:sodium-fabric-api:${project.sodium_version_fabric}"
+//    modLocalRuntime "maven.modrinth:iris:${project.iris_version_fabric}"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Season Mod Dev Tests (Fabric)

@@ -200,6 +200,11 @@ repositories {
         name = "Curios Maven"
         url = uri("https://maven.theillusivec4.top/")
     }
+
+    maven {
+        name "CaffeineMC (Sodium)"
+        url "https://maven.caffeinemc.net/releases" // or /snapshots
+    }
 }
 
 dependencies {
@@ -257,7 +262,9 @@ dependencies {
 
     // Development QOL
     implementation "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
-    implementation "maven.modrinth:sodium:${project.sodium_version_neoforge}"
+    implementation "net.caffeinemc:sodium-neoforge:${project.sodium_version_neoforge}"
+    implementation "net.caffeinemc:sodium-neoforge-api:${project.sodium_version_neoforge}"
+//    implementation "maven.modrinth:iris:${project.iris_version_neoforge}"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
