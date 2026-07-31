@@ -258,6 +258,23 @@
   properties:
     sodium_version_fabric:
       source: version
+# Iris Neoforge
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: iris
+  version: "*+${mcVersion}-neoforge"
+  properties:
+    iris_version_neoforge:
+      source: version
+
+# Iris Fabric
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: iris
+  version: "*+${mcVersion}-fabric"
+  properties:
+    iris_version_fabric:
+      source: version
 
 # Accessories
 - repository: https://maven.wispforest.io/releases

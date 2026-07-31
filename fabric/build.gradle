@@ -188,6 +188,11 @@ repositories {
         name = "ModMaven (Backup)"
         url = uri("https://modmaven.dev/")
     }
+
+    maven {
+        name = "Amec Keybinds"
+        url = uri("https://maven.siphalor.de/")
+    }
 }
 
 dependencies {
@@ -236,6 +241,7 @@ dependencies {
     modCompileOnly "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
     modCompileOnly "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
     modCompileOnly "dev.architectury:architectury-fabric:${project.architectury_version}"
+    modCompileOnly "de.siphalor.amecs.amecs-key-modifiers:amecs-key-modifiers-${ftb_lib_amecs_version}"
 
     // Map Atlases
     modCompileOnly("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}") {
@@ -305,6 +311,7 @@ dependencies {
             modLocalRuntime "dev.ftb.mods:ftb-chunks-fabric:${project.ftb_chunks_version}"
             modImplementation "dev.architectury:architectury-fabric:${project.architectury_version}"
             modLocalRuntime("maven.modrinth:moonlight:${project.moonlight_version_fabric}")
+            modLocalRuntime "de.siphalor.amecs.amecs-key-modifiers:amecs-key-modifiers-${ftb_lib_amecs_version}"
             break
         case "atlas":
             modLocalRuntime("maven.modrinth:map-atlases:${project.map_atlases_version_fabric}")
