@@ -362,6 +362,7 @@ publishMods {
         accessToken = System.getenv("CURSEFORGE_TOKEN")
         changelogType = "markdown"
         javaVersions.add(JavaVersion.toVersion(project.java_version))
+        minecraftVersions.addAll(modrinth_gameVersions.split(","))
         projectId = project.curseforge_fabric_id
         client = true
         server = true
