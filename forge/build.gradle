@@ -253,9 +253,9 @@ dependencies {
             modImplementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
             break
         case "ftb":
-            modImplementation ("dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"){ transitive = false }
-            modImplementation ("dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}"){ transitive = false }
-            modImplementation ("dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}"){ transitive = false }
+            modImplementation("dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}") { transitive = false }
+            modImplementation("dev.ftb.mods:ftb-teams-forge:${project.ftb_teams_version}") { transitive = false }
+            modImplementation("dev.ftb.mods:ftb-chunks-forge:${project.ftb_chunks_version}") { transitive = false }
             modApi "maven.modrinth:architectury-api:${project.architectury_version}+forge"
             implementation("io.github.llamalad7:mixinextras-forge:${project.mixin_extras_version}")
             break
@@ -376,7 +376,7 @@ publishMods {
     file = tasks.reobfJar.archiveFile
     if (minecraft_version == "1.20.1") {
         modLoaders.addAll("forge", "neoforge")
-    }
+    } else modLoaders.add("forge")
     dryRun = false
 
     curseforge("curseforgeForge") {
