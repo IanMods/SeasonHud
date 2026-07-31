@@ -161,6 +161,11 @@ repositories {
         name = "ModMaven (Backup)"
         url = uri("https://modmaven.dev/")
     }
+
+    maven {
+        name = "Nucleoid (Trinkets Updated)"
+        url = 'https://maven.nucleoid.xyz/releases'
+    }
 }
 
 dependencies {
@@ -214,9 +219,7 @@ dependencies {
 //    }
 
     // Trinkets
-//    compileOnly("dev.emi:trinkets:${project.trinkets_version}") {
-//        exclude group: 'net.fabricmc', module: 'fabric-loader'
-//    }
+    implementation "eu.pb4:trinkets:${trinkets_version}"
 
     // Accessories
 //    compileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"
@@ -342,7 +345,7 @@ publishMods {
         requires("forge-config-api-port")
         optional("serene-seasons", "fabric-seasons", "fabric-seasons-extras", "homeostatic-seasons")
         optional("ftb-chunks-fabric", "journeymap", "xaeros-minimap", "xaeros-minimap-fair-play-edition", "map-atlases")
-        optional("trinkets", "accessories")
+        optional("trinkets", "accessories", "trinkets-updated")
     }
 
     modrinth("modrinthFabric") {
