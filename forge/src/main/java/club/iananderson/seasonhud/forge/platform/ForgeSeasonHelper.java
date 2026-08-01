@@ -328,9 +328,4 @@ public class ForgeSeasonHelper implements SeasonHelper {
   public int protoManlyWeatherTotalDaysInMonth(Player player) {
     return 0;
   }
-
-  @Override
-  public void protoManlyDebug(PoseStack graphics) {
-
-  }
 }

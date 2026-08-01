@@ -19,7 +19,7 @@ assignees: ''
 
 - .
 
-**ModLoader(Fabric/Forge/NeoForge)**
+**ModLoader (Fabric/Forge/NeoForge)**
 
 - .
 

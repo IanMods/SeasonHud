@@ -87,9 +87,4 @@ public class ProtoManlyWeatherHelper implements SeasonModHelper {
   public Fertility fertility(Player player) {
     return SeasonModHelper.super.fertility(player);
   }
-
-  @Override
-  public void debugHud(PoseStack graphics) {
-    Services.SEASON.protoManlyDebug(graphics);
-  }
 }
