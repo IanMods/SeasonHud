@@ -17,7 +17,6 @@ import java.util.Optional;
 import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.Month;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
@@ -189,10 +188,5 @@ public class ForgeSeasonHelper implements SeasonHelper {
   @Override
   public int protoManlyWeatherTotalDaysInMonth(Player player) {
     return 0;
-  }
-
-  @Override
-  public void protoManlyDebug(GuiGraphics graphics) {
-
   }
 }

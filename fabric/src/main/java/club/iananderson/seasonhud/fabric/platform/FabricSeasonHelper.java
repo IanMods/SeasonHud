@@ -12,7 +12,6 @@ import io.github.lucaargolo.seasons.utils.Season;
 import io.github.lucaargolo.seasonsextras.FabricSeasonsExtras;
 import java.util.Locale;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
@@ -159,10 +158,5 @@ public class FabricSeasonHelper implements SeasonHelper {
   @Override
   public int protoManlyWeatherTotalDaysInMonth(Player player) {
     return 0;
-  }
-
-  @Override
-  public void protoManlyDebug(GuiGraphics graphics) {
-
   }
 }
