@@ -91,9 +91,4 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
     return SeasonModHelper.super.fertility(player);
   }
 
-  @Override
-  public void debugHud(GuiGraphicsExtractor graphics) {
-
-  }
-
 }

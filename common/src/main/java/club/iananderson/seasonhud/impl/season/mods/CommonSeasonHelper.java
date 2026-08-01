@@ -78,10 +78,5 @@ public class CommonSeasonHelper {
     public Fertility fertility(Player player) {
       return SeasonModHelper.super.fertility(player);
     }
-
-    @Override
-    public void debugHud(GuiGraphicsExtractor graphics) {
-
-    }
   }
 }

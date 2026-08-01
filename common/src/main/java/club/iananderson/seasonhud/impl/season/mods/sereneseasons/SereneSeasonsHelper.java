@@ -182,9 +182,4 @@ public class SereneSeasonsHelper implements SeasonModHelper {
 
     return Fertility.FERTILE;
   }
-
-  @Override
-  public void debugHud(GuiGraphicsExtractor graphics) {
-
-  }
 }

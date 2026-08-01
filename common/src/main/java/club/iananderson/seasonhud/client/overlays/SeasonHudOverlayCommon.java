@@ -81,10 +81,6 @@ public class SeasonHudOverlayCommon {
         graphics.text(mc.font, fertility, x, y, 0xffffff);
       }
 
-      if (Services.PLATFORM.isDevelopmentEnvironment()) {
-        CommonSeasonHelper.commonSeasons.getHelper().debugHud(graphics);
-      }
-
       graphics.pose().popMatrix();
     }
   }

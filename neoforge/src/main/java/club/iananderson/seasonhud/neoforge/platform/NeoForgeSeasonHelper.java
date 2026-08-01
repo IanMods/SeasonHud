@@ -200,38 +200,4 @@ public class NeoForgeSeasonHelper implements SeasonHelper {
     // return ServerConfig.monthLength;
     return 1;
   }
-
-  @Override
-  public void protoManlyDebug(GuiGraphicsExtractor graphics) {
-    // Minecraft mc = Minecraft.getInstance();
-    // int screenWidth = mc.getWindow().getGuiScaledWidth();
-    // int y = 32;
-    //
-    // if (mc.player != null) {
-    //   String month = protoManlyWeatherMonth(mc.player).getTranslatedText().getString();
-    //   int day = protoManlyWeatherCurrentDayOfMonth(mc.player);
-    //   int monthLength = protoManlyWeatherTotalDaysInMonth(mc.player);
-    //
-    //   y += 8;
-    //   graphics.text(mc.font, "Month: " + month + " | " + "Day: " + day + "/" + monthLength, screenWidth / 2, y,
-    //                       0xffffff);
-    //
-    //   Level level = mc.player.level();
-    //   y += 8;
-    //   float springAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, -3.5F) + 1.0F) / 2.0F, 4.0F);
-    //   graphics.text(mc.font, "springAmount: " + springAmount, screenWidth / 2, y, 0xffffff);
-    //
-    //   y += 8;
-    //   float summerAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 0.0F) + 1.0F) / 2.0F, 4.0F);
-    //   graphics.text(mc.font, "summerAmount: " + summerAmount, screenWidth / 2, y, 0xffffff);
-    //
-    //   y += 8;
-    //   float fallAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 3.5F) + 1.0F) / 2.0F, 4.0F);
-    //   graphics.text(mc.font, "fallAmount: " + fallAmount, screenWidth / 2, y, 0xffffff);
-    //
-    //   y += 8;
-    //   float winterAmount = (float) Math.pow((SeasonHandler.getSeasonEffectSine(level, 6.0F) + 1.0F) / 2.0F, 4.0F);
-    //   graphics.text(mc.font, "winterAmount: " + winterAmount, screenWidth / 2, y, 0xffffff);
-    // }
-  }
 }
