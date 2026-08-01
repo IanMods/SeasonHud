@@ -6,7 +6,6 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.platform.services.SeasonHelper;
 import homeostaticseasons.api.HomeostaticSeasonsAPI;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
@@ -158,10 +157,5 @@ public class FabricSeasonHelper implements SeasonHelper {
   @Override
   public int protoManlyWeatherTotalDaysInMonth(Player player) {
     return 0;
-  }
-
-  @Override
-  public void protoManlyDebug(GuiGraphicsExtractor graphics) {
-
   }
 }

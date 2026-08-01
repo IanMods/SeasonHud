@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.8] - 2026-07-31
+
+### Fixed
+
+- Fixed potential crash with Sodium/Iris
+
 ## [2.0.7] - 2026-07-31
 
 ### Changed
@@ -330,8 +336,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Added Korean translations (via @hibiyasleep)
-- (Fabric Seasons Only) Added config option to assign a custom day length value, if using a value
-  other than the vanilla 24,000 ticks.
+- (Fabric Seasons Only) Added config option to assign a custom day length value, if using a value other than the vanilla
+  24,000 ticks.
     - Not needed if using SereneSeasons, as it has its own config for day length value.
 
 ## [1.11.0] - 2024-10-07
@@ -360,10 +366,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - Changed to allow "Calendar Detail Mode" season/day display mode to be customized like normal.
-    - Now, if the option is enabled, it should force just the season name to be displayed when there
-      is not a calendar in the player's inventory.
-    - If a calendar is found, it will display using the season/day settings set in the
-      config/options screen.
+    - Now, if the option is enabled, it should force just the season name to be displayed when there is not a calendar
+      in the player's inventory.
+    - If a calendar is found, it will display using the season/day settings set in the config/options screen.
 
 ## [1.10.6] - 2024-09-15
 
@@ -375,8 +380,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - (Xaero's Minimap) Changed the season InfoDisplay to be at the top by default on initial load.
 - Cleaned up the config screen a bit.
-    - Added a "Season Display Options" sub-screen for customizing the properties of the season
-      component.
+    - Added a "Season Display Options" sub-screen for customizing the properties of the season component.
     - Moved several options into this sub-screen
 - Cancel will now properly discard changes made to any of the options.
 
@@ -398,12 +402,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - (1.21) Added support JourneyMap's new custom InfoSlots (JourneyMap 1.21-6.0.0-beta.25+ required).
     - By default, "Season" will be added as an InfoSlot option in JourneyMap's minimap settings.
     - If you are already using all the InfoSlots:
-        - Go into the JourneyMap addon settings ("Addon Settings" button at the top of the
-          JourneyMap
-          settings menu).
+        - Go into the JourneyMap addon settings ("Addon Settings" button at the top of the JourneyMap settings menu).
             - Alternatively, I added a shortcut button in the SeasonHUD config menu (default "H")
-              when
-              JourneyMap is loaded.
+              when JourneyMap is loaded.
         - Enable the "Add an additional InfoSlot?" option.
         - Choose if you want it added to the top set or the bottom set.
 
@@ -437,10 +438,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Starting with this release, the **1.20.2**, **1.20.4**, and **1.20.6** versions will no longer be
-  updated.
-    - I updated the **1.16.5** version to be in line with all the current features, and ported it to
-      Fabric.
+- Starting with this release, the **1.20.2**, **1.20.4**, and **1.20.6** versions will no longer be updated.
+    - I updated the **1.16.5** version to be in line with all the current features, and ported it to Fabric.
         - Current active versions are: **1.16.5**, **1.18.2**, **1.19.x**, **1.20.1**, **1.21.x**.
 - Switched Curios to use a custom Calendar slot instead of Charm.
 - Switched Accessories to use a custom Calendar slot instead of Charm.
@@ -467,8 +466,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Added custom Trinkets slot for the calendar, rather than using the ring slot
-- Added the ability to disable the slot via data pack. See description page for the link to the data
-  pack.
+- Added the ability to disable the slot via data pack. See description page for the link to the data pack.
 
 ## [1.9.6] - 2024-07-22
 
@@ -517,24 +515,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - Changed the default offsets from 0,0 from 2,2 due to some changes in the offset calculation
-    - If you aren't using a minimap mod, you may need to manually change these values if the text
-      isn't offset.
+    - If you aren't using a minimap mod, you may need to manually change these values if the text isn't offset.
 - More common code for JourneyMap and MapAtlases to make porting easier.
 - Improved logic for detecting hidden minimaps if multiple minimap mods are installed.
 - Updated Curios support to more modern implementation.
 
 ### Fixed
 
-- Made the season name color sliders not editable and grayed out if the "Season Name Color" option
-  is not enabled.
+- Made the season name color sliders not editable and grayed out if the "Season Name Color" option is not enabled.
 - Fixed the bottom Hud location presets being too low and cutting off text.
 
 ## [1.8.9] - 2024-06-28
 
 ### Added
 
-- Added a check to ensure the text is hidden if the HideGui option is used in newer versions of
-  Minecraft.
+- Added a check to ensure the text is hidden if the HideGui option is used in newer versions of Minecraft.
     - Included the check in versions before 1.20.6 for consistency.
 
 ## [1.8.8] - 2024-06-23
@@ -597,8 +592,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Updated dependencies to the latest versions
 - Rewrote a bit to allow for more common code between Forge and Fabric
 - (1.20.4 only) Added support for MapAtlases Fabric v2.6.1.
-    - This version of Map Atlases is only available on Modrinth currently and is different from the
-      multiplat fork.
+    - This version of Map Atlases is only available on Modrinth currently and is different from the multiplat fork.
 
 ### Fixed
 
@@ -609,16 +603,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- (Forge) Removed the "SHOW_WITH_MONTH" option from showing in the Forge versions config, since it
-  is a feature of FabricSeasons.
+- (Forge) Removed the "SHOW_WITH_MONTH" option from showing in the Forge versions config, since it is a feature of
+  FabricSeasons.
 - Fixed a typo in the config
 
 ## [1.7.18] - 2024-04-07
 
 ### Changed
 
-- (Fabric) Changed the hud to show up in other dimensions if they are whitelisted in the
-  FabricSeasons config file.
+- (Fabric) Changed the hud to show up in other dimensions if they are whitelisted in the FabricSeasons config file.
 
 ## [1.7.17] - 2024-04-02
 
@@ -658,8 +651,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Fixed
 
 - Fixed tropical seasons displaying incorrectly when "Show Sub-Season" was off.
-- Fixed calculation for the current tropical season day to account for changes in the Serene Seasons
-  config.
+- Fixed calculation for the current tropical season day to account for changes in the Serene Seasons config.
 
 ## [1.7.12] - 2024-02-14
 
@@ -677,11 +669,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- (1.20.4) Switched to Serene Seasons for Fabric, and dropped support for FabricSeasons since it has
-  not been updated in some time.
+- (1.20.4) Switched to Serene Seasons for Fabric, and dropped support for FabricSeasons since it has not been updated in
+  some time.
 - (1.20.4) Added support for the NeoForge version of Serene Seasons
-- Now uses the whitelisted dimensions in the SereneSeason config to determine if seasons are active
-  in a dimension, and if the hud should be applied
+- Now uses the whitelisted dimensions in the SereneSeason config to determine if seasons are active in a dimension, and
+  if the hud should be applied
 
 ## [1.7.9] - 2024-01-25
 
@@ -699,8 +691,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Made the config file more organized. You may need to reapply any changes you made to it
-  previously.
+- Made the config file more organized. You may need to reapply any changes you made to it previously.
 
 ### Fixed
 
@@ -748,10 +739,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - Redid how icons are handled. Should always be lined up with the text properly now
-- Edited the season icons, so they are an odd amount of pixels, so that they can be properly
-  centered on the text
-- Made a new winter icon since I couldn't get the snowflake to look right with an odd amount of
-  pixels
+- Edited the season icons, so they are an odd amount of pixels, so that they can be properly centered on the text
+- Made a new winter icon since I couldn't get the snowflake to look right with an odd amount of pixels
 
 ## [1.6.4] - 2023-12-08
 
@@ -766,8 +755,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - (1.19.2) Rewrote the options screen to allow for the 1.19.2 version to be used in 1.19.4 as well
-- (1.19.x) Going forward, only one 1.19 version will be uploaded and will be marked as compatible
-  with both versions
+- (1.19.x) Going forward, only one 1.19 version will be uploaded and will be marked as compatible with both versions
 - Rewrote some code to allow for more common classes to be used
 - Ported 1.19+ changes to 1.18.2 and made a Fabric version as well
 
@@ -795,11 +783,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Fixed icon alignment if Xaero's Minimap size is chunk coordinate size is wider than the minimap
-  size
+- Fixed icon alignment if Xaero's Minimap size is chunk coordinate size is wider than the minimap size
 - Fixed icon alignment when using the Enlarged Minimap feature in Xaero's Minimap
-- Fixed icon alignment if using OpenPartiesAndClaims, and the claim name splits into more than one
-  line.
+- Fixed icon alignment if using OpenPartiesAndClaims, and the claim name splits into more than one line.
 
 ## [1.5.13] - 2023-11-01
 
@@ -999,8 +985,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - Slight code cleanup
-- Xaero's Minimap Fairplay still hasn't been updated to match the regular version, so continue
-  using [1.4.4] if using it
+- Xaero's Minimap Fairplay still hasn't been updated to match the regular version, so continue using [1.4.4] if using it
 
 ## [1.4.5] - 2023-02-12
 
@@ -1044,8 +1029,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added optional support for CuriosAPI
     - If CuriosAPI is loaded, then the Calendar item from SereneSeason can be equipped in the "
       Charm" slot
-    - If the "Need Calendar" option is enabled, then a Calendar in the "Charm" slot will meet the
-      requirement
+    - If the "Need Calendar" option is enabled, then a Calendar in the "Charm" slot will meet the requirement
 
 ## [1.3.6] - 2023-01-21
 
@@ -1101,6 +1085,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Due to some changes from 1.19.2 → 1.19.3, I had to change to separate builds for each, rather
-  than a unified version
+- Due to some changes from 1.19.2 → 1.19.3, I had to change to separate builds for each, rather than a unified version
 - Fixed an issue with tropical season dates. Should be accurate now

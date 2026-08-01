@@ -4,7 +4,6 @@ import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -77,11 +76,6 @@ public class CommonSeasonHelper {
     @Override
     public Fertility fertility(Player player) {
       return SeasonModHelper.super.fertility(player);
-    }
-
-    @Override
-    public void debugHud(GuiGraphicsExtractor graphics) {
-
     }
   }
 }

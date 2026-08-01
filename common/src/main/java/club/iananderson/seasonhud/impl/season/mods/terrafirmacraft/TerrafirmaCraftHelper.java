@@ -9,7 +9,6 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -89,11 +88,6 @@ public class TerrafirmaCraftHelper implements SeasonModHelper {
   @Override
   public Fertility fertility(Player player) {
     return SeasonModHelper.super.fertility(player);
-  }
-
-  @Override
-  public void debugHud(GuiGraphicsExtractor graphics) {
-
   }
 
 }
