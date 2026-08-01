@@ -77,6 +77,4 @@ public interface SeasonHelper {
   int protoManlyWeatherCurrentDayOfMonth(Player player);
 
   int protoManlyWeatherTotalDaysInMonth(Player player);
-
-  void protoManlyDebug(PoseStack graphics);
 }
