@@ -7,7 +7,6 @@ import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import club.iananderson.seasonhud.impl.season.mods.SeasonModHelper;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;

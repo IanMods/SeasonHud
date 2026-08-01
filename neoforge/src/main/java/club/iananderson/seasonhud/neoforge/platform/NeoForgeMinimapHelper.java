@@ -7,7 +7,6 @@ import journeymap.client.ui.option.MinimapOptions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
-import net.minecraft.world.item.Item;
 import xaero.common.HudMod;
 import xaero.lib.client.gui.ScreenBase;
 

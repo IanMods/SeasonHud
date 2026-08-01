@@ -4,7 +4,6 @@ import club.iananderson.seasonhud.impl.season.components.Fertility;
 import club.iananderson.seasonhud.impl.season.components.Seasons;
 import club.iananderson.seasonhud.impl.season.components.SubSeasons;
 import java.util.Optional;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 

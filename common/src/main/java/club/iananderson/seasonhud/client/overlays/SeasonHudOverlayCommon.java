@@ -6,8 +6,6 @@ import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
 import club.iananderson.seasonhud.impl.season.CurrentFertility;
 import club.iananderson.seasonhud.impl.season.CurrentSeason;
-import club.iananderson.seasonhud.impl.season.mods.CommonSeasonHelper;
-import club.iananderson.seasonhud.platform.Services;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
