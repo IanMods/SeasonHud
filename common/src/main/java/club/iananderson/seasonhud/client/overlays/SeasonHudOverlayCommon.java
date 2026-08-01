@@ -82,7 +82,7 @@ public class SeasonHudOverlayCommon {
       }
 
       if (Services.PLATFORM.isDevelopmentEnvironment()) {
-        CommonSeasonHelper.commonSeasons.getHelper().debugHud(graphics);
+        // CommonSeasonHelper.commonSeasons.getHelper().debugHud(graphics);
       }
 
       graphics.pose().popPose();
