@@ -93,7 +93,4 @@ public interface SeasonModHelper {
   default Fertility fertility(Player player) {
     return Fertility.FERTILE;
   }
-
-  void debugHud(PoseStack graphics);
-
 }

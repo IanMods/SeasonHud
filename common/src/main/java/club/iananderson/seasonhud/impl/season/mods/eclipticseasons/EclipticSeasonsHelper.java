@@ -73,9 +73,4 @@ public class EclipticSeasonsHelper implements SeasonModHelper {
   public Fertility fertility(Player player) {
     return SeasonModHelper.super.fertility(player);
   }
-
-  @Override
-  public void debugHud(PoseStack graphics) {
-
-  }
 }
