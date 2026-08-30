@@ -3,7 +3,6 @@ package club.iananderson.seasonhud.forge.platform;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
-import journeymap.client.ui.option.MinimapOptions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -41,7 +40,8 @@ public class ForgeMinimapHelper implements MinimapHelper {
     MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
     return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
-        mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+        mc.screen == null || mc.screen instanceof ChatScreen
+            || mc.screen instanceof journeymap.client.ui.option.MinimapOptions);
   }
 
   @Override

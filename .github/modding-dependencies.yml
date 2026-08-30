@@ -119,7 +119,7 @@
 - repository: https://maven.blamejared.com/
   groupId: info.journeymap
   artifactId: journeymap-api-common
-  version: "*-${mcVersion}-*"
+  version: "${mcVersion}-*"
   properties:
     journeymap_api_version:
       source: version

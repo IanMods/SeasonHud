@@ -11,15 +11,23 @@ loom {
     runs {
         client {
             client()
-            setConfigName('Fabric Client')
-            ideConfigGenerated(true)
-            runDir('run/client')
+            getDisplayName().set(("Fabric Client"))
+            getGenerateRunConfig().set((true))
+            var clientDir = "run/client"
+            if (!file(clientDir).exists()) {
+                mkdir(clientDir)
+            }
+            getRunDirectory().set(getProject().file((clientDir)))
         }
         server {
             server()
-            setConfigName('Fabric Server')
-            ideConfigGenerated(true)
-            runDir('run/server')
+            getDisplayName().set(("Fabric Server"))
+            getGenerateRunConfig().set((true))
+            var serverDir = "run/server"
+            if (!file(serverDir).exists()) {
+                mkdir(serverDir)
+            }
+            getRunDirectory().set(getProject().file((serverDir)))
         }
     }
 }
@@ -279,7 +287,7 @@ dependencies {
             implementation "xaero.lib:xaerolib-fabric-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
-            implementation("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}-SNAPSHOT") {
+            implementation("info.journeymap:journeymap-api-fabric:${project.journeymap_api_version}") {
                 changing = true
             }
             implementation("maven.modrinth:journeymap:${project.journeymap_version_fabric}")
