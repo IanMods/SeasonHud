@@ -2,9 +2,9 @@ package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
 import club.iananderson.seasonhud.Common;
 import journeymap.api.v2.client.event.InfoSlotDisplayEvent.Position;
-import journeymap.api.v2.common.option.BooleanOption;
-import journeymap.api.v2.common.option.EnumOption;
-import journeymap.api.v2.common.option.OptionCategory;
+import journeymap.api.v2.client.option.BooleanOption;
+import journeymap.api.v2.client.option.EnumOption;
+import journeymap.api.v2.client.option.OptionCategory;
 
 public class ClientProperties {
   public final BooleanOption addAdditional;

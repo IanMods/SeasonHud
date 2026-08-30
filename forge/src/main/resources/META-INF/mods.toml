@@ -68,6 +68,6 @@ side = "CLIENT"
 [[dependencies.${ mod_id }]]
 modId = "journeymap"
 mandatory = false
-versionRange = "[1.20.1-6.0.0,)"
+versionRange = "[1.21.1-6.0.0,)"
 ordering = "AFTER"
 side = "CLIENT"
