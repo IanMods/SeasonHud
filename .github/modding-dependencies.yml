@@ -61,11 +61,38 @@
     xaero_lib_version_forge:
       source: version
 
+# Journeymap-API
+- repository: https://maven.blamejared.com/
+  groupId: info.journeymap
+  artifactId: journeymap-api-common
+  version: "${mcVersion}-*"
+  properties:
+    journeymap_api_version:
+      source: version
+
 # Journeymap-Forge
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*"
+  version: "${mcVersion}-*+forge"
   properties:
     journeymap_version_forge:
+      source: version
+
+# Journeymap-Fabric
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: journeymap
+  version: "${mcVersion}-*+fabric"
+  properties:
+    journeymap_version_fabric:
+      source: version
+
+# Common-Network
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: common-network
+  version: "${common_network_version}-${mcVersion}"
+  properties:
+    common_network_version:
       source: version
