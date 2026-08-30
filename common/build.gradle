@@ -27,7 +27,7 @@ dependencies {
     modCompileOnly "curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"
     modCompileOnly "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
-    modCompileOnlyApi("info.journeymap:journeymap-api:${project.journeymap_api_version}-SNAPSHOT") {
+    modCompileOnlyApi("info.journeymap:journeymap-api-common:${project.journeymap_api_version}") {
         changing = true
     }
     modCompileOnly "curse.maven:voxelmap-225179:${project.voxelmap_fabric_version}"

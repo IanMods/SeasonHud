@@ -6,10 +6,10 @@ import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
 import club.iananderson.seasonhud.config.SeasonHudClient;
 import club.iananderson.seasonhud.platform.Services;
+import club.iananderson.seasonhud.platform.services.MinimapHelper;
+import club.iananderson.seasonhud.platform.services.PlatformHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.Arrays;
-import journeymap.client.ui.UIManager;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -120,7 +120,7 @@ public class MainOptionsScreen extends SeasonHudScreen {
       journeyMapRow = row;
 
       journeyMapButton = MenuButton.builder(MenuButtons.JOURNEYMAP,
-                                            (button) -> UIManager.INSTANCE.openAddonOptionsEditor(this, true))
+                                            (button) -> Services.MINIMAP.openJourneyMapOptions(this))
           .withTooltip(Common.newTooltip("menu.seasonhud.main.journeymap.options.tooltip"))
           .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
           .build();

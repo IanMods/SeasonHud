@@ -70,7 +70,9 @@ dependencies {
 
     // JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
-
+    modCompileOnlyApi("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+        changing = true
+    }
 
     // FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"

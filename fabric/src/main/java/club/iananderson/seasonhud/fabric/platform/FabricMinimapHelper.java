@@ -3,10 +3,10 @@ package club.iananderson.seasonhud.fabric.platform;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
+import journeymap.client.ui.option.AddonOptionsManager;
 import journeymap.client.ui.option.MinimapOptions;
-import journeymap.client.properties.MiniMapProperties;
-import journeymap.client.ui.UIManager;
-import journeymap.client.ui.option.MinimapOptions;
+import journeymap.common.Journeymap;
+import journeymap.common.log.LogFormatter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -43,7 +43,7 @@ public class FabricMinimapHelper implements MinimapHelper {
 
     MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
-    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
+    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || !(
         mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
   }
 
@@ -66,5 +66,13 @@ public class FabricMinimapHelper implements MinimapHelper {
 
   @Override
   public void openJourneyMapOptions(Screen returnScreen) {
+    try {
+      AddonOptionsManager editor = new AddonOptionsManager(returnScreen, true);
+      UIManager.INSTANCE.open(editor);
+    } catch (LinkageError e) {
+      UIManager.handleLinkageError(e);
+    } catch (Throwable e) {
+      Journeymap.getLogger().error("Error opening Addon options manager: " + LogFormatter.toString(e));
+    }
   }
 }
