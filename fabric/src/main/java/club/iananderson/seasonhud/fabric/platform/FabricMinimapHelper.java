@@ -1,6 +1,12 @@
 package club.iananderson.seasonhud.fabric.platform;
 
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
+import journeymap.client.properties.MiniMapProperties;
+import journeymap.client.ui.UIManager;
+import journeymap.client.ui.option.MinimapOptions;
+import journeymap.client.properties.MiniMapProperties;
+import journeymap.client.ui.UIManager;
+import journeymap.client.ui.option.MinimapOptions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -31,7 +37,14 @@ public class FabricMinimapHelper implements MinimapHelper {
 
   @Override
   public boolean hideJourneyMap(Minecraft mc) {
-    return false;
+    if (mc.level == null || mc.player == null) {
+      return true;
+    }
+
+    MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
+
+    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
+        mc.screen == null || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
   }
 
   @Override

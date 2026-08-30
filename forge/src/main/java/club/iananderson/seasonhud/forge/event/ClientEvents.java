@@ -3,7 +3,6 @@ package club.iananderson.seasonhud.forge.event;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.SeasonHudClientCommon;
-import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.MapAtlases;
 import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
 import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
@@ -25,11 +24,6 @@ public class ClientEvents {
     public static void renderSeasonHudOverlay(RenderGameOverlayEvent.Post event) {
       if (event.getType() == ElementType.ALL) {
         PoseStack graphics = event.getMatrixStack();
-
-        if (CurrentMinimap.journeyMapLoaded()) {
-          JourneyMap.init();
-          JourneyMap.HUD_INSTANCE.render(graphics);
-        }
 
         if (CurrentMinimap.mapAtlasesLoaded()) {
           MapAtlases.init();

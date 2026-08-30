@@ -98,7 +98,11 @@ dependencies {
             modImplementation "xaero.lib:xaerolib-forge-${project.xaero_mc_version}:${project.xaero_lib_version}"
             break
         case "journey":
+            modImplementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+                changing = true
+            }
             modImplementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+            modImplementation("maven.modrinth:common-network:${project.common_network_version}-forge")
             break
         case "ftb":
             modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"

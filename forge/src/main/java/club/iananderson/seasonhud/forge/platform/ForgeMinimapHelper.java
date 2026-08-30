@@ -7,15 +7,9 @@ import java.util.List;
 import java.util.Objects;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
-import journeymap.client.ui.component.JmUI;
-import journeymap.client.ui.dialog.AddonOptionsManager;
-import journeymap.client.ui.dialog.MinimapOptions;
-import journeymap.common.Journeymap;
-import journeymap.common.log.LogFormatter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -59,8 +53,9 @@ public class ForgeMinimapHelper implements MinimapHelper {
 
     MiniMapProperties properties = UIManager.INSTANCE.getMiniMap().getCurrentMinimapProperties();
 
-    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || !(mc.screen == null
-        || mc.screen instanceof ChatScreen || mc.screen instanceof MinimapOptions);
+    return !properties.enabled.get() || (!properties.isActive() && mc.isPaused()) || mc.player.isScoping() || !(
+        mc.screen == null || mc.screen instanceof ChatScreen
+            || mc.screen instanceof journeymap.client.ui.option.MinimapOptions);
   }
 
   @Override
@@ -89,18 +84,6 @@ public class ForgeMinimapHelper implements MinimapHelper {
       return !isDimensionValid(validDimensions, currentDim);
     } else {
       return false;
-    }
-  }
-
-  @Override
-  public void openJourneyMapOptions(Screen returnScreen) {
-    try {
-      JmUI editor = new AddonOptionsManager(returnScreen);
-      UIManager.INSTANCE.open(editor);
-    } catch (LinkageError e) {
-      UIManager.handleLinkageError(e);
-    } catch (Throwable e) {
-      Journeymap.getLogger().error("Error opening Addon options manager: " + LogFormatter.toString(e));
     }
   }
 }

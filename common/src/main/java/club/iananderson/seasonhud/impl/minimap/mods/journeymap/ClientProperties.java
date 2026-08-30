@@ -1,22 +1,20 @@
 package club.iananderson.seasonhud.impl.minimap.mods.journeymap;
 
 import club.iananderson.seasonhud.Common;
-import club.iananderson.seasonhud.platform.Services;
-import journeymap.client.api.option.EnumOption;
-import journeymap.client.api.option.OptionCategory;
-import net.minecraft.client.gui.screens.Screen;
+import journeymap.api.v2.client.event.InfoSlotDisplayEvent.Position;
+import journeymap.api.v2.common.option.BooleanOption;
+import journeymap.api.v2.common.option.EnumOption;
+import journeymap.api.v2.common.option.OptionCategory;
 
 public class ClientProperties {
-  public final EnumOption<LabelPosition> position;
+  public final BooleanOption addAdditional;
+  public final EnumOption<Position> position;
 
   public ClientProperties() {
     OptionCategory seasonCategory = new OptionCategory(Common.MOD_ID, "desc.seasonhud.keybind.category",
                                                        "desc.seasonhud.keybind.options");
+    this.addAdditional = new BooleanOption(seasonCategory, "addAdditional", "Add an additional InfoSlot?", true);
     this.position = new EnumOption<>(seasonCategory, "position", "Location of the additional InfoSlot",
-                                     LabelPosition.Bottom);
-  }
-
-  public void openAddonOptionsEditor(Screen returnScreen) {
-    Services.MINIMAP.openJourneyMapOptions(returnScreen);
+                                     Position.Bottom);
   }
 }

@@ -58,7 +58,7 @@
   artifactId: xaerolib-forge-${mcVersion}
   version: "${xaero_lib_version}"
   properties:
-    xaero_lib_version_forge:
+    xaero_lib_version:
       source: version
 
 # Journeymap-API
