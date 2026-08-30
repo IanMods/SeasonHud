@@ -218,10 +218,8 @@ dependencies {
     modCompileOnly "xaero.lib:xaerolib-forge-${project.xaero_mc_version}:${project.xaero_lib_version}"
 
     // JourneyMap
-    modCompileOnly("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
-        changing = true
-    }
     modCompileOnly "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+
 
     //FTB Chunks + Dependencies
     modCompileOnly "dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}"
