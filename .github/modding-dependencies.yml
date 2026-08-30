@@ -209,7 +209,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: map-atlases-forge
-  version: "*-${mcVersion}-${map_atlases_version}"
+  version: "${mcVersion}-${map_atlases_version}"
   properties:
     map_atlases_version_neoforge:
       source: version
@@ -218,7 +218,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: map-atlases
-  version: "*-${mcVersion}-${map_atlases_version}"
+  version: "${mcVersion}-${map_atlases_version}"
   properties:
     map_atlases_version_fabric:
       source: version
@@ -227,7 +227,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: moonlight
-  version: "${mcVersion}-*-neoforge"
+  version: "${mcVersion}-*"
   properties:
     moonlight_version_neoforge:
       source: version
@@ -236,7 +236,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: moonlight
-  version: "${mcVersion}-*-fabric"
+  version: "${mcVersion}-*"
   properties:
     moonlight_version_fabric:
       source: version

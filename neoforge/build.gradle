@@ -248,7 +248,7 @@ dependencies {
 
     // Map Atlases
     compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
-    compileOnly "maven.modrinth:moonlight:${project.moonlight_version_neoforge}"
+    compileOnly "maven.modrinth:moonlight:${project.moonlight_version_neoforge}-neoforge"
 
     // Curios
     compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
@@ -288,7 +288,7 @@ dependencies {
             break
         case "atlas":
             implementation "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
-            implementation "maven.modrinth:moonlight:${project.moonlight_version_neoforge}"
+            implementation "maven.modrinth:moonlight:${project.moonlight_version_neoforge}-neoforge"
             break
         case "none":
             break
