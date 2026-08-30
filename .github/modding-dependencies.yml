@@ -128,7 +128,7 @@
 - repository: https://maven.blamejared.com/
   groupId: info.journeymap
   artifactId: journeymap-api-common
-  version: "*-${mcVersion}-*"
+  version: "${mcVersion}-*"
   properties:
     journeymap_api_version:
       source: version
@@ -146,7 +146,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*+neoforge"
+  version: "${mcVersion}-*+fabric"
   properties:
     journeymap_version_fabric:
       source: version
