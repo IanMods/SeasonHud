@@ -4,9 +4,9 @@ import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton;
 import club.iananderson.seasonhud.client.gui.components.buttons.MenuButton.MenuButtons;
 import club.iananderson.seasonhud.config.SeasonHudClient;
-import club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin;
 import club.iananderson.seasonhud.platform.Services;
 import java.util.Arrays;
+import journeymap.client.ui.UIManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
@@ -118,9 +118,8 @@ public class MainOptionsScreen extends SeasonHudScreen {
       row += 2;
       journeyMapRow = row;
 
-      journeyMapButton = MenuButton.builder(MenuButtons.JOURNEYMAP, (button) -> JourneymapSeasonPlugin.getInstance()
-              .getClientProperties()
-              .openAddonOptionsEditor(this))
+      journeyMapButton = MenuButton.builder(MenuButtons.JOURNEYMAP,
+                                            (button) -> UIManager.INSTANCE.openAddonOptionsEditor(this, true))
           .withTooltip(Common.newTooltip("menu.seasonhud.main.journeymap.options.tooltip"))
           .withPos(leftButtonX, (buttonStartY + (row * offsetY))).withWidth(buttonWidth)
           .build();

@@ -253,7 +253,11 @@ dependencies {
             modImplementation "xaero.lib:xaerolib-forge-${project.minecraft_version}:${project.xaero_lib_version}"
             break
         case "journey":
+            modImplementation("info.journeymap:journeymap-api-forge:${project.journeymap_api_version}") {
+                changing = true
+            }
             modImplementation "maven.modrinth:journeymap:${project.journeymap_version_forge}"
+            modImplementation("maven.modrinth:common-network:${project.common_network_version}-forge")
             break
         case "ftb":
             modImplementation("dev.ftb.mods:ftb-library-forge:${project.ftb_library_version}") { transitive = false }

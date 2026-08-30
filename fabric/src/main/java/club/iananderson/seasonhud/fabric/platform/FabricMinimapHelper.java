@@ -3,7 +3,7 @@ package club.iananderson.seasonhud.fabric.platform;
 import club.iananderson.seasonhud.platform.services.MinimapHelper;
 import journeymap.client.properties.MiniMapProperties;
 import journeymap.client.ui.UIManager;
-import journeymap.client.ui.dialog.MinimapOptions;
+import journeymap.client.ui.option.MinimapOptions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;

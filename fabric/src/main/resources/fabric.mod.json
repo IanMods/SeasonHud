@@ -22,6 +22,9 @@
     "main": [
       "club.iananderson.seasonhud.fabric.SeasonHudFabric"
     ],
+    "journeymap": [
+      "club.iananderson.seasonhud.impl.minimap.mods.journeymap.JourneymapSeasonPlugin"
+    ],
     "modmenu": [
       "club.iananderson.seasonhud.fabric.impl.ModMenuSeasonHud"
     ]
@@ -44,7 +47,8 @@
     "sereneseasons": "<9.1.0.0",
     "xaerominimap": "<25.3.0",
     "map_atlases": "<1.20-6.0.0",
-    "ftbchunks": "<2001.3.2"
+    "ftbchunks": "<2001.3.2",
+    "journeymap": "<1.20.1-6.0.0"
   },
   "suggests": {
     "seasonsextras": "*"

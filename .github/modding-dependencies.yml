@@ -142,6 +142,15 @@
     journeymap_version_fabric:
       source: version
 
+# Common-Network
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: common-network
+  version: "${common_network_version}-${mcVersion}"
+  properties:
+    common_network_version:
+      source: version
+
 # FTB Chunks
 - repository: https://maven.ftb.dev/releases
   groupId: dev.ftb.mods

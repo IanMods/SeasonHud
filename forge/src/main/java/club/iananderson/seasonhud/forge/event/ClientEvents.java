@@ -3,9 +3,7 @@ package club.iananderson.seasonhud.forge.event;
 import club.iananderson.seasonhud.Common;
 import club.iananderson.seasonhud.client.KeyBindings;
 import club.iananderson.seasonhud.client.SeasonHudClientCommon;
-import club.iananderson.seasonhud.forge.client.overlays.JourneyMap;
 import club.iananderson.seasonhud.forge.client.overlays.SeasonHudOverlay;
-import club.iananderson.seasonhud.impl.minimap.CurrentMinimap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -33,14 +31,6 @@ public class ClientEvents {
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
       SeasonHudOverlay.init();
       event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), "seasonhud", SeasonHudOverlay.HUD_INSTANCE);
-    }
-
-    @SubscribeEvent
-    public static void registerJourneyMapOverlay(RegisterGuiOverlaysEvent event) {
-      if (CurrentMinimap.journeyMapLoaded()) {
-        JourneyMap.init();
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), "journeymap", JourneyMap.HUD_INSTANCE);
-      }
     }
 
     // Key Bindings
