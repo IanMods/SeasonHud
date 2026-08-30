@@ -82,7 +82,7 @@
 # Journeymap-API
 - repository: https://maven.blamejared.com/
   groupId: info.journeymap
-  artifactId: journeymap-api
+  artifactId: journeymap-api-common
   version: "${mcVersion}-*"
   properties:
     journeymap_api_version:
@@ -92,7 +92,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*-forge"
+  version: "${mcVersion}-*+forge"
   properties:
     journeymap_version_forge:
       source: version
@@ -101,7 +101,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: journeymap
-  version: "${mcVersion}-*-fabric"
+  version: "${mcVersion}-*+fabric"
   properties:
     journeymap_version_fabric:
       source: version
