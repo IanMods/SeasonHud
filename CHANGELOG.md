@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.9] - 2026-08-30
+
+### Changed
+
+- Updated to support Journeymap 6
+  - (1.16.5 Only) Icon and season color will not display correctly until a future 1.16.5 JourneyMap update
+- Built against latest version of all dependencies
+
 ## [2.0.8] - 2026-07-31
 
 ### Fixed
