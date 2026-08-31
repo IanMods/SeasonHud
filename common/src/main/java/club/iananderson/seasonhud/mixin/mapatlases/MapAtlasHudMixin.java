@@ -14,18 +14,22 @@ public class MapAtlasHudMixin {
   // private Minecraft mc;
   //
   // @SuppressWarnings("checkstyle:ParameterName")
-  // @Inject(remap = false, method = "render", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
-  // private void render(GuiGraphics graphics, DeltaTracker partialTick, CallbackInfo ci, Window window, int screenWidth,
-  //     int screenHeight, ItemStack atlas, MapDataHolder activeMap, ClientLevel level, LocalPlayer player,
-  //     PoseStack poseStack, int mapWidgetSize, Anchoring anchorLocation, int off, int x, int y, float yRot, int light,
-  //     int borderSize, float textScaling, int textHeightOffset, int actualBgSize, Font font) {
+  // @Inject(remap = false, method = "renderText", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
+  // private void renderText(GuiGraphics graphics, int x, int y, Anchoring anchorLocation, CallbackInfo ci,
+  //     float textScaling, int textHeightOffset, int actualBgSize, Font font, PoseStack poseStack) {
   //
   //   if (CurrentMinimap.mapAtlasesLoaded() && CurrentMinimap.shouldDrawMinimapHud(MinimapMods.MAP_ATLASES, mc)) {
   //     if (MapAtlasesClientConfig.drawMinimapBiome.get()) {
   //       textHeightOffset += (int) (10.0F * textScaling);
   //     }
-  //     MapAtlasesCommon.drawMapComponentSeason(graphics, font, x, (int) (y + BG_SIZE + (textHeightOffset / globalScale)),
+  //
+  //     poseStack.pushPose();
+  //
+  //     MapAtlasesCommon.drawMapComponentSeason(graphics, font, x,
+  //                                             (int) (y + BG_SIZE + (textHeightOffset / globalScale)),
   //                                             actualBgSize, textScaling, globalScale);
+  //
+  //     poseStack.popPose();
   //   }
   // }
 }
