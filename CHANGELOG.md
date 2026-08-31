@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.10] - 2026-08-31
+
+### Changed
+
+- Updated MapAtlases integration to support the changes from the latest 1.21 version
+
 ## [2.0.9] - 2026-08-30
 
 ### Changed
