@@ -173,7 +173,7 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   protected boolean isValidClickButton(MouseButtonInfo buttonInfo) {
-    return buttonInfo.button() == 0 || buttonInfo.button() == 1;
+    return buttonInfo.button() == 1 || buttonInfo.button() == 3;
   }
 
   @Override
