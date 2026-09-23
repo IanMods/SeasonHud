@@ -230,7 +230,7 @@ dependencies {
 //    }
 
     // Development QOL
-    implementation "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
+    // implementation "me.djtheredstoner:DevAuth-neoforge:${project.devauth_version}"
     // implementation "net.caffeinemc:sodium-neoforge:${project.sodium_version_neoforge}"
     implementation "net.caffeinemc:sodium-neoforge-api:${project.sodium_version_neoforge}"
 //    implementation "maven.modrinth:iris:${project.iris_version_neoforge}"
