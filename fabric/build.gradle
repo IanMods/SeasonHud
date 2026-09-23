@@ -238,7 +238,7 @@ dependencies {
 //    }
 
     // Trinkets
-    implementation "eu.pb4:trinkets:${trinkets_version}"
+    compileOnly "eu.pb4:trinkets:${trinkets_version}"
 
     // Accessories
 //    compileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"

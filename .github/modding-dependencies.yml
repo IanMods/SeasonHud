@@ -56,7 +56,7 @@
 - repository: https://maven.terraformersmc.com/releases/
   groupId: com.terraformersmc
   artifactId: modmenu
-  version: "20.*"
+  version: "21.*"
   properties:
     modmenu_version:
       source: version
