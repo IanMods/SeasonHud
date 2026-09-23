@@ -190,7 +190,7 @@ dependencies {
 //    compileOnly "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
 
     // Ecliptic Seasons
-    compileOnly "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+    compileOnly "maven.modrinth:ecliptic-seasons:${project.ecliptic_seasons_version}"
 
     // Homeostatic Seasons
     compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-neoforge:${project.climatesettings_version}"
@@ -277,7 +277,7 @@ dependencies {
 //            implementation "maven.modrinth:patchouli:${project.patchouli_version}-neoforge"
             break
         case "ecliptic":
-            implementation "curse.maven:ecliptic-seasons-1118306:${project.ecliptic_seasons_version}"
+            implementation "maven.modrinth:ecliptic-seasons:${project.ecliptic_seasons_version}"
             break
         case "homeostatic":
             implementation "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-neoforge:${project.climatesettings_version}"

@@ -47,7 +47,7 @@
 - repository: https://raw.githubusercontent.com/Fuzss/modresources/main/maven/
   groupId: fuzs.forgeconfigapiport
   artifactId: forgeconfigapiport-fabric
-  version: "${mcMinor}.${mcPatch}.*"
+  version: "${mcVersion}.*"
   properties:
     forge_config_api_port_version:
       source: version
@@ -100,7 +100,7 @@
 # Xaero
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.minimap
-  artifactId: xaerominimap-common-26.1.2
+  artifactId: xaerominimap-common-26.3
   version: "${xaero_minimap_version}"
   properties:
     xaero_minimap_version:
@@ -109,7 +109,7 @@
 # Xaero's Lib
 - repository: https://chocolateminecraft.com/maven
   groupId: xaero.lib
-  artifactId: xaerolib-common-26.1.2
+  artifactId: xaerolib-common-26.3
   version: "${xaero_lib_version}"
   properties:
     xaero_lib_version:
@@ -155,7 +155,7 @@
 - repository: https://api.modrinth.com/maven
   groupId: maven.modrinth
   artifactId: common-network
-  version: "${common_network_version}-${mcVersion}"
+  version: "${mcVersion}-${common_network_version}"
   properties:
     common_network_version:
       source: version
@@ -191,7 +191,7 @@
 - repository: https://maven.shedaniel.me
   groupId: dev.architectury
   artifactId: architectury-fabric
-  version: "21.*"
+  version: "22.*"
   properties:
     architectury_version:
       source: version
@@ -293,4 +293,13 @@
   version: "*+${mcVersion}"
   properties:
     owo_version:
+      source: version
+
+# Curios
+- repository: https://api.modrinth.com/maven
+  groupId: maven.modrinth
+  artifactId: curios
+  version: "${curios_version}+${mcVersion}"
+  properties:
+    curios_version:
       source: version

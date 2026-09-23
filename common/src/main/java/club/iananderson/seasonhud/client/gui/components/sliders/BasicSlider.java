@@ -1,6 +1,7 @@
 package club.iananderson.seasonhud.client.gui.components.sliders;
 
 import club.iananderson.seasonhud.Common;
+import com.mojang.blaze3d.platform.InputConstants;
 import java.text.DecimalFormat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -11,7 +12,6 @@ import net.minecraft.client.input.MouseButtonInfo;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import org.lwjgl.glfw.GLFW;
 
 public class BasicSlider extends AbstractSliderButton {
   public static final int SLIDER_PADDING = 2;
@@ -159,7 +159,7 @@ public class BasicSlider extends AbstractSliderButton {
 
   @Override
   public void onClick(MouseButtonEvent event, boolean isDoubleClick) {
-    boolean rightClick = event.button() == GLFW.GLFW_MOUSE_BUTTON_2;
+    boolean rightClick = event.button() == InputConstants.MOUSE_BUTTON_RIGHT;
 
     if (!rightClick) {
       this.setValueFromMouse(event);
@@ -180,8 +180,8 @@ public class BasicSlider extends AbstractSliderButton {
   public boolean keyPressed(KeyEvent event) {
     int keyCode = event.key();
 
-    boolean left = keyCode == GLFW.GLFW_KEY_LEFT;
-    boolean right = keyCode == GLFW.GLFW_KEY_RIGHT;
+    boolean left = keyCode == InputConstants.KEY_LEFT;
+    boolean right = keyCode == InputConstants.KEY_RIGHT;
     if (left || right) {
       float f = left
                 ? -1F

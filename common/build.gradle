@@ -155,7 +155,7 @@ dependencies {
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forge_config_api_port_version}"
 
     //Season Mods
-    // Not used in common unless they are actually  loaded.
+    // Not used in common unless they are actually loaded.
     compileOnly "com.github.glitchfiend:SereneSeasons-common:${project.serene_seasons_version}"
     compileOnly "com.github.glitchfiend:GlitchCore-common:${project.glitchcore_version}"
     compileOnly "com.github.wendall911.climatesettings:climatesettings-${project.homeostatic_seasons_mc_version}-common:${project.climatesettings_version}"
