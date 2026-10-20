@@ -174,7 +174,7 @@ dependencies {
         changing = true
     }
     compileOnly "maven.modrinth:journeymap:${project.journeymap_version_neoforge}"
-//    compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
+    compileOnly "maven.modrinth:map-atlases-forge:${project.map_atlases_version_neoforge}"
 
     // Accessory Mods
 //    compileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"

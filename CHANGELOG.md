@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [2.0.11] - 2026-10-20
+
+### Changed
+
+- Updated to latest version of all dependencies
+
+### Fixed
+
+- Fixed MapAtlases support
+
 ## [2.0.10] - 2026-08-31
 
 ### Changed
