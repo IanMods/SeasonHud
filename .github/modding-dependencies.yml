@@ -29,7 +29,7 @@
 - repository: https://maven.neoforged.net/releases/
   groupId: net.neoforged
   artifactId: neoforge
-  version: "${mcMinor}.${mcPatch}.*"
+  version: "${mcVersion}.*"
   properties:
     neoforge_version:
       source: version
