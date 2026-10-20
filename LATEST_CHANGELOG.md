@@ -1,6 +1,10 @@
-## [2.0.10] - 2026-08-31
+## [2.0.11] - 2026-10-20
 
 ### Changed
 
-- Updated MapAtlases integration to support the changes from the latest 1.21 version
+- Updated to latest version of all dependencies
+
+### Fixed
+
+- Fixed MapAtlases support
 

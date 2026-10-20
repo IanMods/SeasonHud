@@ -12,11 +12,11 @@ import org.spongepowered.asm.service.MixinService;
 public class SeasonHudMixinPlugin implements IMixinConfigPlugin {
 
   private static final boolean HAS_XAERO;
-  // private static final boolean HAS_MAP_ATLASES;
+  private static final boolean HAS_MAP_ATLASES;
 
   static {
     HAS_XAERO = hasClass("xaero.common.HudMod");
-    // HAS_MAP_ATLASES = hasClass("pepjebs.mapatlases.MapAtlasesMod");
+    HAS_MAP_ATLASES = hasClass("pepjebs.mapatlases.MapAtlasesMod");
   }
 
   private String prefix = null;
@@ -50,9 +50,9 @@ public class SeasonHudMixinPlugin implements IMixinConfigPlugin {
     if (mixinClassName.startsWith("club.iananderson.seasonhud.mixin.xaero")) {
       return HAS_XAERO;
     }
-    // else if (mixinClassName.startsWith("club.iananderson.seasonhud.mixin.mapatlases")) {
-    //   return HAS_MAP_ATLASES;
-    // }
+    else if (mixinClassName.startsWith("club.iananderson.seasonhud.mixin.mapatlases")) {
+      return HAS_MAP_ATLASES;
+    }
     else {
       return true;
     }
