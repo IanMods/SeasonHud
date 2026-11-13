@@ -1,10 +1,6 @@
-## [2.0.11] - 2026-10-20
+## [2.0.12] - 2026-11-13
 
 ### Changed
 
 - Updated to latest version of all dependencies
-
-### Fixed
-
-- Fixed MapAtlases support
 
